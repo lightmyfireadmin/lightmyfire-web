@@ -4,6 +4,7 @@
 // It's a client component because Like/Flag buttons are interactive.
 
 import { DetailedPost } from '@/lib/types';
+// Assuming LikeButton and FlagButton remain in app/lighter/[id] for now
 import LikeButton from '@/app/lighter/[id]/LikeButton';
 import FlagButton from '@/app/lighter/[id]/FlagButton';
 
@@ -39,11 +40,13 @@ export default function PostCard({
   }
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+    // Use theme colors for card background and border
+    <div className="rounded-lg border border-border bg-background p-5 shadow-sm">
       <div className="mb-4 flex items-center justify-between">
-        <span className="font-semibold text-gray-700">{post.username}</span>
+        {/* Use theme text colors */}
+        <span className="font-semibold text-foreground">{post.username}</span>
         <span
-          className="text-sm text-gray-500"
+          className="text-sm text-muted-foreground"
           suppressHydrationWarning={true}
         >
           {new Date(post.created_at).toLocaleDateString()}
@@ -52,23 +55,24 @@ export default function PostCard({
 
       {/* Post Body - Renders all types */}
       <div className="space-y-3">
-        {post.title && <h3 className="text-xl font-bold">{post.title}</h3>}
+        {post.title && <h3 className="text-xl font-bold text-foreground">{post.title}</h3>}
 
         {post.post_type === 'text' && (
-          <p className="whitespace-pre-wrap text-gray-800">
+          <p className="whitespace-pre-wrap text-foreground"> {/* Use theme text */}
             {post.content_text}
           </p>
         )}
 
         {post.post_type === 'location' && (
-          <p className="text-gray-800">
+          <p className="text-foreground"> {/* Use theme text */}
             📍 {post.location_name || 'A location'}
           </p>
         )}
 
         {post.post_type === 'refuel' && (
+          // Consider a theme color for refuel, e.g., text-green-600 or secondary-foreground
           <p className="font-semibold text-green-600">
-            🔥 Refueled! This lighter's journey continues.
+            🔥 Refueled! This lighter&apos;s journey continues.
           </p>
         )}
 
@@ -76,7 +80,7 @@ export default function PostCard({
           <img
             src={post.content_url}
             alt={post.title || 'User upload'}
-            className="w-full rounded-md border border-gray-200"
+            className="w-full rounded-md border border-border" // Use theme border
           />
         )}
 
@@ -98,7 +102,9 @@ export default function PostCard({
 
       {/* Post Footer */}
       <div className="mt-4 flex items-center justify-between">
+        {/* LikeButton uses its own specific styling */}
         <LikeButton post={post} isLoggedIn={isLoggedIn} />
+        {/* FlagButton uses specific styling */}
         <FlagButton postId={post.id} isLoggedIn={isLoggedIn} />
       </div>
     </div>

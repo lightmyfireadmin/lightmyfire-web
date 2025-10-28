@@ -6,32 +6,33 @@
 /* Apply base styles using theme colors and fonts */
 @layer base {
   body {
-    @apply bg-background text-foreground font-sans; /* Use colors/font from config */
-    /* Add other base body styles if needed, e.g., min-h-screen */
+    @apply bg-background text-foreground font-sans;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
-
-  /* Ensure main content area can grow */
   main {
     flex-grow: 1;
   }
-
-  /* Apply display font to headings */
   h1, h2, h3, h4, h5, h6 {
     @apply font-display;
   }
-
-  /* Optional: Basic link styling */
-  /* a {
-    @apply text-primary hover:underline;
-  } */
 }
 
-/* We can add reusable component styles here later */
-/* @layer components {
+/* Reusable component styles */
+@layer components {
+  /* Primary Button (Magenta) */
   .btn-primary {
-    @apply bg-primary text-primary-foreground px-4 py-2 rounded-md transition hover:opacity-90;
+    @apply inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-primary-foreground bg-primary transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 cursor-pointer;
   }
-} */
+
+  /* Secondary Button (Outline/Muted Background) */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-4 py-2 border border-border rounded-lg shadow-sm text-sm font-semibold text-foreground bg-background transition hover:bg-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 cursor-pointer;
+  }
+
+  /* Link style (Optional - for text links that look like buttons) */
+  .btn-link {
+     @apply text-primary font-semibold hover:underline cursor-pointer;
+  }
+}

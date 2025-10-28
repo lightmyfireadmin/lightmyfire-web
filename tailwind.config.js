@@ -4,6 +4,7 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}', // Scan components folder
   ],
   theme: {
     extend: {
@@ -22,9 +23,9 @@ module.exports = {
         input: '#D1D1D1',
       },
       fontFamily: {
-        // Use font names directly from the <link> tag
+        // Use font names directly from the <link> tag in layout.tsx
         sans: ['"Nunito Sans"', ...defaultTheme.fontFamily.sans],
-        display: ['Poppins', ...defaultTheme.fontFamily.sans], // Poppins doesn't usually need quotes
+        display: ['Poppins', ...defaultTheme.fontFamily.sans],
       },
       borderRadius: {
         lg: '0.75rem',

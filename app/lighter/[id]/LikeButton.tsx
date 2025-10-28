@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase'; // Assumes lib is at root
 import { useRouter } from 'next/navigation';
 
 export default function LikeButton({
@@ -12,23 +12,21 @@ export default function LikeButton({
   isLoggedIn: boolean;
 }) {
   const router = useRouter();
-
-  // We use the server-provided data for the initial state
   const [likes, setLikes] = useState(post.like_count);
   const [isLiked, setIsLiked] = useState(post.user_has_liked);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLike = async () => {
     if (!isLoggedIn) {
-      // If user is not logged in, redirect them
       router.push('/login?message=You must be logged in to like a post');
       return;
     }
 
     setIsLoading(true);
 
-    // This is an "optimistic update"
-    // We update the UI *before* the database call finishes
+    // Optimistic update
+    const originalLikes = likes;
+    const originalIsLiked = isLiked;
     if (isLiked) {
       setLikes(likes - 1);
       setIsLiked(false);
@@ -37,24 +35,17 @@ export default function LikeButton({
       setIsLiked(true);
     }
 
-    // Call the database function
     const { error } = await supabase.rpc('toggle_like', {
       post_to_like_id: post.id,
     });
 
     if (error) {
-      // Something went wrong, revert the UI
       console.error(error);
-      if (isLiked) {
-        setLikes(likes - 1);
-        setIsLiked(false);
-      } else {
-        setLikes(likes + 1);
-        setIsLiked(true);
-      }
+      // Revert UI on error
+      setLikes(originalLikes);
+      setIsLiked(originalIsLiked);
     }
-    
-    // We're done, re-enable the button
+
     setIsLoading(false);
   };
 
@@ -62,11 +53,12 @@ export default function LikeButton({
     <button
       onClick={handleLike}
       disabled={isLoading}
+      // Specific styling for like button is kept
       className={`flex items-center space-x-1 rounded-full px-3 py-1 text-sm transition ${
         isLiked
-          ? 'bg-red-100 text-red-600'
-          : 'bg-gray-100 text-gray-600 hover:bg-red-50'
-      }`}
+          ? 'bg-red-100 text-red-600 hover:bg-red-200' // Added hover state for liked
+          : 'bg-muted text-muted-foreground hover:bg-red-50 hover:text-red-500' // Use theme muted colors, hover red
+      } disabled:opacity-50`}
     >
       <span>❤️</span>
       <span>{likes}</span>
