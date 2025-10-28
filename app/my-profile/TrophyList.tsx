@@ -1,8 +1,7 @@
 'use client';
 
-import type { Trophy } from './page'; // Import the type from our page
+import type { Trophy } from './page';
 
-// A simple (temporary) icon component
 function TrophyIcon() {
   return (
     <svg
@@ -23,8 +22,9 @@ function TrophyIcon() {
 export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
   if (trophies.length === 0) {
     return (
+      // --- THIS IS THE FIX ---
       <p className="text-sm text-gray-500">
-        You haven't earned any trophies yet. Go save a lighter or add a
+        You haven&apos;t earned any trophies yet. Go save a lighter or add a
         story!
       </p>
     );

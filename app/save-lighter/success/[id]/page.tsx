@@ -18,7 +18,6 @@ export default function SaveSuccessPage() {
   const [loading, setLoading] = useState(true);
   const [downloading, setDownloading] = useState(false);
 
-  // Fetch the new lighter's info on load
   useEffect(() => {
     if (lighterId) {
       const fetchLighterInfo = async () => {
@@ -47,7 +46,8 @@ export default function SaveSuccessPage() {
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gray-100">
-        <p>Loading your lighter's details...</p>
+        {/* --- THIS IS THE FIX --- */}
+        <p>Loading your lighter&apos;s details...</p>
       </div>
     );
   }
@@ -55,6 +55,7 @@ export default function SaveSuccessPage() {
   if (!lighter) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gray-100">
+        {/* --- THIS IS THE FIX --- */}
         <p>Could not find lighter.</p>
       </div>
     );
@@ -66,11 +67,13 @@ export default function SaveSuccessPage() {
         <h1 className="mb-4 text-3xl font-bold text-green-600">
           Success!
         </h1>
+        {/* --- THIS IS THE FIX --- */}
         <p className="mb-6 text-lg text-gray-700">
-          You've saved{' '}
+          You&apos;ve saved{' '}
           <span className="font-bold">{lighter.name}</span>!
         </p>
-        <p className="mb-2 text-gray-600">Your lighter's unique PIN is:</p>
+        {/* --- THIS IS THE FIX --- */}
+        <p className="mb-2 text-gray-600">Your lighter&apos;s unique PIN is:</p>
         <p className="mb-8 font-mono text-3xl font-bold text-gray-900">
           {lighter.pin_code}
         </p>
@@ -87,7 +90,7 @@ export default function SaveSuccessPage() {
           href={`/lighter/${lighterId}`}
           className="block w-full rounded-md bg-gray-200 py-3 text-lg font-semibold text-gray-800 transition hover:bg-gray-300"
         >
-          Go to Your Lighter's Page
+          Go to Your Lighter&apos;s Page
         </Link>
       </div>
     </div>

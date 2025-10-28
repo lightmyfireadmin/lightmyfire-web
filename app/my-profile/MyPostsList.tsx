@@ -2,10 +2,9 @@
 
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
-import type { MyPostWithLighter } from './page'; // Import the type from our page
+import type { MyPostWithLighter } from './page';
 import Link from 'next/link';
 
-// Helper component for an icon
 function TrashIcon() {
   return (
     <svg
@@ -33,33 +32,27 @@ export default function MyPostsList({
 }: {
   initialPosts: MyPostWithLighter[];
 }) {
-  // We use state so we can remove items from the list instantly
   const [posts, setPosts] = useState(initialPosts);
   const [error, setError] = useState('');
 
   const handleDelete = async (postId: number) => {
     setError('');
-    // Ask for confirmation
+    // --- THIS IS THE FIX ---
     if (!window.confirm('Are you sure you want to delete this post?')) {
       return;
     }
 
-    // Our RLS rules on the 'posts' table only allow a user
-    // to delete their *own* posts, so this is secure.
     const { error } = await supabase.from('posts').delete().eq('id', postId);
 
     if (error) {
       setError(`Error deleting post: ${error.message}`);
     } else {
-      // Success! Remove the post from the list in the UI.
       setPosts(posts.filter((post) => post.id !== postId));
     }
   };
 
   if (posts.length === 0) {
-    return (
-      <p className="text-sm text-gray-500">You haven't made any posts yet.</p>
-    );
+    return <p className="text-sm text-gray-500">You haven&apos;t made any posts yet.</p>;
   }
 
   return (
@@ -84,11 +77,9 @@ export default function MyPostsList({
                   {post.lighters?.name || 'a lighter'}
                 </Link>
                 {' on '}
-                {/* --- THIS IS THE FIX --- */}
                 <span suppressHydrationWarning={true}>
                   {new Date(post.created_at).toLocaleDateString()}
                 </span>
-                {/* --- END OF FIX --- */}
               </p>
             </div>
             <button

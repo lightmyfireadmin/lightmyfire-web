@@ -2,13 +2,11 @@ import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import MyPostsList from './MyPostsList'; // <-- FIX 1: Removed .tsx
+import MyPostsList from './MyPostsList';
 import TrophyList from './TrophyList';
-// import { MyPostWithLighter } from './MyPostsList'; // <-- FIX 2: This line is removed.
 
 export const dynamic = 'force-dynamic';
 
-// This type is defined *here*
 export type MyPostWithLighter = {
   id: number;
   title: string | null;
@@ -20,7 +18,6 @@ export type MyPostWithLighter = {
   } | null;
 };
 
-// Define a type for our Trophies
 export type Trophy = {
   id: number;
   name: string;
@@ -42,7 +39,6 @@ export default async function MyProfilePage() {
     }
   );
 
-  // 1. Check for a logged-in user
   const {
     data: { session },
   } = await supabase.auth.getSession();
@@ -52,7 +48,6 @@ export default async function MyProfilePage() {
   }
   const userId = session.user.id;
 
-  // 2. Fetch all data in parallel
   const [
     profileRes,
     statsRes,
@@ -76,19 +71,15 @@ export default async function MyProfilePage() {
 
   const profile = profileRes.data;
   const stats = statsRes.data;
-
-  // <-- FIX 3: Use 'as unknown as' for safer type casting
+  
   const myPosts: MyPostWithLighter[] =
     (myPostsRes.data as unknown as MyPostWithLighter[]) || [];
   
-  // Extract just the trophy data
-  // <-- FIX 3: Use 'as unknown as' for safer type casting
   const myTrophies: Trophy[] =
     (trophiesRes.data?.map((t) => t.trophies) as unknown as Trophy[]) || [];
 
   return (
     <div className="mx-auto max-w-4xl p-4 sm:p-6 lg:p-8">
-      {/* Header */}
       <div className="mb-8 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
         <h1 className="text-3xl font-bold text-gray-900">
           @{profile?.username}
@@ -98,7 +89,6 @@ export default async function MyProfilePage() {
         </p>
       </div>
 
-      {/* Stats Grid */}
       <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
         <StatCard label="Contributions" value={stats?.total_contributions} />
         <StatCard label="Lighters Saved" value={stats?.lighters_saved} />
@@ -106,15 +96,12 @@ export default async function MyProfilePage() {
         <StatCard label="Likes Received" value={stats?.likes_received} />
       </div>
 
-      {/* Trophies Section */}
       <div className="mb-8 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
         <h2 className="mb-4 text-xl font-semibold">My Trophies</h2>
         <TrophyList trophies={myTrophies} />
       </div>
 
-      {/* Columns */}
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-        {/* Column 1: My Saved Lighters */}
         <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm md:col-span-1">
           <h2 className="mb-4 text-xl font-semibold">My Saved Lighters</h2>
           <div className="space-y-3">
@@ -132,14 +119,14 @@ export default async function MyProfilePage() {
                 </Link>
               ))
             ) : (
+              // --- THIS IS THE FIX ---
               <p className="text-sm text-gray-500">
-                You haven't saved any lighters yet.
+                You haven&apos;t saved any lighters yet.
               </p>
             )}
           </div>
         </div>
 
-        {/* Column 2: My Contributions */}
         <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm md:col-span-2">
           <h2 className="mb-4 text-xl font-semibold">My Contributions</h2>
           <MyPostsList initialPosts={myPosts} />
@@ -149,7 +136,6 @@ export default async function MyProfilePage() {
   );
 }
 
-// Helper component for the stat cards
 function StatCard({ label, value }: { label: string; value: number }) {
   return (
     <div className="rounded-lg bg-gray-50 p-4 shadow-inner">

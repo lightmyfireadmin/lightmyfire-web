@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import type { User } from '@supabase/supabase-js';
 
-// We accept the 'user' object as a prop from the parent page
 export default function SaveLighterForm({ user }: { user: User }) {
   const router = useRouter();
   const [lighterName, setLighterName] = useState('');
@@ -19,12 +18,11 @@ export default function SaveLighterForm({ user }: { user: User }) {
     setLoading(true);
     setError('');
 
-    // Call the database function we just created!
     const { data, error: rpcError } = await supabase.rpc(
       'create_new_lighter',
       {
         lighter_name: lighterName,
-        background_url: backgroundUrl || null, // Send null if empty
+        background_url: backgroundUrl || null,
         show_username: showUsername,
       }
     );
@@ -33,9 +31,8 @@ export default function SaveLighterForm({ user }: { user: User }) {
       setError(`Error: ${rpcError.message}`);
       setLoading(false);
     } else if (data) {
-      // Success! 'data' contains the new lighter's UUID.
-      // Let's redirect to the new lighter's page.
-      router.push(`/save-lighter/success/${data}`);    }
+      router.push(`/save-lighter/success/${data}`);
+    }
   };
 
   return (
@@ -50,7 +47,6 @@ export default function SaveLighterForm({ user }: { user: User }) {
         You are a LightSaver! Give your lighter a name to begin its journey.
       </p>
 
-      {/* Lighter Name Input */}
       <div className="mb-4">
         <label
           htmlFor="lighterName"
@@ -69,7 +65,6 @@ export default function SaveLighterForm({ user }: { user: User }) {
         />
       </div>
 
-      {/* Background URL Input */}
       <div className="mb-4">
         <label
           htmlFor="backgroundUrl"
@@ -87,7 +82,6 @@ export default function SaveLighterForm({ user }: { user: User }) {
         />
       </div>
 
-      {/* Show Username Checkbox */}
       <div className="mb-6 flex items-center">
         <input
           type="checkbox"
@@ -100,7 +94,8 @@ export default function SaveLighterForm({ user }: { user: User }) {
           htmlFor="showUsername"
           className="ml-2 block text-sm text-gray-700"
         >
-          Show my username as the "LightSaver"
+          {/* --- THIS IS THE FIX --- */}
+          Show my username as the &quot;LightSaver&quot;
         </label>
       </div>
 

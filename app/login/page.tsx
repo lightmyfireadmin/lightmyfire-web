@@ -22,7 +22,7 @@ export default function LoginPage() {
     return () => {
       subscription?.unsubscribe();
     };
-  }, [router]); // <-- 'supabase' has been removed from here
+  }, [router]); // <-- 'supabase' is correctly removed from here
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
