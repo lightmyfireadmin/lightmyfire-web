@@ -1,8 +1,10 @@
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
+// Corrected import paths assuming components is inside app/
 import PinEntryForm from '@/app/components/PinEntryForm';
 import PostCard from '@/app/components/PostCard';
-import { DetailedPost } from '@/lib/types';
+import { DetailedPost } from '@/lib/types'; // Assuming lib is at root
+import Link from 'next/link'; // Added Link import
 
 export const dynamic = 'force-dynamic';
 
@@ -35,30 +37,36 @@ export default async function Home() {
   );
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-background">
       {/* Hero Section */}
       <div className="relative isolate px-6 pt-14 lg:px-8">
-        <div className="mx-auto max-w-3xl py-32 sm:py-48 lg:py-56">
+        {/* Adjusted padding */}
+        <div className="mx-auto max-w-3xl py-24 sm:py-32 lg:py-48">
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Every Lighter Has a Story
+            {/* Adjusted heading size */}
+            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+              I&apos;m Too Young To Die
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              We turn disposable lighters into a global, human creativity
-              mosaic. Find a lighter, see its journey, and add your own chapter.
+            <p className="mt-6 text-lg leading-8 text-muted-foreground">
+              They toss billions of us Lighter Babies every year. Found, loved, lost, forgotten... But we hear stories! Give us a chance to tell them.
             </p>
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+               <Link href="/save-lighter" className="btn-primary">
+                 Become a LightSaver
+               </Link>
+             </div>
           </div>
         </div>
       </div>
 
       {/* PIN Entry Section */}
-      <div className="flex w-full items-center justify-center bg-gray-100 py-16">
+      <div className="flex w-full items-center justify-center bg-muted py-12 sm:py-16"> {/* Adjusted padding */}
         <PinEntryForm />
       </div>
 
       {/* Random Stories Section */}
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 lg:px-8">
-        <h2 className="mb-8 text-center text-3xl font-bold text-gray-900">
+      <div className="mx-auto max-w-2xl px-4 py-12 sm:py-16 lg:px-8"> {/* Adjusted padding */}
+        <h2 className="mb-8 text-center text-3xl font-bold text-foreground">
           Stories from the Mosaic
         </h2>
         <div className="space-y-6">
@@ -71,7 +79,7 @@ export default async function Home() {
               />
             ))
           ) : (
-            <p className="text-center text-gray-500">
+            <p className="text-center text-muted-foreground">
               No public stories yet. Be the first to save a lighter!
             </p>
           )}

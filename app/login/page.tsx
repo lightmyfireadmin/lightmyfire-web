@@ -1,6 +1,7 @@
+// app/login/page.tsx
 'use client';
 
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase'; // Assuming lib is at root
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { useRouter } from 'next/navigation';
@@ -8,6 +9,20 @@ import { useEffect } from 'react';
 
 export default function LoginPage() {
   const router = useRouter();
+
+  // Construct the redirect URL robustly
+  const getRedirectUrl = () => {
+    let url =
+      process.env.NEXT_PUBLIC_VERCEL_URL ?? // Vercel system env var (requires expose in next.config.js)
+      process.env.NEXT_PUBLIC_SITE_URL ?? // Or use your own custom env var
+      'http://localhost:3000/'; // Fallback for local development
+    // Make sure to include `https://` when not localhost.
+    url = url.includes('http') ? url : `https://${url}`;
+    // Ensure it doesn't end with a trailing slash
+    url = url.charAt(url.length - 1) === '/' ? url.slice(0, -1) : url;
+    return `${url}/auth/callback`; // Append the callback path
+  };
+
 
   useEffect(() => {
     const {
@@ -22,22 +37,21 @@ export default function LoginPage() {
     return () => {
       subscription?.unsubscribe();
     };
-  }, [router]); // <-- 'supabase' is correctly removed from here
+  }, [router]); // supabase removed
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
-        <h1 className="mb-6 text-center text-3xl font-bold text-gray-800">
+    <div className="flex min-h-screen items-center justify-center bg-muted p-4"> {/* Use theme bg */}
+      <div className="w-full max-w-md rounded-xl bg-background p-8 shadow-lg"> {/* Use theme bg */}
+        <h1 className="mb-6 text-center text-3xl font-bold text-foreground"> {/* Use theme text */}
           LightMyFire
         </h1>
         <Auth
           supabaseClient={supabase}
-          appearance={{ theme: ThemeSupa }}
-          theme="light"
-          providers={['google', 'github']}
-          redirectTo={`${
-            typeof window !== 'undefined' ? window.location.origin : ''
-          }/auth/callback`}
+          appearance={{ theme: ThemeSupa }} // You can customize appearance later
+          theme="light" // Or 'dark'
+          providers={['google']} // Only Google enabled for now
+          // Use the function to get the correct URL
+          redirectTo={getRedirectUrl()}
         />
       </div>
     </div>
