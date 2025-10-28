@@ -9,9 +9,7 @@ import { useEffect } from 'react';
 export default function LoginPage() {
   const router = useRouter();
 
-  // --- THIS IS THE CORRECTED HOOK ---
   useEffect(() => {
-    // We destructure 'subscription' from the 'data' object
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
@@ -21,13 +19,10 @@ export default function LoginPage() {
       }
     });
 
-    // This cleans up the listener when the component is unmounted
     return () => {
-      // We call unsubscribe on the 'subscription' object
       subscription?.unsubscribe();
     };
-  }, [supabase, router]);
-  // --- END OF CORRECTED CODE ---
+  }, [router]); // <-- 'supabase' has been removed from here
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
