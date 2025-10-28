@@ -2,18 +2,17 @@ import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+// Assuming PostCard is inside app/components/
 import PostCard from '@/app/components/PostCard';
-import { DetailedPost } from '@/lib/types';
-import type { Metadata } from 'next'; // <-- 1. IMPORT METADATA TYPE
+import { DetailedPost } from '@/lib/types'; // Assuming lib is at root
+import type { Metadata } from 'next';
 
-// --- 2. ADD THIS NEW FUNCTION ---
-// This function dynamically generates metadata for each lighter page
+// --- generateMetadata Function (Remains the same) ---
 export async function generateMetadata({
   params,
 }: {
   params: { id: string };
 }): Promise<Metadata> {
-  // We must create a new client here because this runs separately
   const cookieStore = cookies();
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -26,8 +25,6 @@ export async function generateMetadata({
       },
     }
   );
-
-  // Fetch the lighter's details
   const { data: lighter } = await supabase
     .from('lighters')
     .select('name, custom_background_url')
@@ -35,32 +32,26 @@ export async function generateMetadata({
     .single();
 
   if (!lighter) {
-    // Return default metadata if lighter isn't found
     return {
       title: 'Lighter Not Found | LightMyFire',
       description: 'A human creativity mosaic.',
     };
   }
-
-  // Return the dynamic metadata
   return {
     title: `${lighter.name} | LightMyFire`,
     description: `See the story of a lighter named "${lighter.name}". Add your own chapter to its journey!`,
-    // This is the OpenGraph data
     openGraph: {
       title: lighter.name,
       description: 'See its story on LightMyFire',
-      // Use the lighter's custom background as the preview image!
       images: [
         {
-          url: lighter.custom_background_url || '/default-og-image.png', // We'll need to create a default image
+          url: lighter.custom_background_url || '/default-og-image.png', // Create this default image in /public
           width: 1200,
           height: 630,
         },
       ],
       type: 'website',
     },
-    // This is for X (Twitter) cards
     twitter: {
       card: 'summary_large_image',
       title: lighter.name,
@@ -69,9 +60,10 @@ export async function generateMetadata({
     },
   };
 }
-// --- END OF NEW FUNCTION ---
+// --- END of generateMetadata Function ---
 
-// The rest of your page component is unchanged
+
+// --- Main Page Component ---
 export default async function LighterPage({
   params,
 }: {
@@ -113,42 +105,48 @@ export default async function LighterPage({
 
   return (
     <div
-      className="min-h-screen bg-gray-50"
+      className="min-h-screen bg-background"
       style={{
         backgroundImage: lighter.custom_background_url
           ? `url(${lighter.custom_background_url})`
           : 'none',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
       }}
     >
-      <div className="mx-auto max-w-2xl bg-white/90 p-6 pt-10 shadow-lg backdrop-blur-sm">
-        <div className="mb-8 border-b border-gray-300 pb-6">
-          <h1 className="text-center text-4xl font-bold text-gray-800">
+      {/* Container with responsive padding */}
+      <div className="mx-auto max-w-2xl bg-background/95 p-4 pt-8 md:p-6 md:pt-10 shadow-lg backdrop-blur-sm min-h-screen"> {/* Adjusted padding */}
+        {/* Lighter Header */}
+        <div className="mb-8 border-b border-border pb-6">
+          {/* Responsive heading size */}
+          <h1 className="text-center text-3xl md:text-4xl font-bold text-foreground"> {/* Adjusted heading size */}
             {lighter.name}
           </h1>
-          <p className="mt-2 text-center text-lg text-gray-500">
-            PIN: <span className="font-mono font-bold">{lighter.pin_code}</span>
+          <p className="mt-2 text-center text-lg text-muted-foreground">
+            PIN: <span className="font-mono font-semibold text-foreground">{lighter.pin_code}</span>
           </p>
         </div>
 
+        {/* Add to Story Button */}
         <div className="mb-8">
           <Link
             href={`/lighter/${lighter.id}/add`}
-            className="block w-full rounded-md bg-blue-600 py-3 text-center text-lg font-semibold text-white transition hover:bg-blue-700"
+            className="btn-primary block w-full text-lg text-center" // Button style applied
           >
             Add to the Story
           </Link>
         </div>
 
+        {/* Posts Feed */}
         <div className="space-y-6">
           {posts && posts.length > 0 ? (
             posts.map((post: DetailedPost) => (
               <PostCard key={post.id} post={post} isLoggedIn={isLoggedIn} />
             ))
           ) : (
-            <p className="text-center text-gray-500">
-              This lighter's story is just beginning. Be the first to add to it!
+            <p className="text-center text-muted-foreground">
+              This lighter&apos;s story is just beginning. Be the first to add to it!
             </p>
           )}
         </div>
