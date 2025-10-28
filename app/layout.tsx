@@ -1,6 +1,21 @@
 import type { Metadata } from 'next';
-// Font loading handled by <link> tags
+import { Poppins, Nunito_Sans } from 'next/font/google';
 import './globals.css';
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: '700',
+  variable: '--font-poppins',
+});
+
+const nunito_sans = Nunito_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-nunito-sans',
+});
 // Correct import paths assuming components folder is inside app/
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
@@ -38,15 +53,12 @@ export default async function RootLayout({
   } = await supabase.auth.getSession();
 
   return (
-    <html lang="en">
+    <html lang="en" className={`${poppins.variable} ${nunito_sans.variable}`}>
       <head>
-        {/* Google Font <link> tags */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Nunito+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+        {/* Font links are now handled by next/font */}
       </head>
-      {/* Added flex classes for sticky footer */}
-      <body className="flex flex-col min-h-screen">
+      {/* Added flex classes for sticky footer and font-sans */}
+      <body className="flex flex-col min-h-screen font-sans">
         <Header session={session} />
         {/* Added flex-grow */}
         <main className="flex-grow">{children}</main>

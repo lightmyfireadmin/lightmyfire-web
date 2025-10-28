@@ -11,7 +11,7 @@ export default function PrivacyPolicy() {
             <p className="lead">Last updated: October 28, 2025</p>
   
             <p>
-              LightMyFire ("we," "us," or "our") is a project operated by
+              LightMyFire (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) is a project operated by
               Revel Editions, a SASU domiciliated in France. We are
               committed to protecting your privacy. This Privacy Policy
               explains how we collect, use, disclose, and safeguard your
@@ -24,7 +24,7 @@ export default function PrivacyPolicy() {
               <br />
               Revel Editions, SASU
               <br />
-              [Your Company's Full Address in France]
+              [Your Company&apos;s Full Address in France]
               <br />
               [Your Contact Email, e.g., legal@lightmyfire.com]
             </p>
@@ -39,7 +39,7 @@ export default function PrivacyPolicy() {
               </li>
               <li>
                 <strong>User-Generated Content:</strong> When you add to a
-                lighter's story, we collect the content you provide, which
+                lighter&apos;s story, we collect the content you provide, which
                 may include text, images, links to songs (YouTube URLs), and
                 location names.
               </li>
@@ -113,9 +113,9 @@ export default function PrivacyPolicy() {
                 <strong>Rectification:</strong> Correct inaccurate data.
               </li>
               <li>
-                <strong>Erasure ("Right to be Forgotten"):</strong>
+                <strong>Erasure (&quot;Right to be Forgotten&quot;):</strong>
                 Request deletion of your data. You can delete your own
-                contributions at any time from your "My Profile" page.
+                contributions at any time from your &quot;My Profile&quot; page.
               </li>
               <li>
                 <strong>Portability:</strong> Request your data in a machine-readable format.

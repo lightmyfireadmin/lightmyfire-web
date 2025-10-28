@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase'; // Assuming lib is at root
 import type { User } from '@supabase/supabase-js';
 
 export default function SaveLighterForm({ user }: { user: User }) {
@@ -32,25 +32,30 @@ export default function SaveLighterForm({ user }: { user: User }) {
       setLoading(false);
     } else if (data) {
       router.push(`/save-lighter/success/${data}`);
+    } else {
+      // Handle case where data might be null unexpectedly
+      setError('Failed to create lighter. Please try again.');
+      setLoading(false);
     }
   };
 
   return (
+    // Applied responsive padding
     <form
       onSubmit={handleSubmit}
-      className="w-full max-w-lg rounded-lg bg-white p-8 shadow-md"
+      className="w-full max-w-lg rounded-xl bg-background p-6 sm:p-8 shadow-lg" // Use rounded-xl, shadow-lg
     >
-      <h1 className="mb-6 text-center text-3xl font-bold text-gray-800">
+      <h1 className="mb-6 text-center text-3xl font-bold text-foreground">
         Save a Lighter
       </h1>
-      <p className="mb-6 text-gray-600">
+      <p className="mb-6 text-muted-foreground">
         You are a LightSaver! Give your lighter a name to begin its journey.
       </p>
 
       <div className="mb-4">
         <label
           htmlFor="lighterName"
-          className="mb-2 block text-sm font-medium text-gray-700"
+          className="mb-2 block text-sm font-medium text-foreground"
         >
           Lighter Name (Required)
         </label>
@@ -59,7 +64,7 @@ export default function SaveLighterForm({ user }: { user: User }) {
           id="lighterName"
           value={lighterName}
           onChange={(e) => setLighterName(e.target.value)}
-          className="w-full rounded-md border border-gray-300 p-3 text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+          className="w-full rounded-lg border border-input p-3 text-foreground bg-background focus:border-primary focus:ring-primary" // Use rounded-lg
           placeholder="e.g., The Wanderer"
           required
         />
@@ -68,7 +73,7 @@ export default function SaveLighterForm({ user }: { user: User }) {
       <div className="mb-4">
         <label
           htmlFor="backgroundUrl"
-          className="mb-2 block text-sm font-medium text-gray-700"
+          className="mb-2 block text-sm font-medium text-foreground"
         >
           Custom Background URL (Optional)
         </label>
@@ -77,7 +82,7 @@ export default function SaveLighterForm({ user }: { user: User }) {
           id="backgroundUrl"
           value={backgroundUrl}
           onChange={(e) => setBackgroundUrl(e.target.value)}
-          className="w-full rounded-md border border-gray-300 p-3 text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+          className="w-full rounded-lg border border-input p-3 text-foreground bg-background focus:border-primary focus:ring-primary" // Use rounded-lg
           placeholder="https://.../my-image.png"
         />
       </div>
@@ -88,23 +93,22 @@ export default function SaveLighterForm({ user }: { user: User }) {
           id="showUsername"
           checked={showUsername}
           onChange={(e) => setShowUsername(e.target.checked)}
-          className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+          className="h-4 w-4 rounded border-input text-primary focus:ring-primary focus:ring-offset-background" // Added offset
         />
         <label
           htmlFor="showUsername"
-          className="ml-2 block text-sm text-gray-700"
+          className="ml-2 block text-sm text-foreground"
         >
-          {/* --- THIS IS THE FIX --- */}
           Show my username as the &quot;LightSaver&quot;
         </label>
       </div>
 
-      {error && <p className="mb-4 text-center text-red-500">{error}</p>}
+      {error && <p className="mb-4 text-center text-sm text-red-500">{error}</p>} {/* Smaller error */}
 
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-md bg-blue-600 py-3 text-lg font-semibold text-white transition hover:bg-blue-700 disabled:opacity-50"
+        className="btn-primary w-full text-lg" // Applied btn-primary
       >
         {loading ? 'Saving...' : 'Save Lighter'}
       </button>

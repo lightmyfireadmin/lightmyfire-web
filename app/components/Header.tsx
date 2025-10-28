@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -28,8 +29,9 @@ export default function Header({ session }: { session: Session }) {
     <header className="bg-background border-b border-border shadow-sm sticky top-0 z-50">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5 font-display text-xl font-bold text-foreground hover:opacity-80">
-            LightMyFire 🔥
+          <Link href="/" className="-m-1.5 p-1.5">
+            <span className="sr-only">LightMyFire</span>
+            <Image src="/LOGOLONG.png" alt="LightMyFire Logo" width={150} height={40} className="h-10 w-auto" />
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -85,8 +87,9 @@ export default function Header({ session }: { session: Session }) {
         <div className="fixed inset-0 z-50" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <Link href="/" className="-m-1.5 p-1.5 font-display text-xl font-bold text-foreground">
-              LightMyFire 🔥
+            <Link href="/" className="-m-1.5 p-1.5">
+              <span className="sr-only">LightMyFire</span>
+              <Image src="/LOGOLONG.png" alt="LightMyFire Logo" width={150} height={40} className="h-10 w-auto" />
             </Link>
             <button
               type="button"

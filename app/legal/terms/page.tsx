@@ -10,8 +10,8 @@ export default function TermsOfService() {
           <div className="prose prose-lg max-w-none">
             <p className="lead">Last updated: October 28, 2025</p>
             <p>
-              These Terms of Service ("Terms") govern your access to and use
-              of the LightMyFire website and services (the "Service"),
+              These Terms of Service (&quot;Terms&quot;) govern your access to and use
+              of the LightMyFire website and services (the &quot;Service&quot;),
               operated by Revel Editions, SASU.
             </p>
   
@@ -34,13 +34,13 @@ export default function TermsOfService() {
             <h3>3. User-Generated Content (UGC)</h3>
             <p>
               You are solely responsible for the content you post
-              ("UGC"), including text, images, and links. You must not
+              (&quot;UGC&quot;), including text, images, and links. You must not
               post content that is:
             </p>
             <ul>
               <li>Illegal, hateful, discriminatory, or threatening.</li>
               <li>
-                Infringes on any third party's intellectual property
+                Infringes on any third party&apos;s intellectual property
                 (e.g., copyright).
               </li>
               <li>Spam or unauthorized advertising.</li>
@@ -76,7 +76,7 @@ export default function TermsOfService() {
   
             <h3>7. Limitation of Liability</h3>
             <p>
-              The Service is provided "as is." Revel Editions, SASU will
+              The Service is provided &quot;as is.&quot; Revel Editions, SASU will
               not be liable for any indirect, incidental, or consequential
               damages, including loss of data or content.
             </p>

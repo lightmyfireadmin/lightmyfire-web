@@ -45,9 +45,8 @@ export default function SaveSuccessPage() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-100">
-        {/* --- THIS IS THE FIX --- */}
-        <p>Loading your lighter&apos;s details...</p>
+      <div className="flex min-h-screen items-center justify-center bg-gray-100"> {/* Keep muted bg for loading */}
+        <p className="text-muted-foreground">Loading your lighter&apos;s details...</p>
       </div>
     );
   }
@@ -55,40 +54,37 @@ export default function SaveSuccessPage() {
   if (!lighter) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gray-100">
-        {/* --- THIS IS THE FIX --- */}
-        <p>Could not find lighter.</p>
+        <p className="text-red-600">Could not find lighter.</p> {/* Error text */}
       </div>
     );
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
-      <div className="w-full max-w-md rounded-lg bg-white p-8 text-center shadow-md">
-        <h1 className="mb-4 text-3xl font-bold text-green-600">
+    <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4"> {/* Muted bg */}
+      <div className="w-full max-w-md rounded-lg bg-background p-8 text-center shadow-md"> {/* Theme bg */}
+        <h1 className="mb-4 text-3xl font-bold text-green-600"> {/* Keep success green */}
           Success!
         </h1>
-        {/* --- THIS IS THE FIX --- */}
-        <p className="mb-6 text-lg text-gray-700">
+        <p className="mb-6 text-lg text-foreground"> {/* Theme text */}
           You&apos;ve saved{' '}
-          <span className="font-bold">{lighter.name}</span>!
+          <span className="font-bold text-primary">{lighter.name}</span>! {/* Highlight name */}
         </p>
-        {/* --- THIS IS THE FIX --- */}
-        <p className="mb-2 text-gray-600">Your lighter&apos;s unique PIN is:</p>
-        <p className="mb-8 font-mono text-3xl font-bold text-gray-900">
+        <p className="mb-2 text-muted-foreground">Your lighter&apos;s unique PIN is:</p> {/* Theme text */}
+        <p className="mb-8 font-mono text-3xl font-bold text-foreground"> {/* Theme text */}
           {lighter.pin_code}
         </p>
 
         <button
           onClick={handleDownload}
           disabled={downloading}
-          className="mb-4 w-full rounded-md bg-blue-600 py-3 text-lg font-semibold text-white transition hover:bg-blue-700 disabled:opacity-50"
+          className="btn-primary mb-4 w-full text-lg" // Applied btn-primary
         >
           {downloading ? 'Generating...' : 'Download Sticker PDF'}
         </button>
 
         <Link
           href={`/lighter/${lighterId}`}
-          className="block w-full rounded-md bg-gray-200 py-3 text-lg font-semibold text-gray-800 transition hover:bg-gray-300"
+          className="btn-secondary block w-full text-lg" // Applied btn-secondary, added block
         >
           Go to Your Lighter&apos;s Page
         </Link>

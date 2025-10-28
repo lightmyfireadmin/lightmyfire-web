@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase'; // Assuming lib is at root
 
 export default function PinEntryForm() {
   const [pin, setPin] = useState('');
@@ -35,11 +35,12 @@ export default function PinEntryForm() {
   };
 
   return (
-    <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
-      <h2 className="mb-6 text-center text-2xl font-bold text-gray-800">
+    // Applied responsive padding
+    <div className="w-full max-w-md rounded-lg bg-background p-6 sm:p-8 shadow-md">
+      <h2 className="mb-6 text-center text-2xl font-bold text-foreground">
         Found a Lighter?
       </h2>
-      <p className="mb-6 text-center text-gray-600">
+      <p className="mb-6 text-center text-muted-foreground">
         Enter the PIN from the sticker to see its story.
       </p>
 
@@ -47,7 +48,7 @@ export default function PinEntryForm() {
         <div className="mb-4">
           <label
             htmlFor="pin"
-            className="mb-2 block text-sm font-medium text-gray-700"
+            className="mb-2 block text-sm font-medium text-foreground"
           >
             Lighter PIN
           </label>
@@ -56,18 +57,18 @@ export default function PinEntryForm() {
             id="pin"
             value={pin}
             onChange={(e) => setPin(e.target.value)}
-            className="w-full rounded-md border border-gray-300 p-3 text-lg text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+            className="w-full rounded-lg border border-input p-3 text-lg text-foreground bg-background focus:border-primary focus:ring-primary" // Use rounded-lg
             placeholder="e.g., KFR-9T2"
             required
           />
         </div>
 
-        {error && <p className="mb-4 text-center text-red-500">{error}</p>}
+        {error && <p className="mb-4 text-center text-sm text-red-500">{error}</p>} {/* Smaller error */}
 
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-md bg-blue-600 py-3 text-lg font-semibold text-white transition hover:bg-blue-700 disabled:opacity-50"
+          className="btn-primary w-full text-lg" // Applied btn-primary
         >
           {loading ? 'Searching...' : 'Find Lighter'}
         </button>

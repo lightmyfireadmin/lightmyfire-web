@@ -1,6 +1,6 @@
 'use client';
 
-import type { Trophy } from './page';
+import type { Trophy } from '@/lib/types';
 
 function TrophyIcon() {
   return (

@@ -24,7 +24,7 @@ export default function AboutPage() {
             </p>
             <p>
               By giving a lighter a permanent, digital story, we give it
-              sentimental value. And when something has value, we're less
+              sentimental value. And when something has value, we&apos;re less
               likely to throw it away.
             </p>
             <p>
