@@ -1,12 +1,12 @@
 export default function AboutPage() {
     return (
       <div className="mx-auto max-w-3xl p-4 py-12 sm:p-6 lg:p-8">
-        <div className="rounded-lg border border-gray-200 bg-white p-8 shadow-sm">
-          <h1 className="mb-6 text-center text-4xl font-bold text-gray-900">
+        <div className="rounded-lg border border-border bg-background p-8 shadow-sm">
+          <h1 className="mb-6 text-center text-4xl font-bold text-foreground">
             Our Philosophy
           </h1>
           <div className="prose prose-lg max-w-none">
-            <p className="lead text-xl text-gray-700">
+            <p className="lead">
               We believe that even the smallest, most disposable object can
               carry a great story.
             </p>

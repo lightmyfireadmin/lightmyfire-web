@@ -82,23 +82,25 @@ export default function AddPostForm({
       </p>
 
       {/* Post Type Selector Tabs */}
-      <div className="mb-6 grid grid-cols-5 gap-1 rounded-lg bg-muted p-1">
-        {(['text', 'song', 'image', 'location', 'refuel'] as PostType[]).map(
-          (type) => (
-            <button
-              key={type}
-              type="button"
-              onClick={() => setPostType(type)}
-              className={`rounded-md px-3 py-2 text-sm font-medium capitalize transition ${
-                postType === type
-                  ? 'bg-background text-primary shadow-sm'
-                  : 'text-muted-foreground hover:bg-background/50 hover:text-foreground'
-              }`}
-            >
-              {type}
-            </button>
-          )
-        )}
+      <div className="mb-6 rounded-lg bg-muted p-1">
+        <div className="flex space-x-1 overflow-x-auto">
+          {(['text', 'song', 'image', 'location', 'refuel'] as PostType[]).map(
+            (type) => (
+              <button
+                key={type}
+                type="button"
+                onClick={() => setPostType(type)}
+                className={`flex-shrink-0 rounded-md px-3 py-2 text-sm font-medium capitalize transition ${
+                  postType === type
+                    ? 'bg-background text-primary shadow-sm'
+                    : 'text-muted-foreground hover:bg-background/50 hover:text-foreground'
+                }`}
+              >
+                {type}
+              </button>
+            )
+          )}
+        </div>
       </div>
 
       {/* Form Fields */}
@@ -122,7 +124,7 @@ export default function AddPostForm({
         </div>
       </div>
 
-      {error && <p className="my-4 text-center text-sm text-red-500">{error}</p>}
+      {error && <p className="my-4 text-center text-sm text-error">{error}</p>}
 
       <button
         type="submit"

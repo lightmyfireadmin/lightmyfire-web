@@ -22,8 +22,7 @@ function TrophyIcon() {
 export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
   if (trophies.length === 0) {
     return (
-      // --- THIS IS THE FIX ---
-      <p className="text-sm text-gray-500">
+      <p className="text-sm text-muted-foreground">
         You haven&apos;t earned any trophies yet. Go save a lighter or add a
         story!
       </p>
@@ -35,13 +34,13 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
       {trophies.map((trophy) => (
         <div
           key={trophy.id}
-          className="rounded-lg border border-gray-200 bg-gray-50 p-4 text-center"
+          className="rounded-lg border border-border bg-background p-4 text-center shadow-sm"
         >
-          <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-yellow-100 text-yellow-600">
+          <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-accent/20 text-accent-foreground">
             <TrophyIcon />
           </div>
-          <p className="mt-2 font-semibold text-gray-800">{trophy.name}</p>
-          <p className="text-xs text-gray-500">{trophy.description}</p>
+          <p className="mt-2 font-semibold text-foreground">{trophy.name}</p>
+          <p className="text-xs text-muted-foreground">{trophy.description}</p>
         </div>
       ))}
     </div>

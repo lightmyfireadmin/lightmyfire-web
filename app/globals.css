@@ -36,3 +36,11 @@
      @apply text-primary font-semibold hover:underline cursor-pointer;
   }
 }
+
+.body-with-bg {
+  background-image: url('/LIGHTMYFIRE.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}

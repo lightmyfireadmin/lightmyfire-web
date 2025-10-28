@@ -12,8 +12,6 @@ const poppins = Poppins({
 const nunito_sans = Nunito_Sans({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['400', '700'],
-  style: ['normal', 'italic'],
   variable: '--font-nunito-sans',
 });
 // Correct import paths assuming components folder is inside app/
@@ -58,7 +56,7 @@ export default async function RootLayout({
         {/* Font links are now handled by next/font */}
       </head>
       {/* Added flex classes for sticky footer and font-sans */}
-      <body className="flex flex-col min-h-screen font-sans">
+      <body className="flex flex-col min-h-screen font-sans body-with-bg">
         <Header session={session} />
         {/* Added flex-grow */}
         <main className="flex-grow">{children}</main>

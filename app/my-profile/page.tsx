@@ -141,7 +141,7 @@ export default async function MyProfilePage() {
 // StatCard helper component
 function StatCard({ label, value }: { label: string; value: number }) {
   return (
-    <div className="rounded-lg bg-muted p-4 shadow-inner">
+    <div className="rounded-lg border border-border bg-background p-4 shadow-sm">
       <p className="text-sm font-medium text-muted-foreground">{label}</p>
       <p className="text-3xl font-bold text-foreground">{value ?? 0}</p>
     </div>

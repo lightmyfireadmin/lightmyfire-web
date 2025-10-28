@@ -5,6 +5,7 @@ import PinEntryForm from '@/app/components/PinEntryForm';
 import PostCard from '@/app/components/PostCard';
 import { DetailedPost } from '@/lib/types'; // Assuming lib is at root
 import Link from 'next/link'; // Added Link import
+import Image from 'next/image';
 
 export const dynamic = 'force-dynamic';
 
@@ -43,6 +44,13 @@ export default async function Home() {
         {/* Adjusted padding */}
         <div className="mx-auto max-w-3xl py-24 sm:py-32 lg:py-48">
           <div className="text-center">
+            <Image
+              src="/webclip.png"
+              alt="LightMyFire Lighter"
+              width={200}
+              height={200}
+              className="mx-auto mb-8"
+            />
             {/* Adjusted heading size */}
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
               I&apos;m Too Young To Die

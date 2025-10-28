@@ -27,6 +27,7 @@ module.exports = {
         'post-location': '#EAB308', // yellow-500
         'post-song': '#EF4444', // red-500
         'post-refuel': '#F97316', // orange-500
+        error: '#EF4444', // red-500
       },
       fontFamily: { // Fonts look correct
         sans: ['var(--font-nunito-sans)', ...defaultTheme.fontFamily.sans],
@@ -36,6 +37,28 @@ module.exports = {
         lg: '0.75rem',
         xl: '1rem',
       },
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            '--tw-prose-body': theme('colors.foreground'),
+            '--tw-prose-headings': theme('colors.foreground'),
+            '--tw-prose-lead': theme('colors.muted-foreground'),
+            '--tw-prose-links': theme('colors.primary'),
+            '--tw-prose-bold': theme('colors.foreground'),
+            '--tw-prose-counters': theme('colors.muted-foreground'),
+            '--tw-prose-bullets': theme('colors.border'),
+            '--tw-prose-hr': theme('colors.border'),
+            '--tw-prose-quotes': theme('colors.foreground'),
+            '--tw-prose-quote-borders': theme('colors.border'),
+            '--tw-prose-captions': theme('colors.muted-foreground'),
+            '--tw-prose-code': theme('colors.foreground'),
+            '--tw-prose-pre-code': theme('colors.foreground'),
+            '--tw-prose-pre-bg': theme('colors.muted'),
+            '--tw-prose-th-borders': theme('colors.border'),
+            '--tw-prose-td-borders': theme('colors.border'),
+          },
+        },
+      }),
     },
   },
   plugins: [

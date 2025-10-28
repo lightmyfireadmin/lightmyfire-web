@@ -37,10 +37,10 @@ export default function PinEntryForm() {
   return (
     // Applied responsive padding
     <div className="w-full max-w-md rounded-lg bg-background p-6 sm:p-8 shadow-md">
-      <h2 className="mb-6 text-center text-2xl font-bold text-foreground">
+      <h2 className="mb-6 text-center text-3xl sm:text-4xl font-bold text-foreground">
         Found a Lighter?
       </h2>
-      <p className="mb-6 text-center text-muted-foreground">
+      <p className="mb-6 text-center text-lg text-muted-foreground">
         Enter the PIN from the sticker to see its story.
       </p>
 
@@ -63,7 +63,7 @@ export default function PinEntryForm() {
           />
         </div>
 
-        {error && <p className="mb-4 text-center text-sm text-red-500">{error}</p>} {/* Smaller error */}
+        {error && <p className="mb-4 text-center text-sm text-error">{error}</p>} {/* Smaller error */}
 
         <button
           type="submit"
