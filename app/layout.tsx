@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+// Removed next/font imports
 import './globals.css';
 import Link from 'next/link';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import LogoutButton from './LogoutButton';
 
-const inter = Inter({ subsets: ['latin'] });
+// Removed font configuration functions
 
 export const metadata: Metadata = {
   title: 'LightMyFire',
@@ -39,18 +39,24 @@ export default async function RootLayout({
   } = await supabase.auth.getSession();
 
   return (
+    // Removed font variables from html tag
     <html lang="en">
-      <body className={inter.className}>
+      <head>
+        {/* Add Google Font <link> tags back */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Nunito+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+      </head>
+      <body> {/* Body will get font-sans from globals.css */}
         <nav className="flex w-full items-center justify-between bg-white p-4 shadow-md">
-          <div className="flex flex-wrap items-center space-x-4">
-            <Link href="/" className="text-xl font-bold text-gray-800">
+           {/* Nav content remains the same */}
+           <div className="flex flex-wrap items-center space-x-4">
+            <Link href="/" className="text-xl font-bold text-gray-800 font-display"> {/* font-display will use Tailwind config */}
               LightMyFire 🔥
             </Link>
             <Link href="/find" className="text-gray-600 hover:text-blue-600">
               Find a Lighter
             </Link>
-
-            {/* Public Links */}
             <Link
               href="/dont-throw-me-away"
               className="hidden text-gray-600 hover:text-blue-600 sm:block"
@@ -63,8 +69,6 @@ export default async function RootLayout({
             >
               About
             </Link>
-
-            {/* Session-Only Links */}
             {session && (
               <>
                 <Link
