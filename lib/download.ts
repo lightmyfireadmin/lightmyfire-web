@@ -4,9 +4,15 @@ export function downloadFile(
   filename: string,
   mimeType: string
 ) {
-  // Create a blob from the bytes' underlying ArrayBuffer
-  // This explicitly uses the ArrayBuffer, resolving the type issue.
-  const blob = new Blob([bytes.buffer], { type: mimeType });
+  // Explicitly create an ArrayBuffer from the Uint8Array's data
+  const arrayBuffer = bytes.buffer.slice(
+    bytes.byteOffset,
+    bytes.byteOffset + bytes.byteLength
+  );
+
+  // Create a blob, explicitly casting the buffer type
+  // This tells TypeScript to trust us that it's a standard ArrayBuffer
+  const blob = new Blob([arrayBuffer as ArrayBuffer], { type: mimeType });
 
   // Create an 'a' element and set its properties
   const link = document.createElement('a');
