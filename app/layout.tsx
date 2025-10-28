@@ -95,7 +95,6 @@ export default async function RootLayout({
             )}
           </div>
         </nav>
-        {/* The children prop renders all your pages here */}
         <main>{children}</main>
       </body>
     </html>
