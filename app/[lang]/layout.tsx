@@ -1,7 +1,6 @@
-import type { Metadata } from 'next';
-import { Poppins, Nunito_Sans } from 'next/font/google';
-// Nous avons besoin du CSS global ici car c'est le layout racine
-import '../globals.css';
+// CE FICHIER EST app/[lang]/layout.tsx
+// Il ne doit PAS contenir <html>, <body>, ou les imports de police/globals.css
+
 import { I18nProviderClient } from '@/locales/client';
 import type { CookieOptions } from '@supabase/ssr';
 import Header from '@/app/components/Header';
@@ -10,31 +9,11 @@ import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import CookieConsent from '@/app/components/CookieConsent';
 
-// Configuration des polices
-const poppins = Poppins({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: '700',
-  variable: '--font-poppins',
-});
-
-const nunito_sans = Nunito_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['400', '700'],
-  variable: '--font-nunito-sans',
-});
-
-// Métadonnées
-export const metadata: Metadata = {
-  title: 'LightMyFire',
-  description: 'A human creativity mosaic.',
-};
+// Les polices et metadata sont dans le layout racine (app/layout.tsx)
 
 export const dynamic = 'force-dynamic';
 
-// Renommé en RootLayout pour plus de clarté, car il agit comme tel
-export default async function RootLangLayout({
+export default async function LangLayout({
   children,
   params: { locale },
 }: {
@@ -65,25 +44,18 @@ export default async function RootLangLayout({
     data: { session },
   } = await supabase.auth.getSession();
 
-  // Ce layout DOIT contenir <html> et <body>
+  // Ce layout est un enfant, il ne retourne que ce qu'il contient.
+  // La classe "flex" est déplacée sur le <body> du VRAI root layout.
   return (
-    <html lang={locale} className={`${poppins.variable} ${nunito_sans.variable}`}>
-      <head>
-        {/* Les liens de polices sont gérés par next/font */}
-      </head>
-      <body className="flex flex-col min-h-screen body-with-bg font-sans">
-        {/* Le Provider enveloppe TOUT, y compris le CookieConsent */}
-        <I18nProviderClient locale={locale}>
-          <Header session={session} />
-          <main className="flex-grow">{children}</main>
-          <Footer lang={locale} />
-          
-          {/* CORRECTION : Le CookieConsent est maintenant à l'intérieur du Provider,
-            ce qui corrige l'erreur d'hydratation.
-          */}
-          <CookieConsent />
-        </I18nProviderClient>
-      </body>
-    </html>
+    <I18nProviderClient locale={locale}>
+      {/* Le Header, le Footer et le CookieConsent sont ici 
+        pour avoir accès à la 'locale' du provider.
+      */}
+      <Header session={session} />
+      <main className="flex-grow">{children}</main>
+      <Footer lang={locale} />
+      <CookieConsent />
+    </I18nProviderClient>
   );
 }
+
