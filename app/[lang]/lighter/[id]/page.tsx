@@ -12,7 +12,7 @@ import MapComponent from './MapComponent'; // Import MapComponent
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: { id: string; lang: string };
 }): Promise<Metadata> {
   const cookieStore = cookies();
   const supabase = createServerClient(
@@ -68,7 +68,7 @@ export async function generateMetadata({
 export default async function LighterPage({
   params,
 }: {
-  params: { id: string };
+  params: { id: string; lang: string };
 }) {
   const cookieStore = cookies();
   const supabase = createServerClient(
@@ -153,7 +153,7 @@ export default async function LighterPage({
         {/* Add to Story Button */}
         <div className="mb-8">
           <Link
-            href={`/lighter/${lighter.id}/add`}
+            href={`/${params.lang}/lighter/${lighter.id}/add`}
             className="btn-primary block w-full text-lg text-center"
           >
             Add to the Story

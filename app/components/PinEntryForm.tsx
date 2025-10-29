@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase'; // Assuming lib is at root
 import Image from 'next/image';
-import { useI18n } from '@/locales/client';
+import { useI18n, useCurrentLocale } from '@/locales/client';
 
 export default function PinEntryForm() {
   const t = useI18n();
@@ -12,6 +12,7 @@ export default function PinEntryForm() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const lang = useCurrentLocale();
 
   const handlePinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = e.target.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
@@ -40,7 +41,7 @@ export default function PinEntryForm() {
       setError(t('home.pin_entry.error.generic'));
       console.error(rpcError);
     } else if (data) {
-      router.push(`/lighter/${data}`);
+      router.push(`/${lang}/lighter/${data}`);
     } else {
       setError(t('home.pin_entry.error.invalid'));
     }

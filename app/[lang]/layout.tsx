@@ -2,26 +2,27 @@ import type { Metadata } from 'next';
 import { Poppins, Nunito_Sans } from 'next/font/google';
 import '../globals.css';
 import { I18nProviderClient } from '@/locales/client';
-import { getI18n } from '@/locales/server';
 import type { CookieOptions } from '@supabase/ssr';
+import Header from '@/app/components/Header';
+import Footer from '@/app/components/Footer';
+import { createServerClient } from '@supabase/ssr';
+import { cookies } from 'next/headers';
+import CookieConsent from '@/app/components/CookieConsent';
 
+// Correct font setup using CSS variables
 const poppins = Poppins({
   subsets: ['latin'],
   display: 'swap',
   weight: '700',
+  variable: '--font-poppins', // Define CSS variable for display font
 });
 
 const nunito_sans = Nunito_Sans({
   subsets: ['latin'],
   display: 'swap',
+  weight: ['400', '700'], // FIX: Add required weights to fix font build error
+  variable: '--font-nunito-sans', // Define CSS variable for sans-serif font
 });
-
-// Correct import paths assuming components folder is inside app/
-import Header from '@/app/components/Header';
-import Footer from '@/app/components/Footer';
-import { createServerClient } from '@supabase/ssr';
-import { cookies } from 'next/headers';
-import CookieConsent from '@/app/components/CookieConsent'; // Import CookieConsent
 
 export const metadata: Metadata = {
   title: 'LightMyFire',
@@ -58,25 +59,31 @@ export default async function RootLayout({
   );
 
   const {
-    data: {
-      session
-    },
+    data: { session },
   } = await supabase.auth.getSession();
 
   return (
-    <html lang={locale}>
+    // Apply font variables to the html tag for Tailwind to use
+    <html lang={locale} className={`${poppins.variable} ${nunito_sans.variable}`}>
       <head>
         {/* Font links are now handled by next/font */}
       </head>
-      {/* Added flex classes for sticky footer and font-sans */}
-      <body className={`${poppins.className} ${nunito_sans.className} flex flex-col min-h-screen body-with-bg`}>
+      {/* 
+        The `font-sans` class from globals.css will now use the CSS variable.
+        Ensure your tailwind.config.js is set up to use these variables, e.g.:
+        fontFamily: {
+          sans: ['var(--font-nunito-sans)'],
+          display: ['var(--font-poppins)'],
+        }
+      */}
+      <body className="flex flex-col min-h-screen body-with-bg font-sans">
         <I18nProviderClient locale={locale}>
           <Header session={session} />
-          {/* Added flex-grow */}
           <main className="flex-grow">{children}</main>
-          <Footer />
+          {/* FIX: Pass the 'locale' prop to Footer as 'lang' */}
+          <Footer lang={locale} />
         </I18nProviderClient>
-        <CookieConsent /> {/* Render CookieConsent here */}
+        <CookieConsent />
       </body>
     </html>
   );

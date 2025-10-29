@@ -3,12 +3,27 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase'; // Assuming lib is at root
+import Image from 'next/image';
+import { useI18n, useCurrentLocale } from '@/locales/client';
 
 export default function PinEntryForm() {
+  const t = useI18n();
   const [pin, setPin] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const lang = useCurrentLocale();
+
+  const handlePinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = e.target.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+    let formattedValue = rawValue;
+
+    if (rawValue.length > 3) {
+      formattedValue = `${rawValue.slice(0, 3)}-${rawValue.slice(3, 6)}`;
+    }
+    
+    setPin(formattedValue);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,54 +38,62 @@ export default function PinEntryForm() {
     );
 
     if (rpcError) {
-      setError('An error occurred. Please try again.');
+      setError(t('home.pin_entry.error.generic'));
       console.error(rpcError);
     } else if (data) {
-      router.push(`/lighter/${data}`);
+      router.push(`/${lang}/lighter/${data}`);
     } else {
-      setError('Invalid PIN. Please try again.');
+      setError(t('home.pin_entry.error.invalid'));
     }
 
     setLoading(false);
   };
 
   return (
-    <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md"> {/* Consider using theme colors e.g. bg-background */}
-      <h2 className="mb-6 text-center text-2xl font-bold text-foreground"> {/* Use theme color */}
-        Found a Lighter?
+    // Applied responsive padding
+    <div className="w-full max-w-md rounded-lg bg-background p-6 sm:p-8 shadow-md">
+      <h2 className="mb-6 text-center text-3xl sm:text-4xl font-bold text-foreground">
+        {t('home.pin_entry.title')}
       </h2>
-      <p className="mb-6 text-center text-muted-foreground"> {/* Use theme color */}
-        Enter the PIN from the sticker to see its story.
+      <p className="mb-6 text-center text-lg text-muted-foreground">
+        {t('home.pin_entry.subtitle')}
       </p>
 
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
             htmlFor="pin"
-            className="mb-2 block text-sm font-medium text-foreground" // Use theme color
+            className="mb-2 block text-sm font-medium text-foreground"
           >
-            Lighter PIN
+            {t('home.pin_entry.label')}
           </label>
           <input
             type="text"
             id="pin"
             value={pin}
-            onChange={(e) => setPin(e.target.value)}
-            // Use theme colors for input
-            className="w-full rounded-md border border-input p-3 text-lg text-foreground bg-background focus:border-primary focus:ring-primary"
-            placeholder="e.g., KFR-9T2"
+            onChange={handlePinChange}
+            maxLength={7}
+            className="w-full rounded-lg border border-input p-3 text-lg text-center font-mono tracking-widest bg-background focus:border-primary focus:ring-primary" // Use rounded-lg
+            placeholder="ABC-123"
             required
           />
         </div>
 
-        {error && <p className="mb-4 text-center text-red-500">{error}</p>} {/* Keep error red */}
+        {error && <p className="mb-4 text-center text-sm text-error">{error}</p>} {/* Smaller error */}
 
         <button
           type="submit"
           disabled={loading}
-          className="btn-primary w-full text-lg" // Applied btn-primary, added w-full, text-lg
+          className="btn-primary w-full text-lg flex justify-center items-center" // Applied btn-primary
         >
-          {loading ? 'Searching...' : 'Find Lighter'}
+          {loading ? (
+            <>
+              <Image src="/loading.gif" alt="Loading..." width={24} height={24} unoptimized={true} className="mr-2" />
+              {t('home.pin_entry.loading')}
+            </>
+          ) : (
+            t('home.pin_entry.button')
+          )}
         </button>
       </form>
     </div>

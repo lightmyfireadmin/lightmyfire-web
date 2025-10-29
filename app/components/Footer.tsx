@@ -1,7 +1,7 @@
 import Link from 'next/link';
-
 import { FaInstagram, FaTiktok, FaFacebook } from 'react-icons/fa';
-export default function Footer() {
+
+export default function Footer({ lang }: { lang: string }) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -26,10 +26,10 @@ export default function Footer() {
         {/* Footer Links & Copyright */}
         <div className="mt-8 md:order-1 md:mt-0">
           <div className="text-center text-xs leading-5 text-muted-foreground space-x-4 mb-4">
-             <Link href="/legal/privacy" className="hover:text-foreground">Privacy Policy</Link>
-             <Link href="/legal/terms" className="hover:text-foreground">Terms of Use</Link>
-             <Link href="/about" className="hover:text-foreground">About</Link>
-             <Link href="/legal/faq" className="hover:text-foreground">FAQ</Link>
+             <Link href={`/${lang}/legal/privacy`} className="hover:text-foreground">Privacy Policy</Link>
+             <Link href={`/${lang}/legal/terms`} className="hover:text-foreground">Terms of Use</Link>
+             <Link href={`/${lang}/about`} className="hover:text-foreground">About</Link>
+             <Link href={`/${lang}/legal/faq`} className="hover:text-foreground">FAQ</Link>
              {/* <Link href="/contact" className="hover:text-foreground">Contact</Link> */}
           </div>
           <p className="text-center text-xs leading-5 text-muted-foreground">

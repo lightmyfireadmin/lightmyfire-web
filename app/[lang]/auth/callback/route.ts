@@ -1,13 +1,14 @@
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
-import { NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 import type { CookieOptions } from '@supabase/ssr';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest, { params }: { params: { lang: string } }) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get('code');
+  const lang = params.lang;
 
   if (code) {
     const cookieStore = cookies();
@@ -32,6 +33,6 @@ export async function GET(request: Request) {
     await supabase.auth.exchangeCodeForSession(code);
   }
 
-  // URL to redirect to after sign in
-  return NextResponse.redirect(requestUrl.origin);
+  // URL to redirect to after sign in, now with locale
+  return NextResponse.redirect(`${requestUrl.origin}/${lang}`);
 }
