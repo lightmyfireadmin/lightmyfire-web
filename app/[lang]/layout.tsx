@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Poppins, Nunito_Sans } from 'next/font/google';
-// Nous importons le CSS global ici car c'est le layout racine
+// Nous avons besoin du CSS global ici car c'est le layout racine
 import '../globals.css';
 import { I18nProviderClient } from '@/locales/client';
 import type { CookieOptions } from '@supabase/ssr';
@@ -33,8 +33,8 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic';
 
-// Ceci est le RootLayout (Layout Racine)
-export default async function RootLayout({
+// Renommé en RootLayout pour plus de clarté, car il agit comme tel
+export default async function RootLangLayout({
   children,
   params: { locale },
 }: {
@@ -65,22 +65,21 @@ export default async function RootLayout({
     data: { session },
   } = await supabase.auth.getSession();
 
-  // Le layout racine DOIT contenir <html> et <body>
+  // Ce layout DOIT contenir <html> et <body>
   return (
     <html lang={locale} className={`${poppins.variable} ${nunito_sans.variable}`}>
       <head>
         {/* Les liens de polices sont gérés par next/font */}
       </head>
       <body className="flex flex-col min-h-screen body-with-bg font-sans">
+        {/* Le Provider enveloppe TOUT, y compris le CookieConsent */}
         <I18nProviderClient locale={locale}>
           <Header session={session} />
           <main className="flex-grow">{children}</main>
           <Footer lang={locale} />
-
-          {/*
-            CORRECTION : Le CookieConsent est déplacé
-            À L'INTÉRIEUR du I18nProviderClient
-            pour que le composant <Link> reçoive la locale.
+          
+          {/* CORRECTION : Le CookieConsent est maintenant à l'intérieur du Provider,
+            ce qui corrige l'erreur d'hydratation.
           */}
           <CookieConsent />
         </I18nProviderClient>
@@ -88,3 +87,4 @@ export default async function RootLayout({
     </html>
   );
 }
+
