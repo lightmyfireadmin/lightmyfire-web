@@ -78,7 +78,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="mx-auto max_w_2xl px-4 py-12 sm:py-16 lg:px-8 hidden sm:block"> {/* Added hidden sm:block */}
+      <div className="mx-auto max-w-2xl px-4 py-12 sm:py-16 lg:px-8 hidden sm:block"> {/* Added hidden sm:block */}
         <h2 className="mb-8 text-center text-3xl font-bold text-foreground">
           {t('home.mosaic.title')}
         </h2>
@@ -99,7 +99,7 @@ export default async function Home() {
         </div>
       </div>
       {/* Community Illustration */}
-      <div className="mx-auto max_w_2xl px-4 py-12 sm:py-16 lg:px-8 text-center">
+      <div className="mx-auto max-w-2xl px-4 py-12 sm:py-16 lg:px-8 text-center">
         <Image
           src="/illustrations/community.png"
           alt="Community"

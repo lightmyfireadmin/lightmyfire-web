@@ -11,7 +11,7 @@ export default function LanguageSwitcher() {
   const currentLocale = useCurrentLocale();
 
   const changeLocale = (locale: string) => {
-    router.push(`/${locale}${pathname.startsWith(`/${currentLocale}`) ? pathname.substring(3) : pathname}`);
+    router.push(`/${locale}${pathname.startsWith(`/${currentLocale}`) ? pathname.substring(currentLocale.length + 1) : pathname}`);
   };
 
   return (
