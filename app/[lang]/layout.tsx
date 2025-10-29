@@ -1,8 +1,6 @@
-// Nous restaurons les imports de polices, metadata et globals.css
-// car ce fichier EST le layout principal (root layout).
 import type { Metadata } from 'next';
 import { Poppins, Nunito_Sans } from 'next/font/google';
-// Le chemin '../globals.css' est correct par rapport à app/globals.css
+// Nous importons le CSS global ici car c'est le layout racine
 import '../globals.css';
 import { I18nProviderClient } from '@/locales/client';
 import type { CookieOptions } from '@supabase/ssr';
@@ -35,7 +33,7 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic';
 
-// Le layout est renommé en RootLayout pour plus de clarté
+// Ceci est le RootLayout (Layout Racine)
 export default async function RootLayout({
   children,
   params: { locale },
@@ -67,7 +65,7 @@ export default async function RootLayout({
     data: { session },
   } = await supabase.auth.getSession();
 
-  // 1. Nous restaurons les balises <html> et <body>
+  // Le layout racine DOIT contenir <html> et <body>
   return (
     <html lang={locale} className={`${poppins.variable} ${nunito_sans.variable}`}>
       <head>
@@ -80,7 +78,7 @@ export default async function RootLayout({
           <Footer lang={locale} />
 
           {/*
-            2. CORRECTION: Le CookieConsent est déplacé
+            CORRECTION : Le CookieConsent est déplacé
             À L'INTÉRIEUR du I18nProviderClient
             pour que le composant <Link> reçoive la locale.
           */}
@@ -90,4 +88,3 @@ export default async function RootLayout({
     </html>
   );
 }
-
