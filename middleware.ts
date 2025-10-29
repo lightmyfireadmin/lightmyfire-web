@@ -1,48 +1,18 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr';
-import { NextResponse, type NextRequest } from 'next/server';
-import { match as matchLocale } from '@formatjs/intl-localematcher';
-import Negotiator from 'negotiator';
+import { type NextRequest } from 'next/server';
+import { createI18nMiddleware } from 'next-international/middleware';
 import { i18n } from './locales/config';
 
-function getLocale(request: NextRequest): string {
-  // Negotiator expects a plain object, so we need to transform headers
-  const negotiatorHeaders: Record<string, string> = {};
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
-
-  // @ts-ignore locales are readonly
-  const locales: string[] = i18n.locales;
-
-  // Use negotiator and intl-localematcher to find the best locale
-  const languages = new Negotiator({ headers: negotiatorHeaders }).languages(
-    locales
-  );
-
-  const locale = matchLocale(languages, locales, i18n.defaultLocale);
-
-  return locale;
-}
+const I18nMiddleware = createI18nMiddleware({
+  locales: i18n.locales,
+  defaultLocale: i18n.defaultLocale,
+});
 
 export async function middleware(request: NextRequest) {
-  // Check if there is any supported locale in the pathname
-  const pathname = request.nextUrl.pathname;
-  const pathnameIsMissingLocale = i18n.locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-  );
+  // 1. Run the i18n middleware. This will handle locale detection and redirection/rewriting.
+  const response = I18nMiddleware(request);
 
-  let response;
-
-  // Redirect if there is no locale
-  if (pathnameIsMissingLocale) {
-    const locale = getLocale(request);
-    // e.g. incoming request is /about -> /en/about
-    response = NextResponse.redirect(
-      new URL(`/${locale}${pathname}`, request.url)
-    );
-  } else {
-    response = NextResponse.next();
-  }
-
-  // Now, create a Supabase client with cookie handlers that operate on the response
+  // 2. Create a Supabase client that will read from the request and apply cookies to the response.
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -52,6 +22,8 @@ export async function middleware(request: NextRequest) {
           return request.cookies.get(name)?.value;
         },
         set(name: string, value: string, options: CookieOptions) {
+          // The i18n middleware might have created a new response (e.g., for a redirect).
+          // We need to ensure cookies are set on that response.
           response.cookies.set({
             name,
             value,
@@ -59,6 +31,7 @@ export async function middleware(request: NextRequest) {
           });
         },
         remove(name: string, options: CookieOptions) {
+          // Same as above for removing cookies.
           response.cookies.set({
             name,
             value: '',
@@ -69,16 +42,17 @@ export async function middleware(request: NextRequest) {
     }
   );
 
-  // This refreshes the session and potentially sets cookies on the response
+  // 3. Refresh the session. This will update the cookies on the `response` object if needed.
   await supabase.auth.getSession();
 
+  // 4. Return the response, which now has i18n routing applied and any updated auth cookies.
   return response;
 }
 
-// This ensures the middleware runs on all routes
 export const config = {
   matcher: [
-    // Skip all internal paths (_next) and static assets.
-    '/((?!api|_next/static|_next/image|assets|illustrations|favicon.ico|sw.js).*)',
+    // Skip all internal paths (_next) and static files with extensions (e.g. .png, .xml, .txt)
+    // Also skips 'api' routes.
+    '/((?!api|_next/static|_next/image|assets|illustrations|favicon.ico|.*\\..*).*)',
   ],
 };
