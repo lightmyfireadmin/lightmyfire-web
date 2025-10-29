@@ -1,7 +1,8 @@
 'use client';
 
 import { DetailedPost } from '@/lib/types'; // Assuming lib is at root
-// Adjust these paths based on PostCard's actual location relative to the buttons
+// **IMPORTANT**: Adjust these paths based on PostCard's location relative to the buttons
+// If PostCard is in app/components, and buttons are in app/lighter/[id], this should be correct:
 import LikeButton from '@/app/lighter/[id]/LikeButton';
 import FlagButton from '@/app/lighter/[id]/FlagButton';
 import {
@@ -12,8 +13,9 @@ import {
   FireIcon
 } from '@heroicons/react/24/outline';
 import React from 'react'; // Import React for IconComponent type
+import Image from 'next/image';
 
-// Helper function to get YouTube embed ID (remains the same)
+// Helper function to get YouTube embed ID
 function getYouTubeEmbedId(url: string): string | null {
     let videoId = '';
     try {
@@ -25,6 +27,7 @@ function getYouTubeEmbedId(url: string): string | null {
         }
         return videoId || null;
     } catch (error) {
+        console.error("Error parsing YouTube URL:", error);
         return null;
     }
 }
@@ -38,6 +41,7 @@ const iconMap: { [key in DetailedPost['post_type']]: React.ElementType } = {
     refuel: FireIcon,
 };
 
+
 export default function PostCard({
   post,
   isLoggedIn,
@@ -45,6 +49,8 @@ export default function PostCard({
   post: DetailedPost;
   isLoggedIn: boolean;
 }) {
+  // REMOVED the diagnostic line: return <FireIcon ... />;
+
   let embedId: string | null = null;
   if (post.post_type === 'song' && post.content_url) {
     embedId = getYouTubeEmbedId(post.content_url);
@@ -53,54 +59,49 @@ export default function PostCard({
   const IconComponent = iconMap[post.post_type] || ChatBubbleBottomCenterTextIcon;
   const isRefuelPost = post.post_type === 'refuel';
 
-  // --- START: Define full class strings explicitly ---
-  let cardClasses = "relative rounded-lg border border-border bg-background shadow-sm overflow-hidden border-l-4 ";
-  let iconClasses = "h-5 w-5 ";
-  let refuelTextClasses = "font-semibold ";
-
-  switch (post.post_type) {
-    case 'text':
-      cardClasses += "border-blue-500";
-      iconClasses += "text-blue-600";
-      break;
-    case 'image':
-      cardClasses += "border-green-500";
-      iconClasses += "text-green-600";
-      break;
-    case 'location':
-      cardClasses += "border-yellow-500";
-      iconClasses += "text-yellow-600";
-      break;
-    case 'song':
-      cardClasses += "border-red-500";
-      iconClasses += "text-red-600";
-      break;
-    case 'refuel':
-      cardClasses += "border-orange-500";
-      iconClasses += "text-orange-600";
-      refuelTextClasses += "text-orange-600"; // Specific class for refuel text
-      break;
-    default:
-      cardClasses += "border-border"; // Fallback border
-      iconClasses += "text-muted-foreground"; // Fallback icon color
-  }
-
-  // Add padding class based on type
-  cardClasses += isRefuelPost ? ' py-3 pl-4 pr-5' : ' py-5 pl-5 pr-5';
-  // --- END: Define full class strings explicitly ---
-
-
   return (
-    // Apply the fully constructed cardClasses string
-    <div className={cardClasses}>
+    // Apply conditional border color classes directly using ternaries
+    <div className={`
+      relative rounded-lg border border-border overflow-hidden
+      ${isRefuelPost 
+        ? 'bg-muted shadow-none border-l-2' 
+        : 'bg-background shadow-md border-l-4'
+      }
+      ${post.post_type === 'text' ? 'border-post-text' : ''}
+      ${post.post_type === 'image' ? 'border-post-image' : ''}
+      ${post.post_type === 'location' ? 'border-post-location' : ''}
+      ${post.post_type === 'song' ? 'border-post-song' : ''}
+      ${post.post_type === 'refuel' ? 'border-post-refuel' : ''}
+      ${!post.post_type ? 'border-border' : ''} /* Fallback border */
+      ${isRefuelPost ? 'py-3 pl-4 pr-5' : 'py-5 pl-5 pr-5'}
+    `}>
 
       {/* Post Header */}
       <div className={`mb-3 flex items-center justify-between ${isRefuelPost ? 'mb-2' : 'mb-4'}`}>
         <div className="flex items-center gap-2">
-           {/* Apply the fully constructed iconClasses string */}
-           {/* <IconComponent className={iconClasses} aria-hidden="true" /> */} {/* Commented out */}
-<FireIcon className="h-5 w-5 text-red-500" aria-hidden="true" /> {/* TEMPORARY: Hardcoded specific icon */}
+           {/* Apply conditional icon color classes directly using ternaries */}
+           <IconComponent
+             className={`
+               h-5 w-5
+               ${post.post_type === 'text' ? 'text-post-text' : ''}
+               ${post.post_type === 'image' ? 'text-post-image' : ''}
+               ${post.post_type === 'location' ? 'text-post-location' : ''}
+               ${post.post_type === 'song' ? 'text-post-song' : ''}
+               ${post.post_type === 'refuel' ? 'text-post-refuel' : 'text-muted-foreground'}
+             `}
+             aria-hidden="true"
+           />
            <span className="font-semibold text-foreground">{post.username}</span>
+           {post.show_nationality && post.nationality && (
+              <Image
+                src={`/flags/${post.nationality.toLowerCase()}.png`}
+                alt={post.nationality}
+                width={20}
+                height={15}
+                className="ml-1.5"
+                title={post.nationality}
+              />
+            )}
         </div>
         <span
           className="text-sm text-muted-foreground"
@@ -129,18 +130,23 @@ export default function PostCard({
         )}
 
         {isRefuelPost && (
-          // Apply the fully constructed refuelTextClasses string
-          <p className={refuelTextClasses}>
+          <p className={`
+            font-semibold
+            text-post-refuel
+          `}>
              Refueled! This lighter&apos;s journey continues.
           </p>
         )}
 
         {post.post_type === 'image' && post.content_url && (
-          <img
-            src={post.content_url}
-            alt={post.title || 'User upload'}
-            className="w-full rounded-md border border-border"
-          />
+          <div className="relative aspect-video w-full overflow-hidden rounded-md border border-border">
+            <Image
+              src={post.content_url}
+              alt={post.title || 'User upload'}
+              fill
+              className="object-cover"
+            />
+          </div>
         )}
 
         {post.post_type === 'song' && embedId && (
@@ -155,6 +161,9 @@ export default function PostCard({
               allowFullScreen
             ></iframe>
           </div>
+        )}
+        {post.post_type === 'song' && post.content_url && !embedId && (
+            <p className="text-sm text-post-song italic">Could not load YouTube video (invalid URL?).</p>
         )}
       </div>
 

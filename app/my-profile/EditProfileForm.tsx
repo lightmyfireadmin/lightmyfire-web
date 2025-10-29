@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import type { User } from '@supabase/supabase-js';
 import Image from 'next/image';
+import { countries } from '@/lib/countries';
 
 interface Profile {
   username: string;
@@ -63,14 +64,19 @@ export default function EditProfileForm({ user, profile }: { user: User; profile
         <label htmlFor="nationality" className="block text-sm font-medium text-muted-foreground">
           Nationality
         </label>
-        <input
-          type="text"
+        <select
           id="nationality"
           value={nationality}
           onChange={(e) => setNationality(e.target.value)}
           className="mt-1 block w-full rounded-lg border-input bg-background p-3 text-foreground focus:border-primary focus:ring-primary"
-          placeholder="e.g., French"
-        />
+        >
+          <option value="">Select a country</option>
+          {countries.map((country) => (
+            <option key={country.code} value={country.code}>
+              {country.name}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="flex items-center">
         <input

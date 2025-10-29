@@ -1,9 +1,18 @@
 // app/faq/page.tsx
 
+import Image from 'next/image'; // Import Image component
+
 export default function FAQ() {
     return (
       <div className="mx-auto max-w-3xl p-4 py-12 sm:p-6 lg:p-8">
         <div className="rounded-lg border border-border bg-background p-8 shadow-sm">
+          <Image
+            src="/illustrations/assistance_questions.png"
+            alt="Frequently Asked Questions"
+            width={150}
+            height={150}
+            className="mx-auto mb-6"
+          />
           <h1 className="mb-6 text-center text-4xl font-bold text-foreground">
             Frequently Asked Questions
           </h1>
@@ -54,6 +63,13 @@ export default function FAQ() {
               page from your &quot;My Profile&quot; dashboard. You can watch its
               journey and see where it goes and what stories it collects
               long after it leaves your hands.
+            </p>
+            
+            <h3>How does the map work?</h3>
+            <p>
+              On each lighter's page, you'll find a map that shows the journey of that specific lighter.
+              Every time someone makes a "location" post, the coordinates are recorded and added to the map,
+              tracing the lighter's path across the globe.
             </p>
           </div>
         </div>

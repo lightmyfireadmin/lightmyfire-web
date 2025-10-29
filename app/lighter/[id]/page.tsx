@@ -6,6 +6,7 @@ import Link from 'next/link';
 import PostCard from '@/app/components/PostCard';
 import { DetailedPost } from '@/lib/types'; // Assuming lib is at root
 import type { Metadata } from 'next';
+import MapComponent from './MapComponent'; // Import MapComponent
 
 // --- generateMetadata Function (Remains the same) ---
 export async function generateMetadata({
@@ -99,9 +100,23 @@ export default async function LighterPage({
 
   const { data: posts } = await supabase
     .from('detailed_posts')
-    .select('*')
+    .select('*, location_lat, location_lng') // Select location_lat and location_lng
     .eq('lighter_id', params.id)
     .order('created_at', { ascending: false });
+
+  // Extract location data for the map
+  const locationData = posts
+    ?.filter(
+      (post) =>
+        post.post_type === 'location' &&
+        post.location_lat !== null &&
+        post.location_lng !== null
+    )
+    .map((post) => ({
+      lat: post.location_lat!,
+      lng: post.location_lng!,
+      name: post.location_name || undefined,
+    }));
 
   return (
     <div
@@ -116,11 +131,11 @@ export default async function LighterPage({
       }}
     >
       {/* Container with responsive padding */}
-      <div className="mx-auto max-w-2xl bg-background/95 p-4 pt-8 md:p-6 md:pt-10 shadow-lg backdrop-blur-sm min-h-screen"> {/* Adjusted padding */}
+      <div className="mx-auto max-w-2xl bg-background/95 p-4 pt-8 md:p-6 md:pt-10 shadow-lg backdrop-blur-sm min-h-screen">
         {/* Lighter Header */}
         <div className="mb-8 border-b border-border pb-6">
           {/* Responsive heading size */}
-          <h1 className="text-center text-3xl md:text-4xl font-bold text-foreground"> {/* Adjusted heading size */}
+          <h1 className="text-center text-3xl md:text-4xl font-bold text-foreground">
             {lighter.name}
           </h1>
           <p className="mt-2 text-center text-lg text-muted-foreground">
@@ -128,11 +143,18 @@ export default async function LighterPage({
           </p>
         </div>
 
+        {/* Map Component */}
+        {locationData && locationData.length > 0 && (
+          <div className="mb-8 rounded-lg overflow-hidden shadow-md">
+            <MapComponent locations={locationData} />
+          </div>
+        )}
+
         {/* Add to Story Button */}
         <div className="mb-8">
           <Link
             href={`/lighter/${lighter.id}/add`}
-            className="btn-primary block w-full text-lg text-center" // Button style applied
+            className="btn-primary block w-full text-lg text-center"
           >
             Add to the Story
           </Link>

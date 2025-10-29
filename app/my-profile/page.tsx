@@ -9,6 +9,7 @@ import EditProfileForm from './EditProfileForm';
 import UpdateAuthForm from './UpdateAuthForm';
 // Corrected: Import types from the central lib/types.ts file
 import type { MyPostWithLighter, Trophy } from '@/lib/types';
+import Image from 'next/image'; // Import Image component
 
 export const dynamic = 'force-dynamic';
 
@@ -45,7 +46,7 @@ export default async function MyProfilePage() {
     myPostsRes,
     trophiesRes,
   ] = await Promise.all([
-    supabase.from('profiles').select('username, level, points, nationality, show_nationality').eq('id', userId).single(),
+    supabase.from('profiles').select('username, level, points, nationality, show_nationality, role').eq('id', userId).single(),
     supabase.rpc('get_my_stats'),
     supabase.from('lighters').select('id, name, pin_code').eq('saver_id', userId),
     supabase
@@ -86,6 +87,11 @@ export default async function MyProfilePage() {
         <p className="mt-1 text-muted-foreground">
           Level {profile?.level ?? 1} | {profile?.points ?? 0} Points
         </p>
+        {profile?.role === 'moderator' && (
+          <Link href="/moderation" className="btn-primary mt-4 inline-block">
+            Go to Moderation
+          </Link>
+        )}
       </div>
 
       {/* Stats Grid */}
@@ -104,7 +110,15 @@ export default async function MyProfilePage() {
 
       {/* Edit Profile Section */}
       <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
-        <h2 className="mb-4 text-xl font-semibold text-foreground">Edit Profile</h2>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-semibold text-foreground">Edit Profile</h2>
+          <Image
+            src="/illustrations/personalise.png"
+            alt="Personalise"
+            width={40}
+            height={40}
+          />
+        </div>
         {profile && <EditProfileForm user={session.user} profile={profile} />}
       </div>
 

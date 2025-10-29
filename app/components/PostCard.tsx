@@ -93,7 +93,14 @@ export default function PostCard({
            />
            <span className="font-semibold text-foreground">{post.username}</span>
            {post.show_nationality && post.nationality && (
-              <span className="text-sm text-muted-foreground">({post.nationality})</span>
+              <Image
+                src={`/flags/${post.nationality.toLowerCase()}.png`}
+                alt={post.nationality}
+                width={20}
+                height={15}
+                className="ml-1.5"
+                title={post.nationality}
+              />
             )}
         </div>
         <span

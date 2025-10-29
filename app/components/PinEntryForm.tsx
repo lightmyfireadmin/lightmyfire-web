@@ -4,8 +4,10 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase'; // Assuming lib is at root
 import Image from 'next/image';
+import { useI18n } from '@/locales/client';
 
 export default function PinEntryForm() {
+  const t = useI18n();
   const [pin, setPin] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -35,12 +37,12 @@ export default function PinEntryForm() {
     );
 
     if (rpcError) {
-      setError('An error occurred. Please try again.');
+      setError(t('home.pin_entry.error.generic'));
       console.error(rpcError);
     } else if (data) {
       router.push(`/lighter/${data}`);
     } else {
-      setError('Invalid PIN. Please try again.');
+      setError(t('home.pin_entry.error.invalid'));
     }
 
     setLoading(false);
@@ -50,10 +52,10 @@ export default function PinEntryForm() {
     // Applied responsive padding
     <div className="w-full max-w-md rounded-lg bg-background p-6 sm:p-8 shadow-md">
       <h2 className="mb-6 text-center text-3xl sm:text-4xl font-bold text-foreground">
-        Found a Lighter?
+        {t('home.pin_entry.title')}
       </h2>
       <p className="mb-6 text-center text-lg text-muted-foreground">
-        Enter the PIN from the sticker to see its story.
+        {t('home.pin_entry.subtitle')}
       </p>
 
       <form onSubmit={handleSubmit}>
@@ -62,7 +64,7 @@ export default function PinEntryForm() {
             htmlFor="pin"
             className="mb-2 block text-sm font-medium text-foreground"
           >
-            Lighter PIN
+            {t('home.pin_entry.label')}
           </label>
           <input
             type="text"
@@ -86,10 +88,10 @@ export default function PinEntryForm() {
           {loading ? (
             <>
               <Image src="/loading.gif" alt="Loading..." width={24} height={24} unoptimized={true} className="mr-2" />
-              Searching...
+              {t('home.pin_entry.loading')}
             </>
           ) : (
-            'Find Lighter'
+            t('home.pin_entry.button')
           )}
         </button>
       </form>

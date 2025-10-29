@@ -38,6 +38,20 @@
 }
 
 .body-with-bg {
+  position: relative; /* Establish a stacking context */
+  z-index: 0;
+}
+
+.body-with-bg::after {
+  content: '';
+  position: fixed; /* Cover the entire viewport */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-image: url('/bgtile.png');
   background-repeat: repeat;
+  background-size: 33.33%; /* Reduce size by 3 times */
+  opacity: 0.5; /* Halve the opacity */
+  z-index: -1; /* Place it behind the content */
 }

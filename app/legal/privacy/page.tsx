@@ -100,6 +100,28 @@ export default function PrivacyPolicy() {
                 <strong>Payment Processors:</strong> To handle sticker sales.
               </li>
             </ul>
+
+            <h3>5.1. Cookies</h3>
+            <p>
+              We use essential cookies to manage user sessions, authentication, and preferences.
+              We also use non-essential cookies for analytics and to improve user experience,
+              only with your explicit consent. You can manage your cookie preferences through
+              the consent banner displayed on your first visit.
+            </p>
+
+            <h3>5.2. Location Data</h3>
+            <p>
+              When you create a "location" post, you have the option to provide geographical coordinates (latitude and longitude).
+              This data is used to display the lighter's journey on a map. This information is publicly visible on the lighter's page.
+              You are responsible for the accuracy and privacy implications of any location data you choose to share.
+            </p>
+
+            <h3>5.3. Data Retention</h3>
+            <p>
+              We retain your personal data for as long as necessary to provide the services you have requested,
+              or for other essential purposes such as complying with our legal obligations, resolving disputes,
+              and enforcing our policies.
+            </p>
   
             <h3>6. Your Rights Under GDPR</h3>
             <p>

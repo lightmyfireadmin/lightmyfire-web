@@ -1,12 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase'; // Assuming lib is at root
 import type { User } from '@supabase/supabase-js';
 import Image from 'next/image';
 
 type PostType = 'text' | 'song' | 'image' | 'location' | 'refuel';
+
+interface YouTubeVideo {
+  id: { videoId: string };
+  snippet: { title: string; thumbnails: { default: { url: string } } };
+}
 
 export default function AddPostForm({
   user,
@@ -23,6 +28,8 @@ export default function AddPostForm({
   const [contentText, setContentText] = useState('');
   const [contentUrl, setContentUrl] = useState('');
   const [locationName, setLocationName] = useState('');
+  const [locationLat, setLocationLat] = useState<number | ''>(''); // New state
+  const [locationLng, setLocationLng] = useState<number | ''>(''); // New state
   const [isFindLocation, setIsFindLocation] = useState(false);
   const [isCreation, setIsCreation] = useState(false);
   const [isAnonymous, setIsAnonymous] = useState(false);
@@ -33,6 +40,12 @@ export default function AddPostForm({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  // YouTube Search States
+  const [songInputMode, setSongInputMode] = useState<'url' | 'search'>('url');
+  const [youtubeSearchQuery, setYoutubeSearchQuery] = useState('');
+  const [youtubeSearchResults, setYoutubeSearchResults] = useState<YouTubeVideo[]>([]);
+  const [youtubeSearchLoading, setYoutubeSearchLoading] = useState(false);
+
   const isValidUrl = (url: string) => {
     try {
       new URL(url);
@@ -41,6 +54,44 @@ export default function AddPostForm({
       return false;
     }
   };
+
+  const searchYouTube = async (query: string) => {
+    if (!query) {
+      setYoutubeSearchResults([]);
+      return;
+    }
+    setYoutubeSearchLoading(true);
+    setError('');
+    try {
+      const response = await fetch(
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&key=${process.env.NEXT_PUBLIC_YOUTUBE_API_KEY}`
+      );
+      const data = await response.json();
+      if (data.error) {
+        setError(`YouTube API Error: ${data.error.message}`);
+        setYoutubeSearchResults([]);
+      } else {
+        setYoutubeSearchResults(data.items || []);
+      }
+    } catch (err) {
+      console.error('YouTube Search Error:', err);
+      setError('Failed to search YouTube. Please try again.');
+      setYoutubeSearchResults([]);
+    }
+    setYoutubeSearchLoading(false);
+  };
+
+  // Debounce YouTube search
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      if (songInputMode === 'search') {
+        searchYouTube(youtubeSearchQuery);
+      }
+    }, 500);
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [youtubeSearchQuery, songInputMode]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -61,7 +112,8 @@ export default function AddPostForm({
     e.preventDefault();
     setError('');
 
-    // Handle file upload if in upload mode
+    let finalContentUrl = contentUrl;
+
     if (postType === 'image' && imageUploadMode === 'upload') {
       if (!file) {
         setError('Please select a file to upload.');
@@ -89,12 +141,23 @@ export default function AddPostForm({
         .from('post-images')
         .getPublicUrl(filePath);
 
-      setContentUrl(urlData.publicUrl);
+      finalContentUrl = urlData.publicUrl;
       setUploading(false);
     }
 
-    if ((postType === 'song' || (postType === 'image' && imageUploadMode === 'url')) && !isValidUrl(contentUrl)) {
+    if (postType === 'song' && songInputMode === 'search') {
+      // If song is selected via search, contentUrl should already be set
+      if (!finalContentUrl) {
+        setError('Please select a song from the search results.');
+        return;
+      }
+    } else if ((postType === 'song' || (postType === 'image' && imageUploadMode === 'url')) && !isValidUrl(finalContentUrl)) {
       setError('Please enter a valid URL.');
+      return;
+    }
+
+    if (postType === 'location' && (locationLat === '' || locationLng === '')) {
+      setError('Please enter valid latitude and longitude.');
       return;
     }
 
@@ -105,10 +168,10 @@ export default function AddPostForm({
         p_post_type: postType,
         p_title: title || null,
         p_content_text: postType === 'text' ? contentText : null,
-        p_content_url: (postType === 'song' || postType === 'image') ? contentUrl : null,
+        p_content_url: (postType === 'song' || postType === 'image') ? finalContentUrl : null,
         p_location_name: postType === 'location' ? locationName : null,
-        p_location_lat: null,
-        p_location_lng: null,
+        p_location_lat: postType === 'location' && locationLat !== '' ? locationLat : null, // Pass lat
+        p_location_lng: postType === 'location' && locationLng !== '' ? locationLng : null, // Pass lng
         p_is_find_location: isFindLocation,
         p_is_creation: isCreation,
         p_is_anonymous: isAnonymous,
@@ -127,7 +190,55 @@ export default function AddPostForm({
 
     switch (postType) {
       case 'text': return <textarea value={contentText} onChange={(e) => setContentText(e.target.value)} className={textareaClass} placeholder="Your poem, your story, your thoughts..." required />;
-      case 'song': return <input type="url" value={contentUrl} onChange={(e) => setContentUrl(e.target.value)} className={inputClass} placeholder="YouTube Song URL" required />;
+      case 'song':
+        return (
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <button type="button" onClick={() => setSongInputMode('url')} className={`px-3 py-1 text-sm rounded-md ${songInputMode === 'url' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>URL</button>
+              <button type="button" onClick={() => setSongInputMode('search')} className={`px-3 py-1 text-sm rounded-md ${songInputMode === 'search' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>Search</button>
+            </div>
+            {songInputMode === 'url' ? (
+              <input type="url" value={contentUrl} onChange={(e) => setContentUrl(e.target.value)} className={inputClass} placeholder="YouTube Song URL" required />
+            ) : (
+              <div className="space-y-2">
+                <input
+                  type="text"
+                  value={youtubeSearchQuery}
+                  onChange={(e) => setYoutubeSearchQuery(e.target.value)}
+                  className={inputClass}
+                  placeholder="Search YouTube for a song..."
+                />
+                {youtubeSearchLoading && <p className="text-sm text-muted-foreground">Searching...</p>}
+                <div className="max-h-60 overflow-y-auto border border-border rounded-md">
+                  {youtubeSearchResults.length > 0 ? (
+                    youtubeSearchResults.map((video) => (
+                      <div
+                        key={video.id.videoId}
+                        className="flex items-center p-2 border-b border-border last:border-b-0 cursor-pointer hover:bg-muted"
+                        onClick={() => {
+                          setContentUrl(`https://www.youtube.com/watch?v=${video.id.videoId}`);
+                          setYoutubeSearchResults([]); // Clear results after selection
+                          setYoutubeSearchQuery(video.snippet.title); // Set query to title for display
+                        }}
+                      >
+                        <Image
+                          src={video.snippet.thumbnails.default.url}
+                          alt={video.snippet.title}
+                          width={48}
+                          height={36}
+                          className="mr-2 rounded"
+                        />
+                        <span className="text-sm text-foreground">{video.snippet.title}</span>
+                      </div>
+                    ))
+                  ) : (
+                    !youtubeSearchLoading && youtubeSearchQuery && <p className="p-2 text-sm text-muted-foreground">No results found.</p>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        );
       case 'image':
         return (
           <div>
@@ -138,11 +249,17 @@ export default function AddPostForm({
             {imageUploadMode === 'url' ? (
               <input type="url" value={contentUrl} onChange={(e) => setContentUrl(e.target.value)} className={inputClass} placeholder="Image URL (e.g., Imgur)" required={imageUploadMode === 'url'} />
             ) : (
-              <input type="file" onChange={handleFileChange} className={`${inputClass} p-0 file:p-3 file:mr-4 file:border-0 file:bg-muted file:text-foreground hover:file:bg-muted/80`} accept="image/png, image/jpeg, image/gif" required={imageUploadMode === 'upload'} />
+              <input type="file" onChange={handleFileChange} className={`${inputClass} p-0 file:p-3 file:mr-4 file:border-0 file:bg-muted file:text-foreground hover:file:bg-muted/80`} accept="image/png, image/jpeg, image:gif" required={imageUploadMode === 'upload'} />
             )}
           </div>
         );
-      case 'location': return <input type="text" value={locationName} onChange={(e) => setLocationName(e.target.value)} className={inputClass} placeholder="Name of a place (e.g., 'Cafe Central')" required />;
+      case 'location': return (
+        <>
+          <input type="text" value={locationName} onChange={(e) => setLocationName(e.target.value)} className={`${inputClass} mb-2`} placeholder="Name of a place (e.g., 'Cafe Central')" required />
+          <input type="number" value={locationLat} onChange={(e) => setLocationLat(parseFloat(e.target.value))} className={`${inputClass} mb-2`} placeholder="Latitude (e.g., 48.8566)" step="any" required />
+          <input type="number" value={locationLng} onChange={(e) => setLocationLng(parseFloat(e.target.value))} className={inputClass} placeholder="Longitude (e.g., 2.3522)" step="any" required />
+        </>
+      );
       case 'refuel': return <p className="text-center text-lg text-foreground">You&apos;re a hero! By clicking &quot;Post,&quot; you&apos;ll add a &quot;Refueled&quot; entry to this lighter&apos;s story.</p>;
       default: return null;
     }

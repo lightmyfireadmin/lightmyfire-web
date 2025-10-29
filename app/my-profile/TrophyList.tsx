@@ -1,6 +1,7 @@
 'use client';
 
 import type { Trophy } from '@/lib/types';
+import Image from 'next/image'; // Import Image component
 
 function TrophyIcon() {
   return (
@@ -37,7 +38,16 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
           className="rounded-lg border border-border bg-background p-4 text-center shadow-sm"
         >
           <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-accent/20 text-accent-foreground">
-            <TrophyIcon />
+            {trophy.icon_name ? (
+              <Image
+                src={`/illustrations/${trophy.icon_name}.png`}
+                alt={trophy.name}
+                width={40}
+                height={40}
+              />
+            ) : (
+              <TrophyIcon /> // Fallback to SVG
+            )}
           </div>
           <p className="mt-2 font-semibold text-foreground">{trophy.name}</p>
           <p className="text-xs text-muted-foreground">{trophy.description}</p>

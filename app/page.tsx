@@ -6,10 +6,12 @@ import PostCard from '@/app/components/PostCard';
 import { DetailedPost } from '@/lib/types'; // Assuming lib is at root
 import Link from 'next/link'; // Added Link import
 import Image from 'next/image';
+import { getI18n } from '@/locales/server';
 
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
+  const t = await getI18n();
   const cookieStore = cookies();
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -39,43 +41,40 @@ export default async function Home() {
 
   return (
     <div className="bg-background">
-      {/* Hero Section */}
-      <div className="relative isolate px-6 pt-14 lg:px-8">
-        {/* Adjusted padding */}
-        <div className="mx-auto max-w-3xl py-24 sm:py-32 lg:py-48">
+      {/* PIN Entry Section (Moved up) */}
+      <div className="flex w-full items-center justify-center bg-muted py-12 sm:py-16">
+        <PinEntryForm />
+      </div>
+
+      {/* Hero Section (Condensed) */}
+      <div className="relative isolate px-6 pt-8 pb-12 lg:px-8 lg:pt-14 lg:pb-48"> {/* Adjusted padding */}
+        <div className="mx-auto max-w-3xl py-12 sm:py-16 lg:py-24"> {/* Adjusted padding */}
           <div className="text-center">
             <Image
               src="/webclip.png"
               alt="LightMyFire Lighter"
-              width={200}
-              height={200}
-              className="mx-auto mb-8"
+              width={150} // Slightly smaller image
+              height={150}
+              className="mx-auto mb-6" // Adjusted margin
             />
-            {/* Adjusted heading size */}
-            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              I&apos;m Too Young To Die
+            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl"> {/* Adjusted heading size */}
+              {t('home.hero.title')}
             </h1>
-            <p className="mt-6 text-lg leading-8 text-muted-foreground">
-              They toss billions of us Lighter Babies every year. Found, loved, lost, forgotten... But we hear stories! Give us a chance to tell them.
+            <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg"> {/* Adjusted text size and leading */}
+              {t('home.hero.subtitle')}
             </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
+            <div className="mt-8 flex items-center justify-center gap-x-6"> {/* Adjusted margin */}
                <Link href="/save-lighter" className="btn-primary">
-                 Become a LightSaver
+                 {t('home.hero.cta')}
                </Link>
              </div>
           </div>
         </div>
       </div>
 
-      {/* PIN Entry Section */}
-      <div className="flex w-full items-center justify-center bg-muted py-12 sm:py-16"> {/* Adjusted padding */}
-        <PinEntryForm />
-      </div>
-
-      {/* Random Stories Section */}
-      <div className="mx-auto max-w-2xl px-4 py-12 sm:py-16 lg:px-8"> {/* Adjusted padding */}
+      <div className="mx-auto max_w_2xl px-4 py-12 sm:py-16 lg:px-8 hidden sm:block"> {/* Added hidden sm:block */}
         <h2 className="mb-8 text-center text-3xl font-bold text-foreground">
-          Stories from the Mosaic
+          {t('home.mosaic.title')}
         </h2>
         <div className="space-y-6">
           {randomPosts && randomPosts.length > 0 ? (
@@ -88,10 +87,24 @@ export default async function Home() {
             ))
           ) : (
             <p className="text-center text-muted-foreground">
-              No public stories yet. Be the first to save a lighter!
+              {t('home.mosaic.no_stories')}
             </p>
           )}
         </div>
+      </div>
+      {/* Community Illustration */}
+      <div className="mx-auto max_w_2xl px-4 py-12 sm:py-16 lg:px-8 text-center">
+        <Image
+          src="/illustrations/community.png"
+          alt="Community"
+          width={300}
+          height={200}
+          className="mx-auto mb-6"
+        />
+        <h2 className="text-3xl font-bold text-foreground">{t('home.community.title')}</h2>
+        <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
+          {t('home.community.subtitle')}
+        </p>
       </div>
     </div>
   );

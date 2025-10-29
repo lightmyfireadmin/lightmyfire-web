@@ -8,11 +8,13 @@ import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 // Import LogoutButton from the same components folder
 import LogoutButton from './LogoutButton';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useI18n } from '@/locales/client';
 
 const navigation = [
-  { name: 'How It Works', href: '/about' },
-  { name: 'Refill Guide', href: '/dont-throw-me-away' },
-];
+  { nameKey: 'nav.how_it_works', href: '/about' },
+  { nameKey: 'nav.refill_guide', href: '/dont-throw-me-away' },
+] as const;
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
@@ -21,6 +23,7 @@ function classNames(...classes: string[]) {
 type Session = { user: any } | null;
 
 export default function Header({ session }: { session: Session }) {
+  const t = useI18n();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const isLoggedIn = session !== null;
@@ -40,35 +43,36 @@ export default function Header({ session }: { session: Session }) {
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-foreground hover:bg-muted"
             onClick={() => setMobileMenuOpen(true)}
           >
-            <span className="sr-only">Open main menu</span>
+            <span className="sr-only">{t('nav.open_menu')}</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-8">
           {navigation.map((item) => (
             <Link
-              key={item.name}
+              key={item.nameKey}
               href={item.href}
               className={classNames(
                 pathname === item.href ? 'text-primary font-semibold' : 'text-foreground hover:text-primary',
                 'text-sm leading-6'
               )}
             >
-              {item.name}
+              {t(item.nameKey)}
             </Link>
           ))}
           {isLoggedIn && (
              <>
                <Link href="/save-lighter" className={classNames(pathname === '/save-lighter' ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6')}>
-                 Save a Lighter
+                 {t('nav.save_lighter')}
                </Link>
                <Link href="/my-profile" className={classNames(pathname === '/my-profile' ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6')}>
-                 My Profile
+                 {t('nav.my_profile')}
                </Link>
              </>
           )}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-x-4">
+          <LanguageSwitcher />
           {isLoggedIn ? (
             <LogoutButton />
           ) : (
@@ -76,7 +80,7 @@ export default function Header({ session }: { session: Session }) {
               href="/login"
               className="btn-primary text-sm" // Use the button class
             >
-              Log in / Sign Up
+              {t('nav.login_signup')}
             </Link>
           )}
         </div>
@@ -96,7 +100,7 @@ export default function Header({ session }: { session: Session }) {
               className="-m-2.5 rounded-md p-2.5 text-foreground hover:bg-muted"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="sr-only">Close menu</span>
+              <span className="sr-only">{t('nav.close_menu')}</span>
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
@@ -105,7 +109,7 @@ export default function Header({ session }: { session: Session }) {
               <div className="space-y-2 py-6">
                 {navigation.map((item) => (
                   <Link
-                    key={item.name}
+                    key={item.nameKey}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
                     className={classNames(
@@ -113,21 +117,22 @@ export default function Header({ session }: { session: Session }) {
                       '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7'
                     )}
                   >
-                    {item.name}
+                    {t(item.nameKey)}
                   </Link>
                 ))}
                  {isLoggedIn && (
                     <>
                      <Link href="/save-lighter" onClick={() => setMobileMenuOpen(false)} className={classNames(pathname === '/save-lighter' ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7')}>
-                       Save a Lighter
+                       {t('nav.save_lighter')}
                      </Link>
                      <Link href="/my-profile" onClick={() => setMobileMenuOpen(false)} className={classNames(pathname === '/my-profile' ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7')}>
-                       My Profile
+                       {t('nav.my_profile')}
                      </Link>
                    </>
                  )}
               </div>
               <div className="py-6">
+                <LanguageSwitcher />
                 {isLoggedIn ? (
                   <LogoutButton />
                 ) : (
@@ -136,7 +141,7 @@ export default function Header({ session }: { session: Session }) {
                     onClick={() => setMobileMenuOpen(false)}
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-foreground hover:bg-muted"
                   >
-                    Log in / Sign Up
+                    {t('nav.login_signup')}
                   </Link>
                 )}
               </div>

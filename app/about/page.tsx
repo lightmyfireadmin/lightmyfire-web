@@ -1,3 +1,5 @@
+import Image from 'next/image'; // Import Image component
+
 export default function AboutPage() {
     return (
       <div className="mx-auto max-w-3xl p-4 py-12 sm:p-6 lg:p-8">
@@ -31,6 +33,13 @@ export default function AboutPage() {
               Our goal is simple: to create a global, human creativity mosaic,
               one lighter at a time, and reduce waste in the process.
             </p>
+            <Image
+                src="/illustrations/around_the_world.png"
+                alt="Global Creativity Mosaic"
+                width={300} // Adjust size as needed
+                height={200}
+                className="mx-auto my-6" // Center the image and add vertical margin
+              />
           </div>
         </div>
       </div>

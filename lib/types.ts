@@ -11,6 +11,8 @@ export type DetailedPost = {
   content_text: string | null;
   content_url: string | null;
   location_name: string | null;
+  location_lat: number | null;
+  location_lng: number | null;
   is_find_location: boolean;
   is_creation: boolean;
   is_anonymous: boolean;
