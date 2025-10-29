@@ -1,6 +1,9 @@
-// Les imports de polices, de metadata et de globals.css
-// doivent être dans app/layout.tsx (le layout principal).
-// Nous les retirons d'ici.
+// Nous restaurons les imports de polices, metadata et globals.css
+// car ce fichier EST le layout principal (root layout).
+import type { Metadata } from 'next';
+import { Poppins, Nunito_Sans } from 'next/font/google';
+// Le chemin '../globals.css' est correct par rapport à app/globals.css
+import '../globals.css';
 import { I18nProviderClient } from '@/locales/client';
 import type { CookieOptions } from '@supabase/ssr';
 import Header from '@/app/components/Header';
@@ -9,13 +12,31 @@ import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import CookieConsent from '@/app/components/CookieConsent';
 
-// Les définitions de polices (Poppins, Nunito_Sans) et
-// les métadonnées (metadata) doivent être dans app/layout.tsx.
+// Configuration des polices
+const poppins = Poppins({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: '700',
+  variable: '--font-poppins',
+});
+
+const nunito_sans = Nunito_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '700'],
+  variable: '--font-nunito-sans',
+});
+
+// Métadonnées
+export const metadata: Metadata = {
+  title: 'LightMyFire',
+  description: 'A human creativity mosaic.',
+};
 
 export const dynamic = 'force-dynamic';
 
-// Renommé de RootLayout à LangLayout pour plus de clarté
-export default async function LangLayout({
+// Le layout est renommé en RootLayout pour plus de clarté
+export default async function RootLayout({
   children,
   params: { locale },
 }: {
@@ -46,22 +67,27 @@ export default async function LangLayout({
     data: { session },
   } = await supabase.auth.getSession();
 
-  // Ce layout ne doit PAS contenir <html>, <head> ou <body>.
-  // Il retourne directement les composants et les enfants.
-  // Nous enveloppons tout dans un <I18nProviderClient> et une <div>
-  // qui reprend les styles de votre <body> original pour garder la mise en page.
+  // 1. Nous restaurons les balises <html> et <body>
   return (
-    <I18nProviderClient locale={locale}>
-      {/* Cette div reprend les classes CSS de votre <body>
-        pour maintenir la structure visuelle (flex, min-h-screen, etc.)
-        La classe font-sans devrait être héritée de app/layout.tsx
-      */}
-      <div className="flex flex-col min-h-screen body-with-bg font-sans">
-        <Header session={session} />
-        <main className="flex-grow">{children}</main>
-        <Footer lang={locale} />
-        <CookieConsent />
-      </div>
-    </I18nProviderClient>
+    <html lang={locale} className={`${poppins.variable} ${nunito_sans.variable}`}>
+      <head>
+        {/* Les liens de polices sont gérés par next/font */}
+      </head>
+      <body className="flex flex-col min-h-screen body-with-bg font-sans">
+        <I18nProviderClient locale={locale}>
+          <Header session={session} />
+          <main className="flex-grow">{children}</main>
+          <Footer lang={locale} />
+
+          {/*
+            2. CORRECTION: Le CookieConsent est déplacé
+            À L'INTÉRIEUR du I18nProviderClient
+            pour que le composant <Link> reçoive la locale.
+          */}
+          <CookieConsent />
+        </I18nProviderClient>
+      </body>
+    </html>
   );
 }
+
