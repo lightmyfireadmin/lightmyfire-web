@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase'; // Assuming lib is at root
 import type { User } from '@supabase/supabase-js';
+import Image from 'next/image';
 
 type PostType = 'text' | 'song' | 'image' | 'location' | 'refuel';
 
@@ -26,13 +27,79 @@ export default function AddPostForm({
   const [isCreation, setIsCreation] = useState(false);
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [isPublic, setIsPublic] = useState(true);
+  const [imageUploadMode, setImageUploadMode] = useState<'url' | 'upload'>('url');
+  const [uploading, setUploading] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const isValidUrl = (url: string) => {
+    try {
+      new URL(url);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const selectedFile = e.target.files[0];
+      // 2MB size limit
+      if (selectedFile.size > 2 * 1024 * 1024) {
+        setError('File is too large. Please select a file smaller than 2MB.');
+        setFile(null);
+        e.target.value = ''; // Reset file input
+        return;
+      }
+      setError('');
+      setFile(selectedFile);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setError('');
+
+    // Handle file upload if in upload mode
+    if (postType === 'image' && imageUploadMode === 'upload') {
+      if (!file) {
+        setError('Please select a file to upload.');
+        return;
+      }
+
+      setLoading(true);
+      setUploading(true);
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${user.id}-${Date.now()}.${fileExt}`;
+      const filePath = `${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('post-images')
+        .upload(filePath, file);
+
+      if (uploadError) {
+        setError('Failed to upload image. Please try again.');
+        setLoading(false);
+        setUploading(false);
+        return;
+      }
+
+      const { data: urlData } = supabase.storage
+        .from('post-images')
+        .getPublicUrl(filePath);
+
+      setContentUrl(urlData.publicUrl);
+      setUploading(false);
+    }
+
+    if ((postType === 'song' || (postType === 'image' && imageUploadMode === 'url')) && !isValidUrl(contentUrl)) {
+      setError('Please enter a valid URL.');
+      return;
+    }
+
+    setLoading(true);
+    
     const { data, error: rpcError } = await supabase.rpc('create_new_post', {
         p_lighter_id: lighterId,
         p_post_type: postType,
@@ -61,7 +128,20 @@ export default function AddPostForm({
     switch (postType) {
       case 'text': return <textarea value={contentText} onChange={(e) => setContentText(e.target.value)} className={textareaClass} placeholder="Your poem, your story, your thoughts..." required />;
       case 'song': return <input type="url" value={contentUrl} onChange={(e) => setContentUrl(e.target.value)} className={inputClass} placeholder="YouTube Song URL" required />;
-      case 'image': return <input type="url" value={contentUrl} onChange={(e) => setContentUrl(e.target.value)} className={inputClass} placeholder="Image URL (e.g., Imgur)" required />;
+      case 'image':
+        return (
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <button type="button" onClick={() => setImageUploadMode('url')} className={`px-3 py-1 text-sm rounded-md ${imageUploadMode === 'url' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>URL</button>
+              <button type="button" onClick={() => setImageUploadMode('upload')} className={`px-3 py-1 text-sm rounded-md ${imageUploadMode === 'upload' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>Upload</button>
+            </div>
+            {imageUploadMode === 'url' ? (
+              <input type="url" value={contentUrl} onChange={(e) => setContentUrl(e.target.value)} className={inputClass} placeholder="Image URL (e.g., Imgur)" required={imageUploadMode === 'url'} />
+            ) : (
+              <input type="file" onChange={handleFileChange} className={`${inputClass} p-0 file:p-3 file:mr-4 file:border-0 file:bg-muted file:text-foreground hover:file:bg-muted/80`} accept="image/png, image/jpeg, image/gif" required={imageUploadMode === 'upload'} />
+            )}
+          </div>
+        );
       case 'location': return <input type="text" value={locationName} onChange={(e) => setLocationName(e.target.value)} className={inputClass} placeholder="Name of a place (e.g., 'Cafe Central')" required />;
       case 'refuel': return <p className="text-center text-lg text-foreground">You&apos;re a hero! By clicking &quot;Post,&quot; you&apos;ll add a &quot;Refueled&quot; entry to this lighter&apos;s story.</p>;
       default: return null;
@@ -128,10 +208,17 @@ export default function AddPostForm({
 
       <button
         type="submit"
-        disabled={loading}
-        className="btn-primary mt-6 w-full text-lg" // Applied btn-primary
+        disabled={loading || uploading}
+        className="btn-primary mt-6 w-full text-lg flex justify-center items-center" // Applied btn-primary
       >
-        {loading ? 'Posting...' : 'Add to Story'}
+        {loading || uploading ? (
+          <>
+            <Image src="/loading.gif" alt="Loading..." width={24} height={24} unoptimized={true} className="mr-2" />
+            {uploading ? 'Uploading...' : 'Posting...'}
+          </>
+        ) : (
+          'Add to Story'
+        )}
       </button>
     </form>
   );

@@ -62,7 +62,11 @@ export default function PostCard({
   return (
     // Apply conditional border color classes directly using ternaries
     <div className={`
-      relative rounded-lg border border-border bg-background shadow-md overflow-hidden border-l-4
+      relative rounded-lg border border-border overflow-hidden
+      ${isRefuelPost 
+        ? 'bg-muted shadow-none border-l-2' 
+        : 'bg-background shadow-md border-l-4'
+      }
       ${post.post_type === 'text' ? 'border-post-text' : ''}
       ${post.post_type === 'image' ? 'border-post-image' : ''}
       ${post.post_type === 'location' ? 'border-post-location' : ''}
@@ -88,6 +92,9 @@ export default function PostCard({
              aria-hidden="true"
            />
            <span className="font-semibold text-foreground">{post.username}</span>
+           {post.show_nationality && post.nationality && (
+              <span className="text-sm text-muted-foreground">({post.nationality})</span>
+            )}
         </div>
         <span
           className="text-sm text-muted-foreground"

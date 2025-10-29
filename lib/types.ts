@@ -18,6 +18,8 @@ export type DetailedPost = {
   username: string;
   like_count: number;
   user_has_liked: boolean;
+  nationality: string | null;
+  show_nationality: boolean;
 };
 
 // Type specifically for the My Contributions list on the profile page

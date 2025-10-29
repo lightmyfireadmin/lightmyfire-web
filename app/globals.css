@@ -38,9 +38,6 @@
 }
 
 .body-with-bg {
-  background-image: url('/LIGHTMYFIRE.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-image: url('/bgtile.png');
+  background-repeat: repeat;
 }
