@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Poppins, Nunito_Sans } from 'next/font/google';
-import './globals.css';
+import '../globals.css';
 import { I18nProviderClient } from '@/locales/client';
 import { getI18n, getCurrentLocale } from '@/locales/server';
 import type { CookieOptions } from '@supabase/ssr';

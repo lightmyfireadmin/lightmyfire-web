@@ -1,10 +1,8 @@
 'use client';
 
 import { DetailedPost } from '@/lib/types'; // Assuming lib is at root
-// **IMPORTANT**: Adjust these paths based on PostCard's location relative to the buttons
-// If PostCard is in app/components, and buttons are in app/lighter/[id], this should be correct:
-import LikeButton from '@/app/lighter/[id]/LikeButton';
-import FlagButton from '@/app/lighter/[id]/FlagButton';
+import LikeButton from '@/app/components/LikeButton';
+import FlagButton from '@/app/components/FlagButton';
 import {
   ChatBubbleBottomCenterTextIcon,
   MusicalNoteIcon,
