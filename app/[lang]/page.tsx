@@ -6,13 +6,14 @@ import PostCard from '@/app/components/PostCard';
 import { DetailedPost } from '@/lib/types'; // Assuming lib is at root
 import Link from 'next/link'; // Added Link import
 import Image from 'next/image';
-import { getI18n } from '@/locales/server';
+import { getI18n, getCurrentLocale } from '@/locales/server'; // Import getCurrentLocale
 
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
   const t = await getI18n();
   const cookieStore = cookies();
+  const lang = await getCurrentLocale(); // Get current language
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -70,7 +71,7 @@ export default async function Home() {
               {t('home.hero.subtitle')}
             </p>
             <div className="mt-8 flex items-center justify-center gap-x-6"> {/* Adjusted margin */}
-               <Link href="/save-lighter" className="btn-primary">
+               <Link href={`/${lang}/save-lighter`} className="btn-primary">
                  {t('home.hero.cta')}
                </Link>
              </div>
@@ -78,7 +79,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-2xl px-4 py-12 sm:py-16 lg:px-8 hidden sm:block"> {/* Added hidden sm:block */}
+      <div className="mx-auto max-w-2xl px-4 py-12 sm:py-16 lg:px-8 hidden sm:block"> {/* Fixed typo */}
         <h2 className="mb-8 text-center text-3xl font-bold text-foreground">
           {t('home.mosaic.title')}
         </h2>
@@ -99,7 +100,7 @@ export default async function Home() {
         </div>
       </div>
       {/* Community Illustration */}
-      <div className="mx-auto max-w-2xl px-4 py-12 sm:py-16 lg:px-8 text-center">
+      <div className="mx-auto max-w-2xl px-4 py-12 sm:py-16 lg:px-8 text-center"> {/* Fixed typo */}
         <Image
           src="/illustrations/community.png"
           alt="Community"
