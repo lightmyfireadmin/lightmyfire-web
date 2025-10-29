@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { supabase } from '@/lib/supabase'; // Assumes lib is at root
+import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
-import { FlagIcon } from '@heroicons/react/24/outline'; // Use Heroicon
+import { FlagIcon } from '@heroicons/react/24/outline';
+// Importer la nouvelle modale
+import ConfirmModal from './ConfirmModal';
 
 export default function FlagButton({
   postId,
@@ -15,8 +17,10 @@ export default function FlagButton({
   const router = useRouter();
   const [isFlagged, setIsFlagged] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  // État pour contrôler l'ouverture de la modale
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleFlag = async () => {
+  const openModal = () => {
     if (!isLoggedIn) {
       router.push('/login?message=You must be logged in to flag a post');
       return;
@@ -24,10 +28,12 @@ export default function FlagButton({
     if (isFlagged || isLoading) {
       return;
     }
-    if (!window.confirm('Are you sure you want to flag this post for review? This action cannot be undone.')) {
-      return;
-    }
+    // Ouvre la modale au lieu de confirmer
+    setIsModalOpen(true);
+  };
 
+  // Logique de signalement, exécutée après confirmation
+  const handleConfirmFlag = async () => {
     setIsLoading(true);
     const { error } = await supabase.rpc('flag_post', {
       post_to_flag_id: postId,
@@ -37,31 +43,41 @@ export default function FlagButton({
       setIsFlagged(true);
     } else {
       console.error(error);
+      // Nous devrions utiliser un meilleur système de notification que 'alert'
       alert('Could not flag post. Please try again.');
-      setIsLoading(false); // Only reset loading on error
+      setIsLoading(false); // Réinitialiser le chargement uniquement en cas d'erreur
     }
-    // No need to reset loading on success, as the button disappears
+    // Pas besoin de réinitialiser le chargement en cas de succès, le bouton disparaît
   };
 
   if (isFlagged) {
     return (
-      // Use theme muted text
       <span className="flex items-center space-x-1 text-sm text-muted-foreground">
         <FlagIcon className="h-5 w-5" aria-hidden="true" />
-        <span>Flagged</span>
+        <span>Signalé</span>
       </span>
     );
   }
 
   return (
-    <button
-      onClick={handleFlag}
-      disabled={isLoading}
-      // Use theme muted text, hover red
-      className="flex items-center space-x-1 text-sm text-muted-foreground transition hover:text-red-600 disabled:opacity-50"
-    >
-      <FlagIcon className="h-5 w-5" aria-hidden="true" />
-      <span>Flag</span>
-    </button>
+    <>
+      <button
+        onClick={openModal} // Ouvre la modale
+        disabled={isLoading}
+        className="flex items-center space-x-1 text-sm text-muted-foreground transition hover:text-red-600 disabled:opacity-50"
+      >
+        <FlagIcon className="h-5 w-5" aria-hidden="true" />
+        <span>Signaler</span>
+      </button>
+
+      {/* Ajouter la modale à la page */}
+      <ConfirmModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={handleConfirmFlag}
+        title="Signaler ce post ?"
+        message="Êtes-vous sûr de vouloir signaler ce post pour examen ? Cette action ne peut pas être annulée."
+      />
+    </>
   );
 }
