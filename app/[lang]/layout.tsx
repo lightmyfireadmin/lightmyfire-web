@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Poppins, Nunito_Sans } from 'next/font/google';
 import '../globals.css';
 import { I18nProviderClient } from '@/locales/client';
-import { getI18n, getCurrentLocale } from '@/locales/server';
+import { getI18n } from '@/locales/server';
 import type { CookieOptions } from '@supabase/ssr';
 
 const poppins = Poppins({
@@ -32,10 +32,11 @@ export const dynamic = 'force-dynamic';
 
 export default async function RootLayout({
   children,
+  params: { locale },
 }: {
   children: React.ReactNode;
+  params: { locale: string };
 }) {
-  const locale = await getCurrentLocale();
   const cookieStore = cookies();
 
   const supabase = createServerClient(
