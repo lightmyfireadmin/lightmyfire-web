@@ -38,13 +38,32 @@ export default async function Home() {
   } = await supabase.auth.getSession();
   const isLoggedIn = session !== null;
 
-  // Fetch 5 random public posts
-  const { data: randomPosts } = await supabase.rpc(
-    'get_random_public_posts',
-    {
-      limit_count: 5,
+  // --- CORRECTION : Ajout d'un bloc try...catch ---
+  // Cela empêche la page de planter (et de renvoyer un 404) 
+  // si l'appel RPC échoue.
+
+  let randomPosts: DetailedPost[] = []; // Initialiser comme un tableau vide
+
+  try {
+    const { data, error } = await supabase.rpc(
+      'get_random_public_posts',
+      {
+        limit_count: 5,
+      }
+    );
+
+    if (error) {
+      // En cas d'erreur, on l'affiche dans les logs du serveur, mais la page ne plante pas
+      console.error('Error fetching random posts:', error.message);
+    } else if (data) {
+      // Si tout va bien, on assigne les données
+      randomPosts = data;
     }
-  );
+  } catch (error) {
+    console.error('Unexpected error in RPC call:', error);
+    // randomPosts reste un tableau vide
+  }
+  // --- FIN DE LA CORRECTION ---
 
   return (
     <div className="bg-background">
@@ -84,6 +103,9 @@ export default async function Home() {
           {t('home.mosaic.title')}
         </h2>
         <div className="space-y-6">
+          {/* S'il n'y a pas de posts (ou si l'appel a échoué),
+            affiche le message 'no_stories' au lieu de planter.
+          */}
           {randomPosts && randomPosts.length > 0 ? (
             randomPosts.map((post: DetailedPost) => (
               <PostCard
@@ -116,3 +138,4 @@ export default async function Home() {
     </div>
   );
 }
+
