@@ -1,6 +1,6 @@
-import type { Metadata } from 'next';
-import { Poppins, Nunito_Sans } from 'next/font/google';
-import '../globals.css';
+// Les imports de polices, de metadata et de globals.css
+// doivent être dans app/layout.tsx (le layout principal).
+// Nous les retirons d'ici.
 import { I18nProviderClient } from '@/locales/client';
 import type { CookieOptions } from '@supabase/ssr';
 import Header from '@/app/components/Header';
@@ -9,29 +9,13 @@ import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import CookieConsent from '@/app/components/CookieConsent';
 
-// Correct font setup using CSS variables
-const poppins = Poppins({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: '700',
-  variable: '--font-poppins', // Define CSS variable for display font
-});
-
-const nunito_sans = Nunito_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['400', '700'], // FIX: Add required weights to fix font build error
-  variable: '--font-nunito-sans', // Define CSS variable for sans-serif font
-});
-
-export const metadata: Metadata = {
-  title: 'LightMyFire',
-  description: 'A human creativity mosaic.',
-};
+// Les définitions de polices (Poppins, Nunito_Sans) et
+// les métadonnées (metadata) doivent être dans app/layout.tsx.
 
 export const dynamic = 'force-dynamic';
 
-export default async function RootLayout({
+// Renommé de RootLayout à LangLayout pour plus de clarté
+export default async function LangLayout({
   children,
   params: { locale },
 }: {
@@ -62,29 +46,22 @@ export default async function RootLayout({
     data: { session },
   } = await supabase.auth.getSession();
 
+  // Ce layout ne doit PAS contenir <html>, <head> ou <body>.
+  // Il retourne directement les composants et les enfants.
+  // Nous enveloppons tout dans un <I18nProviderClient> et une <div>
+  // qui reprend les styles de votre <body> original pour garder la mise en page.
   return (
-    // Apply font variables to the html tag for Tailwind to use
-    <html lang={locale} className={`${poppins.variable} ${nunito_sans.variable}`}>
-      <head>
-        {/* Font links are now handled by next/font */}
-      </head>
-      {/* 
-        The `font-sans` class from globals.css will now use the CSS variable.
-        Ensure your tailwind.config.js is set up to use these variables, e.g.:
-        fontFamily: {
-          sans: ['var(--font-nunito-sans)'],
-          display: ['var(--font-poppins)'],
-        }
+    <I18nProviderClient locale={locale}>
+      {/* Cette div reprend les classes CSS de votre <body>
+        pour maintenir la structure visuelle (flex, min-h-screen, etc.)
+        La classe font-sans devrait être héritée de app/layout.tsx
       */}
-      <body className="flex flex-col min-h-screen body-with-bg font-sans">
-        <I18nProviderClient locale={locale}>
-          <Header session={session} />
-          <main className="flex-grow">{children}</main>
-          {/* FIX: Pass the 'locale' prop to Footer as 'lang' */}
-          <Footer lang={locale} />
-        </I18nProviderClient>
+      <div className="flex flex-col min-h-screen body-with-bg font-sans">
+        <Header session={session} />
+        <main className="flex-grow">{children}</main>
+        <Footer lang={locale} />
         <CookieConsent />
-      </body>
-    </html>
+      </div>
+    </I18nProviderClient>
   );
 }
