@@ -1,19 +1,18 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { cookies } from 'next/headers';
-// Corrected import paths assuming components is inside app/
 import PinEntryForm from '@/app/components/PinEntryForm';
 import PostCard from '@/app/components/PostCard';
-import { DetailedPost } from '@/lib/types'; // Assuming lib is at root
-import Link from 'next/link'; // Added Link import
+import { DetailedPost } from '@/lib/types';
+import Link from 'next/link';
 import Image from 'next/image';
-import { getI18n, getCurrentLocale } from '@/locales/server'; // Import getCurrentLocale
+import { getI18n, getCurrentLocale } from '@/locales/server';
 
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
   const t = await getI18n();
   const cookieStore = cookies();
-  const lang = await getCurrentLocale(); // Get current language
+  const lang = await getCurrentLocale();
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -32,17 +31,12 @@ export default async function Home() {
     }
   );
 
-  // Check if user is logged in (for the PostCards)
   const {
     data: { session },
   } = await supabase.auth.getSession();
   const isLoggedIn = session !== null;
 
-  // --- CORRECTION : Ajout d'un bloc try...catch ---
-  // Cela empêche la page de planter (et de renvoyer un 404) 
-  // si l'appel RPC échoue.
-
-  let randomPosts: DetailedPost[] = []; // Initialiser comme un tableau vide
+  let randomPosts: DetailedPost[] = [];
 
   try {
     const { data, error } = await supabase.rpc(
@@ -53,43 +47,37 @@ export default async function Home() {
     );
 
     if (error) {
-      // En cas d'erreur, on l'affiche dans les logs du serveur, mais la page ne plante pas
       console.error('Error fetching random posts:', error.message);
     } else if (data) {
-      // Si tout va bien, on assigne les données
       randomPosts = data;
     }
   } catch (error) {
     console.error('Unexpected error in RPC call:', error);
-    // randomPosts reste un tableau vide
   }
-  // --- FIN DE LA CORRECTION ---
 
   return (
     <div className="bg-background">
-      {/* PIN Entry Section (Moved up) */}
       <div className="flex w-full items-center justify-center bg-muted py-12 sm:py-16">
         <PinEntryForm />
       </div>
 
-      {/* Hero Section (Condensed) */}
-      <div className="relative isolate px-6 pt-8 pb-12 lg:px-8 lg:pt-14 lg:pb-48"> {/* Adjusted padding */}
-        <div className="mx-auto max-w-3xl py-12 sm:py-16 lg:py-24"> {/* Adjusted padding */}
+      <div className="relative isolate px-6 pt-8 pb-12 lg:px-8 lg:pt-14 lg:pb-48">
+        <div className="mx-auto max-w-3xl py-12 sm:py-16 lg:py-24">
           <div className="text-center">
             <Image
               src="/webclip.png"
               alt="LightMyFire Lighter"
-              width={150} // Slightly smaller image
+              width={150}
               height={150}
-              className="mx-auto mb-6" // Adjusted margin
+              className="mx-auto mb-6"
             />
-            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl"> {/* Adjusted heading size */}
+            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
               {t('home.hero.title')}
             </h1>
-            <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg"> {/* Adjusted text size and leading */}
+            <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
               {t('home.hero.subtitle')}
             </p>
-            <div className="mt-8 flex items-center justify-center gap-x-6"> {/* Adjusted margin */}
+            <div className="mt-8 flex items-center justify-center gap-x-6">
                <Link href={`/${lang}/save-lighter`} className="btn-primary">
                  {t('home.hero.cta')}
                </Link>
@@ -98,14 +86,11 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-2xl px-4 py-12 sm:py-16 lg:px-8 hidden sm:block"> {/* Fixed typo */}
+      <div className="mx-auto max-w-2xl px-4 py-12 sm:py-16 lg:px-8 hidden sm:block">
         <h2 className="mb-8 text-center text-3xl font-bold text-foreground">
           {t('home.mosaic.title')}
         </h2>
         <div className="space-y-6">
-          {/* S'il n'y a pas de posts (ou si l'appel a échoué),
-            affiche le message 'no_stories' au lieu de planter.
-          */}
           {randomPosts && randomPosts.length > 0 ? (
             randomPosts.map((post: DetailedPost) => (
               <PostCard
@@ -121,8 +106,8 @@ export default async function Home() {
           )}
         </div>
       </div>
-      {/* Community Illustration */}
-      <div className="mx-auto max-w-2xl px-4 py-12 sm:py-16 lg:px-8 text-center"> {/* Fixed typo */}
+      
+      <div className="mx-auto max-w-2xl px-4 py-12 sm:py-16 lg:px-8 text-center">
         <Image
           src="/illustrations/community.png"
           alt="Community"
