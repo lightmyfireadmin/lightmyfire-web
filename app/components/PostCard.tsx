@@ -12,6 +12,8 @@ import {
 } from '@heroicons/react/24/outline';
 import React from 'react'; // Import React for IconComponent type
 import Image from 'next/image';
+// Importer le nouveau composant de date
+import FormattedDate from './FormattedDate';
 
 // Helper function to get YouTube embed ID
 function getYouTubeEmbedId(url: string): string | null {
@@ -47,8 +49,6 @@ export default function PostCard({
   post: DetailedPost;
   isLoggedIn: boolean;
 }) {
-  // REMOVED the diagnostic line: return <FireIcon ... />;
-
   let embedId: string | null = null;
   if (post.post_type === 'song' && post.content_url) {
     embedId = getYouTubeEmbedId(post.content_url);
@@ -101,11 +101,13 @@ export default function PostCard({
               />
             )}
         </div>
-        <span
-          className="text-sm text-muted-foreground"
-          suppressHydrationWarning={true}
-        >
-          {new Date(post.created_at).toLocaleDateString()}
+        
+        {/*
+          CORRECTION : Utiliser le composant FormattedDate
+          pour éviter les erreurs d'hydratation.
+        */}
+        <span className="text-sm text-muted-foreground">
+          <FormattedDate dateString={post.created_at} />
         </span>
       </div>
 
