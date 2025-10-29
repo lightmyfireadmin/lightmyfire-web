@@ -1,14 +1,31 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
+import { match as matchLocale } from '@formatjs/intl-localematcher';
+import Negotiator from 'negotiator';
+import { i18n } from './locales/config';
 
-// i18n configuration
-const locales = ['en', 'fr'];
-const defaultLocale = 'en';
+function getLocale(request: NextRequest): string {
+  // Negotiator expects a plain object, so we need to transform headers
+  const negotiatorHeaders: Record<string, string> = {};
+  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
+
+  // @ts-ignore locales are readonly
+  const locales: string[] = i18n.locales;
+
+  // Use negotiator and intl-localematcher to find the best locale
+  const languages = new Negotiator({ headers: negotiatorHeaders }).languages(
+    locales
+  );
+
+  const locale = matchLocale(languages, locales, i18n.defaultLocale);
+
+  return locale;
+}
 
 export async function middleware(request: NextRequest) {
   // Check if there is any supported locale in the pathname
   const pathname = request.nextUrl.pathname;
-  const pathnameIsMissingLocale = locales.every(
+  const pathnameIsMissingLocale = i18n.locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   );
 
@@ -16,7 +33,7 @@ export async function middleware(request: NextRequest) {
 
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
-    const locale = defaultLocale;
+    const locale = getLocale(request);
     // e.g. incoming request is /about -> /en/about
     response = NextResponse.redirect(
       new URL(`/${locale}${pathname}`, request.url)
