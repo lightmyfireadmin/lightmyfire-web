@@ -67,6 +67,10 @@ export default function Header({ session }: { session: Session }) {
           ))}
           {isLoggedIn && (
              <>
+               <Link href={`/${lang}/save-lighter`} className={classNames(pathname === `/${lang}/save-lighter` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6 flex items-center')}>
+                 <HeartIcon className="h-5 w-5 mr-1.5" aria-hidden="true" />
+                 {t('nav.save_lighter')}
+               </Link>
                <Link href={`/${lang}/my-profile`} className={classNames(pathname === `/${lang}/my-profile` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6 flex items-center')}>
                  <UserIcon className="h-5 w-5 mr-1.5" aria-hidden="true" />
                  {t('nav.my_profile')}
