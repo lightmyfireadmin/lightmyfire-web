@@ -54,9 +54,18 @@ export default function PinEntryForm() {
   return (
     // Applied responsive padding
     <div className="w-full max-w-md rounded-lg bg-background p-6 sm:p-8 shadow-md">
-      <h2 className="mb-6 text-center text-3xl sm:text-4xl font-bold text-foreground">
-        {t('home.pin_entry.title')}
-      </h2>
+      <div className="flex items-center justify-center mb-6">
+        <Image
+          src="/globe.svg"
+          alt="Around the World"
+          width={32}
+          height={32}
+          className="mr-2"
+        />
+        <h2 className="text-center text-3xl sm:text-4xl font-bold text-foreground">
+          {t('home.pin_entry.title')}
+        </h2>
+      </div>
       <p className="mb-6 text-center text-lg text-muted-foreground">
         {t('home.pin_entry.subtitle')}
       </p>

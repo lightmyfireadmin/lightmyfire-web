@@ -45,32 +45,39 @@ export default async function Home() {
         <SuccessNotification />
       </Suspense>
 
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 py-12 sm:py-16">
-        {/* Left Side: Hero Section */}
-                <div className="text-center sm:text-left max-w-md px-4 p-6 bg-background/80 rounded-lg shadow-lg">
-                  <Image
-                    src="/illustrations/thumbs_up.png"
-                    alt="LightMyFire Lighter"
-                    width={200}
-                    height={227}
-                    className="mx-auto sm:mx-0 mb-4"
-                  />
-                  <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                    {t('home.hero.title')}
-                  </h1>
-                  <p className="mt-3 text-base text-muted-foreground sm:text-lg">
-                    {t('home.hero.subtitle')}
-                  </p>
-                  <div className="mt-6">
-                    <Link href={`/${locale}/save-lighter`} className="btn-primary">
-                      {t('home.hero.cta')}
-                    </Link>
-                  </div>
-                </div>
-
-        {/* Right Side: Pin Entry Form */}
+      <div className="flex flex-col sm:flex-row-reverse items-center justify-center gap-8 sm:gap-16 py-12 sm:py-16">
+        {/* Right Side (on desktop): Pin Entry Form */}
         <div className="w-full max-w-sm">
           <PinEntryForm />
+        </div>
+
+        {/* Left Side (on desktop): Hero Section */}
+        <div className="text-center sm:text-left max-w-md px-4 p-6 bg-background/80 rounded-lg shadow-lg">
+          <Image
+            src="/illustrations/thumbs_up.png"
+            alt="LightMyFire Lighter"
+            width={250} // Increased size
+            height={284}
+            className="mx-auto sm:mx-0 mb-4"
+          />
+          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            {t('home.hero.title')}
+          </h1>
+          <p className="mt-3 text-base text-muted-foreground sm:text-lg">
+            {t('home.hero.subtitle')}
+          </p>
+          <div className="mt-6 flex items-center justify-center sm:justify-start relative">
+            <Link href={`/${locale}/save-lighter`} className="btn-primary">
+              {t('home.hero.cta')}
+            </Link>
+            <Image
+              src="/CTA_rainbow_arrow.png"
+              alt="Arrow pointing to CTA"
+              width={80}
+              height={80}
+              className="absolute -right-16 top-1/2 -translate-y-1/2 hidden sm:block"
+            />
+          </div>
         </div>
       </div>
 
