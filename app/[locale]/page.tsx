@@ -71,7 +71,7 @@ export default async function Home() {
               {t('home.hero.cta')}
             </Link>
             <Image
-              src="/CTA_rainbow_arrow.png"
+              src="/illustrations/CTA_rainbow_arrow.png"
               alt="Arrow pointing to CTA"
               width={80}
               height={80}
@@ -81,13 +81,13 @@ export default async function Home() {
         </div>
       </div>
 
-      {/* How It Works Section */}
+      {}
       <div className="mx-auto max-w-5xl p-4 py-12 sm:p-6 lg:p-8">
         <h2 className="mb-8 text-center text-3xl font-bold text-foreground">
           {t('home.how_it_works.title')}
         </h2>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {/* Step 1 */}
+          {}
           <div className="rounded-lg border border-border bg-background p-6 text-center shadow-sm">
             <Image
               src="/illustrations/personalise.png"
@@ -103,7 +103,7 @@ export default async function Home() {
               {t('home.how_it_works.step1.description')}
             </p>
           </div>
-          {/* Step 2 */}
+          {}
           <div className="rounded-lg border border-border bg-background p-6 text-center shadow-sm">
             <Image
               src="/illustrations/around_the_world.png"
