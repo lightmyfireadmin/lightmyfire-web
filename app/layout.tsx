@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import './globals.css';
+
 export const metadata: Metadata = {
   title: 'LightMyFire',
   description: 'A human creativity mosaic.',
@@ -14,19 +16,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div
-      className="body-with-bg"
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-      }}
-    >
-      {/*
-        
-      */}
-      {children}
-    </div>
+    <html lang="en">
+      <body
+        className="body-with-bg"
+        style={{
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        {children}
+      </body>
+    </html>
   );
 }
-
