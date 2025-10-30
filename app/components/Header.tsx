@@ -12,11 +12,12 @@ import Image from 'next/image';
 // Import the new LanguageSwitcher
 import LanguageSwitcher from './LanguageSwitcher';
 
+// CORRECTION : Ajoutez "as const" à la fin de cette ligne
 const navigation = [
   { key: 'nav.our_philosophy', href: '/about' },
   { key: 'nav.how_it_works', href: '/legal/faq' },
   { key: 'nav.refill_guide', href: '/dont-throw-me-away' },
-];
+] as const;
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
@@ -45,7 +46,6 @@ export default function Header({ session }: { session: Session }) {
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-foreground hover:bg-muted"
             onClick={() => setMobileMenuOpen(true)}
           >
-            {/* CORRECTION : un seul argument */}
             <span className="sr-only">{t('nav.open_menu')}</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
@@ -60,18 +60,16 @@ export default function Header({ session }: { session: Session }) {
                 'text-sm leading-6'
               )}
             >
-              {/* CORRECTION : un seul argument */}
+              {/* C'est correct maintenant grâce à "as const" */}
               {t(item.key)}
             </Link>
           ))}
           {isLoggedIn && (
              <>
                <Link href={`/${lang}/save-lighter`} className={classNames(pathname === `/${lang}/save-lighter` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6')}>
-                 {/* CORRECTION : un seul argument */}
                  {t('nav.save_lighter')}
                </Link>
                <Link href={`/${lang}/my-profile`} className={classNames(pathname === `/${lang}/my-profile` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6')}>
-                 {/* CORRECTION : un seul argument */}
                  {t('nav.my_profile')}
                </Link>
              </>
@@ -86,7 +84,6 @@ export default function Header({ session }: { session: Session }) {
               href={`/${lang}/login`}
               className="btn-primary text-sm"
             >
-              {/* CORRECTION : un seul argument */}
               {t('nav.login_signup')}
             </Link>
           )}
@@ -106,7 +103,6 @@ export default function Header({ session }: { session: Session }) {
               className="-m-2.5 rounded-md p-2.5 text-foreground hover:bg-muted"
               onClick={() => setMobileMenuOpen(false)}
             >
-              {/* CORRECTION : un seul argument */}
               <span className="sr-only">{t('nav.close_menu')}</span>
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>
@@ -124,18 +120,16 @@ export default function Header({ session }: { session: Session }) {
                       '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7'
                     )}
                   >
-                    {/* CORRECTION : un seul argument */}
+                    {/* C'est correct maintenant grâce à "as const" */}
                     {t(item.key)}
                   </Link>
                 ))}
                  {isLoggedIn && (
                     <>
                      <Link href={`/${lang}/save-lighter`} onClick={() => setMobileMenuOpen(false)} className={classNames(pathname === `/${lang}/save-lighter` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7')}>
-                       {/* CORRECTION : un seul argument */}
                        {t('nav.save_lighter')}
                      </Link>
                      <Link href={`/${lang}/my-profile`} onClick={() => setMobileMenuOpen(false)} className={classNames(pathname === `/${lang}/my-profile` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7')}>
-                       {/* CORRECTION : un seul argument */}
                        {t('nav.my_profile')}
                      </Link>
                    </>
@@ -151,7 +145,6 @@ export default function Header({ session }: { session: Session }) {
                     onClick={() => setMobileMenuOpen(false)}
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-foreground hover:bg-muted"
                   >
-                    {/* CORRECTION : un seul argument */}
                     {t('nav.login_signup')}
                   </Link>
                 )}
