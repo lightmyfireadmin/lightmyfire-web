@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import LogoutButton from './LogoutButton';
-import { useCurrentLocale, useI18n } from '@/locales/client'; // Import locale hook and useI18n
+import { useCurrentLocale, useI18n } from '@/locales/client';
 import Image from 'next/image';
 
 // Import the new LanguageSwitcher
@@ -28,7 +28,7 @@ export default function Header({ session }: { session: Session }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const isLoggedIn = session !== null;
-  const lang = useCurrentLocale(); // Get current language
+  const lang = useCurrentLocale();
   const t = useI18n();
 
   return (
@@ -45,6 +45,7 @@ export default function Header({ session }: { session: Session }) {
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-foreground hover:bg-muted"
             onClick={() => setMobileMenuOpen(true)}
           >
+            {/* CORRECTION : un seul argument */}
             <span className="sr-only">{t('nav.open_menu')}</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
@@ -59,29 +60,33 @@ export default function Header({ session }: { session: Session }) {
                 'text-sm leading-6'
               )}
             >
+              {/* CORRECTION : un seul argument */}
               {t(item.key)}
             </Link>
           ))}
           {isLoggedIn && (
              <>
                <Link href={`/${lang}/save-lighter`} className={classNames(pathname === `/${lang}/save-lighter` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6')}>
+                 {/* CORRECTION : un seul argument */}
                  {t('nav.save_lighter')}
                </Link>
                <Link href={`/${lang}/my-profile`} className={classNames(pathname === `/${lang}/my-profile` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6')}>
+                 {/* CORRECTION : un seul argument */}
                  {t('nav.my_profile')}
                </Link>
              </>
           )}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-x-4"> {/* Added items-center and gap */}
-          <LanguageSwitcher /> {/* Added Language Switcher */}
+        <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-x-4">
+          <LanguageSwitcher />
           {isLoggedIn ? (
             <LogoutButton />
           ) : (
             <Link
               href={`/${lang}/login`}
-              className="btn-primary text-sm" // Use the button class
+              className="btn-primary text-sm"
             >
+              {/* CORRECTION : un seul argument */}
               {t('nav.login_signup')}
             </Link>
           )}
@@ -101,6 +106,7 @@ export default function Header({ session }: { session: Session }) {
               className="-m-2.5 rounded-md p-2.5 text-foreground hover:bg-muted"
               onClick={() => setMobileMenuOpen(false)}
             >
+              {/* CORRECTION : un seul argument */}
               <span className="sr-only">{t('nav.close_menu')}</span>
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>
@@ -118,22 +124,25 @@ export default function Header({ session }: { session: Session }) {
                       '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7'
                     )}
                   >
+                    {/* CORRECTION : un seul argument */}
                     {t(item.key)}
                   </Link>
                 ))}
                  {isLoggedIn && (
                     <>
                      <Link href={`/${lang}/save-lighter`} onClick={() => setMobileMenuOpen(false)} className={classNames(pathname === `/${lang}/save-lighter` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7')}>
+                       {/* CORRECTION : un seul argument */}
                        {t('nav.save_lighter')}
                      </Link>
                      <Link href={`/${lang}/my-profile`} onClick={() => setMobileMenuOpen(false)} className={classNames(pathname === `/${lang}/my-profile` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7')}>
+                       {/* CORRECTION : un seul argument */}
                        {t('nav.my_profile')}
                      </Link>
                    </>
                  )}
               </div>
-              <div className="py-6 space-y-4"> {/* Added space-y-4 for mobile layout */}
-                <LanguageSwitcher /> {/* Added Language Switcher to mobile */}
+              <div className="py-6 space-y-4">
+                <LanguageSwitcher />
                 {isLoggedIn ? (
                   <LogoutButton />
                 ) : (
@@ -142,6 +151,7 @@ export default function Header({ session }: { session: Session }) {
                     onClick={() => setMobileMenuOpen(false)}
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-foreground hover:bg-muted"
                   >
+                    {/* CORRECTION : un seul argument */}
                     {t('nav.login_signup')}
                   </Link>
                 )}
