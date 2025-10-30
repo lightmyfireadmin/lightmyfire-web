@@ -79,7 +79,7 @@ const LocationSearch = ({ onLocationSelect }: LocationSearchProps) => {
           placeholder="Search for a location..."
         />
         {searchResults.length > 0 && searchQuery && (
-          <ul className="absolute z-20 w-full border border-border rounded-md bg-background max-h-60 overflow-y-auto mt-1 shadow-lg">
+          <ul className="absolute z-50 w-full border border-border rounded-md bg-background max-h-60 overflow-y-auto mt-1 shadow-lg">
             {searchResults.map((result) => (
               <li
                 key={result.display_name}

@@ -2,6 +2,7 @@
 
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
+import { useI18n } from '@/locales/client';
 
 interface ConfirmModalProps {
   isOpen: boolean;
@@ -18,6 +19,7 @@ export default function ConfirmModal({
   title,
   message,
 }: ConfirmModalProps) {
+  const t = useI18n();
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={onClose}>
@@ -63,7 +65,7 @@ export default function ConfirmModal({
                     className="btn-secondary"
                     onClick={onClose}
                   >
-                    Annuler
+                    {t('confirm_modal.cancel')}
                   </button>
                   <button
                     type="button"
@@ -74,7 +76,7 @@ export default function ConfirmModal({
                       onClose();
                     }}
                   >
-                    Confirmer
+                    {t('confirm_modal.confirm')}
                   </button>
                 </div>
               </Dialog.Panel>

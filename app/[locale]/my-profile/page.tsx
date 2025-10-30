@@ -148,7 +148,7 @@ export default async function MyProfilePage() {
               ))
             ) : (
               <p className="text-sm text-muted-foreground">
-                You haven&apos;t saved any lighters yet.
+                {t('my_profile.no_lighters_saved')}
               </p>
             )}
           </div>

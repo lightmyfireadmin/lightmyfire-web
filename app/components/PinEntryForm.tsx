@@ -15,14 +15,16 @@ export default function PinEntryForm() {
   const lang = useCurrentLocale();
 
   const handlePinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const rawValue = e.target.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
-    let formattedValue = rawValue;
+    const input = e.target.value;
+    // Remove all non-alphanumeric characters and convert to uppercase
+    const cleanedInput = input.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
 
-    if (rawValue.length > 3) {
-      formattedValue = `${rawValue.slice(0, 3)}-${rawValue.slice(3, 6)}`;
+    let formattedPin = cleanedInput;
+    if (cleanedInput.length > 3) {
+      formattedPin = `${cleanedInput.slice(0, 3)}-${cleanedInput.slice(3, 6)}`;
     }
-    
-    setPin(formattedValue);
+
+    setPin(formattedPin);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {

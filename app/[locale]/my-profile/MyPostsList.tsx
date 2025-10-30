@@ -5,8 +5,8 @@ import { supabase } from '@/lib/supabase';
 import type { MyPostWithLighter } from '@/lib/types';
 import Link from 'next/link';
 import { TrashIcon } from '@heroicons/react/24/outline';
-// Importer la nouvelle modale
 import ConfirmModal from '@/app/components/ConfirmModal';
+import { useI18n } from '@/locales/client';
 
 export default function MyPostsList({
   initialPosts,
@@ -16,17 +16,14 @@ export default function MyPostsList({
   const [posts, setPosts] = useState(initialPosts);
   const [error, setError] = useState('');
   
-  // États pour la modale de suppression
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [postToDelete, setPostToDelete] = useState<number | null>(null);
 
-  // Ouvre la modale et stocke l'ID du post
   const handleDeleteClick = (postId: number) => {
     setPostToDelete(postId);
     setIsModalOpen(true);
   };
 
-  // Logique de suppression, exécutée après confirmation
   const handleConfirmDelete = async () => {
     if (postToDelete === null) return;
 
@@ -38,17 +35,18 @@ export default function MyPostsList({
       .eq('id', postToDelete);
 
     if (deleteError) {
-      setError(`Error deleting post: ${deleteError.message}`);
+      setError(t('my_posts.error_deleting', { message: deleteError.message }));
     } else {
       setPosts(posts.filter((post) => post.id !== postToDelete));
     }
     
-    // Réinitialiser les états
     setPostToDelete(null);
   };
 
+  const t = useI18n();
+
   if (posts.length === 0) {
-    return <p className="text-sm text-muted-foreground">Vous n'avez pas encore fait de posts.</p>;
+    return <p className="text-sm text-muted-foreground">{t('my_posts.no_posts')}</p>;
   }
 
   return (
@@ -62,45 +60,40 @@ export default function MyPostsList({
           >
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-medium text-foreground">
-                {post.title || `Un post de type ${post.post_type}`}
+                {post.title || t('my_posts.post_type_default', { type: post.post_type })}
               </p>
               <p className="truncate text-sm text-muted-foreground">
-                sur{' '}
+                {t('my_posts.on')}{' '}
                 <Link
                   href={`/lighter/${post.lighter_id}`}
                   className="font-medium text-primary hover:underline"
                 >
-                  {post.lighters?.name || 'un briquet'}
+                  {post.lighters?.name || t('my_posts.a_lighter')}
                 </Link>
-                {' le '}
-                {/* Nous utilisons suppressHydrationWarning ici, mais la "Meilleure Pratique"
-                    serait de créer un autre composant client pour la date
-                    comme nous le faisons dans PostCard.
-                */}
+                {' '}{t('my_posts.the')}{' '}
                 <span suppressHydrationWarning={true}>
                   {new Date(post.created_at).toLocaleDateString()}
                 </span>
               </p>
             </div>
             <button
-              onClick={() => handleDeleteClick(post.id)} // Change ici
+              onClick={() => handleDeleteClick(post.id)}
               className="inline-flex items-center rounded-md p-2 text-muted-foreground transition hover:bg-red-100 hover:text-red-600"
-              aria-label="Supprimer le post"
+              aria-label={t('my_posts.delete_post_aria')}
             >
-              <span className="sr-only">Supprimer</span>
+              <span className="sr-only">{t('my_posts.delete')}</span>
               <TrashIcon className="h-5 w-5" />
             </button>
           </li>
         ))}
       </ul>
 
-      {/* Ajouter la modale à la page */}
       <ConfirmModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onConfirm={handleConfirmDelete}
-        title="Supprimer ce post ?"
-        message="Êtes-vous sûr de vouloir supprimer ce post ? Cette action est définitive."
+        title={t('my_posts.confirm_delete_title')}
+        message={t('my_posts.confirm_delete_message')}
       />
     </div>
   );

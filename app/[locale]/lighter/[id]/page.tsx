@@ -7,6 +7,8 @@ import PostCard from '@/app/components/PostCard';
 import { DetailedPost } from '@/lib/types'; // Assuming lib is at root
 import type { Metadata } from 'next';
 import MapComponent from './MapComponent'; // Import MapComponent
+import { Suspense } from 'react';
+import SuccessNotification from '@/app/components/SuccessNotification';
 
 // --- generateMetadata Function (Remains the same) ---
 export async function generateMetadata({
@@ -119,17 +121,10 @@ export default async function LighterPage({
     }));
 
   return (
-    <div
-      className="min-h-screen bg-background"
-      style={{
-        backgroundImage: lighter.custom_background_url
-          ? `url(${lighter.custom_background_url})`
-          : 'none',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-      }}
-    >
+    <div className="min-h-screen bg-background">
+      <Suspense fallback={null}>
+        <SuccessNotification />
+      </Suspense>
       {/* Container with responsive padding */}
       <div className="mx-auto max-w-2xl bg-background/95 p-4 pt-8 md:p-6 md:pt-10 shadow-lg backdrop-blur-sm min-h-screen">
         {/* Lighter Header */}

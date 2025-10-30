@@ -22,6 +22,10 @@ export type DetailedPost = {
   user_has_liked: boolean;
   nationality: string | null;
   show_nationality: boolean;
+  // Champs ajoutés pour la synchronisation
+  is_public: boolean;
+  is_flagged: boolean;
+  flagged_count: number;
 };
 
 // Type specifically for the My Contributions list on the profile page

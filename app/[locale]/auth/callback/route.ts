@@ -33,5 +33,5 @@ export async function GET(request: NextRequest, { params }: { params: { locale: 
     await supabase.auth.exchangeCodeForSession(code);
   }
 
-  return NextResponse.redirect(`${requestUrl.origin}/${locale}`); 
+  return NextResponse.redirect(`${requestUrl.origin}/${locale}?login_success=true`);
 }

@@ -1,10 +1,5 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
-import { supabase } from '@/lib/supabase';
-import { generateStickerPDF } from '@/lib/generateSticker';
 import Link from 'next/link';
+import { useI18n } from '@/locales/client';
 
 type LighterInfo = {
   name: string;
@@ -13,6 +8,7 @@ type LighterInfo = {
 
 export default function SaveSuccessPage() {
   const params = useParams();
+  const t = useI18n();
   const lighterId = params.id as string;
   const [lighter, setLighter] = useState<LighterInfo | null>(null);
   const [loading, setLoading] = useState(true);
@@ -46,7 +42,7 @@ export default function SaveSuccessPage() {
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gray-100"> {/* Keep muted bg for loading */}
-        <p className="text-muted-foreground">Loading your lighter&apos;s details...</p>
+        <p className="text-muted-foreground">{t('save_success.loading')}</p>
       </div>
     );
   }
@@ -54,7 +50,7 @@ export default function SaveSuccessPage() {
   if (!lighter) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gray-100">
-        <p className="text-red-600">Could not find lighter.</p> {/* Error text */}
+        <p className="text-red-600">{t('save_success.lighter_not_found')}</p>
       </div>
     );
   }
@@ -63,30 +59,49 @@ export default function SaveSuccessPage() {
     <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4"> {/* Muted bg */}
       <div className="w-full max-w-md rounded-lg bg-background p-8 text-center shadow-md"> {/* Theme bg */}
         <h1 className="mb-4 text-3xl font-bold text-green-600"> {/* Keep success green */}
-          Success!
+          {t('save_success.title')}
         </h1>
         <p className="mb-6 text-lg text-foreground"> {/* Theme text */}
-          You&apos;ve saved{' '}
-          <span className="font-bold text-primary">{lighter.name}</span>! {/* Highlight name */}
+          {t('save_success.message', { lighterName: lighter.name })}
         </p>
-        <p className="mb-2 text-muted-foreground">Your lighter&apos;s unique PIN is:</p> {/* Theme text */}
+        <p className="mb-2 text-muted-foreground">{t('save_success.pin_intro')}</p>
         <p className="mb-8 font-mono text-3xl font-bold text-foreground"> {/* Theme text */}
           {lighter.pin_code}
         </p>
+
+        <div className="mb-8 rounded-lg border border-border bg-muted p-4 text-left text-sm text-foreground">
+          <h4 className="mb-2 font-bold">
+            {t('save_success.next_steps.title')}
+          </h4>
+          <ol className="list-decimal space-y-2 pl-5">
+            <li>
+              <strong>{t('save_success.next_steps.print_label')}:</strong>{' '}
+              {t('save_success.next_steps.step1')}
+            </li>
+            <li>
+              <strong>{t('save_success.next_steps.stick_label')}:</strong>{' '}
+              {t('save_success.next_steps.step2')}
+            </li>
+            <li>
+              <strong>{t('save_success.next_steps.share_label')}:</strong>{' '}
+              {t('save_success.next_steps.step3')}
+            </li>
+          </ol>
+        </div>
 
         <button
           onClick={handleDownload}
           disabled={downloading}
           className="btn-primary mb-4 w-full text-lg" // Applied btn-primary
         >
-          {downloading ? 'Generating...' : 'Download Sticker PDF'}
+          {downloading ? t('save_success.button.generating') : t('save_success.button.download_pdf')}
         </button>
 
         <Link
           href={`/lighter/${lighterId}`}
           className="btn-secondary block w-full text-lg" // Applied btn-secondary, added block
         >
-          Go to Your Lighter&apos;s Page
+          {t('save_success.button.go_to_lighter')}
         </Link>
       </div>
     </div>
