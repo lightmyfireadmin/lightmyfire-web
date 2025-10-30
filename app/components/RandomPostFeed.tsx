@@ -61,7 +61,7 @@ const RandomPostFeed = () => {
           className={`absolute w-1/2 transition-opacity duration-2000 ${visiblePostIndex2 % 2 === 0 ? 'opacity-100' : 'opacity-0'}`}
           style={{ right: '0%', transform: 'translateX(50%)' }}
         >
-          <PostCard post={posts[visiblePostPostIndex2]} isLoggedIn={false} />
+          <PostCard post={posts[visiblePostIndex2]} isLoggedIn={false} />
         </div>
       </div>
     </div>

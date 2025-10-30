@@ -1,6 +1,8 @@
 'use client';
 
 import { DetailedPost } from '@/lib/types'; // Assuming lib is at root
+// **IMPORTANT**: Adjust these paths based on PostCard's location relative to the buttons
+// If PostCard is in app/components, and buttons are in app/lighter/[id], this should be correct:
 import LikeButton from './LikeButton';
 import FlagButton from './FlagButton';
 import {
@@ -11,12 +13,10 @@ import {
   FireIcon
 } from '@heroicons/react/24/outline';
 import React from 'react'; // Import React for IconComponent type
-import Image from 'next/image';
-// Importer le nouveau composant de date
-import FormattedDate from './FormattedDate';
 
 // Helper function to get YouTube embed ID
-function getYouTubeEmbedId(url: string): string | null {
+function getYouTubeEmbedId(url: string | null): string | null {
+    if (!url) return null;
     let videoId = '';
     try {
         const urlObj = new URL(url);
@@ -49,6 +49,8 @@ export default function PostCard({
   post: DetailedPost;
   isLoggedIn: boolean;
 }) {
+  // REMOVED the diagnostic line: return <FireIcon ... />;
+
   let embedId: string | null = null;
   if (post.post_type === 'song' && post.content_url) {
     embedId = getYouTubeEmbedId(post.content_url);
@@ -60,16 +62,12 @@ export default function PostCard({
   return (
     // Apply conditional border color classes directly using ternaries
     <div className={`
-      relative rounded-lg border border-border overflow-hidden
-      ${isRefuelPost 
-        ? 'bg-muted shadow-none border-l-2' 
-        : 'bg-background shadow-md border-l-4'
-      }
-      ${post.post_type === 'text' ? 'border-post-text' : ''}
-      ${post.post_type === 'image' ? 'border-post-image' : ''}
-      ${post.post_type === 'location' ? 'border-post-location' : ''}
-      ${post.post_type === 'song' ? 'border-post-song' : ''}
-      ${post.post_type === 'refuel' ? 'border-post-refuel' : ''}
+      relative rounded-lg border border-border bg-background shadow-sm overflow-hidden border-l-4
+      ${post.post_type === 'text' ? 'border-blue-500' : ''}
+      ${post.post_type === 'image' ? 'border-green-500' : ''}
+      ${post.post_type === 'location' ? 'border-yellow-500' : ''}
+      ${post.post_type === 'song' ? 'border-red-500' : ''}
+      ${post.post_type === 'refuel' ? 'border-orange-500' : ''}
       ${!post.post_type ? 'border-border' : ''} /* Fallback border */
       ${isRefuelPost ? 'py-3 pl-4 pr-5' : 'py-5 pl-5 pr-5'}
     `}>
@@ -81,33 +79,21 @@ export default function PostCard({
            <IconComponent
              className={`
                h-5 w-5
-               ${post.post_type === 'text' ? 'text-post-text' : ''}
-               ${post.post_type === 'image' ? 'text-post-image' : ''}
-               ${post.post_type === 'location' ? 'text-post-location' : ''}
-               ${post.post_type === 'song' ? 'text-post-song' : ''}
-               ${post.post_type === 'refuel' ? 'text-post-refuel' : 'text-muted-foreground'}
+               ${post.post_type === 'text' ? 'text-blue-600' : ''}
+               ${post.post_type === 'image' ? 'text-green-600' : ''}
+               ${post.post_type === 'location' ? 'text-yellow-600' : ''}
+               ${post.post_type === 'song' ? 'text-red-600' : ''}
+               ${post.post_type === 'refuel' ? 'text-orange-600' : 'text-muted-foreground'}
              `}
              aria-hidden="true"
            />
            <span className="font-semibold text-foreground">{post.username}</span>
-           {post.show_nationality && post.nationality && (
-              <Image
-                src={`/flags/${post.nationality.toLowerCase()}.png`}
-                alt={post.nationality}
-                width={20}
-                height={15}
-                className="ml-1.5"
-                title={post.nationality}
-              />
-            )}
         </div>
-        
-        {/*
-          CORRECTION : Utiliser le composant FormattedDate
-          pour éviter les erreurs d'hydratation.
-        */}
-        <span className="text-sm text-muted-foreground">
-          <FormattedDate dateString={post.created_at} />
+        <span
+          className="text-sm text-muted-foreground"
+          suppressHydrationWarning={true}
+        >
+          {new Date(post.created_at).toLocaleDateString()}
         </span>
       </div>
 
@@ -132,21 +118,18 @@ export default function PostCard({
         {isRefuelPost && (
           <p className={`
             font-semibold
-            text-post-refuel
+            ${post.post_type === 'refuel' ? 'text-orange-600' : ''}
           `}>
              Refueled! This lighter&apos;s journey continues.
           </p>
         )}
 
         {post.post_type === 'image' && post.content_url && (
-          <div className="relative aspect-video w-full overflow-hidden rounded-md border border-border">
-            <Image
-              src={post.content_url}
-              alt={post.title || 'User upload'}
-              fill
-              className="object-cover"
-            />
-          </div>
+          <img
+            src={post.content_url}
+            alt={post.title || 'User upload'}
+            className="w-full rounded-md border border-border"
+          />
         )}
 
         {post.post_type === 'song' && embedId && (
@@ -163,7 +146,7 @@ export default function PostCard({
           </div>
         )}
         {post.post_type === 'song' && post.content_url && !embedId && (
-            <p className="text-sm text-post-song italic">Could not load YouTube video (invalid URL?).</p>
+            <p className="text-sm text-red-500 italic">Could not load YouTube video (invalid URL?).</p>
         )}
       </div>
 
