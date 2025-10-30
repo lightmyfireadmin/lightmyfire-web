@@ -1,6 +1,3 @@
-// CE FICHIER EST app/[lang]/layout.tsx
-// Il ne doit PAS contenir <html>, <body>, ou les imports de police/globals.css
-
 import { I18nProviderClient } from '@/locales/client';
 import type { CookieOptions } from '@supabase/ssr';
 import Header from '@/app/components/Header';
@@ -8,8 +5,6 @@ import Footer from '@/app/components/Footer';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import CookieConsent from '@/app/components/CookieConsent';
-
-// Les polices et metadata sont dans le layout racine (app/layout.tsx)
 
 export const dynamic = 'force-dynamic';
 
@@ -44,12 +39,13 @@ export default async function LangLayout({
     data: { session },
   } = await supabase.auth.getSession();
 
-  // Ce layout est un enfant, il ne retourne que ce qu'il contient.
-  // La classe "flex" est déplacée sur le <body> du VRAI root layout.
+  // This layout provides the language context and the main UI shell
+  // (Header, Footer) INSIDE the root <body> tag.
   return (
     <I18nProviderClient locale={locale}>
-      {/* Le Header, le Footer et le CookieConsent sont ici 
-        pour avoir accès à la 'locale' du provider.
+      {/*
+        The flex column structure is now on the <body> tag in the root layout.
+        This component just renders its children in order.
       */}
       <Header session={session} />
       <main className="flex-grow">{children}</main>
@@ -58,4 +54,3 @@ export default async function LangLayout({
     </I18nProviderClient>
   );
 }
-
