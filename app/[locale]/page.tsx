@@ -56,7 +56,7 @@ export default async function Home() {
   }
 
   return (
-    <div className="bg-background">
+    <div>
       <div className="flex w-full items-center justify-center bg-muted py-12 sm:py-16">
         <PinEntryForm />
       </div>
@@ -65,7 +65,7 @@ export default async function Home() {
         <div className="mx-auto max-w-3xl py-12 sm:py-16 lg:py-24">
           <div className="text-center">
             <Image
-              src="/thumbs_up.png"
+              src="/illustrations/thumbs_up.png"
               alt="LightMyFire Lighter"
               width={200}
               height={227}
