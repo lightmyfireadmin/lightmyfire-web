@@ -5,6 +5,7 @@ import Footer from '@/app/components/Footer';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import CookieConsent from '@/app/components/CookieConsent';
+import React from 'react';
 
 export const dynamic = 'force-dynamic';
 
