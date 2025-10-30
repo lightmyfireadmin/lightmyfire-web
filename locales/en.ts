@@ -75,7 +75,7 @@ export default {
   'add_post.button.posting': 'Posting...',
   'add_post.button.add_to_story': 'Add to Story',
   'save_lighter.title': 'Become a LightSaver',
-  'save_lighter.introduction': 'Purchase sticker packs to save lighters and share their stories with the world. Each sticker has a unique PIN that links to a lighter's journey.',
+  'save_lighter.introduction': 'Purchase sticker packs to save lighters and share their stories with the world. Each sticker has a unique PIN that links to a lighter\'s journey.',
   'save_lighter.pack_5.title': '5 Stickers',
   'save_lighter.pack_5.price': '$4.99',
   'save_lighter.pack_5.description': 'Perfect for starting your LightSaver journey.',
