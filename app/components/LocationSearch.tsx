@@ -29,14 +29,26 @@ const LocationSearch = ({ onLocationSelect }: LocationSearchProps) => {
   const [selectedLocation, setSelectedLocation] = useState<[number, number] | null>(null);
   const [mapCenter, setMapCenter] = useState<[number, number]>([51.505, -0.09]);
 
-  const handleSearch = async () => {
-    if (!searchQuery) return;
+  const handleSearch = async (query: string) => {
+    if (!query) {
+      setSearchResults([]);
+      return;
+    }
     const response = await fetch(
-      `https://nominatim.openstreetmap.org/search?q=${searchQuery}&format=json`
+      `https://nominatim.openstreetmap.org/search?q=${query}&format=json`
     );
     const data = await response.json();
     setSearchResults(data);
   };
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      handleSearch(searchQuery);
+    }, 500); // Debounce for 500ms
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchQuery]);
 
   const handleSelectResult = (result: SearchResult) => {
     const lat = parseFloat(result.lat as any);
@@ -58,7 +70,7 @@ const LocationSearch = ({ onLocationSelect }: LocationSearchProps) => {
 
   return (
     <div className="space-y-4">
-      <div className="flex gap-2">
+      <div className="relative">
         <input
           type="text"
           value={searchQuery}
@@ -66,27 +78,20 @@ const LocationSearch = ({ onLocationSelect }: LocationSearchProps) => {
           className="w-full rounded-lg border border-input p-3 text-foreground bg-background focus:border-primary focus:ring-primary"
           placeholder="Search for a location..."
         />
-        <button
-          type="button"
-          onClick={handleSearch}
-          className="btn-secondary"
-        >
-          Search
-        </button>
+        {searchResults.length > 0 && searchQuery && (
+          <ul className="absolute z-10 w-full border border-border rounded-md bg-background max-h-60 overflow-y-auto mt-1 shadow-lg">
+            {searchResults.map((result) => (
+              <li
+                key={result.display_name}
+                onClick={() => handleSelectResult(result)}
+                className="p-2 cursor-pointer hover:bg-muted"
+              >
+                {result.display_name}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
-      {searchResults.length > 0 && (
-        <ul className="border border-border rounded-md max-h-60 overflow-y-auto">
-          {searchResults.map((result) => (
-            <li
-              key={result.display_name}
-              onClick={() => handleSelectResult(result)}
-              className="p-2 cursor-pointer hover:bg-muted"
-            >
-              {result.display_name}
-            </li>
-          ))}
-        </ul>
-      )}
 
       <div style={{ height: '300px', width: '100%' }}>
         <MapContainer center={mapCenter} zoom={13} style={{ height: '100%', width: '100%' }}>

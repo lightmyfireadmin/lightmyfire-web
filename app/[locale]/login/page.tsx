@@ -24,8 +24,8 @@ export default function LoginPage() {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN') {
-        router.refresh();
-        router.push('/');
+        console.log('User signed in, forcing full page reload...');
+        window.location.href = '/'; // Force a full page reload
       }
     });
 
