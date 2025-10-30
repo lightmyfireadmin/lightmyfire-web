@@ -5,10 +5,10 @@ import type { CookieOptions } from '@supabase/ssr';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(request: NextRequest, { params }: { params: { lang: string } }) {
+export async function GET(request: NextRequest, { params }: { params: { locale: string } }) { // <-- Changé
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get('code');
-  const lang = params.lang;
+  const locale = params.locale; // <--- CORRECTION ICI
 
   if (code) {
     const cookieStore = cookies();
@@ -33,6 +33,5 @@ export async function GET(request: NextRequest, { params }: { params: { lang: st
     await supabase.auth.exchangeCodeForSession(code);
   }
 
-  // URL to redirect to after sign in, now with locale
-  return NextResponse.redirect(`${requestUrl.origin}/${lang}`);
+  return NextResponse.redirect(`${requestUrl.origin}/${locale}`); 
 }
