@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase'; // Assuming lib is at root
 import type { User } from '@supabase/supabase-js';
 import Image from 'next/image';
+import LocationSearch from '@/app/components/LocationSearch';
 
 type PostType = 'text' | 'song' | 'image' | 'location' | 'refuel';
 
@@ -56,6 +57,7 @@ export default function AddPostForm({
   };
 
   const searchYouTube = async (query: string) => {
+    console.log('YouTube API Key:', process.env.NEXT_PUBLIC_YOUTUBE_API_KEY);
     if (!query) {
       setYoutubeSearchResults([]);
       return;
@@ -106,6 +108,12 @@ export default function AddPostForm({
       setError('');
       setFile(selectedFile);
     }
+  };
+
+  const handleLocationSelect = (lat: number, lng: number, name: string) => {
+    setLocationLat(lat);
+    setLocationLng(lng);
+    setLocationName(name);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -253,13 +261,8 @@ export default function AddPostForm({
             )}
           </div>
         );
-      case 'location': return (
-        <>
-          <input type="text" value={locationName} onChange={(e) => setLocationName(e.target.value)} className={`${inputClass} mb-2`} placeholder="Name of a place (e.g., 'Cafe Central')" required />
-          <input type="number" value={locationLat} onChange={(e) => setLocationLat(parseFloat(e.target.value))} className={`${inputClass} mb-2`} placeholder="Latitude (e.g., 48.8566)" step="any" required />
-          <input type="number" value={locationLng} onChange={(e) => setLocationLng(parseFloat(e.target.value))} className={inputClass} placeholder="Longitude (e.g., 2.3522)" step="any" required />
-        </>
-      );
+      case 'location':
+        return <LocationSearch onLocationSelect={handleLocationSelect} />;
       case 'refuel': return <p className="text-center text-lg text-foreground">You&apos;re a hero! By clicking &quot;Post,&quot; you&apos;ll add a &quot;Refueled&quot; entry to this lighter&apos;s story.</p>;
       default: return null;
     }

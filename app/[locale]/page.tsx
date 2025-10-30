@@ -49,6 +49,7 @@ export default async function Home() {
     if (error) {
       console.error('Error fetching random posts:', error.message);
     } else if (data) {
+      console.log('Random posts data:', data);
       randomPosts = data;
     }
   } catch (error) {
@@ -57,32 +58,32 @@ export default async function Home() {
 
   return (
     <div>
-      <div className="flex w-full items-center justify-center bg-muted py-12 sm:py-16">
-        <PinEntryForm />
-      </div>
-
-      <div className="relative isolate px-6 pt-8 pb-12 lg:px-8 lg:pt-14 lg:pb-48">
-        <div className="mx-auto max-w-3xl py-12 sm:py-16 lg:py-24">
-          <div className="text-center">
-            <Image
-              src="/illustrations/thumbs_up.png"
-              alt="LightMyFire Lighter"
-              width={200}
-              height={227}
-              className="mx-auto mb-6"
-            />
-            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-              {t('home.hero.title')}
-            </h1>
-            <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-              {t('home.hero.subtitle')}
-            </p>
-            <div className="mt-8 flex items-center justify-center gap-x-6">
-               <Link href={`/${locale}/save-lighter`} className="btn-primary">
-                 {t('home.hero.cta')}
-               </Link>
-             </div>
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 bg-muted py-12 sm:py-16">
+        {/* Left Side: Hero Section */}
+        <div className="text-center sm:text-left max-w-md">
+          <Image
+            src="/illustrations/thumbs_up.png"
+            alt="LightMyFire Lighter"
+            width={150}
+            height={170}
+            className="mx-auto sm:mx-0 mb-4"
+          />
+          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            {t('home.hero.title')}
+          </h1>
+          <p className="mt-3 text-base text-muted-foreground sm:text-lg">
+            {t('home.hero.subtitle')}
+          </p>
+          <div className="mt-6">
+            <Link href={`/${locale}/save-lighter`} className="btn-primary">
+              {t('home.hero.cta')}
+            </Link>
           </div>
+        </div>
+
+        {/* Right Side: Pin Entry Form */}
+        <div className="w-full max-w-sm">
+          <PinEntryForm />
         </div>
       </div>
 
