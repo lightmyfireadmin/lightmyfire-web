@@ -12,7 +12,6 @@ import Image from 'next/image';
 // Import the new LanguageSwitcher
 import LanguageSwitcher from './LanguageSwitcher';
 
-// CORRECTION : Ajoutez "as const" à la fin de cette ligne
 const navigation = [
   { key: 'nav.how_it_works', href: '/legal/faq', icon: QuestionMarkCircleIcon },
   { key: 'nav.save_lighter', href: '/save-lighter', icon: HeartIcon },
