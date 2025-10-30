@@ -11,11 +11,19 @@ import UpdateAuthForm from './UpdateAuthForm';
 import type { MyPostWithLighter, Trophy } from '@/lib/types';
 import Image from 'next/image'; // Import Image component
 
+// --- ADDED ---
+// Import the server-side translation function
+import { getI18n } from '@/locales/server'; 
+// --- END ADDED ---
+
 export const dynamic = 'force-dynamic';
 
-// Removed local type definitions for MyPostWithLighter and Trophy
-
 export default async function MyProfilePage() {
+  // --- ADDED ---
+  // Call the translation function
+  const t = await getI18n();
+  // --- END ADDED ---
+
   const cookieStore = cookies();
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
