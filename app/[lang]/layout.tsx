@@ -10,10 +10,10 @@ export const dynamic = 'force-dynamic';
 
 export default async function LangLayout({
   children,
-  params: { locale },
+  params: { lang },
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: { lang: string };
 }) {
   const cookieStore = cookies();
 
@@ -42,14 +42,15 @@ export default async function LangLayout({
   // This layout provides the language context and the main UI shell
   // (Header, Footer) INSIDE the root <body> tag.
   return (
-    <I18nProviderClient locale={locale}>
+
+    <I18nProviderClient locale={lang}>
       {/*
         The flex column structure is now on the <body> tag in the root layout.
         This component just renders its children in order.
       */}
       <Header session={session} />
       <main className="flex-grow">{children}</main>
-      <Footer lang={locale} />
+      <Footer lang={lang} />
       <CookieConsent />
     </I18nProviderClient>
   );
