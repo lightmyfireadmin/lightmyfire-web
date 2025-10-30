@@ -1,5 +1,9 @@
 import Link from 'next/link';
 import { useI18n } from '@/locales/client';
+import { useParams } from 'next/navigation'; // <-- Import useParams here
+import { useEffect, useState } from 'react'; // <-- Import useEffect and useState
+import { supabase } from '@/lib/supabase'; // <-- Import supabase
+import { generateStickerPDF } from '@/lib/generateSticker'; // <-- Import PDF generator
 
 type LighterInfo = {
   name: string;
