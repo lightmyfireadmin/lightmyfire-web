@@ -1,7 +1,6 @@
-// Force re-processing of this file
 'use client';
 
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Dialog, Transition } from '@headlessui/react';
@@ -15,7 +14,6 @@ import LanguageSwitcher from './LanguageSwitcher';
 
 const navigation = [
   { key: 'nav.how_it_works', href: '/legal/faq', icon: QuestionMarkCircleIcon },
-  { key: 'nav.save_lighter', href: '/save-lighter', icon: HeartIcon },
   { key: 'nav.refill_guide', href: '/dont-throw-me-away', icon: PlusIcon },
   { key: 'nav.our_philosophy', href: '/about', icon: GlobeAltIcon },
 ] as const;
@@ -32,6 +30,13 @@ export default function Header({ session }: { session: Session }) {
   const isLoggedIn = session !== null;
   const lang = useCurrentLocale();
   const t = useI18n();
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      setMobileMenuOpen(false);
+    }
+  }, [pathname]);
 
   return (
     <header className="bg-background border-b border-border shadow-sm sticky top-0 z-50">
@@ -106,7 +111,7 @@ export default function Header({ session }: { session: Session }) {
         >
           <div className="fixed inset-0 z-50" />
         </Transition.Child>
-        <Transition.Child
+        <Transition.Child>  
           as={Fragment}
           enter="transition ease-in-out duration-300 transform"
           enterFrom="translate-x-full"
@@ -114,8 +119,8 @@ export default function Header({ session }: { session: Session }) {
           leave="transition ease-in-out duration-300 transform"
           leaveFrom="translate-x-0"
           leaveTo="translate-x-full"
-        >
-          <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-[calc(100%-36px)] overflow-y-auto bg-background p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          </Transition.Child>
+          <Dialog.Panel className="fixed i@nset-y-0 right-0 z-50 w-[calc(100%-36px)] overflow-y-auto bg-background p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <Link href={`/${lang}`} onClick={() => setMobileMenuOpen(false)} className="-m-1.5 p-1.5">
               <Image src="/LOGOLONG.png" alt="LightMyFire" width={150} height={40} />
@@ -148,6 +153,14 @@ export default function Header({ session }: { session: Session }) {
                 ))}
                  {isLoggedIn && (
                     <>
+                      <Link
+                        href={`/${lang}/save-lighter`}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={classNames(pathname === `/${lang}/save-lighter` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 flex items-center pl-4 gap-x-4')}
+                      >
+                        <HeartIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
+                        {t('nav.save_lighter')}
+                      </Link>
                      <Link href={`/${lang}/my-profile`} onClick={() => setMobileMenuOpen(false)} className={classNames(pathname === `/${lang}/my-profile` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 flex items-center pl-4 gap-x-4')}>
                        <UserIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
                        {t('nav.my_profile')}

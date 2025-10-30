@@ -5,6 +5,10 @@ import { useState, useEffect } from 'react';
 import { useI18n } from '@/locales/client';
 import { CheckCircleIcon, XMarkIcon } from '@heroicons/react/24/solid';
 
+// Define a type for the keys we expect to use here.
+// This makes the code type-safe and removes the need for @ts-ignore.
+type SuccessMessageKey = 'notifications.login_success' | 'notifications.post_success';
+
 export default function SuccessNotification() {
   const t = useI18n();
   const searchParams = useSearchParams();
@@ -12,7 +16,7 @@ export default function SuccessNotification() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    let msgKey: string | null = null;
+    let msgKey: SuccessMessageKey | null = null;
     if (searchParams.get('login_success') === 'true') {
       msgKey = 'notifications.login_success';
     } else if (searchParams.get('post_success') === 'true') {
@@ -20,8 +24,7 @@ export default function SuccessNotification() {
     }
 
     if (msgKey) {
-      // @ts-ignore
-      setMessage(t(msgKey));
+      setMessage(t(msgKey)); // No more @ts-ignore needed
       setIsVisible(true);
 
       // Cache l'alerte après 5 secondes

@@ -51,15 +51,13 @@ const RandomPostFeed = () => {
       <div className="relative flex flex-col md:flex-row justify-center gap-4 md:gap-8">
         {/* Post 1 */}
         <div
-          className={`w-full md:w-1/2 transition-opacity duration-[900ms] ${visiblePostIndex1 % 2 === 0 ? 
-'opacity-100' : 'opacity-0'}`}
+          className="w-full md:w-1/2"
         >
           <PostCard post={posts[visiblePostIndex1]} isLoggedIn={false} isMini={true} />
         </div>
         {/* Post 2 */}
         <div
-          className={`w-full md:w-1/2 transition-opacity duration-[900ms] ${visiblePostIndex2 % 2 === 0 ? 
-'opacity-100' : 'opacity-0'}`}
+          className="w-full md:w-1/2"
         >
           <PostCard post={posts[visiblePostIndex2]} isLoggedIn={false} isMini={true} />
         </div>
