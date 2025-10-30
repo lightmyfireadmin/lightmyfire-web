@@ -26,11 +26,11 @@ const RandomPostFeed = () => {
     if (posts.length > 0) {
       const interval1 = setInterval(() => {
         setVisiblePostIndex1((prevIndex) => (prevIndex + 2) % posts.length);
-      }, 10000); // Change post1 every 10 seconds
+      }, 1500); // Change post1 every 1.5 seconds
 
       const interval2 = setInterval(() => {
         setVisiblePostIndex2((prevIndex) => (prevIndex + 2) % posts.length);
-      }, 10000); // Change post2 every 10 seconds
+      }, 1500); // Change post2 every 1.5 seconds
 
       return () => {
         clearInterval(interval1);
@@ -44,24 +44,24 @@ const RandomPostFeed = () => {
   }
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12 sm:py-16 lg:px-8">
+    <div className="mx-auto w-full max-w-5xl px-2.5 lg:px-8 py-12 sm:py-16">
       <h2 className="mb-8 text-center text-3xl font-bold text-foreground">
         Stories from the Mosaic
       </h2>
-      <div className="relative flex justify-center items-center h-[400px] space-x-4">
+      <div className="relative flex flex-col md:flex-row justify-center gap-4 md:gap-8">
         {/* Post 1 */}
         <div
-          className={`absolute w-1/2 transition-opacity duration-2000 ${visiblePostIndex1 % 2 === 0 ? 'opacity-100' : 'opacity-0'}`}
-          style={{ left: '0%', transform: 'translateX(-50%)' }}
+          className={`w-full md:w-1/2 transition-opacity duration-[900ms] ${visiblePostIndex1 % 2 === 0 ? 
+'opacity-100' : 'opacity-0'}`}
         >
-          <PostCard post={posts[visiblePostIndex1]} isLoggedIn={false} />
+          <PostCard post={posts[visiblePostIndex1]} isLoggedIn={false} isMini={true} />
         </div>
         {/* Post 2 */}
         <div
-          className={`absolute w-1/2 transition-opacity duration-2000 ${visiblePostIndex2 % 2 === 0 ? 'opacity-100' : 'opacity-0'}`}
-          style={{ right: '0%', transform: 'translateX(50%)' }}
+          className={`w-full md:w-1/2 transition-opacity duration-[900ms] ${visiblePostIndex2 % 2 === 0 ? 
+'opacity-100' : 'opacity-0'}`}
         >
-          <PostCard post={posts[visiblePostIndex2]} isLoggedIn={false} />
+          <PostCard post={posts[visiblePostIndex2]} isLoggedIn={false} isMini={true} />
         </div>
       </div>
     </div>

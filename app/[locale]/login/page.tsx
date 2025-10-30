@@ -35,7 +35,7 @@ export default function LoginPage() {
   }, [router]); // supabase correctly removed
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted p-4"> {/* Use theme bg */}
+    <div className="flex min-h-screen items-center justify-center p-4"> {/* Use theme bg */}
       {/* Applied responsive padding */}
       <div className="w-full max-w-md rounded-xl bg-background p-6 sm:p-8 shadow-lg"> {/* Use theme bg */}
         <h1 className="mb-6 text-center text-3xl font-bold text-foreground">

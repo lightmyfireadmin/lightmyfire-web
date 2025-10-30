@@ -16,15 +16,24 @@ export default function PinEntryForm() {
 
   const handlePinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
-    // Remove all non-alphanumeric characters and convert to uppercase
-    const cleanedInput = input.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
-
-    let formattedPin = cleanedInput;
-    if (cleanedInput.length > 3) {
-      formattedPin = `${cleanedInput.slice(0, 3)}-${cleanedInput.slice(3, 6)}`;
+    // 1. Clean the input: only letters/numbers, uppercase, max 6 chars.
+    const cleaned = input.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 6);
+    
+    // 2. Handle user backspacing the hyphen (from "ABC-" to "ABC")
+    if (input.length === 3 && pin.length === 4) {
+      setPin(cleaned); // cleaned is "ABC"
+      return;
     }
 
-    setPin(formattedPin);
+    // 3. Add hyphen *after* 3rd char, or format 4-6 chars
+    if (cleaned.length > 3) {
+      setPin(`${cleaned.slice(0, 3)}-${cleaned.slice(3)}`); // "ABC1" -> "ABC-1"
+    } else if (cleaned.length === 3 && input.length === 3) {
+      // 4. Add hyphen *immediately* after 3rd char is typed
+      setPin(cleaned + '-'); // "ABC" -> "ABC-"
+    } else {
+      setPin(cleaned); // "A", "AB"
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -56,10 +65,10 @@ export default function PinEntryForm() {
     <div className="w-full max-w-md rounded-lg bg-background p-6 sm:p-8 shadow-md">
       <div className="flex items-center justify-center mb-6">
         <Image
-          src="/globe.svg"
+          src="/illustrations/around_the_world.png"
           alt="Around the World"
-          width={32}
-          height={32}
+          width={40}
+          height={40}
           className="mr-2"
         />
         <h2 className="text-center text-3xl sm:text-4xl font-bold text-foreground">

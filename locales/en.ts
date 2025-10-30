@@ -2,6 +2,7 @@ export default {
   'home.hero.title': "I'm Too Young To Die",
   'home.hero.subtitle': "They toss billions of us Lighter Babies every year. Found, loved, lost, forgotten... But we hear stories! Give us a chance to tell them.",
   'home.hero.cta': 'Become a LightSaver',
+  'home.hero.popup_content': 'The PIN is located on the sticker affixed to the lighter. It is a unique code that allows you to access the lighter\'s story and contribute to its journey.',
   'home.pin_entry.title': 'Found a Lighter?',
   'home.pin_entry.subtitle': 'Enter the PIN from the sticker to see its story.',
   'home.pin_entry.label': 'Lighter PIN',

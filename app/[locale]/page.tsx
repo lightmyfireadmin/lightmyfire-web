@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getI18n, getCurrentLocale } from '@/locales/server';
 import RandomPostFeed from '@/app/components/RandomPostFeed';
+import InfoPopup from '@/app/components/InfoPopup';
 import { Suspense } from 'react';
 import SuccessNotification from '@/app/components/SuccessNotification';
 
@@ -45,38 +46,43 @@ export default async function Home() {
         <SuccessNotification />
       </Suspense>
 
-      <div className="flex flex-col sm:flex-row-reverse items-center justify-center gap-8 sm:gap-16 py-12 sm:py-16">
+      <div className="flex flex-row sm:flex-col items-center justify-center gap-4 sm:gap-8 py-12 sm:py-16">
         {/* Right Side (on desktop): Pin Entry Form */}
         <div className="w-full max-w-sm">
           <PinEntryForm />
         </div>
 
         {/* Left Side (on desktop): Hero Section */}
-        <div className="text-center sm:text-left max-w-md px-4 p-6 bg-background/80 rounded-lg shadow-lg">
-          <Image
-            src="/illustrations/thumbs_up.png"
-            alt="LightMyFire Lighter"
-            width={250} // Increased size
-            height={284}
-            className="mx-auto sm:mx-0 mb-4"
-          />
-          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            {t('home.hero.title')}
-          </h1>
-          <p className="mt-3 text-base text-muted-foreground sm:text-lg">
-            {t('home.hero.subtitle')}
-          </p>
-          <div className="mt-6 flex items-center justify-center sm:justify-start relative">
-            <Link href={`/${locale}/save-lighter`} className="btn-primary">
-              {t('home.hero.cta')}
-            </Link>
-            <Image
-              src="/illustrations/CTA_rainbow_arrow.png"
-              alt="Arrow pointing to CTA"
-              width={80}
-              height={80}
-              className="absolute -right-16 top-1/2 -translate-y-1/2 hidden sm:block"
-            />
+        <div className="text-center max-w-md px-4 p-6 bg-background/80 rounded-lg shadow-lg sm:w-full sm:max-w-none sm:items-center">
+          <div className="sm:flex sm:flex-col sm:items-center">
+            <div className="sm:flex sm:items-center">
+              <div className="w-[80px] h-[131px] sm:w-[150px] sm:h-[246px] sm:p-2.5 mx-auto mb-4 float-left sm:float-none mr-4 sm:mr-0 sm:mb-4">
+                <Image
+                  src="/illustrations/thumbs_up.png"
+                  alt="LightMyFire Lighter"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                {t('home.hero.title')}
+              </h1>
+            </div>
+            <div className="mt-3 flex items-center justify-center">
+              <p className="text-base text-muted-foreground sm:text-lg">
+                {t('home.hero.subtitle')}
+              </p>
+              <InfoPopup content={t('home.hero.popup_content')} />
+            </div>
+            <div className="relative inline-flex justify-center mt-6">
+              <Link href={`/${locale}/save-lighter`} className="btn-primary">
+                {t('home.hero.cta')}
+              </Link>
+              <Image
+                src="/illustrations/CTA_rainbow_arrow.png"
+                alt="Arrow pointing to CTA"
+                className="absolute top-1/2 -translate-y-1/2 w-[40px] h-[40px] left-[calc(100%+10px)] sm:w-[120px] sm:h-[120px] sm:left-[calc(100%+26px)]"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -92,9 +98,7 @@ export default async function Home() {
             <Image
               src="/illustrations/personalise.png"
               alt="Save a lighter"
-              width={100}
-              height={100}
-              className="mx-auto mb-4"
+              className="mx-auto mb-4 h-24 w-auto"
             />
             <h3 className="mb-2 text-xl font-semibold">
               {t('home.how_it_works.step1.title')}
@@ -108,9 +112,7 @@ export default async function Home() {
             <Image
               src="/illustrations/around_the_world.png"
               alt="Share the lighter"
-              width={100}
-              height={100}
-              className="mx-auto mb-4"
+              className="mx-auto mb-4 h-24 w-auto"
             />
             <h3 className="mb-2 text-xl font-semibold">
               {t('home.how_it_works.step2.title')}
@@ -124,9 +126,7 @@ export default async function Home() {
             <Image
               src="/illustrations/telling_stories.png"
               alt="Follow the story"
-              width={100}
-              height={100}
-              className="mx-auto mb-4"
+              className="mx-auto mb-4 h-24 w-auto"
             />
             <h3 className="mb-2 text-xl font-semibold">
               {t('home.how_it_works.step3.title')}

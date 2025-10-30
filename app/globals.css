@@ -40,7 +40,29 @@
 
   /* Link style (Optional - for text links that look like buttons) */
   .btn-link {
-     @apply text-primary font-semibold hover:underline cursor-pointer;
+    }
+
+  @keyframes scrollBackground {
+    from {
+      background-position: 100% 100%;
+    }
+    to {
+      background-position: 0 0;
+    }
+  }
+
+  .body-with-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/bgtile.png'); /* Ensure this path is correct */
+    background-repeat: repeat;
+    opacity: 0.1; /* Adjust as needed */
+    z-index: -1;
+    animation: scrollBackground 120s linear infinite;
   }
 }
 

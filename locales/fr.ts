@@ -2,6 +2,7 @@ export default {
   'home.hero.title': "Je suis trop jeune pour mourir",
   'home.hero.subtitle': "Des milliards de bébés briquets sont jetés chaque année. Trouvés, aimés, perdus, oubliés... Mais nous avons des histoires à raconter ! Donnez-nous une chance de les raconter.",
   'home.hero.cta': 'Devenez un LightSaver',
+  'home.hero.popup_content': 'Le PIN se trouve sur l\'autocollant apposé sur le briquet. C\'est un code unique qui vous permet d\'accéder à l\'histoire du briquet et de contribuer à son voyage.',
   'home.pin_entry.title': 'Vous avez trouvé un briquet ?',
   'home.pin_entry.subtitle': 'Entrez le PIN de l\'autocollant pour voir son histoire.',
   'home.pin_entry.label': 'PIN du briquet',

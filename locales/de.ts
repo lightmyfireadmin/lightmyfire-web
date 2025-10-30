@@ -2,6 +2,7 @@ export default {
     'home.hero.title': "Ich bin zu jung zum Sterben",
     'home.hero.subtitle': "Milliarden von uns Feuerzeug-Babys werden jedes Jahr weggeworfen. Gefunden, geliebt, verloren, vergessen... Aber wir hören Geschichten! Geben Sie uns eine Chance, sie zu erzählen.",
     'home.hero.cta': 'Werde ein LightSaver',
+    'home.hero.popup_content': 'Die PIN befindet sich auf dem Aufkleber, der am Feuerzeug angebracht ist. Es ist ein einzigartiger Code, mit dem Sie auf die Geschichte des Feuerzeugs zugreifen und zu seiner Reise beitragen können.',
     'home.pin_entry.title': 'Feuerzeug gefunden?',
     'home.pin_entry.subtitle': 'Gib die PIN vom Aufkleber ein, um seine Geschichte zu sehen.',
     'home.pin_entry.label': 'Feuerzeug-PIN',

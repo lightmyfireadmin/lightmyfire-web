@@ -17,8 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="body-with-bg">
-        {children}
+      <body className="body-with-bg max-w-full overflow-x-hidden">
+        <div className="px-2.5">
+          {children}
+        </div>
       </body>
     </html>
   );

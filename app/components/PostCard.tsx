@@ -45,9 +45,11 @@ const iconMap: { [key in DetailedPost['post_type']]: React.ElementType } = {
 export default function PostCard({
   post,
   isLoggedIn,
+  isMini = false,
 }: {
   post: DetailedPost;
   isLoggedIn: boolean;
+  isMini?: boolean;
 }) {
   // REMOVED the diagnostic line: return <FireIcon ... />;
 
@@ -69,6 +71,7 @@ export default function PostCard({
       ${post.post_type === 'song' ? 'border-red-500' : ''}
       ${post.post_type === 'refuel' ? 'border-orange-500' : ''}
       ${!post.post_type ? 'border-border' : ''} /* Fallback border */
+      ${isMini ? 'shadow-md bg-background/96' : ''}
       ${isRefuelPost ? 'py-3 pl-4 pr-5' : 'py-5 pl-5 pr-5'}
     `}>
 
@@ -78,7 +81,7 @@ export default function PostCard({
            {/* Apply conditional icon color classes directly using ternaries */}
            <IconComponent
              className={`
-               h-5 w-5
+               ${isMini ? 'h-4 w-4' : 'h-5 w-5'}
                ${post.post_type === 'text' ? 'text-blue-600' : ''}
                ${post.post_type === 'image' ? 'text-green-600' : ''}
                ${post.post_type === 'location' ? 'text-yellow-600' : ''}
@@ -90,7 +93,7 @@ export default function PostCard({
            <span className="font-semibold text-foreground">{post.username}</span>
         </div>
         <span
-          className="text-sm text-muted-foreground"
+          className={`${isMini ? 'text-xs' : 'text-sm'} text-muted-foreground`}
           suppressHydrationWarning={true}
         >
           {new Date(post.created_at).toLocaleDateString()}
@@ -100,11 +103,11 @@ export default function PostCard({
       {/* Post Body */}
       <div className={`space-y-3 ${isRefuelPost ? '' : 'pl-1'}`}>
         {!isRefuelPost && post.title && (
-            <h3 className="text-xl font-bold text-foreground">{post.title}</h3>
+            <h3 className={`${isMini ? 'text-base' : 'text-xl'} font-bold text-foreground`}>{post.title}</h3>
         )}
 
         {post.post_type === 'text' && (
-          <p className="whitespace-pre-wrap text-foreground">
+          <p className={`${isMini ? 'text-sm' : ''} whitespace-pre-wrap text-foreground`}>
             {post.content_text}
           </p>
         )}
@@ -152,7 +155,7 @@ export default function PostCard({
 
       {/* Post Footer */}
       {!isRefuelPost && (
-        <div className="mt-4 flex items-center justify-between pl-1">
+        <div className={isMini ? 'flex justify-between scale-90 -mx-2' : 'flex justify-between'}>
           <LikeButton post={post} isLoggedIn={isLoggedIn} />
           <FlagButton postId={post.id} isLoggedIn={isLoggedIn} />
         </div>

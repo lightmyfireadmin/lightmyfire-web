@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Dialog } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Dialog, Transition } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon, QuestionMarkCircleIcon, HeartIcon, PlusIcon, GlobeAltIcon, UserIcon } from '@heroicons/react/24/outline';
 import LogoutButton from './LogoutButton';
 import { useCurrentLocale, useI18n } from '@/locales/client';
 import Image from 'next/image';
@@ -14,9 +14,10 @@ import LanguageSwitcher from './LanguageSwitcher';
 
 // CORRECTION : Ajoutez "as const" à la fin de cette ligne
 const navigation = [
-  { key: 'nav.our_philosophy', href: '/about' },
-  { key: 'nav.how_it_works', href: '/legal/faq' },
-  { key: 'nav.refill_guide', href: '/dont-throw-me-away' },
+  { key: 'nav.how_it_works', href: '/legal/faq', icon: QuestionMarkCircleIcon },
+  { key: 'nav.save_lighter', href: '/save-lighter', icon: HeartIcon },
+  { key: 'nav.refill_guide', href: '/dont-throw-me-away', icon: PlusIcon },
+  { key: 'nav.our_philosophy', href: '/about', icon: GlobeAltIcon },
 ] as const;
 
 function classNames(...classes: string[]) {
@@ -57,19 +58,17 @@ export default function Header({ session }: { session: Session }) {
               href={`/${lang}${item.href}`}
               className={classNames(
                 pathname === `/${lang}${item.href}` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary',
-                'text-sm leading-6'
+                'text-sm leading-6 flex items-center'
               )}
             >
-              {/* C'est correct maintenant grâce à "as const" */}
+              <item.icon className="h-5 w-5 mr-1.5" aria-hidden="true" />
               {t(item.key)}
             </Link>
           ))}
           {isLoggedIn && (
              <>
-               <Link href={`/${lang}/save-lighter`} className={classNames(pathname === `/${lang}/save-lighter` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6')}>
-                 {t('nav.save_lighter')}
-               </Link>
-               <Link href={`/${lang}/my-profile`} className={classNames(pathname === `/${lang}/my-profile` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6')}>
+               <Link href={`/${lang}/my-profile`} className={classNames(pathname === `/${lang}/my-profile` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6 flex items-center')}>
+                 <UserIcon className="h-5 w-5 mr-1.5" aria-hidden="true" />
                  {t('nav.my_profile')}
                </Link>
              </>
@@ -82,7 +81,7 @@ export default function Header({ session }: { session: Session }) {
           ) : (
             <Link
               href={`/${lang}/login`}
-              className="btn-primary text-sm"
+              className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-background px-3 py-2 text-sm font-semibold text-foreground shadow-sm ring-1 ring-inset ring-border hover:bg-muted"
             >
               {t('nav.login_signup')}
             </Link>
@@ -92,8 +91,27 @@ export default function Header({ session }: { session: Session }) {
 
       {/* Mobile Menu Dialog */}
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-        <div className="fixed inset-0 z-50" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <Transition.Child
+          as={Fragment}
+          enter="ease-out duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in duration-300"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div className="fixed inset-0 z-50" />
+        </Transition.Child>
+        <Transition.Child
+          as={Fragment}
+          enter="transition ease-in-out duration-300 transform"
+          enterFrom="translate-x-full"
+          enterTo="translate-x-0"
+          leave="transition ease-in-out duration-300 transform"
+          leaveFrom="translate-x-0"
+          leaveTo="translate-x-full"
+        >
+          <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-[calc(100%-36px)] overflow-y-auto bg-background p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <Link href={`/${lang}`} onClick={() => setMobileMenuOpen(false)} className="-m-1.5 p-1.5">
               <Image src="/LOGOLONG.png" alt="LightMyFire" width={150} height={40} />
@@ -117,19 +135,17 @@ export default function Header({ session }: { session: Session }) {
                     onClick={() => setMobileMenuOpen(false)}
                     className={classNames(
                       pathname === `/${lang}${item.href}` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted',
-                      '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7'
+                      '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 flex items-center pl-4 gap-x-4'
                     )}
                   >
-                    {/* C'est correct maintenant grâce à "as const" */}
+                    <item.icon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
                     {t(item.key)}
                   </Link>
                 ))}
                  {isLoggedIn && (
                     <>
-                     <Link href={`/${lang}/save-lighter`} onClick={() => setMobileMenuOpen(false)} className={classNames(pathname === `/${lang}/save-lighter` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7')}>
-                       {t('nav.save_lighter')}
-                     </Link>
-                     <Link href={`/${lang}/my-profile`} onClick={() => setMobileMenuOpen(false)} className={classNames(pathname === `/${lang}/my-profile` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7')}>
+                     <Link href={`/${lang}/my-profile`} onClick={() => setMobileMenuOpen(false)} className={classNames(pathname === `/${lang}/my-profile` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 flex items-center pl-4 gap-x-4')}>
+                       <UserIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
                        {t('nav.my_profile')}
                      </Link>
                    </>
