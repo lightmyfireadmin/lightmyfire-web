@@ -12,7 +12,7 @@ export const dynamic = 'force-dynamic';
 export default async function Home() {
   const t = await getI18n();
   const cookieStore = cookies();
-  const lang = await getCurrentLocale();
+  const locale = await getCurrentLocale();
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -65,10 +65,10 @@ export default async function Home() {
         <div className="mx-auto max-w-3xl py-12 sm:py-16 lg:py-24">
           <div className="text-center">
             <Image
-              src="/webclip.png"
+              src="/thumbs_up.png"
               alt="LightMyFire Lighter"
-              width={150}
-              height={150}
+              width={200}
+              height={227}
               className="mx-auto mb-6"
             />
             <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
@@ -78,7 +78,7 @@ export default async function Home() {
               {t('home.hero.subtitle')}
             </p>
             <div className="mt-8 flex items-center justify-center gap-x-6">
-               <Link href={`/${lang}/save-lighter`} className="btn-primary">
+               <Link href={`/${locale}/save-lighter`} className="btn-primary">
                  {t('home.hero.cta')}
                </Link>
              </div>
