@@ -153,7 +153,17 @@ export default {
     'save_success.button.generating': 'Gerando...',
     'save_success.button.download_pdf': 'Baixar PDF do Adesivo',
     'save_success.button.go_to_lighter': 'Ir para a Página do seu Isqueiro',
-  
+
+    'signup_welcome.title': 'Welcome to LightMyFire!',
+    'signup_welcome.subtitle': 'Thank you for joining our community! Here are a few things you can do:',
+    'signup_welcome.quick_actions': 'Quick Start:',
+    'signup_welcome.action_lighter': 'Save a lighter and start collecting stories',
+    'signup_welcome.action_find': 'Find a lighter and add to its journey',
+    'signup_welcome.action_community': 'Connect with other LightSavers worldwide',
+    'signup_welcome.cta_lighter': 'Save Your First Lighter',
+    'signup_welcome.cta_explore': 'Explore the Community',
+    'signup_welcome.close': 'Close',
+
     'post.refuel_message': 'Recarregado! A jornada deste isqueiro continua.',
     'post.youtube_load_error': 'Não foi possível carregar o vídeo do YouTube (URL inválida?).',
   'legal.privacy.title': 'Privacy Policy',

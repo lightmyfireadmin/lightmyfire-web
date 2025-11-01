@@ -153,6 +153,16 @@ export default {
   'save_success.button.download_pdf': 'Download Sticker PDF',
   'save_success.button.go_to_lighter': 'Go to Your Lighter\'s Page',
 
+  'signup_welcome.title': 'Welcome to LightMyFire!',
+  'signup_welcome.subtitle': 'Thank you for joining our community! Here are a few things you can do:',
+  'signup_welcome.quick_actions': 'Quick Start:',
+  'signup_welcome.action_lighter': 'Save a lighter and start collecting stories',
+  'signup_welcome.action_find': 'Find a lighter and add to its journey',
+  'signup_welcome.action_community': 'Connect with other LightSavers worldwide',
+  'signup_welcome.cta_lighter': 'Save Your First Lighter',
+  'signup_welcome.cta_explore': 'Explore the Community',
+  'signup_welcome.close': 'Close',
+
   'post.refuel_message': 'Refueled! This lighter\'s journey continues.',
   'post.youtube_load_error': 'Could not load YouTube video (invalid URL?).',
   'legal.privacy.title': 'Privacy Policy',

@@ -153,7 +153,17 @@ export default {
     'save_success.button.generating': 'उत्पन्न हो रहा है...',
     'save_success.button.download_pdf': 'स्टिकर पीडीएफ डाउनलोड करें',
     'save_success.button.go_to_lighter': 'अपने लाइटर के पेज पर जाएं',
-  
+
+    'signup_welcome.title': 'Welcome to LightMyFire!',
+    'signup_welcome.subtitle': 'Thank you for joining our community! Here are a few things you can do:',
+    'signup_welcome.quick_actions': 'Quick Start:',
+    'signup_welcome.action_lighter': 'Save a lighter and start collecting stories',
+    'signup_welcome.action_find': 'Find a lighter and add to its journey',
+    'signup_welcome.action_community': 'Connect with other LightSavers worldwide',
+    'signup_welcome.cta_lighter': 'Save Your First Lighter',
+    'signup_welcome.cta_explore': 'Explore the Community',
+    'signup_welcome.close': 'Close',
+
     'post.refuel_message': 'रिफ्यूल किया गया! इस लाइटर की यात्रा जारी है।',
     'post.youtube_load_error': 'YouTube वीडियो लोड नहीं हो सका (अमान्य URL?)।',
   'legal.privacy.title': 'Privacy Policy',

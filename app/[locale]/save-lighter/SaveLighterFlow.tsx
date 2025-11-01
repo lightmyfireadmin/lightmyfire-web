@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useI18n } from '@/locales/client';
-import SaveLighterForm from './SaveLighterForm';
 import LighterPersonalizationCards from './LighterPersonalizationCards';
 import StripePaymentForm from './StripePaymentForm';
 import type { User } from '@supabase/supabase-js';
@@ -22,7 +21,6 @@ const PACK_OPTIONS = [
 export default function SaveLighterFlow({ user }: { user: User }) {
   const t = useI18n();
   const [selectedPack, setSelectedPack] = useState<number | null>(null);
-  const [lighterCreated, setLighterCreated] = useState(false);
   const [customizations, setCustomizations] = useState<LighterCustomization[]>([]);
   const [selectedLanguage, setSelectedLanguage] = useState('en');
 
@@ -38,10 +36,6 @@ export default function SaveLighterFlow({ user }: { user: User }) {
     setSelectedLanguage(language);
     // Show success message or move to next step
     console.log('Customizations saved:', { customizations, language });
-  };
-
-  const handleLighterCreated = () => {
-    setLighterCreated(true);
   };
 
   return (
@@ -86,20 +80,8 @@ export default function SaveLighterFlow({ user }: { user: User }) {
         </div>
       )}
 
-      {/* Lighter Form - Show when pack is selected and lighter not created */}
-      {selectedPack !== null && !lighterCreated && (
-        <div className="rounded-lg border border-border bg-background/95 p-8 shadow-md">
-          <h2 className="mb-8 text-3xl font-bold text-foreground text-center">
-            {t('save_lighter.form_title')}
-          </h2>
-          <div className="flex flex-col items-center">
-            <SaveLighterForm user={user} onSuccess={handleLighterCreated} />
-          </div>
-        </div>
-      )}
-
-      {/* Personalization Cards - Show when lighter is created */}
-      {lighterCreated && (
+      {/* Personalization Cards - Show directly after pack selection */}
+      {selectedPack !== null && (
         <div className="rounded-lg border border-border bg-background/95 p-8 shadow-md">
           <LighterPersonalizationCards
             stickerCount={selectedPack || 5}
@@ -119,16 +101,16 @@ export default function SaveLighterFlow({ user }: { user: User }) {
                 {selectedPack} {selectedPack === 1 ? 'Sticker' : 'Stickers'}
               </span>
             </div>
-            {lighterCreated && (
+            {customizations.length > 0 && (
               <>
                 <div className="flex justify-between">
                   <span>Language:</span>
                   <span className="font-semibold text-foreground">{selectedLanguage}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Customizations:</span>
+                  <span>Stickers:</span>
                   <span className="font-semibold text-foreground">
-                    {customizations.length > 0 ? '✓ Configured' : '-'}
+                    ✓ Customized
                   </span>
                 </div>
               </>
@@ -160,8 +142,8 @@ export default function SaveLighterFlow({ user }: { user: User }) {
         </div>
       )}
 
-      {/* Payment Form - Show when everything is configured */}
-      {lighterCreated && customizations.length > 0 && (
+      {/* Payment Form - Show when customizations are done */}
+      {customizations.length > 0 && (
         <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
           <h2 className="mb-6 text-xl font-semibold text-foreground">
             {t('save_lighter.payment_details_title')}
@@ -179,13 +161,12 @@ export default function SaveLighterFlow({ user }: { user: User }) {
         </div>
       )}
 
-      {/* Back Button */}
-      {selectedPack !== null && !lighterCreated && (
+      {/* Back Button - Show when customizations not started yet */}
+      {selectedPack !== null && customizations.length === 0 && (
         <div className="flex justify-center">
           <button
             onClick={() => {
               setSelectedPack(null);
-              setLighterCreated(false);
               setCustomizations([]);
             }}
             className="px-6 py-2 rounded-md border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
