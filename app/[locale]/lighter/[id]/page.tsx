@@ -94,12 +94,24 @@ export default async function LighterPage({
 
   const { data: lighter } = await supabase
     .from('lighters')
-    .select('id, name, pin_code, custom_background_url')
+    .select('id, name, pin_code, custom_background_url, saver_id')
     .eq('id', params.id)
     .single();
 
   if (!lighter) {
     notFound();
+  }
+
+  // Fetch saver info
+  let saverUsername = '';
+  if (lighter.saver_id) {
+    const { data: saverProfile } = await supabase
+      .from('profiles')
+      .select('username')
+      .eq('id', lighter.saver_id)
+      .single();
+
+    saverUsername = saverProfile?.username || 'Anonymous';
   }
 
   const { data: posts } = await supabase
@@ -165,21 +177,35 @@ export default async function LighterPage({
           </div>
         </div>
 
-        {/* Map Component */}
-        {locationData && locationData.length > 0 && (
-          <div className="mb-8 rounded-lg overflow-hidden shadow-md">
-            <MapComponent locations={locationData} />
-          </div>
-        )}
+        {/* Map + Saved By Section */}
+        <div className="mb-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Map on Left (takes 2 columns on desktop) */}
+          {locationData && locationData.length > 0 && (
+            <div className="md:col-span-2 rounded-lg overflow-hidden shadow-md">
+              <MapComponent locations={locationData} height="300px" />
+            </div>
+          )}
 
-        {/* Add to Story Button */}
-        <div className="mb-8">
-          <Link
-            href={`/${params.locale}/lighter/${lighter.id}/add`}
-            className="btn-primary block w-full text-lg text-center"
-          >
-            Add to the Story
-          </Link>
+          {/* Saved By Section on Right */}
+          <div className="flex flex-col justify-start">
+            <div className="rounded-lg border border-border bg-background p-6 shadow-md h-fit">
+              <p className="text-sm text-muted-foreground uppercase tracking-wider font-semibold mb-3">
+                Lighter Saved By
+              </p>
+              <p className="text-2xl font-bold text-foreground">
+                {saverUsername}
+              </p>
+              <div className="mt-6 pt-6 border-t border-border/50">
+                <Link
+                  href={`/${params.locale}/lighter/${lighter.id}/add`}
+                  className="btn-primary block w-full text-center flex items-center justify-center gap-2 py-3"
+                >
+                  <span>➕</span>
+                  <span>Add to Story</span>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Posts Feed */}

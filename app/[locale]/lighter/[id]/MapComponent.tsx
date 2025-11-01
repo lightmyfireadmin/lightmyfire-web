@@ -20,6 +20,7 @@ interface LocationData {
 
 interface MapComponentProps {
   locations: LocationData[];
+  height?: string;
 }
 
 const DynamicMap = ({ locations }: MapComponentProps) => {
@@ -48,13 +49,13 @@ const DynamicMap = ({ locations }: MapComponentProps) => {
   );
 };
 
-export default function MapComponent({ locations }: MapComponentProps) {
+export default function MapComponent({ locations, height = '300px' }: MapComponentProps) {
   if (!locations || locations.length === 0) {
     return <p>No location data available for this lighter yet.</p>;
   }
 
   return (
-    <MapContainer center={[locations[0].lat, locations[0].lng]} zoom={13} scrollWheelZoom={false} style={{ height: '400px', width: '100%' }}>
+    <MapContainer center={[locations[0].lat, locations[0].lng]} zoom={13} scrollWheelZoom={false} style={{ height, width: '100%' }}>
       <DynamicMap locations={locations} />
     </MapContainer>
   );

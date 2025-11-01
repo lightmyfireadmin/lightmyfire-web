@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase'; // Assuming lib is at root
 import Image from 'next/image';
 import { useI18n, useCurrentLocale } from '@/locales/client';
 import LoadingSpinner from '@/app/components/LoadingSpinner';
+import InfoPopup from '@/app/components/InfoPopup';
 
 export default function PinEntryForm() {
   const t = useI18n();
@@ -25,7 +26,7 @@ export default function PinEntryForm() {
     input = input.slice(0, 6);
 
     // Add hyphen after 3rd character automatically
-    if (input.length > 3) {
+    if (input.length >= 3) {
       input = `${input.slice(0, 3)}-${input.slice(3)}`;
     }
 
@@ -75,12 +76,15 @@ export default function PinEntryForm() {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label
-            htmlFor="pin"
-            className="mb-2 block text-sm font-medium text-foreground"
-          >
-            {t('home.pin_entry.label')}
-          </label>
+          <div className="mb-2 flex items-center gap-2">
+            <label
+              htmlFor="pin"
+              className="block text-sm font-medium text-foreground"
+            >
+              {t('home.pin_entry.label')}
+            </label>
+            <InfoPopup content={t('home.hero.popup_content')} />
+          </div>
           <input
             type="text"
             id="pin"
@@ -109,7 +113,7 @@ export default function PinEntryForm() {
             <LoadingSpinner size="sm" color="foreground" label={t('home.pin_entry.loading')} />
           ) : (
             <>
-              <span>🔓</span>
+              <span>🔍</span>
               <span>{t('home.pin_entry.button')}</span>
             </>
           )}

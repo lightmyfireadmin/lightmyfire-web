@@ -409,7 +409,9 @@ export default function AddPostForm({
             placeholder={t('add_post.placeholder.title')}
           />
         )}
-        {renderFormInputs()}
+        <div className="min-h-[320px]">
+          {renderFormInputs()}
+        </div>
         {/* Checkboxes */}
         <div className="space-y-3 pt-2">
           {postType === POST_TYPES.LOCATION && (<Checkbox id="isFindLocation" label={t('add_post.checkbox.is_find_location')} checked={isFindLocation} onChange={setIsFindLocation} />)}

@@ -60,7 +60,7 @@ export default async function Home() {
                 className="w-full h-full object-contain"
               />
             </div>
-            <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-foreground">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
               {t('home.hero.title')}
             </h1>
           </div>
@@ -71,7 +71,6 @@ export default async function Home() {
               <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
                 {t('home.hero.subtitle')}
               </p>
-              <InfoPopup content={t('home.hero.popup_content')} />
             </div>
           </div>
         </div>
@@ -104,46 +103,58 @@ export default async function Home() {
         </h2>
         <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-3">
           {/* Step 1 */}
-          <div className="rounded-lg border border-border bg-background p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-            <Image
-              src="/illustrations/personalise.png"
-              alt="Save a lighter"
-              className="mx-auto mb-4 h-20 sm:h-24 w-auto"
-            />
+          <div className="rounded-lg border border-border bg-background p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+            <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
+              <Image
+                src="/illustrations/personalise.png"
+                alt="Save a lighter"
+                width={120}
+                height={128}
+                className="object-contain"
+              />
+            </div>
             <h3 className="mb-2 text-lg sm:text-xl font-semibold text-foreground">
-              {t('home.how_it_works.step1.title')}
+              1. {t('home.how_it_works.step1.title')}
             </h3>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed flex-1">
               {t('home.how_it_works.step1.description')}
             </p>
           </div>
 
           {/* Step 2 */}
-          <div className="rounded-lg border border-border bg-background p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-            <Image
-              src="/illustrations/around_the_world.png"
-              alt="Share the lighter"
-              className="mx-auto mb-4 h-30 sm:h-36 w-auto"
-            />
+          <div className="rounded-lg border border-border bg-background p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+            <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
+              <Image
+                src="/illustrations/around_the_world.png"
+                alt="Share the lighter"
+                width={120}
+                height={128}
+                className="object-contain"
+              />
+            </div>
             <h3 className="mb-2 text-lg sm:text-xl font-semibold text-foreground">
-              {t('home.how_it_works.step2.title')}
+              2. {t('home.how_it_works.step2.title')}
             </h3>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed flex-1">
               {t('home.how_it_works.step2.description')}
             </p>
           </div>
 
           {/* Step 3 */}
-          <div className="rounded-lg border border-border bg-background p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-            <Image
-              src="/illustrations/telling_stories.png"
-              alt="Follow the story"
-              className="mx-auto mb-4 h-20 sm:h-24 w-auto"
-            />
+          <div className="rounded-lg border border-border bg-background p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+            <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
+              <Image
+                src="/illustrations/telling_stories.png"
+                alt="Follow the story"
+                width={120}
+                height={128}
+                className="object-contain"
+              />
+            </div>
             <h3 className="mb-2 text-lg sm:text-xl font-semibold text-foreground">
-              {t('home.how_it_works.step3.title')}
+              3. {t('home.how_it_works.step3.title')}
             </h3>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed flex-1">
               {t('home.how_it_works.step3.description')}
             </p>
           </div>
@@ -160,13 +171,21 @@ export default async function Home() {
             {t('home.become_lightsaver.subtitle')}
           </p>
           <div className="flex justify-center">
-            <Link
-              href={`/${locale}/save-lighter`}
-              className="inline-flex items-center gap-x-2 px-6 py-3 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground font-semibold transition shadow-md hover:shadow-lg opacity-90 hover:opacity-100"
-            >
-              <HeartIcon className="h-5 w-5" />
-              {t('home.hero.cta')}
-            </Link>
+            <div className="relative inline-flex">
+              <Link
+                href={`/${locale}/save-lighter`}
+                className="inline-flex items-center gap-x-2 px-6 py-3 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground font-semibold transition shadow-md hover:shadow-lg opacity-90 hover:opacity-100"
+              >
+                <HeartIcon className="h-5 w-5" />
+                {t('home.hero.cta')}
+              </Link>
+              <Image
+                src="/illustrations/CTA_rainbow_arrow.png"
+                alt="Arrow pointing to save lighter button"
+                className="absolute top-1/2 -translate-y-1/2 w-[60px] h-[60px] lg:w-[100px] lg:h-[100px] left-[calc(100%-10px)] lg:left-[calc(100%+15px)]"
+                priority
+              />
+            </div>
           </div>
         </div>
       </div>

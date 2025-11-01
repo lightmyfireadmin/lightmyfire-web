@@ -5,8 +5,8 @@ export default function Footer({ lang }: { lang: string }) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-muted border-t border-border mt-auto">
-      <div className="mx-auto max-w-7xl px-6 py-12 pb-24 md:pb-12 md:flex md:items-center md:justify-between lg:px-8">
+    <footer className="bg-muted border-t border-border mt-auto w-full">
+      <div className="w-full px-6 py-12 pb-24 md:pb-12 md:flex md:items-center md:justify-between lg:px-8">
         {/* Social Links */}
         <div className="flex justify-center space-x-6 md:order-2">
           <a href="#" className="text-muted-foreground hover:text-foreground">

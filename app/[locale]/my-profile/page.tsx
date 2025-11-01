@@ -105,42 +105,14 @@ export default async function MyProfilePage() {
         <StatCard label="Stories Joined" value={stats.lighters_contributed_to} icon="📖" />
         <StatCard label="Likes Received" value={stats.likes_received} icon="❤️" />
       </div>
+      {/* Trophies Section */}
+      <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
+        <h2 className="mb-4 text-xl font-semibold text-foreground">My Trophies</h2>
+        <TrophyList trophies={myTrophies} />
+      </div>
 
       {/* Saved Lighters + Contributions Grid */}
       <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-3">
-        {/* Saved Lighters Column */}
-        <div className="rounded-lg border border-border bg-background p-6 shadow-sm md:col-span-1">
-          <h2 className="mb-4 text-xl font-semibold text-foreground">My Saved Lighters</h2>
-          <div className="space-y-3">
-            {savedLightersRes.data && savedLightersRes.data.length > 0 ? (
-              savedLightersRes.data.map((lighter) => (
-                <Link
-                  key={lighter.id}
-                  href={`/lighter/${lighter.id}`}
-                  className="block rounded-lg border border-border p-3 transition hover:bg-muted"
-                >
-                  <p className="font-semibold text-primary">{lighter.name}</p>
-                  <p className="font-mono text-sm text-muted-foreground">
-                    {lighter.pin_code}
-                  </p>
-                </Link>
-              ))
-            ) : (
-              <p className="text-sm text-muted-foreground">
-                {t('my_profile.no_lighters_saved')}
-              </p>
-            )}
-          </div>
-        </div>
-
-        {/* Contributions Column */}
-        <div className="rounded-lg border border-border bg-background p-6 shadow-sm md:col-span-2">
-          <h2 className="mb-4 text-xl font-semibold text-foreground">My Contributions</h2>
-          {/* Pass the correctly typed posts */}
-          <MyPostsList initialPosts={myPosts} />
-        </div>
-      </div>
-
       {/* Edit Profile Section */}
       <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
         <div className="flex items-center justify-between mb-4">
@@ -154,7 +126,6 @@ export default async function MyProfilePage() {
         </div>
         {profile && <EditProfileForm user={session.user} profile={profile} />}
       </div>
-
       {/* Update Auth Section */}
       <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
         <UpdateAuthForm />
@@ -164,6 +135,7 @@ export default async function MyProfilePage() {
       <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
         <h2 className="mb-4 text-xl font-semibold text-foreground">My Trophies</h2>
         <TrophyList trophies={myTrophies} />
+      </div>
       </div>
     </div>
   );
