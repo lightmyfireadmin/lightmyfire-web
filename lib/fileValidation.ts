@@ -99,7 +99,7 @@ export async function validateFile(
   }
 
   // Check MIME type (client-side check, not reliable alone)
-  if (!FILE_UPLOAD.ACCEPTED_TYPES.includes(file.type)) {
+  if (!FILE_UPLOAD.ACCEPTED_TYPES.includes(file.type as 'image/png' | 'image/jpeg' | 'image/gif')) {
     // Don't block immediately - check magic number instead
     // This allows for files with wrong MIME type but correct content
   }

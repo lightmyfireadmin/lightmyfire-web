@@ -37,10 +37,9 @@ export function validateEnvironmentVariables() {
 
     if (!value || value.trim() === '') {
       missingVars.push(config.name);
+      const serverOnlyNote = 'serverOnly' in config && config.serverOnly ? ' (server-side only)' : '';
       errors.push(
-        `${config.name}: ${config.description}${
-          config.serverOnly ? ' (server-side only)' : ''
-        }`
+        `${config.name}: ${config.description}${serverOnlyNote}`
       );
     }
   });

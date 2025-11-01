@@ -106,7 +106,7 @@ export default function PinEntryForm() {
           className="btn-primary w-full text-base sm:text-lg py-3 flex justify-center items-center gap-2 hover:shadow-lg transition-shadow duration-200"
         >
           {loading ? (
-            <LoadingSpinner size="sm" color="primary-foreground" label={t('home.pin_entry.loading')} />
+            <LoadingSpinner size="sm" color="foreground" label={t('home.pin_entry.loading')} />
           ) : (
             <>
               <span>🔓</span>

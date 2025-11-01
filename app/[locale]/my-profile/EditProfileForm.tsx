@@ -95,7 +95,7 @@ export default function EditProfileForm({ user, profile }: { user: User; profile
         className="btn-primary flex justify-center items-center gap-2 py-3 hover:shadow-lg transition-shadow duration-200"
       >
         {loading ? (
-          <LoadingSpinner size="sm" color="primary-foreground" label="Saving..." />
+          <LoadingSpinner size="sm" color="foreground" label="Saving..." />
         ) : (
           <>
             <span>💾</span>

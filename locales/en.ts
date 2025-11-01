@@ -140,6 +140,4 @@ export default {
 
   'post.refuel_message': 'Refueled! This lighter\'s journey continues.',
   'post.youtube_load_error': 'Could not load YouTube video (invalid URL?).',
-
-  'home.mosaic.title': 'Stories from the Mosaic',
 } as const;

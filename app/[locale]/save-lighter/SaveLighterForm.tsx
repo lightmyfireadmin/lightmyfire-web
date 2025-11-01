@@ -116,7 +116,7 @@ export default function SaveLighterForm({ user }: { user: User }) {
         className="btn-primary w-full text-lg py-3 flex justify-center items-center gap-2 hover:shadow-lg transition-shadow duration-200"
       >
         {loading ? (
-          <LoadingSpinner size="sm" color="primary-foreground" label={t('save_lighter.button.saving')} />
+          <LoadingSpinner size="sm" color="foreground" label={t('save_lighter.button.saving')} />
         ) : (
           <>
             <span>🔥</span>

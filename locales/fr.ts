@@ -140,6 +140,4 @@ export default {
 
   'post.refuel_message': 'Recharger ! Le voyage de ce briquet continue.',
   'post.youtube_load_error': 'Impossible de charger la vidéo YouTube (URL invalide ?).',
-
-  'home.mosaic.title': 'Histoires de la mosaïque',
 } as const;
