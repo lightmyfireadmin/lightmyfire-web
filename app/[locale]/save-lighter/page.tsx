@@ -7,7 +7,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server';
 
 export const dynamic = 'force-dynamic';
 
-export default async function SaveLighterPage() {
+export default async function SaveLighterPage({ params }: { params: { locale: string } }) {
   const t = await getI18n();
   const cookieStore = cookies();
   const supabase = createServerSupabaseClient(cookieStore);
@@ -17,7 +17,7 @@ export default async function SaveLighterPage() {
   } = await supabase.auth.getSession();
 
   if (!session) {
-    redirect('/login?message=You must be logged in to save a lighter');
+    redirect(`/${params.locale}/login?message=You must be logged in to save a lighter`);
   }
 
   // We found a session! Pass the user to the form.

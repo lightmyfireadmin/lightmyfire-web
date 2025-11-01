@@ -217,9 +217,16 @@ export default function LighterPersonalizationCards({
                     className="h-8 w-12 rounded border border-border shadow-sm"
                     style={{ backgroundColor: customization.backgroundColor }}
                   />
-                  <p className="text-xs font-mono text-muted-foreground">
-                    {customization.backgroundColor}
-                  </p>
+                  <input
+                    type="text"
+                    value={customization.backgroundColor}
+                    onChange={(e) =>
+                      handleColorChange(customization.id, e.target.value)
+                    }
+                    placeholder="#FF6B6B"
+                    maxLength={7}
+                    className="w-24 px-2 py-1 text-xs font-mono rounded border border-input bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                  />
                 </div>
               </div>
             </div>

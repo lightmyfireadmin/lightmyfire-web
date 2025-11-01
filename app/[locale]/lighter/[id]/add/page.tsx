@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic';
 export default async function AddContributionPage({
   params,
 }: {
-  params: { id: string };
+  params: { id: string; locale: string };
 }) {
   const cookieStore = cookies();
   const supabase = createServerSupabaseClient(cookieStore);
@@ -21,7 +21,7 @@ export default async function AddContributionPage({
 
   if (!session) {
     // If not logged in, redirect to login
-    redirect('/login?message=You must be logged in to add a story.');
+    redirect(`/${params.locale}/login?message=You must be logged in to add a story.`);
   }
 
   // 2. Fetch the lighter's name to show on the page

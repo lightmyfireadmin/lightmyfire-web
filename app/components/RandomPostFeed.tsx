@@ -19,17 +19,21 @@ const RandomPostFeed = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [nextId, setNextId] = useState(0);
 
-  // Fetch posts on mount
+  // Fetch posts on mount and periodically refresh
   useEffect(() => {
     const fetchPosts = async () => {
       const { data } = await supabase.rpc('get_random_public_posts', {
-        limit_count: 10,
+        limit_count: 20,
       });
       if (data) {
         setPosts(data);
       }
     };
     fetchPosts();
+
+    // Refresh posts every 30 seconds to maintain a continuous supply
+    const refreshInterval = setInterval(fetchPosts, 30000);
+    return () => clearInterval(refreshInterval);
   }, []);
 
   // Animation loop - moves posts DOWN from top to bottom, fades them out, removes them when done
@@ -45,8 +49,8 @@ const RandomPostFeed = () => {
           }))
           .filter((p) => p.position < 120); // Remove when past bottom (with fade)
 
-        // Add new post at top occasionally
-        if (Math.random() < 0.3 && updated.length < 3) {
+        // Always try to maintain a continuous flow - add post more frequently
+        if (updated.length < 5 && posts.length > 0) {
           const randomPost = posts[Math.floor(Math.random() * posts.length)];
           updated.push({
             id: `${nextId}-${Date.now()}`,

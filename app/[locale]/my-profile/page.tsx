@@ -93,7 +93,7 @@ export default async function MyProfilePage() {
   } = await supabase.auth.getSession();
 
   if (!session) {
-    redirect('/login?message=You must be logged in to view your profile.');
+    redirect(`/${locale}/login?message=You must be logged in to view your profile.`);
   }
   const userId = session.user.id;
 

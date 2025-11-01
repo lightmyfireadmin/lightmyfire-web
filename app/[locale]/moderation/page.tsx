@@ -3,17 +3,19 @@ import { redirect } from 'next/navigation';
 import { DetailedPost } from '@/lib/types';
 import ModerationQueue from './ModerationQueue';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
+import { getCurrentLocale } from '@/locales/server';
 
 export const dynamic = 'force-dynamic';
 
 export default async function ModerationPage() {
+  const locale = await getCurrentLocale();
   const cookieStore = cookies();
   const supabase = createServerSupabaseClient(cookieStore);
 
   const { data: { session } } = await supabase.auth.getSession();
 
   if (!session) {
-    redirect('/login?message=You must be logged in to access this page.');
+    redirect(`/${locale}/login?message=You must be logged in to access this page.`);
   }
 
   const { data: profile } = await supabase
@@ -23,7 +25,7 @@ export default async function ModerationPage() {
     .single();
 
   if (profile?.role !== 'moderator') {
-    redirect('/?message=You do not have permission to access this page.');
+    redirect(`/${locale}?message=You do not have permission to access this page.`);
   }
 
   // Fetch flagged posts
