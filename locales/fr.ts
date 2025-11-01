@@ -133,4 +133,9 @@ export default {
   'save_success.button.generating': 'Génération...',
   'save_success.button.download_pdf': 'Télécharger le PDF de l\'autocollant',
   'save_success.button.go_to_lighter': 'Aller à la page de votre briquet',
+
+  'post.refuel_message': 'Recharger ! Le voyage de ce briquet continue.',
+  'post.youtube_load_error': 'Impossible de charger la vidéo YouTube (URL invalide ?).',
+
+  'home.mosaic.title': 'Histoires de la mosaïque',
 } as const;

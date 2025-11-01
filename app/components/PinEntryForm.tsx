@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase'; // Assuming lib is at root
 import Image from 'next/image';
 import { useI18n, useCurrentLocale } from '@/locales/client';
+import LoadingSpinner from '@/app/components/LoadingSpinner';
 
 export default function PinEntryForm() {
   const t = useI18n();
@@ -15,25 +16,20 @@ export default function PinEntryForm() {
   const lang = useCurrentLocale();
 
   const handlePinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const input = e.target.value;
-    // 1. Clean the input: only letters/numbers, uppercase, max 6 chars.
-    const cleaned = input.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 6);
-    
-    // 2. Handle user backspacing the hyphen (from "ABC-" to "ABC")
-    if (input.length === 3 && pin.length === 4) {
-      setPin(cleaned); // cleaned is "ABC"
-      return;
+    let input = e.target.value.toUpperCase();
+
+    // Remove all non-alphanumeric characters
+    input = input.replace(/[^A-Z0-9]/g, '');
+
+    // Limit to 6 characters
+    input = input.slice(0, 6);
+
+    // Add hyphen after 3rd character automatically
+    if (input.length > 3) {
+      input = `${input.slice(0, 3)}-${input.slice(3)}`;
     }
 
-    // 3. Add hyphen *after* 3rd char, or format 4-6 chars
-    if (cleaned.length > 3) {
-      setPin(`${cleaned.slice(0, 3)}-${cleaned.slice(3)}`); // "ABC1" -> "ABC-1"
-    } else if (cleaned.length === 3 && input.length === 3) {
-      // 4. Add hyphen *immediately* after 3rd char is typed
-      setPin(cleaned + '-'); // "ABC" -> "ABC-"
-    } else {
-      setPin(cleaned); // "A", "AB"
-    }
+    setPin(input);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -50,7 +46,6 @@ export default function PinEntryForm() {
 
     if (rpcError) {
       setError(t('home.pin_entry.error.generic'));
-      console.error(rpcError);
     } else if (data) {
       router.push(`/${lang}/lighter/${data}`);
     } else {
@@ -61,26 +56,25 @@ export default function PinEntryForm() {
   };
 
   return (
-    // Applied responsive padding
-    <div className="w-full max-w-md rounded-lg bg-background p-6 sm:p-8 shadow-md">
-      <div className="flex items-center justify-center mb-6">
+    <div className="w-full max-w-md rounded-lg bg-background p-5 sm:p-6 lg:p-8 shadow-md lg:shadow-lg">
+      <div className="flex items-center justify-center gap-2 sm:gap-3 mb-6">
         <Image
           src="/illustrations/around_the_world.png"
-          alt="Around the World"
+          alt="Found a lighter"
           width={40}
           height={40}
-          className="mr-2"
+          className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0"
         />
-        <h2 className="text-center text-3xl sm:text-4xl font-bold text-foreground">
+        <h2 className="text-center text-2xl sm:text-3xl font-bold text-foreground">
           {t('home.pin_entry.title')}
         </h2>
       </div>
-      <p className="mb-6 text-center text-lg text-muted-foreground">
+      <p className="mb-6 text-center text-sm sm:text-base text-muted-foreground leading-relaxed">
         {t('home.pin_entry.subtitle')}
       </p>
 
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
           <label
             htmlFor="pin"
             className="mb-2 block text-sm font-medium text-foreground"
@@ -93,26 +87,31 @@ export default function PinEntryForm() {
             value={pin}
             onChange={handlePinChange}
             maxLength={7}
-            className="w-full rounded-lg border border-input p-3 text-lg text-center font-mono tracking-widest bg-background focus:border-primary focus:ring-primary" // Use rounded-lg
+            className="w-full rounded-lg border border-input p-3 text-lg sm:text-xl text-center font-mono tracking-widest bg-background focus:border-primary focus:ring-2 focus:ring-primary transition"
             placeholder="ABC-123"
             required
+            aria-label={t('home.pin_entry.label')}
           />
         </div>
 
-        {error && <p className="mb-4 text-center text-sm text-error">{error}</p>} {/* Smaller error */}
+        {error && (
+          <p className="text-center text-sm text-error bg-error/10 p-3 rounded-lg">
+            {error}
+          </p>
+        )}
 
         <button
           type="submit"
           disabled={loading}
-          className="btn-primary w-full text-lg flex justify-center items-center" // Applied btn-primary
+          className="btn-primary w-full text-base sm:text-lg py-3 flex justify-center items-center gap-2 hover:shadow-lg transition-shadow duration-200"
         >
           {loading ? (
-            <>
-              <Image src="/loading.gif" alt="Loading..." width={24} height={24} unoptimized={true} className="mr-2" />
-              {t('home.pin_entry.loading')}
-            </>
+            <LoadingSpinner size="sm" color="primary-foreground" label={t('home.pin_entry.loading')} />
           ) : (
-            t('home.pin_entry.button')
+            <>
+              <span>🔓</span>
+              <span>{t('home.pin_entry.button')}</span>
+            </>
           )}
         </button>
       </form>

@@ -37,6 +37,17 @@ module.exports = {
         lg: '0.75rem',
         xl: '1rem',
       },
+      animation: {
+        'fade-in-out': 'fadeInOut 4s ease-in-out infinite',
+      },
+      keyframes: {
+        fadeInOut: {
+          '0%': { opacity: '0' },
+          '5%': { opacity: '1' },
+          '95%': { opacity: '1' },
+          '100%': { opacity: '0' },
+        },
+      },
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {

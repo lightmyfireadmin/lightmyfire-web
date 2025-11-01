@@ -5,6 +5,7 @@ import { DetailedPost } from '@/lib/types'; // Assuming lib is at root
 // If PostCard is in app/components, and buttons are in app/lighter/[id], this should be correct:
 import LikeButton from './LikeButton';
 import FlagButton from './FlagButton';
+import { useI18n } from '@/locales/client';
 import {
   ChatBubbleBottomCenterTextIcon,
   MusicalNoteIcon,
@@ -27,7 +28,6 @@ function getYouTubeEmbedId(url: string | null): string | null {
         }
         return videoId || null;
     } catch (error) {
-        console.error("Error parsing YouTube URL:", error);
         return null;
     }
 }
@@ -51,6 +51,7 @@ export default function PostCard({
   isLoggedIn: boolean;
   isMini?: boolean;
 }) {
+  const t = useI18n();
   // REMOVED the diagnostic line: return <FireIcon ... />;
 
   let embedId: string | null = null;
@@ -123,7 +124,7 @@ export default function PostCard({
             font-semibold
             ${post.post_type === 'refuel' ? 'text-orange-600' : ''}
           `}>
-             Refueled! This lighter&apos;s journey continues.
+             {t('post.refuel_message')}
           </p>
         )}
 
@@ -149,7 +150,7 @@ export default function PostCard({
           </div>
         )}
         {post.post_type === 'song' && post.content_url && !embedId && (
-            <p className="text-sm text-red-500 italic">Could not load YouTube video (invalid URL?).</p>
+            <p className="text-sm text-error italic">{t('post.youtube_load_error')}</p>
         )}
       </div>
 

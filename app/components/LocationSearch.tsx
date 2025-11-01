@@ -70,30 +70,34 @@ const LocationSearch = ({ onLocationSelect }: LocationSearchProps) => {
 
   return (
     <div className="space-y-4">
-      <div className="relative">
+      {/* Search input with dropdown overlay */}
+      <div className="relative z-10">
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full rounded-lg border border-input p-3 text-foreground bg-background focus:border-primary focus:ring-primary"
+          className="w-full rounded-lg border border-input p-3 text-foreground bg-background focus:border-primary focus:ring-2 focus:ring-primary transition"
           placeholder="Search for a location..."
+          aria-label="Search for a location"
         />
+        {/* Dropdown results - positioned above map */}
         {searchResults.length > 0 && searchQuery && (
-          <ul className="absolute z-50 w-full border border-border rounded-md bg-background max-h-60 overflow-y-auto mt-1 shadow-lg">
+          <ul className="absolute top-full left-0 right-0 z-[9999] border border-border rounded-lg bg-background max-h-60 overflow-y-auto mt-2 shadow-xl">
             {searchResults.map((result) => (
               <li
                 key={result.display_name}
                 onClick={() => handleSelectResult(result)}
-                className="p-2 cursor-pointer hover:bg-muted"
+                className="p-3 cursor-pointer hover:bg-muted transition border-b border-border last:border-b-0 text-sm"
               >
-                {result.display_name}
+                <div className="font-medium text-foreground">{result.display_name}</div>
               </li>
             ))}
           </ul>
         )}
       </div>
 
-      <div style={{ height: '300px', width: '100%' }}>
+      {/* Map container - positioned below search */}
+      <div style={{ height: '300px', width: '100%', position: 'relative', zIndex: 0 }}>
         <MapContainer center={mapCenter} zoom={13} style={{ height: '100%', width: '100%' }}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

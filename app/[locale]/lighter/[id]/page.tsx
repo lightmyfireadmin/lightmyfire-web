@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 // Assuming PostCard is inside app/components/
 import PostCard from '@/app/components/PostCard';
+import EmptyLighterPosts from '@/app/components/EmptyLighterPosts';
 import { DetailedPost } from '@/lib/types'; // Assuming lib is at root
 import type { Metadata } from 'next';
 import MapComponent from './MapComponent'; // Import MapComponent
@@ -162,9 +163,7 @@ export default async function LighterPage({
               <PostCard key={post.id} post={post} isLoggedIn={isLoggedIn} />
             ))
           ) : (
-            <p className="text-center text-muted-foreground">
-              This lighter&apos;s story is just beginning. Be the first to add to it!
-            </p>
+            <EmptyLighterPosts lighterId={lighter.id} />
           )}
         </div>
       </div>

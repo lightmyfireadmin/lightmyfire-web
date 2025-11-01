@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import SetHtmlLang from '@/app/components/SetHtmlLang';
 
 export const metadata: Metadata = {
   title: 'LightMyFire',
@@ -16,8 +17,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="body-with-bg max-w-full overflow-x-hidden">
+        <SetHtmlLang />
         <div className="px-2.5">
           {children}
         </div>

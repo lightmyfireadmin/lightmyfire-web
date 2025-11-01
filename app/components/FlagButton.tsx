@@ -40,7 +40,6 @@ export default function FlagButton({
     if (!error) {
       setIsFlagged(true);
     } else {
-      console.error(error);
       alert(t('flag.error_flagging'));
       setIsLoading(false);
     }

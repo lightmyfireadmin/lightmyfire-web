@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase'; // Assuming lib is at root
 import type { User } from '@supabase/supabase-js';
+import LoadingSpinner from '@/app/components/LoadingSpinner';
 import { useI18n } from '@/locales/client';
 
 export default function SaveLighterForm({ user }: { user: User }) {
@@ -112,9 +113,16 @@ export default function SaveLighterForm({ user }: { user: User }) {
       <button
         type="submit"
         disabled={loading}
-        className="btn-primary w-full text-lg" // Applied btn-primary
+        className="btn-primary w-full text-lg py-3 flex justify-center items-center gap-2 hover:shadow-lg transition-shadow duration-200"
       >
-        {loading ? t('save_lighter.button.saving') : t('save_lighter.button.save_lighter')}
+        {loading ? (
+          <LoadingSpinner size="sm" color="primary-foreground" label={t('save_lighter.button.saving')} />
+        ) : (
+          <>
+            <span>🔥</span>
+            <span>{t('save_lighter.button.save_lighter')}</span>
+          </>
+        )}
       </button>
     </form>
   );

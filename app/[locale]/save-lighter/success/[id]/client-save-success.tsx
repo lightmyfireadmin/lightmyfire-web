@@ -33,12 +33,12 @@ export default function ClientSaveSuccess({ id, locale }: { id: string; locale: 
           .single();
 
         if (error) {
-          console.error('supabase fetch error', error);
+          // Error handled silently
         } else if (data) {
           setLighter(data as LighterInfo);
         }
       } catch (err) {
-        console.error('fetchLighterInfo', err);
+        // Error handled silently
       } finally {
         setLoading(false);
       }
@@ -54,7 +54,7 @@ export default function ClientSaveSuccess({ id, locale }: { id: string; locale: 
       // keep the same API you had; adjust if generateStickerPDF expects a different signature
       await generateStickerPDF(lighter.name, lighter.pin_code);
     } catch (err) {
-      console.error('generateStickerPDF failed', err);
+      // Error handled by alert in generateStickerPDF
     } finally {
       setDownloading(false);
     }

@@ -2,6 +2,7 @@ import { I18nProviderClient } from '@/locales/client';
 import type { CookieOptions } from '@supabase/ssr';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
+import ToastWrapper from '@/app/components/ToastWrapper';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import CookieConsent from '@/app/components/CookieConsent';
@@ -45,14 +46,16 @@ export default async function LangLayout({
   return (
 
     <I18nProviderClient locale={locale}>
-      {/*
-        The flex column structure is now on the <body> tag in the root layout.
-        This component just renders its children in order.
-      */}
-      <Header session={session} />
-      <main className="flex-grow">{children}</main>
-      <Footer lang={locale} />
-      <CookieConsent />
+      <ToastWrapper>
+        {/*
+          The flex column structure is now on the <body> tag in the root layout.
+          This component just renders its children in order.
+        */}
+        <Header session={session} />
+        <main className="flex-grow">{children}</main>
+        <Footer lang={locale} />
+        <CookieConsent />
+      </ToastWrapper>
     </I18nProviderClient>
   );
 }

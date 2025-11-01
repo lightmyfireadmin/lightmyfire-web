@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import type { User } from '@supabase/supabase-js';
-import Image from 'next/image';
 import { countries } from '@/lib/countries';
+import LoadingSpinner from '@/app/components/LoadingSpinner';
 
 interface Profile {
   username: string;
@@ -37,7 +37,6 @@ export default function EditProfileForm({ user, profile }: { user: User; profile
 
     if (error) {
       setMessage(`Error: ${error.message}`);
-      console.error(error);
     } else {
       setMessage('Profile updated successfully!');
       // Optionally, refresh the page to show the new username in the header
@@ -93,15 +92,15 @@ export default function EditProfileForm({ user, profile }: { user: User; profile
       <button
         onClick={handleUpdateProfile}
         disabled={loading}
-        className="btn-primary flex justify-center items-center"
+        className="btn-primary flex justify-center items-center gap-2 py-3 hover:shadow-lg transition-shadow duration-200"
       >
         {loading ? (
-          <>
-            <Image src="/loading.gif" alt="Loading..." width={24} height={24} unoptimized={true} className="mr-2" />
-            Saving...
-          </>
+          <LoadingSpinner size="sm" color="primary-foreground" label="Saving..." />
         ) : (
-          'Save Profile'
+          <>
+            <span>💾</span>
+            <span>Save Profile</span>
+          </>
         )}
       </button>
       {message && <p className="text-sm text-muted-foreground">{message}</p>}

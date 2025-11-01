@@ -8,6 +8,7 @@ import { Bars3Icon, XMarkIcon, QuestionMarkCircleIcon, HeartIcon, PlusIcon, Glob
 import LogoutButton from './LogoutButton';
 import { useCurrentLocale, useI18n } from '@/locales/client';
 import Image from 'next/image';
+import { useFocusTrap } from '@/lib/hooks/useFocusTrap';
 
 // Import the new LanguageSwitcher
 import LanguageSwitcher from './LanguageSwitcher';
@@ -30,6 +31,7 @@ export default function Header({ session }: { session: Session }) {
   const isLoggedIn = session !== null;
   const lang = useCurrentLocale();
   const t = useI18n();
+  const focusTrapRef = useFocusTrap(mobileMenuOpen);
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -122,7 +124,7 @@ export default function Header({ session }: { session: Session }) {
           leaveTo="translate-x-full"
         >
           {/* FIXED SECTION: Corrected typo "i@nset-y-0" to "inset-y-0" */}
-          <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-[calc(100%-36px)] overflow-y-auto bg-background p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <Dialog.Panel ref={focusTrapRef} className="fixed inset-y-0 right-0 z-50 w-[calc(100%-36px)] overflow-y-auto bg-background p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <Link href={`/${lang}`} onClick={() => setMobileMenuOpen(false)} className="-m-1.5 p-1.5">
                 <Image src="/LOGOLONG.png" alt="LightMyFire" width={150} height={40} />

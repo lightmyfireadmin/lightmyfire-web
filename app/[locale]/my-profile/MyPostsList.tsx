@@ -4,9 +4,11 @@ import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import type { MyPostWithLighter } from '@/lib/types';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { TrashIcon } from '@heroicons/react/24/outline';
 import ConfirmModal from '@/app/components/ConfirmModal';
-import { useI18n } from '@/locales/client';
+import EmptyState from '@/app/components/EmptyState';
+import { useI18n, useCurrentLocale } from '@/locales/client';
 
 export default function MyPostsList({
   initialPosts,
@@ -18,6 +20,8 @@ export default function MyPostsList({
   
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [postToDelete, setPostToDelete] = useState<number | null>(null);
+  const router = useRouter();
+  const locale = useCurrentLocale();
 
   const handleDeleteClick = (postId: number) => {
     setPostToDelete(postId);
@@ -46,7 +50,17 @@ export default function MyPostsList({
   const t = useI18n();
 
   if (posts.length === 0) {
-    return <p className="text-sm text-muted-foreground">{t('my_posts.no_posts')}</p>;
+    return (
+      <EmptyState
+        illustration="/illustrations/telling_stories.png"
+        title={t('my_posts.no_posts_title') || 'No Stories Yet'}
+        description={t('my_posts.no_posts_description') || 'Start sharing your stories with the community. Visit a lighter to add your first post!'}
+        action={{
+          label: t('my_posts.no_posts_action') || 'Find a Lighter',
+          onClick: () => router.push(`/${locale}`),
+        }}
+      />
+    );
   }
 
   return (

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import Image from 'next/image';
+import LoadingSpinner from '@/app/components/LoadingSpinner';
 
 export default function UpdateAuthForm() {
   const [newEmail, setNewEmail] = useState('');
@@ -85,9 +86,16 @@ export default function UpdateAuthForm() {
       <button
         type="submit"
         disabled={loading}
-        className="btn-secondary"
+        className="btn-secondary flex justify-center items-center gap-2 py-2 hover:shadow-md transition-shadow duration-200"
       >
-        {loading ? 'Saving...' : 'Update Auth Details'}
+        {loading ? (
+          <LoadingSpinner size="sm" color="foreground" label="Saving..." />
+        ) : (
+          <>
+            <span>🔐</span>
+            <span>Update Auth Details</span>
+          </>
+        )}
       </button>
       {message && <p className="text-sm text-green-500">{message}</p>}
       {error && <p className="text-sm text-error">{error}</p>}

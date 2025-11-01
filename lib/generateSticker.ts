@@ -73,7 +73,6 @@ export async function generateStickerPDF(name: string, pin: string) {
     downloadFile(pdfBytes, `${name.replace(/\s+/g, '_')}-sticker.pdf`, 'application/pdf');
 
   } catch (err) {
-    console.error('Failed to generate PDF:', err);
     alert('Could not generate sticker PDF. Please try again.');
   }
 }

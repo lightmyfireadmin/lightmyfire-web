@@ -43,7 +43,6 @@ export default async function ModerationPage() {
     .order('created_at', { ascending: false });
 
   if (error) {
-    console.error('Error fetching flagged posts:', error);
     return <p className="text-center text-error">Error loading flagged posts.</p>;
   }
 
