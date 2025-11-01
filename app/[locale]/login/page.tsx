@@ -5,9 +5,13 @@ import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import { useToast } from '@/lib/context/ToastContext';
+import { useI18n } from '@/locales/client';
 
 export default function LoginPage() {
   const router = useRouter();
+  const { addToast } = useToast();
+  const t = useI18n();
 
   const getRedirectUrl = () => {
     let url =
@@ -24,6 +28,8 @@ export default function LoginPage() {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN') {
+        // Store flag in sessionStorage to show notification after reload
+        sessionStorage.setItem('showLoginNotification', 'true');
         window.location.href = '/'; // Force a full page reload
       }
     });

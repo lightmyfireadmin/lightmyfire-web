@@ -114,6 +114,8 @@ export default {
   'add_post.helper.is_public': 'If unchecked, your post will only be visible on this lighter page.',
 
   'notifications.login_success': 'Successfully logged in. Welcome back!',
+  'notifications.logout_success': 'See you next time!',
+  'notifications.signup_success': 'Account created successfully!',
   'notifications.post_success': 'Your story has been successfully added!',
   'save_lighter.form_title': 'Save a Lighter',
   'save_lighter.form_subtitle': 'You are a LightSaver! Give your lighter a name to begin its journey.',

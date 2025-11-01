@@ -114,6 +114,8 @@ export default {
   'add_post.helper.is_public': "Si vous décochez cette case, votre post ne sera visible que sur cette page de briquet.",
 
   'notifications.login_success': 'Connexion réussie. Bon retour !',
+  'notifications.logout_success': 'À bientôt !',
+  'notifications.signup_success': 'Compte créé avec succès !',
   'notifications.post_success': 'Votre histoire a été ajoutée avec succès !',
   'save_lighter.form_title': 'Sauver un briquet',
   'save_lighter.form_subtitle': 'Vous êtes un LightSaver ! Donnez un nom à votre briquet pour commencer son voyage.',

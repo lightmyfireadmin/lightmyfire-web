@@ -219,6 +219,7 @@ export default function AddPostForm({
     setLoading(true);
 
     const { data, error: rpcError } = await supabase.rpc(RPC_FUNCTIONS.CREATE_NEW_POST, {
+        p_user_id: user.id,
         p_lighter_id: lighterId,
         p_post_type: postType,
         p_title: title || null,

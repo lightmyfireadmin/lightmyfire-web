@@ -45,7 +45,7 @@ export default async function AddContributionPage({
 
   // 3. Render the form, passing the user and lighter ID
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background p-4">
+    <div className="flex min-h-screen items-center justify-center p-4">
       <AddPostForm
         user={session.user}
         lighterId={params.id}

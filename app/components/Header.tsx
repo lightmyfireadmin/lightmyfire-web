@@ -44,7 +44,7 @@ export default function Header({ session }: { session: Session }) {
     <header className="bg-background border-b border-border shadow-sm sticky top-0 z-50">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <Link href={`/${lang}`} className="-m-1.5 p-1.5">
+          <Link href={`/${lang}`} className="-m-1.5 p-1.5 rounded-lg transition-shadow duration-300 hover:shadow-lg hover:shadow-primary/30">
             <Image src="/LOGOLONG.png" alt="LightMyFire" width={150} height={40} />
           </Link>
         </div>
@@ -92,7 +92,7 @@ export default function Header({ session }: { session: Session }) {
           ) : (
             <Link
               href={`/${lang}/login`}
-              className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-background px-3 py-2 text-sm font-semibold text-foreground shadow-sm ring-1 ring-inset ring-border hover:bg-muted"
+              className="inline-flex justify-center gap-x-1.5 rounded-md bg-background px-3 py-2 text-sm font-semibold text-foreground shadow-sm ring-1 ring-inset ring-border hover:bg-muted whitespace-nowrap"
             >
               {t('nav.login_signup')}
             </Link>
@@ -101,7 +101,7 @@ export default function Header({ session }: { session: Session }) {
       </nav>
 
       {/* Mobile Menu Dialog */}
-      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -126,7 +126,7 @@ export default function Header({ session }: { session: Session }) {
           {/* FIXED SECTION: Corrected typo "i@nset-y-0" to "inset-y-0" */}
           <Dialog.Panel ref={focusTrapRef} className="fixed inset-y-0 right-0 z-50 w-[calc(100%-36px)] overflow-y-auto bg-background p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-              <Link href={`/${lang}`} onClick={() => setMobileMenuOpen(false)} className="-m-1.5 p-1.5">
+              <Link href={`/${lang}`} onClick={() => setMobileMenuOpen(false)} className="-m-1.5 p-1.5 rounded-lg transition-shadow duration-300 hover:shadow-lg hover:shadow-primary/30">
                 <Image src="/LOGOLONG.png" alt="LightMyFire" width={150} height={40} />
               </Link>
               <button

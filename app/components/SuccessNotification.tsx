@@ -4,14 +4,16 @@ import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { useI18n } from '@/locales/client';
 import { CheckCircleIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { useToast } from '@/lib/context/ToastContext';
 
 // Define a type for the keys we expect to use here.
 // This makes the code type-safe and removes the need for @ts-ignore.
-type SuccessMessageKey = 'notifications.login_success' | 'notifications.post_success';
+type SuccessMessageKey = 'notifications.login_success' | 'notifications.logout_success' | 'notifications.signup_success' | 'notifications.post_success';
 
 export default function SuccessNotification() {
   const t = useI18n();
   const searchParams = useSearchParams();
+  const { addToast } = useToast();
   const [message, setMessage] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -21,21 +23,34 @@ export default function SuccessNotification() {
       msgKey = 'notifications.login_success';
     } else if (searchParams.get('post_success') === 'true') {
       msgKey = 'notifications.post_success';
+    } else if (typeof window !== 'undefined' && sessionStorage.getItem('showLoginNotification') === 'true') {
+      // Check for login notification flag from login page redirect
+      msgKey = 'notifications.login_success';
+      sessionStorage.removeItem('showLoginNotification'); // Clear the flag
     }
 
     if (msgKey) {
-      setMessage(t(msgKey)); // No more @ts-ignore needed
+      const notificationMessage = t(msgKey);
+      // Use Toast system for newer notifications, fallback to old notification for compatibility
+      addToast({
+        type: 'success',
+        message: notificationMessage,
+        duration: 3000,
+      });
+
+      // Also keep the old notification behavior for compatibility
+      setMessage(notificationMessage);
       setIsVisible(true);
 
-      // Cache l'alerte après 5 secondes
+      // Hide the old notification after 5 seconds
       const timer = setTimeout(() => {
         setIsVisible(false);
       }, 5000);
 
-      // Nettoie le timer si le composant est démonté
+      // Clean up timer on unmount
       return () => clearTimeout(timer);
     }
-  }, [searchParams, t]);
+  }, [searchParams, t, addToast]);
 
   if (!isVisible || !message) {
     return null;

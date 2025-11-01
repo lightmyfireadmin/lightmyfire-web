@@ -50,8 +50,9 @@ export default async function Home() {
       <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-8 py-8 lg:py-12 px-4 sm:px-6">
         {/* Hero Intro - Top on mobile, left on desktop */}
         <div className="w-full lg:w-auto text-center lg:text-left max-w-md">
-          <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-4">
-            <div className="w-[100px] h-[164px] lg:w-[120px] lg:h-[197px] mx-auto lg:mx-0 flex-shrink-0">
+          {/* Title with illustration - on mobile: stacked, on desktop: side by side */}
+          <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-6">
+            <div className="w-[80px] h-[131px] lg:w-[120px] lg:h-[197px] mx-auto lg:mx-0 flex-shrink-0">
               <Image
                 src="/illustrations/thumbs_up.png"
                 alt="LightMyFire - Give lighters a second life"
@@ -63,11 +64,14 @@ export default async function Home() {
             </h1>
           </div>
 
-          <div className="flex flex-col lg:flex-row lg:items-center gap-2 justify-center lg:justify-start mb-6">
-            <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
-              {t('home.hero.subtitle')}
-            </p>
-            <InfoPopup content={t('home.hero.popup_content')} />
+          {/* Subtitle with background - below both title and illustration on mobile */}
+          <div className="rounded-lg bg-primary/5 p-4 mb-6">
+            <div className="flex flex-col lg:flex-row lg:items-center gap-2 justify-center lg:justify-start">
+              <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
+                {t('home.hero.subtitle')}
+              </p>
+              <InfoPopup content={t('home.hero.popup_content')} />
+            </div>
           </div>
         </div>
 
@@ -86,7 +90,7 @@ export default async function Home() {
           <Image
             src="/illustrations/CTA_rainbow_arrow.png"
             alt="Arrow pointing to save lighter button"
-            className="absolute top-1/2 -translate-y-1/2 w-[60px] h-[60px] lg:w-[100px] lg:h-[100px] right-[calc(100%-10px)] lg:right-[calc(100%+15px)]"
+            className="absolute top-1/2 -translate-y-1/2 w-[60px] h-[60px] lg:w-[100px] lg:h-[100px] left-[calc(100%-10px)] lg:left-[calc(100%+15px)]"
             priority
           />
         </div>
