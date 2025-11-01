@@ -1,13 +1,12 @@
 import { I18nProviderClient } from '@/locales/client';
-import type { CookieOptions } from '@supabase/ssr';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import ToastWrapper from '@/app/components/ToastWrapper';
 import WelcomeBanner from '@/app/components/WelcomeBanner';
-import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import CookieConsent from '@/app/components/CookieConsent';
 import React from 'react';
+import { createServerSupabaseClient } from '@/lib/supabase-server';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,24 +18,7 @@ export default async function LangLayout({
   params: { locale: string };
 }) {
   const cookieStore = cookies();
-
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value;
-        },
-        set(name: string, value: string, options: CookieOptions) {
-          cookieStore.set({ name, value, ...options });
-        },
-        remove(name: string, options: CookieOptions) {
-          cookieStore.set({ name, value: '', ...options });
-        },
-      },
-    }
-  );
+  const supabase = createServerSupabaseClient(cookieStore);
 
   const {
     data: { session },

@@ -1,4 +1,3 @@
-import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -12,6 +11,7 @@ import { Suspense } from 'react';
 import SuccessNotification from '@/app/components/SuccessNotification';
 import Image from 'next/image';
 import { PlusIcon } from '@heroicons/react/24/outline';
+import { createServerSupabaseClient } from '@/lib/supabase-server';
 
 // --- generateMetadata Function (Remains the same) ---
 export async function generateMetadata({
@@ -20,17 +20,7 @@ export async function generateMetadata({
   params: { id: string; locale: string };
 }): Promise<Metadata> {
   const cookieStore = cookies();
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value;
-        },
-      },
-    }
-  );
+  const supabase = createServerSupabaseClient(cookieStore);
   const { data: lighter } = await supabase
     .from('lighters')
     .select('name, custom_background_url')
@@ -76,17 +66,7 @@ export default async function LighterPage({
   params: { id: string; locale: string };
 }) {
   const cookieStore = cookies();
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value;
-        },
-      },
-    }
-  );
+  const supabase = createServerSupabaseClient(cookieStore);
 
   const {
     data: { session },

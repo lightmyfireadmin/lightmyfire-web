@@ -1,4 +1,3 @@
-import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import PinEntryForm from '@/app/components/PinEntryForm';
 import PostCard from '@/app/components/PostCard';
@@ -11,6 +10,7 @@ import InfoPopup from '@/app/components/InfoPopup';
 import { Suspense } from 'react';
 import SuccessNotification from '@/app/components/SuccessNotification';
 import { HeartIcon } from '@heroicons/react/24/outline';
+import { createServerSupabaseClient } from '@/lib/supabase-server';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,23 +18,7 @@ export default async function Home() {
   const t = await getI18n();
   const cookieStore = cookies();
   const locale = await getCurrentLocale();
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value;
-        },
-        set(name: string, value: string, options: CookieOptions) {
-          cookieStore.set({ name, value, ...options });
-        },
-        remove(name: string, options: CookieOptions) {
-          cookieStore.set({ name, value: '', ...options });
-        },
-      },
-    }
-  );
+  const supabase = createServerSupabaseClient(cookieStore);
 
   const {
     data: { session },

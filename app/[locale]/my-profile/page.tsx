@@ -1,4 +1,3 @@
-import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
@@ -11,11 +10,8 @@ import ProfileHeader from './ProfileHeader';
 // Corrected: Import types from the central lib/types.ts file
 import type { MyPostWithLighter, Trophy } from '@/lib/types';
 import Image from 'next/image'; // Import Image component
-
-// --- ADDED ---
-// Import the server-side translation function and locale getter
 import { getI18n, getCurrentLocale } from '@/locales/server';
-// --- END ADDED ---
+import { createServerSupabaseClient } from '@/lib/supabase-server';
 
 export const dynamic = 'force-dynamic';
 
@@ -86,24 +82,11 @@ function calculatePoints(stats: {
 }
 
 export default async function MyProfilePage() {
-  // --- ADDED ---
-  // Call the translation function and get current locale
   const t = await getI18n();
   const locale = await getCurrentLocale();
-  // --- END ADDED ---
 
   const cookieStore = cookies();
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value;
-        },
-      },
-    }
-  );
+  const supabase = createServerSupabaseClient(cookieStore);
 
   const {
     data: { session },
@@ -207,7 +190,7 @@ export default async function MyProfilePage() {
       )}
 
       {/* Stats Grid */}
-      <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4">
         <StatCard label="Contributions" value={stats.total_contributions} icon="📝" />
         <StatCard label="Lighters Saved" value={stats.lighters_saved} icon="🔥" />
         <StatCard label="Stories Joined" value={stats.lighters_contributed_to} icon="📖" />
@@ -251,14 +234,17 @@ export default async function MyProfilePage() {
 
         {/* Edit Profile Section */}
         <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between gap-4 mb-4">
             <h2 className="text-xl font-semibold text-foreground">Edit Profile</h2>
-            <Image
-              src="/illustrations/personalise.png"
-              alt="Personalise"
-              width={80}
-              height={80}
-            />
+            <div className="h-16 w-16 flex-shrink-0">
+              <Image
+                src="/illustrations/personalise.png"
+                alt="Personalise"
+                width={64}
+                height={64}
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
           {profile && <EditProfileForm user={session.user} profile={profile} />}
         </div>
@@ -276,12 +262,12 @@ export default async function MyProfilePage() {
 // StatCard helper component
 function StatCard({ label, value, icon }: { label: string; value: number; icon?: string }) {
   return (
-    <div className="rounded-lg border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10 p-5 shadow-md hover:shadow-lg hover:border-primary/40 transition-all duration-200 group">
+    <div className="rounded-lg border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10 p-4 shadow-md hover:shadow-lg hover:border-primary/40 transition-all duration-200 group">
       <div className="flex items-start justify-between mb-2">
         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">{label}</p>
-        {icon && <span className="text-2xl group-hover:scale-110 transition-transform">{icon}</span>}
+        {icon && <span className="text-xl sm:text-2xl group-hover:scale-110 transition-transform">{icon}</span>}
       </div>
-      <p className="text-4xl font-bold text-primary">{value ?? 0}</p>
+      <p className="text-3xl sm:text-4xl font-bold text-primary">{value ?? 0}</p>
       <div className="mt-2 h-1 w-full bg-primary/20 rounded-full overflow-hidden">
         <div
           className="h-full bg-gradient-to-r from-primary to-primary/60 transition-all duration-500"

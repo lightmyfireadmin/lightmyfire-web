@@ -75,7 +75,7 @@ export default function PostCard({
       ${post.post_type === 'song' ? 'border-red-500' : ''}
       ${post.post_type === 'refuel' ? 'border-orange-500' : ''}
       ${!post.post_type ? 'border-border' : ''} /* Fallback border */
-      ${isMini ? 'shadow-md opacity-95' : ''}
+      ${isMini ? 'shadow-md opacity-90' : ''}
       ${isRefuelPost ? 'py-3 pl-4 pr-5' : 'py-5 pl-5 pr-5'}
     `}>
 

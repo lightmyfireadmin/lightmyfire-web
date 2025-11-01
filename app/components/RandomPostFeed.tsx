@@ -6,16 +6,24 @@ import { DetailedPost } from '@/lib/types';
 import { useI18n } from '@/locales/client';
 import PostCard from './PostCard';
 
+interface AnimatingPost {
+  id: string;
+  post: DetailedPost;
+  position: number; // 0-100 for vertical position
+}
+
 const RandomPostFeed = () => {
   const t = useI18n();
   const [posts, setPosts] = useState<DetailedPost[]>([]);
-  const [visiblePostIndex1, setVisiblePostIndex1] = useState(0);
-  const [visiblePostIndex2, setVisiblePostIndex2] = useState(1);
+  const [animatingPosts, setAnimatingPosts] = useState<AnimatingPost[]>([]);
+  const [isPaused, setIsPaused] = useState(false);
+  const [nextId, setNextId] = useState(0);
 
+  // Fetch posts on mount
   useEffect(() => {
     const fetchPosts = async () => {
       const { data } = await supabase.rpc('get_random_public_posts', {
-        limit_count: 5,
+        limit_count: 10,
       });
       if (data) {
         setPosts(data);
@@ -24,31 +32,45 @@ const RandomPostFeed = () => {
     fetchPosts();
   }, []);
 
+  // Animation loop - moves posts up, fades them out, removes them when done
   useEffect(() => {
-    if (posts.length === 0) return;
+    if (posts.length === 0 || isPaused) return;
 
-    // Post 1 changes every 7 seconds (1s fade + 3s extra stay + original 3s)
-    const interval1 = setInterval(() => {
-      setVisiblePostIndex1((prevIndex) => (prevIndex + 2) % posts.length);
-    }, 7000);
+    const animationLoop = setInterval(() => {
+      setAnimatingPosts((prevPosts) => {
+        let updated = prevPosts
+          .map((p) => ({
+            ...p,
+            position: p.position + 1.5, // Slow scroll speed: 1.5% per frame (60fps = ~6 seconds full height)
+          }))
+          .filter((p) => p.position < 120); // Remove when past top (with fade)
 
-    // Post 2 is staggered by 1 second - declare interval2 outside setTimeout
-    let interval2: NodeJS.Timeout | undefined;
-    const timeout2 = setTimeout(() => {
-      interval2 = setInterval(() => {
-        setVisiblePostIndex2((prevIndex) => (prevIndex + 2) % posts.length);
-      }, 7000);
-    }, 1000);
+        // Add new post at bottom occasionally
+        if (Math.random() < 0.3 && updated.length < 3) {
+          const randomPost = posts[Math.floor(Math.random() * posts.length)];
+          updated.push({
+            id: `${nextId}-${Date.now()}`,
+            post: randomPost,
+            position: 0,
+          });
+          setNextId((prev) => prev + 1);
+        }
 
-    return () => {
-      clearInterval(interval1);
-      clearTimeout(timeout2);
-      // ✅ Now properly cleaned up
-      if (interval2) clearInterval(interval2);
-    };
-  }, [posts]);
+        return updated;
+      });
+    }, 50); // ~60fps animation
 
-  if (posts.length < 2) {
+    return () => clearInterval(animationLoop);
+  }, [posts, isPaused, nextId]);
+
+  // Calculate opacity based on position (fade at top)
+  const getOpacity = (position: number): number => {
+    if (position < 10) return 1; // Full opacity at bottom
+    if (position > 85) return Math.max(0, 1 - (position - 85) / 15); // Fade out near top
+    return 1;
+  };
+
+  if (posts.length === 0) {
     return null;
   }
 
@@ -61,29 +83,55 @@ const RandomPostFeed = () => {
         {t('home.mosaic.subtitle')}
       </p>
 
-      {/* Fixed container to prevent layout shift */}
-      <div className="relative flex flex-col md:flex-row justify-center gap-5">
-        {/* Post 1 - Fixed height container */}
-        <div className="w-full md:w-1/2 max-w-sm min-h-[280px] flex items-start mx-auto md:mx-0">
-          <div key={`post1-${visiblePostIndex1}`} className="w-full animate-fade-in-out opacity-95">
-            <PostCard
-              post={posts[visiblePostIndex1]}
-              isLoggedIn={false}
-              isMini={true}
-            />
-          </div>
+      {/* Single column infinite scroll container */}
+      <div
+        className="relative mx-auto w-full max-w-sm h-[500px] overflow-hidden rounded-lg border border-border bg-background/50 backdrop-blur-sm"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => setIsPaused(false)}
+      >
+        {/* Gradient overlays for fade effect */}
+        <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
+
+        {/* Scrolling posts */}
+        <div className="relative w-full h-full">
+          {animatingPosts.map((animPost) => (
+            <div
+              key={animPost.id}
+              className="absolute w-full px-4 transition-opacity duration-300"
+              style={{
+                top: `${animPost.position}%`,
+                transform: 'translateY(-50%)',
+                opacity: getOpacity(animPost.position),
+                pointerEvents: animPost.position > 15 && animPost.position < 85 ? 'auto' : 'none',
+              }}
+            >
+              <PostCard
+                post={animPost.post}
+                isLoggedIn={false}
+                isMini={true}
+              />
+            </div>
+          ))}
         </div>
 
-        {/* Post 2 - Fixed height container */}
-        <div className="w-full md:w-1/2 max-w-sm min-h-[280px] flex items-start mx-auto md:mx-0">
-          <div key={`post2-${visiblePostIndex2}`} className="w-full animate-fade-in-out opacity-95">
-            <PostCard
-              post={posts[visiblePostIndex2]}
-              isLoggedIn={false}
-              isMini={true}
-            />
+        {/* Pause indicator */}
+        {isPaused && animatingPosts.length > 0 && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/20 z-20 rounded-lg">
+            <div className="text-white text-sm font-medium opacity-75">⏸ Paused</div>
           </div>
-        </div>
+        )}
+
+        {/* Empty state */}
+        {animatingPosts.length === 0 && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <p className="text-muted-foreground text-center px-4">
+              {t('home.mosaic.no_stories')}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

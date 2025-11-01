@@ -88,22 +88,20 @@ export default function ProfileHeader({
         </div>
       </div>
 
-      {/* Level Progress Bar */}
+      {/* Level Progress Bar - Compact, no extra height */}
       {level < 100 && (
-        <div className="mb-6">
-          <div className="flex justify-between text-xs mb-2">
-            <span className="font-medium text-foreground">Level {level}</span>
-            <span className="font-medium text-foreground">Level {level + 1}</span>
-          </div>
-          <div className="w-full h-2 bg-muted rounded-full overflow-hidden border border-border/50">
+        <div className="mb-2 mt-2">
+          <div className="relative w-full h-1.5 bg-muted rounded-full overflow-hidden border border-border/50">
             <div
               className="h-full bg-gradient-to-r from-primary to-primary/70 transition-all duration-300"
               style={{ width: `${progressPercentage}%` }}
             />
           </div>
-          <p className="text-xs text-muted-foreground mt-1 text-center">
-            {pointsInCurrentLevel} / {pointsNeededForNextLevel} points
-          </p>
+          <div className="flex justify-between text-xs mt-0.5 text-muted-foreground">
+            <span>Lvl {level}</span>
+            <span>{pointsInCurrentLevel} / {pointsNeededForNextLevel}</span>
+            <span>Lvl {level + 1}</span>
+          </div>
         </div>
       )}
 

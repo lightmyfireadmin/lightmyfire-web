@@ -1,27 +1,16 @@
-import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import SaveLighterFlow from './SaveLighterFlow'; // Import new flow component
 import { getI18n } from '@/locales/server';
 import Image from 'next/image';
+import { createServerSupabaseClient } from '@/lib/supabase-server';
 
 export const dynamic = 'force-dynamic';
 
 export default async function SaveLighterPage() {
   const t = await getI18n();
   const cookieStore = cookies();
-
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value;
-        },
-      },
-    }
-  );
+  const supabase = createServerSupabaseClient(cookieStore);
 
   const {
     data: { session },
