@@ -53,6 +53,7 @@ export default {
   'add_post.error.no_location_selected': 'Please enter valid latitude and longitude.',
   'add_post.error.rpc_error': 'Error: {message}',
   'add_post.error.unexpected': 'An unexpected error occurred. Please try again.',
+  'add_post.error.youtube_search_failed': 'Failed to search YouTube. Please try again.',
   'add_post.placeholder.text': 'Your poem, your story, your thoughts...',
   'add_post.song_input_mode.url': 'URL',
   'add_post.song_input_mode.search': 'Search',

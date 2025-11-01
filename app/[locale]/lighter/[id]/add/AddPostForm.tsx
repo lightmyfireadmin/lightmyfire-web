@@ -59,7 +59,6 @@ export default function AddPostForm({
   };
 
   const searchYouTube = async (query: string) => {
-    console.log('YouTube API Key:', process.env.NEXT_PUBLIC_YOUTUBE_API_KEY);
     if (!query) {
       setYoutubeSearchResults([]);
       return;
@@ -68,18 +67,22 @@ export default function AddPostForm({
     setError('');
     try {
       const response = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&key=${process.env.NEXT_PUBLIC_YOUTUBE_API_KEY}`
+        '/api/youtube-search',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query })
+        }
       );
       const data = await response.json();
       if (data.error) {
-        setError(`YouTube API Error: ${data.error.message}`);
+        setError(t('add_post.error.youtube_search_failed'));
         setYoutubeSearchResults([]);
       } else {
         setYoutubeSearchResults(data.items || []);
       }
     } catch (err) {
-      console.error('YouTube Search Error:', err);
-      setError('Failed to search YouTube. Please try again.');
+      setError(t('add_post.error.youtube_search_failed'));
       setYoutubeSearchResults([]);
     }
     setYoutubeSearchLoading(false);
