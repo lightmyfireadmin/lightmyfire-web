@@ -190,7 +190,7 @@ export default async function MyProfilePage() {
       )}
 
       {/* Stats Grid */}
-      <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4">
+      <div className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-4">
         <StatCard label="Contributions" value={stats.total_contributions} icon="📝" />
         <StatCard label="Lighters Saved" value={stats.lighters_saved} icon="🔥" />
         <StatCard label="Stories Joined" value={stats.lighters_contributed_to} icon="📖" />
@@ -261,13 +261,22 @@ export default async function MyProfilePage() {
 
 // StatCard helper component
 function StatCard({ label, value, icon }: { label: string; value: number; icon?: string }) {
+  // Determine responsive font size based on value length
+  const valueStr = (value ?? 0).toString();
+  const isTwoDigits = valueStr.length <= 2;
+  const isThreeDigits = valueStr.length === 3;
+
   return (
     <div className="rounded-lg border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10 p-4 shadow-md hover:shadow-lg hover:border-primary/40 transition-all duration-200 group">
       <div className="flex items-start justify-between mb-2">
         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">{label}</p>
-        {icon && <span className="text-xl sm:text-2xl group-hover:scale-110 transition-transform">{icon}</span>}
+        {icon && <span className="text-lg sm:text-xl group-hover:scale-110 transition-transform">{icon}</span>}
       </div>
-      <p className="text-3xl sm:text-4xl font-bold text-primary">{value ?? 0}</p>
+      <p className={`${
+        isTwoDigits ? 'text-3xl sm:text-4xl' :
+        isThreeDigits ? 'text-2xl sm:text-3xl' :
+        'text-xl sm:text-2xl'
+      } font-bold text-primary line-clamp-1`}>{value ?? 0}</p>
       <div className="mt-2 h-1 w-full bg-primary/20 rounded-full overflow-hidden">
         <div
           className="h-full bg-gradient-to-r from-primary to-primary/60 transition-all duration-500"

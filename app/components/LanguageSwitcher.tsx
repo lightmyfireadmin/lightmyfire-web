@@ -6,37 +6,11 @@ import { Menu, Transition } from '@headlessui/react';
 import { GlobeAltIcon } from '@heroicons/react/24/outline';
 import { useCurrentLocale } from '@/locales/client';
 import { i18n } from '@/locales/config';
+import { languageNames } from '@/locales/languages';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
-
-// Language names in their native language
-const languageNames: Record<string, string> = {
-  en: 'English',
-  ar: 'العربية',
-  de: 'Deutsch',
-  es: 'Español',
-  fa: 'فارسی',
-  fr: 'Français',
-  hi: 'हिन्दी',
-  id: 'Bahasa Indonesia',
-  it: 'Italiano',
-  ja: '日本語',
-  ko: '한국어',
-  mr: 'मराठी',
-  nl: 'Nederlands',
-  pl: 'Polski',
-  pt: 'Português',
-  ru: 'Русский',
-  te: 'తెలుగు',
-  th: 'ไทย',
-  tr: 'Türkçe',
-  uk: 'Українська',
-  ur: 'اردو',
-  vi: 'Tiếng Việt',
-  'zh-CN': '中文 (简体)',
-};
 
 export default function LanguageSwitcher() {
   const currentLocale = useCurrentLocale();
@@ -45,19 +19,21 @@ export default function LanguageSwitcher() {
 
   const handleLocaleChange = (newLocale: string) => {
     // Replace the current locale in the pathname with the new one
-    const segments = pathname.split('/');
     // segments[0] is empty (before the first /), segments[1] is the locale
+    const segments = pathname.split('/');
     segments[1] = newLocale;
     const newPathname = segments.join('/');
+
+    // Push to the new pathname, preserving the current page
     router.push(newPathname);
   };
 
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-background px-3 py-2 text-sm font-semibold text-foreground shadow-sm ring-1 ring-inset ring-border hover:bg-muted">
+        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-background px-3 py-2 text-sm font-semibold text-foreground shadow-sm ring-1 ring-inset ring-border hover:bg-muted whitespace-nowrap">
           <GlobeAltIcon className="h-5 w-5 text-muted-foreground" aria-hidden="true" />
-          {languageNames[currentLocale]}
+          {languageNames[currentLocale as keyof typeof languageNames]?.nativeName || currentLocale}
         </Menu.Button>
       </div>
 
@@ -70,7 +46,7 @@ export default function LanguageSwitcher() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-background shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 z-10 mt-2 max-h-96 overflow-y-auto w-48 origin-top-right rounded-md bg-background shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             {i18n.locales.map((locale) => (
               <Menu.Item key={locale}>
@@ -83,7 +59,7 @@ export default function LanguageSwitcher() {
                       'block px-4 py-2 text-sm w-full text-left'
                     )}
                   >
-                    {languageNames[locale]}
+                    {languageNames[locale as keyof typeof languageNames]?.nativeName || locale}
                   </button>
                 )}
               </Menu.Item>

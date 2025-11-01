@@ -4,7 +4,7 @@ import React, { useState, Fragment, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Dialog, Transition } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon, QuestionMarkCircleIcon, HeartIcon, PlusIcon, GlobeAltIcon, UserIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, XMarkIcon, QuestionMarkCircleIcon, HeartIcon, PlusIcon, GlobeAltIcon, UserIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import LogoutButton from './LogoutButton';
 import { useCurrentLocale, useI18n } from '@/locales/client';
 import Image from 'next/image';
@@ -70,7 +70,16 @@ export default function Header({ session, username }: { session: Session | null;
         <div className="flex lg:flex-1">
           <LogoLink href={`/${lang}`} lang={lang} />
         </div>
-        <div className="flex lg:hidden">
+        <div className="flex lg:hidden gap-2">
+          <Link
+            href={`/${lang}`}
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-foreground hover:bg-muted"
+            aria-label="Search for lighter"
+            title="Find a lighter"
+          >
+            <span className="sr-only">Search lighter</span>
+            <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
+          </Link>
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-foreground hover:bg-muted"
@@ -86,6 +95,17 @@ export default function Header({ session, username }: { session: Session | null;
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-8">
+          <Link
+            href={`/${lang}`}
+            className={classNames(
+              pathname === `/${lang}` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary',
+              'text-sm leading-6 flex items-center'
+            )}
+            aria-label="Search lighter"
+            title="Find a lighter"
+          >
+            <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
+          </Link>
           {navigation.map((item) => (
             <Link
               key={item.key}
@@ -182,19 +202,23 @@ export default function Header({ session, username }: { session: Session | null;
                     </Link>
                   )}
                 </div>
-                <div className="py-6 space-y-4">
-                  <LanguageSwitcher />
-                  {isLoggedIn ? (
-                    <LogoutButton />
-                  ) : (
-                    <Link
-                      href={`/${lang}/login`}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-foreground hover:bg-muted"
-                    >
-                      {t('nav.login_signup')}
-                    </Link>
-                  )}
+                <div className="py-6 space-y-3 border-t border-border">
+                  <div>
+                    <LanguageSwitcher />
+                  </div>
+                  <div>
+                    {isLoggedIn ? (
+                      <LogoutButton isMobileMenu={true} />
+                    ) : (
+                      <Link
+                        href={`/${lang}/login`}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-foreground hover:bg-muted bg-background ring-1 ring-border w-full text-center"
+                      >
+                        {t('nav.login_signup')}
+                      </Link>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

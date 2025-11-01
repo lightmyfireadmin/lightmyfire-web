@@ -59,13 +59,15 @@ export default function PinEntryForm() {
   return (
     <div className="w-full max-w-md rounded-lg bg-background p-5 sm:p-6 lg:p-8 shadow-md lg:shadow-lg">
       <div className="flex items-center justify-center gap-2 sm:gap-3 mb-6">
-        <Image
-          src="/illustrations/around_the_world.png"
-          alt="Found a lighter"
-          width={40}
-          height={40}
-          className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0"
-        />
+        <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center">
+          <Image
+            src="/illustrations/around_the_world.png"
+            alt="Found a lighter"
+            width={48}
+            height={48}
+            className="w-full h-full object-contain"
+          />
+        </div>
         <h2 className="text-center text-2xl sm:text-3xl font-bold text-foreground">
           {t('home.pin_entry.title')}
         </h2>

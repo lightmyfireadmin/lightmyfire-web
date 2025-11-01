@@ -5,7 +5,11 @@ import { useRouter } from 'next/navigation';
 import { useI18n } from '@/locales/client';
 import { useToast } from '@/lib/context/ToastContext';
 
-export default function LogoutButton() {
+interface LogoutButtonProps {
+  isMobileMenu?: boolean;
+}
+
+export default function LogoutButton({ isMobileMenu = false }: LogoutButtonProps) {
   const router = useRouter();
   const t = useI18n();
   const { addToast } = useToast();
@@ -23,7 +27,11 @@ export default function LogoutButton() {
   return (
     <button
       onClick={handleLogout}
-      className="inline-flex justify-center gap-x-1.5 rounded-md bg-background px-3 py-2 text-sm font-semibold text-foreground shadow-sm ring-1 ring-inset ring-border hover:bg-muted whitespace-nowrap"
+      className={`${
+        isMobileMenu
+          ? 'block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-foreground hover:bg-muted bg-background ring-1 ring-border w-full text-center'
+          : 'inline-flex justify-center gap-x-1.5 rounded-md bg-background px-3 py-2 text-sm font-semibold text-foreground shadow-sm ring-1 ring-inset ring-border hover:bg-muted whitespace-nowrap'
+      }`}
     >
       {t('nav.logout')}
     </button>

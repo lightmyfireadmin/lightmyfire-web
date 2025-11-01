@@ -32,7 +32,7 @@ const RandomPostFeed = () => {
     fetchPosts();
   }, []);
 
-  // Animation loop - moves posts up, fades them out, removes them when done
+  // Animation loop - moves posts DOWN from top to bottom, fades them out, removes them when done
   useEffect(() => {
     if (posts.length === 0 || isPaused) return;
 
@@ -41,17 +41,17 @@ const RandomPostFeed = () => {
         let updated = prevPosts
           .map((p) => ({
             ...p,
-            position: p.position + 1.5, // Slow scroll speed: 1.5% per frame (60fps = ~6 seconds full height)
+            position: p.position + 0.5, // Reduced speed: 0.5% per frame (divide by 3 from original 1.5)
           }))
-          .filter((p) => p.position < 120); // Remove when past top (with fade)
+          .filter((p) => p.position < 120); // Remove when past bottom (with fade)
 
-        // Add new post at bottom occasionally
+        // Add new post at top occasionally
         if (Math.random() < 0.3 && updated.length < 3) {
           const randomPost = posts[Math.floor(Math.random() * posts.length)];
           updated.push({
             id: `${nextId}-${Date.now()}`,
             post: randomPost,
-            position: 0,
+            position: -100, // Start at top (above viewport)
           });
           setNextId((prev) => prev + 1);
         }
@@ -63,10 +63,10 @@ const RandomPostFeed = () => {
     return () => clearInterval(animationLoop);
   }, [posts, isPaused, nextId]);
 
-  // Calculate opacity based on position (fade at top)
+  // Calculate opacity based on position (fade at top and bottom)
   const getOpacity = (position: number): number => {
-    if (position < 10) return 1; // Full opacity at bottom
-    if (position > 85) return Math.max(0, 1 - (position - 85) / 15); // Fade out near top
+    if (position < -10) return Math.max(0, 1 + (position + 10) / 15); // Fade in from top
+    if (position > 85) return Math.max(0, 1 - (position - 85) / 15); // Fade out at bottom
     return 1;
   };
 
@@ -102,7 +102,7 @@ const RandomPostFeed = () => {
               key={animPost.id}
               className="absolute w-full px-4 transition-opacity duration-300"
               style={{
-                top: `${animPost.position}%`,
+                top: `calc(${animPost.position}% + 20px)`, // Add 20px gap between posts
                 transform: 'translateY(-50%)',
                 opacity: getOpacity(animPost.position),
                 pointerEvents: animPost.position > 15 && animPost.position < 85 ? 'auto' : 'none',
@@ -116,13 +116,6 @@ const RandomPostFeed = () => {
             </div>
           ))}
         </div>
-
-        {/* Pause indicator */}
-        {isPaused && animatingPosts.length > 0 && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/20 z-20 rounded-lg">
-            <div className="text-white text-sm font-medium opacity-75">⏸ Paused</div>
-          </div>
-        )}
 
         {/* Empty state */}
         {animatingPosts.length === 0 && (

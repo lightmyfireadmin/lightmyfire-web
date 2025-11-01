@@ -9,6 +9,7 @@ import RandomPostFeed from '@/app/components/RandomPostFeed';
 import InfoPopup from '@/app/components/InfoPopup';
 import { Suspense } from 'react';
 import SuccessNotification from '@/app/components/SuccessNotification';
+import SignupWelcomeModal from '@/app/components/SignupWelcomeModal';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 
@@ -29,6 +30,9 @@ export default async function Home() {
     <div>
       <Suspense fallback={null}>
         <SuccessNotification />
+      </Suspense>
+      <Suspense fallback={null}>
+        <SignupWelcomeModal />
       </Suspense>
 
       {/* Hero Section: Stack vertically on mobile, side-by-side on desktop */}
@@ -69,7 +73,7 @@ export default async function Home() {
       </div>
 
       {/* Become a LightSaver Section */}
-      <div className="mx-auto w-full max-w-4xl px-4 py-8 lg:py-12 mb-6 lg:mb-3">
+      <div className="mx-auto w-full max-w-4xl px-4 py-8 lg:py-12 mb-6 lg:mb-1.5">
         <div className="rounded-lg border border-border bg-background/95 p-8 sm:p-10 shadow-md">
           <h2 className="mb-4 text-center text-2xl sm:text-3xl font-bold text-foreground">
             {t('home.become_lightsaver.title')}
