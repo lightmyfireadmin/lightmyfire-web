@@ -93,7 +93,9 @@ if (typeof window === 'undefined' && process.env.NODE_ENV === 'development') {
   }
 }
 
-export default {
+const envUtils = {
   validateEnvironmentVariables,
   getEnvVar,
 };
+
+export default envUtils;

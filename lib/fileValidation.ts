@@ -146,10 +146,12 @@ export function generateSafeFilename(
   return `${userId}-${timestamp}-${sanitized}.${extension}`;
 }
 
-export default {
+const fileValidationUtils = {
   validateFile,
   validateFileSize,
   validateFileSignature,
   sanitizeFilename,
   generateSafeFilename,
 };
+
+export default fileValidationUtils;

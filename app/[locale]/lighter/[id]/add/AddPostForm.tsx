@@ -104,7 +104,7 @@ export default function AddPostForm({
     return () => {
       clearTimeout(handler);
     };
-  }, [youtubeSearchQuery, songInputMode]);
+  }, [youtubeSearchQuery, songInputMode, searchYouTube]);
 
   // Handle keyboard navigation for YouTube search results
   const handleYoutubeSearchKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -416,7 +416,7 @@ export default function AddPostForm({
         {loading || uploading ? (
           <LoadingSpinner
             size="sm"
-            color="primary-foreground"
+            color="foreground"
             label={uploading ? t('add_post.button.uploading') : t('add_post.button.posting')}
           />
         ) : (

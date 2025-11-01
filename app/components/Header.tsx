@@ -38,7 +38,7 @@ export default function Header({ session }: { session: Session }) {
     if (mobileMenuOpen) {
       setMobileMenuOpen(false);
     }
-  }, [pathname]);
+  }, [pathname, mobileMenuOpen]);
 
   return (
     <header className="bg-background border-b border-border shadow-sm sticky top-0 z-50">

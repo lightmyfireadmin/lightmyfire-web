@@ -2,6 +2,7 @@ import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { DetailedPost } from '@/lib/types';
+import ModerationQueue from './ModerationQueue';
 
 export const dynamic = 'force-dynamic';
 
@@ -48,29 +49,21 @@ export default async function ModerationPage() {
 
   return (
     <div className="mx-auto max-w-4xl p-4 sm:p-6 lg:p-8">
-      <h1 className="mb-6 text-center text-3xl font-bold text-foreground">Moderation Queue</h1>
-      <p className="mb-4 text-muted-foreground">Posts that have been flagged for review.</p>
+      <h1 className="mb-2 text-center text-3xl font-bold text-foreground">🛡️ Moderation Queue</h1>
+      <p className="mb-6 text-center text-muted-foreground">
+        Posts that have been flagged by the community for review.
+      </p>
 
-      <div className="space-y-4">
-        {flaggedPosts && flaggedPosts.length > 0 ? (
-          flaggedPosts.map((post: DetailedPost) => (
-            <div key={post.id} className="border border-border rounded-lg p-4 shadow-sm">
-              <p className="font-semibold">Post ID: {post.id}</p>
-              <p>Lighter ID: {post.lighter_id}</p>
-              <p>User: {post.username}</p>
-              <p>Type: {post.post_type}</p>
-              <p>Title: {post.title}</p>
-              <p>Content: {post.content_text || post.content_url || post.location_name}</p>
-              <div className="mt-4 flex gap-2">
-                <button className="btn-primary">Reinstate</button>
-                <button className="btn-secondary">Delete</button>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p className="text-center text-muted-foreground">No posts currently in the moderation queue.</p>
-        )}
-      </div>
+      {flaggedPosts && flaggedPosts.length > 0 ? (
+        <ModerationQueue initialPosts={flaggedPosts} />
+      ) : (
+        <div className="text-center py-12">
+          <p className="text-lg text-muted-foreground mb-2">✓ No posts in queue</p>
+          <p className="text-sm text-muted-foreground">
+            The moderation queue is clean. All flagged posts have been reviewed.
+          </p>
+        </div>
+      )}
     </div>
   );
 }

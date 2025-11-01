@@ -111,8 +111,8 @@ export default function PrivacyPolicy() {
 
             <h3>5.2. Location Data</h3>
             <p>
-              When you create a "location" post, you have the option to provide geographical coordinates (latitude and longitude).
-              This data is used to display the lighter's journey on a map. This information is publicly visible on the lighter's page.
+              When you create a &quot;location&quot; post, you have the option to provide geographical coordinates (latitude and longitude).
+              This data is used to display the lighter&apos;s journey on a map. This information is publicly visible on the lighter&apos;s page.
               You are responsible for the accuracy and privacy implications of any location data you choose to share.
             </p>
 

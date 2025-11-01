@@ -5,7 +5,9 @@ import { DetailedPost } from '@/lib/types'; // Assuming lib is at root
 // If PostCard is in app/components, and buttons are in app/lighter/[id], this should be correct:
 import LikeButton from './LikeButton';
 import FlagButton from './FlagButton';
+import ModeratorBadge from './ModeratorBadge';
 import { useI18n } from '@/locales/client';
+import Image from 'next/image';
 import {
   ChatBubbleBottomCenterTextIcon,
   MusicalNoteIcon,
@@ -78,7 +80,7 @@ export default function PostCard({
 
       {/* Post Header */}
       <div className={`mb-3 flex items-center justify-between ${isRefuelPost ? 'mb-2' : 'mb-4'}`}>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
            {/* Apply conditional icon color classes directly using ternaries */}
            <IconComponent
              className={`
@@ -91,7 +93,10 @@ export default function PostCard({
              `}
              aria-hidden="true"
            />
-           <span className="font-semibold text-foreground">{post.username}</span>
+           <div className="flex items-center gap-1">
+             <span className="font-semibold text-foreground">{post.username}</span>
+             <ModeratorBadge isSmall={isMini} role={(post as any).role} />
+           </div>
         </div>
         <span
           className={`${isMini ? 'text-xs' : 'text-sm'} text-muted-foreground`}
@@ -129,11 +134,16 @@ export default function PostCard({
         )}
 
         {post.post_type === 'image' && post.content_url && (
-          <img
-            src={post.content_url}
-            alt={post.title || 'User upload'}
-            className="w-full rounded-md border border-border"
-          />
+          <div className="relative w-full rounded-md border border-border overflow-hidden">
+            <Image
+              src={post.content_url}
+              alt={post.title || 'User upload'}
+              width={600}
+              height={400}
+              className="w-full h-auto object-cover"
+              priority={false}
+            />
+          </div>
         )}
 
         {post.post_type === 'song' && embedId && (

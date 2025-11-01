@@ -67,9 +67,9 @@ export default function FAQ() {
             
             <h3>How does the map work?</h3>
             <p>
-              On each lighter's page, you'll find a map that shows the journey of that specific lighter.
-              Every time someone makes a "location" post, the coordinates are recorded and added to the map,
-              tracing the lighter's path across the globe.
+              On each lighter&apos;s page, you&apos;ll find a map that shows the journey of that specific lighter.
+              Every time someone makes a &quot;location&quot; post, the coordinates are recorded and added to the map,
+              tracing the lighter&apos;s path across the globe.
             </p>
           </div>
         </div>

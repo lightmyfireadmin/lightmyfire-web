@@ -7,6 +7,7 @@ import MyPostsList from './MyPostsList';
 import TrophyList from './TrophyList';
 import EditProfileForm from './EditProfileForm';
 import UpdateAuthForm from './UpdateAuthForm';
+import ProfileHeader from './ProfileHeader';
 // Corrected: Import types from the central lib/types.ts file
 import type { MyPostWithLighter, Trophy } from '@/lib/types';
 import Image from 'next/image'; // Import Image component
@@ -88,19 +89,14 @@ export default async function MyProfilePage() {
   return (
     <div className="mx-auto max-w-4xl p-4 sm:p-6 lg:p-8">
       {/* Header section */}
-      <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
-        <h1 className="text-3xl font-bold text-foreground">
-          @{profile?.username}
-        </h1>
-        <p className="mt-1 text-muted-foreground">
-          Level {profile?.level ?? 1} | {profile?.points ?? 0} Points
-        </p>
-        {profile?.role === 'moderator' && (
-          <Link href="/moderation" className="btn-primary mt-4 inline-block">
-            Go to Moderation
-          </Link>
-        )}
-      </div>
+      {profile && (
+        <ProfileHeader
+          username={profile.username}
+          level={profile.level}
+          points={profile.points}
+          role={profile.role}
+        />
+      )}
 
       {/* Stats Grid */}
       <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
