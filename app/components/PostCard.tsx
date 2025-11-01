@@ -8,6 +8,7 @@ import FlagButton from './FlagButton';
 import ModeratorBadge from './ModeratorBadge';
 import { useI18n } from '@/locales/client';
 import Image from 'next/image';
+import { countryCodeToFlag, getCountryName } from '@/lib/countryToFlag';
 import {
   ChatBubbleBottomCenterTextIcon,
   MusicalNoteIcon,
@@ -95,6 +96,14 @@ export default function PostCard({
            />
            <div className="flex items-center gap-1">
              <span className="font-semibold text-foreground">{post.username}</span>
+             {(post as any).show_nationality && (post as any).nationality && (
+               <span
+                 title={getCountryName((post as any).nationality)}
+                 className="cursor-help text-lg"
+               >
+                 {countryCodeToFlag((post as any).nationality)}
+               </span>
+             )}
              <ModeratorBadge isSmall={isMini} role={(post as any).role} />
            </div>
         </div>
@@ -107,7 +116,7 @@ export default function PostCard({
       </div>
 
       {/* Post Body */}
-      <div className={`space-y-3 ${isRefuelPost ? '' : 'pl-1'}`}>
+      <div className={`space-y-4 ${isRefuelPost ? '' : 'pl-1'}`}>
         {!isRefuelPost && post.title && (
             <h3 className={`${isMini ? 'text-base' : 'text-xl'} font-bold text-foreground`}>{post.title}</h3>
         )}
@@ -166,7 +175,7 @@ export default function PostCard({
 
       {/* Post Footer */}
       {!isRefuelPost && (
-        <div className={isMini ? 'flex justify-between scale-90 -mx-2' : 'flex justify-between'}>
+        <div className={`mt-4 pt-3 border-t border-border ${isMini ? 'flex justify-between scale-100' : 'flex justify-between'}`}>
           <LikeButton post={post} isLoggedIn={isLoggedIn} />
           <FlagButton postId={post.id} isLoggedIn={isLoggedIn} />
         </div>

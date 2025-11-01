@@ -1,7 +1,8 @@
 'use client';
 
 import type { Trophy } from '@/lib/types';
-import Image from 'next/image'; // Import Image component
+import Image from 'next/image';
+import { useState } from 'react';
 
 function TrophyIcon() {
   return (
@@ -20,39 +21,183 @@ function TrophyIcon() {
   );
 }
 
+interface UnlockedTrophy extends Trophy {
+  unlocked: true;
+}
+
+interface LockedTrophyDef {
+  id: string;
+  name: string;
+  description: string;
+  icon_name?: string;
+  unlocked: false;
+}
+
+// Comprehensive trophy definitions
+const ALL_TROPHIES: (UnlockedTrophy | LockedTrophyDef)[] = [
+  { id: 'first_save', name: 'Fire Starter', description: 'Save your first lighter', icon_name: 'personalise', unlocked: false },
+  { id: 'first_post', name: 'Story Teller', description: 'Add your first post', icon_name: 'telling_stories', unlocked: false },
+  { id: 'five_posts', name: 'Chronicles', description: 'Add 5 stories to lighters', icon_name: 'telling_stories', unlocked: false },
+  { id: 'ten_posts', name: 'Epic Saga', description: 'Add 10 stories to lighters', icon_name: 'telling_stories', unlocked: false },
+  { id: 'collector', name: 'Collector', description: 'Save 5 different lighters', icon_name: 'personalise', unlocked: false },
+  { id: 'community_builder', name: 'Community Builder', description: 'Contribute to 10 different lighters', icon_name: 'around_the_world', unlocked: false },
+  { id: 'globe_trotter', name: 'Globe Trotter', description: 'Post from 5 different countries', icon_name: 'around_the_world', unlocked: false },
+  { id: 'popular_contributor', name: 'Popular Contributor', description: 'Get 50 likes on your posts', icon_name: 'personalise', unlocked: false },
+  { id: 'photographer', name: 'Photographer', description: 'Add 10 photo posts', icon_name: 'telling_stories', unlocked: false },
+  { id: 'musician', name: 'Musician', description: 'Add 5 song posts', icon_name: 'telling_stories', unlocked: false },
+];
+
 export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
-  if (trophies.length === 0) {
-    return (
-      <p className="text-sm text-muted-foreground">
-        You haven&apos;t earned any trophies yet. Go save a lighter or add a
-        story!
-      </p>
-    );
-  }
+  const [hoveredTrophy, setHoveredTrophy] = useState<string | null>(null);
+
+  // Create a set of unlocked trophy IDs
+  const unlockedIds = new Set(trophies.map((t) => String(t.id)));
+
+  // Merge unlocked and locked trophies
+  const allTrophies = ALL_TROPHIES.map((trophy) => {
+    if (unlockedIds.has(String(trophy.id))) {
+      // Find the unlocked trophy data
+      const unlockedTrophy = trophies.find((t) => t.id === trophy.id);
+      return { ...trophy, unlocked: true, ...unlockedTrophy } as UnlockedTrophy;
+    }
+    return trophy;
+  });
+
+  const unlockedTrophies = allTrophies.filter((t) => t.unlocked);
+  const lockedTrophies = allTrophies.filter((t) => !t.unlocked);
 
   return (
-    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-      {trophies.map((trophy) => (
-        <div
-          key={trophy.id}
-          className="rounded-lg border border-border bg-background p-4 text-center shadow-sm"
-        >
-          <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-accent/20 text-accent-foreground">
-            {trophy.icon_name ? (
-              <Image
-                src={`/illustrations/${trophy.icon_name}.png`}
-                alt={trophy.name}
-                width={40}
-                height={40}
-              />
-            ) : (
-              <TrophyIcon /> // Fallback to SVG
-            )}
+    <div className="space-y-8">
+      {/* Unlocked Trophies Section */}
+      {unlockedTrophies.length > 0 && (
+        <div>
+          <h3 className="text-lg font-bold text-yellow-600 mb-4 flex items-center gap-2">
+            <span className="text-2xl">⭐</span> Unlocked Achievements
+          </h3>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            {unlockedTrophies.map((trophy) => (
+              <div
+                key={trophy.id}
+                className="group relative rounded-lg border-2 border-yellow-500 bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 p-4 text-center shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer"
+                onMouseEnter={() => setHoveredTrophy(String(trophy.id))}
+                onMouseLeave={() => setHoveredTrophy(null)}
+              >
+                {/* Golden Star Badge */}
+                <div className="absolute top-1 right-1 text-lg">⭐</div>
+
+                {/* Icon Container */}
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-yellow-400 text-white shadow-md group-hover:shadow-lg transition-shadow">
+                  {trophy.icon_name ? (
+                    <Image
+                      src={`/illustrations/${trophy.icon_name}.png`}
+                      alt={trophy.name}
+                      width={56}
+                      height={56}
+                      className="drop-shadow-sm"
+                    />
+                  ) : (
+                    <TrophyIcon />
+                  )}
+                </div>
+
+                {/* Trophy Info */}
+                <p className="mt-3 font-bold text-foreground text-sm">{trophy.name}</p>
+                <p className="text-xs text-muted-foreground mt-1">{trophy.description}</p>
+
+                {/* Hover Tooltip */}
+                {hoveredTrophy === String(trophy.id) && (
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-foreground text-background text-xs rounded whitespace-nowrap z-10">
+                    ✓ Unlocked
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
-          <p className="mt-2 font-semibold text-foreground">{trophy.name}</p>
-          <p className="text-xs text-muted-foreground">{trophy.description}</p>
         </div>
-      ))}
+      )}
+
+      {/* Locked Trophies Section */}
+      {lockedTrophies.length > 0 && (
+        <div>
+          <h3 className="text-lg font-bold text-gray-500 mb-4 flex items-center gap-2">
+            <span className="text-2xl">🔒</span> Locked Achievements
+          </h3>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            {lockedTrophies.map((trophy) => (
+              <div
+                key={trophy.id}
+                className="group relative rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 p-4 text-center shadow-sm opacity-60 hover:opacity-80 hover:shadow-md transition-all duration-200 cursor-not-allowed"
+                onMouseEnter={() => setHoveredTrophy(String(trophy.id))}
+                onMouseLeave={() => setHoveredTrophy(null)}
+              >
+                {/* Lock Icon Badge */}
+                <div className="absolute top-1 right-1 text-lg">🔐</div>
+
+                {/* Icon Container - Greyed Out */}
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gray-300 dark:bg-gray-600 text-gray-500 shadow-sm">
+                  {trophy.icon_name ? (
+                    <Image
+                      src={`/illustrations/${trophy.icon_name}.png`}
+                      alt={trophy.name}
+                      width={56}
+                      height={56}
+                      className="grayscale opacity-60"
+                    />
+                  ) : (
+                    <TrophyIcon />
+                  )}
+                </div>
+
+                {/* Trophy Info */}
+                <p className="mt-3 font-bold text-gray-600 dark:text-gray-300 text-sm">{trophy.name}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{trophy.description}</p>
+
+                {/* Hover Tooltip */}
+                {hoveredTrophy === String(trophy.id) && (
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-800 dark:bg-gray-200 text-gray-100 dark:text-gray-800 text-xs rounded whitespace-nowrap z-10">
+                    🔒 Locked
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Empty State */}
+      {allTrophies.length === 0 && (
+        <div className="text-center py-12">
+          <p className="text-2xl mb-4">🏆</p>
+          <p className="text-muted-foreground">
+            No achievements yet. Go save a lighter or add stories to earn your first trophy!
+          </p>
+        </div>
+      )}
+
+      {/* Progress Summary */}
+      {unlockedTrophies.length > 0 && (
+        <div className="rounded-lg border-2 border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20 p-4">
+          <p className="text-center text-sm font-semibold text-foreground">
+            <span className="text-yellow-600 dark:text-yellow-400">
+              {unlockedTrophies.length}
+            </span>
+            {' '}
+            of
+            {' '}
+            <span className="text-foreground">{ALL_TROPHIES.length}</span>
+            {' '}
+            achievements unlocked
+          </p>
+          <div className="mt-2 w-full bg-gray-300 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+            <div
+              className="bg-gradient-to-r from-yellow-400 to-yellow-600 h-full transition-all duration-500"
+              style={{
+                width: `${(unlockedTrophies.length / ALL_TROPHIES.length) * 100}%`,
+              }}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

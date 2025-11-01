@@ -1,17 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import Image from 'next/image';
 import LoadingSpinner from '@/app/components/LoadingSpinner';
+import type { User } from '@supabase/supabase-js';
 
 export default function UpdateAuthForm() {
+  const [user, setUser] = useState<User | null>(null);
   const [newEmail, setNewEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+
+  // Check if user is logged in via OAuth (Google, etc.)
+  const isOAuthUser = user?.app_metadata?.provider && user.app_metadata.provider !== 'email';
+
+  useEffect(() => {
+    // Get current user
+    const getCurrentUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      setUser(user);
+    };
+
+    getCurrentUser();
+  }, []);
 
   const handleUpdateAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,6 +55,49 @@ export default function UpdateAuthForm() {
     }
     setLoading(false);
   };
+
+  if (isOAuthUser) {
+    return (
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold text-foreground">Account Settings</h3>
+        <div className="rounded-md bg-blue-50 p-4 mb-4">
+          <p className="text-sm text-blue-800">
+            ✓ You are logged in via {user?.app_metadata?.provider === 'google' ? 'Google' : 'an external provider'}.
+            Your authentication is managed securely by your provider.
+          </p>
+        </div>
+
+        <div>
+          <label htmlFor="current-email" className="block text-sm font-medium text-muted-foreground">
+            Current Email
+          </label>
+          <input
+            type="email"
+            id="current-email"
+            value={user?.email || ''}
+            disabled
+            className="mt-1 block w-full rounded-lg border-input bg-muted p-3 text-muted-foreground cursor-not-allowed"
+          />
+          <p className="mt-1 text-xs text-muted-foreground">
+            Your email is managed by your {user?.app_metadata?.provider === 'google' ? 'Google' : 'external'} account.
+          </p>
+        </div>
+
+        <p className="text-sm text-muted-foreground">
+          To change your email or authentication method, please visit your{' '}
+          <a
+            href={user?.app_metadata?.provider === 'google' ? 'https://myaccount.google.com' : '#'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline hover:text-primary/80"
+          >
+            {user?.app_metadata?.provider === 'google' ? 'Google Account' : 'provider account'} settings
+          </a>
+          .
+        </p>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleUpdateAuth} className="space-y-4">

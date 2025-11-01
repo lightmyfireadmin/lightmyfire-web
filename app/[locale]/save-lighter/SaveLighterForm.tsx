@@ -7,7 +7,7 @@ import type { User } from '@supabase/supabase-js';
 import LoadingSpinner from '@/app/components/LoadingSpinner';
 import { useI18n } from '@/locales/client';
 
-export default function SaveLighterForm({ user }: { user: User }) {
+export default function SaveLighterForm({ user, onSuccess }: { user: User; onSuccess?: () => void }) {
   const router = useRouter();
   const t = useI18n();
   const [lighterName, setLighterName] = useState('');
@@ -34,7 +34,13 @@ export default function SaveLighterForm({ user }: { user: User }) {
       setError(t('save_lighter.error.rpc_error', { message: rpcError.message }));
       setLoading(false);
     } else if (data) {
-      router.push(`/save-lighter/success/${data}`);
+      // Call onSuccess callback if provided (for use in flow)
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        // Otherwise redirect to success page (for standalone form)
+        router.push(`/save-lighter/success/${data}`);
+      }
     } else {
       setError(t('save_lighter.error.failed_to_create'));
       setLoading(false);

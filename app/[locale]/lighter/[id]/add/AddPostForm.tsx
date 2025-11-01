@@ -251,18 +251,18 @@ export default function AddPostForm({
           <div>
             <div className="flex items-center gap-2 mb-3">
               <IconButton
-                onClick={() => setSongInputMode('url')}
-                isActive={songInputMode === 'url'}
-                icon="🔗"
-                label={t('add_post.song_input_mode.url')}
-                tooltip="Paste a YouTube URL directly"
-              />
-              <IconButton
                 onClick={() => setSongInputMode('search')}
                 isActive={songInputMode === 'search'}
                 icon="🔍"
                 label={t('add_post.song_input_mode.search')}
                 tooltip="Search for a song on YouTube"
+              />
+              <IconButton
+                onClick={() => setSongInputMode('url')}
+                isActive={songInputMode === 'url'}
+                icon="🔗"
+                label={t('add_post.song_input_mode.url')}
+                tooltip="Paste a YouTube URL directly"
               />
             </div>
             {songInputMode === 'url' ? (
@@ -364,24 +364,36 @@ export default function AddPostForm({
         {t('add_post.subtitle', { lighterName: lighterName })}
       </p>
 
-      {/* Post Type Selector Tabs */}
-      <div className="mb-6 rounded-lg bg-muted p-1">
-        <div className="flex justify-center space-x-1 overflow-x-auto">
+      {/* Post Type Selector Tabs with Icons and Subtitles */}
+      <div className="mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-2">
           {([POST_TYPES.TEXT, POST_TYPES.SONG, POST_TYPES.IMAGE, POST_TYPES.LOCATION, POST_TYPES.REFUEL] as PostType[]).map(
-            (type) => (
-              <button
-                key={type}
-                type="button"
-                onClick={() => setPostType(type)}
-                className={`flex-shrink-0 rounded-md px-3 py-2 text-sm font-medium capitalize transition ${
-                  postType === type
-                    ? 'bg-background text-primary shadow-sm'
-                    : 'text-muted-foreground hover:bg-background/50 hover:text-foreground'
-                }`}
-              >
-                {t(`add_post.post_type.${type}`)}
-              </button>
-            )
+            (type) => {
+              const icons: { [key in PostType]: string } = {
+                text: '📝',
+                song: '🎵',
+                image: '🖼️',
+                location: '📍',
+                refuel: '⛽',
+              };
+
+              return (
+                <button
+                  key={type}
+                  type="button"
+                  onClick={() => setPostType(type)}
+                  className={`relative flex flex-col items-center justify-center rounded-lg px-3 py-4 sm:py-5 text-sm font-medium transition-all duration-300 ${
+                    postType === type
+                      ? 'bg-primary text-primary-foreground shadow-md ring-2 ring-primary/20'
+                      : 'bg-muted text-foreground hover:bg-muted/80'
+                  }`}
+                >
+                  <span className="text-2xl mb-2">{icons[type]}</span>
+                  <span className="text-xs sm:text-sm font-semibold capitalize">{t(`add_post.post_type.${type}`)}</span>
+                  <span className="text-xs text-center mt-1 opacity-80">{t(`add_post.subtitle.${type}`)}</span>
+                </button>
+              );
+            }
           )}
         </div>
       </div>

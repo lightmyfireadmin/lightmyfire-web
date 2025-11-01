@@ -10,6 +10,7 @@ import RandomPostFeed from '@/app/components/RandomPostFeed';
 import InfoPopup from '@/app/components/InfoPopup';
 import { Suspense } from 'react';
 import SuccessNotification from '@/app/components/SuccessNotification';
+import { HeartIcon } from '@heroicons/react/24/outline';
 
 export const dynamic = 'force-dynamic';
 
@@ -82,7 +83,7 @@ export default async function Home() {
       </div>
 
       {/* Save a Lighter CTA - Below hero section */}
-      <div className="flex justify-center px-4 mb-12 lg:mb-6">
+      <div className="flex justify-center px-4 mb-6 lg:mb-3">
         <div className="relative inline-flex">
           <Link href={`/${locale}/save-lighter`} className="btn-primary">
             {t('home.hero.cta')}
@@ -122,7 +123,7 @@ export default async function Home() {
             <Image
               src="/illustrations/around_the_world.png"
               alt="Share the lighter"
-              className="mx-auto mb-4 h-20 sm:h-24 w-auto"
+              className="mx-auto mb-4 h-30 sm:h-36 w-auto"
             />
             <h3 className="mb-2 text-lg sm:text-xl font-semibold text-foreground">
               {t('home.how_it_works.step2.title')}
@@ -145,6 +146,27 @@ export default async function Home() {
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
               {t('home.how_it_works.step3.description')}
             </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Become a LightSaver Section */}
+      <div className="mx-auto w-full max-w-4xl px-4 py-8 lg:py-12 mb-6 lg:mb-3">
+        <div className="rounded-lg border border-border bg-background/95 p-8 sm:p-10 shadow-md">
+          <h2 className="mb-4 text-center text-2xl sm:text-3xl font-bold text-foreground">
+            {t('home.become_lightsaver.title')}
+          </h2>
+          <p className="mb-8 text-center text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+            {t('home.become_lightsaver.subtitle')}
+          </p>
+          <div className="flex justify-center">
+            <Link
+              href={`/${locale}/save-lighter`}
+              className="inline-flex items-center gap-x-2 px-6 py-3 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground font-semibold transition shadow-md hover:shadow-lg opacity-90 hover:opacity-100"
+            >
+              <HeartIcon className="h-5 w-5" />
+              {t('home.hero.cta')}
+            </Link>
           </div>
         </div>
       </div>

@@ -10,6 +10,7 @@ import type { Metadata } from 'next';
 import MapComponent from './MapComponent'; // Import MapComponent
 import { Suspense } from 'react';
 import SuccessNotification from '@/app/components/SuccessNotification';
+import Image from 'next/image';
 
 // --- generateMetadata Function (Remains the same) ---
 export async function generateMetadata({
@@ -128,15 +129,40 @@ export default async function LighterPage({
       </Suspense>
       {/* Container with responsive padding */}
       <div className="mx-auto max-w-2xl bg-background/95 p-4 pt-8 md:p-6 md:pt-10 shadow-lg backdrop-blur-sm min-h-screen">
-        {/* Lighter Header */}
+        {/* Lighter Header - Enhanced Layout */}
         <div className="mb-8 border-b border-border pb-6">
-          {/* Responsive heading size */}
-          <h1 className="text-center text-3xl md:text-4xl font-bold text-foreground">
-            {lighter.name}
-          </h1>
-          <p className="mt-2 text-center text-lg text-muted-foreground">
-            PIN: <span className="font-mono font-semibold text-foreground">{lighter.pin_code}</span>
-          </p>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            {/* Left: Lighter Illustration */}
+            <div className="hidden md:flex items-center justify-center">
+              <Image
+                src="/illustrations/telling_stories.png"
+                alt="Lighter illustration"
+                width={100}
+                height={100}
+                className="w-24 h-24 object-contain"
+              />
+            </div>
+
+            {/* Center: Name and PIN */}
+            <div className="flex-1 text-center md:text-left">
+              <h1 className="text-3xl md:text-4xl font-bold text-foreground">
+                {lighter.name}
+              </h1>
+              <p className="mt-2 text-lg text-muted-foreground">
+                PIN: <span className="font-mono font-semibold text-foreground">{lighter.pin_code}</span>
+              </p>
+            </div>
+
+            {/* Right: Post Count */}
+            <div className="flex flex-col items-center justify-center md:items-end">
+              <p className="text-5xl md:text-6xl font-bold text-primary">
+                {posts?.length || 0}
+              </p>
+              <p className="text-lg text-muted-foreground font-medium mt-1">
+                {posts?.length === 1 ? 'Post' : 'Posts'}
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Map Component */}

@@ -40,12 +40,12 @@ const CookieConsent = () => {
     <div
       className="fixed bottom-0 left-0 w-full bg-background text-foreground p-4 text-center z-50 flex flex-wrap justify-center items-center gap-4 shadow-lg"
     >
-      <p className="m-0 text-sm">
-        We use cookies to ensure you get the best experience on our website. By continuing to use this site, you agree to our{' '}
+      <p className="m-0 text-sm max-w-md">
+        We use cookies only for basic functionality—never for tracking. Your privacy is protected. See our{' '}
         <Link href="/legal/privacy" className="text-primary underline">
           Privacy Policy
         </Link>
-        .
+        {' '}for details.
       </p>
       <div className="flex gap-2">
         <button

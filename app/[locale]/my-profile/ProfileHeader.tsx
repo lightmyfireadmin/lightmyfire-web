@@ -30,7 +30,7 @@ export default function ProfileHeader({
         Level {level ?? 1} | {points ?? 0} Points
       </p>
       {role === 'moderator' && (
-        <Link href="/moderation" className="btn-primary mt-4 inline-flex items-center gap-2">
+        <Link href="/moderation" className="mt-4 inline-flex items-center gap-2 px-4 py-3 rounded-md bg-sky-500 text-white hover:bg-sky-600 transition-colors duration-200 font-medium shadow-md hover:shadow-lg">
           <span>🛡️</span>
           <span>Go to Moderation</span>
         </Link>

@@ -15,8 +15,9 @@ import LanguageSwitcher from './LanguageSwitcher';
 
 const navigation = [
   { key: 'nav.how_it_works', href: '/legal/faq', icon: QuestionMarkCircleIcon },
-  { key: 'nav.refill_guide', href: '/dont-throw-me-away', icon: PlusIcon },
+  { key: 'nav.save_lighter', href: '/save-lighter', icon: HeartIcon },
   { key: 'nav.our_philosophy', href: '/about', icon: GlobeAltIcon },
+  { key: 'nav.refill_guide', href: '/dont-throw-me-away', icon: PlusIcon },
 ] as const;
 
 function classNames(...classes: string[]) {
@@ -73,16 +74,10 @@ export default function Header({ session }: { session: Session }) {
             </Link>
           ))}
           {isLoggedIn && (
-             <>
-               <Link href={`/${lang}/save-lighter`} className={classNames(pathname === `/${lang}/save-lighter` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6 flex items-center')}>
-                 <HeartIcon className="h-5 w-5 mr-1.5" aria-hidden="true" />
-                 {t('nav.save_lighter')}
-               </Link>
-               <Link href={`/${lang}/my-profile`} className={classNames(pathname === `/${lang}/my-profile` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6 flex items-center')}>
-                 <UserIcon className="h-5 w-5 mr-1.5" aria-hidden="true" />
-                 {t('nav.my_profile')}
-               </Link>
-             </>
+             <Link href={`/${lang}/my-profile`} className={classNames(pathname === `/${lang}/my-profile` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6 flex items-center')}>
+               <UserIcon className="h-5 w-5 mr-1.5" aria-hidden="true" />
+               {t('nav.my_profile')}
+             </Link>
           )}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-x-4">
@@ -156,20 +151,10 @@ export default function Header({ session }: { session: Session }) {
                     </Link>
                   ))}
                   {isLoggedIn && (
-                      <>
-                        <Link
-                          href={`/${lang}/save-lighter`}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className={classNames(pathname === `/${lang}/save-lighter` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 flex items-center pl-4 gap-x-4')}
-                        >
-                          <HeartIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
-                          {t('nav.save_lighter')}
-                        </Link>
-                      <Link href={`/${lang}/my-profile`} onClick={() => setMobileMenuOpen(false)} className={classNames(pathname === `/${lang}/my-profile` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 flex items-center pl-4 gap-x-4')}>
-                        <UserIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
-                        {t('nav.my_profile')}
-                      </Link>
-                    </>
+                    <Link href={`/${lang}/my-profile`} onClick={() => setMobileMenuOpen(false)} className={classNames(pathname === `/${lang}/my-profile` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 flex items-center pl-4 gap-x-4')}>
+                      <UserIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
+                      {t('nav.my_profile')}
+                    </Link>
                   )}
                 </div>
                 <div className="py-6 space-y-4">

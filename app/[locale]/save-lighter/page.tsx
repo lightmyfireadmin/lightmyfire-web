@@ -1,8 +1,9 @@
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import SaveLighterForm from './SaveLighterForm'; // Import our new form
+import SaveLighterFlow from './SaveLighterFlow'; // Import new flow component
 import { getI18n } from '@/locales/server';
+import Image from 'next/image';
 
 export const dynamic = 'force-dynamic';
 
@@ -32,48 +33,72 @@ export default async function SaveLighterPage() {
 
   // We found a session! Pass the user to the form.
   return (
-    <div className="mx-auto max-w-4xl p-4 sm:p-6 lg:p-8">
-      <h1 className="mb-4 text-3xl font-bold text-foreground">
-        {t('save_lighter.title')}
-      </h1>
-      <p className="mb-6 text-lg text-muted-foreground">
-        {t('save_lighter.introduction')}
-      </p>
+    <div className="mx-auto max-w-5xl p-4 sm:p-6 lg:p-8">
+      {/* Hero Section */}
+      <div className="mb-12 text-center">
+        <h1 className="mb-4 text-4xl font-bold text-foreground">
+          {t('save_lighter.title')}
+        </h1>
+        <p className="mb-6 text-lg text-muted-foreground max-w-2xl mx-auto">
+          {t('save_lighter.introduction')}
+        </p>
+      </div>
 
-      <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-3">
-        {/* Sticker Pack 1 */}
-        <div className="rounded-lg border border-border bg-background p-6 text-center shadow-sm">
-          <h2 className="mb-2 text-2xl font-semibold text-foreground">{t('save_lighter.pack_5.title')}</h2>
-          <p className="mb-4 text-4xl font-bold text-primary">{t('save_lighter.pack_5.price')}</p>
-          <p className="mb-4 text-muted-foreground">{t('save_lighter.pack_5.description')}</p>
-          <button className="btn-primary w-full">{t('save_lighter.buy_button')}</button>
-        </div>
+      {/* Why It Matters Section */}
+      <div className="mb-12 rounded-lg border border-border bg-background/95 p-8 shadow-md">
+        <h2 className="mb-6 text-3xl font-bold text-foreground text-center">
+          Why It Matters
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Illustration + Fun Aspect */}
+          <div className="flex flex-col items-center text-center">
+            <Image
+              src="/illustrations/personalise.png"
+              alt="Creative"
+              width={80}
+              height={80}
+              className="mb-4 w-20 h-20 object-contain"
+            />
+            <h3 className="font-semibold text-foreground mb-2">Creative Journey</h3>
+            <p className="text-sm text-muted-foreground">
+              Be part of a fun, global movement. Give lighters a second life with beautiful, hand-crafted stickers.
+            </p>
+          </div>
 
-        {/* Sticker Pack 2 */}
-        <div className="rounded-lg border border-border bg-background p-6 text-center shadow-sm">
-          <h2 className="mb-2 text-2xl font-semibold text-foreground">{t('save_lighter.pack_10.title')}</h2>
-          <p className="mb-4 text-4xl font-bold text-primary">{t('save_lighter.pack_10.price')}</p>
-          <p className="mb-4 text-muted-foreground">{t('save_lighter.pack_10.description')}</p>
-          <button className="btn-primary w-full">{t('save_lighter.buy_button')}</button>
-        </div>
+          {/* Illustration + Human Mosaic & Anti-Waste */}
+          <div className="flex flex-col items-center text-center">
+            <Image
+              src="/illustrations/telling_stories.png"
+              alt="Community"
+              width={80}
+              height={80}
+              className="mb-4 w-20 h-20 object-contain"
+            />
+            <h3 className="font-semibold text-foreground mb-2">Human Mosaic</h3>
+            <p className="text-sm text-muted-foreground">
+              Join thousands of LightSavers creating a human mosaic of stories and creativity while fighting waste.
+            </p>
+          </div>
 
-        {/* Sticker Pack 3 */}
-        <div className="rounded-lg border border-border bg-background p-6 text-center shadow-sm">
-          <h2 className="mb-2 text-2xl font-semibold text-foreground">{t('save_lighter.pack_50.title')}</h2>
-          <p className="mb-4 text-4xl font-bold text-primary">{t('save_lighter.pack_50.price')}</p>
-          <p className="mb-4 text-muted-foreground">{t('save_lighter.pack_50.description')}</p>
-          <button className="btn-primary w-full">{t('save_lighter.buy_button')}</button>
+          {/* Illustration + Sustainability */}
+          <div className="flex flex-col items-center text-center">
+            <Image
+              src="/illustrations/around_the_world.png"
+              alt="Sustainable"
+              width={80}
+              height={80}
+              className="mb-4 w-20 h-20 object-contain"
+            />
+            <h3 className="font-semibold text-foreground mb-2">Sustainable Impact</h3>
+            <p className="text-sm text-muted-foreground">
+              Our stickers are hand-made and sustainably manufactured. Help maintain this project alive.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Placeholder for Stripe Integration */}
-      <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
-        <h2 className="mb-4 text-xl font-semibold text-foreground">{t('save_lighter.payment_details_title')}</h2>
-        <p className="text-muted-foreground">{t('save_lighter.payment_details_placeholder')}</p>
-        {/* Stripe Elements will go here */}
-      </div>
-
-      <SaveLighterForm user={session.user} />
+      {/* Main Flow Component */}
+      <SaveLighterFlow user={session.user} />
     </div>
   );
 }

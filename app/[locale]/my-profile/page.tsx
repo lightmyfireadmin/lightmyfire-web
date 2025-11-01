@@ -100,39 +100,14 @@ export default async function MyProfilePage() {
 
       {/* Stats Grid */}
       <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
-        <StatCard label="Contributions" value={stats.total_contributions} />
-        <StatCard label="Lighters Saved" value={stats.lighters_saved} />
-        <StatCard label="Stories Joined" value={stats.lighters_contributed_to} />
-        <StatCard label="Likes Received" value={stats.likes_received} />
+        <StatCard label="Contributions" value={stats.total_contributions} icon="📝" />
+        <StatCard label="Lighters Saved" value={stats.lighters_saved} icon="🔥" />
+        <StatCard label="Stories Joined" value={stats.lighters_contributed_to} icon="📖" />
+        <StatCard label="Likes Received" value={stats.likes_received} icon="❤️" />
       </div>
 
-      {/* Trophies Section */}
-      <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
-        <h2 className="mb-4 text-xl font-semibold text-foreground">My Trophies</h2>
-        <TrophyList trophies={myTrophies} />
-      </div>
-
-      {/* Edit Profile Section */}
-      <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold text-foreground">Edit Profile</h2>
-          <Image
-            src="/illustrations/personalise.png"
-            alt="Personalise"
-            width={40}
-            height={40}
-          />
-        </div>
-        {profile && <EditProfileForm user={session.user} profile={profile} />}
-      </div>
-
-      {/* Update Auth Section */}
-      <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
-        <UpdateAuthForm />
-      </div>
-
-      {/* Main Grid Layout */}
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+      {/* Saved Lighters + Contributions Grid */}
+      <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-3">
         {/* Saved Lighters Column */}
         <div className="rounded-lg border border-border bg-background p-6 shadow-sm md:col-span-1">
           <h2 className="mb-4 text-xl font-semibold text-foreground">My Saved Lighters</h2>
@@ -165,16 +140,50 @@ export default async function MyProfilePage() {
           <MyPostsList initialPosts={myPosts} />
         </div>
       </div>
+
+      {/* Edit Profile Section */}
+      <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-semibold text-foreground">Edit Profile</h2>
+          <Image
+            src="/illustrations/personalise.png"
+            alt="Personalise"
+            width={120}
+            height={120}
+          />
+        </div>
+        {profile && <EditProfileForm user={session.user} profile={profile} />}
+      </div>
+
+      {/* Update Auth Section */}
+      <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
+        <UpdateAuthForm />
+      </div>
+
+      {/* Trophies Section */}
+      <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
+        <h2 className="mb-4 text-xl font-semibold text-foreground">My Trophies</h2>
+        <TrophyList trophies={myTrophies} />
+      </div>
     </div>
   );
 }
 
 // StatCard helper component
-function StatCard({ label, value }: { label: string; value: number }) {
+function StatCard({ label, value, icon }: { label: string; value: number; icon?: string }) {
   return (
-    <div className="rounded-lg border border-border bg-background p-4 shadow-sm">
-      <p className="text-sm font-medium text-muted-foreground">{label}</p>
-      <p className="text-3xl font-bold text-foreground">{value ?? 0}</p>
+    <div className="rounded-lg border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10 p-5 shadow-md hover:shadow-lg hover:border-primary/40 transition-all duration-200 group">
+      <div className="flex items-start justify-between mb-2">
+        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">{label}</p>
+        {icon && <span className="text-2xl group-hover:scale-110 transition-transform">{icon}</span>}
+      </div>
+      <p className="text-4xl font-bold text-primary">{value ?? 0}</p>
+      <div className="mt-2 h-1 w-full bg-primary/20 rounded-full overflow-hidden">
+        <div
+          className="h-full bg-gradient-to-r from-primary to-primary/60 transition-all duration-500"
+          style={{ width: `${Math.min((value ?? 0) * 10, 100)}%` }}
+        />
+      </div>
     </div>
   );
 }

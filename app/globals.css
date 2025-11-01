@@ -75,10 +75,10 @@
     0% {
       opacity: 0;
     }
-    5% {
+    7.15% {
       opacity: 1;
     }
-    95% {
+    92.85% {
       opacity: 1;
     }
     100% {
@@ -87,7 +87,7 @@
   }
 
   .animate-fade-in-out {
-    animation: fadeInOut 4s ease-in-out infinite;
+    animation: fadeInOut 7s ease-in-out infinite;
   }
 
   /* Loading spinner animation */
@@ -154,7 +154,7 @@
     background-repeat: repeat;
     opacity: 0.1; /* Adjust as needed */
     z-index: -1;
-    animation: scrollBackground 120s linear infinite;
+    animation: scrollBackground 60s linear infinite;
   }
 }
 
