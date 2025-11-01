@@ -11,6 +11,7 @@ import MapComponent from './MapComponent'; // Import MapComponent
 import { Suspense } from 'react';
 import SuccessNotification from '@/app/components/SuccessNotification';
 import Image from 'next/image';
+import { PlusIcon } from '@heroicons/react/24/outline';
 
 // --- generateMetadata Function (Remains the same) ---
 export async function generateMetadata({
@@ -200,7 +201,7 @@ export default async function LighterPage({
                   href={`/${params.locale}/lighter/${lighter.id}/add`}
                   className="btn-primary block w-full text-center flex items-center justify-center gap-2 py-3"
                 >
-                  <span>➕</span>
+                  <PlusIcon className="h-5 w-5 text-white" />
                   <span>Add to Story</span>
                 </Link>
               </div>

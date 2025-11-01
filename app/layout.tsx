@@ -20,9 +20,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="body-with-bg max-w-full overflow-x-hidden">
         <SetHtmlLang />
-        <div className="px-2.5">
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );

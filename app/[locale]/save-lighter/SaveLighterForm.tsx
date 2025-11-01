@@ -1,13 +1,11 @@
 'use client';
-
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase'; // Assuming lib is at root
 import type { User } from '@supabase/supabase-js';
-import LoadingSpinner from '@/app/components/LoadingSpinner';
 import { useI18n } from '@/locales/client';
 
-export default function SaveLighterForm({ user, onSuccess }: { user: User; onSuccess?: () => void }) {
+export default function SaveLighterForm({ user }: { user: User }) {
   const router = useRouter();
   const t = useI18n();
   const [lighterName, setLighterName] = useState('');
@@ -31,16 +29,10 @@ export default function SaveLighterForm({ user, onSuccess }: { user: User; onSuc
     );
 
     if (rpcError) {
-      setError(t('save_lighter.error.rpc_error', { message: rpcError.message }));
+      setError(t('save_lighter.error.generic'));
       setLoading(false);
     } else if (data) {
-      // Call onSuccess callback if provided (for use in flow)
-      if (onSuccess) {
-        onSuccess();
-      } else {
-        // Otherwise redirect to success page (for standalone form)
-        router.push(`/save-lighter/success/${data}`);
-      }
+      router.push(`/save-lighter/success/${data}`);
     } else {
       setError(t('save_lighter.error.failed_to_create'));
       setLoading(false);
@@ -119,16 +111,9 @@ export default function SaveLighterForm({ user, onSuccess }: { user: User; onSuc
       <button
         type="submit"
         disabled={loading}
-        className="btn-primary w-full text-lg py-3 flex justify-center items-center gap-2 hover:shadow-lg transition-shadow duration-200"
+        className="btn-primary w-full text-lg" // Applied btn-primary
       >
-        {loading ? (
-          <LoadingSpinner size="sm" color="foreground" label={t('save_lighter.button.saving')} />
-        ) : (
-          <>
-            <span>🔥</span>
-            <span>{t('save_lighter.button.save_lighter')}</span>
-          </>
-        )}
+        {loading ? t('save_lighter.button.saving') : t('save_lighter.button.save_lighter')}
       </button>
     </form>
   );

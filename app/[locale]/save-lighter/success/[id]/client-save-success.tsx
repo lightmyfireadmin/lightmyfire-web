@@ -83,7 +83,7 @@ export default function ClientSaveSuccess({ id, locale }: { id: string; locale: 
           {t('save_success.title')}
         </h1>
         <p className="mb-6 text-lg text-foreground">
-          {t('save_success.message', { lighterName: lighter.name })}
+          {t('save_success.message')} {lighter?.name}
         </p>
         <p className="mb-2 text-muted-foreground">{t('save_success.pin_intro')}</p>
         <p className="mb-8 font-mono text-3xl font-bold text-foreground">

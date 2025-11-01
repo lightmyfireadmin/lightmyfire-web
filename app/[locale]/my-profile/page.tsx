@@ -69,7 +69,29 @@ export default async function MyProfilePage() {
       .eq('user_id', userId),
   ]);
 
-  const profile = profileRes.data;
+  let profile = profileRes.data;
+
+  // If profile doesn't exist (e.g., Google user), create one
+  if (!profile && session?.user?.id) {
+    const defaultUsername = session.user.user_metadata?.full_name ||
+                           session.user.email?.split('@')[0] ||
+                           `User_${session.user.id.substring(0, 8)}`;
+
+    const { data: newProfile, error: createError } = await supabase
+      .from('profiles')
+      .insert({
+        id: session.user.id,
+        username: defaultUsername,
+        created_at: new Date().toISOString(),
+      })
+      .select('username, level, points, nationality, show_nationality, role')
+      .single();
+
+    if (!createError && newProfile) {
+      profile = newProfile;
+    }
+  }
+
   const stats = {
       total_contributions: statsRes.data?.total_contributions ?? 0,
       lighters_saved: statsRes.data?.lighters_saved ?? 0,
@@ -129,12 +151,6 @@ export default async function MyProfilePage() {
       {/* Update Auth Section */}
       <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
         <UpdateAuthForm />
-      </div>
-
-      {/* Trophies Section */}
-      <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
-        <h2 className="mb-4 text-xl font-semibold text-foreground">My Trophies</h2>
-        <TrophyList trophies={myTrophies} />
       </div>
       </div>
     </div>

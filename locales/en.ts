@@ -150,4 +150,10 @@ export default {
 
   'post.refuel_message': 'Refueled! This lighter\'s journey continues.',
   'post.youtube_load_error': 'Could not load YouTube video (invalid URL?).',
+  // Banner translations
+  'banner.welcome': 'Welcome',
+  'banner.user': 'User',
+  'banner.connect_cta': 'Join the LightSaver community!',
+  'banner.connect_link': 'Log in or Sign up',
+  'banner.close': 'Close banner',
 } as const;

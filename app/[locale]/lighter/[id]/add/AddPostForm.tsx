@@ -1,18 +1,12 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase'; // Assuming lib is at root
 import type { User } from '@supabase/supabase-js';
 import Image from 'next/image';
-import LocationSearch from '@/app/components/LocationSearch';
-import LoadingSpinner from '@/app/components/LoadingSpinner';
-import IconButton from '@/app/components/IconButton';
-import { useI18n } from '@/locales/client';
-import { validateFile, generateSafeFilename } from '@/lib/fileValidation';
-import { POST_TYPES, SUPABASE_STORAGE_BUCKETS, RPC_FUNCTIONS } from '@/lib/constants';
 
-type PostType = typeof POST_TYPES[keyof typeof POST_TYPES];
+type PostType = 'text' | 'song' | 'image' | 'location' | 'refuel';
 
 interface YouTubeVideo {
   id: { videoId: string };
@@ -29,8 +23,7 @@ export default function AddPostForm({
   lighterName: string;
 }) {
   const router = useRouter();
-  const t = useI18n();
-  const [postType, setPostType] = useState<PostType>(POST_TYPES.TEXT);
+  const [postType, setPostType] = useState<PostType>('text');
   const [title, setTitle] = useState('');
   const [contentText, setContentText] = useState('');
   const [contentUrl, setContentUrl] = useState('');
@@ -52,7 +45,6 @@ export default function AddPostForm({
   const [youtubeSearchQuery, setYoutubeSearchQuery] = useState('');
   const [youtubeSearchResults, setYoutubeSearchResults] = useState<YouTubeVideo[]>([]);
   const [youtubeSearchLoading, setYoutubeSearchLoading] = useState(false);
-  const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
 
   const isValidUrl = (url: string) => {
     try {
@@ -63,7 +55,7 @@ export default function AddPostForm({
     }
   };
 
-  const searchYouTube = useCallback(async (query: string) => {
+  const searchYouTube = async (query: string) => {
     if (!query) {
       setYoutubeSearchResults([]);
       return;
@@ -72,95 +64,48 @@ export default function AddPostForm({
     setError('');
     try {
       const response = await fetch(
-        '/api/youtube-search',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ query })
-        }
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&key=${process.env.NEXT_PUBLIC_YOUTUBE_API_KEY}`
       );
       const data = await response.json();
       if (data.error) {
-        setError(t('add_post.error.youtube_search_failed'));
+        setError(`YouTube API Error: ${data.error.message}`);
         setYoutubeSearchResults([]);
       } else {
         setYoutubeSearchResults(data.items || []);
       }
     } catch (err) {
-      setError(t('add_post.error.youtube_search_failed'));
+      console.error('YouTube Search Error:', err);
+      setError('Failed to search YouTube. Please try again.');
       setYoutubeSearchResults([]);
     }
     setYoutubeSearchLoading(false);
-  }, [t]);
+  };
 
   // Debounce YouTube search
   useEffect(() => {
     const handler = setTimeout(() => {
       if (songInputMode === 'search') {
         searchYouTube(youtubeSearchQuery);
-        setHighlightedIndex(-1); // Reset highlighted index on new search
       }
     }, 500);
     return () => {
       clearTimeout(handler);
     };
-  }, [youtubeSearchQuery, songInputMode, searchYouTube]);
+  }, [youtubeSearchQuery, songInputMode]);
 
-  // Handle keyboard navigation for YouTube search results
-  const handleYoutubeSearchKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (youtubeSearchResults.length === 0) return;
-
-    switch (e.key) {
-      case 'ArrowDown':
-        e.preventDefault();
-        setHighlightedIndex((prev) =>
-          prev < youtubeSearchResults.length - 1 ? prev + 1 : prev
-        );
-        break;
-      case 'ArrowUp':
-        e.preventDefault();
-        setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : -1));
-        break;
-      case 'Enter':
-        e.preventDefault();
-        if (highlightedIndex >= 0 && highlightedIndex < youtubeSearchResults.length) {
-          const video = youtubeSearchResults[highlightedIndex];
-          setContentUrl(`https://www.youtube.com/watch?v=${video.id.videoId}`);
-          setYoutubeSearchResults([]);
-          setYoutubeSearchQuery(video.snippet.title);
-          setHighlightedIndex(-1);
-        }
-        break;
-      case 'Escape':
-        e.preventDefault();
-        setYoutubeSearchResults([]);
-        setHighlightedIndex(-1);
-        break;
-    }
-  };
-
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
-      setError('');
-
-      // Validate file (size and magic number)
-      const validation = await validateFile(selectedFile);
-      if (!validation.valid) {
-        setError(validation.error || t('add_post.error.upload_failed'));
+      // 2MB size limit
+      if (selectedFile.size > 2 * 1024 * 1024) {
+        setError('File is too large. Please select a file smaller than 2MB.');
         setFile(null);
         e.target.value = ''; // Reset file input
         return;
       }
-
+      setError('');
       setFile(selectedFile);
     }
-  };
-
-  const handleLocationSelect = (lat: number, lng: number, name: string) => {
-    setLocationLat(lat);
-    setLocationLng(lng);
-    setLocationName(name);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -169,75 +114,74 @@ export default function AddPostForm({
 
     let finalContentUrl = contentUrl;
 
-    if (postType === POST_TYPES.IMAGE && imageUploadMode === 'upload') {
+    if (postType === 'image' && imageUploadMode === 'upload') {
       if (!file) {
-        setError(t('add_post.error.no_file_selected'));
+        setError('Please select a file to upload.');
         return;
       }
 
       setLoading(true);
       setUploading(true);
-
-      // Generate safe filename
-      const safeFileName = generateSafeFilename(user.id, file.name);
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${user.id}-${Date.now()}.${fileExt}`;
+      const filePath = `${fileName}`;
 
       const { error: uploadError } = await supabase.storage
-        .from(SUPABASE_STORAGE_BUCKETS.POST_IMAGES)
-        .upload(safeFileName, file);
+        .from('post-images')
+        .upload(filePath, file);
 
       if (uploadError) {
-        setError(t('add_post.error.upload_failed'));
+        setError('Failed to upload image. Please try again.');
         setLoading(false);
         setUploading(false);
         return;
       }
 
       const { data: urlData } = supabase.storage
-        .from(SUPABASE_STORAGE_BUCKETS.POST_IMAGES)
-        .getPublicUrl(safeFileName);
+        .from('post-images')
+        .getPublicUrl(filePath);
 
       finalContentUrl = urlData.publicUrl;
       setUploading(false);
     }
 
-    if (postType === POST_TYPES.SONG && songInputMode === 'search') {
+    if (postType === 'song' && songInputMode === 'search') {
       // If song is selected via search, contentUrl should already be set
       if (!finalContentUrl) {
-        setError(t('add_post.error.no_song_selected'));
+        setError('Please select a song from the search results.');
         return;
       }
-    } else if ((postType === POST_TYPES.SONG || (postType === POST_TYPES.IMAGE && imageUploadMode === 'url')) && !isValidUrl(finalContentUrl)) {
-      setError(t('add_post.error.invalid_url'));
+    } else if ((postType === 'song' || (postType === 'image' && imageUploadMode === 'url')) && !isValidUrl(finalContentUrl)) {
+      setError('Please enter a valid URL.');
       return;
     }
 
-    if (postType === POST_TYPES.LOCATION && (locationLat === '' || locationLng === '')) {
-      setError(t('add_post.error.no_location_selected'));
+    if (postType === 'location' && (locationLat === '' || locationLng === '')) {
+      setError('Please enter valid latitude and longitude.');
       return;
     }
 
     setLoading(true);
-
-    const { data, error: rpcError } = await supabase.rpc(RPC_FUNCTIONS.CREATE_NEW_POST, {
-        p_user_id: user.id,
+    
+    const { data, error: rpcError } = await supabase.rpc('create_new_post', {
         p_lighter_id: lighterId,
         p_post_type: postType,
         p_title: title || null,
-        p_content_text: postType === POST_TYPES.TEXT ? contentText : null,
-        p_content_url: (postType === POST_TYPES.SONG || postType === POST_TYPES.IMAGE) ? finalContentUrl : null,
-        p_location_name: postType === POST_TYPES.LOCATION ? locationName : null,
-        p_location_lat: postType === POST_TYPES.LOCATION && locationLat !== '' ? locationLat : null, // Pass lat
-        p_location_lng: postType === POST_TYPES.LOCATION && locationLng !== '' ? locationLng : null, // Pass lng
+        p_content_text: postType === 'text' ? contentText : null,
+        p_content_url: (postType === 'song' || postType === 'image') ? finalContentUrl : null,
+        p_location_name: postType === 'location' ? locationName : null,
+        p_location_lat: postType === 'location' && locationLat !== '' ? locationLat : null, // Pass lat
+        p_location_lng: postType === 'location' && locationLng !== '' ? locationLng : null, // Pass lng
         p_is_find_location: isFindLocation,
         p_is_creation: isCreation,
         p_is_anonymous: isAnonymous,
         p_is_public: isPublic,
       });
 
-    if (rpcError) { setError(t('add_post.error.rpc_error', { message: rpcError.message })); setLoading(false); }
+    if (rpcError) { setError(`Error: ${rpcError.message}`); setLoading(false); }
     else if (data && !data.success) { setError(data.message); setLoading(false); }
     else if (data && data.success) { router.push(`/lighter/${lighterId}`); router.refresh(); }
-    else { setError(t('add_post.error.unexpected')); setLoading(false); }
+    else { setError('An unexpected error occurred. Please try again.'); setLoading(false); }
   };
 
   const renderFormInputs = () => {
@@ -245,59 +189,36 @@ export default function AddPostForm({
     const textareaClass = `${inputClass} h-32`;
 
     switch (postType) {
-      case POST_TYPES.TEXT: return <textarea value={contentText} onChange={(e) => setContentText(e.target.value)} className={textareaClass} placeholder={t('add_post.placeholder.text')} required />;
-      case POST_TYPES.SONG:
+      case 'text': return <textarea value={contentText} onChange={(e) => setContentText(e.target.value)} className={textareaClass} placeholder="Your poem, your story, your thoughts..." required />;
+      case 'song':
         return (
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <IconButton
-                onClick={() => setSongInputMode('search')}
-                isActive={songInputMode === 'search'}
-                icon="🔍"
-                label={t('add_post.song_input_mode.search')}
-                tooltip="Search for a song on YouTube"
-              />
-              <IconButton
-                onClick={() => setSongInputMode('url')}
-                isActive={songInputMode === 'url'}
-                icon="🔗"
-                label={t('add_post.song_input_mode.url')}
-                tooltip="Paste a YouTube URL directly"
-              />
+            <div className="flex items-center gap-2 mb-2">
+              <button type="button" onClick={() => setSongInputMode('url')} className={`px-3 py-1 text-sm rounded-md ${songInputMode === 'url' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>URL</button>
+              <button type="button" onClick={() => setSongInputMode('search')} className={`px-3 py-1 text-sm rounded-md ${songInputMode === 'search' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>Search</button>
             </div>
             {songInputMode === 'url' ? (
-              <input type="url" value={contentUrl} onChange={(e) => setContentUrl(e.target.value)} className={inputClass} placeholder={t('add_post.placeholder.youtube_url')} required />
+              <input type="url" value={contentUrl} onChange={(e) => setContentUrl(e.target.value)} className={inputClass} placeholder="YouTube Song URL" required />
             ) : (
               <div className="space-y-2">
                 <input
                   type="text"
                   value={youtubeSearchQuery}
                   onChange={(e) => setYoutubeSearchQuery(e.target.value)}
-                  onKeyDown={handleYoutubeSearchKeydown}
                   className={inputClass}
-                  placeholder={t('add_post.placeholder.youtube_search')}
-                  aria-label="Search YouTube videos"
-                  aria-describedby="youtube-search-help"
+                  placeholder="Search YouTube for a song..."
                 />
-                <p id="youtube-search-help" className="text-xs text-muted-foreground">
-                  Use ↑↓ to navigate, Enter to select, Esc to close
-                </p>
-                {youtubeSearchLoading && <p className="text-sm text-muted-foreground">{t('add_post.youtube_search.searching')}</p>}
+                {youtubeSearchLoading && <p className="text-sm text-muted-foreground">Searching...</p>}
                 <div className="max-h-60 overflow-y-auto border border-border rounded-md">
                   {youtubeSearchResults.length > 0 ? (
-                    youtubeSearchResults.map((video, index) => (
+                    youtubeSearchResults.map((video) => (
                       <div
                         key={video.id.videoId}
-                        className={`flex items-center p-2 border-b border-border last:border-b-0 cursor-pointer transition-colors ${
-                          index === highlightedIndex
-                            ? 'bg-primary/20 border-l-2 border-l-primary'
-                            : 'hover:bg-muted'
-                        }`}
+                        className="flex items-center p-2 border-b border-border last:border-b-0 cursor-pointer hover:bg-muted"
                         onClick={() => {
                           setContentUrl(`https://www.youtube.com/watch?v=${video.id.videoId}`);
-                          setYoutubeSearchResults([]); // Clear results after selection
-                          setYoutubeSearchQuery(video.snippet.title); // Set query to title for display
-                          setHighlightedIndex(-1);
+                          setYoutubeSearchResults([]);
+                          setYoutubeSearchQuery(video.snippet.title); 
                         }}
                       >
                         <Image
@@ -311,42 +232,35 @@ export default function AddPostForm({
                       </div>
                     ))
                   ) : (
-                    !youtubeSearchLoading && youtubeSearchQuery && <p className="p-2 text-sm text-muted-foreground">{t('add_post.youtube_search.no_results')}</p>
+                    !youtubeSearchLoading && youtubeSearchQuery && <p className="p-2 text-sm text-muted-foreground">No results found.</p>
                   )}
                 </div>
               </div>
             )}
           </div>
         );
-      case POST_TYPES.IMAGE:
+      case 'image':
         return (
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <IconButton
-                onClick={() => setImageUploadMode('url')}
-                isActive={imageUploadMode === 'url'}
-                icon="🔗"
-                label={t('add_post.image_upload_mode.url')}
-                tooltip="Link an image from the web"
-              />
-              <IconButton
-                onClick={() => setImageUploadMode('upload')}
-                isActive={imageUploadMode === 'upload'}
-                icon="📤"
-                label={t('add_post.image_upload_mode.upload')}
-                tooltip="Upload an image from your device"
-              />
+            <div className="flex items-center gap-2 mb-2">
+              <button type="button" onClick={() => setImageUploadMode('url')} className={`px-3 py-1 text-sm rounded-md ${imageUploadMode === 'url' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>URL</button>
+              <button type="button" onClick={() => setImageUploadMode('upload')} className={`px-3 py-1 text-sm rounded-md ${imageUploadMode === 'upload' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>Upload</button>
             </div>
             {imageUploadMode === 'url' ? (
-              <input type="url" value={contentUrl} onChange={(e) => setContentUrl(e.target.value)} className={inputClass} placeholder={t('add_post.placeholder.image_url')} required={imageUploadMode === 'url'} />
+              <input type="url" value={contentUrl} onChange={(e) => setContentUrl(e.target.value)} className={inputClass} placeholder="Image URL (e.g., Imgur)" required={imageUploadMode === 'url'} />
             ) : (
               <input type="file" onChange={handleFileChange} className={`${inputClass} p-0 file:p-3 file:mr-4 file:border-0 file:bg-muted file:text-foreground hover:file:bg-muted/80`} accept="image/png, image/jpeg, image:gif" required={imageUploadMode === 'upload'} />
             )}
           </div>
         );
-      case POST_TYPES.LOCATION:
-        return <LocationSearch onLocationSelect={handleLocationSelect} />;
-      case POST_TYPES.REFUEL: return <p className="text-center text-lg text-foreground">{t('add_post.refuel_message')}</p>;
+      case 'location': return (
+        <>
+          <input type="text" value={locationName} onChange={(e) => setLocationName(e.target.value)} className={`${inputClass} mb-2`} placeholder="Name of a place (e.g., 'Cafe Central')" required />
+          <input type="number" value={locationLat} onChange={(e) => setLocationLat(parseFloat(e.target.value))} className={`${inputClass} mb-2`} placeholder="Latitude (e.g., 48.8566)" step="any" required />
+          <input type="number" value={locationLng} onChange={(e) => setLocationLng(parseFloat(e.target.value))} className={inputClass} placeholder="Longitude (e.g., 2.3522)" step="any" required />
+        </>
+      );
+      case 'refuel': return <p className="text-center text-lg text-foreground">You&apos;re a hero! By clicking &quot;Post,&quot; you&apos;ll add a &quot;Refueled&quot; entry to this lighter&apos;s story.</p>;
       default: return null;
     }
   };
@@ -358,66 +272,52 @@ export default function AddPostForm({
       className="w-full max-w-2xl rounded-xl bg-background p-6 sm:p-8 shadow-lg"
     >
       <h1 className="mb-2 text-center text-3xl font-bold text-foreground">
-        {t('add_post.title')}
+        Add to the Story
       </h1>
       <p className="mb-6 text-center text-lg text-muted-foreground">
-        {t('add_post.subtitle', { lighterName: lighterName })}
+        You are adding a post to <span className="font-semibold text-foreground">{lighterName}</span>
       </p>
 
-      {/* Post Type Selector Tabs with Icons and Subtitles */}
-      <div className="mb-8">
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-2">
-          {([POST_TYPES.TEXT, POST_TYPES.SONG, POST_TYPES.IMAGE, POST_TYPES.LOCATION, POST_TYPES.REFUEL] as PostType[]).map(
-            (type) => {
-              const icons: { [key in PostType]: string } = {
-                text: '📝',
-                song: '🎵',
-                image: '🖼️',
-                location: '📍',
-                refuel: '⛽',
-              };
-
-              return (
-                <button
-                  key={type}
-                  type="button"
-                  onClick={() => setPostType(type)}
-                  className={`relative flex flex-col items-center justify-center rounded-lg px-3 py-4 sm:py-5 text-sm font-medium transition-all duration-300 ${
-                    postType === type
-                      ? 'bg-primary text-primary-foreground shadow-md ring-2 ring-primary/20'
-                      : 'bg-muted text-foreground hover:bg-muted/80'
-                  }`}
-                >
-                  <span className="text-2xl mb-2">{icons[type]}</span>
-                  <span className="text-xs sm:text-sm font-semibold capitalize">{t(`add_post.post_type.${type}`)}</span>
-                  <span className="text-xs text-center mt-1 opacity-80">{t(`add_post.subtitle.${type}`)}</span>
-                </button>
-              );
-            }
+      {/* Post Type Selector Tabs */}
+      <div className="mb-6 rounded-lg bg-muted p-1">
+        <div className="flex space-x-1 overflow-x-auto">
+          {(['text', 'song', 'image', 'location', 'refuel'] as PostType[]).map(
+            (type) => (
+              <button
+                key={type}
+                type="button"
+                onClick={() => setPostType(type)}
+                className={`flex-shrink-0 rounded-md px-3 py-2 text-sm font-medium capitalize transition ${
+                  postType === type
+                    ? 'bg-background text-primary shadow-sm'
+                    : 'text-muted-foreground hover:bg-background/50 hover:text-foreground'
+                }`}
+              >
+                {type}
+              </button>
+            )
           )}
         </div>
       </div>
 
       {/* Form Fields */}
       <div className="space-y-4">
-        {postType !== POST_TYPES.REFUEL && (
+        {postType !== 'refuel' && (
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             className="w-full rounded-lg border border-input p-3 text-foreground bg-background focus:border-primary focus:ring-primary"
-            placeholder={t('add_post.placeholder.title')}
+            placeholder="Title (Optional)"
           />
         )}
-        <div className="min-h-[320px]">
-          {renderFormInputs()}
-        </div>
+        {renderFormInputs()}
         {/* Checkboxes */}
         <div className="space-y-3 pt-2">
-          {postType === POST_TYPES.LOCATION && (<Checkbox id="isFindLocation" label={t('add_post.checkbox.is_find_location')} checked={isFindLocation} onChange={setIsFindLocation} />)}
-          {postType !== POST_TYPES.LOCATION && postType !== POST_TYPES.REFUEL && (<Checkbox id="isCreation" label={t('add_post.checkbox.is_creation')} checked={isCreation} onChange={setIsCreation} />)}
-          <Checkbox id="isAnonymous" label={t('add_post.checkbox.is_anonymous')} checked={isAnonymous} onChange={setIsAnonymous} />
-          <Checkbox id="isPublic" label={t('add_post.checkbox.is_public')} checked={isPublic} onChange={setIsPublic} />
+          {postType === 'location' && (<Checkbox id="isFindLocation" label="This is where I found this lighter" checked={isFindLocation} onChange={setIsFindLocation} />)}
+          {postType !== 'location' && postType !== 'refuel' && (<Checkbox id="isCreation" label="This is something I&apos;ve made" checked={isCreation} onChange={setIsCreation} />)}
+          <Checkbox id="isAnonymous" label="Post anonymously" checked={isAnonymous} onChange={setIsAnonymous} />
+          <Checkbox id="isPublic" label="Allow this post to appear in public feeds (e.g., homepage)" checked={isPublic} onChange={setIsPublic} />
         </div>
       </div>
 
@@ -426,19 +326,15 @@ export default function AddPostForm({
       <button
         type="submit"
         disabled={loading || uploading}
-        className="btn-primary mt-6 w-full text-lg py-3 flex justify-center items-center gap-2 hover:shadow-lg transition-shadow duration-200"
+        className="btn-primary mt-6 w-full text-lg flex justify-center items-center" // Applied btn-primary
       >
         {loading || uploading ? (
-          <LoadingSpinner
-            size="sm"
-            color="foreground"
-            label={uploading ? t('add_post.button.uploading') : t('add_post.button.posting')}
-          />
-        ) : (
           <>
-            <span>✨</span>
-            <span>{t('add_post.button.add_to_story')}</span>
+            <Image src="/loading.gif" alt="Loading..." width={24} height={24} unoptimized={true} className="mr-2" />
+            {uploading ? 'Uploading...' : 'Posting...'}
           </>
+        ) : (
+          'Add to Story'
         )}
       </button>
     </form>

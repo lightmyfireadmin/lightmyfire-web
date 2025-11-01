@@ -81,86 +81,6 @@ export default async function Home() {
         </div>
       </div>
 
-      {/* Save a Lighter CTA - Below hero section */}
-      <div className="flex justify-center px-4 mb-6 lg:mb-3">
-        <div className="relative inline-flex">
-          <Link href={`/${locale}/save-lighter`} className="btn-primary">
-            {t('home.hero.cta')}
-          </Link>
-          <Image
-            src="/illustrations/CTA_rainbow_arrow.png"
-            alt="Arrow pointing to save lighter button"
-            className="absolute top-1/2 -translate-y-1/2 w-[60px] h-[60px] lg:w-[100px] lg:h-[100px] left-[calc(100%-10px)] lg:left-[calc(100%+15px)]"
-            priority
-          />
-        </div>
-      </div>
-
-      {/* How It Works Section */}
-      <div className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-        <h2 className="mb-8 text-center text-2xl sm:text-3xl font-bold text-foreground">
-          {t('home.how_it_works.title')}
-        </h2>
-        <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-3">
-          {/* Step 1 */}
-          <div className="rounded-lg border border-border bg-background p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
-            <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
-              <Image
-                src="/illustrations/personalise.png"
-                alt="Save a lighter"
-                width={120}
-                height={128}
-                className="object-contain"
-              />
-            </div>
-            <h3 className="mb-2 text-lg sm:text-xl font-semibold text-foreground">
-              1. {t('home.how_it_works.step1.title')}
-            </h3>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed flex-1">
-              {t('home.how_it_works.step1.description')}
-            </p>
-          </div>
-
-          {/* Step 2 */}
-          <div className="rounded-lg border border-border bg-background p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
-            <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
-              <Image
-                src="/illustrations/around_the_world.png"
-                alt="Share the lighter"
-                width={120}
-                height={128}
-                className="object-contain"
-              />
-            </div>
-            <h3 className="mb-2 text-lg sm:text-xl font-semibold text-foreground">
-              2. {t('home.how_it_works.step2.title')}
-            </h3>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed flex-1">
-              {t('home.how_it_works.step2.description')}
-            </p>
-          </div>
-
-          {/* Step 3 */}
-          <div className="rounded-lg border border-border bg-background p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
-            <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
-              <Image
-                src="/illustrations/telling_stories.png"
-                alt="Follow the story"
-                width={120}
-                height={128}
-                className="object-contain"
-              />
-            </div>
-            <h3 className="mb-2 text-lg sm:text-xl font-semibold text-foreground">
-              3. {t('home.how_it_works.step3.title')}
-            </h3>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed flex-1">
-              {t('home.how_it_works.step3.description')}
-            </p>
-          </div>
-        </div>
-      </div>
-
       {/* Become a LightSaver Section */}
       <div className="mx-auto w-full max-w-4xl px-4 py-8 lg:py-12 mb-6 lg:mb-3">
         <div className="rounded-lg border border-border bg-background/95 p-8 sm:p-10 shadow-md">
@@ -186,6 +106,71 @@ export default async function Home() {
                 priority
               />
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* How It Works Section */}
+      <div className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <h2 className="mb-8 text-center text-2xl sm:text-3xl font-bold text-foreground">
+          {t('home.how_it_works.title')}
+        </h2>
+        <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-3">
+          {/* Step 1 */}
+          <div className="rounded-lg border border-border bg-background p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+            <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
+              <Image
+                src="/illustrations/personalise.png"
+                alt="Save a lighter"
+                width={120}
+                height={128}
+                className="h-full w-auto object-contain"
+              />
+            </div>
+            <h3 className="mb-2 text-lg sm:text-xl font-semibold text-foreground">
+              {t('home.how_it_works.step1.title')}
+            </h3>
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed flex-1">
+              {t('home.how_it_works.step1.description')}
+            </p>
+          </div>
+
+          {/* Step 2 */}
+          <div className="rounded-lg border border-border bg-background p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+            <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
+              <Image
+                src="/illustrations/around_the_world.png"
+                alt="Share the lighter"
+                width={120}
+                height={128}
+                className="h-full w-auto object-contain"
+              />
+            </div>
+            <h3 className="mb-2 text-lg sm:text-xl font-semibold text-foreground">
+              {t('home.how_it_works.step2.title')}
+            </h3>
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed flex-1">
+              {t('home.how_it_works.step2.description')}
+            </p>
+          </div>
+
+          {/* Step 3 */}
+          <div className="rounded-lg border border-border bg-background p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+            <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
+              <Image
+                src="/illustrations/telling_stories.png"
+                alt="Follow the story"
+                width={120}
+                height={128}
+                className="h-full w-auto object-contain"
+              />
+            </div>
+            <h3 className="mb-2 text-lg sm:text-xl font-semibold text-foreground">
+              {t('home.how_it_works.step3.title')}
+            </h3>
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed flex-1">
+              {t('home.how_it_works.step3.description')}
+            </p>
           </div>
         </div>
       </div>

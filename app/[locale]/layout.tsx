@@ -3,6 +3,7 @@ import type { CookieOptions } from '@supabase/ssr';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import ToastWrapper from '@/app/components/ToastWrapper';
+import WelcomeBanner from '@/app/components/WelcomeBanner';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import CookieConsent from '@/app/components/CookieConsent';
@@ -41,6 +42,17 @@ export default async function LangLayout({
     data: { session },
   } = await supabase.auth.getSession();
 
+  // Fetch username if user is logged in
+  let username: string | null = null;
+  if (session?.user?.id) {
+    const { data: profileData } = await supabase
+      .from('profiles')
+      .select('username')
+      .eq('id', session.user.id)
+      .single();
+    username = profileData?.username || null;
+  }
+
   // This layout provides the language context and the main UI shell
   // (Header, Footer) INSIDE the root <body> tag.
   return (
@@ -51,7 +63,8 @@ export default async function LangLayout({
           The flex column structure is now on the <body> tag in the root layout.
           This component just renders its children in order.
         */}
-        <Header session={session} />
+        <Header session={session} username={username} />
+        <WelcomeBanner isLoggedIn={session !== null} username={username} />
         <main className="flex-grow">{children}</main>
         <Footer lang={locale} />
         <CookieConsent />

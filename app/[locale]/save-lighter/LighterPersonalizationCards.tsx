@@ -11,14 +11,28 @@ interface LighterCustomization {
 
 const SUPPORTED_LANGUAGES = [
   { code: 'en', label: 'English', name: 'English' },
-  { code: 'fr', label: 'French', name: 'Français' },
-  { code: 'es', label: 'Spanish', name: 'Español' },
-  { code: 'de', label: 'German', name: 'Deutsch' },
-  { code: 'pt', label: 'Portuguese', name: 'Português' },
-  { code: 'zh', label: 'Mandarin', name: '中文' },
   { code: 'ar', label: 'Arabic', name: 'العربية' },
-  { code: 'ru', label: 'Russian', name: 'Русский' },
+  { code: 'de', label: 'German', name: 'Deutsch' },
+  { code: 'es', label: 'Spanish', name: 'Español' },
+  { code: 'fa', label: 'Persian', name: 'فارسی' },
+  { code: 'fr', label: 'French', name: 'Français' },
+  { code: 'hi', label: 'Hindi', name: 'हिन्दी' },
+  { code: 'id', label: 'Indonesian', name: 'Bahasa Indonesia' },
   { code: 'it', label: 'Italian', name: 'Italiano' },
+  { code: 'ja', label: 'Japanese', name: '日本語' },
+  { code: 'ko', label: 'Korean', name: '한국어' },
+  { code: 'mr', label: 'Marathi', name: 'मराठी' },
+  { code: 'nl', label: 'Dutch', name: 'Nederlands' },
+  { code: 'pl', label: 'Polish', name: 'Polski' },
+  { code: 'pt', label: 'Portuguese', name: 'Português' },
+  { code: 'ru', label: 'Russian', name: 'Русский' },
+  { code: 'te', label: 'Telugu', name: 'తెలుగు' },
+  { code: 'th', label: 'Thai', name: 'ไทย' },
+  { code: 'tr', label: 'Turkish', name: 'Türkçe' },
+  { code: 'uk', label: 'Ukrainian', name: 'Українська' },
+  { code: 'ur', label: 'Urdu', name: 'اردو' },
+  { code: 'vi', label: 'Vietnamese', name: 'Tiếng Việt' },
+  { code: 'zh-CN', label: 'Mandarin', name: '中文' },
 ];
 
 const COLOR_PALETTE = [
@@ -51,7 +65,7 @@ export default function LighterPersonalizationCards({
   const [customizations, setCustomizations] = useState<LighterCustomization[]>(
     Array.from({ length: stickerCount }, (_, i) => ({
       id: `lighter-${i}`,
-      name: `My Lighter ${i + 1}`,
+      name: '',
       backgroundColor: COLOR_PALETTE[i % COLOR_PALETTE.length],
     }))
   );
@@ -115,124 +129,145 @@ export default function LighterPersonalizationCards({
   const visibleCustomizations = useApplyAll ? [customizations[0]] : customizations;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       <div>
-        <h3 className="text-2xl font-bold text-foreground mb-6">
+        <h3 className="text-xl font-bold text-foreground mb-4">
           Customize Your Stickers
         </h3>
-        <p className="text-muted-foreground mb-6">
+        <p className="text-muted-foreground mb-4 text-sm">
           Personalize each lighter sticker. Your sticker will display: &quot;Hello, my name is
           <span className="font-semibold text-foreground"> [Your Name]</span>, ready my story :&quot;
         </p>
       </div>
 
-      {/* Personalization Cards */}
-      <div className="space-y-6">
-        {visibleCustomizations.map((customization, index) => (
-          <div
-            key={customization.id}
-            className="rounded-lg border-2 border-border bg-background/95 p-6 shadow-md"
-          >
-            <div className="flex items-center justify-between mb-4">
-              <h4 className="text-lg font-semibold text-foreground">
-                Sticker {useApplyAll ? '(All)' : index + 1}
-              </h4>
-              {index === 0 && customizations.length > 1 && (
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={useApplyAll}
-                    onChange={(e) => handleApplyAllChange(e.target.checked)}
-                    className="h-4 w-4 rounded border-input text-primary focus:ring-primary"
-                  />
-                  <span className="text-sm text-muted-foreground">
-                    Use these properties for all {stickerCount} stickers
-                  </span>
-                </label>
-              )}
-            </div>
+      {/* Apply All Checkbox - ABOVE the cards */}
+      {customizations.length > 1 && (
+        <div className="mb-4">
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={useApplyAll}
+              onChange={(e) => handleApplyAllChange(e.target.checked)}
+              className="h-4 w-4 rounded border-input text-primary focus:ring-primary"
+            />
+            <span className="text-sm text-muted-foreground">
+              Use same properties on every lighter
+            </span>
+          </label>
+        </div>
+      )}
 
-            {/* Name Input */}
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-foreground mb-2">
-                Lighter Name
-              </label>
-              <div className="flex gap-2 items-center">
-                <span className="text-muted-foreground text-sm">Hello, my name is</span>
+      {/* Personalization Cards */}
+      <div className="space-y-4">
+        {visibleCustomizations.map((customization, index) => {
+          const actualIndex = useApplyAll ? 1 : index + 1;
+          const nameLength = customization.name.length;
+          const isNameValid = nameLength >= 3 && nameLength <= 16;
+
+          return (
+            <div
+              key={customization.id}
+              className="rounded-lg border border-border bg-background/95 p-4 shadow"
+            >
+              <div className="mb-3">
+                <h4 className="text-base font-semibold text-foreground">
+                  Lighter #{useApplyAll ? '1' : actualIndex}
+                </h4>
+              </div>
+
+              {/* Sticker Preview Placeholder */}
+              <div className="mb-4 p-4 border-2 border-dashed border-border rounded-md bg-muted/30 flex items-center justify-center h-32">
+                <p className="text-xs text-muted-foreground text-center">
+                  Sticker Preview<br/>
+                  <span className="text-xs italic">(Coming soon)</span>
+                </p>
+              </div>
+
+              {/* Name Input */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Lighter Name (3-16 characters)
+                </label>
                 <input
                   type="text"
                   value={customization.name}
                   onChange={(e) =>
                     handleNameChange(customization.id, e.target.value)
                   }
-                  maxLength={30}
-                  className="flex-1 px-3 py-2 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="Phoenix"
+                  minLength={3}
+                  maxLength={16}
+                  className={`w-full px-3 py-2 rounded-md border ${
+                    nameLength > 0 && !isNameValid
+                      ? 'border-red-500 focus:ring-red-500'
+                      : 'border-input focus:ring-primary'
+                  } bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2`}
+                  placeholder="Enter lighter name..."
                 />
-                <span className="text-muted-foreground text-sm">, ready my story:</span>
+                <p className={`mt-1 text-xs ${
+                  nameLength > 0 && !isNameValid ? 'text-red-500' : 'text-muted-foreground'
+                }`}>
+                  {nameLength}/16 characters {nameLength > 0 && !isNameValid && '(minimum 3 characters required)'}
+                </p>
               </div>
-              <p className="mt-2 text-xs text-muted-foreground">
-                {customization.name.length}/30 characters
-              </p>
-            </div>
 
-            {/* Color Picker */}
-            <div>
-              <label className="block text-sm font-medium text-foreground mb-3">
-                Sticker Background Color
-              </label>
-              <div className="flex flex-wrap gap-3">
-                {COLOR_PALETTE.map((color) => (
-                  <button
-                    key={color}
-                    type="button"
-                    onClick={() =>
-                      handleColorChange(customization.id, color)
-                    }
-                    className={`h-12 w-12 rounded-full transition-transform ${
-                      customization.backgroundColor === color
-                        ? 'ring-4 ring-primary scale-110'
-                        : 'hover:scale-105'
-                    }`}
-                    style={{ backgroundColor: color }}
-                    title={color}
+              {/* Color Picker */}
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-2">
+                  Pick Background Color
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  {COLOR_PALETTE.map((color) => (
+                    <button
+                      key={color}
+                      type="button"
+                      onClick={() =>
+                        handleColorChange(customization.id, color)
+                      }
+                      className={`h-10 w-10 rounded-full transition-transform ${
+                        customization.backgroundColor === color
+                          ? 'ring-3 ring-primary scale-105'
+                          : 'hover:scale-95'
+                      }`}
+                      style={{ backgroundColor: color }}
+                      title={color}
+                    />
+                  ))}
+                </div>
+                <div className="mt-3 flex items-center gap-2">
+                  <div
+                    className="h-12 w-20 rounded border border-border shadow-sm"
+                    style={{ backgroundColor: customization.backgroundColor }}
                   />
-                ))}
-              </div>
-              <div className="mt-4 flex items-center gap-3">
-                <div
-                  className="h-16 w-24 rounded-md border-2 border-border shadow-sm"
-                  style={{ backgroundColor: customization.backgroundColor }}
-                />
-                <div className="text-sm">
-                  <p className="font-mono font-semibold text-foreground">
-                    {customization.backgroundColor}
-                  </p>
-                  <p className="text-xs text-muted-foreground">Selected color</p>
+                  <div className="text-xs">
+                    <p className="font-mono font-semibold text-foreground">
+                      {customization.backgroundColor}
+                    </p>
+                    <p className="text-xs text-muted-foreground">Selected</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
-      {/* Language Selection */}
-      <div className="rounded-lg border-2 border-border bg-background/95 p-6 shadow-md">
-        <h4 className="text-lg font-semibold text-foreground mb-4">
-          Sticker Language
+      {/* Language Selection - After all lighter cards */}
+      <div className="rounded-lg border border-border bg-background/95 p-4 shadow">
+        <h4 className="text-base font-semibold text-foreground mb-3">
+          Second Language on Sticker
         </h4>
-        <p className="text-muted-foreground text-sm mb-4">
-          Choose the language for your sticker text. English will always be displayed underneath.
+        <p className="text-muted-foreground text-xs mb-3">
+          Choose a second language for your sticker. English will always be included.
         </p>
         <select
           value={selectedLanguage}
           onChange={(e) => setSelectedLanguage(e.target.value)}
-          className="w-full px-4 py-3 rounded-md border-2 border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+          className="w-full px-3 py-2 rounded-md border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-sm"
         >
           {SUPPORTED_LANGUAGES.map((lang) => (
             <option key={lang.code} value={lang.code}>
               {lang.name}
-              {lang.code === 'en' ? ' (always included)' : ' + English'}
+              {lang.code === 'en' ? ' (Primary)' : ' + English'}
             </option>
           ))}
         </select>

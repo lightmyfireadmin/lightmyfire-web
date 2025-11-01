@@ -26,7 +26,7 @@ function classNames(...classes: string[]) {
 
 type Session = { user: any } | null;
 
-export default function Header({ session }: { session: Session }) {
+export default function Header({ session, username }: { session: Session; username: string | null }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const isLoggedIn = session !== null;
@@ -76,7 +76,7 @@ export default function Header({ session }: { session: Session }) {
           {isLoggedIn && (
              <Link href={`/${lang}/my-profile`} className={classNames(pathname === `/${lang}/my-profile` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6 flex items-center')}>
                <UserIcon className="h-5 w-5 mr-1.5" aria-hidden="true" />
-               {t('nav.my_profile')}
+               {username || t('nav.my_profile')}
              </Link>
           )}
         </div>
@@ -96,30 +96,29 @@ export default function Header({ session }: { session: Session }) {
       </nav>
 
       {/* Mobile Menu Dialog */}
-      <Dialog as="div" className="lg:hidden relative z-50" open={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)}>
-        <Transition.Child
-          as={Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-300"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="fixed inset-0 z-40 bg-black/20" />
-        </Transition.Child>
-        {/* FIXED SECTION: Props are now on the Transition.Child tag */}
-        <Transition.Child
-          as={Fragment}
-          enter="transition ease-in-out duration-300 transform"
-          enterFrom="translate-x-full"
-          enterTo="translate-x-0"
-          leave="transition ease-in-out duration-300 transform"
-          leaveFrom="translate-x-0"
-          leaveTo="translate-x-full"
-        >
-          {/* FIXED SECTION: Corrected typo "i@nset-y-0" to "inset-y-0" */}
-          <Dialog.Panel ref={focusTrapRef} className="fixed inset-y-0 right-0 z-50 w-[calc(100%-36px)] overflow-y-auto bg-background p-6 sm:max-w-sm shadow-lg border-l border-border">
+      <Transition show={mobileMenuOpen} as={Fragment}>
+        <Dialog as="div" className="lg:hidden relative z-50" onClose={() => setMobileMenuOpen(false)}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-300"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 z-40 bg-black/20" />
+          </Transition.Child>
+          <Transition.Child
+            as={Fragment}
+            enter="transition ease-in-out duration-300 transform"
+            enterFrom="translate-x-full"
+            enterTo="translate-x-0"
+            leave="transition ease-in-out duration-300 transform"
+            leaveFrom="translate-x-0"
+            leaveTo="translate-x-full"
+          >
+            <Dialog.Panel ref={focusTrapRef} className="fixed inset-y-0 right-0 z-50 w-[calc(100%-36px)] overflow-y-auto bg-background p-6 sm:max-w-sm shadow-lg border-l border-border">
             <div className="flex items-center justify-between">
               <Link href={`/${lang}`} onClick={() => setMobileMenuOpen(false)} className="-m-1.5 p-1.5 rounded-lg transition-shadow duration-300 hover:shadow-lg hover:shadow-primary/30">
                 <Image src="/LOGOLONG.png" alt="LightMyFire" width={150} height={40} />
@@ -153,7 +152,7 @@ export default function Header({ session }: { session: Session }) {
                   {isLoggedIn && (
                     <Link href={`/${lang}/my-profile`} onClick={() => setMobileMenuOpen(false)} className={classNames(pathname === `/${lang}/my-profile` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 flex items-center pl-4 gap-x-4')}>
                       <UserIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
-                      {t('nav.my_profile')}
+                      {username || t('nav.my_profile')}
                     </Link>
                   )}
                 </div>
@@ -174,8 +173,9 @@ export default function Header({ session }: { session: Session }) {
               </div>
             </div>
           </Dialog.Panel>
-        </Transition.Child> {/* This now correctly closes the Transition.Child */}
-      </Dialog>
+        </Transition.Child>
+        </Dialog>
+      </Transition>
     </header>
   );
 }
