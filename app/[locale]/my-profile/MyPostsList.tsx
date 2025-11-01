@@ -39,7 +39,7 @@ export default function MyPostsList({
       .eq('id', postToDelete);
 
     if (deleteError) {
-      setError(t('my_posts.error_deleting'));
+      setError(t('my_posts.error_deleting', { message: 'Failed to delete post' }));
     } else {
       setPosts(posts.filter((post) => post.id !== postToDelete));
     }
@@ -74,7 +74,7 @@ export default function MyPostsList({
           >
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-medium text-foreground">
-                {post.title || t('my_posts.post_type_default')}
+                {post.title || t('my_posts.post_type_default', { type: post.post_type })}
               </p>
               <p className="truncate text-sm text-muted-foreground">
                 {t('my_posts.on')}{' '}                <Link

@@ -5,7 +5,12 @@ import { supabase } from '@/lib/supabase'; // Assuming lib is at root
 import type { User } from '@supabase/supabase-js';
 import { useI18n } from '@/locales/client';
 
-export default function SaveLighterForm({ user }: { user: User }) {
+interface SaveLighterFormProps {
+  user: User;
+  onSuccess?: () => void;
+}
+
+export default function SaveLighterForm({ user, onSuccess }: SaveLighterFormProps) {
   const router = useRouter();
   const t = useI18n();
   const [lighterName, setLighterName] = useState('');
@@ -29,12 +34,15 @@ export default function SaveLighterForm({ user }: { user: User }) {
     );
 
     if (rpcError) {
-      setError(t('save_lighter.error.generic'));
+      setError(t('add_post.error.unexpected'));
       setLoading(false);
     } else if (data) {
+      if (onSuccess) {
+        onSuccess();
+      }
       router.push(`/save-lighter/success/${data}`);
     } else {
-      setError(t('save_lighter.error.failed_to_create'));
+      setError(t('add_post.error.unexpected'));
       setLoading(false);
     }
   };

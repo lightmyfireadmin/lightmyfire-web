@@ -25,25 +25,27 @@ const RandomPostFeed = () => {
   }, []);
 
   useEffect(() => {
-    if (posts.length > 0) {
-      // Post 1 changes every 7 seconds (1s fade + 3s extra stay + original 3s)
-      const interval1 = setInterval(() => {
-        setVisiblePostIndex1((prevIndex) => (prevIndex + 2) % posts.length);
+    if (posts.length === 0) return;
+
+    // Post 1 changes every 7 seconds (1s fade + 3s extra stay + original 3s)
+    const interval1 = setInterval(() => {
+      setVisiblePostIndex1((prevIndex) => (prevIndex + 2) % posts.length);
+    }, 7000);
+
+    // Post 2 is staggered by 1 second - declare interval2 outside setTimeout
+    let interval2: NodeJS.Timeout | undefined;
+    const timeout2 = setTimeout(() => {
+      interval2 = setInterval(() => {
+        setVisiblePostIndex2((prevIndex) => (prevIndex + 2) % posts.length);
       }, 7000);
+    }, 1000);
 
-      // Post 2 is staggered by 1 second
-      const timeout2 = setTimeout(() => {
-        const interval2 = setInterval(() => {
-          setVisiblePostIndex2((prevIndex) => (prevIndex + 2) % posts.length);
-        }, 7000);
-        return () => clearInterval(interval2);
-      }, 1000);
-
-      return () => {
-        clearInterval(interval1);
-        clearTimeout(timeout2);
-      };
-    }
+    return () => {
+      clearInterval(interval1);
+      clearTimeout(timeout2);
+      // ✅ Now properly cleaned up
+      if (interval2) clearInterval(interval2);
+    };
   }, [posts]);
 
   if (posts.length < 2) {
