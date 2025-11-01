@@ -1,27 +1,56 @@
 'use client';
 
 import { Fragment } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import { Menu, Transition } from '@headlessui/react';
 import { GlobeAltIcon } from '@heroicons/react/24/outline';
-// These imports are now correct, pointing to your local client file
-import { useCurrentLocale, useChangeLocale } from '@/locales/client'; 
+import { useCurrentLocale } from '@/locales/client';
 import { i18n } from '@/locales/config';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-// Includes German and Spanish
+// Language names in their native language
 const languageNames: Record<string, string> = {
   en: 'English',
-  fr: 'Français',
+  ar: 'العربية',
   de: 'Deutsch',
   es: 'Español',
+  fa: 'فارسی',
+  fr: 'Français',
+  hi: 'हिन्दी',
+  id: 'Bahasa Indonesia',
+  it: 'Italiano',
+  ja: '日本語',
+  ko: '한국어',
+  mr: 'मराठी',
+  nl: 'Nederlands',
+  pl: 'Polski',
+  pt: 'Português',
+  ru: 'Русский',
+  te: 'తెలుగు',
+  th: 'ไทย',
+  tr: 'Türkçe',
+  uk: 'Українська',
+  ur: 'اردو',
+  vi: 'Tiếng Việt',
+  'zh-CN': '中文 (简体)',
 };
 
 export default function LanguageSwitcher() {
   const currentLocale = useCurrentLocale();
-  const changeLocale = useChangeLocale(); // This will now work correctly
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleLocaleChange = (newLocale: string) => {
+    // Replace the current locale in the pathname with the new one
+    const segments = pathname.split('/');
+    // segments[0] is empty (before the first /), segments[1] is the locale
+    segments[1] = newLocale;
+    const newPathname = segments.join('/');
+    router.push(newPathname);
+  };
 
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -41,15 +70,16 @@ export default function LanguageSwitcher() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-36 origin-top-right rounded-md bg-background shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-background shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             {i18n.locales.map((locale) => (
               <Menu.Item key={locale}>
                 {({ active }) => (
                   <button
-                    onClick={() => changeLocale(locale)}
+                    onClick={() => handleLocaleChange(locale)}
                     className={classNames(
                       active ? 'bg-muted text-foreground' : 'text-muted-foreground',
+                      currentLocale === locale ? 'font-semibold' : '',
                       'block px-4 py-2 text-sm w-full text-left'
                     )}
                   >

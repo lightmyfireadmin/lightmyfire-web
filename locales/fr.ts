@@ -156,4 +156,8 @@ export default {
 
   'post.refuel_message': 'Rechargé ! L\'aventure de ce briquet continue.',
   'post.youtube_load_error': 'Impossible de charger la vidéo YouTube (URL invalide ?).',
+  'legal.privacy.title': 'Privacy Policy',
+  'legal.terms.title': 'Terms of Service',
+  'legal.faq.title': 'Frequently Asked Questions',
+  'legal.about.title': 'About LightMyFire',
 } as const;

@@ -9,9 +9,36 @@ import LogoutButton from './LogoutButton';
 import { useCurrentLocale, useI18n } from '@/locales/client';
 import Image from 'next/image';
 import { useFocusTrap } from '@/lib/hooks/useFocusTrap';
+import type { Session } from '@supabase/supabase-js';
 
 // Import the new LanguageSwitcher
 import LanguageSwitcher from './LanguageSwitcher';
+
+// Logo component with fade-out halo on mobile
+function LogoLink({ href, lang }: { href: string; lang: string }) {
+  const [showHalo, setShowHalo] = useState(false);
+
+  const handleClick = () => {
+    setShowHalo(true);
+    // Auto-fade out after 3 seconds
+    const timer = setTimeout(() => {
+      setShowHalo(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  };
+
+  return (
+    <Link
+      href={href}
+      onClick={handleClick}
+      className={`-m-1.5 p-1.5 rounded-lg transition-shadow duration-300 ${
+        showHalo ? 'shadow-lg shadow-primary/30' : ''
+      }`}
+    >
+      <Image src="/LOGOLONG.png" alt="LightMyFire" width={150} height={40} />
+    </Link>
+  );
+}
 
 const navigation = [
   { key: 'nav.how_it_works', href: '/legal/faq', icon: QuestionMarkCircleIcon },
@@ -24,9 +51,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-type Session = { user: any } | null;
-
-export default function Header({ session, username }: { session: Session; username: string | null }) {
+export default function Header({ session, username }: { session: Session | null; username: string | null }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const isLoggedIn = session !== null;
@@ -36,24 +61,25 @@ export default function Header({ session, username }: { session: Session; userna
 
   // Close mobile menu on route change
   useEffect(() => {
-    if (mobileMenuOpen) {
-      setMobileMenuOpen(false);
-    }
-  }, [pathname, mobileMenuOpen]);
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   return (
     <header className="bg-background border-b border-border shadow-sm sticky top-0 z-50 w-full">
       <nav className="w-full flex items-center justify-between p-4 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <Link href={`/${lang}`} className="-m-1.5 p-1.5 rounded-lg transition-shadow duration-300 hover:shadow-lg hover:shadow-primary/30">
-            <Image src="/LOGOLONG.png" alt="LightMyFire" width={150} height={40} />
-          </Link>
+          <LogoLink href={`/${lang}`} lang={lang} />
         </div>
         <div className="flex lg:hidden">
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-foreground hover:bg-muted"
-            onClick={() => setMobileMenuOpen(true)}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setMobileMenuOpen(true);
+            }}
+            aria-label="Open mobile menu"
           >
             <span className="sr-only">{t('nav.open_menu')}</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
@@ -120,9 +146,9 @@ export default function Header({ session, username }: { session: Session; userna
           >
             <Dialog.Panel ref={focusTrapRef} className="fixed inset-y-0 right-0 z-50 w-[calc(100%-36px)] overflow-y-auto bg-background p-6 sm:max-w-sm shadow-lg border-l border-border">
             <div className="flex items-center justify-between">
-              <Link href={`/${lang}`} onClick={() => setMobileMenuOpen(false)} className="-m-1.5 p-1.5 rounded-lg transition-shadow duration-300 hover:shadow-lg hover:shadow-primary/30">
-                <Image src="/LOGOLONG.png" alt="LightMyFire" width={150} height={40} />
-              </Link>
+              <div onClick={() => setMobileMenuOpen(false)}>
+                <LogoLink href={`/${lang}`} lang={lang} />
+              </div>
               <button
                 type="button"
                 className="-m-2.5 rounded-md p-2.5 text-foreground hover:bg-muted"

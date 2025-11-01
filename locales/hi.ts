@@ -156,4 +156,8 @@ export default {
   
     'post.refuel_message': 'रिफ्यूल किया गया! इस लाइटर की यात्रा जारी है।',
     'post.youtube_load_error': 'YouTube वीडियो लोड नहीं हो सका (अमान्य URL?)।',
+  'legal.privacy.title': 'Privacy Policy',
+  'legal.terms.title': 'Terms of Service',
+  'legal.faq.title': 'Frequently Asked Questions',
+  'legal.about.title': 'About LightMyFire',
   } as const;

@@ -17,11 +17,12 @@ export default function MyPostsList({
 }) {
   const [posts, setPosts] = useState(initialPosts);
   const [error, setError] = useState('');
-  
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [postToDelete, setPostToDelete] = useState<number | null>(null);
   const router = useRouter();
   const locale = useCurrentLocale();
+  const t = useI18n();
 
   const handleDeleteClick = (postId: number) => {
     setPostToDelete(postId);
@@ -32,7 +33,7 @@ export default function MyPostsList({
     if (postToDelete === null) return;
 
     setError('');
-    
+
     const { error: deleteError } = await supabase
       .from('posts')
       .delete()
@@ -43,11 +44,9 @@ export default function MyPostsList({
     } else {
       setPosts(posts.filter((post) => post.id !== postToDelete));
     }
-    
+
     setPostToDelete(null);
   };
-
-  const t = useI18n();
 
   if (posts.length === 0) {
     return (
@@ -77,8 +76,9 @@ export default function MyPostsList({
                 {post.title || t('my_posts.post_type_default', { type: post.post_type })}
               </p>
               <p className="truncate text-sm text-muted-foreground">
-                {t('my_posts.on')}{' '}                <Link
-                  href={`/lighter/${post.lighter_id}`}
+                {t('my_posts.on')}{' '}
+                <Link
+                  href={`/${locale}/lighter/${post.lighter_id}`}
                   className="font-medium text-primary hover:underline"
                 >
                   {post.lighters?.name || t('my_posts.a_lighter')}

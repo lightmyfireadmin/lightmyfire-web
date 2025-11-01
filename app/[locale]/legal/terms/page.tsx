@@ -1,12 +1,17 @@
 // app/legal/terms/page.tsx
+'use client';
+
+import { useI18n } from '@/locales/client';
 
 export default function TermsOfService() {
-    return (
-      <div className="mx-auto max-w-3xl p-4 py-12 sm:p-6 lg:p-8">
-        <div className="rounded-lg border border-border bg-background p-8 shadow-sm">
-          <h1 className="mb-6 text-center text-4xl font-bold text-foreground">
-            Terms of Service
-          </h1>
+  const t = useI18n();
+
+  return (
+    <div className="mx-auto max-w-3xl p-4 py-12 sm:p-6 lg:p-8">
+      <div className="rounded-lg border border-border bg-background p-8 shadow-sm">
+        <h1 className="mb-6 text-center text-4xl font-bold text-foreground">
+          {t('legal.terms.title')}
+        </h1>
           <div className="prose prose-lg max-w-none">
             <p className="lead">Last updated: October 28, 2025</p>
             <p>

@@ -19,13 +19,21 @@ export default function UpdateAuthForm() {
   const isOAuthUser = user?.app_metadata?.provider && user.app_metadata.provider !== 'email';
 
   useEffect(() => {
-    // Get current user
+    // Get current user - only on client side
+    let isMounted = true;
+
     const getCurrentUser = async () => {
       const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
+      if (isMounted) {
+        setUser(user);
+      }
     };
 
     getCurrentUser();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const handleUpdateAuth = async (e: React.FormEvent) => {

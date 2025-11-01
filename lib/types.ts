@@ -22,6 +22,7 @@ export type DetailedPost = {
   user_has_liked: boolean;
   nationality: string | null;
   show_nationality: boolean;
+  role?: 'user' | 'moderator' | 'admin' | null;
   // Champs ajoutés pour la synchronisation
   is_public: boolean;
   is_flagged: boolean;

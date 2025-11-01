@@ -13,16 +13,83 @@ import type { MyPostWithLighter, Trophy } from '@/lib/types';
 import Image from 'next/image'; // Import Image component
 
 // --- ADDED ---
-// Import the server-side translation function
-import { getI18n } from '@/locales/server'; 
+// Import the server-side translation function and locale getter
+import { getI18n, getCurrentLocale } from '@/locales/server';
 // --- END ADDED ---
 
 export const dynamic = 'force-dynamic';
 
+// Helper function to calculate level from points (1-100 levels)
+// Easier progression to encourage gamification
+function calculateLevel(points: number): number {
+  // 100 levels with exponential but gentle progression
+  // Level 1: 0-49 points
+  // Level 2: 50-149 points
+  // Level 3: 150-299 points
+  // ... each level requires progressively more points
+  // Level 100: ~50,000+ points (equivalent to old level 5/6)
+
+  if (points < 50) return 1;
+
+  // For levels 2-100: quadratic progression
+  // Points needed = level^1.3 * 50
+  let level = 1;
+  let cumulativePoints = 0;
+
+  for (let i = 2; i <= 100; i++) {
+    const pointsForThisLevel = Math.floor(Math.pow(i, 1.3) * 50);
+    cumulativePoints += pointsForThisLevel;
+    if (points < cumulativePoints) {
+      return i - 1;
+    }
+  }
+
+  return 100;
+}
+
+// Helper function to get points needed for next level
+function getPointsForNextLevel(currentLevel: number): number {
+  if (currentLevel >= 100) return Infinity;
+  // Points needed for the next level
+  return Math.floor(Math.pow(currentLevel + 1, 1.3) * 50);
+}
+
+// Helper function to get total cumulative points needed to reach a level
+function getTotalPointsForLevel(level: number): number {
+  if (level <= 1) return 0;
+
+  let total = 50; // Points for level 1
+  for (let i = 2; i <= level; i++) {
+    total += Math.floor(Math.pow(i, 1.3) * 50);
+  }
+  return total;
+}
+
+// Helper function to calculate points from contributions
+function calculatePoints(stats: {
+  total_contributions: number;
+  lighters_saved: number;
+  lighters_contributed_to: number;
+  likes_received: number;
+}): number {
+  // Points breakdown:
+  // - Each post/contribution: 10 points
+  // - Each lighter saved: 50 points
+  // - Each lighter contributed to: 20 points
+  // - Each like received: 5 points
+  return (
+    (stats.total_contributions ?? 0) * 10 +
+    (stats.lighters_saved ?? 0) * 50 +
+    (stats.lighters_contributed_to ?? 0) * 20 +
+    (stats.likes_received ?? 0) * 5
+  );
+}
+
 export default async function MyProfilePage() {
   // --- ADDED ---
-  // Call the translation function
+  // Call the translation function and get current locale
   const t = await getI18n();
+  const locale = await getCurrentLocale();
   // --- END ADDED ---
 
   const cookieStore = cookies();
@@ -99,6 +166,25 @@ export default async function MyProfilePage() {
       likes_received: statsRes.data?.likes_received ?? 0,
   };
 
+  // Calculate points and level based on stats
+  const calculatedPoints = calculatePoints(stats);
+  const calculatedLevel = calculateLevel(calculatedPoints);
+
+  // Update profile's level and points if they've changed
+  if (profile && (profile.level !== calculatedLevel || profile.points !== calculatedPoints)) {
+    await supabase
+      .from('profiles')
+      .update({
+        level: calculatedLevel,
+        points: calculatedPoints,
+      })
+      .eq('id', userId);
+
+    // Update the profile object for display
+    profile.level = calculatedLevel;
+    profile.points = calculatedPoints;
+  }
+
   // Cast fetched post data using the imported type
   const myPosts: MyPostWithLighter[] =
     (myPostsRes.data as unknown as MyPostWithLighter[]) || [];
@@ -133,25 +219,55 @@ export default async function MyProfilePage() {
         <TrophyList trophies={myTrophies} />
       </div>
 
+      {/* My Posts Section */}
+      <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
+        <h2 className="mb-4 text-xl font-semibold text-foreground">My Posts</h2>
+        <MyPostsList initialPosts={myPosts} />
+      </div>
+
       {/* Saved Lighters + Contributions Grid */}
       <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-3">
-      {/* Edit Profile Section */}
-      <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold text-foreground">Edit Profile</h2>
-          <Image
-            src="/illustrations/personalise.png"
-            alt="Personalise"
-            width={120}
-            height={120}
-          />
+        {/* Saved Lighters Section */}
+        <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
+          <h2 className="mb-4 text-xl font-semibold text-foreground">Saved Lighters</h2>
+          {savedLightersRes.data && savedLightersRes.data.length > 0 ? (
+            <ul className="space-y-2">
+              {savedLightersRes.data.map((lighter: any) => (
+                <li key={lighter.id}>
+                  <Link
+                    href={`/${locale}/lighter/${lighter.id}`}
+                    className="text-primary hover:underline font-medium"
+                  >
+                    {lighter.name}
+                  </Link>
+                  <p className="text-xs text-muted-foreground">PIN: {lighter.pin_code}</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-muted-foreground">{t('my_profile.no_lighters_saved')}</p>
+          )}
         </div>
-        {profile && <EditProfileForm user={session.user} profile={profile} />}
-      </div>
-      {/* Update Auth Section */}
-      <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
-        <UpdateAuthForm />
-      </div>
+
+        {/* Edit Profile Section */}
+        <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-semibold text-foreground">Edit Profile</h2>
+            <Image
+              src="/illustrations/personalise.png"
+              alt="Personalise"
+              width={80}
+              height={80}
+            />
+          </div>
+          {profile && <EditProfileForm user={session.user} profile={profile} />}
+        </div>
+
+        {/* Update Auth Section */}
+        <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
+          <h2 className="mb-4 text-xl font-semibold text-foreground">Security</h2>
+          <UpdateAuthForm />
+        </div>
       </div>
     </div>
   );

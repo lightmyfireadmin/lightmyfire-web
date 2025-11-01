@@ -155,4 +155,8 @@ export default {
 
   'post.refuel_message': 'Refueled! This lighter\'s journey continues.',
   'post.youtube_load_error': 'Could not load YouTube video (invalid URL?).',
+  'legal.privacy.title': 'Privacy Policy',
+  'legal.terms.title': 'Terms of Service',
+  'legal.faq.title': 'Frequently Asked Questions',
+  'legal.about.title': 'About LightMyFire',
   } as const;

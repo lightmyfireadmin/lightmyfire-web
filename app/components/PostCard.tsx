@@ -75,7 +75,7 @@ export default function PostCard({
       ${post.post_type === 'song' ? 'border-red-500' : ''}
       ${post.post_type === 'refuel' ? 'border-orange-500' : ''}
       ${!post.post_type ? 'border-border' : ''} /* Fallback border */
-      ${isMini ? 'shadow-md bg-background/95' : ''}
+      ${isMini ? 'shadow-md opacity-95' : ''}
       ${isRefuelPost ? 'py-3 pl-4 pr-5' : 'py-5 pl-5 pr-5'}
     `}>
 
@@ -96,15 +96,15 @@ export default function PostCard({
            />
            <div className="flex items-center gap-1">
              <span className="font-semibold text-foreground">{post.username}</span>
-             {(post as any).show_nationality && (post as any).nationality && (
+             {post.show_nationality && post.nationality && (
                <span
-                 title={getCountryName((post as any).nationality)}
+                 title={getCountryName(post.nationality)}
                  className="cursor-help text-lg"
                >
-                 {countryCodeToFlag((post as any).nationality)}
+                 {countryCodeToFlag(post.nationality)}
                </span>
              )}
-             <ModeratorBadge isSmall={isMini} role={(post as any).role} />
+             <ModeratorBadge isSmall={isMini} role={post.role ?? undefined} />
            </div>
         </div>
         <span

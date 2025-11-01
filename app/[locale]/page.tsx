@@ -53,11 +53,14 @@ export default async function Home() {
         <div className="w-full lg:w-auto text-center lg:text-left max-w-md">
           {/* Title with illustration - on mobile: stacked, on desktop: side by side */}
           <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-6">
-            <div className="w-[80px] h-[131px] lg:w-[120px] lg:h-[197px] mx-auto lg:mx-0 flex-shrink-0">
+            <div className="h-[131px] lg:h-[197px] mx-auto lg:mx-0 flex-shrink-0">
               <Image
                 src="/illustrations/thumbs_up.png"
                 alt="LightMyFire - Give lighters a second life"
-                className="w-full h-full object-contain"
+                width={80}
+                height={131}
+                priority
+                className="h-full w-auto object-contain"
               />
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
@@ -102,8 +105,10 @@ export default async function Home() {
               <Image
                 src="/illustrations/CTA_rainbow_arrow.png"
                 alt="Arrow pointing to save lighter button"
-                className="absolute top-1/2 -translate-y-1/2 w-[60px] h-[60px] lg:w-[100px] lg:h-[100px] left-[calc(100%-10px)] lg:left-[calc(100%+15px)]"
+                width={100}
+                height={100}
                 priority
+                className="absolute top-1/2 -translate-y-1/2 w-[60px] h-[60px] lg:w-[100px] lg:h-[100px] left-[calc(100%+0px)] lg:left-[calc(100%+15px)]"
               />
             </div>
           </div>

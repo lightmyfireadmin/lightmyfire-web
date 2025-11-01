@@ -1,21 +1,25 @@
 // app/faq/page.tsx
+'use client';
 
 import Image from 'next/image'; // Import Image component
+import { useI18n } from '@/locales/client';
 
 export default function FAQ() {
-    return (
-      <div className="mx-auto max-w-3xl p-4 py-12 sm:p-6 lg:p-8">
-        <div className="rounded-lg border border-border bg-background p-8 shadow-sm">
-          <Image
-            src="/illustrations/assistance_questions.png"
-            alt="Frequently Asked Questions"
-            width={150}
-            height={150}
-            className="mx-auto mb-6"
-          />
-          <h1 className="mb-6 text-center text-4xl font-bold text-foreground">
-            Frequently Asked Questions
-          </h1>
+  const t = useI18n();
+
+  return (
+    <div className="mx-auto max-w-3xl p-4 py-12 sm:p-6 lg:p-8">
+      <div className="rounded-lg border border-border bg-background p-8 shadow-sm">
+        <Image
+          src="/illustrations/assistance_questions.png"
+          alt={t('legal.faq.title')}
+          width={150}
+          height={150}
+          className="mx-auto mb-6"
+        />
+        <h1 className="mb-6 text-center text-4xl font-bold text-foreground">
+          {t('legal.faq.title')}
+        </h1>
           <div className="prose prose-lg max-w-none">
             <h3>What is LightMyFire?</h3>
             <p>

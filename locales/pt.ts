@@ -156,4 +156,8 @@ export default {
   
     'post.refuel_message': 'Recarregado! A jornada deste isqueiro continua.',
     'post.youtube_load_error': 'Não foi possível carregar o vídeo do YouTube (URL inválida?).',
+  'legal.privacy.title': 'Privacy Policy',
+  'legal.terms.title': 'Terms of Service',
+  'legal.faq.title': 'Frequently Asked Questions',
+  'legal.about.title': 'About LightMyFire',
   } as const;

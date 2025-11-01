@@ -156,4 +156,8 @@ export default {
 
   'post.refuel_message': 'Nachgefüllt! Die Reise dieses Feuerzeugs geht weiter.',
   'post.youtube_load_error': 'Konnte YouTube-Video nicht laden (ungültige URL?).',
+  'legal.privacy.title': 'Privacy Policy',
+  'legal.terms.title': 'Terms of Service',
+  'legal.faq.title': 'Frequently Asked Questions',
+  'legal.about.title': 'About LightMyFire',
 } as const;
