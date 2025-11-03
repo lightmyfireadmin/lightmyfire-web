@@ -9,16 +9,17 @@ import PostCard from './PostCard';
 interface AnimatingPost {
   id: string;
   post: DetailedPost;
-  position: number; // 0-100 for vertical position
+  position: number; // vertical position in pixels
 }
 
 const RandomPostFeed = () => {
   const t = useI18n();
   const [posts, setPosts] = useState<DetailedPost[]>([]);
-  const [usedPostIds, setUsedPostIds] = useState<Set<string>>(new Set());
   const [animatingPosts, setAnimatingPosts] = useState<AnimatingPost[]>([]);
   const [isPaused, setIsPaused] = useState(false);
   const [nextId, setNextId] = useState(0);
+  const CONTAINER_HEIGHT = 500;
+  const POST_SPACING = 26;
 
   // Fetch posts on mount and periodically refresh
   useEffect(() => {
@@ -28,68 +29,58 @@ const RandomPostFeed = () => {
       });
       if (data) {
         setPosts(data);
-        // Reset used post IDs when refreshing pool
-        setUsedPostIds(new Set());
       }
     };
 
     // Fetch immediately on mount
     fetchPosts();
 
-    // Refresh posts every 20 seconds to maintain a continuous supply
-    const refreshInterval = setInterval(fetchPosts, 20000);
+    // Refresh posts every 15 seconds to maintain supply
+    const refreshInterval = setInterval(fetchPosts, 15000);
     return () => clearInterval(refreshInterval);
   }, []);
 
-  // Animation loop - moves posts DOWN from top to bottom, fades them out, removes them when done
+  // Animation loop - smooth continuous scrolling
   useEffect(() => {
     if (posts.length === 0 || isPaused) return;
 
     const animationLoop = setInterval(() => {
       setAnimatingPosts((prevPosts) => {
+        // Move all posts down by fixed amount (smooth scroll)
         let updated = prevPosts
           .map((p) => ({
             ...p,
-            position: p.position + 0.8, // Increased speed for more continuous feel
+            position: p.position + 2, // 2px per frame = smooth scroll
           }))
-          .filter((p) => p.position < 120); // Remove when past bottom (with fade)
+          .filter((p) => p.position < CONTAINER_HEIGHT + 400); // Remove when fully past bottom
 
-        // Keep feeding posts to maintain continuous flow
-        while (updated.length < 6 && posts.length > 0) {
-          // Find an unused post
-          let availablePosts = posts.filter((p) => !usedPostIds.has(String(p.id)));
+        // Add new posts to top when space available
+        if (posts.length > 0) {
+          // Check if we need a new post at top
+          const topmost = updated.length > 0 ? Math.min(...updated.map(p => p.position)) : 0;
 
-          // If all posts are used, reset and allow reuse (but cycle through at least once)
-          if (availablePosts.length === 0 && usedPostIds.size > posts.length / 2) {
-            setUsedPostIds(new Set());
-            availablePosts = posts;
-          }
-
-          if (availablePosts.length > 0) {
-            const randomPost = availablePosts[Math.floor(Math.random() * availablePosts.length)];
-            updated.push({
+          if (topmost > -600) { // Start spawning when container is mostly empty
+            const randomPost = posts[Math.floor(Math.random() * posts.length)];
+            updated.unshift({
               id: `${nextId}-${Date.now()}`,
               post: randomPost,
-              position: -100, // Start at top (above viewport)
+              position: -380, // Start above viewport
             });
-            setUsedPostIds((prev) => new Set([...prev, String(randomPost.id)]));
             setNextId((prev) => prev + 1);
-          } else {
-            break;
           }
         }
 
         return updated;
       });
-    }, 33); // ~30fps animation (faster refresh for smoother continuous flow)
+    }, 16); // ~60fps for smooth animation
 
     return () => clearInterval(animationLoop);
-  }, [posts, isPaused, nextId, usedPostIds]);
+  }, [posts, isPaused, nextId]); // Removed nextId and other deps causing rerenders
 
-  // Calculate opacity based on position (fade at top and bottom)
+  // Calculate opacity based on position in pixels (fade at top and bottom)
   const getOpacity = (position: number): number => {
-    if (position < -10) return Math.max(0, 1 + (position + 10) / 15); // Fade in from top
-    if (position > 85) return Math.max(0, 1 - (position - 85) / 15); // Fade out at bottom
+    if (position < 0) return Math.max(0, 1 + position / 80); // Fade in from top
+    if (position > CONTAINER_HEIGHT - 80) return Math.max(0, 1 - (position - (CONTAINER_HEIGHT - 80)) / 80); // Fade out at bottom
     return 1;
   };
 
@@ -121,10 +112,9 @@ const RandomPostFeed = () => {
               key={animPost.id}
               className="absolute w-full px-4 transition-opacity duration-300"
               style={{
-                top: `calc(${animPost.position}% + 20px)`, // Add 20px gap between posts
-                transform: 'translateY(-50%)',
+                top: `${animPost.position}px`,
                 opacity: getOpacity(animPost.position),
-                pointerEvents: animPost.position > 15 && animPost.position < 85 ? 'auto' : 'none',
+                pointerEvents: animPost.position > 50 && animPost.position < CONTAINER_HEIGHT - 100 ? 'auto' : 'none',
               }}
             >
               <PostCard

@@ -243,16 +243,17 @@ async function logModerationResult(data: {
   severity: 'low' | 'medium' | 'high';
   timestamp: string;
 }): Promise<void> {
-  // TODO: Implement database logging
-  // This would insert into a moderation_queue table in Supabase:
-  // INSERT INTO moderation_queue (user_id, content_type, content, flagged, categories, scores, severity, created_at)
-  // VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-
-  console.log('Image moderation result logged:', {
-    userId: data.userId,
-    contentType: data.contentType,
-    flagged: data.flagged,
-    severity: data.severity,
-    timestamp: data.timestamp,
-  });
+  try {
+    // Call a client-side logging endpoint or log locally for now
+    // In production, this would be called by the client after receiving the moderation result
+    console.log('Image moderation check completed:', {
+      userId: data.userId,
+      contentType: data.contentType,
+      flagged: data.flagged,
+      severity: data.severity,
+    });
+  } catch (err) {
+    console.error('Failed to log image moderation:', err);
+    // Don't throw - logging should not block the request
+  }
 }

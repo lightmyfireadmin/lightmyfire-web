@@ -36,7 +36,7 @@ export default async function Home() {
       </Suspense>
 
       {/* Hero Section: Stack vertically on mobile, side-by-side on desktop */}
-      <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-8 py-8 lg:py-12 px-4 sm:px-6">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-3 lg:gap-4 py-8 lg:py-12 px-4 sm:px-6">
         {/* Hero Intro - Top on mobile, left on desktop */}
         <div className="w-full lg:w-auto text-center lg:text-left max-w-md">
           {/* Title with illustration - on mobile: stacked, on desktop: side by side */}
@@ -108,7 +108,7 @@ export default async function Home() {
         <h2 className="mb-8 text-center text-2xl sm:text-3xl font-bold text-foreground">
           {t('home.how_it_works.title')}
         </h2>
-        <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 md:gap-4 md:grid-cols-3">
           {/* Step 1 */}
           <div className="rounded-lg border border-border bg-background p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
             <div className="h-32 flex items-center justify-center overflow-hidden mb-4">

@@ -40,17 +40,25 @@ export default function LighterPreview({
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="border border-border rounded-lg p-4 bg-background">
+      <p className="text-sm font-semibold text-foreground">
+        Live Preview (Actual Size)
+      </p>
+      <div className="bg-muted rounded-lg p-8 overflow-auto max-h-[700px]">
         <canvas
           ref={canvasRef}
-          width={200}
-          height={500}
-          className="border border-muted-foreground"
-          style={{ maxWidth: '100%', height: 'auto' }}
+          width={236}
+          height={591}
+          className="border border-muted-foreground rounded-lg"
+          style={{
+            maxWidth: '100%',
+            height: 'auto',
+            backgroundColor: '#f5f5f5',
+            display: 'block'
+          }}
         />
       </div>
       <p className="text-xs text-muted-foreground text-center">
-        Actual size: 2cm × 5cm (will be printed on sticker sheet)
+        Size: 2cm × 5cm at 300 DPI (236px × 591px)
       </p>
     </div>
   );

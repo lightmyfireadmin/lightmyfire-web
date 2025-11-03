@@ -20,10 +20,10 @@ function LogoLink({ href, lang }: { href: string; lang: string }) {
 
   const handleClick = () => {
     setShowHalo(true);
-    // Auto-fade out after 3 seconds
+    // Auto-fade out after 1 second
     const timer = setTimeout(() => {
       setShowHalo(false);
-    }, 3000);
+    }, 1000);
     return () => clearTimeout(timer);
   };
 
@@ -31,7 +31,7 @@ function LogoLink({ href, lang }: { href: string; lang: string }) {
     <Link
       href={href}
       onClick={handleClick}
-      className={`-m-1.5 p-1.5 rounded-lg transition-shadow duration-300 ${
+      className={`-m-1.5 p-1.5 rounded-lg transition-shadow duration-1000 ${
         showHalo ? 'shadow-lg shadow-primary/30' : ''
       }`}
     >

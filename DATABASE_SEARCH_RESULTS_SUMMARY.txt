@@ -1,0 +1,343 @@
+================================================================================
+LIGHTMYFIRE DATABASE SCHEMA COMPREHENSIVE SEARCH RESULTS
+================================================================================
+Generated: 2025-11-03
+Project: /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web
+
+================================================================================
+PART 1: ALL SQL MIGRATION FILES FOUND
+================================================================================
+
+1. /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/supabase/migrations/20251030120000_add_flag_count_trigger.sql
+   - EXISTING MIGRATION
+   - Content: Flag count trigger for posts table
+   - Status: Already executed
+
+2. /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/supabase_migration_fix_all.sql
+   - CORE MIGRATION
+   - Content: 393 lines - Complete database setup with RLS policies
+   - Includes: toggle_like fix, profile creation trigger, RLS policies for all 4 tables
+   - Status: CRITICAL - Contains RLS policies for security
+
+3. /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/SUPABASE_SECURITY_FIX_FINAL.sql
+   - SECURITY MIGRATION
+   - Content: 558 lines - Function definitions and search path fixes
+   - Includes: 15 RPC functions with SET search_path = public
+   - Status: Corrected version with quote escaping
+
+4. /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/SUPABASE_SECURITY_FIX_FINAL_CORRECTED.sql
+   - LATEST SECURITY VERSION
+   - Content: 558 lines - Final corrected version
+   - Status: LATEST - Use this version
+
+5. /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/SCHEMA_DISCOVERY.sql
+   - DIAGNOSTIC SCRIPT
+   - Content: Query script to inspect existing schema
+   - Status: For discovery only, not an executable migration
+
+6. /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/TABLE_SCHEMA_NEEDED.sql
+   - DIAGNOSTIC SCRIPT
+   - Content: Query to get table column information
+   - Status: For discovery only
+
+================================================================================
+PART 2: ALL DOCUMENTATION FILES FOUND
+================================================================================
+
+Core Schema Documentation:
+1. /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/MODERATION_SCHEMA.md
+   - NEW TABLE: moderation_queue (14 columns)
+   - Indexes: 8 performance indexes
+   - RLS Policies: 3 policies (SELECT, INSERT, UPDATE)
+   - Functions: 1 function (log_moderation_result)
+   - Triggers: 1 trigger (update_moderation_queue_updated_at)
+   - Status: DOCUMENTED - Needs SQL execution
+
+2. /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/DATABASE_MIGRATION_GUIDE.md
+   - NEW TABLE: orders (16 columns)
+   - Lighters enhancement: 4 new columns
+   - RPC Functions: 5 functions (create_order_from_payment, etc.)
+   - Indexes: 7 for orders table
+   - Status: DOCUMENTED - Needs SQL execution
+
+3. /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/COMPREHENSIVE_DATABASE_SCHEMA_AUDIT.md
+   - CREATED BY THIS SEARCH
+   - Content: Complete audit of existing schema + planned migrations
+   - Coverage: All tables, functions, triggers, indexes, RLS policies
+   - Status: REFERENCE DOCUMENT
+
+Additional Documentation:
+4. /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/COMPREHENSIVE_AUDIT_REPORT.md
+   - Overall code quality audit
+   - Identifies missing moderation_queue and orders tables
+   - Lists all 13 existing RPC functions
+
+5. /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/SUPABASE_SECURITY_FIXES.md
+   - General security notes
+
+6. /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/SUPABASE_SECURITY_FIX_CORRECTED.sql
+   - Alternative version
+
+================================================================================
+PART 3: EXISTING DATABASE TABLES (5 TABLES)
+================================================================================
+
+TABLE 1: profiles
+- Purpose: User accounts and social information
+- Columns: 8 (id, username, nationality, show_nationality, created_at, level, points, role)
+- FK: auth.users(id)
+- Unique: username
+- Triggers: on_auth_user_created
+- RLS: ENABLED with 4 policies (SELECT all, INSERT/UPDATE/DELETE own)
+
+TABLE 2: posts
+- Purpose: User contributions (stories, songs, images, locations)
+- Columns: 18 (id, user_id, lighter_id, post_type, title, content_text, content_url, location_name, location_lat, location_lng, is_find_location, is_creation, is_anonymous, is_public, is_flagged, flagged_count, is_pinned, created_at)
+- FK: profiles(id), lighters(id)
+- Type: BIGINT auto-increment primary key
+- RLS: ENABLED with 4 policies (SELECT public/non-flagged, INSERT/UPDATE/DELETE own)
+
+TABLE 3: lighters
+- Purpose: User-saved lighter designs and PIN codes
+- Columns: 7 existing + 4 PLANNED (id, saver_id, name, pin_code, custom_background_url, show_saver_username, created_at, [background_color, sticker_language, sticker_design_version, updated_at])
+- FK: profiles(id)
+- Unique: pin_code
+- RLS: ENABLED with 4 policies (SELECT all, INSERT/UPDATE/DELETE saver only)
+
+TABLE 4: likes
+- Purpose: User engagement - post reactions
+- Columns: 4 (id, post_id, user_id, created_at)
+- FK: posts(id), profiles(id)
+- Unique Composite: (post_id, user_id)
+- RLS: ENABLED with 3 policies (SELECT all, INSERT own, DELETE own)
+
+TABLE 5: user_trophies
+- Purpose: Gamification - user achievement tracking
+- Columns: 4 (id, user_id, trophy_id, granted_at, created_at)
+- FK: profiles(id)
+- Trophy IDs: 1=First Lighter, 2=First Contribution, 3=First Creation, 4=Lighter Explorer, 5=Refuel Master
+- RLS: ENABLED with SELECT policy
+
+VIEW: detailed_posts
+- Purpose: Pre-joined query for feed performance
+- Joins: posts + profiles + lighters
+- Filters: is_flagged = FALSE
+- Grants: authenticated, anon (SELECT only)
+
+================================================================================
+PART 4: EXISTING RPC FUNCTIONS (13 FUNCTIONS)
+================================================================================
+
+Post Management:
+1. create_new_post() - 2 overloads (with auth.uid() and explicit user_id)
+2. toggle_like() - 2 overloads (uuid->json, bigint->void)
+3. flag_post(bigint) - SECURITY DEFINER
+4. delete_post_by_moderator(bigint) - SECURITY DEFINER
+5. reinstate_post(bigint) - SECURITY DEFINER
+
+Lighter Management:
+6. create_new_lighter(text, text, boolean) -> uuid
+7. get_lighter_id_from_pin(text) -> uuid
+8. generate_random_pin() -> text (ABC-123 format)
+
+User Stats & Gamification:
+9. get_my_stats() -> json {total_contributions, lighters_saved, lighters_contributed_to, likes_received}
+10. grant_trophy(uuid, integer) -> void
+11. backfill_all_trophies() -> text
+
+Location & Feed:
+12. calculate_distance(double, double, double, double) -> double (Haversine formula)
+13. get_random_public_posts(integer) -> TABLE (23 columns)
+
+All functions have: SET search_path = public security
+
+================================================================================
+PART 5: EXISTING TRIGGERS (1 TRIGGER)
+================================================================================
+
+Trigger: on_auth_user_created
+- Table: auth.users
+- Event: AFTER INSERT
+- Function: handle_new_user()
+- Action: Creates corresponding profile record automatically
+
+Planned Triggers (NOT YET CREATED):
+1. update_moderation_queue_updated_at - BEFORE UPDATE on moderation_queue
+2. update_lighters_updated_at - BEFORE UPDATE on lighters
+3. update_orders_updated_at - BEFORE UPDATE on orders
+
+================================================================================
+PART 6: PLANNED MIGRATIONS (NOT YET EXECUTED)
+================================================================================
+
+MIGRATION 1: moderation_queue table
+- Documentation: /MODERATION_SCHEMA.md (complete migration SQL provided)
+- Status: DOCUMENTED - NEEDS EXECUTION
+- Contains:
+  * 1 table with 17 columns
+  * 8 indexes for performance
+  * 3 RLS policies
+  * 1 trigger function
+  * 1 RPC function (log_moderation_result)
+
+MIGRATION 2: orders table
+- Documentation: /DATABASE_MIGRATION_GUIDE.md (complete migration SQL provided)
+- Status: DOCUMENTED - NEEDS EXECUTION
+- Contains:
+  * 1 table with 16 columns
+  * 7 indexes for performance
+  * 2 RLS policies
+  * 1 trigger function
+  * 3 RPC functions (create_order_from_payment, update_order_payment_succeeded, get_order_analytics)
+
+MIGRATION 3: lighters table enhancements
+- Documentation: /DATABASE_MIGRATION_GUIDE.md
+- Status: DOCUMENTED - NEEDS EXECUTION
+- ALTER TABLE lighters ADD COLUMN:
+  * background_color TEXT DEFAULT '#FF6B6B'
+  * sticker_language TEXT DEFAULT 'en'
+  * sticker_design_version INTEGER DEFAULT 1
+  * updated_at TIMESTAMP DEFAULT NOW()
+
+ADDITIONAL FUNCTIONS TO CREATE:
+- get_moderation_stats() - For admin dashboard analytics
+
+================================================================================
+PART 7: MISSING COMPONENTS FOR KEY FEATURES
+================================================================================
+
+CONTENT MODERATION SYSTEM - 40% Complete
+Existing:
+  ✅ /app/api/moderate-text/route.ts - OpenAI API endpoint
+  ✅ /app/api/moderate-image/route.ts - Image moderation
+  ✅ /app/hooks/useContentModeration.ts - React hook
+  ✅ /app/[locale]/moderation/ - UI components
+  ✅ MODERATION_SCHEMA.md - Complete schema documentation
+
+Missing:
+  ❌ moderation_queue table (SQL execution needed)
+  ❌ log_moderation_result() RPC function
+  ❌ Database logging calls in endpoints
+  ❌ get_moderation_stats() function
+  ❌ moderation_queue_with_user view
+  ❌ Admin moderation dashboard backend
+
+PAYMENT ORDERS SYSTEM - 30% Complete
+Existing:
+  ✅ /app/api/create-payment-intent/route.ts - Stripe endpoint
+  ✅ /app/[locale]/save-lighter/StripePaymentForm.tsx - Payment form
+  ✅ /app/api/generate-sticker-pdf/route.ts - PDF generation
+  ✅ DATABASE_MIGRATION_GUIDE.md - Complete schema documentation
+
+Missing:
+  ❌ orders table (SQL execution needed)
+  ❌ create_order_from_payment() RPC
+  ❌ update_order_payment_succeeded() RPC
+  ❌ Order creation calls in payment endpoint
+  ❌ Stripe webhook handler (/api/webhooks/stripe/route.ts)
+  ❌ get_order_analytics() function
+  ❌ orders_with_details view
+  ❌ Admin order management dashboard
+
+STICKER DESIGN PERSISTENCE - 50% Complete
+Existing:
+  ✅ /app/api/generate-sticker-pdf/route.ts - PDF generation
+  ✅ StickerDesign interface defined
+  ✅ /app/[locale]/save-lighter/StickerPreview.tsx - Preview component
+
+Missing:
+  ❌ background_color column on lighters
+  ❌ sticker_language column on lighters
+  ❌ sticker_design_version column on lighters
+  ❌ Saving design properties in SaveLighterFlow
+  ❌ Design snapshot capture in orders table
+  ❌ Regeneration API endpoint
+
+================================================================================
+PART 8: KEY FILE LOCATIONS (ABSOLUTE PATHS)
+================================================================================
+
+SQL Migration Files:
+- /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/supabase/migrations/20251030120000_add_flag_count_trigger.sql
+- /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/supabase_migration_fix_all.sql
+- /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/SUPABASE_SECURITY_FIX_FINAL_CORRECTED.sql
+
+Schema Documentation:
+- /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/MODERATION_SCHEMA.md
+- /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/DATABASE_MIGRATION_GUIDE.md
+- /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/COMPREHENSIVE_DATABASE_SCHEMA_AUDIT.md
+
+API Endpoints:
+- /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/app/api/moderate-text/route.ts
+- /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/app/api/moderate-image/route.ts
+- /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/app/api/create-payment-intent/route.ts
+- /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/app/api/generate-sticker-pdf/route.ts
+
+Components:
+- /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/app/hooks/useContentModeration.ts
+- /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/app/[locale]/moderation/
+- /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/app/[locale]/save-lighter/StripePaymentForm.tsx
+- /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/app/[locale]/save-lighter/StickerPreview.tsx
+
+================================================================================
+PART 9: SEARCH STATISTICS
+================================================================================
+
+Total SQL files found: 9
+  - Existing migrations: 1
+  - Migration fixes: 5
+  - Diagnostic scripts: 2
+
+Total documentation files: 23
+  - Schema-specific docs: 2 (MODERATION_SCHEMA.md, DATABASE_MIGRATION_GUIDE.md)
+  - Comprehensive audit: 1
+  - Other documentation: 20
+
+Existing database objects:
+  - Tables: 5
+  - Views: 1
+  - RPC Functions: 13
+  - Triggers: 1
+  - RLS Policies: 18+ (across all tables)
+  - Indexes: 15+
+
+Planned database objects:
+  - Tables: 2 (moderation_queue, orders)
+  - Functions: 5 (log_moderation_result, create_order_from_payment, etc.)
+  - Views: 2 (moderation_queue_with_user, orders_with_details)
+  - Triggers: 3
+  - Indexes: 15
+  - RLS Policies: 5
+
+================================================================================
+PART 10: RECOMMENDED NEXT STEPS
+================================================================================
+
+IMMEDIATE (Next 1-2 hours):
+1. Review /MODERATION_SCHEMA.md migration SQL
+2. Review /DATABASE_MIGRATION_GUIDE.md migration SQL
+3. Execute moderation_queue migration in Supabase
+4. Execute orders table migration in Supabase
+5. Verify migrations with provided verification queries
+
+SHORT TERM (Next 2-4 hours):
+1. Update /api/moderate-text/route.ts to call log_moderation_result()
+2. Update /api/moderate-image/route.ts to call log_moderation_result()
+3. Update /api/create-payment-intent/route.ts to call create_order_from_payment()
+4. Create /api/webhooks/stripe/route.ts Stripe webhook handler
+
+MEDIUM TERM (Next 4-8 hours):
+1. Build /app/[locale]/admin/moderation page with dashboard
+2. Build /app/[locale]/admin/orders page with management UI
+3. Implement get_moderation_stats() RPC
+4. Implement get_order_analytics() RPC
+
+LONG TERM (Next 8-15 hours):
+1. Implement sticker design persistence (background_color, language in lighters)
+2. Add design_snapshot capture in order creation
+3. Create sticker regeneration endpoint
+4. Comprehensive testing and QA
+
+================================================================================
+END OF SEARCH RESULTS
+================================================================================

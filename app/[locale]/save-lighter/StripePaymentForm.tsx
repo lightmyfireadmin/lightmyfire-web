@@ -217,21 +217,47 @@ function PaymentFormContent({
 
 export default function StripePaymentForm(props: StripePaymentFormProps) {
   const [isStripeLoaded, setIsStripeLoaded] = useState(false);
+  const [stripeError, setStripeError] = useState<string | null>(null);
 
   useEffect(() => {
-    stripePromise.then(() => setIsStripeLoaded(true));
+    console.log('StripePaymentForm mounted');
+    console.log('Stripe key available:', !!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+    console.log('Stripe key prefix:', process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY?.substring(0, 10));
+
+    stripePromise
+      .then((stripe) => {
+        console.log('Stripe loaded successfully:', !!stripe);
+        setIsStripeLoaded(true);
+      })
+      .catch((error) => {
+        console.error('Failed to load Stripe:', error);
+        setStripeError('Failed to load Stripe. Please check your configuration.');
+      });
   }, []);
 
   if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) {
     return (
       <div className="rounded-md bg-yellow-50 dark:bg-yellow-950/20 p-4 text-yellow-800 dark:text-yellow-200">
-        <p className="text-sm font-medium">⚠️ Stripe not configured. Add NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY.</p>
+        <p className="text-sm font-medium">⚠️ Stripe not configured. Add NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY to .env.local</p>
+      </div>
+    );
+  }
+
+  if (stripeError) {
+    return (
+      <div className="rounded-md bg-red-50 dark:bg-red-950/20 p-4 text-red-800 dark:text-red-200">
+        <p className="text-sm font-medium">{stripeError}</p>
       </div>
     );
   }
 
   if (!isStripeLoaded) {
-    return <div className="flex items-center justify-center py-12"><LoadingSpinner /></div>;
+    return (
+      <div className="flex flex-col items-center justify-center py-12">
+        <LoadingSpinner />
+        <p className="text-sm text-muted-foreground mt-4">Loading payment form...</p>
+      </div>
+    );
   }
 
   return (

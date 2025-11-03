@@ -52,6 +52,17 @@ interface LighterSticker extends StickerDesign {
  */
 export async function POST(request: NextRequest) {
   try {
+    console.log('Starting sticker PDF generation');
+    console.log('Sheet dimensions:', {
+      width: SHEET_WIDTH_PX,
+      height: SHEET_HEIGHT_PX,
+      dpi: DPI,
+      sticker: { width: STICKER_WIDTH_PX, height: STICKER_HEIGHT_PX },
+      gap: GAP_PX,
+      stickersPerRow: STICKERS_PER_ROW,
+      stickersPerColumn: STICKERS_PER_COLUMN,
+    });
+
     const body = await request.json();
     const { stickers, orderId } = body;
 
@@ -69,6 +80,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    console.log(`Generating sticker sheet for order ${orderId} with ${stickers.length} stickers`);
+
     // Ensure stickers have required fields
     const validatedStickers = stickers.map((s: Partial<LighterSticker>) => ({
       id: s.id || `sticker-${Math.random()}`,
@@ -79,15 +92,22 @@ export async function POST(request: NextRequest) {
     }));
 
     // Generate sheet images
+    console.log('Generating foreground sheet...');
     const foregroundPNG = await generateForegroundSheet(validatedStickers);
-    const backgroundPNG = await generateBackgroundSheet();
 
-    // Return the foreground PNG as Uint8Array
+    if (!foregroundPNG || foregroundPNG.length === 0) {
+      throw new Error('Failed to generate PNG: Empty buffer');
+    }
+
+    console.log(`Foreground PNG generated: ${foregroundPNG.length} bytes`);
+
+    // Return the foreground PNG
     return new NextResponse(new Uint8Array(foregroundPNG), {
       headers: {
         'Content-Type': 'image/png',
-        'Content-Disposition': `attachment; filename="stickers-${orderId}-foreground.png"`,
+        'Content-Disposition': `attachment; filename="stickers-${orderId}.png"`,
         'Cache-Control': 'no-store, no-cache, must-revalidate',
+        'Content-Length': foregroundPNG.length.toString(),
       },
       status: 200,
     });
@@ -97,7 +117,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error: 'Failed to generate sticker sheet. Please try again.',
-        details: error instanceof Error ? error.message : 'Unknown error',
+        details: error instanceof Error ? error.message : String(error),
       },
       { status: 500 }
     );
@@ -135,7 +155,26 @@ async function generateForegroundSheet(stickers: LighterSticker[]): Promise<Buff
     }
   }
 
-  return canvas.toBuffer('image/png');
+  // Use createPNGStream() for proper PNG encoding
+  const stream = canvas.createPNGStream();
+  const chunks: Buffer[] = [];
+
+  return new Promise((resolve, reject) => {
+    stream.on('data', (chunk: Buffer) => {
+      chunks.push(chunk);
+    });
+
+    stream.on('end', () => {
+      const buffer = Buffer.concat(chunks);
+      console.log('PNG stream completed, buffer size:', buffer.length);
+      resolve(buffer);
+    });
+
+    stream.on('error', (err) => {
+      console.error('PNG stream error:', err);
+      reject(err);
+    });
+  });
 }
 
 /**
@@ -149,7 +188,26 @@ async function generateBackgroundSheet(): Promise<Buffer> {
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, SHEET_WIDTH_PX, SHEET_HEIGHT_PX);
 
-  return canvas.toBuffer('image/png');
+  // Use createPNGStream() for proper PNG encoding
+  const stream = canvas.createPNGStream();
+  const chunks: Buffer[] = [];
+
+  return new Promise((resolve, reject) => {
+    stream.on('data', (chunk: Buffer) => {
+      chunks.push(chunk);
+    });
+
+    stream.on('end', () => {
+      const buffer = Buffer.concat(chunks);
+      console.log('Background PNG stream completed, buffer size:', buffer.length);
+      resolve(buffer);
+    });
+
+    stream.on('error', (err) => {
+      console.error('Background PNG stream error:', err);
+      reject(err);
+    });
+  });
 }
 
 /**
