@@ -15,9 +15,27 @@ interface LighterCustomization {
 }
 
 const PACK_OPTIONS = [
-  { count: 5, price: '€25', title: 'Starter Pack' },
-  { count: 10, price: '€45', title: 'Creator Pack' },
-  { count: 50, price: '€200', title: 'Community Pack' },
+  {
+    count: 10,
+    sheets: 1,
+    title: 'Starting LightSaver',
+    description: 'Enough Stickers for all lighters you will lose this year, and the one of your friends',
+    price: null, // Price will be calculated by Printful API
+  },
+  {
+    count: 20,
+    sheets: 2,
+    title: 'Committed LightSaver',
+    description: 'Enough Stickers to end up with traces of you all around the world',
+    price: null,
+  },
+  {
+    count: 50,
+    sheets: 5,
+    title: 'Community LightSaver',
+    description: 'For events or really distracted individuals',
+    price: null,
+  },
 ];
 
 export default function SaveLighterFlow({ user }: { user: User }) {
@@ -66,17 +84,20 @@ export default function SaveLighterFlow({ user }: { user: User }) {
                 onClick={() => handlePackSelect(pack.count)}
                 className="rounded-lg border-2 border-border bg-background p-6 text-center shadow-sm hover:shadow-md hover:border-primary transition-all duration-200 group"
               >
-                <h3 className="mb-2 text-2xl font-semibold text-foreground group-hover:text-primary">
+                <h3 className="mb-2 text-xl font-semibold text-foreground group-hover:text-primary">
                   {pack.title}
                 </h3>
-                <p className="mb-4 text-4xl font-bold text-primary">{pack.price}</p>
-                <p className="mb-6 text-lg font-bold text-foreground">
-                  {pack.count} {pack.count === 1 ? 'Sticker' : 'Stickers'}
+                <p className="mb-4 text-3xl font-bold text-primary">
+                  {pack.count} Stickers
                 </p>
                 <p className="mb-4 text-sm text-muted-foreground">
-                  {pack.count === 5 && 'Perfect for starting your collection'}
-                  {pack.count === 10 && 'Most popular choice for creators'}
-                  {pack.count === 50 && 'Best value for community builders'}
+                  ({pack.sheets} {pack.sheets === 1 ? 'sheet' : 'sheets'})
+                </p>
+                <p className="mb-4 text-sm text-muted-foreground italic min-h-[60px] flex items-center justify-center">
+                  {pack.description}
+                </p>
+                <p className="mb-4 text-xs text-muted-foreground">
+                  Price calculated at checkout
                 </p>
                 <span className="inline-block px-4 py-2 bg-primary text-primary-foreground rounded-md font-semibold group-hover:shadow-lg transition-shadow">
                   Select
