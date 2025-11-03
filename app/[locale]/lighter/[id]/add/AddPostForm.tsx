@@ -6,12 +6,46 @@ import { supabase } from '@/lib/supabase'; // Assuming lib is at root
 import type { User } from '@supabase/supabase-js';
 import Image from 'next/image';
 import { useContentModeration } from '@/app/hooks/useContentModeration';
+import LocationPicker from './LocationPicker';
 
 type PostType = 'text' | 'song' | 'image' | 'location' | 'refuel';
 
 interface YouTubeVideo {
   id: { videoId: string };
   snippet: { title: string; thumbnails: { default: { url: string } } };
+}
+
+// Post Type Button Component
+function PostTypeButton({
+  selected,
+  onClick,
+  icon,
+  label,
+  subtitle,
+  colorClass,
+}: {
+  selected: boolean;
+  onClick: () => void;
+  icon: string;
+  label: string;
+  subtitle: string;
+  colorClass: string;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`p-3 rounded-lg border-2 transition-all duration-200 text-center ${
+        selected
+          ? `${colorClass} shadow-md scale-105 font-semibold`
+          : 'border-border text-muted-foreground hover:text-foreground hover:border-border'
+      }`}
+    >
+      <div className="text-2xl mb-1">{icon}</div>
+      <div className={`text-xs font-bold ${selected ? '' : 'text-muted-foreground'}`}>{label}</div>
+      <div className="text-xs text-muted-foreground">{subtitle}</div>
+    </button>
+  );
 }
 
 export default function AddPostForm({
@@ -326,11 +360,14 @@ export default function AddPostForm({
           </div>
         );
       case 'location': return (
-        <>
-          <input type="text" value={locationName} onChange={(e) => setLocationName(e.target.value)} className={`${inputClass} mb-2`} placeholder="Name of a place (e.g., 'Cafe Central')" required />
-          <input type="number" value={locationLat} onChange={(e) => setLocationLat(parseFloat(e.target.value))} className={`${inputClass} mb-2`} placeholder="Latitude (e.g., 48.8566)" step="any" required />
-          <input type="number" value={locationLng} onChange={(e) => setLocationLng(parseFloat(e.target.value))} className={inputClass} placeholder="Longitude (e.g., 2.3522)" step="any" required />
-        </>
+        <LocationPicker
+          value={{ name: locationName, lat: locationLat, lng: locationLng }}
+          onChange={({ name, lat, lng }) => {
+            setLocationName(name);
+            setLocationLat(lat);
+            setLocationLng(lng);
+          }}
+        />
       );
       case 'refuel': return <p className="text-center text-lg text-foreground">You&apos;re a hero! By clicking &quot;Post,&quot; you&apos;ll add a &quot;Refueled&quot; entry to this lighter&apos;s story.</p>;
       default: return null;
@@ -350,25 +387,62 @@ export default function AddPostForm({
         You are adding a post to <span className="font-semibold text-foreground">{lighterName}</span>
       </p>
 
-      {/* Post Type Selector Tabs */}
-      <div className="mb-6 rounded-lg bg-muted p-1">
-        <div className="flex space-x-1 overflow-x-auto">
-          {(['text', 'song', 'image', 'location', 'refuel'] as PostType[]).map(
-            (type) => (
-              <button
-                key={type}
-                type="button"
-                onClick={() => setPostType(type)}
-                className={`flex-shrink-0 rounded-md px-3 py-2 text-sm font-medium capitalize transition ${
-                  postType === type
-                    ? 'bg-background text-primary shadow-sm'
-                    : 'text-muted-foreground hover:bg-background/50 hover:text-foreground'
-                }`}
-              >
-                {type}
-              </button>
-            )
-          )}
+      {/* Post Type Selector with Styling */}
+      <div className="mb-8">
+        <p className="text-center text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wide">Select Post Type</p>
+        <div className="relative">
+          {/* Sliding indicator background */}
+          <div className="absolute inset-0 pointer-events-none">
+            {postType === 'text' && <div className="absolute top-0 left-0 w-1/5 h-full bg-blue-100 dark:bg-blue-900/30 rounded-lg transition-all duration-300" />}
+            {postType === 'song' && <div className="absolute top-0 left-1/5 w-1/5 h-full bg-green-100 dark:bg-green-900/30 rounded-lg transition-all duration-300" />}
+            {postType === 'image' && <div className="absolute top-0 left-2/5 w-1/5 h-full bg-red-100 dark:bg-red-900/30 rounded-lg transition-all duration-300" />}
+            {postType === 'location' && <div className="absolute top-0 left-3/5 w-1/5 h-full bg-purple-100 dark:bg-purple-900/30 rounded-lg transition-all duration-300" />}
+            {postType === 'refuel' && <div className="absolute top-0 left-4/5 w-1/5 h-full bg-orange-100 dark:bg-orange-900/30 rounded-lg transition-all duration-300" />}
+          </div>
+
+          {/* Post Type Buttons */}
+          <div className="grid grid-cols-5 gap-2 relative z-10">
+            <PostTypeButton
+              selected={postType === 'text'}
+              onClick={() => setPostType('text')}
+              icon="📝"
+              label="Poem"
+              subtitle="Story, Thought"
+              colorClass="border-blue-500 text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20"
+            />
+            <PostTypeButton
+              selected={postType === 'song'}
+              onClick={() => setPostType('song')}
+              icon="🎵"
+              label="Song"
+              subtitle="YouTube, Spotify"
+              colorClass="border-green-500 text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20"
+            />
+            <PostTypeButton
+              selected={postType === 'image'}
+              onClick={() => setPostType('image')}
+              icon="📸"
+              label="Photo"
+              subtitle="Screenshot"
+              colorClass="border-red-500 text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-900/20"
+            />
+            <PostTypeButton
+              selected={postType === 'location'}
+              onClick={() => setPostType('location')}
+              icon="📍"
+              label="Place"
+              subtitle="Where Found It"
+              colorClass="border-purple-500 text-purple-700 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20"
+            />
+            <PostTypeButton
+              selected={postType === 'refuel'}
+              onClick={() => setPostType('refuel')}
+              icon="🔥"
+              label="Refuel"
+              subtitle="Lighter Refill"
+              colorClass="border-orange-500 text-orange-700 dark:text-orange-400 bg-orange-50 dark:bg-orange-900/20"
+            />
+          </div>
         </div>
       </div>
 
