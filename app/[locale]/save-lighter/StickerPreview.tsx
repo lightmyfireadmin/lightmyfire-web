@@ -26,25 +26,31 @@ export default function StickerPreview({
   const t = useI18n();
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedFormat, setSelectedFormat] = useState<'stickiply' | 'printful'>('printful');
 
-  const handleGeneratePDF = async () => {
+  const handleGeneratePNG = async (format: 'stickiply' | 'printful') => {
     setIsGenerating(true);
     setError(null);
     onDownloadStart?.();
 
     try {
-      const response = await fetch('/api/generate-sticker-pdf', {
+      const endpoint = format === 'printful'
+        ? '/api/generate-printful-stickers'
+        : '/api/generate-sticker-pdf';
+
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           stickers,
           orderId,
+          brandingText: 'LightMyFire',
         }),
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to generate PDF');
+        throw new Error(errorData.error || 'Failed to generate PNG');
       }
 
       // Get the PNG blob
@@ -52,18 +58,18 @@ export default function StickerPreview({
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = `stickers-${orderId}.png`;
+      link.download = `stickers-${orderId}-${format}.png`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
 
-      onDownloadComplete?.(true, `stickers-${orderId}.png`);
+      onDownloadComplete?.(true, `stickers-${orderId}-${format}.png`);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Unknown error';
       setError(errorMessage);
       onDownloadComplete?.(false);
-      console.error('PDF generation failed:', err);
+      console.error('PNG generation failed:', err);
     } finally {
       setIsGenerating(false);
     }
@@ -102,7 +108,7 @@ export default function StickerPreview({
         </p>
       </div>
 
-      {/* PDF Generation Section */}
+      {/* PNG Generation Section */}
       <div className="rounded-lg border border-border bg-background p-6">
         <h3 className="text-lg font-semibold text-foreground mb-3">Generate Print File</h3>
 
@@ -116,8 +122,49 @@ export default function StickerPreview({
           Generate a high-quality PNG file optimized for printing (300 DPI resolution).
         </p>
 
+        {/* Format Selection */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-foreground mb-2">
+            Select Print Provider Format
+          </label>
+          <div className="grid grid-cols-2 gap-3">
+            <button
+              onClick={() => setSelectedFormat('printful')}
+              className={`p-3 rounded-lg border-2 transition-all ${
+                selectedFormat === 'printful'
+                  ? 'border-primary bg-primary/10 text-foreground'
+                  : 'border-border bg-background hover:border-primary/50'
+              }`}
+            >
+              <div className="font-semibold">Printful</div>
+              <div className="text-xs text-muted-foreground mt-1">
+                A5 Sheet (5.83&quot; × 8.27&quot;)
+              </div>
+              <div className="text-xs text-primary mt-1">
+                12 stickers + branding area
+              </div>
+            </button>
+            <button
+              onClick={() => setSelectedFormat('stickiply')}
+              className={`p-3 rounded-lg border-2 transition-all ${
+                selectedFormat === 'stickiply'
+                  ? 'border-primary bg-primary/10 text-foreground'
+                  : 'border-border bg-background hover:border-primary/50'
+              }`}
+            >
+              <div className="font-semibold">Stickiply</div>
+              <div className="text-xs text-muted-foreground mt-1">
+                7.5&quot; × 5&quot; Sheet
+              </div>
+              <div className="text-xs text-primary mt-1">
+                15 stickers
+              </div>
+            </button>
+          </div>
+        </div>
+
         <button
-          onClick={handleGeneratePDF}
+          onClick={() => handleGeneratePNG(selectedFormat)}
           disabled={isGenerating}
           className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-semibold hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
@@ -128,13 +175,22 @@ export default function StickerPreview({
             </>
           ) : (
             <>
-              🖼️ Download Sticker PNG
+              🖼️ Download {selectedFormat === 'printful' ? 'Printful' : 'Stickiply'} PNG
             </>
           )}
         </button>
 
         <p className="text-xs text-muted-foreground mt-4 border-t border-border pt-4">
-          The PNG will be generated at 300 DPI for professional print quality. File includes all {stickers.length} sticker{stickers.length !== 1 ? 's' : ''} optimized for printing.
+          {selectedFormat === 'printful' ? (
+            <>
+              Printful format: A5 sheet (5.83&quot; × 8.27&quot;) with up to 12 stickers.
+              3&quot;×3&quot; bottom-right reserved for branding. Kiss-cut ready with 0.64cm gaps.
+            </>
+          ) : (
+            <>
+              Stickiply format: 7.5&quot; × 5&quot; sheet with up to 15 stickers optimized for printing.
+            </>
+          )}
         </p>
       </div>
 
