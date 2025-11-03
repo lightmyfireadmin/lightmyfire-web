@@ -268,7 +268,7 @@ export default function DontThrowMeAwayPage() {
                   <span className="text-2xl">🌍</span> Environmental Impact
                 </h3>
                 <p className="text-sm text-foreground">
-                  One refillable lighter can replace 50+ disposable lighters in its lifetime. That's 50+ lighters kept out of landfills for one person.
+                  One refillable lighter can replace 50+ disposable lighters in its lifetime. That&apos;s 50+ lighters kept out of landfills for one person.
                 </p>
               </div>
               <div className="space-y-3">
@@ -284,7 +284,7 @@ export default function DontThrowMeAwayPage() {
                   <span className="text-2xl">❤️</span> Reliability
                 </h3>
                 <p className="text-sm text-foreground">
-                  Refillable lighters are built to last decades. They're more reliable in cold weather and harsh conditions than cheap disposables.
+                  Refillable lighters are built to last decades. They&apos;re more reliable in cold weather and harsh conditions than cheap disposables.
                 </p>
               </div>
               <div className="space-y-3">

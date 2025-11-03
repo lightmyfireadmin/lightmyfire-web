@@ -273,6 +273,8 @@ END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
 -- Function: Update order payment status
+DROP FUNCTION IF EXISTS update_order_payment_succeeded(text);
+
 CREATE OR REPLACE FUNCTION update_order_payment_succeeded(
   p_stripe_payment_intent_id TEXT
 )
@@ -507,7 +509,6 @@ SELECT
   mq.lighter_id,
   mq.flagged,
   mq.categories,
-  mq.category_scores,
   mq.severity,
   mq.status,
   mq.review_notes,

@@ -148,7 +148,7 @@ export default function StickerPreview({
           </li>
           <li className="flex gap-2">
             <span className="text-primary">✓</span>
-            <span>Print color as 'best photo' or 'maximum' quality</span>
+            <span>Print color as &apos;best photo&apos; or &apos;maximum&apos; quality</span>
           </li>
           <li className="flex gap-2">
             <span className="text-primary">✓</span>
