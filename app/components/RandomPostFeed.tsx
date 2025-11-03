@@ -5,114 +5,63 @@ import { supabase } from '@/lib/supabase';
 import { DetailedPost } from '@/lib/types';
 import { useI18n } from '@/locales/client';
 import PostCard from './PostCard';
-
-interface AnimatingPost {
-  id: string;
-  post: DetailedPost;
-  position: number; // vertical position in pixels
-}
+import { ArrowPathIcon } from '@heroicons/react/24/outline';
 
 const RandomPostFeed = () => {
   const t = useI18n();
   const [posts, setPosts] = useState<DetailedPost[]>([]);
-  const [animatingPosts, setAnimatingPosts] = useState<AnimatingPost[]>([]);
-  const [isPaused, setIsPaused] = useState(false);
-  const [nextId, setNextId] = useState(0);
-  const [isInitialized, setIsInitialized] = useState(false);
-  const [hoveredPost, setHoveredPost] = useState<DetailedPost | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
-  const CONTAINER_HEIGHT = 500;
-  const FIXED_POST_HEIGHT = 160; // Fixed height for all post cards in the feed
-  const POST_GAP = 20; // Gap between posts
-  const INITIAL_SPAWN_DELAY = 500; // 500ms delay before first post appears
-  const SCROLL_SPEED = 1; // Pixels per frame for smooth scrolling
-  const SPAWN_OFFSET = 200; // Spawn posts 200px above container for smooth entry
+  const POSTS_TO_SHOW = 4; // Show 4 posts at a time
 
-  // Fetch posts on mount and periodically refresh
-  useEffect(() => {
-    const fetchPosts = async () => {
+  // Fetch random posts
+  const fetchPosts = async (showRefreshing = false) => {
+    if (showRefreshing) setIsRefreshing(true);
+
+    try {
       const { data } = await supabase.rpc('get_random_public_posts', {
-        limit_count: 50, // Increased pool size to reduce duplicates
+        limit_count: POSTS_TO_SHOW,
       });
+
       if (data) {
         setPosts(data);
-        // Initialize animation with delay once posts are loaded
-        if (!isInitialized) {
-          setTimeout(() => {
-            setIsInitialized(true);
-          }, INITIAL_SPAWN_DELAY);
-        }
       }
-    };
-
-    // Fetch immediately on mount
-    fetchPosts();
-
-    // Refresh posts every 15 seconds to maintain supply
-    const refreshInterval = setInterval(fetchPosts, 15000);
-    return () => clearInterval(refreshInterval);
-  }, [isInitialized]);
-
-  // Animation loop - smooth continuous scrolling
-  useEffect(() => {
-    if (posts.length === 0 || isPaused || !isInitialized) return;
-
-    const animationLoop = setInterval(() => {
-      setAnimatingPosts((prevPosts) => {
-        // Move all posts down by fixed amount (smooth scroll)
-        let updated = prevPosts
-          .map((p) => ({
-            ...p,
-            position: p.position + SCROLL_SPEED,
-          }))
-          .filter((p) => p.position < CONTAINER_HEIGHT + FIXED_POST_HEIGHT); // Remove when fully past bottom
-
-        // Add new posts to top when space available
-        if (posts.length > 0 && updated.length > 0) {
-          // Find the topmost post
-          const topmostPost = updated.reduce((prev, curr) =>
-            curr.position < prev.position ? curr : prev
-          );
-
-          // Spawn new post when there's enough space at the top
-          if (topmostPost.position >= FIXED_POST_HEIGHT + POST_GAP) {
-            const randomPost = posts[Math.floor(Math.random() * posts.length)];
-            const newPostId = `${nextId}-${Date.now()}`;
-
-            // Position new post above visible area for smooth entry
-            const spawnPosition = topmostPost.position - FIXED_POST_HEIGHT - POST_GAP;
-
-            updated.unshift({
-              id: newPostId,
-              post: randomPost,
-              position: spawnPosition,
-            });
-            setNextId((prev) => prev + 1);
-          }
-        } else if (posts.length > 0 && updated.length === 0) {
-          // Add first post starting above viewport for smooth entry
-          const randomPost = posts[Math.floor(Math.random() * posts.length)];
-          updated.push({
-            id: `${nextId}-${Date.now()}`,
-            post: randomPost,
-            position: -SPAWN_OFFSET,
-          });
-          setNextId((prev) => prev + 1);
-        }
-
-        return updated;
-      });
-    }, 16); // ~60fps for smooth animation
-
-    return () => clearInterval(animationLoop);
-  }, [posts, isPaused, nextId, isInitialized]);
-
-  // Calculate opacity based on position in pixels (fade at top and bottom)
-  const getOpacity = (position: number): number => {
-    if (position < 0) return Math.max(0, 1 + position / 80); // Fade in from top
-    if (position > CONTAINER_HEIGHT - 80) return Math.max(0, 1 - (position - (CONTAINER_HEIGHT - 80)) / 80); // Fade out at bottom
-    return 1;
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+    } finally {
+      setIsLoading(false);
+      if (showRefreshing) {
+        // Small delay to show the animation
+        setTimeout(() => setIsRefreshing(false), 300);
+      }
+    }
   };
+
+  // Fetch on mount
+  useEffect(() => {
+    fetchPosts(false);
+  }, []);
+
+  const handleRefresh = () => {
+    fetchPosts(true);
+  };
+
+  if (isLoading) {
+    return (
+      <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+        <h2 className="mb-4 text-center text-2xl sm:text-3xl font-bold text-foreground">
+          {t('home.mosaic.title')}
+        </h2>
+        <p className="mb-8 text-center text-sm sm:text-base text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+          {t('home.mosaic.subtitle')}
+        </p>
+        <div className="flex items-center justify-center py-12">
+          <p className="text-muted-foreground">Loading stories...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
@@ -123,80 +72,51 @@ const RandomPostFeed = () => {
         {t('home.mosaic.subtitle')}
       </p>
 
-      {/* Single column infinite scroll container */}
-      <div
-        className="relative mx-auto w-full max-w-sm h-[500px] overflow-hidden rounded-lg border border-border bg-background/50 backdrop-blur-sm"
-        onMouseLeave={() => {
-          setIsPaused(false);
-          setHoveredPost(null);
-        }}
-      >
-        {/* Gradient overlays for fade effect */}
-        <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
-
-        {/* Scrolling posts */}
-        <div className="relative w-full h-full">
-          {animatingPosts.map((animPost) => (
-            <div
-              key={animPost.id}
-              className="absolute w-full px-4 transition-opacity duration-300"
-              style={{
-                top: `${animPost.position}px`,
-                opacity: getOpacity(animPost.position),
-                pointerEvents: animPost.position > 50 && animPost.position < CONTAINER_HEIGHT - 100 ? 'auto' : 'none',
-              }}
-              onMouseEnter={() => {
-                setIsPaused(true);
-                setHoveredPost(animPost.post);
-              }}
-              onMouseLeave={() => {
-                setIsPaused(false);
-                setHoveredPost(null);
-              }}
-            >
-              {/* Full card - no truncation */}
-              <div className="w-full">
+      {/* Posts Grid */}
+      {posts.length > 0 ? (
+        <div className="space-y-6">
+          {/* Grid of posts */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+            {posts.map((post, index) => (
+              <div
+                key={`${post.id}-${index}`}
+                className="transition-all duration-300 hover:scale-[1.02]"
+                style={{
+                  animationDelay: `${index * 100}ms`,
+                }}
+              >
                 <PostCard
-                  post={animPost.post}
+                  post={post}
                   isLoggedIn={false}
-                  isMini={true}
+                  isMini={false}
                 />
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Hover popup - full post display with smooth transition */}
-        {hoveredPost && (
-          <div className="absolute inset-0 z-20 flex items-center justify-center p-4 bg-background/95 backdrop-blur-md transition-all duration-300 ease-in-out">
-            <div className="w-full max-w-md max-h-full overflow-y-auto rounded-lg transition-transform duration-300 ease-in-out scale-100">
-              <PostCard
-                post={hoveredPost}
-                isLoggedIn={false}
-                isMini={false}
+          {/* See More Button */}
+          <div className="flex justify-center pt-4">
+            <button
+              onClick={handleRefresh}
+              disabled={isRefreshing}
+              className="group flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <ArrowPathIcon
+                className={`h-5 w-5 transition-transform duration-500 ${isRefreshing ? 'animate-spin' : 'group-hover:rotate-180'}`}
               />
-            </div>
+              <span className="font-medium">
+                {isRefreshing ? 'Loading...' : 'See More Stories'}
+              </span>
+            </button>
           </div>
-        )}
-
-        {/* Loading/Empty state */}
-        {animatingPosts.length === 0 && posts.length === 0 && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <p className="text-muted-foreground text-center px-4">
-              Loading stories...
-            </p>
-          </div>
-        )}
-
-        {animatingPosts.length === 0 && posts.length > 0 && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <p className="text-muted-foreground text-center px-4">
-              {t('home.mosaic.no_stories')}
-            </p>
-          </div>
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className="text-center py-12">
+          <p className="text-muted-foreground">
+            {t('home.mosaic.no_stories')}
+          </p>
+        </div>
+      )}
     </div>
   );
 };
