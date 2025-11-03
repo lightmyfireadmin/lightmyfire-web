@@ -70,7 +70,7 @@ export default function LanguageSwitcher() {
       >
         <Menu.Items 
           style={menuStyle}
-          className="fixed z-50 mt-2 max-h-96 overflow-y-auto w-48 origin-top-right rounded-md bg-background shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          className="fixed z-60 mt-2 max-h-96 overflow-y-auto w-48 origin-top-right rounded-md bg-background shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             {i18n.locales.map((locale) => (
               <Menu.Item key={locale}>

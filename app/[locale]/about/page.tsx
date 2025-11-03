@@ -1,47 +1,46 @@
-import Image from 'next/image'; // Import Image component
+'use client';
+
+import Image from 'next/image';
+import { useI18n } from '@/locales/client';
 
 export default function AboutPage() {
-    return (
-      <div className="mx-auto max-w-3xl p-4 py-12 sm:p-6 lg:p-8">
-        <div className="rounded-lg border border-border bg-background p-8 shadow-sm">
-          <h1 className="mb-6 text-center text-4xl font-bold text-foreground">
-            Our Philosophy
-          </h1>
-          <div className="prose prose-lg max-w-none">
-            <p className="lead">
-              We believe that even the smallest, most disposable object can
-              carry a great story.
-            </p>
-            <p>
-              <strong>LightMyFire</strong> was born from a simple idea: what if we
-              stopped treating lighters as throwaway items? What if we saw
-              them as companions, as tiny vessels for our memories, ideas, and
-              creativity?
-            </p>
-            <p>
-              The everyday lighter is no personal possession; it belongs to
-              everyone. It passes from hand to hand, from friend to stranger,
-              at parties, concerts, and quiet meetups. It hears our secrets and
-              lights our way.
-            </p>
-            <p>
-              By giving a lighter a permanent, digital story, we give it
-              sentimental value. And when something has value, we&apos;re less
-              likely to throw it away.
-            </p>
-            <p>
-              Our goal is simple: to create a global, human creativity mosaic,
-              one lighter at a time, and reduce waste in the process.
-            </p>
-            <Image
-                src="/illustrations/around_the_world.png"
-                alt="Global Creativity Mosaic"
-                width={300} // Adjust size as needed
-                height={200}
-                className="mx-auto my-6" // Center the image and add vertical margin
-              />
-          </div>
+  const t = useI18n();
+
+  return (
+    <div className="mx-auto max-w-3xl p-4 py-12 sm:p-6 lg:p-8">
+      <div className="rounded-lg border border-border bg-background p-8 shadow-sm">
+        <h1 className="mb-6 text-center text-4xl font-bold text-foreground">
+          {t('philosophy.title')}
+        </h1>
+        <div className="space-y-6">
+          <p className="lead font-semibold text-lg text-primary">
+            {t('philosophy.lead')}
+          </p>
+          <div
+            className="prose prose-lg max-w-none"
+            dangerouslySetInnerHTML={{ __html: t('philosophy.p1') }}
+          />
+          <div
+            className="prose prose-lg max-w-none"
+            dangerouslySetInnerHTML={{ __html: t('philosophy.p2') }}
+          />
+          <div
+            className="prose prose-lg max-w-none"
+            dangerouslySetInnerHTML={{ __html: t('philosophy.p3') }}
+          />
+          <div
+            className="prose prose-lg max-w-none"
+            dangerouslySetInnerHTML={{ __html: t('philosophy.p4') }}
+          />
+          <Image
+            src="/illustrations/around_the_world.png"
+            alt={t('philosophy.image_alt')}
+            width={300}
+            height={200}
+            className="mx-auto my-6"
+          />
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}

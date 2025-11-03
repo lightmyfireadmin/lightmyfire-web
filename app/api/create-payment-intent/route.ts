@@ -1,66 +1,88 @@
 import { NextRequest, NextResponse } from 'next/server';
+import Stripe from 'stripe';
 
-// Placeholder Stripe secret key - replace with actual key when available
-const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY || 'sk_test_placeholder_key_do_not_use';
+// Mark this route as dynamic to prevent build-time execution
+export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
+  // Initialize Stripe with secret key (at request time, not build time)
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '');
   try {
     const body = await request.json();
 
     const {
       orderId,
       amount,
-      currency = 'EUR',
-      cardholderName,
+      currency = 'eur',
       cardholderEmail,
-      billingAddress,
+      packSize,
     } = body;
 
     // Validation
     if (!orderId || !amount || !cardholderEmail) {
       return NextResponse.json(
-        { error: 'Missing required fields' },
+        { error: 'Missing required fields: orderId, amount, cardholderEmail' },
         { status: 400 }
       );
     }
 
-    // Placeholder response - will be replaced with actual Stripe API call
-    // when real keys are available
-    const paymentIntentData = {
-      amount: Math.round(amount), // Amount in smallest currency unit (cents for EUR)
+    if (!process.env.STRIPE_SECRET_KEY) {
+      return NextResponse.json(
+        { error: 'Stripe configuration missing. Please set STRIPE_SECRET_KEY environment variable.' },
+        { status: 500 }
+      );
+    }
+
+    // Calculate amount in cents (smallest currency unit)
+    // Amount from client should already be in cents, but we ensure it's an integer
+    const amountInCents = Math.round(amount);
+
+    if (amountInCents < 50) {
+      return NextResponse.json(
+        { error: 'Amount must be at least €0.50' },
+        { status: 400 }
+      );
+    }
+
+    // Create Stripe Payment Intent
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: amountInCents,
       currency: currency.toLowerCase(),
-      orderId,
-      cardholderName,
-      cardholderEmail,
-      billingAddress,
       metadata: {
         orderId,
         customerEmail: cardholderEmail,
+        packSize: packSize || 'unknown',
       },
-    };
-
-    // TODO: Replace this with actual Stripe API call:
-    // const paymentIntent = await stripe.paymentIntents.create({
-    //   amount: paymentIntentData.amount,
-    //   currency: paymentIntentData.currency,
-    //   metadata: paymentIntentData.metadata,
-    //   receipt_email: cardholderEmail,
-    // });
-
-    // For now, return a placeholder response
-    return NextResponse.json({
-      success: true,
-      message: 'Payment intent created (placeholder)',
-      clientSecret: 'pi_placeholder_client_secret_do_not_use',
-      paymentIntentId: `pi_${Date.now()}`,
-      orderData: paymentIntentData,
-      // This should contain the actual client secret from Stripe
-      // when real integration is in place
+      receipt_email: cardholderEmail,
+      description: `LightMyFire Sticker Pack - Order ${orderId}`,
     });
-  } catch (error) {
-    console.error('Payment intent error:', error);
+
+    // Return client secret to client
     return NextResponse.json(
-      { error: 'Failed to create payment intent' },
+      {
+        success: true,
+        clientSecret: paymentIntent.client_secret,
+        paymentIntentId: paymentIntent.id,
+        amount: paymentIntent.amount,
+        currency: paymentIntent.currency,
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error('Payment intent creation error:', error);
+
+    if (error instanceof Stripe.errors.StripeError) {
+      return NextResponse.json(
+        { 
+          error: error.message,
+          code: error.code,
+        },
+        { status: 400 }
+      );
+    }
+
+    return NextResponse.json(
+      { error: 'Failed to create payment intent. Please try again.' },
       { status: 500 }
     );
   }

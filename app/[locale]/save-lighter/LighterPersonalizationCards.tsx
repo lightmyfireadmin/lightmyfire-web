@@ -25,7 +25,6 @@ const COLOR_PALETTE = [
   '#FFB6C1', // Light Pink
   '#D3D3D3', // Light Gray
   '#800080', // Purple
-  '#FFA500', // Orange
   '#00CED1', // Dark Turquoise
 ];
 
@@ -236,7 +235,7 @@ export default function LighterPersonalizationCards({
 
       {/* Language Selection - After all lighter cards */}
       <div className="rounded-lg border border-border/50 bg-background/80 p-3 shadow-sm">
-        <label className="block text-xs font-medium text-foreground mb-2">
+        <label className="block text-sm font-bold text-foreground mb-2">
           Second Language on Sticker (+ English)
         </label>
         <select

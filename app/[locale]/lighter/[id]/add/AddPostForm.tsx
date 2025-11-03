@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase'; // Assuming lib is at root
 import type { User } from '@supabase/supabase-js';
 import Image from 'next/image';
+import { useContentModeration } from '@/app/hooks/useContentModeration';
 
 type PostType = 'text' | 'song' | 'image' | 'location' | 'refuel';
 
@@ -23,6 +24,8 @@ export default function AddPostForm({
   lighterName: string;
 }) {
   const router = useRouter();
+  const { moderateText, moderateImage, isLoading: isModerating } = useContentModeration(user.id);
+
   const [postType, setPostType] = useState<PostType>('text');
   const [title, setTitle] = useState('');
   const [contentText, setContentText] = useState('');
@@ -39,6 +42,8 @@ export default function AddPostForm({
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [moderationError, setModerationError] = useState<{ severity: 'low' | 'medium' | 'high'; reason: string } | null>(null);
+  const [showModerationWarning, setShowModerationWarning] = useState(false);
 
   // YouTube Search States
   const [songInputMode, setSongInputMode] = useState<'url' | 'search'>('url');
@@ -111,6 +116,8 @@ export default function AddPostForm({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setModerationError(null);
+    setShowModerationWarning(false);
 
     let finalContentUrl = contentUrl;
 
@@ -162,7 +169,72 @@ export default function AddPostForm({
     }
 
     setLoading(true);
-    
+
+    // ========================================
+    // CONTENT MODERATION CHECKS
+    // ========================================
+    try {
+      // Moderate text content based on post type
+      if (postType === 'text' && contentText.trim()) {
+        const textMod = await moderateText(contentText);
+        if (textMod.flagged) {
+          setModerationError({
+            severity: textMod.severityLevel || 'medium',
+            reason: textMod.reason || 'Content violates our community guidelines.',
+          });
+          setLoading(false);
+          return;
+        }
+      }
+
+      // Moderate title if present
+      if (title.trim()) {
+        const titleMod = await moderateText(title);
+        if (titleMod.flagged) {
+          setModerationError({
+            severity: titleMod.severityLevel || 'medium',
+            reason: `Title ${titleMod.reason?.toLowerCase() || 'violates our community guidelines.'}`,
+          });
+          setLoading(false);
+          return;
+        }
+      }
+
+      // Moderate location name
+      if (postType === 'location' && locationName.trim()) {
+        const locMod = await moderateText(locationName);
+        if (locMod.flagged) {
+          setModerationError({
+            severity: locMod.severityLevel || 'medium',
+            reason: `Location name ${locMod.reason?.toLowerCase() || 'violates our community guidelines.'}`,
+          });
+          setLoading(false);
+          return;
+        }
+      }
+
+      // Moderate image content
+      if ((postType === 'image' || postType === 'refuel') && finalContentUrl) {
+        const imageMod = await moderateImage(finalContentUrl);
+        if (imageMod.flagged) {
+          setModerationError({
+            severity: imageMod.severityLevel || 'medium',
+            reason: imageMod.reason || 'Image violates our community guidelines.',
+          });
+          setLoading(false);
+          return;
+        }
+      }
+    } catch (modError) {
+      // Log but don't fail on moderation errors
+      console.error('Moderation error:', modError);
+      // Continue with posting anyway (moderation is best-effort)
+    }
+
+    // ========================================
+    // All moderation checks passed, proceed with posting
+    // ========================================
+
     const { data, error: rpcError } = await supabase.rpc('create_new_post', {
         p_lighter_id: lighterId,
         p_post_type: postType,
@@ -170,8 +242,8 @@ export default function AddPostForm({
         p_content_text: postType === 'text' ? contentText : null,
         p_content_url: (postType === 'song' || postType === 'image') ? finalContentUrl : null,
         p_location_name: postType === 'location' ? locationName : null,
-        p_location_lat: postType === 'location' && locationLat !== '' ? locationLat : null, // Pass lat
-        p_location_lng: postType === 'location' && locationLng !== '' ? locationLng : null, // Pass lng
+        p_location_lat: postType === 'location' && locationLat !== '' ? locationLat : null,
+        p_location_lng: postType === 'location' && locationLng !== '' ? locationLng : null,
         p_is_find_location: isFindLocation,
         p_is_creation: isCreation,
         p_is_anonymous: isAnonymous,
@@ -321,17 +393,56 @@ export default function AddPostForm({
         </div>
       </div>
 
-      {error && <p className="my-4 text-center text-sm text-error">{error}</p>}
+      {error && <p className="my-4 text-center text-sm text-red-600 dark:text-red-400">{error}</p>}
+
+      {moderationError && (
+        <div className={`my-4 rounded-lg border p-4 ${
+          moderationError.severity === 'high'
+            ? 'border-red-500 bg-red-50 dark:bg-red-950/20'
+            : moderationError.severity === 'medium'
+            ? 'border-orange-500 bg-orange-50 dark:bg-orange-950/20'
+            : 'border-yellow-500 bg-yellow-50 dark:bg-yellow-950/20'
+        }`}>
+          <p className={`text-sm font-medium ${
+            moderationError.severity === 'high'
+              ? 'text-red-800 dark:text-red-200'
+              : moderationError.severity === 'medium'
+              ? 'text-orange-800 dark:text-orange-200'
+              : 'text-yellow-800 dark:text-yellow-200'
+          }`}>
+            ⚠️ Content Review
+          </p>
+          <p className={`text-sm mt-1 ${
+            moderationError.severity === 'high'
+              ? 'text-red-700 dark:text-red-300'
+              : moderationError.severity === 'medium'
+              ? 'text-orange-700 dark:text-orange-300'
+              : 'text-yellow-700 dark:text-yellow-300'
+          }`}>
+            {moderationError.reason}
+          </p>
+          {moderationError.severity === 'low' && (
+            <p className="text-xs mt-2 text-yellow-600 dark:text-yellow-400">
+              💡 Tip: Consider revising your content to be more community-friendly.
+            </p>
+          )}
+        </div>
+      )}
 
       <button
         type="submit"
-        disabled={loading || uploading}
-        className="btn-primary mt-6 w-full text-lg flex justify-center items-center" // Applied btn-primary
+        disabled={loading || uploading || isModerating}
+        className="btn-primary mt-6 w-full text-lg flex justify-center items-center"
       >
         {loading || uploading ? (
           <>
             <Image src="/loading.gif" alt="Loading..." width={24} height={24} unoptimized={true} className="mr-2" />
             {uploading ? 'Uploading...' : 'Posting...'}
+          </>
+        ) : isModerating ? (
+          <>
+            <Image src="/loading.gif" alt="Checking..." width={24} height={24} unoptimized={true} className="mr-2" />
+            Checking content...
           </>
         ) : (
           'Add to Story'

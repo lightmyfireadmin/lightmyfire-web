@@ -143,7 +143,7 @@ export default function Header({ session, username }: { session: Session | null;
 
       {/* Mobile Menu Dialog */}
       <Transition show={mobileMenuOpen} as={Fragment}>
-        <Dialog as="div" className="lg:hidden relative z-50" onClose={() => setMobileMenuOpen(false)}>
+        <Dialog as="div" className="lg:hidden z-50" onClose={() => setMobileMenuOpen(false)}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -203,7 +203,7 @@ export default function Header({ session, username }: { session: Session | null;
                   )}
                 </div>
                 <div className="py-6 space-y-3 border-t border-border">
-                  <div>
+                  <div className="flex justify-end">
                     <LanguageSwitcher />
                   </div>
                   <div>

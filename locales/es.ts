@@ -166,8 +166,8 @@ export default {
 
   'post.refuel_message': '¡Recargado! La aventura de este encendedor continúa.',
   'post.youtube_load_error': 'No se pudo cargar el vídeo de YouTube (¿URL inválida?).',
-  'legal.privacy.title': 'Privacy Policy',
-  'legal.terms.title': 'Terms of Service',
-  'legal.faq.title': 'Frequently Asked Questions',
-  'legal.about.title': 'About LightMyFire',
+  'legal.privacy.title': 'Política de privacidad',
+  'legal.terms.title': 'Términos de servicio',
+  'legal.faq.title': 'Preguntas frecuentes',
+  'legal.about.title': 'Sobre LightMyFire',
 } as const;

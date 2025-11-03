@@ -192,7 +192,7 @@ function PaymentFormContent({
       >
         {isLoading ? (
           <>
-            <LoadingSpinner color="primary" size="sm" />
+            <LoadingSpinner color="currentColor" size="small" />
             Processing...
           </>
         ) : (

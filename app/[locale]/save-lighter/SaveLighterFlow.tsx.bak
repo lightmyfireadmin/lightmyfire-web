@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useI18n } from '@/locales/client';
 import LighterPersonalizationCards from './LighterPersonalizationCards';
 import StripePaymentForm from './StripePaymentForm';
-import StickerPreview from './StickerPreview';
 import type { User } from '@supabase/supabase-js';
 
 interface LighterCustomization {
@@ -143,25 +142,6 @@ export default function SaveLighterFlow({ user }: { user: User }) {
         </div>
       )}
 
-      {/* Sticker Preview & PDF Generation - Show when customizations are done */}
-      {customizations.length > 0 && (
-        <div className="rounded-lg border border-border bg-background p-6 shadow-md">
-          <h2 className="mb-6 text-xl font-semibold text-foreground">Your Sticker Design</h2>
-          <StickerPreview
-            stickers={customizations}
-            orderId={`LMF-${Date.now()}`}
-            onDownloadStart={() => {
-              console.log('PDF generation started');
-            }}
-            onDownloadComplete={(success, filename) => {
-              if (success) {
-                console.log(`PDF downloaded: ${filename}`);
-              }
-            }}
-          />
-        </div>
-      )}
-
       {/* Payment Form - Show when customizations are done */}
       {customizations.length > 0 && (
         <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
@@ -174,7 +154,6 @@ export default function SaveLighterFlow({ user }: { user: User }) {
               selectedPack === 5 ? 2500 : selectedPack === 10 ? 4500 : 20000
             }
             userEmail={user.email || ''}
-            packSize={selectedPack || 5}
             onSuccess={() => {
               // Handle success
             }}

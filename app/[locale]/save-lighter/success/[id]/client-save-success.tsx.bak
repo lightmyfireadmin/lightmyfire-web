@@ -96,7 +96,7 @@ export default function ClientSaveSuccess({ id, locale }: { id: string; locale: 
           </h4>
           <ol className="list-decimal space-y-2 pl-5">
             <li>
-              <strong>{t('save_success.next_steps.download_label')}:</strong>{' '}
+              <strong>{t('save_success.next_steps.print_label')}:</strong>{' '}
               {t('save_success.next_steps.step1')}
             </li>
             <li>
