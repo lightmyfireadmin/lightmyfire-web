@@ -21,6 +21,8 @@
     "@tailwindcss/typography": "^0.5.19",
     "@tanstack/react-query": "^5.90.5",
     "canvas": "^3.2.0",
+    "dom-to-image": "^2.6.0",
+    "html2canvas": "^1.4.1",
     "leaflet": "^1.9.4",
     "negotiator": "^1.0.0",
     "next": "^14.2.5",
@@ -39,6 +41,7 @@
     "stripe": "^19.2.0"
   },
   "devDependencies": {
+    "@types/dom-to-image": "^2.6.7",
     "@types/leaflet": "^1.9.21",
     "@types/negotiator": "^0.6.4",
     "@types/node": "^20",

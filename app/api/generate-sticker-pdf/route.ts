@@ -251,22 +251,25 @@ async function drawStickerContent(
   ctx.fillRect(x + padding, currentY, contentWidth, cardHeight);
 
   // "You found me" text (bold, centered) - INCREASED SIZE
+  ctx.globalCompositeOperation = 'source-over'; // Ensure text draws on top
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.10)}px Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.10)}px sans-serif`; // Use generic sans-serif
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText('You found me', x + STICKER_WIDTH_PX / 2, currentY + Math.round(cardHeight * 0.4));
 
   // "I'm + name" text - INCREASED SIZE, BOLD
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px Arial`;
+  ctx.fillStyle = '#000000';
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px sans-serif`;
   ctx.textBaseline = 'middle';
   ctx.fillText(`I'm ${sticker.name}`, x + STICKER_WIDTH_PX / 2, currentY + Math.round(cardHeight * 0.75));
 
   currentY += cardHeight + padding;
 
   // Invitation text: "Read my story and expand it" - INCREASED SIZE
+  ctx.globalCompositeOperation = 'source-over';
   ctx.fillStyle = '#ffffff';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.065)}px Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.065)}px sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   ctx.fillText('Read my story', x + STICKER_WIDTH_PX / 2, currentY);
@@ -282,7 +285,8 @@ async function drawStickerContent(
   };
 
   const translationText = translations[sticker.language] || translations.fr;
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Arial`;
+  ctx.fillStyle = '#ffffff';
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px sans-serif`;
   ctx.textBaseline = 'top';
   ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.14));
 
@@ -326,19 +330,21 @@ async function drawStickerContent(
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(x + padding, currentY, contentWidth, urlBgHeight);
 
+  ctx.globalCompositeOperation = 'source-over';
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText('or go to', x + STICKER_WIDTH_PX / 2, currentY + Math.round(urlBgHeight * 0.45));
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.06)}px Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.06)}px sans-serif`;
   ctx.fillText('lightmyfire.app', x + STICKER_WIDTH_PX / 2, currentY + Math.round(urlBgHeight * 0.85));
 
   currentY += urlBgHeight + Math.round(STICKER_HEIGHT_PX * 0.03);
 
   // "and type my code" - INCREASED SIZE
+  ctx.globalCompositeOperation = 'source-over';
   ctx.fillStyle = '#ffffff';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.065)}px Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.065)}px sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   ctx.fillText('and type my code', x + STICKER_WIDTH_PX / 2, currentY);
@@ -353,7 +359,8 @@ async function drawStickerContent(
   };
 
   const codeText = codeTranslations[sticker.language] || codeTranslations.fr;
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Arial`;
+  ctx.fillStyle = '#ffffff';
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px sans-serif`;
   ctx.textBaseline = 'top';
   ctx.fillText(codeText, x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.075));
 
@@ -366,9 +373,11 @@ async function drawStickerContent(
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(x + padding, currentY, contentWidth, pinBgHeight);
 
+  ctx.globalCompositeOperation = 'source-over';
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px sans-serif`;
   ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
   ctx.fillText(sticker.pinCode, x + STICKER_WIDTH_PX / 2, currentY + Math.round(pinBgHeight * 0.75));
 
   currentY += pinBgHeight + Math.round(STICKER_HEIGHT_PX * 0.02);

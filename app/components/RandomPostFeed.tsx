@@ -10,7 +10,7 @@ interface AnimatingPost {
   id: string;
   post: DetailedPost;
   position: number; // vertical position in pixels
-  height?: number; // actual height of the post element
+  height?: number; // measured height of the post
 }
 
 const RandomPostFeed = () => {
@@ -20,10 +20,12 @@ const RandomPostFeed = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [nextId, setNextId] = useState(0);
   const [isInitialized, setIsInitialized] = useState(false);
-  const [postHeights, setPostHeights] = useState<{ [key: string]: number }>({});
+  const [hoveredPostId, setHoveredPostId] = useState<string | null>(null);
+  const [postHeights, setPostHeights] = useState<Record<string, number>>({});
   const CONTAINER_HEIGHT = 500;
-  const DEFAULT_POST_HEIGHT = 250; // Default height for mini posts
-  const POST_GAP = 40; // Consistent gap between posts
+  const FIXED_POST_HEIGHT = 180; // Fixed collapsed height for all posts
+  const DEFAULT_POST_HEIGHT = 180; // Default height for posts before measured
+  const POST_GAP = 30; // Consistent gap between posts
   const INITIAL_SPAWN_DELAY = 500; // 500ms delay before first post appears
   const SCROLL_SPEED = 1; // Reduced from 2 to 1 for slower, smoother scrolling
 
@@ -110,7 +112,7 @@ const RandomPostFeed = () => {
     }, 16); // ~60fps for smooth animation
 
     return () => clearInterval(animationLoop);
-  }, [posts, isPaused, nextId, isInitialized, postHeights]);
+  }, [posts, isPaused, nextId, isInitialized]);
 
   // Calculate opacity based on position in pixels (fade at top and bottom)
   const getOpacity = (position: number): number => {

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useI18n } from '@/locales/client';
 import LoadingSpinner from '@/app/components/LoadingSpinner';
 import FullStickerPreview from './FullStickerPreview';
+import { generateStickerPNG, downloadBlob } from '@/app/utils/stickerToPng';
 
 interface StickerDesign {
   id: string;
@@ -36,37 +37,19 @@ export default function StickerPreview({
     onDownloadStart?.();
 
     try {
-      const endpoint = format === 'printful'
-        ? '/api/generate-printful-stickers'
-        : '/api/generate-sticker-pdf';
+      // Generate sticker data with PIN codes
+      const stickerData = stickers.map((sticker, index) => ({
+        ...sticker,
+        pinCode: `LMF-${(index + 1).toString().padStart(2, '0')}`,
+      }));
 
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          stickers,
-          orderId,
-          brandingText: 'LightMyFire',
-        }),
-      });
+      // Use client-side dom-to-image for proper font rendering
+      const blob = await generateStickerPNG(stickerData, format, orderId);
+      const filename = `stickers-${orderId}-${format}.png`;
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to generate PNG');
-      }
+      downloadBlob(blob, filename);
 
-      // Get the PNG blob
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `stickers-${orderId}-${format}.png`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-
-      onDownloadComplete?.(true, `stickers-${orderId}-${format}.png`);
+      onDownloadComplete?.(true, filename);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Unknown error';
       setError(errorMessage);

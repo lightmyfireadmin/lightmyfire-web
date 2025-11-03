@@ -74,6 +74,7 @@ export default function FullStickerPreview({
   return (
     <div className="flex justify-center items-center p-4">
       <div
+        data-sticker-preview
         className="relative shadow-lg rounded-lg overflow-hidden"
         style={{
           width: '200px',
