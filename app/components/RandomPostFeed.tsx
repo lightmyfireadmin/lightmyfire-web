@@ -70,13 +70,15 @@ const RandomPostFeed = () => {
           const topmost = updated.length > 0 ? Math.min(...updated.map(p => p.position)) : 1000;
 
           // Spawn next post when previous post's top edge is SAFETY_GAP pixels from container top
-          // New post spawns at negative position to create the SAFETY_GAP
+          // Calculate spawn position: previous post top minus post height minus gap
           if (topmost >= SAFETY_GAP) {
             const randomPost = posts[Math.floor(Math.random() * posts.length)];
+            // Spawn new post so its bottom edge is SAFETY_GAP pixels above the topmost post's top edge
+            const spawnPosition = topmost - POST_HEIGHT - SAFETY_GAP;
             updated.unshift({
               id: `${nextId}-${Date.now()}`,
               post: randomPost,
-              position: -SAFETY_GAP, // Spawn just SAFETY_GAP pixels above to maintain tight spacing
+              position: spawnPosition,
             });
             setNextId((prev) => prev + 1);
           }

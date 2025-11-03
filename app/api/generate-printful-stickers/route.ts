@@ -147,15 +147,18 @@ async function drawSticker(
   ctx.fillStyle = '#ffffff';
   roundRect(ctx, x + padding, currentY, contentWidth, cardHeight, cardRadius);
   ctx.fill();
+  ctx.beginPath(); // Reset path after fill
 
   // "You found me" text
   ctx.fillStyle = '#000000';
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.10)}px Arial`;
   ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
   ctx.fillText('You found me', x + STICKER_WIDTH_PX / 2, currentY + Math.round(cardHeight * 0.4));
 
   // "I'm + name" text
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px Arial`;
+  ctx.textBaseline = 'middle';
   ctx.fillText(`I'm ${sticker.name}`, x + STICKER_WIDTH_PX / 2, currentY + Math.round(cardHeight * 0.75));
 
   currentY += cardHeight + padding;
@@ -164,6 +167,7 @@ async function drawSticker(
   ctx.fillStyle = '#ffffff';
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.065)}px Arial`;
   ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
   ctx.fillText('Read my story', x + STICKER_WIDTH_PX / 2, currentY);
   ctx.fillText('and expand it', x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.075));
 
@@ -178,6 +182,7 @@ async function drawSticker(
 
   const translationText = translations[sticker.language] || translations.fr;
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Arial`;
+  ctx.textBaseline = 'top';
   ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.14));
 
   currentY += Math.round(STICKER_HEIGHT_PX * 0.18);
@@ -209,10 +214,12 @@ async function drawSticker(
   ctx.fillStyle = '#ffffff';
   roundRect(ctx, x + padding, currentY, contentWidth, urlBgHeight, cardRadius);
   ctx.fill();
+  ctx.beginPath(); // Reset path after fill
 
   ctx.fillStyle = '#000000';
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Arial`;
   ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
   ctx.fillText('or go to', x + STICKER_WIDTH_PX / 2, currentY + Math.round(urlBgHeight * 0.45));
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.06)}px Arial`;
   ctx.fillText('lightmyfire.app', x + STICKER_WIDTH_PX / 2, currentY + Math.round(urlBgHeight * 0.85));
@@ -223,6 +230,7 @@ async function drawSticker(
   ctx.fillStyle = '#ffffff';
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.065)}px Arial`;
   ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
   ctx.fillText('and type my code', x + STICKER_WIDTH_PX / 2, currentY);
 
   // Translation
@@ -236,6 +244,7 @@ async function drawSticker(
 
   const codeText = codeTranslations[sticker.language] || codeTranslations.fr;
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Arial`;
+  ctx.textBaseline = 'top';
   ctx.fillText(codeText, x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.075));
 
   currentY += Math.round(STICKER_HEIGHT_PX * 0.12);
@@ -245,10 +254,12 @@ async function drawSticker(
   ctx.fillStyle = '#ffffff';
   roundRect(ctx, x + padding, currentY, contentWidth, pinBgHeight, cardRadius);
   ctx.fill();
+  ctx.beginPath(); // Reset path after fill
 
   ctx.fillStyle = '#000000';
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px Arial`;
   ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
   ctx.fillText(sticker.pinCode, x + STICKER_WIDTH_PX / 2, currentY + Math.round(pinBgHeight * 0.75));
 
   currentY += pinBgHeight + Math.round(STICKER_HEIGHT_PX * 0.02);
@@ -315,10 +326,12 @@ async function drawBrandingArea(ctx: NodeCanvasContext, brandingText: string) {
     ctx.fillStyle = '#000000';
     ctx.font = `bold ${Math.round(RESERVED_PX * 0.08)}px Arial`;
     ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
     ctx.fillText(brandingText, x + RESERVED_PX / 2, textY);
 
     // Add "Join our community" text
     ctx.font = `${Math.round(RESERVED_PX * 0.06)}px Arial`;
+    ctx.textBaseline = 'top';
     ctx.fillText('Join our community!', x + RESERVED_PX / 2, textY + Math.round(RESERVED_PX * 0.1));
     ctx.fillText('lightmyfire.app', x + RESERVED_PX / 2, textY + Math.round(RESERVED_PX * 0.18));
   } catch (error) {

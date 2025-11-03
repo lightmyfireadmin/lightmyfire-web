@@ -228,6 +228,7 @@ async function drawStickerDesign(
   roundRect(ctx, x, y, STICKER_WIDTH_PX, STICKER_HEIGHT_PX, radius);
   ctx.fillStyle = sticker.backgroundColor;
   ctx.fill();
+  ctx.beginPath(); // Reset path after fill
 
   // Draw sticker content
   await drawStickerContent(ctx, x, y, sticker);
@@ -254,15 +255,18 @@ async function drawStickerContent(
   const cardRadius = Math.round(padding * 0.5);
   roundRect(ctx, x + padding, currentY, contentWidth, cardHeight, cardRadius);
   ctx.fill();
+  ctx.beginPath(); // Reset path after fill
 
   // "You found me" text (bold, centered) - INCREASED SIZE
   ctx.fillStyle = '#000000';
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.10)}px Arial`;
   ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
   ctx.fillText('You found me', x + STICKER_WIDTH_PX / 2, currentY + Math.round(cardHeight * 0.4));
 
   // "I'm + name" text - INCREASED SIZE, BOLD
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px Arial`;
+  ctx.textBaseline = 'middle';
   ctx.fillText(`I'm ${sticker.name}`, x + STICKER_WIDTH_PX / 2, currentY + Math.round(cardHeight * 0.75));
 
   currentY += cardHeight + padding;
@@ -271,6 +275,7 @@ async function drawStickerContent(
   ctx.fillStyle = '#ffffff';
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.065)}px Arial`;
   ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
   ctx.fillText('Read my story', x + STICKER_WIDTH_PX / 2, currentY);
   ctx.fillText('and expand it', x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.075));
 
@@ -285,6 +290,7 @@ async function drawStickerContent(
 
   const translationText = translations[sticker.language] || translations.fr;
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Arial`;
+  ctx.textBaseline = 'top';
   ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.14));
 
   currentY += Math.round(STICKER_HEIGHT_PX * 0.18);
@@ -325,10 +331,12 @@ async function drawStickerContent(
   ctx.fillStyle = '#ffffff';
   roundRect(ctx, x + padding, currentY, contentWidth, urlBgHeight, cardRadius);
   ctx.fill();
+  ctx.beginPath(); // Reset path after fill
 
   ctx.fillStyle = '#000000';
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Arial`;
   ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
   ctx.fillText('or go to', x + STICKER_WIDTH_PX / 2, currentY + Math.round(urlBgHeight * 0.45));
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.06)}px Arial`;
   ctx.fillText('lightmyfire.app', x + STICKER_WIDTH_PX / 2, currentY + Math.round(urlBgHeight * 0.85));
@@ -339,6 +347,7 @@ async function drawStickerContent(
   ctx.fillStyle = '#ffffff';
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.065)}px Arial`;
   ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
   ctx.fillText('and type my code', x + STICKER_WIDTH_PX / 2, currentY);
 
   // Translation - INCREASED SIZE, BOLD
@@ -352,6 +361,7 @@ async function drawStickerContent(
 
   const codeText = codeTranslations[sticker.language] || codeTranslations.fr;
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Arial`;
+  ctx.textBaseline = 'top';
   ctx.fillText(codeText, x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.075));
 
   currentY += Math.round(STICKER_HEIGHT_PX * 0.12);
@@ -361,6 +371,7 @@ async function drawStickerContent(
   ctx.fillStyle = '#ffffff';
   roundRect(ctx, x + padding, currentY, contentWidth, pinBgHeight, cardRadius);
   ctx.fill();
+  ctx.beginPath(); // Reset path after fill
 
   ctx.fillStyle = '#000000';
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px Arial`;
