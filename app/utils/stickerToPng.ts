@@ -123,6 +123,7 @@ async function createStickerElement(
   stickerDiv.style.fontFamily = 'Helvetica, Arial, sans-serif';
   stickerDiv.style.position = 'relative';
   stickerDiv.style.overflow = 'hidden';
+  stickerDiv.style.borderRadius = `${Math.round(height * 0.016)}px`; // Rounded corners for sticker
 
   // Scaled padding (12px at 500px height = 2.4%)
   const padding = Math.round(height * 0.024);
@@ -130,8 +131,9 @@ async function createStickerElement(
 
   let currentY = padding;
 
-  // Top card: "You found me" + name (matches web preview exactly)
-  const cardHeight = Math.round(height * 0.14); // Reduced from 0.28
+  // Top card: "You found me" + name
+  const borderRadius = `${Math.round(height * 0.008)}px`; // Rounded corners for cards
+  const cardHeight = Math.round(height * 0.13);
   const topCard = document.createElement('div');
   topCard.style.position = 'absolute';
   topCard.style.left = `${padding}px`;
@@ -139,20 +141,20 @@ async function createStickerElement(
   topCard.style.width = `${contentWidth}px`;
   topCard.style.height = `${cardHeight}px`;
   topCard.style.backgroundColor = '#ffffff';
-  topCard.style.borderRadius = '4px';
+  topCard.style.borderRadius = borderRadius;
   topCard.style.display = 'flex';
   topCard.style.flexDirection = 'column';
   topCard.style.alignItems = 'center';
   topCard.style.justifyContent = 'center';
   topCard.style.textAlign = 'center';
-  topCard.style.padding = `${Math.round(height * 0.024)}px`;
+  topCard.style.padding = `${Math.round(height * 0.020)}px ${Math.round(height * 0.012)}px`;
   topCard.innerHTML = `
-    <div style="color: #000000; font-size: ${Math.round(height * 0.032)}px; font-weight: bold; line-height: 1.2;">You found me</div>
-    <div style="color: #000000; font-size: ${Math.round(height * 0.030)}px; font-weight: bold; line-height: 1.2;">I'm ${sticker.name}</div>
+    <div style="color: #000000; font-size: ${Math.round(height * 0.030)}px; font-weight: bold; line-height: 1.1;">You found me</div>
+    <div style="color: #000000; font-size: ${Math.round(height * 0.028)}px; font-weight: bold; line-height: 1.1;">I'm ${sticker.name}</div>
   `;
   stickerDiv.appendChild(topCard);
 
-  currentY += cardHeight + Math.round(height * 0.016);
+  currentY += cardHeight + Math.round(height * 0.012);
 
   // Invitation text
   const translations: { [key: string]: { readStory: string; typeCode: string } } = {
@@ -184,7 +186,7 @@ async function createStickerElement(
 
   const trans = translations[sticker.language || 'en'] || translations.en;
 
-  // Invitation text (matches web preview: text-[13px] at 500px = 2.6%)
+  // Invitation text - optimized for readability
   const invitationText = document.createElement('div');
   invitationText.style.position = 'absolute';
   invitationText.style.left = '0';
@@ -193,17 +195,18 @@ async function createStickerElement(
   invitationText.style.textAlign = 'center';
   invitationText.style.color = '#ffffff';
   invitationText.style.fontWeight = 'bold';
-  invitationText.style.lineHeight = '1.25';
+  invitationText.style.lineHeight = '1.15';
+  invitationText.style.padding = `0 ${padding}px`;
   invitationText.innerHTML = `
-    <div style="font-size: ${Math.round(height * 0.026)}px; line-height: 1.25;">Read my story</div>
-    <div style="font-size: ${Math.round(height * 0.026)}px; line-height: 1.25;">and expand it</div>
-    <div style="font-size: ${Math.round(height * 0.022)}px; margin-top: ${Math.round(height * 0.008)}px; line-height: 1.25;">${trans.readStory}</div>
+    <div style="font-size: ${Math.round(height * 0.024)}px; line-height: 1.15;">Read my story</div>
+    <div style="font-size: ${Math.round(height * 0.024)}px; line-height: 1.15;">and expand it</div>
+    <div style="font-size: ${Math.round(height * 0.020)}px; margin-top: ${Math.round(height * 0.006)}px; line-height: 1.15;">${trans.readStory}</div>
   `;
   stickerDiv.appendChild(invitationText);
 
-  currentY += Math.round(height * 0.09);
+  currentY += Math.round(height * 0.085);
 
-  // QR Code (web preview: 90px at 500px = 18%, with 8px padding = 1.6%)
+  // QR Code
   const qrSize = Math.round(height * 0.18);
   const qrPadding = Math.round(height * 0.016);
   const qrCodeDiv = document.createElement('div');
@@ -214,7 +217,7 @@ async function createStickerElement(
   qrCodeDiv.style.height = `${qrSize + qrPadding * 2}px`;
   qrCodeDiv.style.backgroundColor = '#ffffff';
   qrCodeDiv.style.padding = `${qrPadding}px`;
-  qrCodeDiv.style.borderRadius = '4px';
+  qrCodeDiv.style.borderRadius = borderRadius;
 
   // Generate QR code
   try {
@@ -239,10 +242,10 @@ async function createStickerElement(
 
   stickerDiv.appendChild(qrCodeDiv);
 
-  currentY += qrSize + qrPadding * 2 + Math.round(height * 0.016);
+  currentY += qrSize + qrPadding * 2 + Math.round(height * 0.012);
 
-  // URL card (web preview: p-2.5 = 10px at 500px = 2%)
-  const urlBgHeight = Math.round(height * 0.10); // Reduced from 0.15
+  // URL card - optimized sizing
+  const urlBgHeight = Math.round(height * 0.095);
   const urlCard = document.createElement('div');
   urlCard.style.position = 'absolute';
   urlCard.style.left = `${padding}px`;
@@ -250,21 +253,21 @@ async function createStickerElement(
   urlCard.style.width = `${contentWidth}px`;
   urlCard.style.height = `${urlBgHeight}px`;
   urlCard.style.backgroundColor = '#ffffff';
-  urlCard.style.borderRadius = '4px';
+  urlCard.style.borderRadius = borderRadius;
   urlCard.style.display = 'flex';
   urlCard.style.flexDirection = 'column';
   urlCard.style.alignItems = 'center';
   urlCard.style.justifyContent = 'center';
-  urlCard.style.padding = `${Math.round(height * 0.020)}px`;
+  urlCard.style.padding = `${Math.round(height * 0.016)}px ${Math.round(height * 0.012)}px`;
   urlCard.innerHTML = `
-    <div style="color: #000000; font-size: ${Math.round(height * 0.022)}px; font-weight: bold; line-height: 1.2;">or go to</div>
-    <div style="color: #000000; font-size: ${Math.round(height * 0.024)}px; font-weight: bold; line-height: 1.2;">lightmyfire.app</div>
+    <div style="color: #000000; font-size: ${Math.round(height * 0.020)}px; font-weight: bold; line-height: 1.1;">or go to</div>
+    <div style="color: #000000; font-size: ${Math.round(height * 0.022)}px; font-weight: bold; line-height: 1.1;">lightmyfire.app</div>
   `;
   stickerDiv.appendChild(urlCard);
 
-  currentY += urlBgHeight + Math.round(height * 0.016);
+  currentY += urlBgHeight + Math.round(height * 0.012);
 
-  // Code text (matches invitation text sizing)
+  // Code text - optimized for readability
   const codeText = document.createElement('div');
   codeText.style.position = 'absolute';
   codeText.style.left = '0';
@@ -273,17 +276,18 @@ async function createStickerElement(
   codeText.style.textAlign = 'center';
   codeText.style.color = '#ffffff';
   codeText.style.fontWeight = 'bold';
-  codeText.style.lineHeight = '1.25';
+  codeText.style.lineHeight = '1.15';
+  codeText.style.padding = `0 ${padding}px`;
   codeText.innerHTML = `
-    <div style="font-size: ${Math.round(height * 0.026)}px; line-height: 1.25;">and type my code</div>
-    <div style="font-size: ${Math.round(height * 0.022)}px; margin-top: ${Math.round(height * 0.008)}px; line-height: 1.25;">${trans.typeCode}</div>
+    <div style="font-size: ${Math.round(height * 0.024)}px; line-height: 1.15;">and type my code</div>
+    <div style="font-size: ${Math.round(height * 0.020)}px; margin-top: ${Math.round(height * 0.006)}px; line-height: 1.15;">${trans.typeCode}</div>
   `;
   stickerDiv.appendChild(codeText);
 
-  currentY += Math.round(height * 0.09);
+  currentY += Math.round(height * 0.085);
 
-  // PIN code card (web preview: text-2xl = 24px at 500px = 4.8%, p-3 = 12px = 2.4%)
-  const pinBgHeight = Math.round(height * 0.12); // Reduced from 0.14
+  // PIN code card - optimized sizing
+  const pinBgHeight = Math.round(height * 0.11);
   const pinCard = document.createElement('div');
   pinCard.style.position = 'absolute';
   pinCard.style.left = `${padding}px`;
@@ -291,17 +295,17 @@ async function createStickerElement(
   pinCard.style.width = `${contentWidth}px`;
   pinCard.style.height = `${pinBgHeight}px`;
   pinCard.style.backgroundColor = '#ffffff';
-  pinCard.style.borderRadius = '4px';
+  pinCard.style.borderRadius = borderRadius;
   pinCard.style.display = 'flex';
   pinCard.style.alignItems = 'center';
   pinCard.style.justifyContent = 'center';
-  pinCard.style.padding = `${Math.round(height * 0.024)}px`;
+  pinCard.style.padding = `${Math.round(height * 0.020)}px ${Math.round(height * 0.012)}px`;
   pinCard.innerHTML = `
-    <div style="color: #000000; font-size: ${Math.round(height * 0.048)}px; font-weight: bold; letter-spacing: 0.05em;">${sticker.pinCode || 'ABC-123'}</div>
+    <div style="color: #000000; font-size: ${Math.round(height * 0.044)}px; font-weight: bold; letter-spacing: 0.05em;">${sticker.pinCode || 'ABC-123'}</div>
   `;
   stickerDiv.appendChild(pinCard);
 
-  currentY += pinBgHeight + Math.round(height * 0.016);
+  currentY += pinBgHeight + Math.round(height * 0.012);
 
   // Logo section at bottom (web preview: height 60px at 500px = 12%)
   const logoSectionHeight = Math.round(height * 0.12);
