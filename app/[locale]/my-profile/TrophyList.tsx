@@ -33,16 +33,18 @@ interface LockedTrophyDef {
   unlocked: false;
 }
 
-// Comprehensive trophy definitions - IDs match database
+// Comprehensive trophy definitions - IDs match database (10 trophies total)
 const ALL_TROPHIES: (UnlockedTrophy | LockedTrophyDef)[] = [
-  { id: 1, name: 'Story Teller', description: 'Add your first post', icon_name: 'telling_stories', unlocked: false },
-  { id: 2, name: 'Fire Starter', description: 'Save your first lighter', icon_name: 'personalise', unlocked: false },
+  { id: 1, name: 'Fire Starter', description: 'Save your first lighter', icon_name: 'personalise', unlocked: false },
+  { id: 2, name: 'Story Teller', description: 'Add your first post', icon_name: 'telling_stories', unlocked: false },
   { id: 3, name: 'Chronicles', description: 'Add 5 stories to lighters', icon_name: 'telling_stories', unlocked: false },
   { id: 4, name: 'Epic Saga', description: 'Add 10 stories to lighters', icon_name: 'telling_stories', unlocked: false },
   { id: 5, name: 'Collector', description: 'Save 5 different lighters', icon_name: 'personalise', unlocked: false },
   { id: 6, name: 'Community Builder', description: 'Contribute to 10 different lighters', icon_name: 'around_the_world', unlocked: false },
-  { id: 7, name: 'Photographer', description: 'Add 10 photo posts', icon_name: 'telling_stories', unlocked: false },
-  { id: 8, name: 'Musician', description: 'Add 5 song posts', icon_name: 'telling_stories', unlocked: false },
+  { id: 7, name: 'Globe Trotter', description: 'Post from 5 different countries', icon_name: 'around_the_world', unlocked: false },
+  { id: 8, name: 'Popular Contributor', description: 'Get 50 likes on your posts', icon_name: 'personalise', unlocked: false },
+  { id: 9, name: 'Photographer', description: 'Add 10 photo posts', icon_name: 'telling_stories', unlocked: false },
+  { id: 10, name: 'Musician', description: 'Add 5 song posts', icon_name: 'telling_stories', unlocked: false },
 ];
 
 export default function TrophyList({ trophies }: { trophies: Trophy[] }) {

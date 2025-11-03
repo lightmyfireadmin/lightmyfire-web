@@ -97,8 +97,8 @@ export default async function MyProfilePage() {
   }
   const userId = session.user.id;
 
-  // Refresh trophies before fetching data
-  await supabase.rpc('grant_unlocked_trophies', { p_user_id: userId });
+  // NOTE: Trophy granting is now handled by database triggers on posts/lighters/likes tables
+  // Removed expensive RPC call that was running on every page load
 
   // Fetch data
   const [
@@ -157,18 +157,24 @@ export default async function MyProfilePage() {
   const calculatedLevel = calculateLevel(calculatedPoints);
 
   // Update profile's level and points if they've changed
-  if (profile && (profile.level !== calculatedLevel || profile.points !== calculatedPoints)) {
-    await supabase
+  // Only update if there's a meaningful difference (avoid unnecessary writes)
+  if (profile && (profile.level !== calculatedLevel || Math.abs((profile.points ?? 0) - calculatedPoints) > 1)) {
+    // Use update with returning to ensure atomicity and get updated values
+    const { data: updatedProfile } = await supabase
       .from('profiles')
       .update({
         level: calculatedLevel,
         points: calculatedPoints,
       })
-      .eq('id', userId);
+      .eq('id', userId)
+      .select('level, points')
+      .single();
 
     // Update the profile object for display
-    profile.level = calculatedLevel;
-    profile.points = calculatedPoints;
+    if (updatedProfile) {
+      profile.level = updatedProfile.level;
+      profile.points = updatedProfile.points;
+    }
   }
 
   // Cast fetched post data using the imported type
