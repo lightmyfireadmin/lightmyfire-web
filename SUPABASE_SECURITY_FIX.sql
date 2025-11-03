@@ -6,11 +6,13 @@
 DROP VIEW IF EXISTS public.moderation_queue_with_user CASCADE;
 DROP VIEW IF EXISTS public.orders_with_details CASCADE;
 
--- Drop insecure RLS policies
+-- Drop ALL existing RLS policies
 DROP POLICY IF EXISTS moderation_queue_select_own ON public.moderation_queue;
+DROP POLICY IF EXISTS moderation_queue_insert ON public.moderation_queue;
 DROP POLICY IF EXISTS moderation_queue_update ON public.moderation_queue;
 DROP POLICY IF EXISTS moderation_queue_delete ON public.moderation_queue;
 DROP POLICY IF EXISTS orders_select_own ON public.orders;
+DROP POLICY IF EXISTS orders_insert ON public.orders;
 DROP POLICY IF EXISTS orders_update ON public.orders;
 
 -- ============================================================================
@@ -129,6 +131,10 @@ DROP VIEW IF EXISTS public.detailed_posts CASCADE;
 -- ============================================================================
 -- SECTION 5: UPDATE RPC FUNCTIONS TO USE app_role INSTEAD OF user_metadata
 -- ============================================================================
+
+-- Drop existing functions first
+DROP FUNCTION IF EXISTS get_moderation_queue_data(text,text,integer,integer);
+DROP FUNCTION IF EXISTS get_orders_data(text,integer,integer);
 
 -- Function: Get moderation queue with user details (check app_role instead of user_metadata)
 CREATE OR REPLACE FUNCTION get_moderation_queue_data(
