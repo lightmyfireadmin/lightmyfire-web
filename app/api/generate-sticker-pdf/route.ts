@@ -225,10 +225,12 @@ async function drawStickerDesign(
 
   // Add rounded corners
   const radius = Math.round(STICKER_WIDTH_PX * 0.1);
+
+  ctx.save(); // Save state before main background
   roundRect(ctx, x, y, STICKER_WIDTH_PX, STICKER_HEIGHT_PX, radius);
   ctx.fillStyle = sticker.backgroundColor;
   ctx.fill();
-  ctx.beginPath(); // Reset path after fill
+  ctx.restore(); // Restore state after main background
 
   // Draw sticker content
   await drawStickerContent(ctx, x, y, sticker);
@@ -251,11 +253,13 @@ async function drawStickerContent(
 
   // White card background with rounded corners
   const cardHeight = Math.round(contentHeight * 0.28);
-  ctx.fillStyle = '#ffffff';
   const cardRadius = Math.round(padding * 0.5);
+
+  ctx.save(); // Save state before drawing shape
+  ctx.fillStyle = '#ffffff';
   roundRect(ctx, x + padding, currentY, contentWidth, cardHeight, cardRadius);
   ctx.fill();
-  ctx.beginPath(); // Reset path after fill
+  ctx.restore(); // Restore state after shape
 
   // "You found me" text (bold, centered) - INCREASED SIZE
   ctx.fillStyle = '#000000';
@@ -328,10 +332,12 @@ async function drawStickerContent(
 
   // "or go to lightmyfire.app" section with rounded background - INCREASED SIZE
   const urlBgHeight = Math.round(STICKER_HEIGHT_PX * 0.15);
+
+  ctx.save(); // Save state before drawing shape
   ctx.fillStyle = '#ffffff';
   roundRect(ctx, x + padding, currentY, contentWidth, urlBgHeight, cardRadius);
   ctx.fill();
-  ctx.beginPath(); // Reset path after fill
+  ctx.restore(); // Restore state after shape
 
   ctx.fillStyle = '#000000';
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Arial`;
@@ -368,10 +374,12 @@ async function drawStickerContent(
 
   // PIN code (bold, with rounded background) - INCREASED SIZE
   const pinBgHeight = Math.round(STICKER_HEIGHT_PX * 0.14);
+
+  ctx.save(); // Save state before drawing shape
   ctx.fillStyle = '#ffffff';
   roundRect(ctx, x + padding, currentY, contentWidth, pinBgHeight, cardRadius);
   ctx.fill();
-  ctx.beginPath(); // Reset path after fill
+  ctx.restore(); // Restore state after shape
 
   ctx.fillStyle = '#000000';
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px Arial`;
