@@ -257,19 +257,19 @@ async function drawStickerContent(
 
   // "You found me" text (bold, centered) - INCREASED SIZE
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px Helvetica, sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('You found me', x + STICKER_WIDTH_PX / 2, currentY + Math.round(cardHeight * 0.4));
 
   // "I'm + name" text - INCREASED SIZE, BOLD
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.08)}px Helvetica, sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.08)}px sans-serif`;
   ctx.fillText(`I'm ${sticker.name}`, x + STICKER_WIDTH_PX / 2, currentY + Math.round(cardHeight * 0.75));
 
   currentY += cardHeight + padding;
 
   // Invitation text: "Read my story and expand it" - INCREASED SIZE
   ctx.fillStyle = '#ffffff';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Helvetica, sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('Read my story', x + STICKER_WIDTH_PX / 2, currentY);
   ctx.fillText('and expand it', x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.065));
@@ -284,7 +284,7 @@ async function drawStickerContent(
   };
 
   const translationText = translations[sticker.language] || translations.fr;
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.045)}px Helvetica, sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.045)}px sans-serif`;
   ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.12));
 
   currentY += Math.round(STICKER_HEIGHT_PX * 0.18);
@@ -327,17 +327,17 @@ async function drawStickerContent(
   ctx.fill();
 
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.05)}px Helvetica, sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.05)}px sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('or go to', x + STICKER_WIDTH_PX / 2, currentY + Math.round(urlBgHeight * 0.45));
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Helvetica, sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px sans-serif`;
   ctx.fillText('lightmyfire.app', x + STICKER_WIDTH_PX / 2, currentY + Math.round(urlBgHeight * 0.85));
 
   currentY += urlBgHeight + Math.round(STICKER_HEIGHT_PX * 0.03);
 
   // "and type my code" - INCREASED SIZE
   ctx.fillStyle = '#ffffff';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Helvetica, sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('and type my code', x + STICKER_WIDTH_PX / 2, currentY);
 
@@ -351,7 +351,7 @@ async function drawStickerContent(
   };
 
   const codeText = codeTranslations[sticker.language] || codeTranslations.fr;
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.04)}px Helvetica, sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.04)}px sans-serif`;
   ctx.fillText(codeText, x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.07));
 
   currentY += Math.round(STICKER_HEIGHT_PX * 0.12);
@@ -363,7 +363,7 @@ async function drawStickerContent(
   ctx.fill();
 
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.105)}px Helvetica, sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.105)}px sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText(sticker.pinCode, x + STICKER_WIDTH_PX / 2, currentY + Math.round(pinBgHeight * 0.75));
 

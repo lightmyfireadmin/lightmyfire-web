@@ -96,7 +96,7 @@ export default async function Home() {
                 width={100}
                 height={100}
                 priority
-                className="absolute top-1/2 -translate-y-1/2 w-[60px] h-[60px] lg:w-[100px] lg:h-[100px] left-[calc(100%+0px)] lg:left-[calc(100%+15px)]"
+                className="absolute top-1/2 -translate-y-1/2 w-[60px] h-[60px] lg:w-[100px] lg:h-[100px] left-[calc(100%-10px)] lg:left-[calc(100%-5px)]"
               />
             </div>
           </div>

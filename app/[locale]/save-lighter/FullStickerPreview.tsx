@@ -79,21 +79,22 @@ export default function FullStickerPreview({
           width: '200px',
           height: '500px',
           backgroundColor: backgroundColor,
+          fontFamily: 'Helvetica, sans-serif',
         }}
       >
         {/* Content Container */}
         <div className="absolute inset-0 p-3 flex flex-col items-center text-center">
           {/* Top Card: "You found me" + Lighter Name */}
-          <div className="w-full bg-white rounded-md p-2 mb-2">
-            <p className="text-black text-xs font-bold">You found me</p>
-            <p className="text-black text-xs">I&apos;m {lighterName}</p>
+          <div className="w-full bg-white rounded-md p-2.5 mb-2">
+            <p className="text-black text-sm font-bold">You found me</p>
+            <p className="text-black text-sm font-bold">I&apos;m {lighterName}</p>
           </div>
 
           {/* Invitation Text */}
-          <div className="text-white text-[10px] leading-tight mb-2">
-            <p className="font-semibold">Read my story</p>
-            <p className="font-semibold">and expand it</p>
-            <p className="text-[8px] mt-1 opacity-90">{trans.readStory}</p>
+          <div className="text-white text-[11px] leading-tight mb-2 font-bold">
+            <p>Read my story</p>
+            <p>and expand it</p>
+            <p className="text-[9px] mt-1">{trans.readStory}</p>
           </div>
 
           {/* QR Code */}
@@ -110,20 +111,31 @@ export default function FullStickerPreview({
           )}
 
           {/* Website URL */}
-          <div className="w-full bg-white rounded-md p-1.5 mb-2">
-            <p className="text-black text-[8px]">or go to</p>
-            <p className="text-black text-[9px] font-bold">lightmyfire.app</p>
+          <div className="w-full bg-white rounded-md p-2 mb-2">
+            <p className="text-black text-[10px] font-bold">or go to</p>
+            <p className="text-black text-[11px] font-bold">lightmyfire.app</p>
           </div>
 
           {/* Code Text */}
-          <div className="text-white text-[10px] leading-tight mb-2">
-            <p className="font-bold">and type my code</p>
-            <p className="text-[8px] opacity-90">{trans.typeCode}</p>
+          <div className="text-white text-[11px] leading-tight mb-2 font-bold">
+            <p>and type my code</p>
+            <p className="text-[8px] mt-1">{trans.typeCode}</p>
           </div>
 
           {/* PIN Code */}
-          <div className="w-full bg-white rounded-md p-2">
-            <p className="text-black text-xl font-bold tracking-wider">{pinCode}</p>
+          <div className="w-full bg-white rounded-md p-2.5 mb-2">
+            <p className="text-black text-2xl font-bold tracking-wider">{pinCode}</p>
+          </div>
+
+          {/* Logo Section - White background extending to edges */}
+          <div className="absolute bottom-0 left-0 right-0 bg-white flex items-center justify-center" style={{ height: '60px' }}>
+            <Image
+              src="/NEWLOGOSMALL.png"
+              alt="LightMyFire Logo"
+              width={40}
+              height={40}
+              className="object-contain"
+            />
           </div>
         </div>
       </div>

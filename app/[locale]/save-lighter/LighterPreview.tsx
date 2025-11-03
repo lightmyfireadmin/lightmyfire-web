@@ -104,19 +104,19 @@ function drawLighterSticker(
 
   // "You found me" text (bold, centered)
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${height * 0.09}px Helvetica, sans-serif`;
+  ctx.font = `bold ${height * 0.09}px sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('You found me', width / 2, currentY + cardHeight * 0.4);
 
   // "I'm + name" text - BOLD
-  ctx.font = `bold ${height * 0.08}px Helvetica, sans-serif`;
+  ctx.font = `bold ${height * 0.08}px sans-serif`;
   ctx.fillText(`I'm ${name}`, width / 2, currentY + cardHeight * 0.75);
 
   currentY += cardHeight + padding;
 
   // Invitation text: "Read my story and expand it"
   ctx.fillStyle = '#ffffff';
-  ctx.font = `bold ${height * 0.055}px Helvetica, sans-serif`;
+  ctx.font = `bold ${height * 0.055}px sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('Read my story', width / 2, currentY);
   ctx.fillText('and expand it', width / 2, currentY + height * 0.065);
@@ -131,7 +131,7 @@ function drawLighterSticker(
   };
 
   const translationText = translations[language] || translations.fr;
-  ctx.font = `bold ${height * 0.045}px Helvetica, sans-serif`;
+  ctx.font = `bold ${height * 0.045}px sans-serif`;
   ctx.fillText(translationText, width / 2, currentY + height * 0.12);
 
   currentY += height * 0.18;
@@ -156,17 +156,17 @@ function drawLighterSticker(
   ctx.fill();
 
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${height * 0.05}px Helvetica, sans-serif`;
+  ctx.font = `bold ${height * 0.05}px sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('or go to', width / 2, currentY + urlBgHeight * 0.45);
-  ctx.font = `bold ${height * 0.055}px Helvetica, sans-serif`;
+  ctx.font = `bold ${height * 0.055}px sans-serif`;
   ctx.fillText('lightmyfire.app', width / 2, currentY + urlBgHeight * 0.85);
 
   currentY += urlBgHeight + height * 0.03;
 
   // "and type my code" (bold)
   ctx.fillStyle = '#ffffff';
-  ctx.font = `bold ${height * 0.055}px Helvetica, sans-serif`;
+  ctx.font = `bold ${height * 0.055}px sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('and type my code', width / 2, currentY);
 
@@ -180,7 +180,7 @@ function drawLighterSticker(
   };
 
   const codeText = codeTranslations[language] || codeTranslations.fr;
-  ctx.font = `bold ${height * 0.04}px Helvetica, sans-serif`;
+  ctx.font = `bold ${height * 0.04}px sans-serif`;
   ctx.fillText(codeText, width / 2, currentY + height * 0.07);
 
   currentY += height * 0.12;
@@ -192,7 +192,7 @@ function drawLighterSticker(
   ctx.fill();
 
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${height * 0.105}px Helvetica, sans-serif`;
+  ctx.font = `bold ${height * 0.105}px sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText(pinCode, width / 2, currentY + pinBgHeight * 0.75);
 
@@ -205,7 +205,7 @@ function drawLighterSticker(
 
   // Draw logo text as placeholder (actual logo would load in real implementation)
   ctx.fillStyle = '#888888';
-  ctx.font = `${height * 0.03}px Helvetica, sans-serif`;
+  ctx.font = `${height * 0.03}px sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('LightMyFire', width / 2, currentY + logoSectionHeight / 2);
 }

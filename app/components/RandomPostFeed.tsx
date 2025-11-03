@@ -21,7 +21,7 @@ const RandomPostFeed = () => {
   const [isInitialized, setIsInitialized] = useState(false);
   const CONTAINER_HEIGHT = 500;
   const POST_HEIGHT = 380; // Approximate height of a post card
-  const POST_SPACING = 60; // Gap between posts - increased for better spacing
+  const POST_SPACING = 35; // Gap between posts - reduced to bring posts closer
   const INITIAL_SPAWN_DELAY = 500; // 500ms delay before first post appears
   const SCROLL_SPEED = 1; // Reduced from 2 to 1 for slower, smoother scrolling
 
