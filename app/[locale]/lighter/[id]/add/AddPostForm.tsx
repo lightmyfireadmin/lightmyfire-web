@@ -103,11 +103,11 @@ export default function AddPostForm({
     setError('');
     try {
       const response = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&key=${process.env.NEXT_PUBLIC_YOUTUBE_API_KEY}`
+        `/api/youtube-search?q=${encodeURIComponent(query)}`
       );
       const data = await response.json();
       if (data.error) {
-        setError(`YouTube API Error: ${data.error.message}`);
+        setError(`YouTube Search Error: ${data.error}`);
         setYoutubeSearchResults([]);
       } else {
         setYoutubeSearchResults(data.items || []);

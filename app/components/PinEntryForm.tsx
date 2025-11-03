@@ -78,7 +78,7 @@ export default function PinEntryForm() {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <div className="mb-2 flex items-baseline gap-2">
+          <div className="mb-2 flex items-center gap-2">
             <label
               htmlFor="pin"
               className="text-sm font-medium text-foreground"

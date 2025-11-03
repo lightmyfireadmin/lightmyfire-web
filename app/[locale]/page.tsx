@@ -36,7 +36,7 @@ export default async function Home() {
       </Suspense>
 
       {/* Hero Section: Stack vertically on mobile, side-by-side on desktop */}
-      <div className="flex flex-col lg:flex-row items-center justify-center gap-3 lg:gap-4 py-8 lg:py-12 px-4 sm:px-6">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-1.5 lg:gap-2 py-4 lg:py-6 px-4 sm:px-6">
         {/* Hero Intro - Top on mobile, left on desktop */}
         <div className="w-full lg:w-auto text-center lg:text-left max-w-md">
           {/* Title with illustration - on mobile: stacked, on desktop: side by side */}
@@ -73,7 +73,7 @@ export default async function Home() {
       </div>
 
       {/* Become a LightSaver Section */}
-      <div className="mx-auto w-full max-w-4xl px-4 py-8 lg:py-12 mb-6 lg:mb-1.5">
+      <div className="mx-auto w-full max-w-4xl px-4 py-4 lg:py-6 mb-3 lg:mb-1">
         <div className="rounded-lg border border-border bg-background/95 p-8 sm:p-10 shadow-md">
           <h2 className="mb-4 text-center text-2xl sm:text-3xl font-bold text-foreground">
             {t('home.become_lightsaver.title')}
@@ -104,11 +104,11 @@ export default async function Home() {
       </div>
 
       {/* How It Works Section */}
-      <div className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-        <h2 className="mb-8 text-center text-2xl sm:text-3xl font-bold text-foreground">
+      <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
+        <h2 className="mb-4 text-center text-2xl sm:text-3xl font-bold text-foreground">
           {t('home.how_it_works.title')}
         </h2>
-        <div className="grid grid-cols-1 gap-3 md:gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-1.5 md:gap-2 md:grid-cols-3">
           {/* Step 1 */}
           <div className="rounded-lg border border-border bg-background p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
             <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
