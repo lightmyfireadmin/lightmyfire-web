@@ -10,6 +10,38 @@ interface StickerData {
 }
 
 /**
+ * Calculate relative luminance of a color (WCAG formula)
+ * Returns value between 0 (darkest) and 1 (lightest)
+ */
+function getLuminance(hexColor: string): number {
+  // Remove # if present
+  const hex = hexColor.replace('#', '');
+
+  // Parse RGB values
+  const r = parseInt(hex.substr(0, 2), 16) / 255;
+  const g = parseInt(hex.substr(2, 2), 16) / 255;
+  const b = parseInt(hex.substr(4, 2), 16) / 255;
+
+  // Apply gamma correction
+  const rsRGB = r <= 0.03928 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4);
+  const gsRGB = g <= 0.03928 ? g / 12.92 : Math.pow((g + 0.055) / 1.055, 2.4);
+  const bsRGB = b <= 0.03928 ? b / 12.92 : Math.pow((b + 0.055) / 1.055, 2.4);
+
+  // Calculate luminance
+  return 0.2126 * rsRGB + 0.7152 * gsRGB + 0.0722 * bsRGB;
+}
+
+/**
+ * Determine if text should be black or white based on background color
+ * Returns '#000000' for light backgrounds, '#ffffff' for dark backgrounds
+ */
+function getContrastTextColor(backgroundColor: string): string {
+  const luminance = getLuminance(backgroundColor);
+  // Threshold at 0.5 (middle gray) - use black for light backgrounds
+  return luminance > 0.5 ? '#000000' : '#ffffff';
+}
+
+/**
  * Generates a PNG from sticker DOM elements using dom-to-image
  * This ensures proper font rendering compared to server-side canvas
  */
@@ -125,6 +157,9 @@ async function createStickerElement(
   stickerDiv.style.overflow = 'hidden';
   stickerDiv.style.borderRadius = `${Math.round(height * 0.016)}px`; // Rounded corners for sticker
 
+  // Calculate optimal text color based on background (black for light, white for dark)
+  const textColor = getContrastTextColor(sticker.backgroundColor);
+
   // Scaled padding (12px at 500px height = 2.4%)
   const padding = Math.round(height * 0.024);
   const contentWidth = width - padding * 2;
@@ -194,7 +229,7 @@ async function createStickerElement(
   invitationText.style.top = `${currentY}px`;
   invitationText.style.width = `${width}px`;
   invitationText.style.textAlign = 'center';
-  invitationText.style.color = '#ffffff';
+  invitationText.style.color = textColor;
   invitationText.style.lineHeight = '1.2';
   invitationText.style.padding = `0 ${padding}px`;
   invitationText.innerHTML = `
@@ -273,7 +308,7 @@ async function createStickerElement(
   codeText.style.top = `${currentY}px`;
   codeText.style.width = `${width}px`;
   codeText.style.textAlign = 'center';
-  codeText.style.color = '#ffffff';
+  codeText.style.color = textColor;
   codeText.style.lineHeight = '1.2';
   codeText.style.padding = `0 ${padding}px`;
   codeText.innerHTML = `
@@ -305,6 +340,8 @@ async function createStickerElement(
   currentY += pinBgHeight + Math.round(height * 0.010);
 
   // Logo section at bottom - CREAM BACKGROUND for printer
+  // NOTE: Logo is NOT included in individual PNG stickers
+  // The branding will be on the sheet background, this space is left empty (cream colored)
   const logoSectionHeight = Math.round(height * 0.12);
   const logoSection = document.createElement('div');
   logoSection.style.position = 'absolute';
@@ -312,21 +349,7 @@ async function createStickerElement(
   logoSection.style.bottom = '0';
   logoSection.style.width = `${width}px`;
   logoSection.style.height = `${logoSectionHeight}px`;
-  logoSection.style.backgroundColor = '#FFF8F0'; // Cream color instead of white
-  logoSection.style.display = 'flex';
-  logoSection.style.alignItems = 'center';
-  logoSection.style.justifyContent = 'center';
-  logoSection.style.padding = `0 ${Math.round(width * 0.08)}px`;
-
-  const logoImg = document.createElement('img');
-  logoImg.src = '/LOGOLONG.png';
-  logoImg.crossOrigin = 'anonymous';
-  logoImg.style.width = '100%';
-  logoImg.style.maxWidth = `${Math.round(width * 0.75)}px`; // 150px at 200px width
-  logoImg.style.height = 'auto';
-  logoImg.style.objectFit = 'contain';
-  logoSection.appendChild(logoImg);
-
+  logoSection.style.backgroundColor = '#FFF8F0'; // Cream color - space reserved for sheet branding
   stickerDiv.appendChild(logoSection);
 
   return stickerDiv;

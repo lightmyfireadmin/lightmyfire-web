@@ -31,30 +31,27 @@ export const languageNames: Record<string, { nativeName: string; englishName: st
 
 /**
  * Get supported second languages for stickers (excluding English which is always included)
- * Limited to languages with sticker translations available
+ * All locales are now supported for sticker second language
  */
 export const getSecondLanguageOptions = () => {
-  // Only include languages that have sticker translations
-  const supportedStickerLanguages = ['fr', 'es', 'de', 'it', 'pt'];
-
+  // All languages are now supported for stickers (excluding English)
   return Object.entries(languageNames)
-    .filter(([code]) => supportedStickerLanguages.includes(code))
+    .filter(([code]) => code !== 'en')
     .map(([code, { nativeName }]) => ({
       code,
       label: nativeName,
       name: nativeName,
-    }));
+    }))
+    .sort((a, b) => a.label.localeCompare(b.label));
 };
 
 /**
  * Get default second language for stickers based on user's current locale
- * Returns 'fr' by default, unless user's locale is already fr or en, then use their locale if supported
+ * Returns 'fr' by default, unless user's locale is not English, then use their locale
  */
 export const getDefaultStickerLanguage = (currentLocale: string): string => {
-  const supportedStickerLanguages = ['fr', 'es', 'de', 'it', 'pt'];
-
-  // If current locale is not English or French, and it's supported, use it
-  if (currentLocale !== 'en' && currentLocale !== 'fr' && supportedStickerLanguages.includes(currentLocale)) {
+  // If current locale is not English, use it as default
+  if (currentLocale !== 'en' && languageNames[currentLocale]) {
     return currentLocale;
   }
 

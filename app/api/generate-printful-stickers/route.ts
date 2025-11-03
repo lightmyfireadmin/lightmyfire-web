@@ -18,8 +18,8 @@ const STICKER_HEIGHT_INCHES = STICKER_HEIGHT_CM * CM_TO_INCHES;
 const STICKER_WIDTH_PX = Math.round(STICKER_WIDTH_INCHES * DPI);
 const STICKER_HEIGHT_PX = Math.round(STICKER_HEIGHT_INCHES * DPI);
 
-// Gap between stickers: 0.64cm (Printful requirement)
-const GAP_CM = 0.64;
+// Gap between stickers: 1cm (for proper lighter fit and spacing)
+const GAP_CM = 1.0;
 const GAP_INCHES = GAP_CM * CM_TO_INCHES;
 const GAP_PX = Math.round(GAP_INCHES * DPI);
 

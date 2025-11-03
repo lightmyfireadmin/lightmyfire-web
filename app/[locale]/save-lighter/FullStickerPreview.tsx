@@ -11,6 +11,27 @@ interface FullStickerPreviewProps {
   language: string;
 }
 
+/**
+ * Calculate relative luminance of a color (WCAG formula)
+ */
+function getLuminance(hexColor: string): number {
+  const hex = hexColor.replace('#', '');
+  const r = parseInt(hex.substr(0, 2), 16) / 255;
+  const g = parseInt(hex.substr(2, 2), 16) / 255;
+  const b = parseInt(hex.substr(4, 2), 16) / 255;
+  const rsRGB = r <= 0.03928 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4);
+  const gsRGB = g <= 0.03928 ? g / 12.92 : Math.pow((g + 0.055) / 1.055, 2.4);
+  const bsRGB = b <= 0.03928 ? b / 12.92 : Math.pow((b + 0.055) / 1.055, 2.4);
+  return 0.2126 * rsRGB + 0.7152 * gsRGB + 0.0722 * bsRGB;
+}
+
+/**
+ * Get optimal text color (black or white) based on background
+ */
+function getContrastTextColor(backgroundColor: string): string {
+  return getLuminance(backgroundColor) > 0.5 ? '#000000' : '#ffffff';
+}
+
 // Translations for the sticker text (aligned with server-side)
 const translations: { [key: string]: { readStory: string; typeCode: string } } = {
   en: {
@@ -70,6 +91,9 @@ export default function FullStickerPreview({
 
   const trans = translations[language] || translations.en;
 
+  // Calculate optimal text color based on background
+  const textColor = getContrastTextColor(backgroundColor);
+
   // Aspect ratio: 2cm width x 5cm height = 2:5
   return (
     <div className="flex justify-center items-center p-4">
@@ -87,15 +111,15 @@ export default function FullStickerPreview({
         <div className="absolute inset-0 p-3 flex flex-col items-center text-center">
           {/* Top Card: "You found me" + Lighter Name */}
           <div className="w-full bg-white rounded-md p-3 mb-2">
-            <p className="text-black text-base font-bold">You found me</p>
-            <p className="text-black text-[15px] font-bold">I&apos;m {lighterName}</p>
+            <p className="text-black text-base font-bold">You found me!</p>
+            <p className="text-black text-sm">I&apos;m</p>
+            <p className="text-black text-base font-bold">{lighterName}</p>
           </div>
 
-          {/* Invitation Text - INCREASED SIZE */}
-          <div className="text-white text-[13px] leading-tight mb-2 font-bold">
-            <p>Read my story</p>
-            <p>and expand it</p>
-            <p className="text-[11px] mt-1">{trans.readStory}</p>
+          {/* Invitation Text - Dynamic color based on background */}
+          <div className="text-[13px] leading-tight mb-2 font-bold" style={{ color: textColor }}>
+            <p>Read my Story & Write it</p>
+            <p className="text-[11px] mt-1 font-normal">{trans.readStory}</p>
           </div>
 
           {/* QR Code - reduced by 30% */}
@@ -113,14 +137,14 @@ export default function FullStickerPreview({
 
           {/* Website URL */}
           <div className="w-full bg-white rounded-md p-2.5 mb-2">
-            <p className="text-black text-[11px] font-bold">or go to</p>
+            <p className="text-black text-[11px]">or go to</p>
             <p className="text-black text-[12px] font-bold">lightmyfire.app</p>
           </div>
 
-          {/* Code Text - INCREASED SIZE */}
-          <div className="text-white text-[13px] leading-tight mb-2 font-bold">
+          {/* Code Text - Dynamic color based on background */}
+          <div className="text-[13px] leading-tight mb-2 font-bold" style={{ color: textColor }}>
             <p>and type my code</p>
-            <p className="text-[11px] mt-1">{trans.typeCode}</p>
+            <p className="text-[11px] mt-1 font-normal">{trans.typeCode}</p>
           </div>
 
           {/* PIN Code */}
@@ -128,15 +152,9 @@ export default function FullStickerPreview({
             <p className="text-black text-2xl font-bold tracking-wider">{pinCode}</p>
           </div>
 
-          {/* Logo Section - White background extending to edges */}
-          <div className="absolute bottom-0 left-0 right-0 bg-white flex items-center justify-center px-4" style={{ height: '60px' }}>
-            <Image
-              src="/LOGOLONG.png"
-              alt="LightMyFire Logo"
-              width={150}
-              height={40}
-              className="object-contain w-full max-w-[150px]"
-            />
+          {/* Logo Section - Cream background for printer (logo on sheet background, not individual sticker) */}
+          <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center px-4" style={{ height: '60px', backgroundColor: '#FFF8F0' }}>
+            {/* Space reserved for sheet-level branding */}
           </div>
         </div>
       </div>
