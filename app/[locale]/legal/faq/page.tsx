@@ -155,7 +155,7 @@ export default function FAQ() {
 
               {/* Answer - Collapsible */}
               {expandedId === item.id && (
-                <div className="px-4 sm:px-5 pb-4 sm:pb-5 bg-muted/30 border-t border-border text-muted-foreground leading-relaxed">
+                <div className="px-4 sm:px-5 py-4 sm:py-5 bg-muted/30 border-t border-border text-muted-foreground leading-relaxed">
                   {item.answer}
                 </div>
               )}
