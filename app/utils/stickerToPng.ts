@@ -131,9 +131,9 @@ async function createStickerElement(
 
   let currentY = padding;
 
-  // Top card: "You found me" + name - BIGGER with centered text
-  const borderRadius = `${Math.round(height * 0.008)}px`; // Rounded corners for cards
-  const cardHeight = Math.round(height * 0.15); // Increased from 0.13
+  // Top card: "You found me" + name - EXACT match to preview
+  const borderRadius = `${Math.round(height * 0.016)}px`; // Larger rounded corners
+  const cardHeight = Math.round(height * 0.16);
   const topCard = document.createElement('div');
   topCard.style.position = 'absolute';
   topCard.style.left = `${padding}px`;
@@ -147,14 +147,14 @@ async function createStickerElement(
   topCard.style.alignItems = 'center';
   topCard.style.justifyContent = 'center';
   topCard.style.textAlign = 'center';
-  topCard.style.padding = `${Math.round(height * 0.024)}px ${Math.round(height * 0.016)}px`;
+  topCard.style.padding = `${Math.round(height * 0.026)}px ${Math.round(height * 0.016)}px`;
   topCard.innerHTML = `
-    <div style="color: #000000; font-size: ${Math.round(height * 0.034)}px; font-weight: bold; line-height: 1.1;">You found me</div>
-    <div style="color: #000000; font-size: ${Math.round(height * 0.032)}px; font-weight: bold; line-height: 1.1;">I'm ${sticker.name}</div>
+    <div style="color: #000000; font-size: ${Math.round(height * 0.036)}px; font-weight: bold; line-height: 1.2;">You found me</div>
+    <div style="color: #000000; font-size: ${Math.round(height * 0.034)}px; font-weight: bold; line-height: 1.2;">I'm ${sticker.name}</div>
   `;
   stickerDiv.appendChild(topCard);
 
-  currentY += cardHeight + Math.round(height * 0.010);
+  currentY += cardHeight + Math.round(height * 0.014);
 
   // Invitation text
   const translations: { [key: string]: { readStory: string; typeCode: string } } = {
@@ -307,7 +307,7 @@ async function createStickerElement(
 
   currentY += pinBgHeight + Math.round(height * 0.010);
 
-  // Logo section at bottom (web preview: height 60px at 500px = 12%)
+  // Logo section at bottom - CREAM BACKGROUND for printer
   const logoSectionHeight = Math.round(height * 0.12);
   const logoSection = document.createElement('div');
   logoSection.style.position = 'absolute';
@@ -315,7 +315,7 @@ async function createStickerElement(
   logoSection.style.bottom = '0';
   logoSection.style.width = `${width}px`;
   logoSection.style.height = `${logoSectionHeight}px`;
-  logoSection.style.backgroundColor = '#ffffff';
+  logoSection.style.backgroundColor = '#FFF8F0'; // Cream color instead of white
   logoSection.style.display = 'flex';
   logoSection.style.alignItems = 'center';
   logoSection.style.justifyContent = 'center';
@@ -433,7 +433,7 @@ function createBrandingArea(sheetWidth: number, sheetHeight: number): HTMLElemen
   brandingDiv.style.top = `${sheetHeight - RESERVED}px`;
   brandingDiv.style.width = `${RESERVED}px`;
   brandingDiv.style.height = `${RESERVED}px`;
-  brandingDiv.style.backgroundColor = '#ffffff';
+  brandingDiv.style.backgroundColor = '#FFF8F0'; // Cream color for printer
   brandingDiv.style.display = 'flex';
   brandingDiv.style.flexDirection = 'column';
   brandingDiv.style.alignItems = 'center';
