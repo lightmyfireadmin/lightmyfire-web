@@ -26,36 +26,34 @@ interface UnlockedTrophy extends Trophy {
 }
 
 interface LockedTrophyDef {
-  id: string;
+  id: number;
   name: string;
   description: string;
   icon_name?: string;
   unlocked: false;
 }
 
-// Comprehensive trophy definitions
+// Comprehensive trophy definitions - IDs match database
 const ALL_TROPHIES: (UnlockedTrophy | LockedTrophyDef)[] = [
-  { id: 'first_save', name: 'Fire Starter', description: 'Save your first lighter', icon_name: 'personalise', unlocked: false },
-  { id: 'first_post', name: 'Story Teller', description: 'Add your first post', icon_name: 'telling_stories', unlocked: false },
-  { id: 'five_posts', name: 'Chronicles', description: 'Add 5 stories to lighters', icon_name: 'telling_stories', unlocked: false },
-  { id: 'ten_posts', name: 'Epic Saga', description: 'Add 10 stories to lighters', icon_name: 'telling_stories', unlocked: false },
-  { id: 'collector', name: 'Collector', description: 'Save 5 different lighters', icon_name: 'personalise', unlocked: false },
-  { id: 'community_builder', name: 'Community Builder', description: 'Contribute to 10 different lighters', icon_name: 'around_the_world', unlocked: false },
-  { id: 'globe_trotter', name: 'Globe Trotter', description: 'Post from 5 different countries', icon_name: 'around_the_world', unlocked: false },
-  { id: 'popular_contributor', name: 'Popular Contributor', description: 'Get 50 likes on your posts', icon_name: 'personalise', unlocked: false },
-  { id: 'photographer', name: 'Photographer', description: 'Add 10 photo posts', icon_name: 'telling_stories', unlocked: false },
-  { id: 'musician', name: 'Musician', description: 'Add 5 song posts', icon_name: 'telling_stories', unlocked: false },
+  { id: 1, name: 'Story Teller', description: 'Add your first post', icon_name: 'telling_stories', unlocked: false },
+  { id: 2, name: 'Fire Starter', description: 'Save your first lighter', icon_name: 'personalise', unlocked: false },
+  { id: 3, name: 'Chronicles', description: 'Add 5 stories to lighters', icon_name: 'telling_stories', unlocked: false },
+  { id: 4, name: 'Epic Saga', description: 'Add 10 stories to lighters', icon_name: 'telling_stories', unlocked: false },
+  { id: 5, name: 'Collector', description: 'Save 5 different lighters', icon_name: 'personalise', unlocked: false },
+  { id: 6, name: 'Community Builder', description: 'Contribute to 10 different lighters', icon_name: 'around_the_world', unlocked: false },
+  { id: 7, name: 'Photographer', description: 'Add 10 photo posts', icon_name: 'telling_stories', unlocked: false },
+  { id: 8, name: 'Musician', description: 'Add 5 song posts', icon_name: 'telling_stories', unlocked: false },
 ];
 
 export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
-  const [hoveredTrophy, setHoveredTrophy] = useState<string | null>(null);
+  const [hoveredTrophy, setHoveredTrophy] = useState<number | null>(null);
 
   // Create a set of unlocked trophy IDs
-  const unlockedIds = new Set(trophies.map((t) => String(t.id)));
+  const unlockedIds = new Set(trophies.map((t) => t.id));
 
   // Merge unlocked and locked trophies
   const allTrophies = ALL_TROPHIES.map((trophy) => {
-    if (unlockedIds.has(String(trophy.id))) {
+    if (unlockedIds.has(trophy.id)) {
       // Find the unlocked trophy data
       const unlockedTrophy = trophies.find((t) => t.id === trophy.id);
       return { ...trophy, unlocked: true, ...unlockedTrophy } as UnlockedTrophy;
@@ -79,7 +77,7 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
               <div
                 key={trophy.id}
                 className="group relative rounded-lg border-2 border-yellow-500 bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 p-4 text-center shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer"
-                onMouseEnter={() => setHoveredTrophy(String(trophy.id))}
+                onMouseEnter={() => setHoveredTrophy(trophy.id)}
                 onMouseLeave={() => setHoveredTrophy(null)}
               >
                 {/* Golden Star Badge */}
@@ -105,7 +103,7 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
                 <p className="text-xs text-muted-foreground mt-1">{trophy.description}</p>
 
                 {/* Hover Tooltip */}
-                {hoveredTrophy === String(trophy.id) && (
+                {hoveredTrophy === trophy.id && (
                   <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-foreground text-background text-xs rounded whitespace-nowrap z-10">
                     ✓ Unlocked
                   </div>
@@ -127,7 +125,7 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
               <div
                 key={trophy.id}
                 className="group relative rounded-lg border-2 border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 p-4 text-center shadow-sm opacity-60 hover:opacity-80 hover:shadow-md transition-all duration-200 cursor-not-allowed"
-                onMouseEnter={() => setHoveredTrophy(String(trophy.id))}
+                onMouseEnter={() => setHoveredTrophy(trophy.id)}
                 onMouseLeave={() => setHoveredTrophy(null)}
               >
                 {/* Lock Icon Badge */}
@@ -153,7 +151,7 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{trophy.description}</p>
 
                 {/* Hover Tooltip */}
-                {hoveredTrophy === String(trophy.id) && (
+                {hoveredTrophy === trophy.id && (
                   <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-800 dark:bg-gray-200 text-gray-100 dark:text-gray-800 text-xs rounded whitespace-nowrap z-10">
                     🔒 Locked
                   </div>

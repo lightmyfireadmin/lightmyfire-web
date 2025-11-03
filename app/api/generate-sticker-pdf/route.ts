@@ -257,22 +257,22 @@ async function drawStickerContent(
 
   // "You found me" text (bold, centered) - INCREASED SIZE
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.10)}px "DejaVu Sans", Arial`;
   ctx.textAlign = 'center';
   ctx.fillText('You found me', x + STICKER_WIDTH_PX / 2, currentY + Math.round(cardHeight * 0.4));
 
   // "I'm + name" text - INCREASED SIZE, BOLD
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.08)}px sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px "DejaVu Sans", Arial`;
   ctx.fillText(`I'm ${sticker.name}`, x + STICKER_WIDTH_PX / 2, currentY + Math.round(cardHeight * 0.75));
 
   currentY += cardHeight + padding;
 
   // Invitation text: "Read my story and expand it" - INCREASED SIZE
   ctx.fillStyle = '#ffffff';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.06)}px "DejaVu Sans", Arial`;
   ctx.textAlign = 'center';
   ctx.fillText('Read my story', x + STICKER_WIDTH_PX / 2, currentY);
-  ctx.fillText('and expand it', x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.065));
+  ctx.fillText('and expand it', x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.07));
 
   // Translation - INCREASED SIZE, BOLD
   const translations: { [key: string]: string } = {
@@ -284,8 +284,8 @@ async function drawStickerContent(
   };
 
   const translationText = translations[sticker.language] || translations.fr;
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.045)}px sans-serif`;
-  ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.12));
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.05)}px "DejaVu Sans", Arial`;
+  ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.13));
 
   currentY += Math.round(STICKER_HEIGHT_PX * 0.18);
 
@@ -321,23 +321,23 @@ async function drawStickerContent(
   currentY += qrSize + Math.round(STICKER_HEIGHT_PX * 0.05);
 
   // "or go to lightmyfire.app" section with rounded background - INCREASED SIZE
-  const urlBgHeight = Math.round(STICKER_HEIGHT_PX * 0.14);
+  const urlBgHeight = Math.round(STICKER_HEIGHT_PX * 0.15);
   ctx.fillStyle = '#ffffff';
   roundRect(ctx, x + padding, currentY, contentWidth, urlBgHeight, cardRadius);
   ctx.fill();
 
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.05)}px sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px "DejaVu Sans", Arial`;
   ctx.textAlign = 'center';
   ctx.fillText('or go to', x + STICKER_WIDTH_PX / 2, currentY + Math.round(urlBgHeight * 0.45));
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.06)}px "DejaVu Sans", Arial`;
   ctx.fillText('lightmyfire.app', x + STICKER_WIDTH_PX / 2, currentY + Math.round(urlBgHeight * 0.85));
 
   currentY += urlBgHeight + Math.round(STICKER_HEIGHT_PX * 0.03);
 
   // "and type my code" - INCREASED SIZE
   ctx.fillStyle = '#ffffff';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.06)}px "DejaVu Sans", Arial`;
   ctx.textAlign = 'center';
   ctx.fillText('and type my code', x + STICKER_WIDTH_PX / 2, currentY);
 
@@ -351,19 +351,19 @@ async function drawStickerContent(
   };
 
   const codeText = codeTranslations[sticker.language] || codeTranslations.fr;
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.04)}px sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.045)}px "DejaVu Sans", Arial`;
   ctx.fillText(codeText, x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.07));
 
-  currentY += Math.round(STICKER_HEIGHT_PX * 0.12);
+  currentY += Math.round(STICKER_HEIGHT_PX * 0.11);
 
   // PIN code (bold, with rounded background) - INCREASED SIZE
-  const pinBgHeight = Math.round(STICKER_HEIGHT_PX * 0.13);
+  const pinBgHeight = Math.round(STICKER_HEIGHT_PX * 0.14);
   ctx.fillStyle = '#ffffff';
   roundRect(ctx, x + padding, currentY, contentWidth, pinBgHeight, cardRadius);
   ctx.fill();
 
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.105)}px sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.11)}px "DejaVu Sans", Arial`;
   ctx.textAlign = 'center';
   ctx.fillText(sticker.pinCode, x + STICKER_WIDTH_PX / 2, currentY + Math.round(pinBgHeight * 0.75));
 
@@ -374,22 +374,23 @@ async function drawStickerContent(
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(x, currentY, STICKER_WIDTH_PX, logoSectionHeight); // No padding, extends to edges
 
-  // Load and draw logo
+  // Load and draw logo (LONG version)
   try {
     const { Image } = await import('canvas');
     const fs = await import('fs');
     const path = await import('path');
 
-    const logoPath = path.join(process.cwd(), 'public', 'NEWLOGOSMALL.png');
+    const logoPath = path.join(process.cwd(), 'public', 'NEWLOGOLONG.png');
     const logoBuffer = fs.readFileSync(logoPath);
     const logoImage = new Image();
     logoImage.src = logoBuffer;
 
-    // Scale logo to fit nicely in the white section
-    const logoHeight = Math.round(logoSectionHeight * 0.6); // 60% of section height
-    const logoWidth = Math.round(logoHeight * (logoImage.width / logoImage.height));
+    // Scale logo to fit width with some padding
+    const logoPadding = Math.round(STICKER_WIDTH_PX * 0.1);
+    const logoWidth = STICKER_WIDTH_PX - (logoPadding * 2);
+    const logoHeight = Math.round(logoWidth * (logoImage.height / logoImage.width));
 
-    const logoX = x + (STICKER_WIDTH_PX - logoWidth) / 2; // Center horizontally
+    const logoX = x + logoPadding;
     const logoY = currentY + (logoSectionHeight - logoHeight) / 2; // Center vertically
 
     ctx.drawImage(logoImage, logoX, logoY, logoWidth, logoHeight);

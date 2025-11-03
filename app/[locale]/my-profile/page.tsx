@@ -97,6 +97,9 @@ export default async function MyProfilePage() {
   }
   const userId = session.user.id;
 
+  // Refresh trophies before fetching data
+  await supabase.rpc('grant_unlocked_trophies', { p_user_id: userId });
+
   // Fetch data
   const [
     profileRes,
