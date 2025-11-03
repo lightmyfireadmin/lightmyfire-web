@@ -1,4 +1,4 @@
-import domtoimage from 'dom-to-image';
+import html2canvas from 'html2canvas';
 import QRCode from 'qrcode';
 
 interface StickerData {
@@ -68,18 +68,31 @@ export async function generateStickerPNG(
     }
 
     // Wait for images to load
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await waitForImagesToLoad(container);
 
-    // Generate PNG using dom-to-image with high quality settings
-    const blob = await domtoimage.toBlob(container, {
+    // Additional delay to ensure everything is rendered
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    // Generate PNG using html2canvas with high quality settings
+    const canvas = await html2canvas(container, {
       width: widthPx,
       height: heightPx,
-      bgcolor: 'transparent',
-      quality: 1.0,
-      style: {
-        transform: 'scale(1)',
-        transformOrigin: 'top left',
-      },
+      backgroundColor: null, // transparent
+      scale: 1, // Already at 300 DPI dimensions
+      useCORS: true,
+      allowTaint: true,
+      logging: false,
+    });
+
+    // Convert canvas to blob
+    const blob = await new Promise<Blob>((resolve, reject) => {
+      canvas.toBlob((blob) => {
+        if (blob) {
+          resolve(blob);
+        } else {
+          reject(new Error('Failed to generate PNG blob'));
+        }
+      }, 'image/png', 1.0);
     });
 
     return blob;
@@ -447,6 +460,29 @@ function createBrandingArea(sheetWidth: number, sheetHeight: number): HTMLElemen
   brandingDiv.appendChild(url);
 
   return brandingDiv;
+}
+
+/**
+ * Wait for all images in a container to load
+ */
+async function waitForImagesToLoad(container: HTMLElement): Promise<void> {
+  const images = container.querySelectorAll('img');
+  const imagePromises = Array.from(images).map((img) => {
+    if (img.complete) {
+      return Promise.resolve();
+    }
+    return new Promise<void>((resolve, reject) => {
+      img.onload = () => resolve();
+      img.onerror = () => {
+        console.warn('Image failed to load:', img.src);
+        resolve(); // Continue anyway
+      };
+      // Timeout after 5 seconds
+      setTimeout(() => resolve(), 5000);
+    });
+  });
+
+  await Promise.all(imagePromises);
 }
 
 /**
