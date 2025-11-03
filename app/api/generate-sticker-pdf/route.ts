@@ -219,18 +219,9 @@ async function drawStickerDesign(
   y: number,
   sticker: LighterSticker
 ): Promise<void> {
-  // Colored background for sticker
+  // Colored background for sticker - simple rectangle
   ctx.fillStyle = sticker.backgroundColor;
   ctx.fillRect(x, y, STICKER_WIDTH_PX, STICKER_HEIGHT_PX);
-
-  // Add rounded corners
-  const radius = Math.round(STICKER_WIDTH_PX * 0.1);
-
-  ctx.save(); // Save state before main background
-  roundRect(ctx, x, y, STICKER_WIDTH_PX, STICKER_HEIGHT_PX, radius);
-  ctx.fillStyle = sticker.backgroundColor;
-  ctx.fill();
-  ctx.restore(); // Restore state after main background
 
   // Draw sticker content
   await drawStickerContent(ctx, x, y, sticker);
@@ -255,11 +246,9 @@ async function drawStickerContent(
   const cardHeight = Math.round(contentHeight * 0.28);
   const cardRadius = Math.round(padding * 0.5);
 
-  ctx.save(); // Save state before drawing shape
+  // Draw white background directly without path
   ctx.fillStyle = '#ffffff';
-  roundRect(ctx, x + padding, currentY, contentWidth, cardHeight, cardRadius);
-  ctx.fill();
-  ctx.restore(); // Restore state after shape
+  ctx.fillRect(x + padding, currentY, contentWidth, cardHeight);
 
   // "You found me" text (bold, centered) - INCREASED SIZE
   ctx.fillStyle = '#000000';
@@ -333,11 +322,9 @@ async function drawStickerContent(
   // "or go to lightmyfire.app" section with rounded background - INCREASED SIZE
   const urlBgHeight = Math.round(STICKER_HEIGHT_PX * 0.15);
 
-  ctx.save(); // Save state before drawing shape
+  // Draw white background directly without path
   ctx.fillStyle = '#ffffff';
-  roundRect(ctx, x + padding, currentY, contentWidth, urlBgHeight, cardRadius);
-  ctx.fill();
-  ctx.restore(); // Restore state after shape
+  ctx.fillRect(x + padding, currentY, contentWidth, urlBgHeight);
 
   ctx.fillStyle = '#000000';
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Arial`;
@@ -375,11 +362,9 @@ async function drawStickerContent(
   // PIN code (bold, with rounded background) - INCREASED SIZE
   const pinBgHeight = Math.round(STICKER_HEIGHT_PX * 0.14);
 
-  ctx.save(); // Save state before drawing shape
+  // Draw white background directly without path
   ctx.fillStyle = '#ffffff';
-  roundRect(ctx, x + padding, currentY, contentWidth, pinBgHeight, cardRadius);
-  ctx.fill();
-  ctx.restore(); // Restore state after shape
+  ctx.fillRect(x + padding, currentY, contentWidth, pinBgHeight);
 
   ctx.fillStyle = '#000000';
   ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px Arial`;
@@ -430,17 +415,19 @@ function roundRect(
   height: number,
   radius: number
 ): void {
-  ctx.beginPath();
-  ctx.moveTo(x + radius, y);
-  ctx.lineTo(x + width - radius, y);
-  ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-  ctx.lineTo(x + width, y + height - radius);
-  ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-  ctx.lineTo(x + radius, y + height);
-  ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-  ctx.lineTo(x, y + radius);
-  ctx.quadraticCurveTo(x, y, x + radius, y);
-  ctx.closePath();
+  // Use fillRect for simple rectangle instead of path
+  if (radius === 0) {
+    ctx.fillRect(x, y, width, height);
+  } else {
+    // Draw rounded rectangle using arc for corners
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.arcTo(x + width, y, x + width, y + height, radius);
+    ctx.arcTo(x + width, y + height, x, y + height, radius);
+    ctx.arcTo(x, y + height, x, y, radius);
+    ctx.arcTo(x, y, x + width, y, radius);
+    ctx.closePath();
+  }
 }
 
 /**

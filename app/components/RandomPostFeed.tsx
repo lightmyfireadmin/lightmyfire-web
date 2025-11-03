@@ -10,6 +10,7 @@ interface AnimatingPost {
   id: string;
   post: DetailedPost;
   position: number; // vertical position in pixels
+  height?: number; // actual height of the post element
 }
 
 const RandomPostFeed = () => {
@@ -19,9 +20,10 @@ const RandomPostFeed = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [nextId, setNextId] = useState(0);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [postHeights, setPostHeights] = useState<{ [key: string]: number }>({});
   const CONTAINER_HEIGHT = 500;
-  const POST_HEIGHT = 380; // Approximate height of a post card
-  const SAFETY_GAP = 26; // Gap in pixels from top before spawning next post
+  const DEFAULT_POST_HEIGHT = 250; // Default height for mini posts
+  const POST_GAP = 40; // Consistent gap between posts
   const INITIAL_SPAWN_DELAY = 500; // 500ms delay before first post appears
   const SCROLL_SPEED = 1; // Reduced from 2 to 1 for slower, smoother scrolling
 
@@ -65,23 +67,42 @@ const RandomPostFeed = () => {
           .filter((p) => p.position < CONTAINER_HEIGHT + 400); // Remove when fully past bottom
 
         // Add new posts to top when space available
-        if (posts.length > 0) {
-          // Check if we need a new post at top
-          const topmost = updated.length > 0 ? Math.min(...updated.map(p => p.position)) : 1000;
+        if (posts.length > 0 && updated.length > 0) {
+          // Find the topmost post with its actual height
+          const topmostPost = updated.reduce((prev, curr) =>
+            curr.position < prev.position ? curr : prev
+          );
 
-          // Spawn next post when previous post's top edge is SAFETY_GAP pixels from container top
-          // Calculate spawn position: previous post top minus post height minus gap
-          if (topmost >= SAFETY_GAP) {
+          // Use actual height if available, otherwise use default
+          const topmostHeight = postHeights[topmostPost.id] || DEFAULT_POST_HEIGHT;
+
+          // Spawn new post when there's enough space at the top
+          // Check if the topmost post has scrolled down enough to make room
+          if (topmostPost.position >= POST_GAP) {
             const randomPost = posts[Math.floor(Math.random() * posts.length)];
-            // Spawn new post so its bottom edge is SAFETY_GAP pixels above the topmost post's top edge
-            const spawnPosition = topmost - POST_HEIGHT - SAFETY_GAP;
+            const newPostId = `${nextId}-${Date.now()}`;
+
+            // Position new post above the topmost with consistent gap
+            const spawnPosition = topmostPost.position - topmostHeight - POST_GAP;
+
             updated.unshift({
-              id: `${nextId}-${Date.now()}`,
+              id: newPostId,
               post: randomPost,
               position: spawnPosition,
+              height: DEFAULT_POST_HEIGHT, // Will be updated when measured
             });
             setNextId((prev) => prev + 1);
           }
+        } else if (posts.length > 0 && updated.length === 0) {
+          // Add first post if none exist
+          const randomPost = posts[Math.floor(Math.random() * posts.length)];
+          updated.push({
+            id: `${nextId}-${Date.now()}`,
+            post: randomPost,
+            position: 0,
+            height: DEFAULT_POST_HEIGHT,
+          });
+          setNextId((prev) => prev + 1);
         }
 
         return updated;
@@ -89,7 +110,7 @@ const RandomPostFeed = () => {
     }, 16); // ~60fps for smooth animation
 
     return () => clearInterval(animationLoop);
-  }, [posts, isPaused, nextId, isInitialized]);
+  }, [posts, isPaused, nextId, isInitialized, postHeights]);
 
   // Calculate opacity based on position in pixels (fade at top and bottom)
   const getOpacity = (position: number): number => {
@@ -124,6 +145,17 @@ const RandomPostFeed = () => {
           {animatingPosts.map((animPost) => (
             <div
               key={animPost.id}
+              ref={(el) => {
+                if (el && !postHeights[animPost.id]) {
+                  const height = el.getBoundingClientRect().height;
+                  if (height > 0) {
+                    setPostHeights((prev) => ({
+                      ...prev,
+                      [animPost.id]: height,
+                    }));
+                  }
+                }
+              }}
               className="absolute w-full px-4 transition-opacity duration-300"
               style={{
                 top: `${animPost.position}px`,
