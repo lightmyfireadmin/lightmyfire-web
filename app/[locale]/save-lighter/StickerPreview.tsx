@@ -47,18 +47,18 @@ export default function StickerPreview({
         throw new Error(errorData.error || 'Failed to generate PDF');
       }
 
-      // Get the PDF blob
+      // Get the PNG blob
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = `stickers-${orderId}.pdf`;
+      link.download = `stickers-${orderId}.png`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
 
-      onDownloadComplete?.(true, `stickers-${orderId}.pdf`);
+      onDownloadComplete?.(true, `stickers-${orderId}.png`);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Unknown error';
       setError(errorMessage);
@@ -113,7 +113,7 @@ export default function StickerPreview({
         )}
 
         <p className="text-sm text-muted-foreground mb-4">
-          Generate a high-quality PDF file optimized for printing (300 DPI, CMYK color space).
+          Generate a high-quality PNG file optimized for printing (300 DPI resolution).
         </p>
 
         <button
@@ -124,17 +124,17 @@ export default function StickerPreview({
           {isGenerating ? (
             <>
               <LoadingSpinner color="foreground" size="sm" />
-              Generating PDF...
+              Generating PNG...
             </>
           ) : (
             <>
-              📄 Download Sticker PDF
+              🖼️ Download Sticker PNG
             </>
           )}
         </button>
 
         <p className="text-xs text-muted-foreground mt-4 border-t border-border pt-4">
-          The PDF will be generated at 300 DPI for professional print quality. File includes all {stickers.length} sticker{stickers.length !== 1 ? 's' : ''} optimized for printing.
+          The PNG will be generated at 300 DPI for professional print quality. File includes all {stickers.length} sticker{stickers.length !== 1 ? 's' : ''} optimized for printing.
         </p>
       </div>
 

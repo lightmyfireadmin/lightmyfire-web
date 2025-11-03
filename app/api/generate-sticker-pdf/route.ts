@@ -149,7 +149,7 @@ async function generateForegroundSheet(stickers: LighterSticker[]): Promise<Buff
       const y = startY + row * (STICKER_HEIGHT_PX + GAP_PX);
 
       const sticker = stickers[stickerIndex];
-      drawStickerDesign(ctx, x, y, sticker);
+      await drawStickerDesign(ctx, x, y, sticker);
 
       stickerIndex++;
     }
@@ -213,12 +213,12 @@ async function generateBackgroundSheet(): Promise<Buffer> {
 /**
  * Draw a single sticker design on the canvas
  */
-function drawStickerDesign(
+async function drawStickerDesign(
   ctx: any,
   x: number,
   y: number,
   sticker: LighterSticker
-): void {
+): Promise<void> {
   // Colored background for sticker
   ctx.fillStyle = sticker.backgroundColor;
   ctx.fillRect(x, y, STICKER_WIDTH_PX, STICKER_HEIGHT_PX);
@@ -230,18 +230,18 @@ function drawStickerDesign(
   ctx.fill();
 
   // Draw sticker content
-  drawStickerContent(ctx, x, y, sticker);
+  await drawStickerContent(ctx, x, y, sticker);
 }
 
 /**
  * Draw the content of a single sticker
  */
-function drawStickerContent(
+async function drawStickerContent(
   ctx: any,
   x: number,
   y: number,
   sticker: LighterSticker
-): void {
+): Promise<void> {
   const padding = Math.round(STICKER_WIDTH_PX * 0.08);
   const contentWidth = STICKER_WIDTH_PX - padding * 2;
   const contentHeight = STICKER_HEIGHT_PX - padding * 2;
@@ -288,10 +288,33 @@ function drawStickerContent(
   currentY += Math.round(STICKER_HEIGHT_PX * 0.18);
 
   // QR Code (generate and draw)
-  // For now, draw a placeholder QR code area
   const qrSize = Math.round(STICKER_HEIGHT_PX * 0.18);
-  ctx.fillStyle = '#ffffff';
-  ctx.fillRect(x + (STICKER_WIDTH_PX - qrSize) / 2, currentY, qrSize, qrSize);
+  try {
+    // Generate QR code URL pointing to the find page
+    const qrUrl = process.env.NEXT_PUBLIC_BASE_URL ?
+      `${process.env.NEXT_PUBLIC_BASE_URL}/find` :
+      'https://lightmyfire.app/find';
+
+    const qrCodeDataUrl = await QRCode.toDataURL(qrUrl, {
+      width: qrSize,
+      margin: 0,
+      color: {
+        dark: '#000000',
+        light: '#FFFFFF',
+      },
+    });
+
+    // Convert data URL to image and draw it
+    const { Image } = await import('canvas');
+    const qrImage = new Image();
+    qrImage.src = qrCodeDataUrl;
+    ctx.drawImage(qrImage, x + (STICKER_WIDTH_PX - qrSize) / 2, currentY, qrSize, qrSize);
+  } catch (error) {
+    console.error('QR code generation error:', error);
+    // Fallback: draw white square
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(x + (STICKER_WIDTH_PX - qrSize) / 2, currentY, qrSize, qrSize);
+  }
 
   currentY += qrSize + Math.round(STICKER_HEIGHT_PX * 0.05);
 

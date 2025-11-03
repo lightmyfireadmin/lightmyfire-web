@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useI18n } from '@/locales/client';
 import { getSecondLanguageOptions, languageNames } from '@/locales/languages';
+import FullStickerPreview from './FullStickerPreview';
 
 interface LighterCustomization {
   id: string;
@@ -150,15 +151,22 @@ export default function LighterPersonalizationCards({
                 Lighter #{useApplyAll ? '1' : actualIndex}
               </h4>
 
-              {/* Sticker Preview Placeholder */}
-              <div className="mb-3 p-3 border-2 border-dashed border-border/50 rounded-md bg-muted/20 flex items-center justify-center h-24">
-                <div className="text-center">
-                  <div
-                    className="h-12 w-12 rounded-md mx-auto mb-1 border border-border"
-                    style={{ backgroundColor: customization.backgroundColor }}
+              {/* Full Sticker Preview */}
+              <div className="mb-3 p-3 border-2 border-dashed border-border/50 rounded-md bg-muted/20">
+                {customization.name.length >= 3 ? (
+                  <FullStickerPreview
+                    lighterName={customization.name}
+                    pinCode="ABC-123"
+                    backgroundColor={customization.backgroundColor}
+                    language={selectedLanguage}
                   />
-                  <p className="text-xs text-muted-foreground">Preview</p>
-                </div>
+                ) : (
+                  <div className="flex items-center justify-center h-24">
+                    <p className="text-xs text-muted-foreground text-center">
+                      Enter a name (min 3 characters) to see preview
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* Name Input */}
