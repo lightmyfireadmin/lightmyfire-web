@@ -116,6 +116,15 @@ export async function GET(request: NextRequest, { params }: { params: { locale: 
               hasError = true;
             }
           }
+
+          // Check and grant unlocked trophies on login/signup
+          // This ensures trophies are up-to-date without running on every page load
+          try {
+            await supabase.rpc('grant_unlocked_trophies', { p_user_id: session.user.id });
+          } catch (trophyError) {
+            // Non-critical error - log but don't fail the login
+            console.warn('Trophy check failed on login:', trophyError);
+          }
         }
       }
     } catch (error) {
