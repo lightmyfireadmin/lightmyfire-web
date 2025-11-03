@@ -95,11 +95,44 @@ export default async function LighterPage({
     saverUsername = saverProfile?.username || 'Anonymous';
   }
 
-  const { data: posts } = await supabase
+  // Try detailed_posts view first, fallback to posts table directly
+  let postsResponse = await supabase
     .from('detailed_posts')
-    .select('*, location_lat, location_lng') // Select location_lat and location_lng
+    .select('*')
     .eq('lighter_id', params.id)
     .order('created_at', { ascending: false });
+
+  // Fallback: if detailed_posts view doesn't exist or returns error, use posts table with joins
+  if (postsResponse.error || !postsResponse.data) {
+    postsResponse = await supabase
+      .from('posts')
+      .select(`
+        id,
+        title,
+        content_text,
+        content_url,
+        post_type,
+        created_at,
+        user_id,
+        lighter_id,
+        location_lat,
+        location_lng,
+        location_name,
+        is_find_location,
+        is_creation,
+        is_anonymous,
+        is_pinned,
+        is_public,
+        is_flagged,
+        flagged_count,
+        profiles:user_id (username, nationality, show_nationality, role),
+        lighters:lighter_id (name)
+      `)
+      .eq('lighter_id', params.id)
+      .order('created_at', { ascending: false });
+  }
+
+  const { data: posts } = postsResponse;
 
   // Extract location data for the map
   const locationData = posts

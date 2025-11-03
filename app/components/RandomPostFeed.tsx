@@ -18,8 +18,10 @@ const RandomPostFeed = () => {
   const [animatingPosts, setAnimatingPosts] = useState<AnimatingPost[]>([]);
   const [isPaused, setIsPaused] = useState(false);
   const [nextId, setNextId] = useState(0);
+  const [isInitialized, setIsInitialized] = useState(false);
   const CONTAINER_HEIGHT = 500;
   const POST_SPACING = 26;
+  const INITIAL_SPAWN_DELAY = 500; // 500ms delay before first post appears
 
   // Fetch posts on mount and periodically refresh
   useEffect(() => {
@@ -29,6 +31,12 @@ const RandomPostFeed = () => {
       });
       if (data) {
         setPosts(data);
+        // Initialize animation with delay once posts are loaded
+        if (!isInitialized) {
+          setTimeout(() => {
+            setIsInitialized(true);
+          }, INITIAL_SPAWN_DELAY);
+        }
       }
     };
 
@@ -38,11 +46,11 @@ const RandomPostFeed = () => {
     // Refresh posts every 15 seconds to maintain supply
     const refreshInterval = setInterval(fetchPosts, 15000);
     return () => clearInterval(refreshInterval);
-  }, []);
+  }, [isInitialized]);
 
   // Animation loop - smooth continuous scrolling
   useEffect(() => {
-    if (posts.length === 0 || isPaused) return;
+    if (posts.length === 0 || isPaused || !isInitialized) return;
 
     const animationLoop = setInterval(() => {
       setAnimatingPosts((prevPosts) => {
@@ -75,7 +83,7 @@ const RandomPostFeed = () => {
     }, 16); // ~60fps for smooth animation
 
     return () => clearInterval(animationLoop);
-  }, [posts, isPaused, nextId]); // Removed nextId and other deps causing rerenders
+  }, [posts, isPaused, nextId, isInitialized]);
 
   // Calculate opacity based on position in pixels (fade at top and bottom)
   const getOpacity = (position: number): number => {
