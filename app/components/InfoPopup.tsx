@@ -9,8 +9,8 @@ const InfoPopup = ({ content }: { content: string }) => {
     <Popover className="relative inline-block">
       {({ close }) => (
         <>
-          <Popover.Button className="ml-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-opacity-75">
-            <QuestionMarkCircleIcon className="h-5 w-5 text-muted-foreground hover:text-foreground" aria-hidden="true" />
+          <Popover.Button className="focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-opacity-75 flex items-center">
+            <QuestionMarkCircleIcon className="h-4 w-4 text-muted-foreground hover:text-foreground" aria-hidden="true" />
           </Popover.Button>
 
           <Transition

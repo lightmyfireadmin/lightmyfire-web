@@ -30,15 +30,34 @@ export const languageNames: Record<string, { nativeName: string; englishName: st
 };
 
 /**
- * Get all supported languages excluding English
- * Used for the second language selection dropdown in lighter customization
+ * Get supported second languages for stickers (excluding English which is always included)
+ * Limited to languages with sticker translations available
  */
 export const getSecondLanguageOptions = () => {
+  // Only include languages that have sticker translations
+  const supportedStickerLanguages = ['fr', 'es', 'de', 'it', 'pt'];
+
   return Object.entries(languageNames)
-    .filter(([code]) => code !== 'en')
+    .filter(([code]) => supportedStickerLanguages.includes(code))
     .map(([code, { nativeName }]) => ({
       code,
       label: nativeName,
       name: nativeName,
     }));
+};
+
+/**
+ * Get default second language for stickers based on user's current locale
+ * Returns 'fr' by default, unless user's locale is already fr or en, then use their locale if supported
+ */
+export const getDefaultStickerLanguage = (currentLocale: string): string => {
+  const supportedStickerLanguages = ['fr', 'es', 'de', 'it', 'pt'];
+
+  // If current locale is not English or French, and it's supported, use it
+  if (currentLocale !== 'en' && currentLocale !== 'fr' && supportedStickerLanguages.includes(currentLocale)) {
+    return currentLocale;
+  }
+
+  // Otherwise default to French
+  return 'fr';
 };

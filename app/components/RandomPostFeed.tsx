@@ -20,9 +20,10 @@ const RandomPostFeed = () => {
   const [nextId, setNextId] = useState(0);
   const [isInitialized, setIsInitialized] = useState(false);
   const CONTAINER_HEIGHT = 500;
-  const POST_HEIGHT = 350; // Approximate height of a post card
-  const POST_SPACING = 40; // Gap between posts
+  const POST_HEIGHT = 380; // Approximate height of a post card
+  const POST_SPACING = 60; // Gap between posts - increased for better spacing
   const INITIAL_SPAWN_DELAY = 500; // 500ms delay before first post appears
+  const SCROLL_SPEED = 1; // Reduced from 2 to 1 for slower, smoother scrolling
 
   // Fetch posts on mount and periodically refresh
   useEffect(() => {
@@ -59,23 +60,24 @@ const RandomPostFeed = () => {
         let updated = prevPosts
           .map((p) => ({
             ...p,
-            position: p.position + 2, // 2px per frame = smooth scroll
+            position: p.position + SCROLL_SPEED, // Use variable scroll speed
           }))
           .filter((p) => p.position < CONTAINER_HEIGHT + 400); // Remove when fully past bottom
 
         // Add new posts to top when space available
         if (posts.length > 0) {
           // Check if we need a new post at top
-          const topmost = updated.length > 0 ? Math.min(...updated.map(p => p.position)) : 0;
+          const topmost = updated.length > 0 ? Math.min(...updated.map(p => p.position)) : 1000;
 
           // Only spawn a new post if the topmost post has moved down enough to make room
           // This ensures posts appear one at a time with proper spacing
-          if (topmost > -(POST_HEIGHT - POST_SPACING)) {
+          // Wait until previous post is fully visible + spacing before spawning next
+          if (topmost >= POST_SPACING) {
             const randomPost = posts[Math.floor(Math.random() * posts.length)];
             updated.unshift({
               id: `${nextId}-${Date.now()}`,
               post: randomPost,
-              position: -(POST_HEIGHT + POST_SPACING), // Start above viewport with spacing
+              position: -POST_HEIGHT, // Start just above viewport
             });
             setNextId((prev) => prev + 1);
           }

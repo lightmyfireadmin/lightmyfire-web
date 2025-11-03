@@ -11,7 +11,7 @@ interface FullStickerPreviewProps {
   language: string;
 }
 
-// Translations for the sticker text
+// Translations for the sticker text (aligned with server-side)
 const translations: { [key: string]: { readStory: string; typeCode: string } } = {
   en: {
     readStory: 'Read my story and expand it',
@@ -26,15 +26,15 @@ const translations: { [key: string]: { readStory: string; typeCode: string } } =
     typeCode: 'e introduce mi código',
   },
   de: {
-    readStory: 'Lesen Sie meine Geschichte und erweitern Sie sie',
-    typeCode: 'und geben Sie meinen Code ein',
+    readStory: 'Lesen Sie meine Geschichte',
+    typeCode: 'und gib meinen Code ein',
   },
   it: {
     readStory: 'Leggi la mia storia e ampliala',
     typeCode: 'e digita il mio codice',
   },
   pt: {
-    readStory: 'Leia minha história e expanda-a',
+    readStory: 'Leia minha história e expanda',
     typeCode: 'e digite meu código',
   },
 };

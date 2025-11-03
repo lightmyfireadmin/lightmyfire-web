@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { useI18n } from '@/locales/client';
-import { getSecondLanguageOptions, languageNames } from '@/locales/languages';
+import { useI18n, useCurrentLocale } from '@/locales/client';
+import { getSecondLanguageOptions, getDefaultStickerLanguage, languageNames } from '@/locales/languages';
 import FullStickerPreview from './FullStickerPreview';
 
 interface LighterCustomization {
@@ -40,6 +40,7 @@ export default function LighterPersonalizationCards({
   onSave: (customizations: LighterCustomization[], language: string) => void;
 }) {
   const t = useI18n();
+  const currentLocale = useCurrentLocale();
   const [customizations, setCustomizations] = useState<LighterCustomization[]>(
     Array.from({ length: stickerCount }, (_, i) => ({
       id: `lighter-${i}`,
@@ -47,9 +48,9 @@ export default function LighterPersonalizationCards({
       backgroundColor: COLOR_PALETTE[i % COLOR_PALETTE.length],
     }))
   );
-  // Default to first non-English language if available, otherwise 'en'
+  // Use smart default: French by default, or user's locale if not en/fr and supported
   const [selectedLanguage, setSelectedLanguage] = useState(
-    SECOND_LANGUAGES.length > 0 ? SECOND_LANGUAGES[0].code : 'en'
+    getDefaultStickerLanguage(currentLocale)
   );
   const [useApplyAll, setUseApplyAll] = useState(false);
 

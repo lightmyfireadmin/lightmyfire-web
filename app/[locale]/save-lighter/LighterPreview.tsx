@@ -95,42 +95,44 @@ function drawLighterSticker(
   ctx.fillStyle = backgroundColor;
   ctx.fill();
 
-  // White card background for header
-  const cardHeight = contentHeight * 0.25;
+  // White card background for header with rounded corners
+  const cardHeight = contentHeight * 0.28;
+  const cardRadius = padding * 0.5;
   ctx.fillStyle = '#ffffff';
-  ctx.fillRect(padding, currentY, contentWidth, cardHeight);
+  roundRect(ctx, padding, currentY, contentWidth, cardHeight, cardRadius);
+  ctx.fill();
 
   // "You found me" text (bold, centered)
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${height * 0.08}px 'Poppins', Arial, sans-serif`;
+  ctx.font = `bold ${height * 0.09}px Helvetica, sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('You found me', width / 2, currentY + cardHeight * 0.4);
 
-  // "I'm + name" text
-  ctx.font = `${height * 0.07}px 'Poppins', Arial, sans-serif`;
+  // "I'm + name" text - BOLD
+  ctx.font = `bold ${height * 0.08}px Helvetica, sans-serif`;
   ctx.fillText(`I'm ${name}`, width / 2, currentY + cardHeight * 0.75);
 
   currentY += cardHeight + padding;
 
   // Invitation text: "Read my story and expand it"
   ctx.fillStyle = '#ffffff';
-  ctx.font = `${height * 0.05}px 'Poppins', Arial, sans-serif`;
+  ctx.font = `bold ${height * 0.055}px Helvetica, sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('Read my story', width / 2, currentY);
-  ctx.fillText('and expand it', width / 2, currentY + height * 0.06);
+  ctx.fillText('and expand it', width / 2, currentY + height * 0.065);
 
-  // Translation (smaller)
+  // Translation - BOLD
   const translations: { [key: string]: string } = {
     fr: 'Lis mon histoire et enrichis-la',
     es: 'Lee mi historia y ampliala',
-    de: 'Lesen Sie meine Geschichte und erweitern Sie sie',
+    de: 'Lesen Sie meine Geschichte',
     it: 'Leggi la mia storia e ampliala',
-    pt: 'Leia minha história e expanda-a',
+    pt: 'Leia minha história e expanda',
   };
 
   const translationText = translations[language] || translations.fr;
-  ctx.font = `${height * 0.035}px 'Poppins', Arial, sans-serif`;
-  ctx.fillText(translationText, width / 2, currentY + height * 0.11);
+  ctx.font = `bold ${height * 0.045}px Helvetica, sans-serif`;
+  ctx.fillText(translationText, width / 2, currentY + height * 0.12);
 
   currentY += height * 0.18;
 
@@ -148,48 +150,64 @@ function drawLighterSticker(
   currentY += qrSize + height * 0.05;
 
   // "or go to lightmyfire.app" section with background
-  const urlBgHeight = height * 0.12;
+  const urlBgHeight = height * 0.14;
   ctx.fillStyle = '#ffffff';
-  ctx.fillRect(padding, currentY, contentWidth, urlBgHeight);
+  roundRect(ctx, padding, currentY, contentWidth, urlBgHeight, cardRadius);
+  ctx.fill();
 
   ctx.fillStyle = '#000000';
-  ctx.font = `${height * 0.04}px 'Poppins', Arial, sans-serif`;
+  ctx.font = `bold ${height * 0.05}px Helvetica, sans-serif`;
   ctx.textAlign = 'center';
-  ctx.fillText('or go to', width / 2, currentY + urlBgHeight * 0.5);
+  ctx.fillText('or go to', width / 2, currentY + urlBgHeight * 0.45);
+  ctx.font = `bold ${height * 0.055}px Helvetica, sans-serif`;
   ctx.fillText('lightmyfire.app', width / 2, currentY + urlBgHeight * 0.85);
 
   currentY += urlBgHeight + height * 0.03;
 
   // "and type my code" (bold)
   ctx.fillStyle = '#ffffff';
-  ctx.font = `bold ${height * 0.05}px 'Poppins', Arial, sans-serif`;
+  ctx.font = `bold ${height * 0.055}px Helvetica, sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('and type my code', width / 2, currentY);
 
-  // Translation
+  // Translation - BOLD
   const codeTranslations: { [key: string]: string } = {
     fr: 'et entre mon code',
     es: 'e introduce mi código',
-    de: 'und geben Sie meinen Code ein',
+    de: 'und gib meinen Code ein',
     it: 'e digita il mio codice',
     pt: 'e digite meu código',
   };
 
   const codeText = codeTranslations[language] || codeTranslations.fr;
-  ctx.font = `${height * 0.035}px 'Poppins', Arial, sans-serif`;
+  ctx.font = `bold ${height * 0.04}px Helvetica, sans-serif`;
   ctx.fillText(codeText, width / 2, currentY + height * 0.07);
 
-  currentY += height * 0.13;
+  currentY += height * 0.12;
 
-  // PIN code (bold, with background)
-  const pinBgHeight = height * 0.12;
+  // PIN code (bold, with rounded background)
+  const pinBgHeight = height * 0.13;
   ctx.fillStyle = '#ffffff';
-  ctx.fillRect(padding, currentY, contentWidth, pinBgHeight);
+  roundRect(ctx, padding, currentY, contentWidth, pinBgHeight, cardRadius);
+  ctx.fill();
 
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${height * 0.1}px 'Poppins', Arial, sans-serif`;
+  ctx.font = `bold ${height * 0.105}px Helvetica, sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText(pinCode, width / 2, currentY + pinBgHeight * 0.75);
+
+  currentY += pinBgHeight + height * 0.02;
+
+  // Logo section at bottom with white background extending to edges and bottom
+  const logoSectionHeight = height - currentY; // Remaining height to bottom
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, currentY, width, logoSectionHeight); // No padding, extends to edges
+
+  // Draw logo text as placeholder (actual logo would load in real implementation)
+  ctx.fillStyle = '#888888';
+  ctx.font = `${height * 0.03}px Helvetica, sans-serif`;
+  ctx.textAlign = 'center';
+  ctx.fillText('LightMyFire', width / 2, currentY + logoSectionHeight / 2);
 }
 
 /**

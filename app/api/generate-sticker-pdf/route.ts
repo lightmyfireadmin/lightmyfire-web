@@ -248,42 +248,44 @@ async function drawStickerContent(
 
   let currentY = y + padding;
 
-  // White card background
-  const cardHeight = Math.round(contentHeight * 0.25);
+  // White card background with rounded corners
+  const cardHeight = Math.round(contentHeight * 0.28);
   ctx.fillStyle = '#ffffff';
-  ctx.fillRect(x + padding, currentY, contentWidth, cardHeight);
+  const cardRadius = Math.round(padding * 0.5);
+  roundRect(ctx, x + padding, currentY, contentWidth, cardHeight, cardRadius);
+  ctx.fill();
 
-  // "You found me" text (bold, centered)
+  // "You found me" text (bold, centered) - INCREASED SIZE
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.08)}px 'Poppins', Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px Helvetica, sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('You found me', x + STICKER_WIDTH_PX / 2, currentY + Math.round(cardHeight * 0.4));
 
-  // "I'm + name" text
-  ctx.font = `${Math.round(STICKER_HEIGHT_PX * 0.07)}px 'Poppins', Arial`;
+  // "I'm + name" text - INCREASED SIZE, BOLD
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.08)}px Helvetica, sans-serif`;
   ctx.fillText(`I'm ${sticker.name}`, x + STICKER_WIDTH_PX / 2, currentY + Math.round(cardHeight * 0.75));
 
   currentY += cardHeight + padding;
 
-  // Invitation text: "Read my story and expand it"
+  // Invitation text: "Read my story and expand it" - INCREASED SIZE
   ctx.fillStyle = '#ffffff';
-  ctx.font = `${Math.round(STICKER_HEIGHT_PX * 0.05)}px 'Poppins', Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Helvetica, sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('Read my story', x + STICKER_WIDTH_PX / 2, currentY);
-  ctx.fillText('and expand it', x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.06));
+  ctx.fillText('and expand it', x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.065));
 
-  // Translation (smaller)
+  // Translation - INCREASED SIZE, BOLD
   const translations: { [key: string]: string } = {
     fr: 'Lis mon histoire et enrichis-la',
     es: 'Lee mi historia y ampliala',
-    de: 'Lesen Sie meine Geschichte und erweitern Sie sie',
+    de: 'Lesen Sie meine Geschichte',
     it: 'Leggi la mia storia e ampliala',
-    pt: 'Leia minha história e expanda-a',
+    pt: 'Leia minha história e expanda',
   };
 
   const translationText = translations[sticker.language] || translations.fr;
-  ctx.font = `${Math.round(STICKER_HEIGHT_PX * 0.035)}px 'Poppins', Arial`;
-  ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.11));
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.045)}px Helvetica, sans-serif`;
+  ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.12));
 
   currentY += Math.round(STICKER_HEIGHT_PX * 0.18);
 
@@ -318,49 +320,83 @@ async function drawStickerContent(
 
   currentY += qrSize + Math.round(STICKER_HEIGHT_PX * 0.05);
 
-  // "or go to lightmyfire.app" section with background
-  const urlBgHeight = Math.round(STICKER_HEIGHT_PX * 0.12);
+  // "or go to lightmyfire.app" section with rounded background - INCREASED SIZE
+  const urlBgHeight = Math.round(STICKER_HEIGHT_PX * 0.14);
   ctx.fillStyle = '#ffffff';
-  ctx.fillRect(x + padding, currentY, contentWidth, urlBgHeight);
+  roundRect(ctx, x + padding, currentY, contentWidth, urlBgHeight, cardRadius);
+  ctx.fill();
 
   ctx.fillStyle = '#000000';
-  ctx.font = `${Math.round(STICKER_HEIGHT_PX * 0.04)}px 'Poppins', Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.05)}px Helvetica, sans-serif`;
   ctx.textAlign = 'center';
-  ctx.fillText('or go to', x + STICKER_WIDTH_PX / 2, currentY + Math.round(urlBgHeight * 0.5));
+  ctx.fillText('or go to', x + STICKER_WIDTH_PX / 2, currentY + Math.round(urlBgHeight * 0.45));
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Helvetica, sans-serif`;
   ctx.fillText('lightmyfire.app', x + STICKER_WIDTH_PX / 2, currentY + Math.round(urlBgHeight * 0.85));
 
   currentY += urlBgHeight + Math.round(STICKER_HEIGHT_PX * 0.03);
 
-  // "and type my code" (bold)
+  // "and type my code" - INCREASED SIZE
   ctx.fillStyle = '#ffffff';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.05)}px 'Poppins', Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Helvetica, sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('and type my code', x + STICKER_WIDTH_PX / 2, currentY);
 
-  // Translation
+  // Translation - INCREASED SIZE, BOLD
   const codeTranslations: { [key: string]: string } = {
     fr: 'et entre mon code',
     es: 'e introduce mi código',
-    de: 'und geben Sie meinen Code ein',
+    de: 'und gib meinen Code ein',
     it: 'e digita il mio codice',
     pt: 'e digite meu código',
   };
 
   const codeText = codeTranslations[sticker.language] || codeTranslations.fr;
-  ctx.font = `${Math.round(STICKER_HEIGHT_PX * 0.035)}px 'Poppins', Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.04)}px Helvetica, sans-serif`;
   ctx.fillText(codeText, x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.07));
 
-  currentY += Math.round(STICKER_HEIGHT_PX * 0.13);
+  currentY += Math.round(STICKER_HEIGHT_PX * 0.12);
 
-  // PIN code (bold, with background)
-  const pinBgHeight = Math.round(STICKER_HEIGHT_PX * 0.12);
+  // PIN code (bold, with rounded background) - INCREASED SIZE
+  const pinBgHeight = Math.round(STICKER_HEIGHT_PX * 0.13);
   ctx.fillStyle = '#ffffff';
-  ctx.fillRect(x + padding, currentY, contentWidth, pinBgHeight);
+  roundRect(ctx, x + padding, currentY, contentWidth, pinBgHeight, cardRadius);
+  ctx.fill();
 
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.1)}px 'Poppins', Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.105)}px Helvetica, sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText(sticker.pinCode, x + STICKER_WIDTH_PX / 2, currentY + Math.round(pinBgHeight * 0.75));
+
+  currentY += pinBgHeight + Math.round(STICKER_HEIGHT_PX * 0.02);
+
+  // Logo section at bottom with white background extending to edges and bottom
+  const logoSectionHeight = STICKER_HEIGHT_PX - currentY; // Remaining height to bottom
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(x, currentY, STICKER_WIDTH_PX, logoSectionHeight); // No padding, extends to edges
+
+  // Load and draw logo
+  try {
+    const { Image } = await import('canvas');
+    const fs = await import('fs');
+    const path = await import('path');
+
+    const logoPath = path.join(process.cwd(), 'public', 'NEWLOGOSMALL.png');
+    const logoBuffer = fs.readFileSync(logoPath);
+    const logoImage = new Image();
+    logoImage.src = logoBuffer;
+
+    // Scale logo to fit nicely in the white section
+    const logoHeight = Math.round(logoSectionHeight * 0.6); // 60% of section height
+    const logoWidth = Math.round(logoHeight * (logoImage.width / logoImage.height));
+
+    const logoX = x + (STICKER_WIDTH_PX - logoWidth) / 2; // Center horizontally
+    const logoY = currentY + (logoSectionHeight - logoHeight) / 2; // Center vertically
+
+    ctx.drawImage(logoImage, logoX, logoY, logoWidth, logoHeight);
+  } catch (error) {
+    console.error('Logo loading error:', error);
+    // Fallback: just leave white space if logo fails
+  }
 }
 
 /**
