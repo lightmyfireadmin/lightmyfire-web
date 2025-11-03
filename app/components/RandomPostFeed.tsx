@@ -26,6 +26,7 @@ const RandomPostFeed = () => {
   const POST_GAP = 20; // Gap between posts
   const INITIAL_SPAWN_DELAY = 500; // 500ms delay before first post appears
   const SCROLL_SPEED = 1; // Pixels per frame for smooth scrolling
+  const SPAWN_OFFSET = 200; // Spawn posts 200px above container for smooth entry
 
   // Fetch posts on mount and periodically refresh
   useEffect(() => {
@@ -78,7 +79,7 @@ const RandomPostFeed = () => {
             const randomPost = posts[Math.floor(Math.random() * posts.length)];
             const newPostId = `${nextId}-${Date.now()}`;
 
-            // Position new post above the topmost with consistent gap
+            // Position new post above visible area for smooth entry
             const spawnPosition = topmostPost.position - FIXED_POST_HEIGHT - POST_GAP;
 
             updated.unshift({
@@ -89,12 +90,12 @@ const RandomPostFeed = () => {
             setNextId((prev) => prev + 1);
           }
         } else if (posts.length > 0 && updated.length === 0) {
-          // Add first post if none exist
+          // Add first post starting above viewport for smooth entry
           const randomPost = posts[Math.floor(Math.random() * posts.length)];
           updated.push({
             id: `${nextId}-${Date.now()}`,
             post: randomPost,
-            position: 0,
+            position: -SPAWN_OFFSET,
           });
           setNextId((prev) => prev + 1);
         }
@@ -125,13 +126,7 @@ const RandomPostFeed = () => {
       {/* Single column infinite scroll container */}
       <div
         className="relative mx-auto w-full max-w-sm h-[500px] overflow-hidden rounded-lg border border-border bg-background/50 backdrop-blur-sm"
-        onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => {
-          setIsPaused(false);
-          setHoveredPost(null);
-        }}
-        onTouchStart={() => setIsPaused(true)}
-        onTouchEnd={() => {
           setIsPaused(false);
           setHoveredPost(null);
         }}
@@ -145,18 +140,23 @@ const RandomPostFeed = () => {
           {animatingPosts.map((animPost) => (
             <div
               key={animPost.id}
-              className="absolute w-full px-4 transition-opacity duration-300 cursor-pointer"
+              className="absolute w-full px-4 transition-opacity duration-300"
               style={{
                 top: `${animPost.position}px`,
-                height: `${FIXED_POST_HEIGHT}px`,
                 opacity: getOpacity(animPost.position),
                 pointerEvents: animPost.position > 50 && animPost.position < CONTAINER_HEIGHT - 100 ? 'auto' : 'none',
               }}
-              onMouseEnter={() => setHoveredPost(animPost.post)}
-              onMouseLeave={() => setHoveredPost(null)}
+              onMouseEnter={() => {
+                setIsPaused(true);
+                setHoveredPost(animPost.post);
+              }}
+              onMouseLeave={() => {
+                setIsPaused(false);
+                setHoveredPost(null);
+              }}
             >
-              {/* Truncated mini card */}
-              <div className="h-full overflow-hidden">
+              {/* Full card - no truncation */}
+              <div className="w-full">
                 <PostCard
                   post={animPost.post}
                   isLoggedIn={false}
@@ -167,10 +167,10 @@ const RandomPostFeed = () => {
           ))}
         </div>
 
-        {/* Hover popup - full post display */}
+        {/* Hover popup - full post display with smooth transition */}
         {hoveredPost && (
-          <div className="absolute inset-0 z-20 flex items-center justify-center p-4 bg-background/95 backdrop-blur-md animate-in fade-in duration-200">
-            <div className="w-full max-w-md max-h-full overflow-y-auto rounded-lg">
+          <div className="absolute inset-0 z-20 flex items-center justify-center p-4 bg-background/95 backdrop-blur-md transition-all duration-300 ease-in-out">
+            <div className="w-full max-w-md max-h-full overflow-y-auto rounded-lg transition-transform duration-300 ease-in-out scale-100">
               <PostCard
                 post={hoveredPost}
                 isLoggedIn={false}
