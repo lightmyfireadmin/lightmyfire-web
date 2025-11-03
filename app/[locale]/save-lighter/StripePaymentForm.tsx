@@ -8,12 +8,29 @@ import LoadingSpinner from '@/app/components/LoadingSpinner';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '');
 
+interface LighterData {
+  name: string;
+  backgroundColor: string;
+  language: string;
+}
+
+interface ShippingAddress {
+  name: string;
+  email: string;
+  address: string;
+  city: string;
+  postalCode: string;
+  country: string;
+}
+
 interface StripePaymentFormProps {
   orderId: string;
   totalAmount: number;
   userEmail: string;
   packSize: number;
-  onSuccess?: (paymentIntentId: string) => void;
+  lighterData: LighterData[];
+  shippingAddress: ShippingAddress;
+  onSuccess?: (lighterIds: string[]) => void;
   onError?: (error: string) => void;
 }
 
@@ -22,6 +39,8 @@ function PaymentFormContent({
   totalAmount,
   userEmail,
   packSize,
+  lighterData,
+  shippingAddress,
   onSuccess,
   onError,
 }: StripePaymentFormProps) {
@@ -83,7 +102,24 @@ function PaymentFormContent({
       if (stripeError) throw new Error(stripeError.message || 'Payment failed');
 
       if (paymentIntent.status === 'succeeded') {
-        onSuccess?.(paymentIntent.id);
+        // Payment succeeded! Now create lighters and generate stickers
+        const orderResponse = await fetch('/api/process-sticker-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            paymentIntentId: paymentIntent.id,
+            lighterData,
+            shippingAddress,
+          }),
+        });
+
+        if (!orderResponse.ok) {
+          const errorData = await orderResponse.json();
+          throw new Error(errorData.error || 'Failed to process order');
+        }
+
+        const { lighterIds } = await orderResponse.json();
+        onSuccess?.(lighterIds);
       } else if (paymentIntent.status === 'requires_action') {
         setError('Your card requires additional verification.');
       } else {

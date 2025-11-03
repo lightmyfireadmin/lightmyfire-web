@@ -5,6 +5,7 @@ import { useI18n } from '@/locales/client';
 import LighterPersonalizationCards from './LighterPersonalizationCards';
 import StripePaymentForm from './StripePaymentForm';
 import StickerPreview from './StickerPreview';
+import ShippingAddressForm, { type ShippingAddress } from './ShippingAddressForm';
 import type { User } from '@supabase/supabase-js';
 
 interface LighterCustomization {
@@ -43,9 +44,14 @@ export default function SaveLighterFlow({ user }: { user: User }) {
   const [selectedPack, setSelectedPack] = useState<number | null>(null);
   const [customizations, setCustomizations] = useState<LighterCustomization[]>([]);
   const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const [shippingAddress, setShippingAddress] = useState<ShippingAddress | null>(null);
 
   const handlePackSelect = (count: number) => {
     setSelectedPack(count);
+  };
+
+  const handleShippingSave = (address: ShippingAddress) => {
+    setShippingAddress(address);
   };
 
   const handlePersonalizationSave = (
@@ -157,40 +163,40 @@ export default function SaveLighterFlow({ user }: { user: User }) {
         </div>
       )}
 
-      {/* Delivery Details */}
-      {selectedPack !== null && (
-        <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
-          <h2 className="mb-4 text-2xl font-semibold text-foreground">Delivery Details</h2>
-          <p className="text-muted-foreground text-sm mb-4">
-            Shipping address and expected delivery information will be shown during checkout.
-          </p>
-          <p className="text-muted-foreground text-sm">
-            Our hand-made stickers are carefully packaged and shipped within 5-7 business days.
-          </p>
-        </div>
-      )}
-
-      {/* Sticker Preview & PDF Generation - Show when customizations are done */}
-      {customizations.length > 0 && (
+      {/* Sticker Preview - Show when customizations are done */}
+      {customizations.length > 0 && !shippingAddress && (
         <div className="rounded-lg border border-border bg-background p-6 shadow-md">
           <h2 className="mb-6 text-xl font-semibold text-foreground">Your Sticker Design</h2>
-          <StickerPreview
-            stickers={customizations}
-            orderId={`LMF-${Date.now()}`}
-            onDownloadStart={() => {
-              console.log('PDF generation started');
-            }}
-            onDownloadComplete={(success, filename) => {
-              if (success) {
-                console.log(`PDF downloaded: ${filename}`);
-              }
-            }}
-          />
+          <p className="text-sm text-muted-foreground mb-4">
+            Preview of your custom stickers. Sticker files will be generated after payment.
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            {customizations.slice(0, 5).map((sticker, index) => (
+              <div key={sticker.id} className="flex justify-center">
+                <div
+                  className="w-24 h-60 rounded-md shadow-sm"
+                  style={{ backgroundColor: sticker.backgroundColor }}
+                />
+              </div>
+            ))}
+            {customizations.length > 5 && (
+              <div className="flex items-center justify-center text-muted-foreground text-sm">
+                +{customizations.length - 5} more
+              </div>
+            )}
+          </div>
         </div>
       )}
 
-      {/* Payment Form - Show when customizations are done */}
-      {customizations.length > 0 && (
+      {/* Shipping Address Form - Show when customizations are done */}
+      {customizations.length > 0 && !shippingAddress && (
+        <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
+          <ShippingAddressForm onSave={handleShippingSave} userEmail={user.email || undefined} />
+        </div>
+      )}
+
+      {/* Payment Form - Show when shipping address is complete */}
+      {customizations.length > 0 && shippingAddress && (
         <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
           <h2 className="mb-6 text-xl font-semibold text-foreground">
             {t('save_lighter.payment_details_title')}
@@ -198,12 +204,19 @@ export default function SaveLighterFlow({ user }: { user: User }) {
           <StripePaymentForm
             orderId={`LMF-${Date.now()}`}
             totalAmount={
-              selectedPack === 5 ? 2500 : selectedPack === 10 ? 4500 : 20000
+              selectedPack === 10 ? 2500 : selectedPack === 20 ? 4500 : 10000
             }
-            userEmail={user.email || ''}
-            packSize={selectedPack || 5}
-            onSuccess={() => {
-              // Handle success
+            userEmail={shippingAddress.email}
+            packSize={selectedPack || 10}
+            lighterData={customizations.map(c => ({
+              name: c.name,
+              backgroundColor: c.backgroundColor,
+              language: c.language || selectedLanguage
+            }))}
+            shippingAddress={shippingAddress}
+            onSuccess={(lighterIds) => {
+              // Redirect to success page
+              window.location.href = `/save-lighter/success?lighters=${lighterIds.join(',')}`;
             }}
           />
         </div>
