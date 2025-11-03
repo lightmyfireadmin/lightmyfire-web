@@ -10,7 +10,6 @@ interface AnimatingPost {
   id: string;
   post: DetailedPost;
   position: number; // vertical position in pixels
-  height?: number; // measured height of the post
 }
 
 const RandomPostFeed = () => {
@@ -20,14 +19,13 @@ const RandomPostFeed = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [nextId, setNextId] = useState(0);
   const [isInitialized, setIsInitialized] = useState(false);
-  const [hoveredPostId, setHoveredPostId] = useState<string | null>(null);
-  const [postHeights, setPostHeights] = useState<Record<string, number>>({});
+  const [hoveredPost, setHoveredPost] = useState<DetailedPost | null>(null);
+
   const CONTAINER_HEIGHT = 500;
-  const FIXED_POST_HEIGHT = 180; // Fixed collapsed height for all posts
-  const DEFAULT_POST_HEIGHT = 180; // Default height for posts before measured
-  const POST_GAP = 30; // Consistent gap between posts
+  const FIXED_POST_HEIGHT = 160; // Fixed height for all post cards in the feed
+  const POST_GAP = 20; // Gap between posts
   const INITIAL_SPAWN_DELAY = 500; // 500ms delay before first post appears
-  const SCROLL_SPEED = 1; // Reduced from 2 to 1 for slower, smoother scrolling
+  const SCROLL_SPEED = 1; // Pixels per frame for smooth scrolling
 
   // Fetch posts on mount and periodically refresh
   useEffect(() => {
@@ -64,34 +62,29 @@ const RandomPostFeed = () => {
         let updated = prevPosts
           .map((p) => ({
             ...p,
-            position: p.position + SCROLL_SPEED, // Use variable scroll speed
+            position: p.position + SCROLL_SPEED,
           }))
-          .filter((p) => p.position < CONTAINER_HEIGHT + 400); // Remove when fully past bottom
+          .filter((p) => p.position < CONTAINER_HEIGHT + FIXED_POST_HEIGHT); // Remove when fully past bottom
 
         // Add new posts to top when space available
         if (posts.length > 0 && updated.length > 0) {
-          // Find the topmost post with its actual height
+          // Find the topmost post
           const topmostPost = updated.reduce((prev, curr) =>
             curr.position < prev.position ? curr : prev
           );
 
-          // Use actual height if available, otherwise use default
-          const topmostHeight = postHeights[topmostPost.id] || DEFAULT_POST_HEIGHT;
-
           // Spawn new post when there's enough space at the top
-          // Check if the topmost post has scrolled down enough to make room
-          if (topmostPost.position >= POST_GAP) {
+          if (topmostPost.position >= FIXED_POST_HEIGHT + POST_GAP) {
             const randomPost = posts[Math.floor(Math.random() * posts.length)];
             const newPostId = `${nextId}-${Date.now()}`;
 
             // Position new post above the topmost with consistent gap
-            const spawnPosition = topmostPost.position - topmostHeight - POST_GAP;
+            const spawnPosition = topmostPost.position - FIXED_POST_HEIGHT - POST_GAP;
 
             updated.unshift({
               id: newPostId,
               post: randomPost,
               position: spawnPosition,
-              height: DEFAULT_POST_HEIGHT, // Will be updated when measured
             });
             setNextId((prev) => prev + 1);
           }
@@ -102,7 +95,6 @@ const RandomPostFeed = () => {
             id: `${nextId}-${Date.now()}`,
             post: randomPost,
             position: 0,
-            height: DEFAULT_POST_HEIGHT,
           });
           setNextId((prev) => prev + 1);
         }
@@ -134,9 +126,15 @@ const RandomPostFeed = () => {
       <div
         className="relative mx-auto w-full max-w-sm h-[500px] overflow-hidden rounded-lg border border-border bg-background/50 backdrop-blur-sm"
         onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
+        onMouseLeave={() => {
+          setIsPaused(false);
+          setHoveredPost(null);
+        }}
         onTouchStart={() => setIsPaused(true)}
-        onTouchEnd={() => setIsPaused(false)}
+        onTouchEnd={() => {
+          setIsPaused(false);
+          setHoveredPost(null);
+        }}
       >
         {/* Gradient overlays for fade effect */}
         <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
@@ -147,32 +145,40 @@ const RandomPostFeed = () => {
           {animatingPosts.map((animPost) => (
             <div
               key={animPost.id}
-              ref={(el) => {
-                if (el && !postHeights[animPost.id]) {
-                  const height = el.getBoundingClientRect().height;
-                  if (height > 0) {
-                    setPostHeights((prev) => ({
-                      ...prev,
-                      [animPost.id]: height,
-                    }));
-                  }
-                }
-              }}
-              className="absolute w-full px-4 transition-opacity duration-300"
+              className="absolute w-full px-4 transition-opacity duration-300 cursor-pointer"
               style={{
                 top: `${animPost.position}px`,
+                height: `${FIXED_POST_HEIGHT}px`,
                 opacity: getOpacity(animPost.position),
                 pointerEvents: animPost.position > 50 && animPost.position < CONTAINER_HEIGHT - 100 ? 'auto' : 'none',
               }}
+              onMouseEnter={() => setHoveredPost(animPost.post)}
+              onMouseLeave={() => setHoveredPost(null)}
             >
-              <PostCard
-                post={animPost.post}
-                isLoggedIn={false}
-                isMini={true}
-              />
+              {/* Truncated mini card */}
+              <div className="h-full overflow-hidden">
+                <PostCard
+                  post={animPost.post}
+                  isLoggedIn={false}
+                  isMini={true}
+                />
+              </div>
             </div>
           ))}
         </div>
+
+        {/* Hover popup - full post display */}
+        {hoveredPost && (
+          <div className="absolute inset-0 z-20 flex items-center justify-center p-4 bg-background/95 backdrop-blur-md animate-in fade-in duration-200">
+            <div className="w-full max-w-md max-h-full overflow-y-auto rounded-lg">
+              <PostCard
+                post={hoveredPost}
+                isLoggedIn={false}
+                isMini={false}
+              />
+            </div>
+          </div>
+        )}
 
         {/* Loading/Empty state */}
         {animatingPosts.length === 0 && posts.length === 0 && (
