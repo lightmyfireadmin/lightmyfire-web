@@ -3,11 +3,13 @@
 import { useState } from 'react';
 import { useI18n } from '@/locales/client';
 import LoadingSpinner from '@/app/components/LoadingSpinner';
+import FullStickerPreview from './FullStickerPreview';
 
 interface StickerDesign {
   id: string;
   name: string;
   backgroundColor: string;
+  language?: string;
 }
 
 interface StickerPreviewProps {
@@ -90,21 +92,22 @@ export default function StickerPreview({
       {/* Sticker Preview Grid */}
       <div className="rounded-lg border border-border bg-background p-6">
         <h3 className="text-lg font-semibold text-foreground mb-4">Preview</h3>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          {stickers.map((sticker) => (
-            <div
-              key={sticker.id}
-              className="aspect-square rounded-lg flex items-center justify-center shadow-sm border border-border overflow-hidden"
-              style={{ backgroundColor: sticker.backgroundColor }}
-            >
-              <span className="text-white text-center text-xs font-semibold px-2 text-shadow">
-                {sticker.name}
-              </span>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          {stickers.map((sticker, index) => (
+            <div key={sticker.id} className="flex justify-center">
+              <div className="transform scale-[0.6] origin-top">
+                <FullStickerPreview
+                  lighterName={sticker.name}
+                  pinCode={`LMF-${(index + 1).toString().padStart(2, '0')}`}
+                  backgroundColor={sticker.backgroundColor}
+                  language={sticker.language || 'fr'}
+                />
+              </div>
             </div>
           ))}
         </div>
         <p className="text-xs text-muted-foreground mt-4">
-          {stickers.length} stickers ready for printing
+          {stickers.length} stickers ready for printing (PIN codes will be assigned when saved)
         </p>
       </div>
 

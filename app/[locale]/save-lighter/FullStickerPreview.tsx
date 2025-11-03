@@ -97,15 +97,15 @@ export default function FullStickerPreview({
             <p className="text-[11px] mt-1">{trans.readStory}</p>
           </div>
 
-          {/* QR Code - DOUBLED SIZE */}
+          {/* QR Code - reduced by 30% */}
           {qrCodeUrl && (
             <div className="bg-white p-2 rounded mb-2">
               <Image
                 src={qrCodeUrl}
                 alt="QR Code"
-                width={128}
-                height={128}
-                className="w-32 h-32"
+                width={90}
+                height={90}
+                className="w-[90px] h-[90px]"
               />
             </div>
           )}
@@ -124,7 +124,7 @@ export default function FullStickerPreview({
 
           {/* PIN Code */}
           <div className="w-full bg-white rounded-md p-3 mb-2">
-            <p className="text-black text-3xl font-bold tracking-wider">{pinCode}</p>
+            <p className="text-black text-2xl font-bold tracking-wider">{pinCode}</p>
           </div>
 
           {/* Logo Section - White background extending to edges */}

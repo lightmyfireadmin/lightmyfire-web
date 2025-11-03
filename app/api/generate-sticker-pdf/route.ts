@@ -289,8 +289,8 @@ async function drawStickerContent(
 
   currentY += Math.round(STICKER_HEIGHT_PX * 0.18);
 
-  // QR Code (generate and draw) - DOUBLED SIZE
-  const qrSize = Math.round(STICKER_HEIGHT_PX * 0.36);
+  // QR Code (generate and draw) - reduced by 30% (0.36 * 0.7 = 0.252)
+  const qrSize = Math.round(STICKER_HEIGHT_PX * 0.252);
   try {
     // Generate QR code URL pointing to the find page
     const qrUrl = process.env.NEXT_PUBLIC_BASE_URL ?
@@ -363,7 +363,7 @@ async function drawStickerContent(
   ctx.fill();
 
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.11)}px Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px Arial`;
   ctx.textAlign = 'center';
   ctx.fillText(sticker.pinCode, x + STICKER_WIDTH_PX / 2, currentY + Math.round(pinBgHeight * 0.75));
 

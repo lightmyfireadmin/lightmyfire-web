@@ -11,6 +11,7 @@ interface LighterCustomization {
   id: string;
   name: string;
   backgroundColor: string;
+  language?: string;
 }
 
 const PACK_OPTIONS = [
@@ -33,10 +34,15 @@ export default function SaveLighterFlow({ user }: { user: User }) {
     customizations: LighterCustomization[],
     language: string
   ) => {
-    setCustomizations(customizations);
+    // Add language to each customization
+    const customizationsWithLanguage = customizations.map(c => ({
+      ...c,
+      language: language
+    }));
+    setCustomizations(customizationsWithLanguage);
     setSelectedLanguage(language);
     // Show success message or move to next step
-    console.log('Customizations saved:', { customizations, language });
+    console.log('Customizations saved:', { customizations: customizationsWithLanguage, language });
   };
 
   return (
