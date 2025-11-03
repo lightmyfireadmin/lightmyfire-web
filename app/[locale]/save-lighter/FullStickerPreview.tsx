@@ -90,22 +90,22 @@ export default function FullStickerPreview({
             <p className="text-black text-[15px] font-bold">I&apos;m {lighterName}</p>
           </div>
 
-          {/* Invitation Text */}
-          <div className="text-white text-[12px] leading-tight mb-2 font-bold">
+          {/* Invitation Text - INCREASED SIZE */}
+          <div className="text-white text-[13px] leading-tight mb-2 font-bold">
             <p>Read my story</p>
             <p>and expand it</p>
-            <p className="text-[10px] mt-1">{trans.readStory}</p>
+            <p className="text-[11px] mt-1">{trans.readStory}</p>
           </div>
 
-          {/* QR Code */}
+          {/* QR Code - DOUBLED SIZE */}
           {qrCodeUrl && (
-            <div className="bg-white p-1 rounded mb-2">
+            <div className="bg-white p-2 rounded mb-2">
               <Image
                 src={qrCodeUrl}
                 alt="QR Code"
-                width={64}
-                height={64}
-                className="w-16 h-16"
+                width={128}
+                height={128}
+                className="w-32 h-32"
               />
             </div>
           )}
@@ -116,10 +116,10 @@ export default function FullStickerPreview({
             <p className="text-black text-[12px] font-bold">lightmyfire.app</p>
           </div>
 
-          {/* Code Text */}
-          <div className="text-white text-[12px] leading-tight mb-2 font-bold">
+          {/* Code Text - INCREASED SIZE */}
+          <div className="text-white text-[13px] leading-tight mb-2 font-bold">
             <p>and type my code</p>
-            <p className="text-[9px] mt-1">{trans.typeCode}</p>
+            <p className="text-[11px] mt-1">{trans.typeCode}</p>
           </div>
 
           {/* PIN Code */}
@@ -130,7 +130,7 @@ export default function FullStickerPreview({
           {/* Logo Section - White background extending to edges */}
           <div className="absolute bottom-0 left-0 right-0 bg-white flex items-center justify-center px-4" style={{ height: '60px' }}>
             <Image
-              src="/NEWLOGOLONG.png"
+              src="/LOGOLONG.png"
               alt="LightMyFire Logo"
               width={150}
               height={40}

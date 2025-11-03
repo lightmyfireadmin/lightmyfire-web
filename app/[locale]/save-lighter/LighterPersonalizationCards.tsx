@@ -112,6 +112,27 @@ export default function LighterPersonalizationCards({
 
   return (
     <div className="space-y-4">
+      {/* Language Selection - First */}
+      <div className="rounded-lg border border-border/50 bg-background/80 p-3 shadow-sm">
+        <label className="block text-sm font-bold text-foreground mb-2">
+          Second Language on Sticker (+ English)
+        </label>
+        <select
+          value={selectedLanguage}
+          onChange={(e) => setSelectedLanguage(e.target.value)}
+          className="w-full px-2 py-1.5 rounded text-sm border border-input bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+        >
+          {SECOND_LANGUAGES.map((lang) => (
+            <option key={lang.code} value={lang.code}>
+              {lang.name}
+            </option>
+          ))}
+        </select>
+        <p className="text-xs text-muted-foreground mt-1">
+          English will always be included on your stickers
+        </p>
+      </div>
+
       <div className="flex items-center justify-between mb-2">
         <div>
           <h3 className="text-lg font-bold text-foreground">
@@ -240,24 +261,6 @@ export default function LighterPersonalizationCards({
             </div>
           );
         })}
-      </div>
-
-      {/* Language Selection - After all lighter cards */}
-      <div className="rounded-lg border border-border/50 bg-background/80 p-3 shadow-sm">
-        <label className="block text-sm font-bold text-foreground mb-2">
-          Second Language on Sticker (+ English)
-        </label>
-        <select
-          value={selectedLanguage}
-          onChange={(e) => setSelectedLanguage(e.target.value)}
-          className="w-full px-2 py-1.5 rounded text-sm border border-input bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
-        >
-          {SECOND_LANGUAGES.map((lang) => (
-            <option key={lang.code} value={lang.code}>
-              {lang.name}
-            </option>
-          ))}
-        </select>
       </div>
 
       {/* Summary - Compact */}

@@ -21,7 +21,7 @@ const RandomPostFeed = () => {
   const [isInitialized, setIsInitialized] = useState(false);
   const CONTAINER_HEIGHT = 500;
   const POST_HEIGHT = 380; // Approximate height of a post card
-  const POST_SPACING = 20; // Gap between posts - minimal spacing for continuous flow
+  const SAFETY_GAP = 26; // Gap in pixels from top before spawning next post
   const INITIAL_SPAWN_DELAY = 500; // 500ms delay before first post appears
   const SCROLL_SPEED = 1; // Reduced from 2 to 1 for slower, smoother scrolling
 
@@ -69,10 +69,9 @@ const RandomPostFeed = () => {
           // Check if we need a new post at top
           const topmost = updated.length > 0 ? Math.min(...updated.map(p => p.position)) : 1000;
 
-          // Only spawn a new post if the topmost post has moved down enough to make room
-          // This ensures posts appear one at a time with proper spacing
-          // Wait until previous post is fully visible + spacing before spawning next
-          if (topmost >= POST_SPACING) {
+          // Spawn next post when previous post's top edge is SAFETY_GAP pixels from container top
+          // This ensures the previous post is fully visible with a 26px gap before next one appears
+          if (topmost >= SAFETY_GAP) {
             const randomPost = posts[Math.floor(Math.random() * posts.length)];
             updated.unshift({
               id: `${nextId}-${Date.now()}`,
