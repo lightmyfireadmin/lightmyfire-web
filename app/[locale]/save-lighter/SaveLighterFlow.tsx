@@ -15,26 +15,26 @@ interface LighterCustomization {
   language?: string;
 }
 
-const PACK_OPTIONS = [
+const getPackOptions = (t: any) => [
   {
     count: 10,
     sheets: 1,
-    title: 'Starting LightSaver',
-    description: 'Enough Stickers for all lighters you will lose this year, and the one of your friends',
+    titleKey: 'order.pack.starting_lightsaver',
+    descriptionKey: 'order.pack.starting_description',
     price: null, // Price will be calculated by Printful API
   },
   {
     count: 20,
     sheets: 2,
-    title: 'Committed LightSaver',
-    description: 'Enough Stickers to end up with traces of you all around the world',
+    titleKey: 'order.pack.committed_lightsaver',
+    descriptionKey: 'order.pack.committed_description',
     price: null,
   },
   {
     count: 50,
     sheets: 5,
-    title: 'Community LightSaver',
-    description: 'For events or really distracted individuals',
+    titleKey: 'order.pack.community_lightsaver',
+    descriptionKey: 'order.pack.community_description',
     price: null,
   },
 ];

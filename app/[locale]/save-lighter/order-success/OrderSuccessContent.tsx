@@ -121,7 +121,7 @@ export default function OrderSuccessContent() {
                 </li>
                 <li className="flex gap-3">
                   <span className="flex-shrink-0 font-bold text-primary">4.</span>
-                  <span>You'll receive a tracking number via email once shipped</span>
+                  <span>You&apos;ll receive a tracking number via email once shipped</span>
                 </li>
               </ol>
             </div>
