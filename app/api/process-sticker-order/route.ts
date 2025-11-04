@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 import nodemailer from 'nodemailer';
+import Stripe from 'stripe';
 
 interface LighterData {
   name: string;
@@ -53,12 +54,45 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid request data' }, { status: 400 });
     }
 
-    // TODO: Verify payment with Stripe
-    // const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-    // const payment = await stripe.paymentIntents.retrieve(paymentIntentId);
-    // if (payment.status !== 'succeeded') {
-    //   return NextResponse.json({ error: 'Payment not successful' }, { status: 400 });
-    // }
+    // Verify payment with Stripe
+    if (!process.env.STRIPE_SECRET_KEY) {
+      console.error('STRIPE_SECRET_KEY not configured');
+      return NextResponse.json({ error: 'Payment system not configured' }, { status: 500 });
+    }
+
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2025-10-29.clover',
+    });
+
+    try {
+      const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+
+      if (paymentIntent.status !== 'succeeded') {
+        console.error('Payment not successful:', paymentIntent.status);
+        return NextResponse.json({
+          error: 'Payment not successful',
+          status: paymentIntent.status
+        }, { status: 400 });
+      }
+
+      // Additional verification: check amount matches expected
+      const expectedAmount = lighterData.length * 250; // 2.50€ per sticker in cents
+      if (paymentIntent.amount !== expectedAmount) {
+        console.error('Payment amount mismatch:', {
+          expected: expectedAmount,
+          received: paymentIntent.amount
+        });
+        return NextResponse.json({
+          error: 'Payment amount verification failed'
+        }, { status: 400 });
+      }
+    } catch (stripeError) {
+      console.error('Stripe verification error:', stripeError);
+      return NextResponse.json({
+        error: 'Payment verification failed',
+        details: stripeError instanceof Error ? stripeError.message : 'Unknown error'
+      }, { status: 500 });
+    }
 
     // Create lighters in database and get PINs
     const { data: createdLighters, error: dbError } = await supabase.rpc('create_bulk_lighters', {
@@ -129,6 +163,7 @@ ${createdLighters
 The sticker PNG file is attached. Please fulfill this order.
     `;
 
+    // Send order to fulfillment email
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: 'editionsrevel@gmail.com',
@@ -142,11 +177,50 @@ The sticker PNG file is attached. Please fulfill this order.
       ],
     });
 
+    // Send confirmation email to customer
+    const customerEmail = `
+Hi ${shippingAddress.name},
+
+Thank you for your LightMyFire order!
+
+Your order has been confirmed and is being prepared.
+
+Order Details:
+- Order ID: ${paymentIntentId}
+- Quantity: ${lighterData.length} custom stickers
+- Shipping to: ${shippingAddress.address}, ${shippingAddress.city}, ${shippingAddress.postalCode}, ${shippingAddress.country}
+
+Your Lighters:
+${createdLighters.map((l: any, i: number) => `${i + 1}. ${l.lighter_name} (PIN: ${l.pin_code})`).join('\n')}
+
+What's Next?
+1. Your custom stickers are being prepared with your unique PIN codes
+2. Our team will process your order and prepare it for shipping
+3. Stickers are carefully packaged and shipped within 5-7 business days
+4. You'll receive a tracking number via email once shipped
+
+Your lighters are already active in your account! You can start adding posts to them at:
+https://lightmyfire.app
+
+Questions? Reply to this email or contact us at editionsrevel@gmail.com
+
+Thank you for being part of the LightMyFire community!
+
+The LightMyFire Team
+    `;
+
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: shippingAddress.email,
+      subject: `Order Confirmed - ${lighterData.length} LightMyFire Stickers`,
+      text: customerEmail,
+    });
+
     // Return success with created lighter IDs
     return NextResponse.json({
       success: true,
       lighterIds: createdLighters.map((l: any) => l.lighter_id),
-      message: 'Order processed successfully. You will receive a confirmation email shortly.',
+      message: 'Order processed successfully. Confirmation emails sent.',
     });
   } catch (error) {
     console.error('Order processing error:', error);

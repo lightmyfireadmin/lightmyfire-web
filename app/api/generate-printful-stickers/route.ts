@@ -99,8 +99,8 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Draw branding in reserved area (bottom-right)
-    await drawBrandingArea(ctx, brandingText || 'LightMyFire');
+    // Leave branding area empty (branding will be on physical background)
+    // The 3"×3" bottom-right area is reserved but left transparent for branding on the background
 
     // Convert to PNG buffer
     const buffer = canvas.toBuffer('image/png', {
@@ -170,13 +170,30 @@ async function drawSticker(
   ctx.fillText('Read my story', x + STICKER_WIDTH_PX / 2, currentY);
   ctx.fillText('and expand it', x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.075));
 
-  // Translation
+  // Translation - Complete language support
   const translations: { [key: string]: string } = {
     fr: 'Lis mon histoire et enrichis-la',
-    es: 'Lee mi historia y ampliala',
-    de: 'Lesen Sie meine Geschichte',
-    it: 'Leggi la mia storia e ampliala',
-    pt: 'Leia minha história e expanda',
+    es: 'Lee mi historia y amplíala',
+    de: 'Lies meine Geschichte',
+    it: 'Leggi la mia storia',
+    pt: 'Leia minha história',
+    ar: 'اقرأ قصتي ووسعها',
+    fa: 'داستان من را بخوانید',
+    hi: 'मेरी कहानी पढ़ें',
+    id: 'Baca ceritaku',
+    ja: '私の物語を読んで',
+    ko: '내 이야기를 읽어보세요',
+    mr: 'माझी कथा वाचा',
+    nl: 'Lees mijn verhaal',
+    pl: 'Przeczytaj moją historię',
+    ru: 'Прочитай мою историю',
+    te: 'నా కథ చదవండి',
+    th: 'อ่านเรื่องราวของฉัน',
+    tr: 'Hikayemi oku',
+    uk: 'Прочитай мою історію',
+    ur: 'میری کہانی پڑھیں',
+    vi: 'Đọc câu chuyện của tôi',
+    'zh-CN': '阅读我的故事',
   };
 
   const translationText = translations[sticker.language] || translations.fr;
@@ -232,13 +249,30 @@ async function drawSticker(
   ctx.textBaseline = 'top';
   ctx.fillText('and type my code', x + STICKER_WIDTH_PX / 2, currentY);
 
-  // Translation
+  // Translation - Complete language support
   const codeTranslations: { [key: string]: string } = {
     fr: 'et entre mon code',
     es: 'e introduce mi código',
     de: 'und gib meinen Code ein',
     it: 'e digita il mio codice',
     pt: 'e digite meu código',
+    ar: 'وأدخل رمزي',
+    fa: 'و کد من را وارد کنید',
+    hi: 'और मेरा कोड टाइप करें',
+    id: 'dan ketik kodeku',
+    ja: '私のコードを入力',
+    ko: '내 코드를 입력하세요',
+    mr: 'आणि माझा कोड टाइप करा',
+    nl: 'en typ mijn code',
+    pl: 'i wpisz mój kod',
+    ru: 'и введи мой код',
+    te: 'మరియు నా కోడ్ టైప్ చేయండి',
+    th: 'และพิมพ์รหัสของฉัน',
+    tr: 've kodumu yaz',
+    uk: 'і введи мій код',
+    ur: 'اور میرا کوڈ ٹائپ کریں',
+    vi: 'và nhập mã của tôi',
+    'zh-CN': '并输入我的代码',
   };
 
   const codeText = codeTranslations[sticker.language] || codeTranslations.fr;
@@ -292,51 +326,10 @@ async function drawSticker(
   }
 }
 
-async function drawBrandingArea(ctx: NodeCanvasContext, brandingText: string) {
-  const x = SHEET_WIDTH_PX - RESERVED_PX;
-  const y = SHEET_HEIGHT_PX - RESERVED_PX;
-
-  // Draw white background
-  ctx.fillStyle = '#ffffff';
-  ctx.fillRect(x, y, RESERVED_PX, RESERVED_PX);
-
-  // Load and draw logo
-  try {
-    const { Image } = await import('canvas');
-    const fs = await import('fs');
-    const path = await import('path');
-
-    const logoPath = path.join(process.cwd(), 'public', 'LOGOLONG.png');
-    const logoBuffer = fs.readFileSync(logoPath);
-    const logoImage = new Image();
-    logoImage.src = logoBuffer;
-
-    const logoPadding = Math.round(RESERVED_PX * 0.15);
-    const logoWidth = RESERVED_PX - (logoPadding * 2);
-    const logoHeight = Math.round(logoWidth * (logoImage.height / logoImage.width));
-
-    const logoX = x + logoPadding;
-    const logoY = y + logoPadding;
-
-    ctx.drawImage(logoImage, logoX, logoY, logoWidth, logoHeight);
-
-    // Add branding text below logo
-    const textY = logoY + logoHeight + Math.round(RESERVED_PX * 0.1);
-    ctx.fillStyle = '#000000';
-    ctx.font = `bold ${Math.round(RESERVED_PX * 0.08)}px Arial`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'top';
-    ctx.fillText(brandingText, x + RESERVED_PX / 2, textY);
-
-    // Add "Join our community" text
-    ctx.font = `${Math.round(RESERVED_PX * 0.06)}px Arial`;
-    ctx.textBaseline = 'top';
-    ctx.fillText('Join our community!', x + RESERVED_PX / 2, textY + Math.round(RESERVED_PX * 0.1));
-    ctx.fillText('lightmyfire.app', x + RESERVED_PX / 2, textY + Math.round(RESERVED_PX * 0.18));
-  } catch (error) {
-    console.error('Branding area error:', error);
-  }
-}
+// NOTE: drawBrandingArea function removed
+// The 3"×3" bottom-right reserved area is intentionally left empty/transparent
+// Branding will be printed on the physical sticker sheet background, not on the PNG
+// This allows for customizable branding for events, brands, etc.
 
 function roundRect(
   ctx: NodeCanvasContext,

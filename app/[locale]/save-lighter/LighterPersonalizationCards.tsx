@@ -107,6 +107,22 @@ export default function LighterPersonalizationCards({
     onSave(finalCustomizations, selectedLanguage);
   };
 
+  // Validation: Check if all required fields are filled
+  const isFormValid = () => {
+    if (useApplyAll) {
+      // Only need to validate the first lighter
+      const firstLighter = customizations[0];
+      return firstLighter.name.length >= 3 && firstLighter.name.length <= 16;
+    } else {
+      // Validate all lighters
+      return customizations.every(
+        (c) => c.name.length >= 3 && c.name.length <= 16
+      );
+    }
+  };
+
+  const canSave = isFormValid();
+
   // If useApplyAll, only show the first card
   const visibleCustomizations = useApplyAll ? [customizations[0]] : customizations;
 
@@ -283,11 +299,30 @@ export default function LighterPersonalizationCards({
         </ul>
       </div>
 
+      {/* Validation Warning */}
+      {!canSave && (
+        <div className="rounded-lg border border-yellow-500/50 bg-yellow-50 dark:bg-yellow-950/20 p-3">
+          <p className="text-sm text-yellow-800 dark:text-yellow-200 flex items-center gap-2">
+            <span>⚠️</span>
+            <span>
+              {useApplyAll
+                ? 'Please fill in the lighter name (3-16 characters) before continuing.'
+                : 'Please fill in all lighter names (3-16 characters each) before continuing.'}
+            </span>
+          </p>
+        </div>
+      )}
+
       {/* Save Button */}
       <button
         type="button"
         onClick={handleSave}
-        className="w-full btn-primary text-lg py-3 flex items-center justify-center gap-2 hover:shadow-lg transition-shadow"
+        disabled={!canSave}
+        className={`w-full text-lg py-3 flex items-center justify-center gap-2 transition-all ${
+          canSave
+            ? 'btn-primary hover:shadow-lg'
+            : 'bg-muted text-muted-foreground cursor-not-allowed opacity-60'
+        }`}
       >
         <span>💾</span>
         <span>Save Sticker Customizations</span>

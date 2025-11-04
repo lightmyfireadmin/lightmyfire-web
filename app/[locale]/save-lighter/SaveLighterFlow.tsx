@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useI18n } from '@/locales/client';
+import { useI18n, useCurrentLocale } from '@/locales/client';
 import LighterPersonalizationCards from './LighterPersonalizationCards';
 import StripePaymentForm from './StripePaymentForm';
 import StickerPreview from './StickerPreview';
@@ -41,6 +41,7 @@ const PACK_OPTIONS = [
 
 export default function SaveLighterFlow({ user }: { user: User }) {
   const t = useI18n();
+  const locale = useCurrentLocale();
   const [selectedPack, setSelectedPack] = useState<number | null>(null);
   const [customizations, setCustomizations] = useState<LighterCustomization[]>([]);
   const [selectedLanguage, setSelectedLanguage] = useState('en');
@@ -110,6 +111,29 @@ export default function SaveLighterFlow({ user }: { user: User }) {
                 </span>
               </button>
             ))}
+          </div>
+
+          {/* Custom Branding Contact Box */}
+          <div className="mt-8 rounded-lg border-2 border-primary/30 bg-primary/5 p-6">
+            <h3 className="text-xl font-semibold text-foreground mb-3 flex items-center gap-2">
+              <span>🎨</span>
+              Custom Branding for Events & Brands
+            </h3>
+            <p className="text-sm text-muted-foreground mb-4">
+              Planning an event or want custom branding on your sticker sheets? We can personalize the branding area for your organization, brand, or special event!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href="mailto:editionsrevel@gmail.com?subject=Custom%20Branding%20Request%20-%20LightMyFire&body=Hi!%20I'm%20interested%20in%20custom%20branding%20for%20my%20sticker%20order.%0A%0ADetails:%0A-%20Organization/Brand:%0A-%20Event%20(if%20applicable):%0A-%20Estimated%20quantity:%0A-%20Additional%20notes:%0A"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-md font-semibold hover:bg-primary/90 transition-colors"
+              >
+                <span>✉️</span>
+                Contact Us for Custom Branding
+              </a>
+              <div className="text-xs text-muted-foreground self-center">
+                editionsrevel@gmail.com
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -215,8 +239,8 @@ export default function SaveLighterFlow({ user }: { user: User }) {
             }))}
             shippingAddress={shippingAddress}
             onSuccess={(lighterIds) => {
-              // Redirect to success page
-              window.location.href = `/save-lighter/success?lighters=${lighterIds.join(',')}`;
+              // Redirect to success page with order details
+              window.location.href = `/${locale}/save-lighter/order-success?email=${encodeURIComponent(shippingAddress.email)}&count=${lighterIds.length}`;
             }}
           />
         </div>
