@@ -19,6 +19,8 @@ export default {
     'home.mosaic.title': 'Histórias do Mosaico',
     'home.mosaic.subtitle': 'Estes posts aleatórios foram adicionados por pessoas legais como você, que escolheram dar a um isqueiro mais uma história para contar. Os posts só aparecem aqui se você escolher.',
     'home.mosaic.no_stories': 'Nenhuma história pública ainda. Seja o primeiro a salvar um isqueiro!',
+  'home.mosaic.loading': 'Carregando...',
+  'home.mosaic.see_more': 'Ver Mais Histórias',
     'home.community.title': 'Junte-se à Comunidade!',
     'home.community.subtitle': 'Compartilhe suas histórias, descubra novas jornadas e conecte-se com LightSavers ao redor do mundo.',
     'home.become_lightsaver.title': 'Torne-se um LightSaver',
@@ -303,4 +305,17 @@ export default {
 
   // Change Pack
   'order.change_pack': '← Trocar pacote',
+
+  'language.en': 'English',
+  'language.fr': 'Français',
+  'language.es': 'Español',
+  'language.de': 'Deutsch',
+  'language.it': 'Italiano',
+  'language.pt': 'Português',
+  'language.nl': 'Nederlands',
+  'language.ru': 'Русский',
+  'language.pl': 'Polski',
+  'language.ja': '日本語',
+  'language.ko': '한국어',
+  'language.zh-CN': '中文',
   } as const;

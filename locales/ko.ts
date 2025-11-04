@@ -18,6 +18,8 @@ export default {
   'home.mosaic.title': '모자이크의 이야기',
   'home.mosaic.subtitle': '이 무작위 게시물은 당신과 같은 멋진 사람들이 추가했습니다. 그들은 라이터에게 또 다른 이야기를 들려주기로 선택했습니다. 게시물은 당신이 선택한 경우에만 여기에 나타납니다。',
   'home.mosaic.no_stories': '아직 공개된 이야기가 없습니다. 가장 먼저 라이터를 구해주세요！',
+  'home.mosaic.loading': '로딩 중...',
+  'home.mosaic.see_more': '더 많은 이야기 보기',
   'home.community.title': '커뮤니티에 가입하세요！',
   'home.community.subtitle': '이야기를 공유하고, 새로운 여정을 발견하고, 전 세계의 라이트세이버와 연결하세요。',
   'home.become_lightsaver.title': '라이트세이버가 되세요',

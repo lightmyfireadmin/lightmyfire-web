@@ -79,7 +79,7 @@ export default function AddPostForm({
   const [showModerationWarning, setShowModerationWarning] = useState(false);
 
   
-  const [songInputMode, setSongInputMode] = useState<'url' | 'search'>('url');
+  const [songInputMode, setSongInputMode] = useState<'url' | 'search'>('search');
   const [youtubeSearchQuery, setYoutubeSearchQuery] = useState('');
   const [youtubeSearchResults, setYoutubeSearchResults] = useState<YouTubeVideo[]>([]);
   const [youtubeSearchLoading, setYoutubeSearchLoading] = useState(false);
@@ -101,9 +101,13 @@ export default function AddPostForm({
     setYoutubeSearchLoading(true);
     setError('');
     try {
-      const response = await fetch(
-        `/api/youtube-search?q=${encodeURIComponent(query)}`
-      );
+      const response = await fetch('/api/youtube-search', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query }),
+      });
       const data = await response.json();
       if (data.error) {
         setError(`YouTube Search Error: ${data.error}`);
@@ -299,8 +303,8 @@ export default function AddPostForm({
         return (
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <button type="button" onClick={() => setSongInputMode('url')} className={`px-3 py-1 text-sm rounded-md ${songInputMode === 'url' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>URL</button>
               <button type="button" onClick={() => setSongInputMode('search')} className={`px-3 py-1 text-sm rounded-md ${songInputMode === 'search' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>Search</button>
+              <button type="button" onClick={() => setSongInputMode('url')} className={`px-3 py-1 text-sm rounded-md ${songInputMode === 'url' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>URL</button>
             </div>
             {songInputMode === 'url' ? (
               <input type="url" value={contentUrl} onChange={(e) => setContentUrl(e.target.value)} className={inputClass} placeholder="YouTube Song URL" required />
@@ -405,8 +409,8 @@ export default function AddPostForm({
               selected={postType === 'text'}
               onClick={() => setPostType('text')}
               icon="📝"
-              label="Poem"
-              subtitle="Story, Thought"
+              label="Text"
+              subtitle="Story, Thought, Poem"
               colorClass="border-blue-500 text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20"
             />
             <PostTypeButton
@@ -414,7 +418,7 @@ export default function AddPostForm({
               onClick={() => setPostType('song')}
               icon="🎵"
               label="Song"
-              subtitle="YouTube, Spotify"
+              subtitle="YouTube"
               colorClass="border-green-500 text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20"
             />
             <PostTypeButton

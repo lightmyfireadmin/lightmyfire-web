@@ -19,6 +19,8 @@ export default {
   'home.mosaic.title': 'Geschichten aus dem Mosaik',
   'home.mosaic.subtitle': 'Diese zufälligen Beiträge wurden von netten Leuten wie dir hinzugefügt, die einem Feuerzeug eine weitere Geschichte schenken wollten. Beiträge erscheinen hier nur, wenn du dies wählst.',
   'home.mosaic.no_stories': 'Noch keine öffentlichen Geschichten. Sei der Erste, der ein Feuerzeug rettet!',
+  'home.mosaic.loading': 'Laden...',
+  'home.mosaic.see_more': 'Mehr Geschichten sehen',
   'home.community.title': 'Tritt der Community bei!',
   'home.community.subtitle': 'Teile deine Geschichten, entdecke neue Reisen und verbinde dich mit LightSavers auf der ganzen Welt.',
   'home.become_lightsaver.title': 'Werde ein LightSaver',
@@ -304,4 +306,17 @@ export default {
 
   // Change Pack
   'order.change_pack': '← Paket ändern',
+
+  'language.en': 'English',
+  'language.fr': 'Français',
+  'language.es': 'Español',
+  'language.de': 'Deutsch',
+  'language.it': 'Italiano',
+  'language.pt': 'Português',
+  'language.nl': 'Nederlands',
+  'language.ru': 'Русский',
+  'language.pl': 'Polski',
+  'language.ja': '日本語',
+  'language.ko': '한국어',
+  'language.zh-CN': '中文',
 } as const;

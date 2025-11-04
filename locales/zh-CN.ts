@@ -18,6 +18,8 @@ export default {
   'home.mosaic.title': '来自马赛克的故事',
   'home.mosaic.subtitle': '这些随机的帖子是由像您一样的好心人添加的，他们选择给打火机再讲一个故事。只有在您选择的情况下，帖子才会出现在这里。',
   'home.mosaic.no_stories': '还没有公开的故事。成为第一个拯救打火机的人！',
+  'home.mosaic.loading': '加载中...',
+  'home.mosaic.see_more': '查看更多故事',
   'home.community.title': '加入社区！',
   'home.community.subtitle': '分享您的故事，发现新的旅程，并与世界各地的“点亮者”建立联系。',
   'home.become_lightsaver.title': '成为一名“点亮者”',

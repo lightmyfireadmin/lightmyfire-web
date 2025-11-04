@@ -19,6 +19,8 @@ export default {
     'home.mosaic.title': 'मोज़ेक से कहानियाँ',
     'home.mosaic.subtitle': 'ये रैंडम पोस्ट आप जैसे अच्छे लोगों द्वारा जोड़े गए हैं, जिन्होंने एक लाइटर को बताने के लिए एक और कहानी देना चुना। पोस्ट यहां तभी दिखाई देते हैं जब आप ऐसा चुनते हैं।',
     'home.mosaic.no_stories': 'अभी तक कोई सार्वजनिक कहानी नहीं है। लाइटर बचाने वाले पहले व्यक्ति बनें!',
+  'home.mosaic.loading': 'Loading...',
+  'home.mosaic.see_more': 'See More Stories',
     'home.community.title': 'समुदाय में शामिल हों!',
     'home.community.subtitle': 'अपनी कहानियाँ साझा करें, नई यात्राएँ खोजें, और दुनिया भर के LightSavers से जुड़ें।',
     'home.become_lightsaver.title': 'LightSaver बनें',

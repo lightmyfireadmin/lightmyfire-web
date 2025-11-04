@@ -18,6 +18,8 @@ export default {
   'home.mosaic.title': 'Historie z mozaiki',
   'home.mosaic.subtitle': 'Te losowe posty zostały dodane przez miłych ludzi, takich jak Ty, którzy postanowili dać zapalniczce jeszcze jedną historię do opowiedzenia. Posty pojawiają się tutaj tylko wtedy, gdy tak zdecydujesz。',
   'home.mosaic.no_stories': 'Brak jeszcze publicznych historii. Bądź pierwszy, który uratuje zapalniczkę！',
+  'home.mosaic.loading': 'Ładowanie...',
+  'home.mosaic.see_more': 'Zobacz Więcej Historii',
   'home.community.title': 'Dołącz do społeczności！',
   'home.community.subtitle': 'Dziel się swoimi historiami, odkrywaj nowe podróże i łącz się z LightSaverami na całym świecie。',
   'home.become_lightsaver.title': 'Zostań LightSaverem',
@@ -303,4 +305,17 @@ export default {
 
   // Change Pack
   'order.change_pack': '← Zmień pakiet',
+
+  'language.en': 'English',
+  'language.fr': 'Français',
+  'language.es': 'Español',
+  'language.de': 'Deutsch',
+  'language.it': 'Italiano',
+  'language.pt': 'Português',
+  'language.nl': 'Nederlands',
+  'language.ru': 'Русский',
+  'language.pl': 'Polski',
+  'language.ja': '日本語',
+  'language.ko': '한국어',
+  'language.zh-CN': '中文',
   } as const;

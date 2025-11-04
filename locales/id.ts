@@ -18,6 +18,8 @@ export default {
   'home.mosaic.title': 'Stories from the Mosaic',
   'home.mosaic.subtitle': 'These random posts were added by nice people like you, who chose to give a lighter one more story to tell. Posts appear here only if you choose so.',
   'home.mosaic.no_stories': 'No public stories yet. Be the first to save a lighter!',
+  'home.mosaic.loading': 'Loading...',
+  'home.mosaic.see_more': 'See More Stories',
   'home.community.title': 'Join the Community!',
   'home.community.subtitle': 'Share your stories, discover new journeys, and connect with LightSavers around the world.',
   'home.become_lightsaver.title': 'Become a LightSaver',

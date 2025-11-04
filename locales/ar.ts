@@ -18,6 +18,8 @@ export default {
   'home.mosaic.title': 'قصص من الفسيفساء',
   'home.mosaic.subtitle': 'تمت إضافة هذه المشاركات العشوائية من قبل أشخاص لطفاء مثلك، اختاروا منح ولاعة قصة أخرى لترويها. لا تظهر المشاركات هنا إلا إذا اخترت ذلك。',
   'home.mosaic.no_stories': 'لا توجد قصص عامة حتى الآن. كن أول من ينقذ ولاعة!',
+  'home.mosaic.loading': 'Loading...',
+  'home.mosaic.see_more': 'See More Stories',
   'home.community.title': 'انضم إلى المجتمع!',
   'home.community.subtitle': 'شارك قصصك، واكتشف رحلات جديدة، وتواصل مع منقذي الولاعات حول العالم。',
   'home.become_lightsaver.title': 'كن منقذًا للولاعات',

@@ -87,7 +87,7 @@ export default function FullStickerPreview({
   
   const textColor = getContrastTextColor(backgroundColor);
 
-  
+
   return (
     <div className="flex justify-center items-center p-4">
       <div
@@ -100,6 +100,17 @@ export default function FullStickerPreview({
           fontFamily: 'Helvetica, sans-serif',
         }}
       >
+        {}
+        <div className="absolute inset-0 pointer-events-none">
+          <Image
+            src="/newassets/sticker_bg_layer.png"
+            alt=""
+            width={200}
+            height={500}
+            className="w-full h-full object-cover opacity-30"
+          />
+        </div>
+
         {}
         <div className="absolute inset-0 p-3 flex flex-col items-center text-center">
           {}
@@ -147,7 +158,13 @@ export default function FullStickerPreview({
 
           {}
           <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center px-4" style={{ height: '60px', backgroundColor: '#FFF8F0' }}>
-            {}
+            <Image
+              src="/LOGOLONG.png"
+              alt="LightMyFire"
+              width={100}
+              height={40}
+              className="h-8 w-auto object-contain"
+            />
           </div>
         </div>
       </div>

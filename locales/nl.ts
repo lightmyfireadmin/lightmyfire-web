@@ -18,6 +18,8 @@ export default {
   'home.mosaic.title': 'Verhalen uit het mozaïek',
   'home.mosaic.subtitle': 'Deze willekeurige berichten zijn toegevoegd door aardige mensen zoals jij, die ervoor kozen om een aansteker nog een verhaal te geven. Berichten verschijnen hier alleen als je daarvoor kiest。',
   'home.mosaic.no_stories': 'Nog geen openbare verhalen. Wees de eerste die een aansteker redt！',
+  'home.mosaic.loading': 'Laden...',
+  'home.mosaic.see_more': 'Meer Verhalen Bekijken',
   'home.community.title': 'Word lid van de community！',
   'home.community.subtitle': 'Deel je verhalen, ontdek new journeys en kom in contact met LightSavers over de hele wereld。',
   'home.become_lightsaver.title': 'Word een LightSaver',
@@ -347,4 +349,17 @@ export default {
 
   // Change Pack
   'order.change_pack': '← Pakket wijzigen',
+
+  'language.en': 'English',
+  'language.fr': 'Français',
+  'language.es': 'Español',
+  'language.de': 'Deutsch',
+  'language.it': 'Italiano',
+  'language.pt': 'Português',
+  'language.nl': 'Nederlands',
+  'language.ru': 'Русский',
+  'language.pl': 'Polski',
+  'language.ja': '日本語',
+  'language.ko': '한국어',
+  'language.zh-CN': '中文',
   } as const;

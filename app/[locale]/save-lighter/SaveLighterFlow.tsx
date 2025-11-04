@@ -6,6 +6,7 @@ import LighterPersonalizationCards from './LighterPersonalizationCards';
 import StripePaymentForm from './StripePaymentForm';
 import StickerPreview from './StickerPreview';
 import ShippingAddressForm, { type ShippingAddress } from './ShippingAddressForm';
+import ContactFormModal from '@/app/components/ContactFormModal';
 import type { User } from '@supabase/supabase-js';
 
 interface LighterCustomization {
@@ -46,6 +47,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
   const [customizations, setCustomizations] = useState<LighterCustomization[]>([]);
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress | null>(null);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const PACK_OPTIONS = getPackOptions(t);
 
@@ -124,18 +126,13 @@ export default function SaveLighterFlow({ user }: { user: User }) {
             <p className="text-sm text-muted-foreground mb-4">
               Planning an event or want custom branding on your sticker sheets? We can personalize the branding area for your organization, brand, or special event!
             </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a
-                href="mailto:editionsrevel@gmail.com?subject=Custom%20Branding%20Request%20-%20LightMyFire&body=Hi!%20I'm%20interested%20in%20custom%20branding%20for%20my%20sticker%20order.%0A%0ADetails:%0A-%20Organization/Brand:%0A-%20Event%20(if%20applicable):%0A-%20Estimated%20quantity:%0A-%20Additional%20notes:%0A"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-md font-semibold hover:bg-primary/90 transition-colors"
-              >
-                <span>✉️</span>
-                Contact Us for Custom Branding
-              </a>
-              <div className="text-xs text-muted-foreground self-center">
-                editionsrevel@gmail.com
-              </div>
-            </div>
+            <button
+              onClick={() => setIsContactModalOpen(true)}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-md font-semibold hover:bg-primary/90 transition-colors"
+            >
+              <span>✉️</span>
+              {t('order.custom_branding.button')}
+            </button>
           </div>
         </div>
       )}
@@ -262,6 +259,12 @@ export default function SaveLighterFlow({ user }: { user: User }) {
           </button>
         </div>
       )}
+
+      <ContactFormModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        context="custom_branding"
+      />
     </div>
   );
 }

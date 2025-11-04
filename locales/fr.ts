@@ -19,6 +19,8 @@ export default {
   'home.mosaic.title': 'Histoires de la mosaïque',
   'home.mosaic.subtitle': 'Ces posts aléatoires ont été ajoutés par des gens sympas comme toi, qui ont donné à un briquet une histoire de plus à raconter. Ils n\'apparaissent ici que si tu le choisis.',
   'home.mosaic.no_stories': 'Pas encore d\'histoires publiques. Sois le premier à sauver un briquet !',
+  'home.mosaic.loading': 'Chargement...',
+  'home.mosaic.see_more': 'Voir Plus d\'Histoires',
   'home.community.title': 'Rejoins la communauté !',
   'home.community.subtitle': 'Partage tes histoires, découvre de nouvelles aventures et connecte-toi avec les LightSavers du monde entier.',
   'home.become_lightsaver.title': 'Deviens un LightSaver',
@@ -666,4 +668,17 @@ export default {
 
   // Change Pack
   'order.change_pack': '← Changer de pack',
+
+  'language.en': 'English',
+  'language.fr': 'Français',
+  'language.es': 'Español',
+  'language.de': 'Deutsch',
+  'language.it': 'Italiano',
+  'language.pt': 'Português',
+  'language.nl': 'Nederlands',
+  'language.ru': 'Русский',
+  'language.pl': 'Polski',
+  'language.ja': '日本語',
+  'language.ko': '한국어',
+  'language.zh-CN': '中文',
 } as const;

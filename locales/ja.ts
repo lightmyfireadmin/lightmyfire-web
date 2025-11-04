@@ -18,6 +18,8 @@ export default {
   'home.mosaic.title': 'モザイクからの物語',
   'home.mosaic.subtitle': 'これらのランダムな投稿は、あなたのような素敵な人々によって追加されました。彼らはライターにもう一つの物語を語らせることを選びました。投稿は、あなたがそう選択した場合にのみここに表示されます。',
   'home.mosaic.no_stories': 'まだ公開された物語はありません。最初にライターを救いましょう！',
+  'home.mosaic.loading': '読み込み中...',
+  'home.mosaic.see_more': 'もっと見る',
   'home.community.title': 'コミュニティに参加しよう！',
   'home.community.subtitle': 'あなたの物語を共有し、新しい旅を発見し、世界中のライトセーバーとつながりましょう。',
   'home.become_lightsaver.title': 'ライトセーバーになる',

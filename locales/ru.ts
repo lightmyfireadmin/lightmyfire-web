@@ -18,6 +18,8 @@ export default {
   'home.mosaic.title': 'Истории из мозаики',
   'home.mosaic.subtitle': 'Эти случайные посты были добавлены такими же хорошими людьми, как вы, которые решили дать зажигалке еще одну историю. Посты появляются здесь, только если вы этого захотите。',
   'home.mosaic.no_stories': 'Пока нет общедоступных историй. Будьте первым, кто спасет зажигалку！',
+  'home.mosaic.loading': 'Загрузка...',
+  'home.mosaic.see_more': 'Посмотреть больше историй',
   'home.community.title': 'Присоединяйтесь к сообществу！',
   'home.community.subtitle': 'Делитесь своими историями, открывайте новые путешествия и общайтесь с ЛайтСейверами по всему миру。',
   'home.become_lightsaver.title': 'Стать ЛайтСейвером',
@@ -303,4 +305,17 @@ export default {
 
   // Change Pack
   'order.change_pack': '← Изменить пакет',
+
+  'language.en': 'English',
+  'language.fr': 'Français',
+  'language.es': 'Español',
+  'language.de': 'Deutsch',
+  'language.it': 'Italiano',
+  'language.pt': 'Português',
+  'language.nl': 'Nederlands',
+  'language.ru': 'Русский',
+  'language.pl': 'Polski',
+  'language.ja': '日本語',
+  'language.ko': '한국어',
+  'language.zh-CN': '中文',
   } as const;
