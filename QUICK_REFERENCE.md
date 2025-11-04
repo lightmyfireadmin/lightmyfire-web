@@ -1,330 +1,245 @@
-# LightMyFire - Quick Reference Guide
+# Asset Usage Quick Reference Guide
 
-## Directory Tree (Simplified)
+## Used Assets Summary (31 Total)
 
+### Critical Assets (Used Multiple Times)
+| Asset | Uses | Primary Purpose |
+|-------|------|-----------------|
+| LOGOLONG.png | 4 | Branding (Header, PDF, Printful API, Sticker Generation) |
+| around_the_world.png | 3 | Homepage, About page, Pin entry form |
+| telling_stories.png | 3 | Content creation prompts across pages |
+
+### Icon/Illustration Assets (Used Once or Twice)
+| Asset | Uses | Purpose |
+|-------|------|---------|
+| personalise.png | 2 | Customization prompts |
+| thumbs_up.png | 2 | Engagement prompts |
+| sticker_bg_layer.png | 2 | Sticker background template |
+
+### Trophy System Assets (All in TrophyList.tsx)
+| Asset | Purpose |
+|-------|---------|
+| chronicles_trophy.png | Story collection achievement |
+| collector_trophy.png | Lighter collection achievement |
+| community_builder_trophy.png | Community contribution |
+| epic_saga_trophy.png | Major milestone |
+| fire_starter_trophy.png | Community founder |
+| globe_trotter_trophy.png | Global participation |
+| musician_trophy.png | Music/content creation |
+| photographer_trophy.png | Photography achievement |
+| popular_contributor_trophy.png | Popular creator |
+| story_teller_trophy.png | Storytelling achievement |
+
+### Disposal/Refill Information Assets
+Used in: /app/[locale]/dont-throw-me-away/page.tsx
+
+| Asset | Type |
+|-------|------|
+| butane_refill_process.png | Process diagram |
+| butane_refillable.png | Lighter type indicator |
+| non_refillable.png | Lighter type indicator |
+| gasoline_refill_process.png | Process diagram |
+| gasoline_refillable.png | Lighter type indicator |
+
+### Save Lighter Flow Assets
+Used in: /app/[locale]/save-lighter/page.tsx
+
+| Asset | Purpose |
+|-------|---------|
+| act_for_planet.png | Eco-badge |
+| creative_lighter.png | Lighter variant |
+| human_mosaic.png | Community feature |
+| sustainable_lighter.png | Lighter variant |
+
+### System Assets
+| Asset | Uses | Purpose |
+|-------|------|---------|
+| bgtile.png | 1 | Background tile in CSS |
+| loading.gif | 2 | Loading indicator |
+| webclip.png | 1 | Web app icon metadata |
+| CTA_rainbow_arrow.png | 1 | Call-to-action button |
+| assistance_questions.png | 1 | FAQ section |
+| dreaming_hoping.png | 1 | Empty state illustration |
+
+---
+
+## Unused Assets Summary (29 Total)
+
+### Root Level - Logo Variants (7 unused)
+**Status:** CANDIDATES FOR REMOVAL
 ```
-lightmyfire-web/
-├── app/                          ← Next.js pages & API routes
-│   ├── [locale]/                 ← All pages prefixed with /en, /fr, /de, /es
-│   │   ├── page.tsx              ← Homepage
-│   │   ├── layout.tsx            ← Main layout (Header, Footer, ToastWrapper)
-│   │   ├── login/                ← Authentication
-│   │   ├── save-lighter/         ← Save lighter flow (3 step wizard)
-│   │   ├── lighter/[id]/         ← Lighter detail page
-│   │   ├── lighter/[id]/add/     ← Add post form
-│   │   ├── find/                 ← Find lighter by PIN
-│   │   ├── my-profile/           ← User profile dashboard
-│   │   ├── about/                ← About page
-│   │   ├── legal/                ← Legal pages (FAQ, Privacy, Terms)
-│   │   ├── dont-throw-me-away/   ← Refill guide
-│   │   ├── moderation/           ← Moderation dashboard
-│   │   └── globals.css           ← Global Tailwind styles
-│   ├── api/                      ← Server-side API routes
-│   │   ├── create-payment-intent/ ← Stripe integration
-│   │   └── youtube-search/       ← YouTube API proxy
-│   └── components/               ← Reusable UI components (22 total)
-│
-├── lib/                          ← Business logic & utilities
-│   ├── supabase.ts              ← Supabase client config
-│   ├── types.ts                 ← TypeScript interfaces
-│   ├── constants.ts             ← Magic strings & config values
-│   ├── context/                 ← Context providers (Toast)
-│   ├── hooks/                   ← Custom React hooks
-│   └── services/                ← Business logic services
-│
-├── locales/                      ← Internationalization (i18n)
-│   ├── config.ts               ← i18n configuration
-│   ├── en.ts, fr.ts, de.ts, etc. ← Translation files
-│   ├── client.ts               ← Client-side i18n hooks
-│   └── server.ts               ← Server-side i18n functions
-│
-├── public/                       ← Static assets
-│   ├── LOGOLONG.png, LOGOSMALL.png
-│   ├── illustrations/            ← Hero images & decorations
-│   ├── flags/                   ← Country flag SVGs (256)
-│   └── bgtile.png              ← Background pattern
-│
-├── supabase/                     ← Database configuration
-│   └── migrations/              ← DB migrations
-│
-├── middleware.ts                 ← Next.js i18n + auth middleware
-├── next.config.js               ← Next.js config
-├── tailwind.config.js           ← Tailwind CSS config with custom colors
-├── tsconfig.json                ← TypeScript config
-└── package.json                 ← Dependencies
+LOGOSMALL.png              (Old version)
+NEWLOGOLONG.png            (Superseded by LOGOLONG.png)
+NEWLOGOLONG2.png           (Superseded by LOGOLONG.png)
+NEWLOGOSMALL.png           (Old version)
+LOOOOGO.png                (Old version)
+LIGHTMYFIRE.png            (Branding variant)
+```
+
+### Root Level - Mascot/Smile Assets (2 unused)
+**Status:** CANDIDATES FOR REMOVAL
+```
+66c0f160cdd922093cbdb82c_SMILE.png  (Hashed filename - legacy)
+SMILE.png                            (Duplicate mascot)
+```
+
+### Root Level - Other Images (4 unused)
+**Status:** VERIFY BEFORE REMOVAL
+```
+SEE1.png                   (Purpose unclear)
+circle-scatter-haikei.png  (Background pattern?)
+favicon.png                (Favicon - verify actual usage)
+seethrough.png             (Purpose unclear)
+```
+
+### SVG Files (3 unused)
+**Status:** VERIFY BUILD PROCESS
+```
+file.svg                   (Icon asset?)
+globe.svg                  (Icon asset?)
+next.svg                   (Next.js placeholder?)
+vercel.svg                 (Vercel placeholder?)
+window.svg                 (Icon asset?)
+```
+
+### Illustrations Folder - Trophy Variants (4 unused)
+**Status:** REPLACED BY NEWASSETS VERSIONS
+```
+trophy_community_light.png      (→ community_builder_trophy.png)
+trophy_first_spark.png          (→ fire_starter_trophy.png)
+trophy_master_alchemist.png     (→ No direct replacement)
+trophy_storyteller.png          (→ story_teller_trophy.png)
+```
+
+### Illustrations Folder - Community/Social (3 unused)
+**Status:** ABANDONED FEATURE ASSETS
+```
+big_group.png              (Community gathering)
+commenting.png             (Discussion feature)
+community.png              (Community hub)
+```
+
+### Illustrations Folder - Other (5 unused)
+**Status:** ABANDONED ASSETS
+```
+confused.png               (Error/help state)
+flame_item.png             (Product feature)
+presentation_card.png      (Card design)
+sharing.png                (Social sharing)
+variety.png                (Product showcase)
+```
+
+### Other Files (1 unused)
+```
+refilling-butane-lighter.jpg   (Reference/help image)
 ```
 
 ---
 
-## Key Files by Task
+## Folder-by-Folder Analysis
 
-### Frontend Components & Pages
-- **Header**: `/app/components/Header.tsx` (z-50 mobile menu Dialog)
-- **Footer**: `/app/components/Footer.tsx`
-- **Navigation**: Uses `useCurrentLocale()` for language-aware links
-- **Responsive**: Tailwind breakpoints: `sm:`, `md:`, `lg:`
+### /public (Root)
+- **Used:** 3 files (bgtile.png, LOGOLONG.png, webclip.png)
+- **Unused:** 13 files
+- **Status:** Consolidate logos, remove duplicates
+- **Action:** Move active content to subfolders
 
-### Styling
-- **Global Styles**: `/app/globals.css`
-- **Tailwind Config**: `/tailwind.config.js`
-- **Colors**: Primary: `#B400A3` (magenta), Secondary: `#D7F2D4` (green)
-- **Fonts**: Nunito Sans (body), Poppins (headings)
-- **Button Classes**: `.btn-primary`, `.btn-secondary`
+### /public/illustrations/
+- **Used:** 8 files
+- **Unused:** 15 files
+- **Status:** Archive to separate folder
+- **Action:** Keep active illustrations, move old ones to archive
 
-### Translations & Internationalization
-- **Config**: `/locales/config.ts` (locales: en, fr, de, es)
-- **Usage (Server)**: `const t = await getI18n(); t('key.path')`
-- **Usage (Client)**: `const t = useI18n(); t('key.path')`
-- **Translation Files**: `/locales/[locale].ts`
+### /public/newassets/
+- **Used:** 20 files
+- **Unused:** 0 files
+- **Status:** EXCELLENT - Well organized
+- **Action:** No cleanup needed
 
-### Database & Supabase
-- **Client Init**: `/lib/supabase.ts` (browser client)
-- **Server Auth**: middleware.ts and page layouts
-- **RPC Functions**: CreateNewPost, CreateNewLighter, ToggleLike, FlagPost
-- **Storage Bucket**: `post-images`
-- **Session Handling**: Cookie-based with Supabase SSR
-
-### API Routes
-- **YouTube Search**: `/app/api/youtube-search/route.ts` (GET)
-- **Stripe Payments**: `/app/api/create-payment-intent/route.ts` (POST)
-- **Security**: YOUTUBE_API_KEY is server-side only (NOT public)
-
-### Types & Constants
-- **Data Types**: `/lib/types.ts` (DetailedPost, Trophy, MyPostWithLighter)
-- **RPC Functions**: `/lib/constants.ts` (RPC_FUNCTIONS, POST_TYPES, PIN_CONFIG)
-- **File Upload**: Max 2MB, accepted: png/jpg/gif
-- **PIN Format**: 6 characters, displayed as "ABC-123" (hyphen at position 3)
+### /public/flags/
+- **Status:** Excluded from report (dynamic references)
 
 ---
 
-## Common Fixes Checklist
+## By Feature Usage
 
-### Bug: Styling/Layout Issues
-- [ ] Check `/app/globals.css` for CSS issues
-- [ ] Check `tailwind.config.js` for color/font definitions
-- [ ] Check component's className (Tailwind syntax)
-- [ ] Test with `sm:`, `md:`, `lg:` responsive classes
-- [ ] Check z-index for overlays (use `z-50` for modals)
+### Trophy/Achievement System
+- Component: `/app/[locale]/my-profile/TrophyList.tsx`
+- Assets Required: 10 PNG files from newassets/
+- Status: All assets present and accounted for
 
-### Bug: Translation Missing/Wrong
-- [ ] Check all 4 translation files: en.ts, fr.ts, de.ts, es.ts
-- [ ] Ensure key path matches usage: `t('section.subsection.key')`
-- [ ] Don't forget to add to ALL active languages
-- [ ] Test on page with `/en/`, `/fr/`, `/de/`, `/es/` prefix
+### Sticker/Lighter Customization
+- Components: `/app/[locale]/save-lighter/` (3 components)
+- Assets Required: 5 images (lighter variants, eco-badges, background layer)
+- Status: All assets in use
 
-### Bug: Page Not Loading / 404
-- [ ] Check file location: `/app/[locale]/[route]/page.tsx`
-- [ ] Verify route includes locale parameter in path
-- [ ] Check middleware.ts route matcher
-- [ ] Ensure page exports `export default` function
+### Sustainability Information
+- Page: `/app/[locale]/dont-throw-me-away/page.tsx`
+- Assets Required: 5 process/type indicators
+- Status: All assets in use
 
-### Bug: API Error / Data Not Showing
-- [ ] Check Supabase RPC function call in component
-- [ ] Verify session exists: `const { data: { session } } = await supabase.auth.getSession()`
-- [ ] Check response data structure matches `DetailedPost` type
-- [ ] Verify user exists in profiles table (FK constraint)
-- [ ] Check browser DevTools for network errors
+### Homepage/Landing
+- Page: `/app/[locale]/page.tsx`
+- Assets Required: 5 illustrations
+- Status: All assets in use
 
-### Bug: Mobile Menu / Dialog Not Working
-- [ ] Check Dialog import: `from '@headlessui/react'`
-- [ ] Verify state: `const [mobileMenuOpen, setMobileMenuOpen] = useState(false)`
-- [ ] Check z-index: Should be `z-50` or higher
-- [ ] Check Transition wrapper around dialog content
-- [ ] Verify button click handler sets state: `onClick={() => setMobileMenuOpen(true)}`
-
-### Bug: Form Submission Error
-- [ ] Check form has `onSubmit` handler
-- [ ] Verify input values are captured correctly
-- [ ] Check Supabase RPC call has all required parameters
-- [ ] Verify user_id is passed to backend
-- [ ] Check for foreign key constraint violations
-- [ ] Look for error toasts in browser
+### User Profiles
+- Components: My profile, My posts list, Lighter details
+- Assets Required: Illustrations for storytelling, content prompts
+- Status: All assets in use
 
 ---
 
-## Component Usage Examples
+## Storage Impact
 
-### Using Translations
-```tsx
-// Server Component
-const t = await getI18n();
-<h1>{t('home.hero.title')}</h1>
+### Estimated Space Savings (If Removed)
+- Unused root logos: ~2.5 MB
+- Unused illustrations folder: ~4-5 MB
+- Old SVG variants: minimal
+- **Total Potential Savings: ~6-7 MB**
 
-// Client Component
-'use client';
-const t = useI18n();
-const lang = useCurrentLocale();
-<Link href={`/${lang}/save-lighter`}>
-  {t('nav.save_lighter')}
-</Link>
-```
-
-### Using Supabase (Server)
-```tsx
-const supabase = createServerClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-  { cookies: { /* ... */ } }
-);
-const { data: { session } } = await supabase.auth.getSession();
-```
-
-### Using Supabase (Client)
-```tsx
-'use client';
-import { supabase } from '@/lib/supabase';
-const { data, error } = await supabase.rpc('create_new_post', {
-  p_lighter_id: '...',
-  p_post_type: 'text',
-  // ... other params
-});
-```
-
-### Toast Notifications
-```tsx
-'use client';
-import { useToast } from '@/lib/context/ToastContext';
-const { showToast } = useToast();
-showToast('Success!', 'success');
-showToast('Error', 'error');
-```
-
-### Responsive Layout
-```tsx
-{/* Hidden on mobile, shown on lg+ */}
-<div className="hidden lg:flex lg:gap-x-8">
-  Navigation items
-</div>
-
-{/* Shown on mobile, hidden on lg+ */}
-<div className="flex lg:hidden">
-  Burger menu button
-</div>
-```
+### Current Usage
+- Active newassets: ~1-2 MB (all needed)
+- Active illustrations: ~500 KB (all needed)
+- Critical root assets: ~150 KB (LOGOLONG.png required)
 
 ---
 
-## Code Structure Patterns
+## Migration Priority
 
-### Page Components (Server)
-```tsx
-export const dynamic = 'force-dynamic'; // Always fetch fresh data
-export default async function MyPage({ params: { locale } }) {
-  const t = await getI18n();
-  const cookieStore = cookies();
-  const supabase = createServerClient(...);
-  const { data: { session } } = await supabase.auth.getSession();
-  
-  return <div>{/* JSX */}</div>;
-}
-```
+### Phase 1 (Immediate) - No Risk
+- Create archive directory for old illustrations
+- Back up unused assets before deletion
+- Document removed assets for reference
 
-### Client Components
-```tsx
-'use client';
-import { useI18n, useCurrentLocale } from '@/locales/client';
-export default function MyComponent() {
-  const t = useI18n();
-  const lang = useCurrentLocale();
-  
-  return <div>{/* JSX */}</div>;
-}
-```
+### Phase 2 (1-2 weeks) - Consolidate
+- Verify no hardcoded paths to old logo variants
+- Update any documentation using old filenames
+- Consolidate logo files to single primary version
 
-### Reusable Components
-- Located in `/app/components/`
-- Accept props for customization
-- Use TypeScript for type safety
-- Support both server and client use
+### Phase 3 (3-4 weeks) - Optimize
+- Reorganize public/ folder structure
+- Update import statements if needed
+- Verify no build-time image references
+
+### Phase 4 (Ongoing) - Monitor
+- Add asset auditing to CI/CD pipeline
+- Run this report quarterly
+- Document new assets as they're added
 
 ---
 
-## Testing Checklist
+## Checklist for Safe Cleanup
 
-### Before Committing
-- [ ] All 4 languages work: /en, /fr, /de, /es
-- [ ] Mobile responsive (test with DevTools mobile view)
-- [ ] Links use correct locale prefix: `/${locale}/path`
-- [ ] No console errors or warnings
-- [ ] Forms submit without errors
-- [ ] Database queries return expected data
-- [ ] Images load correctly
-- [ ] Animations smooth (no janky transitions)
-- [ ] Accessibility: Tab navigation works, ARIA labels present
-
----
-
-## Deploy Notes
-
-### Production Build
-```bash
-npm run build   # Creates .next folder
-npm start       # Serves production build
-```
-
-### Environment Variables
-Ensure these are set before deploy:
-- NEXT_PUBLIC_SUPABASE_URL
-- NEXT_PUBLIC_SUPABASE_ANON_KEY
-- YOUTUBE_API_KEY (server-only, hidden from client)
-
-### Deployment Platforms
-- Next.js runs on: Vercel (native), Netlify, Railway, etc.
-- Database: Supabase (PostgreSQL)
-- Static files: Served from `/public` directory
+Before removing any unused assets:
+- [ ] Verify asset is NOT in git history (if tracking)
+- [ ] Confirm no hardcoded paths exist
+- [ ] Check build configuration files
+- [ ] Search entire codebase one more time
+- [ ] Backup asset before deletion
+- [ ] Update documentation
+- [ ] Test full build process
+- [ ] Verify production deployment
 
 ---
-
-## Documentation Files in Project
-
-| File | Purpose |
-|------|---------|
-| **CODEBASE_STRUCTURE.md** | Detailed architecture overview |
-| **CRITICAL_BUGS.md** | Known blocking issues |
-| **REMAINING_FIXES_SESSION2.md** | Current todo items |
-| **FEATURE_REQUESTS_COMPREHENSIVE.md** | Planned features |
-| **IMPLEMENTATION_GUIDE.md** | Technical deep-dive |
-| **YOUTUBE_API_SETUP.md** | YouTube integration guide |
-| **README.md** | Project overview |
-
----
-
-## Key Technologies
-
-- **Framework**: Next.js 14.2.5
-- **Language**: TypeScript 5
-- **UI**: React 18 + Headless UI + Heroicons
-- **Styling**: Tailwind CSS 3.4.4
-- **Database**: Supabase (PostgreSQL)
-- **Auth**: Supabase Auth + SSR cookies
-- **i18n**: next-international
-- **Data Fetching**: TanStack React Query
-- **Maps**: Leaflet + React Leaflet
-- **File Upload**: Supabase Storage
-- **Payment**: Stripe (API route wrapper)
-
----
-
-## Quick Command Reference
-
-```bash
-# Development
-npm run dev          # Start dev server on localhost:3000
-
-# Build
-npm run build        # Compile for production
-npm start            # Run production server
-
-# Linting
-npm run lint         # Check code quality
-
-# File Editing
-code .               # Open in VS Code
-ls -la lightmyfire-web/  # See structure
-
-# Git
-git status           # Check uncommitted changes
-git add .            # Stage changes
-git commit -m "msg"  # Create commit
-```
 

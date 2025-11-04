@@ -58,12 +58,12 @@ export default function SignupWelcomeModal() {
   const searchParams = useSearchParams();
   const [isVisible, setIsVisible] = useState(false);
 
-  // Get translations for current locale, fallback to English
+  
   const translations = signupWelcomeTranslations[locale] || signupWelcomeTranslations.en;
   const t = (key: string) => translations[key as keyof typeof translations] || signupWelcomeTranslations.en[key as keyof typeof signupWelcomeTranslations.en];
 
   useEffect(() => {
-    // Show modal only on signup_success
+    
     if (searchParams.get('signup_success') === 'true') {
       setIsVisible(true);
     }
@@ -78,7 +78,7 @@ export default function SignupWelcomeModal() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
       <div className="bg-background rounded-lg shadow-lg max-w-sm w-full max-h-[90vh] overflow-y-auto">
-        {/* Header */}
+        {}
         <div className="sticky top-0 bg-primary text-white px-6 py-4 flex items-center justify-between border-b border-border">
           <h2 className="text-xl font-bold">
             🎉 {t('title')}
@@ -92,13 +92,13 @@ export default function SignupWelcomeModal() {
           </button>
         </div>
 
-        {/* Content */}
+        {}
         <div className="px-6 py-6 space-y-4">
           <p className="text-foreground text-sm leading-relaxed">
             {t('subtitle')}
           </p>
 
-          {/* Quick Actions */}
+          {}
           <div className="space-y-2">
             <h3 className="font-semibold text-foreground text-sm">
               {t('quick_actions')}
@@ -119,7 +119,7 @@ export default function SignupWelcomeModal() {
             </ul>
           </div>
 
-          {/* CTA Buttons */}
+          {}
           <div className="flex flex-col gap-2 pt-2">
             <Link
               href={`/${locale}/save-a-lighter`}

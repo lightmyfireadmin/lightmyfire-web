@@ -18,13 +18,13 @@ export default function LanguageSwitcher() {
   const pathname = usePathname();
 
   const handleLocaleChange = (newLocale: string) => {
-    // Replace the current locale in the pathname with the new one
-    // segments[0] is empty (before the first /), segments[1] is the locale
+    
+    
     const segments = pathname.split('/');
     segments[1] = newLocale;
     const newPathname = segments.join('/');
 
-    // Push to the new pathname, preserving the current page
+    
     router.push(newPathname);
   };
 

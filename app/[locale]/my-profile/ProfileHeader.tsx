@@ -12,10 +12,9 @@ interface ProfileHeaderProps {
   role: string | null;
 }
 
-// Helper functions to calculate progression
 function getTotalPointsForLevel(level: number): number {
   if (level <= 1) return 0;
-  let total = 50; // Points for level 1
+  let total = 50; 
   for (let i = 2; i <= level; i++) {
     total += Math.floor(Math.pow(i, 1.3) * 50);
   }
@@ -27,10 +26,6 @@ function getPointsForNextLevel(currentLevel: number): number {
   return Math.floor(Math.pow(currentLevel + 1, 1.3) * 50);
 }
 
-/**
- * Profile Header Component
- * Displays user profile information with moderator badge and level progress
- */
 export default function ProfileHeader({
   username,
   level,
@@ -52,7 +47,7 @@ export default function ProfileHeader({
         <ModeratorBadge role={role} />
       </div>
 
-      {/* Level and Points Row */}
+      {}
       <div className="flex items-center gap-2 mb-4">
         <div>
           <p className="text-sm font-semibold text-foreground">
@@ -61,7 +56,7 @@ export default function ProfileHeader({
           <p className="text-xs text-muted-foreground">{points ?? 0} Points</p>
         </div>
 
-        {/* Level Help Tooltip */}
+        {}
         <div className="relative">
           <button
             onMouseEnter={() => setShowLevelTooltip(true)}
@@ -88,7 +83,7 @@ export default function ProfileHeader({
         </div>
       </div>
 
-      {/* Level Progress Bar - Compact, no extra height */}
+      {}
       {level < 100 && (
         <div className="mb-2 mt-2">
           <div className="relative w-full h-1.5 bg-muted rounded-full overflow-hidden border border-border/50">
@@ -105,7 +100,7 @@ export default function ProfileHeader({
         </div>
       )}
 
-      {/* Max Level Badge */}
+      {}
       {level >= 100 && (
         <div className="mb-6 p-3 rounded-lg bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20">
           <p className="text-sm font-semibold text-yellow-600">🏆 Max Level Achieved!</p>

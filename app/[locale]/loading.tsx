@@ -8,7 +8,7 @@ export default function Loading() {
         alt="Loading..."
         width={100}
         height={100}
-        unoptimized={true} // GIFs are not optimized by next/image by default
+        unoptimized={true} 
       />
     </div>
   );

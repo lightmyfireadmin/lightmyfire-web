@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
+import { rateLimit } from '@/lib/rateLimit';
 
-// Mark this route as dynamic to prevent build-time execution
 export const dynamic = 'force-dynamic';
 
 interface ModerationRequest {
@@ -32,13 +32,20 @@ interface ModerationResult {
  */
 export async function POST(request: NextRequest) {
   try {
-    // Initialize OpenAI at request time
+    const body = await request.json() as ModerationRequest;
+    const { imageUrl, imageBase64, userId, contentType = 'general' } = body;
+
+    const rateLimitResult = rateLimit(request, 'moderation', userId);
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        { error: 'Too many moderation requests. Please try again later.' },
+        { status: 429 }
+      );
+    }
+
     const openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
     });
-
-    const body = await request.json() as ModerationRequest;
-    const { imageUrl, imageBase64, userId, contentType = 'general' } = body;
 
     if (!userId || typeof userId !== 'string') {
       return NextResponse.json(

@@ -1,6 +1,6 @@
 'use client';
 
-import { supabase } from '@/lib/supabase'; // Assuming lib is at root
+import { supabase } from '@/lib/supabase'; 
 import { useRouter } from 'next/navigation';
 import { useI18n } from '@/locales/client';
 import { useToast } from '@/lib/context/ToastContext';

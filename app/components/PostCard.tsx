@@ -1,8 +1,7 @@
 'use client';
 
-import { DetailedPost } from '@/lib/types'; // Assuming lib is at root
-// **IMPORTANT**: Adjust these paths based on PostCard's location relative to the buttons
-// If PostCard is in app/components, and buttons are in app/lighter/[id], this should be correct:
+import { DetailedPost } from '@/lib/types'; 
+
 import LikeButton from './LikeButton';
 import FlagButton from './FlagButton';
 import ModeratorBadge from './ModeratorBadge';
@@ -16,9 +15,8 @@ import {
   MapPinIcon,
   FireIcon
 } from '@heroicons/react/24/outline';
-import React from 'react'; // Import React for IconComponent type
+import React from 'react'; 
 
-// Helper function to get YouTube embed ID
 function getYouTubeEmbedId(url: string | null): string | null {
     if (!url) return null;
     let videoId = '';
@@ -35,7 +33,6 @@ function getYouTubeEmbedId(url: string | null): string | null {
     }
 }
 
-// Map post types to icons
 const iconMap: { [key in DetailedPost['post_type']]: React.ElementType } = {
     text: ChatBubbleBottomCenterTextIcon,
     image: PhotoIcon,
@@ -43,7 +40,6 @@ const iconMap: { [key in DetailedPost['post_type']]: React.ElementType } = {
     song: MusicalNoteIcon,
     refuel: FireIcon,
 };
-
 
 export default function PostCard({
   post,
@@ -55,7 +51,7 @@ export default function PostCard({
   isMini?: boolean;
 }) {
   const t = useI18n();
-  // REMOVED the diagnostic line: return <FireIcon ... />;
+  
 
   let embedId: string | null = null;
   if (post.post_type === 'song' && post.content_url) {
@@ -66,7 +62,7 @@ export default function PostCard({
   const isRefuelPost = post.post_type === 'refuel';
 
   return (
-    // Apply conditional border color classes directly using ternaries
+    
     <div className={`
       relative rounded-lg border border-border bg-background shadow-sm overflow-hidden border-l-4
       ${post.post_type === 'text' ? 'border-blue-500' : ''}
@@ -79,10 +75,10 @@ export default function PostCard({
       ${isRefuelPost ? 'py-3 pl-4 pr-5' : 'py-5 pl-5 pr-5'}
     `}>
 
-      {/* Post Header */}
+      {}
       <div className={`mb-3 flex items-center justify-between ${isRefuelPost ? 'mb-2' : 'mb-4'}`}>
         <div className="flex items-center gap-2 flex-wrap">
-           {/* Apply conditional icon color classes directly using ternaries */}
+           {}
            <IconComponent
              className={`
                ${isMini ? 'h-4 w-4' : 'h-5 w-5'}
@@ -115,7 +111,7 @@ export default function PostCard({
         </span>
       </div>
 
-      {/* Post Body */}
+      {}
       <div className={`space-y-4 ${isRefuelPost ? '' : 'pl-1'}`}>
         {!isRefuelPost && post.title && (
             <h3 className={`${isMini ? 'text-base' : 'text-xl'} font-bold text-foreground`}>{post.title}</h3>
@@ -173,7 +169,7 @@ export default function PostCard({
         )}
       </div>
 
-      {/* Post Footer */}
+      {}
       {!isRefuelPost && (
         <div className={`mt-4 pt-3 border-t border-border ${isMini ? 'flex justify-between scale-100' : 'flex justify-between'}`}>
           <LikeButton post={post} isLoggedIn={isLoggedIn} />

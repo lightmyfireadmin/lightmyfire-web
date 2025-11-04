@@ -12,24 +12,23 @@ interface LighterCustomization {
 }
 
 const COLOR_PALETTE = [
-  '#FF6B6B', // Red
-  '#FF8B6B', // Orange-Red
-  '#FFA500', // Orange
-  '#FFD700', // Gold
-  '#90EE90', // Light Green
-  '#4CAF50', // Green
-  '#20B2AA', // Teal
-  '#87CEEB', // Sky Blue
-  '#4169E1', // Royal Blue
-  '#8A2BE2', // Blue Violet
-  '#FF1493', // Deep Pink
-  '#FFB6C1', // Light Pink
-  '#D3D3D3', // Light Gray
-  '#800080', // Purple
-  '#00CED1', // Dark Turquoise
+  '#FF6B6B', 
+  '#FF8B6B', 
+  '#FFA500', 
+  '#FFD700', 
+  '#90EE90', 
+  '#4CAF50', 
+  '#20B2AA', 
+  '#87CEEB', 
+  '#4169E1', 
+  '#8A2BE2', 
+  '#FF1493', 
+  '#FFB6C1', 
+  '#D3D3D3', 
+  '#800080', 
+  '#00CED1', 
 ];
 
-// Get available languages for second language dropdown (exclude English)
 const SECOND_LANGUAGES = getSecondLanguageOptions();
 
 export default function LighterPersonalizationCards({
@@ -48,7 +47,7 @@ export default function LighterPersonalizationCards({
       backgroundColor: COLOR_PALETTE[i % COLOR_PALETTE.length],
     }))
   );
-  // Use smart default: French by default, or user's locale if not en/fr and supported
+  
   const [selectedLanguage, setSelectedLanguage] = useState(
     getDefaultStickerLanguage(currentLocale)
   );
@@ -56,7 +55,7 @@ export default function LighterPersonalizationCards({
 
   const handleNameChange = (id: string, newName: string) => {
     if (useApplyAll) {
-      // Apply to all
+      
       setCustomizations(
         customizations.map((c) => ({
           ...c,
@@ -74,7 +73,7 @@ export default function LighterPersonalizationCards({
 
   const handleColorChange = (id: string, newColor: string) => {
     if (useApplyAll) {
-      // Apply to all
+      
       setCustomizations(
         customizations.map((c) => ({
           ...c,
@@ -95,7 +94,7 @@ export default function LighterPersonalizationCards({
   };
 
   const handleSave = () => {
-    // If useApplyAll is true, apply the first customization to all
+    
     const finalCustomizations = useApplyAll
       ? customizations.map((c) => ({
           ...c,
@@ -107,14 +106,14 @@ export default function LighterPersonalizationCards({
     onSave(finalCustomizations, selectedLanguage);
   };
 
-  // Validation: Check if all required fields are filled
+  
   const isFormValid = () => {
     if (useApplyAll) {
-      // Only need to validate the first lighter
+      
       const firstLighter = customizations[0];
       return firstLighter.name.length >= 3 && firstLighter.name.length <= 16;
     } else {
-      // Validate all lighters
+      
       return customizations.every(
         (c) => c.name.length >= 3 && c.name.length <= 16
       );
@@ -123,12 +122,12 @@ export default function LighterPersonalizationCards({
 
   const canSave = isFormValid();
 
-  // If useApplyAll, only show the first card
+  
   const visibleCustomizations = useApplyAll ? [customizations[0]] : customizations;
 
   return (
     <div className="space-y-4">
-      {/* Language Selection - First */}
+      {}
       <div className="rounded-lg border border-border/50 bg-background/80 p-3 shadow-sm">
         <label className="block text-sm font-bold text-foreground mb-2">
           Second Language on Sticker (+ English)
@@ -173,7 +172,7 @@ export default function LighterPersonalizationCards({
         )}
       </div>
 
-      {/* Personalization Cards */}
+      {}
       <div className="space-y-4">
         {visibleCustomizations.map((customization, index) => {
           const actualIndex = useApplyAll ? 1 : index + 1;
@@ -189,7 +188,7 @@ export default function LighterPersonalizationCards({
                 Lighter #{useApplyAll ? '1' : actualIndex}
               </h4>
 
-              {/* Full Sticker Preview */}
+              {}
               <div className="mb-3 p-3 border-2 border-dashed border-border/50 rounded-md bg-muted/20">
                 {customization.name.length >= 3 ? (
                   <FullStickerPreview
@@ -207,7 +206,7 @@ export default function LighterPersonalizationCards({
                 )}
               </div>
 
-              {/* Name Input */}
+              {}
               <div className="mb-3">
                 <label className="block text-xs font-medium text-foreground mb-1">
                   Name (3-16 characters)
@@ -234,7 +233,7 @@ export default function LighterPersonalizationCards({
                 </p>
               </div>
 
-              {/* Color Picker */}
+              {}
               <div>
                 <label className="block text-xs font-medium text-foreground mb-1.5">
                   Pick Background Color
@@ -279,7 +278,7 @@ export default function LighterPersonalizationCards({
         })}
       </div>
 
-      {/* Summary - Compact */}
+      {}
       <div className="rounded-lg border border-primary/30 bg-primary/5 p-3">
         <ul className="space-y-1 text-xs">
           <li className="flex items-center gap-2 text-foreground">
@@ -299,7 +298,7 @@ export default function LighterPersonalizationCards({
         </ul>
       </div>
 
-      {/* Validation Warning */}
+      {}
       {!canSave && (
         <div className="rounded-lg border border-yellow-500/50 bg-yellow-50 dark:bg-yellow-950/20 p-3">
           <p className="text-sm text-yellow-800 dark:text-yellow-200 flex items-center gap-2">
@@ -313,7 +312,7 @@ export default function LighterPersonalizationCards({
         </div>
       )}
 
-      {/* Save Button */}
+      {}
       <button
         type="button"
         onClick={handleSave}

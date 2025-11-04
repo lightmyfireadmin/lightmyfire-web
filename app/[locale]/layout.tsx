@@ -24,7 +24,7 @@ export default async function LangLayout({
     data: { session },
   } = await supabase.auth.getSession();
 
-  // Fetch username if user is logged in
+  
   let username: string | null = null;
   if (session?.user?.id) {
     const { data: profileData } = await supabase
@@ -35,16 +35,13 @@ export default async function LangLayout({
     username = profileData?.username || null;
   }
 
-  // This layout provides the language context and the main UI shell
-  // (Header, Footer) INSIDE the root <body> tag.
+  
+  
   return (
 
     <I18nProviderClient locale={locale}>
       <ToastWrapper>
-        {/*
-          The flex column structure is now on the <body> tag in the root layout.
-          This component just renders its children in order.
-        */}
+        {}
         <Header session={session} username={username} />
         <WelcomeBanner isLoggedIn={session !== null} username={username} />
         <main className="flex-grow">{children}</main>

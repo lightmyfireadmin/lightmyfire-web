@@ -1,11 +1,38 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { cookies } from 'next/headers';
+import { createServerSupabaseClient } from '@/lib/supabase-server';
+import { rateLimit } from '@/lib/rateLimit';
 
-// Mark this route as dynamic to prevent build-time execution
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
-  // Initialize Stripe with secret key (at request time, not build time)
+  const cookieStore = cookies();
+  const supabase = createServerSupabaseClient(cookieStore);
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized. Please log in to create a payment.' }, { status: 401 });
+  }
+
+  const rateLimitResult = rateLimit(request, 'payment', session.user.id);
+  if (!rateLimitResult.success) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please try again later.' },
+      {
+        status: 429,
+        headers: {
+          'X-RateLimit-Limit': '5',
+          'X-RateLimit-Remaining': '0',
+          'X-RateLimit-Reset': rateLimitResult.resetTime.toString(),
+        }
+      }
+    );
+  }
+
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '');
   try {
     const body = await request.json();
@@ -18,7 +45,6 @@ export async function POST(request: NextRequest) {
       packSize,
     } = body;
 
-    // Validation
     if (!orderId || !amount || !cardholderEmail) {
       return NextResponse.json(
         { error: 'Missing required fields: orderId, amount, cardholderEmail' },

@@ -17,7 +17,6 @@ interface ShippingAddressFormProps {
   userEmail?: string;
 }
 
-// Common countries for shipping
 const COUNTRIES = [
   { code: 'FR', name: 'France' },
   { code: 'BE', name: 'Belgium' },
@@ -49,7 +48,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
     address: '',
     city: '',
     postalCode: '',
-    country: 'FR', // Default to France
+    country: 'FR', 
   });
   const [errors, setErrors] = useState<Partial<Record<keyof ShippingAddress, string>>>({});
 
@@ -79,7 +78,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
 
   const handleChange = (field: keyof ShippingAddress, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
-    // Clear error when user starts typing
+    
     if (errors[field]) {
       setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
@@ -93,7 +92,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
           Please provide your shipping address for sticker delivery
         </p>
 
-        {/* Full Name */}
+        {}
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
             Full Name *
@@ -111,7 +110,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
           {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
         </div>
 
-        {/* Email */}
+        {}
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
             Email Address *
@@ -129,7 +128,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
           {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
         </div>
 
-        {/* Street Address */}
+        {}
         <div>
           <label htmlFor="address" className="block text-sm font-medium text-foreground mb-2">
             Street Address *
@@ -147,7 +146,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
           {errors.address && <p className="mt-1 text-sm text-red-500">{errors.address}</p>}
         </div>
 
-        {/* City and Postal Code */}
+        {}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label htmlFor="city" className="block text-sm font-medium text-foreground mb-2">
@@ -184,7 +183,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
           </div>
         </div>
 
-        {/* Country */}
+        {}
         <div>
           <label htmlFor="country" className="block text-sm font-medium text-foreground mb-2">
             Country *
@@ -207,7 +206,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
         </div>
       </div>
 
-      {/* Submit Button */}
+      {}
       <div className="flex justify-end">
         <button
           type="submit"

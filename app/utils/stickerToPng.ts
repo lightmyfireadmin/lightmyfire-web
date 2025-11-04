@@ -9,60 +9,48 @@ interface StickerData {
   pinCode?: string;
 }
 
-/**
- * Calculate relative luminance of a color (WCAG formula)
- * Returns value between 0 (darkest) and 1 (lightest)
- */
 function getLuminance(hexColor: string): number {
-  // Remove # if present
+  
   const hex = hexColor.replace('#', '');
 
-  // Parse RGB values
+  
   const r = parseInt(hex.substr(0, 2), 16) / 255;
   const g = parseInt(hex.substr(2, 2), 16) / 255;
   const b = parseInt(hex.substr(4, 2), 16) / 255;
 
-  // Apply gamma correction
+  
   const rsRGB = r <= 0.03928 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4);
   const gsRGB = g <= 0.03928 ? g / 12.92 : Math.pow((g + 0.055) / 1.055, 2.4);
   const bsRGB = b <= 0.03928 ? b / 12.92 : Math.pow((b + 0.055) / 1.055, 2.4);
 
-  // Calculate luminance
+  
   return 0.2126 * rsRGB + 0.7152 * gsRGB + 0.0722 * bsRGB;
 }
 
-/**
- * Determine if text should be black or white based on background color
- * Returns '#000000' for light backgrounds, '#ffffff' for dark backgrounds
- */
 function getContrastTextColor(backgroundColor: string): string {
   const luminance = getLuminance(backgroundColor);
-  // Threshold at 0.5 (middle gray) - use black for light backgrounds
+  
   return luminance > 0.5 ? '#000000' : '#ffffff';
 }
 
-/**
- * Generates a PNG from sticker DOM elements using dom-to-image
- * This ensures proper font rendering compared to server-side canvas
- */
 export async function generateStickerPNG(
   stickers: StickerData[],
   format: 'printful' | 'stickiply',
   orderId: string
 ): Promise<Blob> {
-  // Set dimensions based on format (300 DPI)
+  
   const dimensions = format === 'printful'
-    ? { width: 5.83, height: 8.27 } // A5 inches
-    : { width: 7.5, height: 5 }; // Stickiply inches
+    ? { width: 5.83, height: 8.27 } 
+    : { width: 7.5, height: 5 }; 
 
   const DPI = 300;
   const widthPx = Math.round(dimensions.width * DPI);
   const heightPx = Math.round(dimensions.height * DPI);
 
-  // Create a high-resolution container
+  
   const container = document.createElement('div');
   container.style.position = 'fixed';
-  container.style.left = '-99999px'; // Hide off-screen
+  container.style.left = '-99999px'; 
   container.style.top = '0';
   container.style.width = `${widthPx}px`;
   container.style.height = `${heightPx}px`;
@@ -72,10 +60,10 @@ export async function generateStickerPNG(
   document.body.appendChild(container);
 
   try {
-    // Calculate sticker layout based on format
+    
     const layout = calculateStickerLayout(format, stickers.length, DPI);
 
-    // Create and position each sticker manually
+    
     for (let i = 0; i < stickers.length && i < layout.positions.length; i++) {
       const sticker = stickers[i];
       const position = layout.positions[i];
@@ -93,30 +81,30 @@ export async function generateStickerPNG(
       container.appendChild(stickerElement);
     }
 
-    // Add branding area for Printful format
+    
     if (format === 'printful') {
       const brandingArea = createBrandingArea(widthPx, heightPx);
       container.appendChild(brandingArea);
     }
 
-    // Wait for images to load
+    
     await waitForImagesToLoad(container);
 
-    // Additional delay to ensure everything is rendered
+    
     await new Promise(resolve => setTimeout(resolve, 500));
 
-    // Generate PNG using html2canvas with high quality settings
+    
     const canvas = await html2canvas(container, {
       width: widthPx,
       height: heightPx,
-      backgroundColor: null, // transparent
-      scale: 1, // Already at 300 DPI dimensions
+      backgroundColor: null, 
+      scale: 1, 
       useCORS: true,
       allowTaint: true,
       logging: false,
     });
 
-    // Convert canvas to blob
+    
     const blob = await new Promise<Blob>((resolve, reject) => {
       canvas.toBlob((blob) => {
         if (blob) {
@@ -129,7 +117,7 @@ export async function generateStickerPNG(
 
     return blob;
   } finally {
-    // Clean up
+    
     document.body.removeChild(container);
   }
 }
@@ -140,9 +128,6 @@ interface StickerLayout {
   positions: { x: number; y: number }[];
 }
 
-/**
- * Create a sticker DOM element with all the styling and content
- */
 async function createStickerElement(
   sticker: StickerData,
   width: number,
@@ -155,19 +140,19 @@ async function createStickerElement(
   stickerDiv.style.fontFamily = 'Helvetica, Arial, sans-serif';
   stickerDiv.style.position = 'relative';
   stickerDiv.style.overflow = 'hidden';
-  stickerDiv.style.borderRadius = `${Math.round(height * 0.016)}px`; // Rounded corners for sticker
+  stickerDiv.style.borderRadius = `${Math.round(height * 0.016)}px`; 
 
-  // Calculate optimal text color based on background (black for light, white for dark)
+  
   const textColor = getContrastTextColor(sticker.backgroundColor);
 
-  // Scaled padding (12px at 500px height = 2.4%)
+  
   const padding = Math.round(height * 0.024);
   const contentWidth = width - padding * 2;
 
   let currentY = padding;
 
-  // Top card: "You found me!" + name - EXACT match to preview
-  const borderRadius = `${Math.round(height * 0.016)}px`; // Larger rounded corners
+  
+  const borderRadius = `${Math.round(height * 0.016)}px`; 
   const cardHeight = Math.round(height * 0.16);
   const topCard = document.createElement('div');
   topCard.style.position = 'absolute';
@@ -192,7 +177,7 @@ async function createStickerElement(
 
   currentY += cardHeight + Math.round(height * 0.01);
 
-  // Invitation text
+  
   const translations: { [key: string]: { readStory: string; typeCode: string } } = {
     en: {
       readStory: 'Read my Story & Write it',
@@ -222,7 +207,7 @@ async function createStickerElement(
 
   const trans = translations[sticker.language || 'en'] || translations.en;
 
-  // Invitation text - Single line with translation closer to top card
+  
   const invitationText = document.createElement('div');
   invitationText.style.position = 'absolute';
   invitationText.style.left = '0';
@@ -240,9 +225,9 @@ async function createStickerElement(
 
   currentY += Math.round(height * 0.08);
 
-  // QR Code - BIGGER
-  const qrSize = Math.round(height * 0.20); // Increased from 0.18
-  const qrPadding = Math.round(height * 0.018); // Slightly increased
+  
+  const qrSize = Math.round(height * 0.20); 
+  const qrPadding = Math.round(height * 0.018); 
   const qrCodeDiv = document.createElement('div');
   qrCodeDiv.style.position = 'absolute';
   qrCodeDiv.style.left = `${(width - qrSize - qrPadding * 2) / 2}px`;
@@ -253,7 +238,7 @@ async function createStickerElement(
   qrCodeDiv.style.padding = `${qrPadding}px`;
   qrCodeDiv.style.borderRadius = borderRadius;
 
-  // Generate QR code
+  
   try {
     const qrUrl = `${window.location.origin}/find`;
     const qrDataUrl = await QRCode.toDataURL(qrUrl, {
@@ -278,7 +263,7 @@ async function createStickerElement(
 
   currentY += qrSize + qrPadding * 2 + Math.round(height * 0.010);
 
-  // URL card - reduced height, better utilization
+  
   const urlBgHeight = Math.round(height * 0.075);
   const urlCard = document.createElement('div');
   urlCard.style.position = 'absolute';
@@ -301,7 +286,7 @@ async function createStickerElement(
 
   currentY += urlBgHeight + Math.round(height * 0.010);
 
-  // Code text - Single line with translation
+  
   const codeText = document.createElement('div');
   codeText.style.position = 'absolute';
   codeText.style.left = '0';
@@ -319,7 +304,7 @@ async function createStickerElement(
 
   currentY += Math.round(height * 0.08);
 
-  // PIN code card - BIGGER text and centered
+  
   const pinBgHeight = Math.round(height * 0.10);
   const pinCard = document.createElement('div');
   pinCard.style.position = 'absolute';
@@ -339,9 +324,9 @@ async function createStickerElement(
 
   currentY += pinBgHeight + Math.round(height * 0.010);
 
-  // Logo section at bottom - CREAM BACKGROUND for printer
-  // NOTE: Logo is NOT included in individual PNG stickers
-  // The branding will be on the sheet background, this space is left empty (cream colored)
+  
+  
+  
   const logoSectionHeight = Math.round(height * 0.12);
   const logoSection = document.createElement('div');
   logoSection.style.position = 'absolute';
@@ -349,7 +334,7 @@ async function createStickerElement(
   logoSection.style.bottom = '0';
   logoSection.style.width = `${width}px`;
   logoSection.style.height = `${logoSectionHeight}px`;
-  logoSection.style.backgroundColor = '#FFF8F0'; // Cream color - space reserved for sheet branding
+  logoSection.style.backgroundColor = '#FFF8F0'; 
   stickerDiv.appendChild(logoSection);
 
   return stickerDiv;
@@ -361,7 +346,7 @@ function calculateStickerLayout(
   DPI: number
 ): StickerLayout {
 
-  // Sticker dimensions: 2cm x 5cm
+  
   const STICKER_WIDTH_CM = 2;
   const STICKER_HEIGHT_CM = 5;
   const CM_TO_INCHES = 1 / 2.54;
@@ -371,24 +356,24 @@ function calculateStickerLayout(
   const positions: { x: number; y: number }[] = [];
 
   if (format === 'printful') {
-    // Printful: A5 sheet (5.83" × 8.27") with 0.64cm gaps
+    
     const SHEET_WIDTH = Math.round(5.83 * DPI);
     const SHEET_HEIGHT = Math.round(8.27 * DPI);
     const GAP = Math.round(0.64 * CM_TO_INCHES * DPI);
-    const RESERVED = Math.round(3 * DPI); // 3" × 3" bottom-right reserved
+    const RESERVED = Math.round(3 * DPI); 
 
     const stickersPerRow = Math.floor(SHEET_WIDTH / (stickerWidth + GAP));
     const topSectionHeight = SHEET_HEIGHT - RESERVED;
     const rowsTop = Math.floor(topSectionHeight / (stickerHeight + GAP));
 
-    // Center stickers in top section
+    
     const topUsedWidth = stickersPerRow * stickerWidth + (stickersPerRow - 1) * GAP;
     const topOffsetX = Math.round((SHEET_WIDTH - topUsedWidth) / 2);
     const topOffsetY = Math.round(GAP / 2);
 
     let stickerIndex = 0;
 
-    // Top section
+    
     for (let row = 0; row < rowsTop && stickerIndex < stickerCount; row++) {
       for (let col = 0; col < stickersPerRow && stickerIndex < stickerCount; col++) {
         positions.push({
@@ -399,7 +384,7 @@ function calculateStickerLayout(
       }
     }
 
-    // Bottom-left section
+    
     const bottomLeftWidth = SHEET_WIDTH - RESERVED;
     const stickersPerRowBottom = Math.floor(bottomLeftWidth / (stickerWidth + GAP));
     const rowsBottom = Math.floor(RESERVED / (stickerHeight + GAP));
@@ -416,7 +401,7 @@ function calculateStickerLayout(
       }
     }
   } else {
-    // Stickiply: 7.5" × 5" sheet with 1cm gaps
+    
     const SHEET_WIDTH = Math.round(7.5 * DPI);
     const SHEET_HEIGHT = Math.round(5 * DPI);
     const GAP = Math.round(1 * CM_TO_INCHES * DPI);
@@ -445,7 +430,7 @@ function calculateStickerLayout(
 }
 
 function createBrandingArea(sheetWidth: number, sheetHeight: number): HTMLElement {
-  const RESERVED = Math.round(3 * 300); // 3" at 300 DPI
+  const RESERVED = Math.round(3 * 300); 
 
   const brandingDiv = document.createElement('div');
   brandingDiv.style.position = 'absolute';
@@ -453,7 +438,7 @@ function createBrandingArea(sheetWidth: number, sheetHeight: number): HTMLElemen
   brandingDiv.style.top = `${sheetHeight - RESERVED}px`;
   brandingDiv.style.width = `${RESERVED}px`;
   brandingDiv.style.height = `${RESERVED}px`;
-  brandingDiv.style.backgroundColor = '#FFF8F0'; // Cream color for printer
+  brandingDiv.style.backgroundColor = '#FFF8F0'; 
   brandingDiv.style.display = 'flex';
   brandingDiv.style.flexDirection = 'column';
   brandingDiv.style.alignItems = 'center';
@@ -461,7 +446,7 @@ function createBrandingArea(sheetWidth: number, sheetHeight: number): HTMLElemen
   brandingDiv.style.padding = `${Math.round(RESERVED * 0.15)}px`;
   brandingDiv.style.fontFamily = 'Helvetica, Arial, sans-serif';
 
-  // Add logo
+  
   const logo = document.createElement('img');
   logo.src = '/LOGOLONG.png';
   logo.style.width = '80%';
@@ -469,7 +454,7 @@ function createBrandingArea(sheetWidth: number, sheetHeight: number): HTMLElemen
   logo.style.marginBottom = `${Math.round(RESERVED * 0.1)}px`;
   brandingDiv.appendChild(logo);
 
-  // Add text
+  
   const title = document.createElement('div');
   title.textContent = 'LightMyFire';
   title.style.fontSize = `${Math.round(RESERVED * 0.08)}px`;
@@ -496,9 +481,6 @@ function createBrandingArea(sheetWidth: number, sheetHeight: number): HTMLElemen
   return brandingDiv;
 }
 
-/**
- * Wait for all images in a container to load
- */
 async function waitForImagesToLoad(container: HTMLElement): Promise<void> {
   const images = container.querySelectorAll('img');
   const imagePromises = Array.from(images).map((img) => {
@@ -509,9 +491,9 @@ async function waitForImagesToLoad(container: HTMLElement): Promise<void> {
       img.onload = () => resolve();
       img.onerror = () => {
         console.warn('Image failed to load:', img.src);
-        resolve(); // Continue anyway
+        resolve(); 
       };
-      // Timeout after 5 seconds
+      
       setTimeout(() => resolve(), 5000);
     });
   });
@@ -519,9 +501,6 @@ async function waitForImagesToLoad(container: HTMLElement): Promise<void> {
   await Promise.all(imagePromises);
 }
 
-/**
- * Download a blob as a file
- */
 export function downloadBlob(blob: Blob, filename: string): void {
   const url = window.URL.createObjectURL(blob);
   const link = document.createElement('a');

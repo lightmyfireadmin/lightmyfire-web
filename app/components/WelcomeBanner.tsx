@@ -17,13 +17,13 @@ export default function WelcomeBanner({ isLoggedIn, username }: WelcomeBannerPro
   const lang = useCurrentLocale();
   const t = useI18n();
 
-  // Don't show on these pages
+  
   const shouldHideBanner = pathname.includes('/my-profile') ||
                            pathname.includes('/login') ||
                            pathname.includes('/signup');
 
   useEffect(() => {
-    // Check if banner was closed in this session
+    
     const bannerClosed = sessionStorage.getItem('welcome-banner-closed');
     if (!bannerClosed && !shouldHideBanner) {
       setIsVisible(true);
@@ -32,7 +32,7 @@ export default function WelcomeBanner({ isLoggedIn, username }: WelcomeBannerPro
 
   const handleClose = () => {
     setIsVisible(false);
-    // Store in session storage so it doesn't pop up again during this session
+    
     sessionStorage.setItem('welcome-banner-closed', 'true');
   };
 

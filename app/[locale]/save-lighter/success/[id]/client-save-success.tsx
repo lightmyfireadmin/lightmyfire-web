@@ -33,12 +33,12 @@ export default function ClientSaveSuccess({ id, locale }: { id: string; locale: 
           .single();
 
         if (error) {
-          // Error handled silently
+          
         } else if (data) {
           setLighter(data as LighterInfo);
         }
       } catch (err) {
-        // Error handled silently
+        
       } finally {
         setLoading(false);
       }
@@ -51,10 +51,10 @@ export default function ClientSaveSuccess({ id, locale }: { id: string; locale: 
     if (!lighter) return;
     setDownloading(true);
     try {
-      // keep the same API you had; adjust if generateStickerPDF expects a different signature
+      
       await generateStickerPDF(lighter.name, lighter.pin_code);
     } catch (err) {
-      // Error handled by alert in generateStickerPDF
+      
     } finally {
       setDownloading(false);
     }

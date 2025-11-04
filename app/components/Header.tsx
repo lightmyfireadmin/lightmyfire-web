@@ -11,16 +11,14 @@ import Image from 'next/image';
 import { useFocusTrap } from '@/lib/hooks/useFocusTrap';
 import type { Session } from '@supabase/supabase-js';
 
-// Import the new LanguageSwitcher
 import LanguageSwitcher from './LanguageSwitcher';
 
-// Logo component with fade-out halo on mobile
 function LogoLink({ href, lang }: { href: string; lang: string }) {
   const [showHalo, setShowHalo] = useState(false);
 
   const handleClick = () => {
     setShowHalo(true);
-    // Auto-fade out after 1 second
+    
     const timer = setTimeout(() => {
       setShowHalo(false);
     }, 1000);
@@ -59,7 +57,7 @@ export default function Header({ session, username }: { session: Session | null;
   const t = useI18n();
   const focusTrapRef = useFocusTrap(mobileMenuOpen);
 
-  // Close mobile menu on route change
+  
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
@@ -141,7 +139,7 @@ export default function Header({ session, username }: { session: Session | null;
         </div>
       </nav>
 
-      {/* Mobile Menu Dialog */}
+      {}
       <Transition show={mobileMenuOpen} as={Fragment}>
         <Dialog as="div" className="lg:hidden z-50" onClose={() => setMobileMenuOpen(false)}>
           <Transition.Child

@@ -17,13 +17,13 @@ export default function OrderSuccessContent() {
   const [showConfetti, setShowConfetti] = useState(true);
 
   useEffect(() => {
-    // Hide confetti after 3 seconds
+    
     const timer = setTimeout(() => setShowConfetti(false), 3000);
     return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
-    // Redirect if missing parameters
+    
     if (!email || !lighterCount) {
       router.push(`/${locale}/save-lighter`);
     }
@@ -36,9 +36,9 @@ export default function OrderSuccessContent() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex items-center justify-center p-4">
       <div className="max-w-2xl w-full">
-        {/* Success Card */}
+        {}
         <div className="bg-background rounded-2xl shadow-2xl border border-border overflow-hidden">
-          {/* Header with gradient */}
+          {}
           <div className="bg-gradient-to-r from-primary to-primary/80 p-8 text-center">
             <div className="flex justify-center mb-4">
               <div className="relative">
@@ -58,9 +58,9 @@ export default function OrderSuccessContent() {
             </p>
           </div>
 
-          {/* Content */}
+          {}
           <div className="p-8 space-y-6">
-            {/* Email Confirmation */}
+            {}
             <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-6">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
@@ -83,7 +83,7 @@ export default function OrderSuccessContent() {
               </div>
             </div>
 
-            {/* Order Details */}
+            {}
             <div className="border border-border rounded-lg p-6">
               <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                 <FireIcon className="h-5 w-5 text-primary" />
@@ -103,7 +103,7 @@ export default function OrderSuccessContent() {
               </div>
             </div>
 
-            {/* What's Next */}
+            {}
             <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
               <h3 className="font-semibold text-foreground mb-3">What happens next?</h3>
               <ol className="space-y-2 text-sm text-muted-foreground">
@@ -126,7 +126,7 @@ export default function OrderSuccessContent() {
               </ol>
             </div>
 
-            {/* Lighters Info */}
+            {}
             <div className="bg-muted/50 rounded-lg p-6">
               <h3 className="font-semibold text-foreground mb-3">Your lighters are ready!</h3>
               <p className="text-sm text-muted-foreground mb-4">
@@ -142,7 +142,7 @@ export default function OrderSuccessContent() {
               </Link>
             </div>
 
-            {/* Action Buttons */}
+            {}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
               <Link
                 href={`/${locale}`}
@@ -160,7 +160,7 @@ export default function OrderSuccessContent() {
           </div>
         </div>
 
-        {/* Support Note */}
+        {}
         <div className="mt-6 text-center text-sm text-muted-foreground">
           <p>
             Questions about your order?{' '}

@@ -12,10 +12,6 @@ interface ModerationPostCardProps {
   onAction: (postId: number) => void;
 }
 
-/**
- * Moderation Post Card Component
- * Displays flagged post with actions (Reinstate/Delete)
- */
 export default function ModerationPostCard({ post, onAction }: ModerationPostCardProps) {
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);

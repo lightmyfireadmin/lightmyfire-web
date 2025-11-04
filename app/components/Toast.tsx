@@ -7,10 +7,6 @@ interface ToastProps extends ToastType {
   onClose: (id: string) => void;
 }
 
-/**
- * Individual Toast Component
- * Displays a single notification with auto-dismiss capability
- */
 function Toast({ id, type, title, message, duration, onClose }: ToastProps) {
   useEffect(() => {
     if (duration && duration > 0) {
@@ -57,10 +53,6 @@ function Toast({ id, type, title, message, duration, onClose }: ToastProps) {
   );
 }
 
-/**
- * Toast Container Component
- * Manages and displays all active toasts
- */
 export default function ToastContainer() {
   const { toasts, removeToast } = useToast();
 

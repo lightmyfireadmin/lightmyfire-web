@@ -11,8 +11,8 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log error for debugging in development
-    // In production, send to error tracking service (e.g., Sentry)
+    
+    
   }, [error]);
 
   return (
@@ -43,7 +43,7 @@ export default function Error({
           </Link>
         </div>
 
-        {/* Show error details only in development */}
+        {}
         {process.env.NODE_ENV === 'development' && (
           <details className="mt-6 text-left">
             <summary className="cursor-pointer font-semibold text-foreground">

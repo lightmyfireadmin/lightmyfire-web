@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabase'; // Assuming lib is at root
+import { supabase } from '@/lib/supabase'; 
 import Image from 'next/image';
 import { useI18n, useCurrentLocale } from '@/locales/client';
 import LoadingSpinner from '@/app/components/LoadingSpinner';
@@ -19,13 +19,13 @@ export default function PinEntryForm() {
   const handlePinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let input = e.target.value.toUpperCase();
 
-    // Remove all non-alphanumeric characters
+    
     input = input.replace(/[^A-Z0-9]/g, '');
 
-    // Limit to 6 characters
+    
     input = input.slice(0, 6);
 
-    // Add hyphen after 3rd character automatically
+    
     if (input.length >= 3) {
       input = `${input.slice(0, 3)}-${input.slice(3)}`;
     }

@@ -10,16 +10,12 @@ interface ModerationQueueProps {
   initialPosts: DetailedPost[];
 }
 
-/**
- * Moderation Queue Component
- * Manages the list of flagged posts with real-time removal on action
- */
 export default function ModerationQueue({ initialPosts }: ModerationQueueProps) {
   const [posts, setPosts] = useState(initialPosts);
   const locale = useCurrentLocale();
 
   const handlePostAction = (postId: number) => {
-    // Remove post from queue after action
+    
     setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
   };
 

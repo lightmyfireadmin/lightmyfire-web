@@ -13,9 +13,9 @@ const RandomPostFeed = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
-  const POSTS_TO_SHOW = 4; // Show 4 posts at a time
+  const POSTS_TO_SHOW = 4; 
 
-  // Fetch random posts
+  
   const fetchPosts = async (showRefreshing = false) => {
     if (showRefreshing) setIsRefreshing(true);
 
@@ -32,13 +32,13 @@ const RandomPostFeed = () => {
     } finally {
       setIsLoading(false);
       if (showRefreshing) {
-        // Small delay to show the animation
+        
         setTimeout(() => setIsRefreshing(false), 300);
       }
     }
   };
 
-  // Fetch on mount
+  
   useEffect(() => {
     fetchPosts(false);
   }, []);
@@ -72,10 +72,10 @@ const RandomPostFeed = () => {
         {t('home.mosaic.subtitle')}
       </p>
 
-      {/* Posts Grid */}
+      {}
       {posts.length > 0 ? (
         <div className="space-y-6">
-          {/* Grid of posts */}
+          {}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
             {posts.map((post, index) => (
               <div
@@ -94,7 +94,7 @@ const RandomPostFeed = () => {
             ))}
           </div>
 
-          {/* See More Button */}
+          {}
           <div className="flex justify-center pt-4">
             <button
               onClick={handleRefresh}

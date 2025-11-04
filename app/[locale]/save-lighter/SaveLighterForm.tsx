@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabase'; // Assuming lib is at root
+import { supabase } from '@/lib/supabase'; 
 import type { User } from '@supabase/supabase-js';
 import { useI18n } from '@/locales/client';
 
@@ -48,10 +48,10 @@ export default function SaveLighterForm({ user, onSuccess }: SaveLighterFormProp
   };
 
   return (
-    // Applied responsive padding
+    
     <form
       onSubmit={handleSubmit}
-      className="w-full max-w-lg rounded-xl bg-background p-6 sm:p-8 shadow-lg" // Use rounded-xl, shadow-lg
+      className="w-full max-w-lg rounded-xl bg-background p-6 sm:p-8 shadow-lg" 
     >
       <h1 className="mb-6 text-center text-3xl font-bold text-foreground">
         {t('save_lighter.form_title')}
@@ -72,7 +72,7 @@ export default function SaveLighterForm({ user, onSuccess }: SaveLighterFormProp
           id="lighterName"
           value={lighterName}
           onChange={(e) => setLighterName(e.target.value)}
-          className="w-full rounded-lg border border-input p-3 text-foreground bg-background focus:border-primary focus:ring-primary" // Use rounded-lg
+          className="w-full rounded-lg border border-input p-3 text-foreground bg-background focus:border-primary focus:ring-primary" 
           placeholder={t('save_lighter.lighter_name_placeholder')}
           required
         />
@@ -90,7 +90,7 @@ export default function SaveLighterForm({ user, onSuccess }: SaveLighterFormProp
           id="backgroundUrl"
           value={backgroundUrl}
           onChange={(e) => setBackgroundUrl(e.target.value)}
-          className="w-full rounded-lg border border-input p-3 text-foreground bg-background focus:border-primary focus:ring-primary" // Use rounded-lg
+          className="w-full rounded-lg border border-input p-3 text-foreground bg-background focus:border-primary focus:ring-primary" 
           placeholder={t('save_lighter.background_url_placeholder')}
         />
         <p className="mt-1 text-xs text-muted-foreground">
@@ -104,7 +104,7 @@ export default function SaveLighterForm({ user, onSuccess }: SaveLighterFormProp
           id="showUsername"
           checked={showUsername}
           onChange={(e) => setShowUsername(e.target.checked)}
-          className="h-4 w-4 rounded border-input text-primary focus:ring-primary focus:ring-offset-background" // Added offset
+          className="h-4 w-4 rounded border-input text-primary focus:ring-primary focus:ring-offset-background" 
         />
         <label
           htmlFor="showUsername"
@@ -114,12 +114,12 @@ export default function SaveLighterForm({ user, onSuccess }: SaveLighterFormProp
         </label>
       </div>
 
-      {error && <p className="mb-4 text-center text-sm text-red-500">{error}</p>} {/* Smaller error */}
+      {error && <p className="mb-4 text-center text-sm text-red-500">{error}</p>} {}
 
       <button
         type="submit"
         disabled={loading}
-        className="btn-primary w-full text-lg" // Applied btn-primary
+        className="btn-primary w-full text-lg" 
       >
         {loading ? t('save_lighter.button.saving') : t('save_lighter.button.save_lighter')}
       </button>

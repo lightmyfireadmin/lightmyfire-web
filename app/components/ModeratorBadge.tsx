@@ -7,11 +7,6 @@ interface ModeratorBadgeProps {
   role?: string | null;
 }
 
-/**
- * Moderator Badge Component
- * Displays a badge indicating the user is a moderator
- * Shows tooltip on hover with i18n support
- */
 export default function ModeratorBadge({ isSmall = false, role }: ModeratorBadgeProps) {
   const t = useI18n();
 
@@ -27,7 +22,7 @@ export default function ModeratorBadge({ isSmall = false, role }: ModeratorBadge
         🛡️ {isSmall ? 'Mod' : 'Moderator'}
       </span>
 
-      {/* Hover Tooltip */}
+      {}
       <div className="invisible group-hover:visible absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-50 bg-foreground text-background rounded-md px-3 py-2 text-xs font-medium whitespace-nowrap shadow-lg">
         {t('badge.moderator_tooltip') || 'This user is part of moderation'}
         <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-foreground" />

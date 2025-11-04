@@ -8,7 +8,7 @@ export default function DontThrowMeAwayPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section with Statistics */}
+      {}
       <div className="bg-gradient-to-b from-primary/10 to-background py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-center text-4xl sm:text-5xl font-bold text-foreground mb-4">
@@ -18,7 +18,7 @@ export default function DontThrowMeAwayPage() {
             {t('refill_guide.subtitle')}
           </p>
 
-          {/* Statistics Cards */}
+          {}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="rounded-lg border-2 border-primary/20 bg-primary/5 p-6 text-center">
               <p className="text-4xl font-bold text-primary mb-2">650M</p>
@@ -39,10 +39,10 @@ export default function DontThrowMeAwayPage() {
         </div>
       </div>
 
-      {/* Main Content */}
+      {}
       <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="space-y-12">
-          {/* Introduction */}
+          {}
           <div className="rounded-lg border border-border bg-background/95 p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-4">
               {t('refill_guide.hero_title')}
@@ -57,7 +57,7 @@ export default function DontThrowMeAwayPage() {
             </div>
           </div>
 
-          {/* How to Recognize Section */}
+          {}
           <div className="rounded-lg border border-border bg-background/95 p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-6">
               {t('refill_guide.section1_title')}
@@ -67,7 +67,7 @@ export default function DontThrowMeAwayPage() {
             </p>
 
             <div className="space-y-6">
-              {/* Butane Lighters */}
+              {}
               <div className="rounded-lg border border-border/50 p-6 bg-background">
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0">
@@ -94,7 +94,7 @@ export default function DontThrowMeAwayPage() {
                 </div>
               </div>
 
-              {/* Fluid Lighters */}
+              {}
               <div className="rounded-lg border border-border/50 p-6 bg-background">
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0">
@@ -121,7 +121,7 @@ export default function DontThrowMeAwayPage() {
                 </div>
               </div>
 
-              {/* Disposable Lighters */}
+              {}
               <div className="rounded-lg border border-border/50 p-6 bg-background">
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0">
@@ -150,14 +150,14 @@ export default function DontThrowMeAwayPage() {
             </div>
           </div>
 
-          {/* How to Refill Section */}
+          {}
           <div className="rounded-lg border border-border bg-background/95 p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-8">
               {t('refill_guide.section2_title')}
             </h2>
 
             <div className="space-y-8">
-              {/* Butane Refill */}
+              {}
               <div className="rounded-lg border border-border/50 p-8 bg-background">
                 <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-3">
                   <span className="text-3xl">⛽</span>
@@ -207,7 +207,7 @@ export default function DontThrowMeAwayPage() {
                 </div>
               </div>
 
-              {/* Fluid Refill */}
+              {}
               <div className="rounded-lg border border-border/50 p-8 bg-background">
                 <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-3">
                   <span className="text-3xl">🔧</span>
@@ -259,7 +259,7 @@ export default function DontThrowMeAwayPage() {
             </div>
           </div>
 
-          {/* Why It Matters */}
+          {}
           <div className="rounded-lg border border-border bg-background/95 p-8 shadow-sm">
             <h2 className="text-3xl font-bold text-foreground mb-6">Why It Matters</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -298,7 +298,7 @@ export default function DontThrowMeAwayPage() {
             </div>
           </div>
 
-          {/* CTA Section */}
+          {}
           <div className="rounded-lg border-2 border-primary bg-primary/10 p-8 text-center">
             <h2 className="text-2xl font-bold text-foreground mb-4">
               Ready to Save Your First Lighter?

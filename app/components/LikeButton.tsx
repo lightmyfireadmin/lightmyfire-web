@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { supabase } from '@/lib/supabase'; // Assumes lib is at root
+import { supabase } from '@/lib/supabase'; 
 import { useRouter } from 'next/navigation';
 
 export default function LikeButton({
@@ -24,7 +24,7 @@ export default function LikeButton({
 
     setIsLoading(true);
 
-    // Optimistic update
+    
     const originalLikes = likes;
     const originalIsLiked = isLiked;
     if (isLiked) {
@@ -41,7 +41,7 @@ export default function LikeButton({
 
     if (error) {
       console.error(error);
-      // Revert UI on error
+      
       setLikes(originalLikes);
       setIsLiked(originalIsLiked);
     }
@@ -53,7 +53,7 @@ export default function LikeButton({
     <button
       onClick={handleLike}
       disabled={isLoading}
-      // Specific styling for like button is kept
+      
       className={`flex items-center space-x-1 rounded-full px-3 py-1 text-sm transition ${
         isLiked
           ? 'bg-red-100 text-red-600 hover:bg-red-200' // Added hover state for liked

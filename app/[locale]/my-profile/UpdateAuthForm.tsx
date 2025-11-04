@@ -15,11 +15,11 @@ export default function UpdateAuthForm() {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
-  // Check if user is logged in via OAuth (Google, etc.)
+  
   const isOAuthUser = user?.app_metadata?.provider && user.app_metadata.provider !== 'email';
 
   useEffect(() => {
-    // Get current user - only on client side
+    
     let isMounted = true;
 
     const getCurrentUser = async () => {

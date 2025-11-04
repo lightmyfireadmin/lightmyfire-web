@@ -24,10 +24,10 @@ export default function LighterPreview({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Clear canvas
+    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw sticker
+    
     drawLighterSticker(ctx, {
       name,
       backgroundColor,
@@ -64,9 +64,6 @@ export default function LighterPreview({
   );
 }
 
-/**
- * Draw a lighter sticker preview on canvas
- */
 function drawLighterSticker(
   ctx: CanvasRenderingContext2D,
   options: {
@@ -85,43 +82,43 @@ function drawLighterSticker(
 
   let currentY = padding;
 
-  // Colored background for sticker
+  
   ctx.fillStyle = backgroundColor;
   ctx.fillRect(0, 0, width, height);
 
-  // Add rounded corners
+  
   const radius = width * 0.1;
   roundRect(ctx, 0, 0, width, height, radius);
   ctx.fillStyle = backgroundColor;
   ctx.fill();
 
-  // White card background for header with rounded corners
+  
   const cardHeight = contentHeight * 0.28;
   const cardRadius = padding * 0.5;
   ctx.fillStyle = '#ffffff';
   roundRect(ctx, padding, currentY, contentWidth, cardHeight, cardRadius);
   ctx.fill();
 
-  // "You found me" text (bold, centered)
+  
   ctx.fillStyle = '#000000';
   ctx.font = `bold ${height * 0.09}px sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('You found me', width / 2, currentY + cardHeight * 0.4);
 
-  // "I'm + name" text - BOLD
+  
   ctx.font = `bold ${height * 0.08}px sans-serif`;
   ctx.fillText(`I'm ${name}`, width / 2, currentY + cardHeight * 0.75);
 
   currentY += cardHeight + padding;
 
-  // Invitation text: "Read my story and expand it"
+  
   ctx.fillStyle = '#ffffff';
   ctx.font = `bold ${height * 0.055}px sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('Read my story', width / 2, currentY);
   ctx.fillText('and expand it', width / 2, currentY + height * 0.065);
 
-  // Translation - BOLD
+  
   const translations: { [key: string]: string } = {
     fr: 'Lis mon histoire et enrichis-la',
     es: 'Lee mi historia y ampliala',
@@ -136,12 +133,12 @@ function drawLighterSticker(
 
   currentY += height * 0.18;
 
-  // QR Code placeholder
+  
   const qrSize = height * 0.18;
   ctx.fillStyle = '#ffffff';
   ctx.fillRect((width - qrSize) / 2, currentY, qrSize, qrSize);
 
-  // QR code placeholder pattern
+  
   ctx.fillStyle = '#cccccc';
   ctx.font = `${qrSize * 0.3}px Arial`;
   ctx.textAlign = 'center';
@@ -149,7 +146,7 @@ function drawLighterSticker(
 
   currentY += qrSize + height * 0.05;
 
-  // "or go to lightmyfire.app" section with background
+  
   const urlBgHeight = height * 0.14;
   ctx.fillStyle = '#ffffff';
   roundRect(ctx, padding, currentY, contentWidth, urlBgHeight, cardRadius);
@@ -164,13 +161,13 @@ function drawLighterSticker(
 
   currentY += urlBgHeight + height * 0.03;
 
-  // "and type my code" (bold)
+  
   ctx.fillStyle = '#ffffff';
   ctx.font = `bold ${height * 0.055}px sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('and type my code', width / 2, currentY);
 
-  // Translation - BOLD
+  
   const codeTranslations: { [key: string]: string } = {
     fr: 'et entre mon code',
     es: 'e introduce mi código',
@@ -185,7 +182,7 @@ function drawLighterSticker(
 
   currentY += height * 0.12;
 
-  // PIN code (bold, with rounded background)
+  
   const pinBgHeight = height * 0.13;
   ctx.fillStyle = '#ffffff';
   roundRect(ctx, padding, currentY, contentWidth, pinBgHeight, cardRadius);
@@ -198,21 +195,18 @@ function drawLighterSticker(
 
   currentY += pinBgHeight + height * 0.02;
 
-  // Logo section at bottom with white background extending to edges and bottom
-  const logoSectionHeight = height - currentY; // Remaining height to bottom
+  
+  const logoSectionHeight = height - currentY; 
   ctx.fillStyle = '#ffffff';
-  ctx.fillRect(0, currentY, width, logoSectionHeight); // No padding, extends to edges
+  ctx.fillRect(0, currentY, width, logoSectionHeight); 
 
-  // Draw logo text as placeholder (actual logo would load in real implementation)
+  
   ctx.fillStyle = '#888888';
   ctx.font = `${height * 0.03}px sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillText('LightMyFire', width / 2, currentY + logoSectionHeight / 2);
 }
 
-/**
- * Helper function to draw rounded rectangles
- */
 function roundRect(
   ctx: CanvasRenderingContext2D,
   x: number,

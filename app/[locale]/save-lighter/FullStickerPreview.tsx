@@ -11,9 +11,6 @@ interface FullStickerPreviewProps {
   language: string;
 }
 
-/**
- * Calculate relative luminance of a color (WCAG formula)
- */
 function getLuminance(hexColor: string): number {
   const hex = hexColor.replace('#', '');
   const r = parseInt(hex.substr(0, 2), 16) / 255;
@@ -25,14 +22,10 @@ function getLuminance(hexColor: string): number {
   return 0.2126 * rsRGB + 0.7152 * gsRGB + 0.0722 * bsRGB;
 }
 
-/**
- * Get optimal text color (black or white) based on background
- */
 function getContrastTextColor(backgroundColor: string): string {
   return getLuminance(backgroundColor) > 0.5 ? '#000000' : '#ffffff';
 }
 
-// Translations for the sticker text (aligned with server-side)
 const translations: { [key: string]: { readStory: string; typeCode: string } } = {
   en: {
     readStory: 'Read my story and expand it',
@@ -69,7 +62,7 @@ export default function FullStickerPreview({
   const [qrCodeUrl, setQrCodeUrl] = useState<string>('');
 
   useEffect(() => {
-    // Generate QR code for the /find page
+    
     const generateQR = async () => {
       try {
         const url = `${window.location.origin}/find`;
@@ -91,10 +84,10 @@ export default function FullStickerPreview({
 
   const trans = translations[language] || translations.en;
 
-  // Calculate optimal text color based on background
+  
   const textColor = getContrastTextColor(backgroundColor);
 
-  // Aspect ratio: 2cm width x 5cm height = 2:5
+  
   return (
     <div className="flex justify-center items-center p-4">
       <div
@@ -107,22 +100,22 @@ export default function FullStickerPreview({
           fontFamily: 'Helvetica, sans-serif',
         }}
       >
-        {/* Content Container */}
+        {}
         <div className="absolute inset-0 p-3 flex flex-col items-center text-center">
-          {/* Top Card: "You found me" + Lighter Name */}
+          {}
           <div className="w-full bg-white rounded-md p-3 mb-2">
             <p className="text-black text-base font-bold">You found me!</p>
             <p className="text-black text-sm">I&apos;m</p>
             <p className="text-black text-base font-bold">{lighterName}</p>
           </div>
 
-          {/* Invitation Text - Dynamic color based on background */}
+          {}
           <div className="text-[13px] leading-tight mb-2 font-bold" style={{ color: textColor }}>
             <p>Read my Story & Write it</p>
             <p className="text-[11px] mt-1 font-normal">{trans.readStory}</p>
           </div>
 
-          {/* QR Code - reduced by 30% */}
+          {}
           {qrCodeUrl && (
             <div className="bg-white p-2 rounded mb-2">
               <Image
@@ -135,26 +128,26 @@ export default function FullStickerPreview({
             </div>
           )}
 
-          {/* Website URL */}
+          {}
           <div className="w-full bg-white rounded-md p-2.5 mb-2">
             <p className="text-black text-[11px]">or go to</p>
             <p className="text-black text-[12px] font-bold">lightmyfire.app</p>
           </div>
 
-          {/* Code Text - Dynamic color based on background */}
+          {}
           <div className="text-[13px] leading-tight mb-2 font-bold" style={{ color: textColor }}>
             <p>and type my code</p>
             <p className="text-[11px] mt-1 font-normal">{trans.typeCode}</p>
           </div>
 
-          {/* PIN Code */}
+          {}
           <div className="w-full bg-white rounded-md p-3 mb-2">
             <p className="text-black text-2xl font-bold tracking-wider">{pinCode}</p>
           </div>
 
-          {/* Logo Section - Cream background for printer (logo on sheet background, not individual sticker) */}
+          {}
           <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center px-4" style={{ height: '60px', backgroundColor: '#FFF8F0' }}>
-            {/* Space reserved for sheet-level branding */}
+            {}
           </div>
         </div>
       </div>

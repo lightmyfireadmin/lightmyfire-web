@@ -39,8 +39,8 @@ export default function EditProfileForm({ user, profile }: { user: User; profile
       setMessage(`Error: ${error.message}`);
     } else {
       setMessage('Profile updated successfully!');
-      // Optionally, refresh the page to show the new username in the header
-      // window.location.reload();
+      
+      
     }
     setLoading(false);
   };

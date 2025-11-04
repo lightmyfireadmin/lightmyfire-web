@@ -12,10 +12,6 @@ interface IconButtonProps {
   className?: string;
 }
 
-/**
- * Icon Button Component
- * Provides consistent button styling with icons, tooltips, and active states
- */
 export default function IconButton({
   onClick,
   isActive,

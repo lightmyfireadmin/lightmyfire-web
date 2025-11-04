@@ -1,8 +1,8 @@
-// app/components/CookieConsent.tsx
+
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link'; // Import Link for Next.js routing
+import Link from 'next/link'; 
 
 const COOKIE_CONSENT_KEY = 'cookie_consent';
 
@@ -10,11 +10,11 @@ const CookieConsent = () => {
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
-    // Check localStorage only on the client side
+    
     if (typeof window !== 'undefined') {
       const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
       if (consent === null) {
-        // If no consent is found, show the banner
+        
         setShowBanner(true);
       }
     }
@@ -23,13 +23,13 @@ const CookieConsent = () => {
   const handleAccept = () => {
     localStorage.setItem(COOKIE_CONSENT_KEY, 'accepted');
     setShowBanner(false);
-    // You can add logic here to enable analytics scripts or other cookie-dependent features
+    
   };
 
   const handleDecline = () => {
     localStorage.setItem(COOKIE_CONSENT_KEY, 'declined');
     setShowBanner(false);
-    // You can add logic here to disable analytics scripts or other cookie-dependent features
+    
   };
 
   if (!showBanner) {

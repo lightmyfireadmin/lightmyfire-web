@@ -6,8 +6,6 @@ import { useI18n } from '@/locales/client';
 import { CheckCircleIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { useToast } from '@/lib/context/ToastContext';
 
-// Define a type for the keys we expect to use here.
-// This makes the code type-safe and removes the need for @ts-ignore.
 type SuccessMessageKey = 'notifications.login_success' | 'notifications.logout_success' | 'notifications.signup_success' | 'notifications.post_success';
 
 export default function SuccessNotification() {
@@ -26,30 +24,30 @@ export default function SuccessNotification() {
     } else if (searchParams.get('post_success') === 'true') {
       msgKey = 'notifications.post_success';
     } else if (typeof window !== 'undefined' && sessionStorage.getItem('showLoginNotification') === 'true') {
-      // Check for login notification flag from login page redirect (deprecated, use query params instead)
+      
       msgKey = 'notifications.login_success';
-      sessionStorage.removeItem('showLoginNotification'); // Clear the flag
+      sessionStorage.removeItem('showLoginNotification'); 
     }
 
     if (msgKey) {
       const notificationMessage = t(msgKey);
-      // Use Toast system for newer notifications
+      
       addToast({
         type: 'success',
         message: notificationMessage,
         duration: 4000,
       });
 
-      // Also keep the old notification behavior for compatibility
+      
       setMessage(notificationMessage);
       setIsVisible(true);
 
-      // Hide the old notification after 5 seconds
+      
       const timer = setTimeout(() => {
         setIsVisible(false);
       }, 5000);
 
-      // Clean up timer on unmount
+      
       return () => clearTimeout(timer);
     }
   }, [searchParams, t, addToast]);

@@ -102,7 +102,7 @@ function PaymentFormContent({
       if (stripeError) throw new Error(stripeError.message || 'Payment failed');
 
       if (paymentIntent.status === 'succeeded') {
-        // Payment succeeded! Now create lighters and generate stickers
+        
         const orderResponse = await fetch('/api/process-sticker-order', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

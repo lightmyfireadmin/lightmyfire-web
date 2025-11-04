@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import SaveLighterFlow from './SaveLighterFlow'; // Import new flow component
+import SaveLighterFlow from './SaveLighterFlow'; 
 import { getI18n } from '@/locales/server';
 import Image from 'next/image';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
@@ -20,10 +20,10 @@ export default async function SaveLighterPage({ params }: { params: { locale: st
     redirect(`/${params.locale}/login?message=You must be logged in to save a lighter`);
   }
 
-  // We found a session! Pass the user to the form.
+  
   return (
     <div className="mx-auto max-w-5xl p-4 sm:p-6 lg:p-8">
-      {/* Hero Section */}
+      {}
       <div className="mb-12 text-center">
         <h1 className="mb-4 text-4xl font-bold text-foreground">
           {t('save_lighter.title')}
@@ -33,13 +33,13 @@ export default async function SaveLighterPage({ params }: { params: { locale: st
         </p>
       </div>
 
-      {/* Why It Matters Section */}
+      {}
       <div className="mb-12 rounded-lg border border-border bg-background/95 p-8 shadow-md">
         <h2 className="mb-6 text-3xl font-bold text-foreground text-center">
           Why It Matters
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Illustration + Fun Aspect */}
+          {}
           <div className="flex flex-col items-center text-center">
             <Image
               src="/illustrations/personalise.png"
@@ -54,7 +54,7 @@ export default async function SaveLighterPage({ params }: { params: { locale: st
             </p>
           </div>
 
-          {/* Illustration + Human Mosaic & Anti-Waste */}
+          {}
           <div className="flex flex-col items-center text-center">
             <Image
               src="/illustrations/telling_stories.png"
@@ -69,7 +69,7 @@ export default async function SaveLighterPage({ params }: { params: { locale: st
             </p>
           </div>
 
-          {/* Illustration + Sustainability */}
+          {}
           <div className="flex flex-col items-center text-center">
             <Image
               src="/illustrations/around_the_world.png"
@@ -86,7 +86,7 @@ export default async function SaveLighterPage({ params }: { params: { locale: st
         </div>
       </div>
 
-      {/* Main Flow Component */}
+      {}
       <SaveLighterFlow user={session.user} />
     </div>
   );

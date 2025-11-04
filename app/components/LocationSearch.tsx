@@ -5,7 +5,6 @@ import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
-// Leaflet icon setup
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
@@ -44,7 +43,7 @@ const LocationSearch = ({ onLocationSelect }: LocationSearchProps) => {
   useEffect(() => {
     const handler = setTimeout(() => {
       handleSearch(searchQuery);
-    }, 500); // Debounce for 500ms
+    }, 500); 
     return () => {
       clearTimeout(handler);
     };
@@ -70,7 +69,7 @@ const LocationSearch = ({ onLocationSelect }: LocationSearchProps) => {
 
   return (
     <div className="space-y-4">
-      {/* Search input with dropdown overlay */}
+      {}
       <div className="relative z-10">
         <input
           type="text"
@@ -80,7 +79,7 @@ const LocationSearch = ({ onLocationSelect }: LocationSearchProps) => {
           placeholder="Search for a location..."
           aria-label="Search for a location"
         />
-        {/* Dropdown results - positioned above map */}
+        {}
         {searchResults.length > 0 && searchQuery && (
           <ul className="absolute top-full left-0 right-0 z-[9999] border border-border rounded-lg bg-background max-h-60 overflow-y-auto mt-2 shadow-xl">
             {searchResults.map((result) => (
@@ -96,7 +95,7 @@ const LocationSearch = ({ onLocationSelect }: LocationSearchProps) => {
         )}
       </div>
 
-      {/* Map container - positioned below search */}
+      {}
       <div style={{ height: '300px', width: '100%', position: 'relative', zIndex: 0 }}>
         <MapContainer center={mapCenter} zoom={13} style={{ height: '100%', width: '100%' }}>
           <TileLayer

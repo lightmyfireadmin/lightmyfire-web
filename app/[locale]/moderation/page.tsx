@@ -28,9 +28,9 @@ export default async function ModerationPage() {
     redirect(`/${locale}?message=You do not have permission to access this page.`);
   }
 
-  // Fetch flagged posts
+  
   const { data: flaggedPosts, error } = await supabase
-    .from('detailed_posts') // Assuming detailed_posts view includes is_flagged
+    .from('detailed_posts') 
     .select('*')
     .eq('is_flagged', true)
     .order('created_at', { ascending: false });

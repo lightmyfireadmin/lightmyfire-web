@@ -73,7 +73,7 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
 
   return (
     <div className="space-y-4">
-      {/* Location Name Display */}
+      {}
       <div className="rounded-lg border border-input bg-background p-4">
         <p className="text-sm text-muted-foreground mb-2">Selected Location</p>
         <p className="text-lg font-semibold text-foreground">
@@ -86,7 +86,7 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
         )}
       </div>
 
-      {/* Search Box */}
+      {}
       <div className="relative">
         <div className="relative flex items-center">
           <MagnifyingGlassIcon className="absolute left-3 h-5 w-5 text-muted-foreground" />
@@ -105,7 +105,7 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
           )}
         </div>
 
-        {/* Search Results Dropdown */}
+        {}
         {showResults && searchResults.length > 0 && (
           <div className="absolute top-full left-0 right-0 mt-1 max-h-64 overflow-y-auto rounded-lg border border-border bg-background shadow-lg z-50">
             {searchResults.map((result, index) => {
@@ -133,7 +133,7 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
         )}
       </div>
 
-      {/* Optional: Manual Coordinates Input */}
+      {}
       {value.lat && value.lng && (
         <details className="text-sm">
           <summary className="cursor-pointer text-muted-foreground hover:text-foreground">

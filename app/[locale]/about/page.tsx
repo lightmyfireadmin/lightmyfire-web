@@ -2,9 +2,17 @@
 
 import Image from 'next/image';
 import { useI18n } from '@/locales/client';
+import DOMPurify from 'isomorphic-dompurify';
 
 export default function AboutPage() {
   const t = useI18n();
+
+  const sanitizeHTML = (html: string) => {
+    return DOMPurify.sanitize(html, {
+      ALLOWED_TAGS: ['p', 'strong', 'em', 'u', 'br', 'a'],
+      ALLOWED_ATTR: ['href', 'target', 'rel'],
+    });
+  };
 
   return (
     <div className="mx-auto max-w-3xl p-4 py-12 sm:p-6 lg:p-8">
@@ -18,19 +26,19 @@ export default function AboutPage() {
           </p>
           <div
             className="prose prose-lg max-w-none"
-            dangerouslySetInnerHTML={{ __html: t('philosophy.p1') }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHTML(t('philosophy.p1')) }}
           />
           <div
             className="prose prose-lg max-w-none"
-            dangerouslySetInnerHTML={{ __html: t('philosophy.p2') }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHTML(t('philosophy.p2')) }}
           />
           <div
             className="prose prose-lg max-w-none"
-            dangerouslySetInnerHTML={{ __html: t('philosophy.p3') }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHTML(t('philosophy.p3')) }}
           />
           <div
             className="prose prose-lg max-w-none"
-            dangerouslySetInnerHTML={{ __html: t('philosophy.p4') }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHTML(t('philosophy.p4')) }}
           />
           <Image
             src="/illustrations/around_the_world.png"

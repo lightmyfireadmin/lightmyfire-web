@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabase'; // Assuming lib is at root
+import { supabase } from '@/lib/supabase'; 
 import type { User } from '@supabase/supabase-js';
 import Image from 'next/image';
 import { useContentModeration } from '@/app/hooks/useContentModeration';
@@ -15,7 +15,6 @@ interface YouTubeVideo {
   snippet: { title: string; thumbnails: { default: { url: string } } };
 }
 
-// Post Type Button Component
 function PostTypeButton({
   selected,
   onClick,
@@ -65,8 +64,8 @@ export default function AddPostForm({
   const [contentText, setContentText] = useState('');
   const [contentUrl, setContentUrl] = useState('');
   const [locationName, setLocationName] = useState('');
-  const [locationLat, setLocationLat] = useState<number | ''>(''); // New state
-  const [locationLng, setLocationLng] = useState<number | ''>(''); // New state
+  const [locationLat, setLocationLat] = useState<number | ''>(''); 
+  const [locationLng, setLocationLng] = useState<number | ''>(''); 
   const [isFindLocation, setIsFindLocation] = useState(false);
   const [isCreation, setIsCreation] = useState(false);
   const [isAnonymous, setIsAnonymous] = useState(false);
@@ -79,7 +78,7 @@ export default function AddPostForm({
   const [moderationError, setModerationError] = useState<{ severity: 'low' | 'medium' | 'high'; reason: string } | null>(null);
   const [showModerationWarning, setShowModerationWarning] = useState(false);
 
-  // YouTube Search States
+  
   const [songInputMode, setSongInputMode] = useState<'url' | 'search'>('url');
   const [youtubeSearchQuery, setYoutubeSearchQuery] = useState('');
   const [youtubeSearchResults, setYoutubeSearchResults] = useState<YouTubeVideo[]>([]);
@@ -120,7 +119,7 @@ export default function AddPostForm({
     setYoutubeSearchLoading(false);
   };
 
-  // Debounce YouTube search
+  
   useEffect(() => {
     const handler = setTimeout(() => {
       if (songInputMode === 'search') {
@@ -135,11 +134,11 @@ export default function AddPostForm({
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
-      // 2MB size limit
+      
       if (selectedFile.size > 2 * 1024 * 1024) {
         setError('File is too large. Please select a file smaller than 2MB.');
         setFile(null);
-        e.target.value = ''; // Reset file input
+        e.target.value = ''; 
         return;
       }
       setError('');
@@ -187,7 +186,7 @@ export default function AddPostForm({
     }
 
     if (postType === 'song' && songInputMode === 'search') {
-      // If song is selected via search, contentUrl should already be set
+      
       if (!finalContentUrl) {
         setError('Please select a song from the search results.');
         return;
@@ -204,11 +203,11 @@ export default function AddPostForm({
 
     setLoading(true);
 
-    // ========================================
-    // CONTENT MODERATION CHECKS
-    // ========================================
+    
+    
+    
     try {
-      // Moderate text content based on post type
+      
       if (postType === 'text' && contentText.trim()) {
         const textMod = await moderateText(contentText);
         if (textMod.flagged) {
@@ -221,7 +220,7 @@ export default function AddPostForm({
         }
       }
 
-      // Moderate title if present
+      
       if (title.trim()) {
         const titleMod = await moderateText(title);
         if (titleMod.flagged) {
@@ -234,7 +233,7 @@ export default function AddPostForm({
         }
       }
 
-      // Moderate location name
+      
       if (postType === 'location' && locationName.trim()) {
         const locMod = await moderateText(locationName);
         if (locMod.flagged) {
@@ -247,7 +246,7 @@ export default function AddPostForm({
         }
       }
 
-      // Moderate image content
+      
       if ((postType === 'image' || postType === 'refuel') && finalContentUrl) {
         const imageMod = await moderateImage(finalContentUrl);
         if (imageMod.flagged) {
@@ -260,14 +259,14 @@ export default function AddPostForm({
         }
       }
     } catch (modError) {
-      // Log but don't fail on moderation errors
+      
       console.error('Moderation error:', modError);
-      // Continue with posting anyway (moderation is best-effort)
+      
     }
 
-    // ========================================
-    // All moderation checks passed, proceed with posting
-    // ========================================
+    
+    
+    
 
     const { data, error: rpcError } = await supabase.rpc('create_new_post', {
         p_lighter_id: lighterId,
@@ -375,7 +374,7 @@ export default function AddPostForm({
   };
 
   return (
-    // Applied responsive padding
+    
     <form
       onSubmit={handleSubmit}
       className="w-full max-w-2xl rounded-xl bg-background p-6 sm:p-8 shadow-lg"
@@ -387,11 +386,11 @@ export default function AddPostForm({
         You are adding a post to <span className="font-semibold text-foreground">{lighterName}</span>
       </p>
 
-      {/* Post Type Selector with Styling */}
+      {}
       <div className="mb-8">
         <p className="text-center text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wide">Select Post Type</p>
         <div className="relative">
-          {/* Sliding indicator background */}
+          {}
           <div className="absolute inset-0 pointer-events-none">
             {postType === 'text' && <div className="absolute top-0 left-0 w-1/5 h-full bg-blue-100 dark:bg-blue-900/30 rounded-lg transition-all duration-300" />}
             {postType === 'song' && <div className="absolute top-0 left-1/5 w-1/5 h-full bg-green-100 dark:bg-green-900/30 rounded-lg transition-all duration-300" />}
@@ -400,7 +399,7 @@ export default function AddPostForm({
             {postType === 'refuel' && <div className="absolute top-0 left-4/5 w-1/5 h-full bg-orange-100 dark:bg-orange-900/30 rounded-lg transition-all duration-300" />}
           </div>
 
-          {/* Post Type Buttons */}
+          {}
           <div className="grid grid-cols-5 gap-2 relative z-10">
             <PostTypeButton
               selected={postType === 'text'}
@@ -446,7 +445,7 @@ export default function AddPostForm({
         </div>
       </div>
 
-      {/* Form Fields */}
+      {}
       <div className="space-y-4">
         {postType !== 'refuel' && (
           <input
@@ -458,7 +457,7 @@ export default function AddPostForm({
           />
         )}
         {renderFormInputs()}
-        {/* Checkboxes */}
+        {}
         <div className="space-y-3 pt-2">
           {postType === 'location' && (<Checkbox id="isFindLocation" label="This is where I found this lighter" checked={isFindLocation} onChange={setIsFindLocation} />)}
           {postType !== 'location' && postType !== 'refuel' && (<Checkbox id="isCreation" label="This is something I&apos;ve made" checked={isCreation} onChange={setIsCreation} />)}
@@ -526,7 +525,6 @@ export default function AddPostForm({
   );
 }
 
-// Checkbox helper component remains the same
 function Checkbox({ id, label, checked, onChange }: { id: string; label: string; checked: boolean; onChange: (checked: boolean) => void; }) {
  return (
     <div className="flex items-center">

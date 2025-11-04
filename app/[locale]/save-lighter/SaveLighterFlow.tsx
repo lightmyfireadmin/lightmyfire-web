@@ -19,22 +19,22 @@ const getPackOptions = (t: any) => [
   {
     count: 10,
     sheets: 1,
-    titleKey: 'order.pack.starting_lightsaver',
-    descriptionKey: 'order.pack.starting_description',
-    price: null, // Price will be calculated by Printful API
+    title: t('order.pack.starting_lightsaver'),
+    description: t('order.pack.starting_description'),
+    price: null,
   },
   {
     count: 20,
     sheets: 2,
-    titleKey: 'order.pack.committed_lightsaver',
-    descriptionKey: 'order.pack.committed_description',
+    title: t('order.pack.committed_lightsaver'),
+    description: t('order.pack.committed_description'),
     price: null,
   },
   {
     count: 50,
     sheets: 5,
-    titleKey: 'order.pack.community_lightsaver',
-    descriptionKey: 'order.pack.community_description',
+    title: t('order.pack.community_lightsaver'),
+    description: t('order.pack.community_description'),
     price: null,
   },
 ];
@@ -46,6 +46,8 @@ export default function SaveLighterFlow({ user }: { user: User }) {
   const [customizations, setCustomizations] = useState<LighterCustomization[]>([]);
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress | null>(null);
+
+  const PACK_OPTIONS = getPackOptions(t);
 
   const handlePackSelect = (count: number) => {
     setSelectedPack(count);
@@ -59,20 +61,20 @@ export default function SaveLighterFlow({ user }: { user: User }) {
     customizations: LighterCustomization[],
     language: string
   ) => {
-    // Add language to each customization
+    
     const customizationsWithLanguage = customizations.map(c => ({
       ...c,
       language: language
     }));
     setCustomizations(customizationsWithLanguage);
     setSelectedLanguage(language);
-    // Show success message or move to next step
+    
     console.log('Customizations saved:', { customizations: customizationsWithLanguage, language });
   };
 
   return (
     <div className="space-y-12">
-      {/* Pack Selection - Only show if no pack selected */}
+      {}
       {selectedPack === null && (
         <div className="space-y-8">
           <div>
@@ -113,7 +115,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
             ))}
           </div>
 
-          {/* Custom Branding Contact Box */}
+          {}
           <div className="mt-8 rounded-lg border-2 border-primary/30 bg-primary/5 p-6">
             <h3 className="text-xl font-semibold text-foreground mb-3 flex items-center gap-2">
               <span>🎨</span>
@@ -138,7 +140,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
         </div>
       )}
 
-      {/* Personalization Cards - Show directly after pack selection */}
+      {}
       {selectedPack !== null && (
         <div className="rounded-lg border border-border bg-background/95 p-8 shadow-md">
           <LighterPersonalizationCards
@@ -148,7 +150,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
         </div>
       )}
 
-      {/* Order Summary */}
+      {}
       {selectedPack !== null && (
         <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
           <h2 className="mb-4 text-2xl font-semibold text-foreground">Order Summary</h2>
@@ -187,7 +189,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
         </div>
       )}
 
-      {/* Sticker Preview - Show when customizations are done */}
+      {}
       {customizations.length > 0 && !shippingAddress && (
         <div className="rounded-lg border border-border bg-background p-6 shadow-md">
           <h2 className="mb-6 text-xl font-semibold text-foreground">Your Sticker Design</h2>
@@ -212,14 +214,14 @@ export default function SaveLighterFlow({ user }: { user: User }) {
         </div>
       )}
 
-      {/* Shipping Address Form - Show when customizations are done */}
+      {}
       {customizations.length > 0 && !shippingAddress && (
         <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
           <ShippingAddressForm onSave={handleShippingSave} userEmail={user.email || undefined} />
         </div>
       )}
 
-      {/* Payment Form - Show when shipping address is complete */}
+      {}
       {customizations.length > 0 && shippingAddress && (
         <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
           <h2 className="mb-6 text-xl font-semibold text-foreground">
@@ -239,14 +241,14 @@ export default function SaveLighterFlow({ user }: { user: User }) {
             }))}
             shippingAddress={shippingAddress}
             onSuccess={(lighterIds) => {
-              // Redirect to success page with order details
+              
               window.location.href = `/${locale}/save-lighter/order-success?email=${encodeURIComponent(shippingAddress.email)}&count=${lighterIds.length}`;
             }}
           />
         </div>
       )}
 
-      {/* Back Button - Show when customizations not started yet */}
+      {}
       {selectedPack !== null && customizations.length === 0 && (
         <div className="flex justify-center">
           <button

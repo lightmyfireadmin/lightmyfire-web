@@ -4,10 +4,6 @@ import { createServerSupabaseClient } from '@/lib/supabase-server';
 
 export const dynamic = 'force-dynamic';
 
-/**
- * Helper function to wait for profile creation with retry logic
- * Addresses race condition where auth user is created before profile trigger fires
- */
 async function waitForProfile(
   supabase: any,
   userId: string,
@@ -22,28 +18,25 @@ async function waitForProfile(
       .single();
 
     if (profile) {
-      // Profile exists - check if newly created
+      
       const createdTime = new Date(profile.created_at).getTime();
       const now = Date.now();
-      const isNewUser = (now - createdTime) < 10000; // Created within last 10 seconds
+      const isNewUser = (now - createdTime) < 10000; 
 
       return { profile, isNewUser };
     }
 
-    // Profile doesn't exist yet - wait and retry (unless last attempt)
+    
     if (attempt < maxAttempts) {
       await new Promise(resolve => setTimeout(resolve, delayMs));
     }
   }
 
-  // Profile still doesn't exist after retries - create it as fallback
+  
   console.warn(`Profile not found for user ${userId} after ${maxAttempts} attempts. Creating fallback profile.`);
   return { profile: null, isNewUser: true };
 }
 
-/**
- * Creates a profile for a user (fallback when trigger doesn't fire)
- */
 async function createFallbackProfile(supabase: any, session: any): Promise<any> {
   const defaultUsername =
     session.user.user_metadata?.full_name ||
@@ -82,14 +75,14 @@ export async function GET(request: NextRequest, { params }: { params: { locale: 
     const supabase = createServerSupabaseClient(cookieStore);
 
     try {
-      // Exchange code for session
+      
       const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
 
       if (exchangeError) {
         console.error('Auth exchange error:', exchangeError);
         hasError = true;
       } else {
-        // Get the session
+        
         const {
           data: { session },
           error: sessionError,
@@ -99,7 +92,7 @@ export async function GET(request: NextRequest, { params }: { params: { locale: 
           console.error('Session error:', sessionError);
           hasError = true;
         } else {
-          // Wait for profile creation with retry logic
+          
           const { profile, isNewUser: profileIsNew } = await waitForProfile(
             supabase,
             session.user.id
@@ -107,7 +100,7 @@ export async function GET(request: NextRequest, { params }: { params: { locale: 
 
           isNewUser = profileIsNew;
 
-          // If profile still doesn't exist, create it as fallback
+          
           if (!profile) {
             const fallbackProfile = await createFallbackProfile(supabase, session);
             if (fallbackProfile) {
@@ -117,12 +110,12 @@ export async function GET(request: NextRequest, { params }: { params: { locale: 
             }
           }
 
-          // Check and grant unlocked trophies on login/signup
-          // This ensures trophies are up-to-date without running on every page load
+          
+          
           try {
             await supabase.rpc('grant_unlocked_trophies', { p_user_id: session.user.id });
           } catch (trophyError) {
-            // Non-critical error - log but don't fail the login
+            
             console.warn('Trophy check failed on login:', trophyError);
           }
         }
@@ -133,7 +126,7 @@ export async function GET(request: NextRequest, { params }: { params: { locale: 
     }
   }
 
-  // Redirect with appropriate query parameter
+  
   if (hasError) {
     return NextResponse.redirect(`${requestUrl.origin}/${locale}/login?error=auth_failed`);
   }

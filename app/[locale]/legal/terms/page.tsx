@@ -1,4 +1,4 @@
-// app/legal/terms/page.tsx
+
 'use client';
 
 import { useI18n } from '@/locales/client';

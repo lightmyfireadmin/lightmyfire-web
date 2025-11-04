@@ -33,7 +33,6 @@ interface LockedTrophyDef {
   unlocked: false;
 }
 
-// Comprehensive trophy definitions - IDs match database (10 trophies total)
 const ALL_TROPHIES: (UnlockedTrophy | LockedTrophyDef)[] = [
   { id: 1, name: 'Fire Starter', description: 'Save your first lighter', icon_name: 'personalise', unlocked: false },
   { id: 2, name: 'Story Teller', description: 'Add your first post', icon_name: 'telling_stories', unlocked: false },
@@ -50,13 +49,13 @@ const ALL_TROPHIES: (UnlockedTrophy | LockedTrophyDef)[] = [
 export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
   const [hoveredTrophy, setHoveredTrophy] = useState<number | null>(null);
 
-  // Create a set of unlocked trophy IDs
+  
   const unlockedIds = new Set(trophies.map((t) => t.id));
 
-  // Merge unlocked and locked trophies
+  
   const allTrophies = ALL_TROPHIES.map((trophy) => {
     if (unlockedIds.has(trophy.id)) {
-      // Find the unlocked trophy data
+      
       const unlockedTrophy = trophies.find((t) => t.id === trophy.id);
       return { ...trophy, unlocked: true, ...unlockedTrophy } as UnlockedTrophy;
     }
@@ -68,7 +67,7 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
 
   return (
     <div className="space-y-8">
-      {/* Unlocked Trophies Section */}
+      {}
       {unlockedTrophies.length > 0 && (
         <div>
           <h3 className="text-lg font-bold text-yellow-600 mb-4 flex items-center gap-2">
@@ -82,10 +81,10 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
                 onMouseEnter={() => setHoveredTrophy(trophy.id)}
                 onMouseLeave={() => setHoveredTrophy(null)}
               >
-                {/* Golden Star Badge */}
+                {}
                 <div className="absolute top-1 right-1 text-lg">⭐</div>
 
-                {/* Icon Container */}
+                {}
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-yellow-400 text-white shadow-md group-hover:shadow-lg transition-shadow">
                   {trophy.icon_name ? (
                     <Image
@@ -100,11 +99,11 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
                   )}
                 </div>
 
-                {/* Trophy Info */}
+                {}
                 <p className="mt-3 font-bold text-foreground text-sm">{trophy.name}</p>
                 <p className="text-xs text-muted-foreground mt-1">{trophy.description}</p>
 
-                {/* Hover Tooltip */}
+                {}
                 {hoveredTrophy === trophy.id && (
                   <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-foreground text-background text-xs rounded whitespace-nowrap z-10">
                     ✓ Unlocked
@@ -116,7 +115,7 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
         </div>
       )}
 
-      {/* Locked Trophies Section */}
+      {}
       {lockedTrophies.length > 0 && (
         <div>
           <h3 className="text-lg font-bold text-gray-500 mb-4 flex items-center gap-2">
@@ -130,10 +129,10 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
                 onMouseEnter={() => setHoveredTrophy(trophy.id)}
                 onMouseLeave={() => setHoveredTrophy(null)}
               >
-                {/* Lock Icon Badge */}
+                {}
                 <div className="absolute top-1 right-1 text-lg">🔐</div>
 
-                {/* Icon Container - Greyed Out */}
+                {}
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gray-300 dark:bg-gray-600 text-gray-500 shadow-sm">
                   {trophy.icon_name ? (
                     <Image
@@ -148,11 +147,11 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
                   )}
                 </div>
 
-                {/* Trophy Info */}
+                {}
                 <p className="mt-3 font-bold text-gray-600 dark:text-gray-300 text-sm">{trophy.name}</p>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{trophy.description}</p>
 
-                {/* Hover Tooltip */}
+                {}
                 {hoveredTrophy === trophy.id && (
                   <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-800 dark:bg-gray-200 text-gray-100 dark:text-gray-800 text-xs rounded whitespace-nowrap z-10">
                     🔒 Locked
@@ -164,7 +163,7 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
         </div>
       )}
 
-      {/* Empty State */}
+      {}
       {allTrophies.length === 0 && (
         <div className="text-center py-12">
           <p className="text-2xl mb-4">🏆</p>
@@ -174,7 +173,7 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
         </div>
       )}
 
-      {/* Progress Summary */}
+      {}
       {unlockedTrophies.length > 0 && (
         <div className="rounded-lg border-2 border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20 p-4">
           <p className="text-center text-sm font-semibold text-foreground">

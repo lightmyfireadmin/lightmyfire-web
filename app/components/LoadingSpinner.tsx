@@ -1,10 +1,5 @@
 'use client';
 
-/**
- * Loading Spinner Component
- * Replaces GIF-based loaders with CSS animation for better performance
- */
-
 type SpinnerSize = 'sm' | 'md' | 'lg';
 type SpinnerColor = 'primary' | 'foreground' | 'muted';
 

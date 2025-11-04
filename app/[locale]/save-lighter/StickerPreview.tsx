@@ -37,13 +37,13 @@ export default function StickerPreview({
     onDownloadStart?.();
 
     try {
-      // Generate sticker data with PIN codes
+      
       const stickerData = stickers.map((sticker, index) => ({
         ...sticker,
         pinCode: `LMF-${(index + 1).toString().padStart(2, '0')}`,
       }));
 
-      // Use client-side dom-to-image for proper font rendering
+      
       const blob = await generateStickerPNG(stickerData, format, orderId);
       const filename = `stickers-${orderId}-${format}.png`;
 
@@ -72,7 +72,7 @@ export default function StickerPreview({
 
   return (
     <div className="space-y-6">
-      {/* Sticker Preview Grid */}
+      {}
       <div className="rounded-lg border border-border bg-background p-6">
         <h3 className="text-lg font-semibold text-foreground mb-4">Preview</h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -94,7 +94,7 @@ export default function StickerPreview({
         </p>
       </div>
 
-      {/* PNG Generation Section */}
+      {}
       <div className="rounded-lg border border-border bg-background p-6">
         <h3 className="text-lg font-semibold text-foreground mb-3">Generate Print File</h3>
 
@@ -108,7 +108,7 @@ export default function StickerPreview({
           Generate a high-quality PNG file optimized for printing (300 DPI resolution).
         </p>
 
-        {/* Format Selection */}
+        {}
         <div className="mb-4">
           <label className="block text-sm font-medium text-foreground mb-2">
             Select Print Provider Format
@@ -180,7 +180,7 @@ export default function StickerPreview({
         </p>
       </div>
 
-      {/* Print Instructions */}
+      {}
       <div className="rounded-lg border border-border bg-background/50 p-6">
         <h3 className="text-lg font-semibold text-foreground mb-3">Print Tips</h3>
         <ul className="space-y-2 text-sm text-muted-foreground">

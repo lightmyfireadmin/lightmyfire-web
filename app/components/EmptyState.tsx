@@ -12,10 +12,6 @@ interface EmptyStateProps {
   };
 }
 
-/**
- * Empty State Component
- * Displays a friendly empty state with illustration, title, description, and optional CTA
- */
 export default function EmptyState({
   illustration,
   title,

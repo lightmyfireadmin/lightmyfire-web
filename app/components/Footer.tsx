@@ -11,7 +11,7 @@ export default function Footer({ lang }: { lang: string }) {
   return (
     <footer className="bg-muted border-t border-border mt-auto w-full">
       <div className="w-full px-6 py-12 pb-24 md:pb-12 md:flex md:items-center md:justify-between lg:px-8">
-        {/* Social Links */}
+        {}
         <div className="flex justify-center space-x-6 md:order-2">
           <a href="#" className="text-muted-foreground hover:text-foreground" title={t('footer.instagram_aria')}>
             <span className="sr-only">{t('footer.social.instagram')}</span>
@@ -27,7 +27,7 @@ export default function Footer({ lang }: { lang: string }) {
           </a>
         </div>
 
-        {/* Footer Links & Copyright */}
+        {}
         <div className="mt-8 md:order-1 md:mt-0">
           <div className="text-center text-xs leading-5 text-muted-foreground space-x-4 mb-4">
             <Link href={`/${lang}/legal/privacy`} className="hover:text-foreground">{t('footer.links.privacy')}</Link>

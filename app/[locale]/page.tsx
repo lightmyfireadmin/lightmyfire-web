@@ -35,11 +35,11 @@ export default async function Home() {
         <SignupWelcomeModal />
       </Suspense>
 
-      {/* Hero Section: Stack vertically on mobile, side-by-side on desktop */}
+      {}
       <div className="flex flex-col lg:flex-row items-center justify-center gap-1.5 lg:gap-2 py-4 lg:py-6 px-4 sm:px-6">
-        {/* Hero Intro - Top on mobile, left on desktop */}
+        {}
         <div className="w-full lg:w-auto text-center lg:text-left max-w-md">
-          {/* Title with illustration - on mobile: stacked, on desktop: side by side */}
+          {}
           <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-6">
             <div className="h-[131px] lg:h-[197px] mx-auto lg:mx-0 flex-shrink-0">
               <Image
@@ -56,7 +56,7 @@ export default async function Home() {
             </h1>
           </div>
 
-          {/* Subtitle with background - below both title and illustration on mobile */}
+          {}
           <div className="rounded-lg bg-primary/5 p-4 mb-6">
             <div className="flex flex-col lg:flex-row lg:items-center gap-2 justify-center lg:justify-start">
               <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
@@ -66,13 +66,13 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* Pin Entry Form - Bottom on mobile, right on desktop */}
+        {}
         <div className="w-full max-w-sm lg:w-auto lg:flex-shrink-0">
           <PinEntryForm />
         </div>
       </div>
 
-      {/* Become a LightSaver Section */}
+      {}
       <div className="mx-auto w-full max-w-4xl px-4 py-4 lg:py-6 mb-3 lg:mb-1">
         <div className="rounded-lg border border-border bg-background/95 p-8 sm:p-10 shadow-md">
           <h2 className="mb-4 text-center text-2xl sm:text-3xl font-bold text-foreground">
@@ -103,13 +103,13 @@ export default async function Home() {
         </div>
       </div>
 
-      {/* How It Works Section */}
+      {}
       <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
         <h2 className="mb-4 text-center text-2xl sm:text-3xl font-bold text-foreground">
           {t('home.how_it_works.title')}
         </h2>
         <div className="grid grid-cols-1 gap-1.5 md:gap-2 md:grid-cols-3">
-          {/* Step 1 */}
+          {}
           <div className="rounded-lg border border-border bg-background p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
             <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
               <Image
@@ -128,7 +128,7 @@ export default async function Home() {
             </p>
           </div>
 
-          {/* Step 2 */}
+          {}
           <div className="rounded-lg border border-border bg-background p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
             <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
               <Image
@@ -147,7 +147,7 @@ export default async function Home() {
             </p>
           </div>
 
-          {/* Step 3 */}
+          {}
           <div className="rounded-lg border border-border bg-background p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
             <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
               <Image

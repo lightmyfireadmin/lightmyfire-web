@@ -1,4 +1,4 @@
-// app/faq/page.tsx
+
 'use client';
 
 import Image from 'next/image';
@@ -130,14 +130,14 @@ export default function FAQ() {
           Find answers to common questions about LightMyFire
         </p>
 
-        {/* FAQ Items */}
+        {}
         <div className="space-y-3">
           {faqItems.map((item) => (
             <div
               key={item.id}
               className="border border-border rounded-lg overflow-hidden transition-all duration-200"
             >
-              {/* Question Header - Always Visible */}
+              {}
               <button
                 onClick={() => toggleExpanded(item.id)}
                 className="w-full flex items-center justify-between p-4 sm:p-5 hover:bg-muted/50 transition-colors text-left"
@@ -153,7 +153,7 @@ export default function FAQ() {
                 />
               </button>
 
-              {/* Answer - Collapsible */}
+              {}
               {expandedId === item.id && (
                 <div className="px-4 sm:px-5 py-4 sm:py-5 mt-2 bg-muted/30 border-t border-border text-muted-foreground leading-relaxed">
                   {item.answer}
@@ -163,7 +163,7 @@ export default function FAQ() {
           ))}
         </div>
 
-        {/* Contact Section */}
+        {}
         <div className="mt-12 pt-8 border-t border-border">
           <p className="text-center text-muted-foreground">
             Can&apos;t find your answer?{' '}

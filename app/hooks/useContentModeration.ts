@@ -13,10 +13,6 @@ interface UseModerationHook {
   error: string | null;
 }
 
-/**
- * Hook for content moderation using server-side APIs
- * Provides functions to check text and image content
- */
 export function useContentModeration(userId: string): UseModerationHook {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -54,7 +50,7 @@ export function useContentModeration(userId: string): UseModerationHook {
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Unknown error';
         setError(errorMessage);
-        return { flagged: false }; // Don't block on error, let user continue
+        return { flagged: false }; 
       } finally {
         setIsLoading(false);
       }
@@ -72,7 +68,7 @@ export function useContentModeration(userId: string): UseModerationHook {
           return { flagged: false };
         }
 
-        // Determine if it's a URL or base64
+        
         const isBase64 = imageSource.startsWith('data:');
         const isUrl = imageSource.startsWith('http');
 
@@ -84,7 +80,7 @@ export function useContentModeration(userId: string): UseModerationHook {
         const payload: Record<string, string> = { userId };
 
         if (isBase64) {
-          // Extract base64 data without the data URL prefix
+          
           const base64Data = imageSource.split(',')[1] || imageSource;
           payload.imageBase64 = base64Data;
         } else {
@@ -111,7 +107,7 @@ export function useContentModeration(userId: string): UseModerationHook {
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Unknown error';
         setError(errorMessage);
-        return { flagged: false }; // Don't block on error, let user continue
+        return { flagged: false }; 
       } finally {
         setIsLoading(false);
       }
