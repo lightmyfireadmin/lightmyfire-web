@@ -62,10 +62,12 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
 
   const handleSelectLocation = (result: LocationSearchResult) => {
     const locationName = result.address?.name || result.address?.road || result.display_name.split(',')[0];
+    const lat = typeof result.lat === 'string' ? parseFloat(result.lat) : result.lat;
+    const lon = typeof result.lon === 'string' ? parseFloat(result.lon) : result.lon;
     onChange({
       name: locationName,
-      lat: parseFloat(result.lat.toFixed(6)),
-      lng: parseFloat(result.lon.toFixed(6)),
+      lat: parseFloat(lat.toFixed(6)),
+      lng: parseFloat(lon.toFixed(6)),
     });
     setSearchQuery('');
     setShowResults(false);
