@@ -12,8 +12,8 @@ export default function LikeButton({
   isLoggedIn: boolean;
 }) {
   const router = useRouter();
-  const [likes, setLikes] = useState(post.like_count);
-  const [isLiked, setIsLiked] = useState(post.user_has_liked);
+  const [likes, setLikes] = useState(post.like_count || 0);
+  const [isLiked, setIsLiked] = useState(post.user_has_liked || false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLike = async () => {

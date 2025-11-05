@@ -5,8 +5,10 @@ import { supabase } from '@/lib/supabase';
 import Image from 'next/image';
 import LoadingSpinner from '@/app/components/LoadingSpinner';
 import type { User } from '@supabase/supabase-js';
+import { useI18n } from '@/locales/client';
 
 export default function UpdateAuthForm() {
+  const t = useI18n();
   const [user, setUser] = useState<User | null>(null);
   const [newEmail, setNewEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -42,7 +44,7 @@ export default function UpdateAuthForm() {
     setError('');
 
     if (newPassword && newPassword !== confirmPassword) {
-      setError("Passwords do not match.");
+      setError(t('settings.auth.error.passwords_no_match'));
       return;
     }
 
@@ -56,7 +58,7 @@ export default function UpdateAuthForm() {
     if (updateError) {
       setError(updateError.message);
     } else {
-      setMessage('Update successful! Please check your email to confirm the changes if you updated your email address.');
+      setMessage(t('settings.auth.success_message'));
       setNewEmail('');
       setNewPassword('');
       setConfirmPassword('');
@@ -65,19 +67,20 @@ export default function UpdateAuthForm() {
   };
 
   if (isOAuthUser) {
+    const provider = user?.app_metadata?.provider === 'google' ? 'Google' : user?.app_metadata?.provider || 'external provider';
+
     return (
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-foreground">Account Settings</h3>
+        <h3 className="text-lg font-semibold text-foreground">{t('settings.auth.title')}</h3>
         <div className="rounded-md bg-blue-50 p-4 mb-4">
           <p className="text-sm text-blue-800">
-            ✓ You are logged in via {user?.app_metadata?.provider === 'google' ? 'Google' : 'an external provider'}.
-            Your authentication is managed securely by your provider.
+            {t('settings.auth.oauth_notice', { provider })}
           </p>
         </div>
 
         <div>
           <label htmlFor="current-email" className="block text-sm font-medium text-muted-foreground">
-            Current Email
+            {t('settings.auth.current_email')}
           </label>
           <input
             type="email"
@@ -87,21 +90,23 @@ export default function UpdateAuthForm() {
             className="mt-1 block w-full rounded-lg border-input bg-muted p-3 text-muted-foreground cursor-not-allowed"
           />
           <p className="mt-1 text-xs text-muted-foreground">
-            Your email is managed by your {user?.app_metadata?.provider === 'google' ? 'Google' : 'external'} account.
+            {t('settings.auth.email_managed_by', { provider })}
           </p>
         </div>
 
         <p className="text-sm text-muted-foreground">
-          To change your email or authentication method, please visit your{' '}
-          <a
-            href={user?.app_metadata?.provider === 'google' ? 'https://myaccount.google.com' : '#'}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary underline hover:text-primary/80"
-          >
-            {user?.app_metadata?.provider === 'google' ? 'Google Account' : 'provider account'} settings
-          </a>
-          .
+          {t('settings.auth.change_via_provider', {
+            providerLink: (
+              <a
+                href={user?.app_metadata?.provider === 'google' ? 'https://myaccount.google.com' : '#'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary underline hover:text-primary/80"
+              >
+                {user?.app_metadata?.provider === 'google' ? t('settings.auth.provider_link_google') : t('settings.auth.provider_link_generic')}
+              </a>
+            ),
+          })}
         </p>
       </div>
     );
@@ -109,10 +114,10 @@ export default function UpdateAuthForm() {
 
   return (
     <form onSubmit={handleUpdateAuth} className="space-y-4">
-      <h3 className="text-lg font-semibold text-foreground">Update Email / Password</h3>
+      <h3 className="text-lg font-semibold text-foreground">{t('settings.auth.update_title')}</h3>
       <div>
         <label htmlFor="new-email" className="block text-sm font-medium text-muted-foreground">
-          New Email
+          {t('settings.auth.new_email_label')}
         </label>
         <input
           type="email"
@@ -120,12 +125,12 @@ export default function UpdateAuthForm() {
           value={newEmail}
           onChange={(e) => setNewEmail(e.target.value)}
           className="mt-1 block w-full rounded-lg border-input bg-background p-3 text-foreground focus:border-primary focus:ring-primary"
-          placeholder="Enter new email"
+          placeholder={t('settings.auth.new_email_placeholder')}
         />
       </div>
       <div>
         <label htmlFor="new-password" className="block text-sm font-medium text-muted-foreground">
-          New Password
+          {t('settings.auth.new_password_label')}
         </label>
         <input
           type="password"
@@ -133,12 +138,12 @@ export default function UpdateAuthForm() {
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
           className="mt-1 block w-full rounded-lg border-input bg-background p-3 text-foreground focus:border-primary focus:ring-primary"
-          placeholder="Leave blank to keep current password"
+          placeholder={t('settings.auth.new_password_placeholder')}
         />
       </div>
       <div>
         <label htmlFor="confirm-password" className="block text-sm font-medium text-muted-foreground">
-          Confirm New Password
+          {t('settings.auth.confirm_password_label')}
         </label>
         <input
           type="password"
@@ -146,7 +151,7 @@ export default function UpdateAuthForm() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           className="mt-1 block w-full rounded-lg border-input bg-background p-3 text-foreground focus:border-primary focus:ring-primary"
-          placeholder="Confirm new password"
+          placeholder={t('settings.auth.confirm_password_placeholder')}
         />
       </div>
       <button
@@ -155,11 +160,11 @@ export default function UpdateAuthForm() {
         className="btn-secondary flex justify-center items-center gap-2 py-2 hover:shadow-md transition-shadow duration-200"
       >
         {loading ? (
-          <LoadingSpinner size="sm" color="foreground" label="Saving..." />
+          <LoadingSpinner size="sm" color="foreground" label={t('settings.auth.saving')} />
         ) : (
           <>
             <span>🔐</span>
-            <span>Update Auth Details</span>
+            <span>{t('settings.auth.update_button')}</span>
           </>
         )}
       </button>

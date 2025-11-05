@@ -17,31 +17,31 @@ interface ShippingAddressFormProps {
   userEmail?: string;
 }
 
-const COUNTRIES = [
-  { code: 'FR', name: 'France' },
-  { code: 'BE', name: 'Belgium' },
-  { code: 'DE', name: 'Germany' },
-  { code: 'ES', name: 'Spain' },
-  { code: 'IT', name: 'Italy' },
-  { code: 'NL', name: 'Netherlands' },
-  { code: 'PT', name: 'Portugal' },
-  { code: 'GB', name: 'United Kingdom' },
-  { code: 'US', name: 'United States' },
-  { code: 'CA', name: 'Canada' },
-  { code: 'CH', name: 'Switzerland' },
-  { code: 'AT', name: 'Austria' },
-  { code: 'LU', name: 'Luxembourg' },
-  { code: 'IE', name: 'Ireland' },
-  { code: 'SE', name: 'Sweden' },
-  { code: 'DK', name: 'Denmark' },
-  { code: 'NO', name: 'Norway' },
-  { code: 'FI', name: 'Finland' },
-  { code: 'PL', name: 'Poland' },
-  { code: 'CZ', name: 'Czech Republic' },
-].sort((a, b) => a.name.localeCompare(b.name));
-
 export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddressFormProps) {
   const t = useI18n();
+
+  const COUNTRIES = [
+    { code: 'AT', name: t('country.AT') },
+    { code: 'BE', name: t('country.BE') },
+    { code: 'CA', name: t('country.CA') },
+    { code: 'CH', name: t('country.CH') },
+    { code: 'CZ', name: t('country.CZ') },
+    { code: 'DE', name: t('country.DE') },
+    { code: 'DK', name: t('country.DK') },
+    { code: 'ES', name: t('country.ES') },
+    { code: 'FI', name: t('country.FI') },
+    { code: 'FR', name: t('country.FR') },
+    { code: 'GB', name: t('country.GB') },
+    { code: 'IE', name: t('country.IE') },
+    { code: 'IT', name: t('country.IT') },
+    { code: 'LU', name: t('country.LU') },
+    { code: 'NL', name: t('country.NL') },
+    { code: 'NO', name: t('country.NO') },
+    { code: 'PL', name: t('country.PL') },
+    { code: 'PT', name: t('country.PT') },
+    { code: 'SE', name: t('country.SE') },
+    { code: 'US', name: t('country.US') },
+  ].sort((a, b) => a.name.localeCompare(b.name));
   const [formData, setFormData] = useState<ShippingAddress>({
     name: '',
     email: userEmail || '',
@@ -55,15 +55,15 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
   const validateForm = (): boolean => {
     const newErrors: Partial<Record<keyof ShippingAddress, string>> = {};
 
-    if (!formData.name.trim()) newErrors.name = 'Full name is required';
-    if (!formData.email.trim()) newErrors.email = 'Email is required';
+    if (!formData.name.trim()) newErrors.name = t('order.shipping.error_name');
+    if (!formData.email.trim()) newErrors.email = t('order.shipping.error_email_required');
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Invalid email address';
+      newErrors.email = t('order.shipping.error_email_invalid');
     }
-    if (!formData.address.trim()) newErrors.address = 'Street address is required';
-    if (!formData.city.trim()) newErrors.city = 'City is required';
-    if (!formData.postalCode.trim()) newErrors.postalCode = 'Postal code is required';
-    if (!formData.country) newErrors.country = 'Country is required';
+    if (!formData.address.trim()) newErrors.address = t('order.shipping.error_address');
+    if (!formData.city.trim()) newErrors.city = t('order.shipping.error_city');
+    if (!formData.postalCode.trim()) newErrors.postalCode = t('order.shipping.error_postal');
+    if (!formData.country) newErrors.country = t('order.shipping.error_country');
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -87,15 +87,15 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-foreground">Shipping Information</h3>
+        <h3 className="text-lg font-semibold text-foreground">{t('order.shipping.title')}</h3>
         <p className="text-sm text-muted-foreground">
-          Please provide your shipping address for sticker delivery
+          {t('order.shipping.description')}
         </p>
 
         {}
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-            Full Name *
+            {t('order.shipping.name_label')}
           </label>
           <input
             id="name"
@@ -105,7 +105,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
             className={`w-full px-4 py-2 rounded-md border ${
               errors.name ? 'border-red-500' : 'border-border'
             } bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary`}
-            placeholder="John Doe"
+            placeholder={t('order.shipping.name_placeholder')}
           />
           {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
         </div>
@@ -113,7 +113,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
         {}
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-            Email Address *
+            {t('order.shipping.email_label')}
           </label>
           <input
             id="email"
@@ -123,7 +123,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
             className={`w-full px-4 py-2 rounded-md border ${
               errors.email ? 'border-red-500' : 'border-border'
             } bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary`}
-            placeholder="john@example.com"
+            placeholder={t('order.shipping.email_placeholder')}
           />
           {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
         </div>
@@ -131,7 +131,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
         {}
         <div>
           <label htmlFor="address" className="block text-sm font-medium text-foreground mb-2">
-            Street Address *
+            {t('order.shipping.address_label')}
           </label>
           <input
             id="address"
@@ -141,7 +141,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
             className={`w-full px-4 py-2 rounded-md border ${
               errors.address ? 'border-red-500' : 'border-border'
             } bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary`}
-            placeholder="123 Main Street, Apt 4B"
+            placeholder={t('order.shipping.address_placeholder')}
           />
           {errors.address && <p className="mt-1 text-sm text-red-500">{errors.address}</p>}
         </div>
@@ -150,7 +150,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label htmlFor="city" className="block text-sm font-medium text-foreground mb-2">
-              City *
+              {t('order.shipping.city_label')}
             </label>
             <input
               id="city"
@@ -160,14 +160,14 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
               className={`w-full px-4 py-2 rounded-md border ${
                 errors.city ? 'border-red-500' : 'border-border'
               } bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary`}
-              placeholder="Paris"
+              placeholder={t('order.shipping.city_placeholder')}
             />
             {errors.city && <p className="mt-1 text-sm text-red-500">{errors.city}</p>}
           </div>
 
           <div>
             <label htmlFor="postalCode" className="block text-sm font-medium text-foreground mb-2">
-              Postal Code *
+              {t('order.shipping.postal_code_label')}
             </label>
             <input
               id="postalCode"
@@ -177,7 +177,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
               className={`w-full px-4 py-2 rounded-md border ${
                 errors.postalCode ? 'border-red-500' : 'border-border'
               } bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary`}
-              placeholder="75001"
+              placeholder={t('order.shipping.postal_code_placeholder')}
             />
             {errors.postalCode && <p className="mt-1 text-sm text-red-500">{errors.postalCode}</p>}
           </div>
@@ -186,7 +186,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
         {}
         <div>
           <label htmlFor="country" className="block text-sm font-medium text-foreground mb-2">
-            Country *
+            {t('order.shipping.country_label')}
           </label>
           <select
             id="country"
@@ -212,7 +212,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
           type="submit"
           className="px-6 py-3 bg-primary text-primary-foreground rounded-md font-semibold hover:bg-primary/90 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
         >
-          Continue to Payment
+          {t('order.shipping.continue_button')}
         </button>
       </div>
     </form>

@@ -2,11 +2,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link'; 
+import Link from 'next/link';
+import { useI18n, useCurrentLocale } from '@/locales/client';
 
 const COOKIE_CONSENT_KEY = 'cookie_consent';
 
 const CookieConsent = () => {
+  const t = useI18n();
+  const locale = useCurrentLocale();
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
@@ -41,24 +44,26 @@ const CookieConsent = () => {
       className="fixed bottom-0 left-0 w-full bg-background text-foreground p-4 text-center z-50 flex flex-wrap justify-center items-center gap-4 shadow-lg"
     >
       <p className="m-0 text-sm max-w-md">
-        We use cookies only for basic functionality—never for tracking. Your privacy is protected. See our{' '}
-        <Link href="/legal/privacy" className="text-primary underline">
-          Privacy Policy
-        </Link>
-        {' '}for details.
+        {t('cookie.message', {
+          privacyLink: (
+            <Link href={`/${locale}/legal/privacy`} className="text-primary underline">
+              {t('cookie.privacy_link_text')}
+            </Link>
+          ),
+        })}
       </p>
       <div className="flex gap-2">
         <button
           onClick={handleAccept}
           className="bg-primary text-primary-foreground border-none px-4 py-2 rounded-md cursor-pointer text-sm hover:opacity-90 transition"
         >
-          Accept
+          {t('cookie.accept')}
         </button>
         <button
           onClick={handleDecline}
           className="bg-muted text-muted-foreground border border-border px-4 py-2 rounded-md cursor-pointer text-sm hover:bg-muted/80 transition"
         >
-          Decline
+          {t('cookie.decline')}
         </button>
       </div>
     </div>

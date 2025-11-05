@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase';
 import type { User } from '@supabase/supabase-js';
 import { countries } from '@/lib/countries';
 import LoadingSpinner from '@/app/components/LoadingSpinner';
+import { useI18n } from '@/locales/client';
 
 interface Profile {
   username: string;
@@ -13,6 +14,7 @@ interface Profile {
 }
 
 export default function EditProfileForm({ user, profile }: { user: User; profile: Profile }) {
+  const t = useI18n();
   const [username, setUsername] = useState(profile.username);
   const [nationality, setNationality] = useState(profile.nationality || '');
   const [showNationality, setShowNationality] = useState(profile.show_nationality);
@@ -61,7 +63,7 @@ export default function EditProfileForm({ user, profile }: { user: User; profile
       </div>
       <div>
         <label htmlFor="nationality" className="block text-sm font-medium text-muted-foreground">
-          Nationality
+          {t('settings.profile.nationality_label')} <span className="text-muted-foreground/70">{t('settings.profile.nationality_optional')}</span>
         </label>
         <select
           id="nationality"
@@ -69,7 +71,7 @@ export default function EditProfileForm({ user, profile }: { user: User; profile
           onChange={(e) => setNationality(e.target.value)}
           className="mt-1 block w-full rounded-lg border-input bg-background p-3 text-foreground focus:border-primary focus:ring-primary"
         >
-          <option value="">Select a country</option>
+          <option value="">{t('settings.profile.nationality_placeholder')}</option>
           {countries.map((country) => (
             <option key={country.code} value={country.code}>
               {country.name}
@@ -86,7 +88,7 @@ export default function EditProfileForm({ user, profile }: { user: User; profile
           className="h-4 w-4 rounded border-input text-primary focus:ring-primary"
         />
         <label htmlFor="show_nationality" className="ml-2 block text-sm text-foreground">
-          Show my nationality on my posts
+          {t('settings.profile.show_nationality_label')}
         </label>
       </div>
       <button

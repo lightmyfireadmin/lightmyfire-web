@@ -57,12 +57,12 @@ function PaymentFormContent({
     e.preventDefault();
 
     if (!stripe || !elements) {
-      setError('Stripe has not loaded. Please refresh and try again.');
+      setError(t('order.payment.error_stripe_not_loaded'));
       return;
     }
 
     if (!cardholderName.trim()) {
-      setError('Please enter your full name');
+      setError(t('order.payment.error_name_required'));
       return;
     }
 
@@ -84,7 +84,7 @@ function PaymentFormContent({
 
       if (!createIntentResponse.ok) {
         const errorData = await createIntentResponse.json();
-        throw new Error(errorData.error || 'Failed to create payment intent');
+        throw new Error(errorData.error || t('order.payment.error_create_intent'));
       }
 
       const { clientSecret } = await createIntentResponse.json();
@@ -99,10 +99,10 @@ function PaymentFormContent({
         },
       });
 
-      if (stripeError) throw new Error(stripeError.message || 'Payment failed');
+      if (stripeError) throw new Error(stripeError.message || t('order.payment.error_payment_failed'));
 
       if (paymentIntent.status === 'succeeded') {
-        
+
         const orderResponse = await fetch('/api/process-sticker-order', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -115,15 +115,15 @@ function PaymentFormContent({
 
         if (!orderResponse.ok) {
           const errorData = await orderResponse.json();
-          throw new Error(errorData.error || 'Failed to process order');
+          throw new Error(errorData.error || t('order.payment.error_process_order'));
         }
 
         const { lighterIds } = await orderResponse.json();
         onSuccess?.(lighterIds);
       } else if (paymentIntent.status === 'requires_action') {
-        setError('Your card requires additional verification.');
+        setError(t('order.payment.error_requires_action'));
       } else {
-        throw new Error(`Unexpected payment status: ${paymentIntent.status}`);
+        throw new Error(t('order.payment.error_unexpected_status', { status: paymentIntent.status }));
       }
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'An error occurred';
@@ -159,25 +159,25 @@ function PaymentFormContent({
         <h3 className="text-lg font-semibold text-foreground mb-4">{t('stripe.card_info')}</h3>
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
-            <span className="text-muted-foreground">Order ID:</span>
+            <span className="text-muted-foreground">{t('order.payment.order_id')}</span>
             <span className="font-mono text-foreground">{orderId}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-muted-foreground">Sticker Pack:</span>
-            <span className="text-foreground">{packSize} stickers</span>
+            <span className="text-muted-foreground">{t('order.payment.sticker_pack')}</span>
+            <span className="text-foreground">{t('order.payment.stickers_count', { count: packSize })}</span>
           </div>
           <div className="flex justify-between border-t border-border pt-2 mt-2">
-            <span className="font-semibold text-foreground">Total Amount:</span>
+            <span className="font-semibold text-foreground">{t('order.payment.total_amount')}</span>
             <span className="font-bold text-primary text-lg">€{payAmount}</span>
           </div>
         </div>
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-foreground">Cardholder Information</h3>
+        <h3 className="text-lg font-semibold text-foreground">{t('order.payment.cardholder_info')}</h3>
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-            Full Name *
+            {t('order.payment.full_name')}
           </label>
           <input
             id="name"
@@ -187,12 +187,12 @@ function PaymentFormContent({
             required
             disabled={isLoading}
             className="w-full px-4 py-2 rounded-md border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
-            placeholder="John Doe"
+            placeholder={t('order.payment.full_name_placeholder')}
           />
         </div>
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-            Email Address *
+            {t('order.payment.email')}
           </label>
           <input
             id="email"
@@ -202,13 +202,13 @@ function PaymentFormContent({
             required
             disabled={isLoading}
             className="w-full px-4 py-2 rounded-md border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
-            placeholder="john@example.com"
+            placeholder={t('order.payment.email_placeholder')}
           />
         </div>
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-foreground">Card Information</h3>
+        <h3 className="text-lg font-semibold text-foreground">{t('order.payment.card_info')}</h3>
         <div className="border border-border rounded-md p-4 bg-background/50">
           <CardElement options={cardElementOptions} />
         </div>
@@ -217,7 +217,7 @@ function PaymentFormContent({
       <div className="rounded-lg border border-border bg-background/50 p-4">
         <p className="text-xs text-muted-foreground flex items-center gap-2">
           <span>🔒</span>
-          Your payment is encrypted and secured by Stripe.
+          {t('order.payment.security_message')}
         </p>
       </div>
 
@@ -229,29 +229,33 @@ function PaymentFormContent({
         {isLoading ? (
           <>
             <LoadingSpinner color="primary" size="sm" />
-            Processing...
+            {t('order.payment.processing')}
           </>
         ) : (
-          `Pay €${payAmount}`
+          t('order.payment.pay_button', { amount: payAmount })
         )}
       </button>
 
       <p className="text-xs text-center text-muted-foreground">
-        By completing this purchase, you agree to our{' '}
-        <a href="/legal/terms" className="text-primary underline">
-          Terms of Service
-        </a>
-        {' '}and{' '}
-        <a href="/legal/privacy" className="text-primary underline">
-          Privacy Policy
-        </a>
-        .
+        {t('order.payment.terms_agreement', {
+          terms: (
+            <a href="/legal/terms" className="text-primary underline">
+              {t('order.payment.terms_link')}
+            </a>
+          ),
+          privacy: (
+            <a href="/legal/privacy" className="text-primary underline">
+              {t('order.payment.privacy_link')}
+            </a>
+          ),
+        })}
       </p>
     </form>
   );
 }
 
 export default function StripePaymentForm(props: StripePaymentFormProps) {
+  const t = useI18n();
   const [isStripeLoaded, setIsStripeLoaded] = useState(false);
   const [stripeError, setStripeError] = useState<string | null>(null);
 
@@ -274,7 +278,7 @@ export default function StripePaymentForm(props: StripePaymentFormProps) {
   if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) {
     return (
       <div className="rounded-md bg-yellow-50 dark:bg-yellow-950/20 p-4 text-yellow-800 dark:text-yellow-200">
-        <p className="text-sm font-medium">⚠️ Stripe not configured. Add NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY to .env.local</p>
+        <p className="text-sm font-medium">⚠️ {t('order.payment.stripe_not_configured')}</p>
       </div>
     );
   }
@@ -291,7 +295,7 @@ export default function StripePaymentForm(props: StripePaymentFormProps) {
     return (
       <div className="flex flex-col items-center justify-center py-12">
         <LoadingSpinner />
-        <p className="text-sm text-muted-foreground mt-4">Loading payment form...</p>
+        <p className="text-sm text-muted-foreground mt-4">{t('order.payment.loading')}</p>
       </div>
     );
   }

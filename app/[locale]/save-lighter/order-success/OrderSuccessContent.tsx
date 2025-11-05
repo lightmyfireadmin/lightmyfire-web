@@ -51,10 +51,10 @@ export default function OrderSuccessContent() {
               </div>
             </div>
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-              Order Successful!
+              {t('order.success.title')}
             </h1>
             <p className="text-white/90 text-lg">
-              Thank you for your order
+              {t('order.success.subtitle')}
             </p>
           </div>
 
@@ -68,16 +68,16 @@ export default function OrderSuccessContent() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-semibold text-foreground mb-2 text-lg">
-                    Confirmation Email Sent
+                    {t('order.success.confirmation_sent')}
                   </h3>
                   <p className="text-sm text-muted-foreground mb-3">
-                    A confirmation email has been sent to:
+                    {t('order.success.confirmation_description')}
                   </p>
                   <p className="font-mono text-base font-semibold text-foreground bg-white dark:bg-gray-900 px-4 py-2 rounded border border-border">
                     {email}
                   </p>
                   <p className="text-xs text-muted-foreground mt-3">
-                    Please check your inbox (and spam folder) for order details and tracking information.
+                    {t('order.success.check_spam')}
                   </p>
                 </div>
               </div>
@@ -87,17 +87,17 @@ export default function OrderSuccessContent() {
             <div className="border border-border rounded-lg p-6">
               <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                 <FireIcon className="h-5 w-5 text-primary" />
-                Your Lighters
+                {t('order.success.your_lighters')}
               </h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Lighters Created:</span>
+                  <span className="text-muted-foreground">{t('order.success.lighters_created')}</span>
                   <span className="font-bold text-primary text-xl">{lighterCount}</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Status:</span>
+                  <span className="text-muted-foreground">{t('order.success.status')}</span>
                   <span className="inline-flex items-center px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200 text-sm font-medium">
-                    ✓ Processing
+                    {t('order.success.status_processing')}
                   </span>
                 </div>
               </div>
@@ -105,40 +105,39 @@ export default function OrderSuccessContent() {
 
             {}
             <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
-              <h3 className="font-semibold text-foreground mb-3">What happens next?</h3>
+              <h3 className="font-semibold text-foreground mb-3">{t('order.success.what_happens_next')}</h3>
               <ol className="space-y-2 text-sm text-muted-foreground">
                 <li className="flex gap-3">
                   <span className="flex-shrink-0 font-bold text-primary">1.</span>
-                  <span>Your custom stickers are being prepared with your unique PIN codes</span>
+                  <span>{t('order.success.step1')}</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="flex-shrink-0 font-bold text-primary">2.</span>
-                  <span>Our team will process your order and prepare it for shipping</span>
+                  <span>{t('order.success.step2')}</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="flex-shrink-0 font-bold text-primary">3.</span>
-                  <span>Stickers are carefully packaged and shipped within 5-7 business days</span>
+                  <span>{t('order.success.step3')}</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="flex-shrink-0 font-bold text-primary">4.</span>
-                  <span>You&apos;ll receive a tracking number via email once shipped</span>
+                  <span>{t('order.success.step4')}</span>
                 </li>
               </ol>
             </div>
 
             {}
             <div className="bg-muted/50 rounded-lg p-6">
-              <h3 className="font-semibold text-foreground mb-3">Your lighters are ready!</h3>
+              <h3 className="font-semibold text-foreground mb-3">{t('order.success.lighters_ready')}</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Your {lighterCount} lighters have been created in your account with unique PIN codes.
-                You can start adding posts to them right away!
+                {t('order.success.lighters_ready_description', { count: lighterCount })}
               </p>
               <Link
                 href={`/${locale}/my-profile`}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md font-semibold hover:bg-primary/90 transition-colors"
               >
                 <FireIcon className="h-5 w-5" />
-                View My Lighters
+                {t('order.success.view_lighters')}
               </Link>
             </div>
 
@@ -148,13 +147,13 @@ export default function OrderSuccessContent() {
                 href={`/${locale}`}
                 className="px-6 py-3 border border-border rounded-md text-center font-semibold text-foreground hover:bg-muted transition-colors"
               >
-                Back to Home
+                {t('order.success.back_home')}
               </Link>
               <Link
                 href={`/${locale}/my-profile`}
                 className="px-6 py-3 bg-primary text-primary-foreground rounded-md text-center font-semibold hover:bg-primary/90 transition-colors"
               >
-                View My Profile
+                {t('order.success.view_profile')}
               </Link>
             </div>
           </div>
@@ -163,9 +162,9 @@ export default function OrderSuccessContent() {
         {}
         <div className="mt-6 text-center text-sm text-muted-foreground">
           <p>
-            Questions about your order?{' '}
+            {t('order.success.questions')}{' '}
             <a href="mailto:editionsrevel@gmail.com" className="text-primary hover:underline">
-              Contact us
+              {t('order.success.contact_us')}
             </a>
           </p>
         </div>

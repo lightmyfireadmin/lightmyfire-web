@@ -7,6 +7,36 @@ import StripePaymentForm from './StripePaymentForm';
 import StickerPreview from './StickerPreview';
 import ShippingAddressForm, { type ShippingAddress } from './ShippingAddressForm';
 import ContactFormModal from '@/app/components/ContactFormModal';
+
+// Map locale codes to language names
+const getLanguageName = (code: string): string => {
+  const languageMap: { [key: string]: string } = {
+    'en': 'English',
+    'fr': 'Français',
+    'es': 'Español',
+    'de': 'Deutsch',
+    'it': 'Italiano',
+    'pt': 'Português',
+    'nl': 'Nederlands',
+    'ru': 'Русский',
+    'pl': 'Polski',
+    'ja': '日本語',
+    'ko': '한국어',
+    'zh-CN': '中文',
+    'th': 'ไทย',
+    'vi': 'Tiếng Việt',
+    'hi': 'हिन्दी',
+    'ar': 'العربية',
+    'fa': 'فارسی',
+    'ur': 'اردو',
+    'mr': 'मराठी',
+    'te': 'తెలుగు',
+    'id': 'Bahasa Indonesia',
+    'uk': 'Українська',
+    'tr': 'Türkçe',
+  };
+  return languageMap[code] || code;
+};
 import type { User } from '@supabase/supabase-js';
 
 interface LighterCustomization {
@@ -81,10 +111,10 @@ export default function SaveLighterFlow({ user }: { user: User }) {
         <div className="space-y-8">
           <div>
             <h2 className="mb-8 text-3xl font-bold text-foreground text-center">
-              Choose Your Pack
+              {t('order.choose_pack_title')}
             </h2>
             <p className="text-center text-muted-foreground mb-8">
-              Select how many custom stickers you want to order
+              {t('order.choose_pack_subtitle')}
             </p>
           </div>
 
@@ -99,19 +129,22 @@ export default function SaveLighterFlow({ user }: { user: User }) {
                   {pack.title}
                 </h3>
                 <p className="mb-4 text-3xl font-bold text-primary">
-                  {pack.count} Stickers
+                  {t('order.pack.stickers_count', { count: pack.count })}
                 </p>
                 <p className="mb-4 text-sm text-muted-foreground">
-                  ({pack.sheets} {pack.sheets === 1 ? 'sheet' : 'sheets'})
+                  {pack.sheets === 1
+                    ? t('order.pack.sheet_singular', { count: pack.sheets })
+                    : t('order.pack.sheets_count', { count: pack.sheets })
+                  }
                 </p>
                 <p className="mb-4 text-sm text-muted-foreground italic min-h-[60px] flex items-center justify-center">
                   {pack.description}
                 </p>
                 <p className="mb-4 text-xs text-muted-foreground">
-                  Price calculated at checkout
+                  {t('order.price_at_checkout')}
                 </p>
                 <span className="inline-block px-4 py-2 bg-primary text-primary-foreground rounded-md font-semibold group-hover:shadow-lg transition-shadow">
-                  Select
+                  {t('order.pack_select_button')}
                 </span>
               </button>
             ))}
@@ -121,10 +154,10 @@ export default function SaveLighterFlow({ user }: { user: User }) {
           <div className="mt-8 rounded-lg border-2 border-primary/30 bg-primary/5 p-6">
             <h3 className="text-xl font-semibold text-foreground mb-3 flex items-center gap-2">
               <span>🎨</span>
-              Custom Branding for Events & Brands
+              {t('order.custom_branding.title')}
             </h3>
             <p className="text-sm text-muted-foreground mb-4">
-              Planning an event or want custom branding on your sticker sheets? We can personalize the branding area for your organization, brand, or special event!
+              {t('order.custom_branding.description')}
             </p>
             <button
               onClick={() => setIsContactModalOpen(true)}
@@ -162,7 +195,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
               <>
                 <div className="flex justify-between">
                   <span>Language:</span>
-                  <span className="font-semibold text-foreground">{selectedLanguage}</span>
+                  <span className="font-semibold text-foreground">{getLanguageName(selectedLanguage)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Stickers:</span>
