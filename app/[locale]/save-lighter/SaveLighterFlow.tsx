@@ -5,6 +5,7 @@ import { useI18n, useCurrentLocale } from '@/locales/client';
 import LighterPersonalizationCards from './LighterPersonalizationCards';
 import StripePaymentForm from './StripePaymentForm';
 import StickerPreview from './StickerPreview';
+import FullStickerPreview from './FullStickerPreview';
 import ShippingAddressForm, { type ShippingAddress } from './ShippingAddressForm';
 import ContactFormModal from '@/app/components/ContactFormModal';
 
@@ -229,10 +230,14 @@ export default function SaveLighterFlow({ user }: { user: User }) {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {customizations.slice(0, 5).map((sticker, index) => (
               <div key={sticker.id} className="flex justify-center">
-                <div
-                  className="w-24 h-60 rounded-md shadow-sm"
-                  style={{ backgroundColor: sticker.backgroundColor }}
-                />
+                <div className="transform scale-[0.6] origin-top">
+                  <FullStickerPreview
+                    lighterName={sticker.name}
+                    pinCode={`LMF-${(index + 1).toString().padStart(2, '0')}`}
+                    backgroundColor={sticker.backgroundColor}
+                    language={sticker.language || selectedLanguage}
+                  />
+                </div>
               </div>
             ))}
             {customizations.length > 5 && (

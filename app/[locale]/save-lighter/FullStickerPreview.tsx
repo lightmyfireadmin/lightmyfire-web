@@ -107,7 +107,7 @@ export default function FullStickerPreview({
             alt=""
             width={200}
             height={500}
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover opacity-80"
           />
         </div>
 
