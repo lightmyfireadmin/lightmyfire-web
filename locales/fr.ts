@@ -801,4 +801,10 @@ export default {
   'language.ja': '日本語',
   'language.ko': '한국어',
   'language.zh-CN': '中文',
+  // Profile Settings
+  'settings.profile.nationality_label': 'Nationality',
+  'settings.profile.nationality_optional': '(optional)',
+  'settings.profile.nationality_placeholder': 'Select a country',
+  'settings.profile.show_nationality_label': 'Show my nationality on posts',
+
 } as const;
