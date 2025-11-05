@@ -75,7 +75,7 @@ function PaymentFormContent({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           orderId,
-          amount: Math.round(totalAmount * 100),
+          amount: Math.round(totalAmount),
           currency: 'eur',
           cardholderEmail,
           packSize,
@@ -145,7 +145,7 @@ function PaymentFormContent({
     },
   };
 
-  const payAmount = totalAmount.toFixed(2);
+  const payAmount = (totalAmount / 100).toFixed(2);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">

@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabase'; 
+import { supabase } from '@/lib/supabase';
 import type { User } from '@supabase/supabase-js';
 import Image from 'next/image';
 import { useContentModeration } from '@/app/hooks/useContentModeration';
+import { useI18n } from '@/locales/client';
 import LocationPicker from './LocationPicker';
 
 type PostType = 'text' | 'song' | 'image' | 'location' | 'refuel';
@@ -57,6 +58,7 @@ export default function AddPostForm({
   lighterName: string;
 }) {
   const router = useRouter();
+  const t = useI18n();
   const { moderateText, moderateImage, isLoading: isModerating } = useContentModeration(user.id);
 
   const [postType, setPostType] = useState<PostType>('text');
@@ -312,7 +314,24 @@ export default function AddPostForm({
               <button type="button" onClick={() => setSongInputMode('url')} className={`px-3 py-1 text-sm rounded-md ${songInputMode === 'url' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>URL</button>
             </div>
             {songInputMode === 'url' ? (
-              <input type="url" value={contentUrl} onChange={(e) => setContentUrl(e.target.value)} className={inputClass} placeholder="YouTube Song URL" required />
+              <div className="space-y-2">
+                <input type="url" value={contentUrl} onChange={(e) => setContentUrl(e.target.value)} className={inputClass} placeholder="YouTube Song URL" required />
+                {contentUrl && contentUrl.includes('youtube.com') && (
+                  <div className="mt-3">
+                    <p className="text-sm text-muted-foreground mb-2">Video preview:</p>
+                    <div className="rounded-lg overflow-hidden border border-border">
+                      <iframe
+                        width="100%"
+                        height="200"
+                        src={`https://www.youtube.com/embed/${contentUrl.split('v=')[1]?.split('&')[0]}`}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
             ) : (
               <div className="space-y-2">
                 <input
@@ -327,6 +346,21 @@ export default function AddPostForm({
                   placeholder="Search YouTube for a song..."
                 />
                 {youtubeSearchLoading && <p className="text-sm text-muted-foreground">Searching...</p>}
+                {contentUrl && !showYoutubeResults && (
+                  <div className="mt-3">
+                    <p className="text-sm text-muted-foreground mb-2">Selected video:</p>
+                    <div className="rounded-lg overflow-hidden border border-border">
+                      <iframe
+                        width="100%"
+                        height="200"
+                        src={`https://www.youtube.com/embed/${contentUrl.split('v=')[1]?.split('&')[0]}`}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                  </div>
+                )}
                 {showYoutubeResults && (
                   <div className="max-h-60 overflow-y-auto border border-border rounded-md">
                     {youtubeSearchResults.length > 0 ? (
@@ -384,7 +418,7 @@ export default function AddPostForm({
           }}
         />
       );
-      case 'refuel': return <p className="text-center text-lg text-foreground">You&apos;re a hero! By clicking &quot;Post,&quot; you&apos;ll add a &quot;Refueled&quot; entry to this lighter&apos;s story.</p>;
+      case 'refuel': return <p className="text-center text-lg text-foreground pt-8">{t('add_post.refuel_message')}</p>;
       default: return null;
     }
   };

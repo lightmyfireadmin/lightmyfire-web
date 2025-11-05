@@ -230,7 +230,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {customizations.slice(0, 5).map((sticker, index) => (
-              <div key={sticker.id} className="flex justify-center">
+              <div key={sticker.id} className="flex justify-center h-[300px]">
                 <div className="transform scale-[0.6] origin-top">
                   <FullStickerPreview
                     lighterName={sticker.name}
