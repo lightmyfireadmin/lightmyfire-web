@@ -411,7 +411,7 @@ export default function AddPostForm({
               icon="📝"
               label="Text"
               subtitle="Story, Thought, Poem"
-              colorClass="border-blue-500 text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20"
+              colorClass="border-blue-500 text-blue-700 dark:text-blue-400"
             />
             <PostTypeButton
               selected={postType === 'song'}
@@ -419,7 +419,7 @@ export default function AddPostForm({
               icon="🎵"
               label="Song"
               subtitle="YouTube"
-              colorClass="border-green-500 text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20"
+              colorClass="border-green-500 text-green-700 dark:text-green-400"
             />
             <PostTypeButton
               selected={postType === 'image'}
@@ -427,7 +427,7 @@ export default function AddPostForm({
               icon="📸"
               label="Photo"
               subtitle="Screenshot"
-              colorClass="border-red-500 text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-900/20"
+              colorClass="border-red-500 text-red-700 dark:text-red-400"
             />
             <PostTypeButton
               selected={postType === 'location'}
@@ -435,7 +435,7 @@ export default function AddPostForm({
               icon="📍"
               label="Place"
               subtitle="Where Found It"
-              colorClass="border-purple-500 text-purple-700 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20"
+              colorClass="border-purple-500 text-purple-700 dark:text-purple-400"
             />
             <PostTypeButton
               selected={postType === 'refuel'}
@@ -443,7 +443,7 @@ export default function AddPostForm({
               icon="🔥"
               label="Refuel"
               subtitle="Lighter Refill"
-              colorClass="border-orange-500 text-orange-700 dark:text-orange-400 bg-orange-50 dark:bg-orange-900/20"
+              colorClass="border-orange-500 text-orange-700 dark:text-orange-400"
             />
           </div>
         </div>
