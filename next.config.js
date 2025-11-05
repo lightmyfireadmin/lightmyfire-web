@@ -4,6 +4,7 @@ const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' https://js.stripe.com https://www.youtube.com https://www.google.com;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com;
   img-src 'self' data: https: blob:;
   font-src 'self' data: https://fonts.gstatic.com;
   connect-src 'self' https://*.supabase.co https://api.openai.com https://js.stripe.com https://www.youtube.com https://nominatim.openstreetmap.org;

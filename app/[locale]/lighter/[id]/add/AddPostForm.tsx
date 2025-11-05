@@ -393,25 +393,14 @@ export default function AddPostForm({
       {}
       <div className="mb-8">
         <p className="text-center text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wide">Select Post Type</p>
-        <div className="relative">
-          {}
-          <div className="absolute inset-0 pointer-events-none">
-            {postType === 'text' && <div className="absolute top-0 left-0 w-1/5 h-full bg-blue-100 dark:bg-blue-900/30 rounded-lg transition-all duration-300" />}
-            {postType === 'song' && <div className="absolute top-0 left-1/5 w-1/5 h-full bg-green-100 dark:bg-green-900/30 rounded-lg transition-all duration-300" />}
-            {postType === 'image' && <div className="absolute top-0 left-2/5 w-1/5 h-full bg-red-100 dark:bg-red-900/30 rounded-lg transition-all duration-300" />}
-            {postType === 'location' && <div className="absolute top-0 left-3/5 w-1/5 h-full bg-purple-100 dark:bg-purple-900/30 rounded-lg transition-all duration-300" />}
-            {postType === 'refuel' && <div className="absolute top-0 left-4/5 w-1/5 h-full bg-orange-100 dark:bg-orange-900/30 rounded-lg transition-all duration-300" />}
-          </div>
-
-          {}
-          <div className="grid grid-cols-5 gap-2 relative z-10">
+        <div className="grid grid-cols-5 gap-2 relative">
             <PostTypeButton
               selected={postType === 'text'}
               onClick={() => setPostType('text')}
               icon="📝"
               label="Text"
               subtitle="Story, Thought, Poem"
-              colorClass="border-blue-500 text-blue-700 dark:text-blue-400"
+              colorClass="border-blue-500 text-blue-700 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/30"
             />
             <PostTypeButton
               selected={postType === 'song'}
@@ -419,7 +408,7 @@ export default function AddPostForm({
               icon="🎵"
               label="Song"
               subtitle="YouTube"
-              colorClass="border-green-500 text-green-700 dark:text-green-400"
+              colorClass="border-green-500 text-green-700 dark:text-green-400 bg-green-100 dark:bg-green-900/30"
             />
             <PostTypeButton
               selected={postType === 'image'}
@@ -427,7 +416,7 @@ export default function AddPostForm({
               icon="📸"
               label="Photo"
               subtitle="Screenshot"
-              colorClass="border-red-500 text-red-700 dark:text-red-400"
+              colorClass="border-red-500 text-red-700 dark:text-red-400 bg-red-100 dark:bg-red-900/30"
             />
             <PostTypeButton
               selected={postType === 'location'}
@@ -435,7 +424,7 @@ export default function AddPostForm({
               icon="📍"
               label="Place"
               subtitle="Where Found It"
-              colorClass="border-purple-500 text-purple-700 dark:text-purple-400"
+              colorClass="border-purple-500 text-purple-700 dark:text-purple-400 bg-purple-100 dark:bg-purple-900/30"
             />
             <PostTypeButton
               selected={postType === 'refuel'}
@@ -443,7 +432,7 @@ export default function AddPostForm({
               icon="🔥"
               label="Refuel"
               subtitle="Lighter Refill"
-              colorClass="border-orange-500 text-orange-700 dark:text-orange-400"
+              colorClass="border-orange-500 text-orange-700 dark:text-orange-400 bg-orange-100 dark:bg-orange-900/30"
             />
           </div>
         </div>

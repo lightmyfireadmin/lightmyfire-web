@@ -4,8 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 interface LocationSearchResult {
-  lat: number;
-  lon: number;
+  lat: string | number;
+  lon: string | number;
   display_name: string;
   address: {
     name?: string;
