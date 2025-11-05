@@ -61,3 +61,14 @@ export const DEFAULTS = {
   LANGUAGE: 'en',
   ITEMS_PER_PAGE: 10,
 } as const;
+
+// Sticker Pack Pricing (in cents)
+export const PACK_PRICING = {
+  10: 720,  // €7.20 for 10 stickers (1 sheet)
+  20: 1440, // €14.40 for 20 stickers (2 sheets)
+  50: 3600, // €36.00 for 50 stickers (5 sheets)
+} as const;
+
+// Valid pack sizes
+export const VALID_PACK_SIZES = [10, 20, 50] as const;
+export type PackSize = typeof VALID_PACK_SIZES[number];

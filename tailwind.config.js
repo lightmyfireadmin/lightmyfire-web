@@ -39,6 +39,7 @@ module.exports = {
       },
       animation: {
         'fade-in-out': 'fadeInOut 4s ease-in-out infinite',
+        'shimmer': 'shimmer 2s linear infinite',
       },
       keyframes: {
         fadeInOut: {
@@ -46,6 +47,10 @@ module.exports = {
           '5%': { opacity: '1' },
           '95%': { opacity: '1' },
           '100%': { opacity: '0' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
         },
       },
       typography: ({ theme }) => ({

@@ -6,6 +6,7 @@ import { DetailedPost } from '@/lib/types';
 import { useI18n } from '@/locales/client';
 import PostCard from './PostCard';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
+import { MosaicSkeleton } from './Skeleton';
 
 const RandomPostFeed = () => {
   const t = useI18n();
@@ -13,8 +14,11 @@ const RandomPostFeed = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
 
   const POSTS_TO_SHOW = 4;
+  const POSTS_PER_LOAD = 4;
 
   // Fetch posts with smooth transition
   const fetchPosts = async (showRefreshing = false) => {
@@ -33,6 +37,7 @@ const RandomPostFeed = () => {
           // Fade out current posts
           setTimeout(() => {
             setPosts(data);
+            setHasMore(true); // Reset hasMore when refreshing
             // Fade in new posts
             setTimeout(() => {
               setIsTransitioning(false);
@@ -41,6 +46,7 @@ const RandomPostFeed = () => {
           }, 300);
         } else {
           setPosts(data);
+          setHasMore(data.length >= POSTS_TO_SHOW);
         }
       }
     } catch (error) {
@@ -51,6 +57,29 @@ const RandomPostFeed = () => {
       if (!showRefreshing) {
         setIsLoading(false);
       }
+    }
+  };
+
+  // Load more posts
+  const loadMorePosts = async () => {
+    if (isLoadingMore || !hasMore) return;
+
+    setIsLoadingMore(true);
+    try {
+      const { data } = await supabase.rpc('get_random_public_posts', {
+        limit_count: POSTS_PER_LOAD,
+      });
+
+      if (data && data.length > 0) {
+        setPosts(prevPosts => [...prevPosts, ...data]);
+        setHasMore(data.length >= POSTS_PER_LOAD);
+      } else {
+        setHasMore(false);
+      }
+    } catch (error) {
+      console.error('Error loading more posts:', error);
+    } finally {
+      setIsLoadingMore(false);
     }
   };
 
@@ -72,9 +101,7 @@ const RandomPostFeed = () => {
         <p className="mb-8 text-center text-sm sm:text-base text-muted-foreground leading-relaxed max-w-3xl mx-auto">
           {t('home.mosaic.subtitle')}
         </p>
-        <div className="flex items-center justify-center py-12">
-          <p className="text-muted-foreground">{t('home.mosaic.loading')}</p>
-        </div>
+        <MosaicSkeleton count={POSTS_TO_SHOW} />
       </div>
     );
   }
@@ -119,8 +146,9 @@ const RandomPostFeed = () => {
             ))}
           </div>
 
-          {/* Refresh button */}
-          <div className="flex justify-center pt-4">
+          {/* Action buttons */}
+          <div className="flex flex-col sm:flex-row justify-center gap-3 pt-4">
+            {/* Refresh button */}
             <button
               onClick={handleRefresh}
               disabled={isRefreshing}
@@ -135,7 +163,30 @@ const RandomPostFeed = () => {
                 {isRefreshing ? t('home.mosaic.loading') : t('home.mosaic.see_more')}
               </span>
             </button>
+
+            {/* Load More button */}
+            {hasMore && (
+              <button
+                onClick={loadMorePosts}
+                disabled={isLoadingMore}
+                className="group flex items-center gap-2 px-6 py-3 rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-all duration-300 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <span className="font-medium">
+                  {isLoadingMore ? t('home.mosaic.loading') : t('home.mosaic.load_more')}
+                </span>
+                {isLoadingMore && (
+                  <ArrowPathIcon className="h-5 w-5 animate-spin" />
+                )}
+              </button>
+            )}
           </div>
+
+          {/* Loading more indicator */}
+          {isLoadingMore && (
+            <div className="mt-6">
+              <MosaicSkeleton count={POSTS_PER_LOAD} />
+            </div>
+          )}
         </div>
       ) : (
         <div className="text-center py-12">

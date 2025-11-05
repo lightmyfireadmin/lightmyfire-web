@@ -8,6 +8,8 @@ import StickerPreview from './StickerPreview';
 import FullStickerPreview from './FullStickerPreview';
 import ShippingAddressForm, { type ShippingAddress } from './ShippingAddressForm';
 import ContactFormModal from '@/app/components/ContactFormModal';
+import { PACK_PRICING } from '@/lib/constants';
+import { formatCurrency } from '@/lib/utils';
 
 // Map locale codes to language names
 const getLanguageName = (code: string): string => {
@@ -37,6 +39,12 @@ const getLanguageName = (code: string): string => {
     'tr': 'Türkçe',
   };
   return languageMap[code] || code;
+};
+
+// Helper function to get pack price formatted for display
+const getPackPriceDisplay = (packSize: number, locale: string): string => {
+  const priceInCents = PACK_PRICING[packSize as keyof typeof PACK_PRICING];
+  return priceInCents ? formatCurrency(priceInCents, 'EUR', locale) : formatCurrency(0, 'EUR', locale);
 };
 import type { User } from '@supabase/supabase-js';
 
@@ -79,6 +87,9 @@ export default function SaveLighterFlow({ user }: { user: User }) {
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress | null>(null);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [shippingRates, setShippingRates] = useState<{ standard: number; express: number } | null>(null);
+  const [selectedShipping, setSelectedShipping] = useState<'standard' | 'express'>('standard');
+  const [loadingShipping, setLoadingShipping] = useState(false);
 
   const PACK_OPTIONS = getPackOptions(t);
 
@@ -86,8 +97,33 @@ export default function SaveLighterFlow({ user }: { user: User }) {
     setSelectedPack(count);
   };
 
-  const handleShippingSave = (address: ShippingAddress) => {
+  const handleShippingSave = async (address: ShippingAddress) => {
     setShippingAddress(address);
+
+    // Calculate shipping rates
+    setLoadingShipping(true);
+    try {
+      const response = await fetch('/api/calculate-shipping', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          countryCode: address.country,
+          packSize: selectedPack,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setShippingRates({
+          standard: data.rates.standard.rate,
+          express: data.rates.express.rate,
+        });
+      }
+    } catch (error) {
+      console.error('Failed to calculate shipping:', error);
+    } finally {
+      setLoadingShipping(false);
+    }
   };
 
   const handlePersonalizationSave = (
@@ -206,14 +242,80 @@ export default function SaveLighterFlow({ user }: { user: User }) {
                 </div>
               </>
             )}
+            {shippingRates && (
+              <>
+                <div className="border-t border-border pt-3 mt-3">
+                  <p className="text-sm font-semibold text-foreground mb-2">Shipping Method:</p>
+                  <div className="space-y-2">
+                    <label className="flex items-center justify-between p-3 border-2 rounded-lg cursor-pointer transition-colors hover:bg-muted/50 {selectedShipping === 'standard' ? 'border-primary bg-primary/5' : 'border-border'}">
+                      <div className="flex items-center gap-3">
+                        <input
+                          type="radio"
+                          name="shipping"
+                          value="standard"
+                          checked={selectedShipping === 'standard'}
+                          onChange={() => setSelectedShipping('standard')}
+                          className="w-4 h-4 text-primary"
+                        />
+                        <div>
+                          <p className="font-medium text-foreground">Standard Shipping</p>
+                          <p className="text-xs text-muted-foreground">7-14 business days</p>
+                        </div>
+                      </div>
+                      <span className="font-semibold text-foreground">{formatCurrency(shippingRates.standard, 'EUR', locale)}</span>
+                    </label>
+                    <label className="flex items-center justify-between p-3 border-2 rounded-lg cursor-pointer transition-colors hover:bg-muted/50 {selectedShipping === 'express' ? 'border-primary bg-primary/5' : 'border-border'}">
+                      <div className="flex items-center gap-3">
+                        <input
+                          type="radio"
+                          name="shipping"
+                          value="express"
+                          checked={selectedShipping === 'express'}
+                          onChange={() => setSelectedShipping('express')}
+                          className="w-4 h-4 text-primary"
+                        />
+                        <div>
+                          <p className="font-medium text-foreground">Express Shipping</p>
+                          <p className="text-xs text-muted-foreground">3-5 business days</p>
+                        </div>
+                      </div>
+                      <span className="font-semibold text-foreground">{formatCurrency(shippingRates.express, 'EUR', locale)}</span>
+                    </label>
+                  </div>
+                </div>
+              </>
+            )}
             <div className="border-t border-border pt-3 mt-3">
-              <div className="flex justify-between">
-                <span className="font-semibold text-foreground">Total: </span>
+              <div className="flex justify-between mb-2">
+                <span className="text-foreground">Subtotal:</span>
+                <span className="font-semibold text-foreground">
+                  {getPackPriceDisplay(selectedPack || 10, locale)}
+                </span>
+              </div>
+              {shippingRates && (
+                <div className="flex justify-between mb-2">
+                  <span className="text-foreground">Shipping:</span>
+                  <span className="font-semibold text-foreground">
+                    {formatCurrency(shippingRates[selectedShipping], 'EUR', locale)}
+                  </span>
+                </div>
+              )}
+              <div className="flex justify-between pt-2 border-t border-border">
+                <span className="font-semibold text-foreground text-lg">Total: </span>
                 <span className="font-bold text-primary text-lg">
-                  {selectedPack === 10 && '€7.20'}
-                  {selectedPack === 20 && '€14.40'}
-                  {selectedPack === 50 && '€36.00'}
-                  <span className="text-sm text-muted-foreground ml-1">+ shipping</span>
+                  {shippingRates ? (
+                    formatCurrency(
+                      PACK_PRICING[selectedPack as keyof typeof PACK_PRICING] +
+                      shippingRates[selectedShipping],
+                      'EUR',
+                      locale
+                    )
+                  ) : (
+                    <>
+                      {getPackPriceDisplay(selectedPack || 10, locale)}
+                      <span className="text-sm text-muted-foreground ml-1">+ shipping</span>
+                    </>
+                  )}
                 </span>
               </div>
             </div>
@@ -266,7 +368,8 @@ export default function SaveLighterFlow({ user }: { user: User }) {
           <StripePaymentForm
             orderId={`LMF-${Date.now()}`}
             totalAmount={
-              selectedPack === 10 ? 720 : selectedPack === 20 ? 1440 : 3600
+              PACK_PRICING[selectedPack as keyof typeof PACK_PRICING] +
+              (shippingRates ? shippingRates[selectedShipping] : 0)
             }
             userEmail={shippingAddress.email}
             packSize={selectedPack || 10}
@@ -277,7 +380,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
             }))}
             shippingAddress={shippingAddress}
             onSuccess={(lighterIds) => {
-              
+
               window.location.href = `/${locale}/save-lighter/order-success?email=${encodeURIComponent(shippingAddress.email)}&count=${lighterIds.length}`;
             }}
           />

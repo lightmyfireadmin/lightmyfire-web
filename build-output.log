@@ -1,0 +1,23 @@
+
+> lightmyfire-web@0.8.0 build
+> next build
+
+  ▲ Next.js 14.2.33
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+Failed to compile.
+
+./locales/pl.ts:408:3
+Type error: An object literal cannot have multiple properties with the same name.
+
+[0m [90m 406 |[39m   [32m'save_lighter.error.failed_to_save'[39m[33m:[39m [32m'Nie udało się zapisać zapalniczki: {message}'[39m[33m,[39m[0m
+[0m [90m 407 |[39m   [32m'save_success.next_steps.download_label'[39m[33m:[39m [32m'Pobierz'[39m[33m,[39m[0m
+[0m[31m[1m>[22m[39m[90m 408 |[39m   [32m'save_success.next_steps.stick_label'[39m[33m:[39m [32m'Przyklej'[39m[33m,[39m[0m
+[0m [90m     |[39m   [31m[1m^[22m[39m[0m
+[0m [90m 409 |[39m   [32m'save_success.next_steps.share_label'[39m[33m:[39m [32m'Udostępnij'[39m[33m,[39m[0m
+[0m [90m 410 |[39m   [32m'save_success.generating_sticker'[39m[33m:[39m [32m'Generowanie naklejki...'[39m[33m,[39m[0m
+[0m [90m 411 |[39m   [32m'save_success.error_fetching'[39m[33m:[39m [32m'Wystąpił błąd podczas pobierania szczegółów zapalniczki.'[39m[33m,[39m[0m
+Next.js build worker exited with code: 1 and signal: null

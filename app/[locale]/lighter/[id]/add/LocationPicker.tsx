@@ -28,7 +28,16 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
   const [searchResults, setSearchResults] = useState<LocationSearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const [mapConsent, setMapConsent] = useState(false);
   const searchRef = useRef<NodeJS.Timeout>();
+
+  // Check localStorage for map consent
+  useEffect(() => {
+    const consent = localStorage.getItem('osm_map_consent');
+    if (consent === 'true') {
+      setMapConsent(true);
+    }
+  }, []);
 
   const searchLocations = async (query: string) => {
     if (!query || query.length < 2) {
@@ -73,6 +82,11 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
     setShowResults(false);
   };
 
+  const handleMapConsent = () => {
+    localStorage.setItem('osm_map_consent', 'true');
+    setMapConsent(true);
+  };
+
   return (
     <div className="space-y-4">
       {}
@@ -88,26 +102,54 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
             </p>
             {/* OpenStreetMap Preview */}
             <div className="mt-3 rounded overflow-hidden border border-border">
-              <iframe
-                width="100%"
-                height="200"
-                frameBorder="0"
-                scrolling="no"
-                marginHeight={0}
-                marginWidth={0}
-                src={`https://www.openstreetmap.org/export/embed.html?bbox=${value.lng - 0.01},${value.lat - 0.01},${value.lng + 0.01},${value.lat + 0.01}&layer=mapnik&marker=${value.lat},${value.lng}`}
-                style={{ border: 0 }}
-              />
-              <div className="text-xs text-center py-1 bg-muted">
-                <a
-                  href={`https://www.openstreetmap.org/?mlat=${value.lat}&mlon=${value.lng}#map=15/${value.lat}/${value.lng}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline"
-                >
-                  View larger map
-                </a>
-              </div>
+              {mapConsent ? (
+                <>
+                  <div className="relative">
+                    <iframe
+                      width="100%"
+                      height="200"
+                      frameBorder="0"
+                      scrolling="no"
+                      marginHeight={0}
+                      marginWidth={0}
+                      src={`https://www.openstreetmap.org/export/embed.html?bbox=${value.lng - 0.005},${value.lat - 0.005},${value.lng + 0.005},${value.lat + 0.005}&layer=mapnik&marker=${value.lat},${value.lng}`}
+                      style={{ border: 0 }}
+                      title="Location map"
+                    />
+                    {/* Center marker indicator */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                      <div className="w-6 h-6 bg-red-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center">
+                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-xs text-center py-1 bg-muted">
+                    <a
+                      href={`https://www.openstreetmap.org/?mlat=${value.lat}&mlon=${value.lng}#map=16/${value.lat}/${value.lng}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline"
+                    >
+                      View larger map
+                    </a>
+                  </div>
+                </>
+              ) : (
+                <div className="bg-muted p-6 text-center space-y-3">
+                  <div className="text-4xl">🗺️</div>
+                  <p className="text-sm text-foreground font-medium">Map Preview Available</p>
+                  <p className="text-xs text-muted-foreground">
+                    This map uses OpenStreetMap with no tracking cookies. We only store your preference locally to remember this choice.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={handleMapConsent}
+                    className="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/90 transition-colors"
+                  >
+                    Show Map
+                  </button>
+                </div>
+              )}
             </div>
           </>
         )}

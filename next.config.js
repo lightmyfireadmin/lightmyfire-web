@@ -8,7 +8,7 @@ const ContentSecurityPolicy = `
   img-src 'self' data: https: blob:;
   font-src 'self' data: https://fonts.gstatic.com;
   connect-src 'self' https://*.supabase.co https://api.openai.com https://js.stripe.com https://www.youtube.com https://nominatim.openstreetmap.org;
-  frame-src https://js.stripe.com https://www.youtube.com;
+  frame-src https://js.stripe.com https://www.youtube.com https://www.openstreetmap.org;
   media-src 'self' https:;
   object-src 'none';
   base-uri 'self';

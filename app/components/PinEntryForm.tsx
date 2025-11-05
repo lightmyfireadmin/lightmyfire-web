@@ -1,18 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabase'; 
+import { supabase } from '@/lib/supabase';
 import Image from 'next/image';
 import { useI18n, useCurrentLocale } from '@/locales/client';
 import LoadingSpinner from '@/app/components/LoadingSpinner';
 import InfoPopup from '@/app/components/InfoPopup';
+import { QrCodeIcon } from '@heroicons/react/24/outline';
+
+// Lazy load QR scanner to reduce initial bundle size
+const QRScanner = lazy(() => import('@/app/components/QRScanner'));
 
 export default function PinEntryForm() {
   const t = useI18n();
   const [pin, setPin] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showScanner, setShowScanner] = useState(false);
   const router = useRouter();
   const lang = useCurrentLocale();
 
@@ -54,6 +59,35 @@ export default function PinEntryForm() {
     }
 
     setLoading(false);
+  };
+
+  const handleQRScan = (decodedText: string) => {
+    // Extract PIN from QR code
+    // The QR code might contain a full URL like https://lightmyfire.app/lighter/ABC-123
+    // or just the PIN like ABC-123
+    let extractedPin = decodedText;
+
+    // Try to extract PIN from URL
+    const urlMatch = decodedText.match(/\/lighter\/([A-Z0-9-]+)/i);
+    if (urlMatch) {
+      extractedPin = urlMatch[1];
+    }
+
+    // Clean and format the PIN
+    extractedPin = extractedPin.toUpperCase().replace(/[^A-Z0-9-]/g, '');
+
+    // Set the PIN in the input field
+    setPin(extractedPin);
+    setShowScanner(false);
+
+    // Automatically submit if we have a valid PIN format
+    if (extractedPin.match(/^[A-Z0-9]{3}-[A-Z0-9]{3}$/)) {
+      // Trigger form submission
+      const form = document.querySelector('form');
+      if (form) {
+        form.requestSubmit();
+      }
+    }
   };
 
   return (
@@ -106,21 +140,42 @@ export default function PinEntryForm() {
           </p>
         )}
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="btn-primary w-full text-base sm:text-lg py-3 flex justify-center items-center gap-2 hover:shadow-lg transition-shadow duration-200"
-        >
-          {loading ? (
-            <LoadingSpinner size="sm" color="foreground" label={t('home.pin_entry.loading')} />
-          ) : (
-            <>
-              <span>🔍</span>
-              <span>{t('home.pin_entry.button')}</span>
-            </>
-          )}
-        </button>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button
+            type="submit"
+            disabled={loading}
+            className="btn-primary w-full text-base sm:text-lg py-3 flex justify-center items-center gap-2 hover:shadow-lg transition-shadow duration-200"
+          >
+            {loading ? (
+              <LoadingSpinner size="sm" color="foreground" label={t('home.pin_entry.loading')} />
+            ) : (
+              <>
+                <span>🔍</span>
+                <span>{t('home.pin_entry.button')}</span>
+              </>
+            )}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setShowScanner(true)}
+            className="w-full text-base sm:text-lg py-3 flex justify-center items-center gap-2 bg-secondary text-secondary-foreground hover:bg-secondary/90 rounded-lg font-semibold transition-all duration-200 hover:shadow-lg"
+          >
+            <QrCodeIcon className="h-5 w-5" />
+            <span>{t('home.pin_entry.scan_qr')}</span>
+          </button>
+        </div>
       </form>
+
+      {/* QR Scanner Modal */}
+      {showScanner && (
+        <Suspense fallback={<div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center"><LoadingSpinner size="lg" /></div>}>
+          <QRScanner
+            onScan={handleQRScan}
+            onClose={() => setShowScanner(false)}
+          />
+        </Suspense>
+      )}
     </div>
   );
 }

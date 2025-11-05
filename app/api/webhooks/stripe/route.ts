@@ -42,8 +42,45 @@ export async function POST(request: NextRequest) {
 
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
+      process.env.SUPABASE_SERVICE_ROLE_KEY!,
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false
+        }
+      }
     );
+
+    // Check if we've already processed this webhook event (idempotency)
+    const { data: existingEvent } = await supabase
+      .from('webhook_events')
+      .select('id')
+      .eq('id', event.id)
+      .single();
+
+    if (existingEvent) {
+      console.log(`Webhook event ${event.id} already processed, skipping`);
+      return NextResponse.json({ received: true, status: 'already_processed' }, { status: 200 });
+    }
+
+    // Store webhook event to prevent duplicate processing
+    const { error: insertError } = await supabase
+      .from('webhook_events')
+      .insert({
+        id: event.id,
+        event_type: event.type,
+        payload: event as any,
+      });
+
+    if (insertError) {
+      // If insert fails due to unique constraint, another instance already processed it
+      if (insertError.code === '23505') { // Unique violation
+        console.log(`Webhook event ${event.id} was processed by another instance`);
+        return NextResponse.json({ received: true, status: 'already_processed' }, { status: 200 });
+      }
+      console.error('Failed to insert webhook event:', insertError);
+      return NextResponse.json({ error: 'Failed to track webhook event' }, { status: 500 });
+    }
 
     switch (event.type) {
       case 'payment_intent.succeeded': {

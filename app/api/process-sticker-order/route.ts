@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 import nodemailer from 'nodemailer';
 import Stripe from 'stripe';
+import { PACK_PRICING, VALID_PACK_SIZES } from '@/lib/constants';
 
 interface LighterData {
   name: string;
@@ -33,6 +34,19 @@ interface OrderRequest {
  */
 export async function POST(request: NextRequest) {
   try {
+    // Use service role key for admin operations (creating lighters, bypassing RLS)
+    const supabaseAdmin = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!,
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false
+        }
+      }
+    );
+
+    // Create separate client for user session verification
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -75,12 +89,42 @@ export async function POST(request: NextRequest) {
         }, { status: 400 });
       }
 
-      // Additional verification: check amount matches expected
-      const expectedAmount = lighterData.length * 250; // 2.50€ per sticker in cents
-      if (paymentIntent.amount !== expectedAmount) {
-        console.error('Payment amount mismatch:', {
-          expected: expectedAmount,
-          received: paymentIntent.amount
+      // Additional verification: validate pack size and check amount
+      const packSize = lighterData.length;
+
+      // Validate pack size
+      if (!VALID_PACK_SIZES.includes(packSize as any)) {
+        console.error('Invalid pack size:', packSize);
+        return NextResponse.json({
+          error: 'Invalid pack size. Must be 10, 20, or 50 stickers.'
+        }, { status: 400 });
+      }
+
+      // Get expected base price (stickers only, without shipping)
+      const expectedBaseAmount = PACK_PRICING[packSize as keyof typeof PACK_PRICING];
+
+      // Payment intent includes shipping cost, so total should be >= base amount
+      // We verify the amount is at least the base sticker price
+      // (shipping rates vary by country, so we can't do exact match)
+      if (paymentIntent.amount < expectedBaseAmount) {
+        console.error('Payment amount too low:', {
+          expectedMinimum: expectedBaseAmount,
+          received: paymentIntent.amount,
+          packSize
+        });
+        return NextResponse.json({
+          error: 'Payment amount verification failed'
+        }, { status: 400 });
+      }
+
+      // Sanity check: amount shouldn't be more than 10x the base price
+      // (prevents fraudulent high charges)
+      const maxReasonableAmount = expectedBaseAmount * 10;
+      if (paymentIntent.amount > maxReasonableAmount) {
+        console.error('Payment amount suspiciously high:', {
+          received: paymentIntent.amount,
+          maximum: maxReasonableAmount,
+          packSize
         });
         return NextResponse.json({
           error: 'Payment amount verification failed'
@@ -94,8 +138,8 @@ export async function POST(request: NextRequest) {
       }, { status: 500 });
     }
 
-    // Create lighters in database and get PINs
-    const { data: createdLighters, error: dbError } = await supabase.rpc('create_bulk_lighters', {
+    // Create lighters in database and get PINs (using admin client to bypass RLS)
+    const { data: createdLighters, error: dbError } = await supabaseAdmin.rpc('create_bulk_lighters', {
       p_user_id: session.user.id,
       p_lighter_data: lighterData,
     });
@@ -164,18 +208,30 @@ The sticker PNG file is attached. Please fulfill this order.
     `;
 
     // Send order to fulfillment email
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: 'editionsrevel@gmail.com',
-      subject: `New Sticker Order - ${lighterData.length} stickers - ${paymentIntentId}`,
-      text: orderDetails,
-      attachments: [
-        {
-          filename: `stickers-${paymentIntentId}.png`,
-          content: Buffer.from(pngBuffer),
-        },
-      ],
-    });
+    const fulfillmentEmail = process.env.FULFILLMENT_EMAIL || 'editionsrevel@gmail.com';
+    let fulfillmentEmailSent = false;
+    let customerEmailSent = false;
+
+    try {
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: fulfillmentEmail,
+        subject: `New Sticker Order - ${lighterData.length} stickers - ${paymentIntentId}`,
+        text: orderDetails,
+        attachments: [
+          {
+            filename: `stickers-${paymentIntentId}.png`,
+            content: Buffer.from(pngBuffer),
+          },
+        ],
+      });
+      fulfillmentEmailSent = true;
+      console.log('Fulfillment email sent successfully');
+    } catch (emailError) {
+      console.error('Failed to send fulfillment email:', emailError);
+      // Don't fail the order, but log for manual follow-up
+      // TODO: Store failed email in database for retry
+    }
 
     // Send confirmation email to customer
     const customerEmail = `
@@ -209,18 +265,36 @@ Thank you for being part of the LightMyFire community!
 The LightMyFire Team
     `;
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: shippingAddress.email,
-      subject: `Order Confirmed - ${lighterData.length} LightMyFire Stickers`,
-      text: customerEmail,
-    });
+    try {
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: shippingAddress.email,
+        subject: `Order Confirmed - ${lighterData.length} LightMyFire Stickers`,
+        text: customerEmail,
+      });
+      customerEmailSent = true;
+      console.log('Customer confirmation email sent successfully');
+    } catch (emailError) {
+      console.error('Failed to send customer confirmation email:', emailError);
+      // Don't fail the order, customer can still see order in their account
+    }
 
-    // Return success with created lighter IDs
+    // Return success with created lighter IDs and email status
+    const warnings = [];
+    if (!fulfillmentEmailSent) {
+      warnings.push('Fulfillment email failed to send - manual follow-up required');
+    }
+    if (!customerEmailSent) {
+      warnings.push('Customer confirmation email failed to send');
+    }
+
     return NextResponse.json({
       success: true,
       lighterIds: createdLighters.map((l: any) => l.lighter_id),
-      message: 'Order processed successfully. Confirmation emails sent.',
+      message: warnings.length > 0
+        ? `Order processed successfully but some emails failed: ${warnings.join(', ')}`
+        : 'Order processed successfully. Confirmation emails sent.',
+      warnings: warnings.length > 0 ? warnings : undefined,
     });
   } catch (error) {
     console.error('Order processing error:', error);
