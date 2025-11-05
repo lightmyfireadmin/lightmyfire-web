@@ -210,9 +210,10 @@ export default function SaveLighterFlow({ user }: { user: User }) {
               <div className="flex justify-between">
                 <span className="font-semibold text-foreground">Total: </span>
                 <span className="font-bold text-primary text-lg">
-                  {selectedPack === 5 && '€25.00'}
-                  {selectedPack === 10 && '€45.00'}
-                  {selectedPack === 50 && '€200.00'}
+                  {selectedPack === 10 && '€7.20'}
+                  {selectedPack === 20 && '€14.40'}
+                  {selectedPack === 50 && '€36.00'}
+                  <span className="text-sm text-muted-foreground ml-1">+ shipping</span>
                 </span>
               </div>
             </div>
@@ -265,7 +266,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
           <StripePaymentForm
             orderId={`LMF-${Date.now()}`}
             totalAmount={
-              selectedPack === 10 ? 2500 : selectedPack === 20 ? 4500 : 10000
+              selectedPack === 10 ? 720 : selectedPack === 20 ? 1440 : 3600
             }
             userEmail={shippingAddress.email}
             packSize={selectedPack || 10}

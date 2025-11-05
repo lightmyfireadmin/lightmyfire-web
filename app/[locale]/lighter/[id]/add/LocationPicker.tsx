@@ -82,9 +82,34 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
           {value.name || 'No location selected'}
         </p>
         {value.lat && value.lng && (
-          <p className="text-xs text-muted-foreground mt-2">
-            📍 {value.lat}, {value.lng}
-          </p>
+          <>
+            <p className="text-xs text-muted-foreground mt-2">
+              📍 {value.lat}, {value.lng}
+            </p>
+            {/* OpenStreetMap Preview */}
+            <div className="mt-3 rounded overflow-hidden border border-border">
+              <iframe
+                width="100%"
+                height="200"
+                frameBorder="0"
+                scrolling="no"
+                marginHeight={0}
+                marginWidth={0}
+                src={`https://www.openstreetmap.org/export/embed.html?bbox=${value.lng - 0.01},${value.lat - 0.01},${value.lng + 0.01},${value.lat + 0.01}&layer=mapnik&marker=${value.lat},${value.lng}`}
+                style={{ border: 0 }}
+              />
+              <div className="text-xs text-center py-1 bg-muted">
+                <a
+                  href={`https://www.openstreetmap.org/?mlat=${value.lat}&mlon=${value.lng}#map=15/${value.lat}/${value.lng}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  View larger map
+                </a>
+              </div>
+            </div>
+          </>
         )}
       </div>
 

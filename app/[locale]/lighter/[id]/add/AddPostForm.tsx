@@ -83,6 +83,7 @@ export default function AddPostForm({
   const [youtubeSearchQuery, setYoutubeSearchQuery] = useState('');
   const [youtubeSearchResults, setYoutubeSearchResults] = useState<YouTubeVideo[]>([]);
   const [youtubeSearchLoading, setYoutubeSearchLoading] = useState(false);
+  const [showYoutubeResults, setShowYoutubeResults] = useState(false);
 
   const isValidUrl = (url: string) => {
     try {
@@ -96,6 +97,7 @@ export default function AddPostForm({
   const searchYouTube = async (query: string) => {
     if (!query) {
       setYoutubeSearchResults([]);
+      setShowYoutubeResults(false);
       return;
     }
     setYoutubeSearchLoading(true);
@@ -112,28 +114,31 @@ export default function AddPostForm({
       if (data.error) {
         setError(`YouTube Search Error: ${data.error}`);
         setYoutubeSearchResults([]);
+        setShowYoutubeResults(false);
       } else {
         setYoutubeSearchResults(data.items || []);
+        setShowYoutubeResults(true);
       }
     } catch (err) {
       console.error('YouTube Search Error:', err);
       setError('Failed to search YouTube. Please try again.');
       setYoutubeSearchResults([]);
+      setShowYoutubeResults(false);
     }
     setYoutubeSearchLoading(false);
   };
 
-  
+
   useEffect(() => {
     const handler = setTimeout(() => {
-      if (songInputMode === 'search') {
+      if (songInputMode === 'search' && contentUrl === '') {
         searchYouTube(youtubeSearchQuery);
       }
     }, 500);
     return () => {
       clearTimeout(handler);
     };
-  }, [youtubeSearchQuery, songInputMode]);
+  }, [youtubeSearchQuery, songInputMode, contentUrl]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -313,37 +318,44 @@ export default function AddPostForm({
                 <input
                   type="text"
                   value={youtubeSearchQuery}
-                  onChange={(e) => setYoutubeSearchQuery(e.target.value)}
+                  onChange={(e) => {
+                    setYoutubeSearchQuery(e.target.value);
+                    setContentUrl(''); // Clear selection to allow new search
+                    setShowYoutubeResults(true);
+                  }}
                   className={inputClass}
                   placeholder="Search YouTube for a song..."
                 />
                 {youtubeSearchLoading && <p className="text-sm text-muted-foreground">Searching...</p>}
-                <div className="max-h-60 overflow-y-auto border border-border rounded-md">
-                  {youtubeSearchResults.length > 0 ? (
-                    youtubeSearchResults.map((video) => (
-                      <div
-                        key={video.id.videoId}
-                        className="flex items-center p-2 border-b border-border last:border-b-0 cursor-pointer hover:bg-muted"
-                        onClick={() => {
-                          setContentUrl(`https://www.youtube.com/watch?v=${video.id.videoId}`);
-                          setYoutubeSearchResults([]);
-                          setYoutubeSearchQuery(video.snippet.title); 
-                        }}
-                      >
-                        <Image
-                          src={video.snippet.thumbnails.default.url}
-                          alt={video.snippet.title}
-                          width={48}
-                          height={36}
-                          className="mr-2 rounded"
-                        />
-                        <span className="text-sm text-foreground">{video.snippet.title}</span>
-                      </div>
-                    ))
-                  ) : (
-                    !youtubeSearchLoading && youtubeSearchQuery && <p className="p-2 text-sm text-muted-foreground">No results found.</p>
-                  )}
-                </div>
+                {showYoutubeResults && (
+                  <div className="max-h-60 overflow-y-auto border border-border rounded-md">
+                    {youtubeSearchResults.length > 0 ? (
+                      youtubeSearchResults.map((video) => (
+                        <div
+                          key={video.id.videoId}
+                          className="flex items-center p-2 border-b border-border last:border-b-0 cursor-pointer hover:bg-muted"
+                          onClick={() => {
+                            setContentUrl(`https://www.youtube.com/watch?v=${video.id.videoId}`);
+                            setYoutubeSearchQuery(video.snippet.title);
+                            setYoutubeSearchResults([]);
+                            setShowYoutubeResults(false);
+                          }}
+                        >
+                          <Image
+                            src={video.snippet.thumbnails.default.url}
+                            alt={video.snippet.title}
+                            width={48}
+                            height={36}
+                            className="mr-2 rounded"
+                          />
+                          <span className="text-sm text-foreground">{video.snippet.title}</span>
+                        </div>
+                      ))
+                    ) : (
+                      !youtubeSearchLoading && youtubeSearchQuery && <p className="p-2 text-sm text-muted-foreground">No results found.</p>
+                    )}
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -437,7 +449,7 @@ export default function AddPostForm({
         </div>
 
       {}
-      <div className="space-y-4">
+      <div className="space-y-4 min-h-[300px]">
         {postType !== 'refuel' && (
           <input
             type="text"
