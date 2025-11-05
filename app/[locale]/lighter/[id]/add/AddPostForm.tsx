@@ -378,7 +378,6 @@ export default function AddPostForm({
   };
 
   return (
-    
     <form
       onSubmit={handleSubmit}
       className="w-full max-w-2xl rounded-xl bg-background p-6 sm:p-8 shadow-lg"
@@ -436,7 +435,6 @@ export default function AddPostForm({
             />
           </div>
         </div>
-      </div>
 
       {}
       <div className="space-y-4">
