@@ -295,10 +295,9 @@ async function drawStickerContent(
   // QR Code (generate and draw) - reduced by 30% (0.36 * 0.7 = 0.252)
   const qrSize = Math.round(STICKER_HEIGHT_PX * 0.252);
   try {
-    // Generate QR code URL pointing to the find page
-    const qrUrl = process.env.NEXT_PUBLIC_BASE_URL ?
-      `${process.env.NEXT_PUBLIC_BASE_URL}/find` :
-      'https://lightmyfire.app/find';
+    // Generate QR code URL pointing to the find page with pre-filled PIN
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://lightmyfire.app';
+    const qrUrl = `${baseUrl}/find?pin=${sticker.pinCode}`;
 
     const qrCodeDataUrl = await QRCode.toDataURL(qrUrl, {
       width: qrSize,

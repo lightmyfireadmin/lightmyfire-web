@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, lazy, Suspense } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, lazy, Suspense, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import Image from 'next/image';
 import { useI18n, useCurrentLocale } from '@/locales/client';
@@ -14,12 +14,29 @@ const QRScanner = lazy(() => import('@/app/components/QRScanner'));
 
 export default function PinEntryForm() {
   const t = useI18n();
+  const searchParams = useSearchParams();
   const [pin, setPin] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showScanner, setShowScanner] = useState(false);
   const router = useRouter();
   const lang = useCurrentLocale();
+
+  // Pre-fill PIN from URL query parameter (e.g., /find?pin=ABC-123)
+  useEffect(() => {
+    const pinFromUrl = searchParams.get('pin');
+    if (pinFromUrl) {
+      // Clean and format the PIN
+      let formattedPin = pinFromUrl.toUpperCase().replace(/[^A-Z0-9]/g, '');
+
+      // Add hyphen if not present and valid format
+      if (formattedPin.length >= 3 && !formattedPin.includes('-')) {
+        formattedPin = `${formattedPin.slice(0, 3)}-${formattedPin.slice(3)}`;
+      }
+
+      setPin(formattedPin);
+    }
+  }, [searchParams]);
 
   const handlePinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let input = e.target.value.toUpperCase();
@@ -62,19 +79,32 @@ export default function PinEntryForm() {
   };
 
   const handleQRScan = (decodedText: string) => {
-    // Extract PIN from QR code
-    // The QR code might contain a full URL like https://lightmyfire.app/lighter/ABC-123
-    // or just the PIN like ABC-123
-    let extractedPin = decodedText;
+    // Extract PIN from QR code URL
+    // QR code contains URL like: https://lightmyfire.app/find?pin=ABC-123
+    let extractedPin = '';
 
-    // Try to extract PIN from URL
-    const urlMatch = decodedText.match(/\/lighter\/([A-Z0-9-]+)/i);
-    if (urlMatch) {
-      extractedPin = urlMatch[1];
+    try {
+      // Try to parse as URL and get the pin parameter
+      const url = new URL(decodedText);
+      extractedPin = url.searchParams.get('pin') || '';
+    } catch {
+      // If URL parsing fails, try to extract PIN with regex
+      const pinMatch = decodedText.match(/pin=([A-Z0-9-]+)/i);
+      if (pinMatch) {
+        extractedPin = pinMatch[1];
+      } else {
+        // Fallback: treat the whole text as a PIN
+        extractedPin = decodedText;
+      }
     }
 
     // Clean and format the PIN
     extractedPin = extractedPin.toUpperCase().replace(/[^A-Z0-9-]/g, '');
+
+    // Add hyphen if not present and valid format
+    if (extractedPin.length >= 6 && !extractedPin.includes('-')) {
+      extractedPin = `${extractedPin.slice(0, 3)}-${extractedPin.slice(3)}`;
+    }
 
     // Set the PIN in the input field
     setPin(extractedPin);
@@ -83,10 +113,12 @@ export default function PinEntryForm() {
     // Automatically submit if we have a valid PIN format
     if (extractedPin.match(/^[A-Z0-9]{3}-[A-Z0-9]{3}$/)) {
       // Trigger form submission
-      const form = document.querySelector('form');
-      if (form) {
-        form.requestSubmit();
-      }
+      setTimeout(() => {
+        const form = document.querySelector('form');
+        if (form) {
+          form.requestSubmit();
+        }
+      }, 100);
     }
   };
 

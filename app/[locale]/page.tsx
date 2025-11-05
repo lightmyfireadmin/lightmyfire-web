@@ -68,7 +68,9 @@ export default async function Home() {
 
         {}
         <div className="w-full max-w-sm lg:w-auto lg:flex-shrink-0">
-          <PinEntryForm />
+          <Suspense fallback={<div className="h-64 flex items-center justify-center"><div className="text-muted-foreground">Loading...</div></div>}>
+            <PinEntryForm />
+          </Suspense>
         </div>
       </div>
 
