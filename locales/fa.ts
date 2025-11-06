@@ -281,7 +281,7 @@ export default {
   'order.payment.stickers_count': '{count} برچسب',
   'order.payment.total_amount': 'مبلغ کل:',
   'order.payment.cardholder_info': 'اطلاعات دارنده کارت',
-  'order.payment.full_name': 'نام کامل *',
+  'order.payment.full_name': 'نام کامل روی کارت *',
   'order.payment.full_name_placeholder': 'John Doe',
   'order.payment.email': 'آدرس ایمیل *',
   'order.payment.email_placeholder': 'john@example.com',

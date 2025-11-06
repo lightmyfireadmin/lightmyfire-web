@@ -284,7 +284,7 @@ export default {
   'order.payment.stickers_count': '{count} adesivi',
   'order.payment.total_amount': 'Importo totale:',
   'order.payment.cardholder_info': 'Informazioni titolare carta',
-  'order.payment.full_name': 'Nome completo *',
+  'order.payment.full_name': 'Nome completo sulla carta *',
   'order.payment.full_name_placeholder': 'Mario Rossi',
   'order.payment.email': 'Indirizzo email *',
   'order.payment.email_placeholder': 'mario@esempio.it',

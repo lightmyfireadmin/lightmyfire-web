@@ -282,7 +282,7 @@ export default {
   'order.payment.stickers_count': '{count} اسٹکرز',
   'order.payment.total_amount': 'کل رقم:',
   'order.payment.cardholder_info': 'کارڈ ہولڈر کی معلومات',
-  'order.payment.full_name': 'مکمل نام *',
+  'order.payment.full_name': 'کارڈ پر مکمل نام *',
   'order.payment.full_name_placeholder': 'John Doe',
   'order.payment.email': 'ای میل کا پتہ *',
   'order.payment.email_placeholder': 'john@example.com',

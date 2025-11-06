@@ -283,7 +283,7 @@ export default {
   'order.payment.stickers_count': '{count} Sticker',
   'order.payment.total_amount': 'Gesamtbetrag:',
   'order.payment.cardholder_info': 'Karteninhaberinformationen',
-  'order.payment.full_name': 'Vollständiger Name *',
+  'order.payment.full_name': 'Vollständiger Name auf der Karte *',
   'order.payment.full_name_placeholder': 'Max Mustermann',
   'order.payment.email': 'E-Mail-Adresse *',
   'order.payment.email_placeholder': 'max@beispiel.de',

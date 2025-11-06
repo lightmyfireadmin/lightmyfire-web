@@ -270,7 +270,7 @@ export default {
   'order.payment.stickers_count': '{count} nhãn dán',
   'order.payment.total_amount': 'Tổng Số Tiền:',
   'order.payment.cardholder_info': 'Thông Tin Chủ Thẻ',
-  'order.payment.full_name': 'Họ Tên *',
+  'order.payment.full_name': 'Họ tên trên thẻ *',
   'order.payment.full_name_placeholder': 'John Doe',
   'order.payment.email': 'Địa Chỉ Email *',
   'order.payment.email_placeholder': 'john@example.com',

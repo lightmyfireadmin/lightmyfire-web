@@ -430,7 +430,7 @@ export default {
   'order.payment.stickers_count': '{count} stickers',
   'order.payment.total_amount': 'Totaalbedrag:',
   'order.payment.cardholder_info': 'Kaarthouderinformatie',
-  'order.payment.full_name': 'Volledige naam *',
+  'order.payment.full_name': 'Volledige naam op kaart *',
   'order.payment.full_name_placeholder': 'Jan Jansen',
   'order.payment.email': 'E-mailadres *',
   'order.payment.email_placeholder': 'jan@voorbeeld.nl',

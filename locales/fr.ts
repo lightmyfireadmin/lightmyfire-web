@@ -714,7 +714,7 @@ export default {
   'order.payment.stickers_count': '{count} stickers',
   'order.payment.total_amount': 'Montant total :',
   'order.payment.cardholder_info': 'Informations du titulaire de la carte',
-  'order.payment.full_name': 'Nom complet *',
+  'order.payment.full_name': 'Nom complet sur la carte *',
   'order.payment.full_name_placeholder': 'Jean Dupont',
   'order.payment.email': 'Adresse e-mail *',
   'order.payment.email_placeholder': 'jean@exemple.com',

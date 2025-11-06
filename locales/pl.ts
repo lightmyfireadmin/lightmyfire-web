@@ -283,7 +283,7 @@ export default {
   'order.payment.stickers_count': '{count} naklejek',
   'order.payment.total_amount': 'Kwota całkowita:',
   'order.payment.cardholder_info': 'Informacje o posiadaczu karty',
-  'order.payment.full_name': 'Imię i nazwisko *',
+  'order.payment.full_name': 'Imię i nazwisko na karcie *',
   'order.payment.full_name_placeholder': 'Jan Kowalski',
   'order.payment.email': 'Adres e-mail *',
   'order.payment.email_placeholder': 'jan@przyklad.pl',

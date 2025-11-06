@@ -4,29 +4,25 @@ import QRCode from 'qrcode';
 import path from 'path';
 import fs from 'fs';
 
-// Register fonts for text rendering
-// Try to use system fonts, fallback to sans-serif
+// Register Poppins fonts for sticker text
 try {
-  // Check common font locations
-  const possibleFontPaths = [
-    '/System/Library/Fonts/Helvetica.ttc', // macOS
-    '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', // Linux
-    '/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf', // Linux alt
-    'C:\\Windows\\Fonts\\arial.ttf', // Windows
-  ];
+  const poppinsExtraBold = path.join(process.cwd(), 'public', 'fonts', 'Poppins-ExtraBold.ttf');
+  const poppinsMedium = path.join(process.cwd(), 'public', 'fonts', 'Poppins-Medium.ttf');
 
-  let fontRegistered = false;
-  for (const fontPath of possibleFontPaths) {
-    if (fs.existsSync(fontPath)) {
-      registerFont(fontPath, { family: 'StickerFont', weight: 'bold' });
-      console.log('Registered font:', fontPath);
-      fontRegistered = true;
-      break;
-    }
+  // Register ExtraBold for bold text
+  if (fs.existsSync(poppinsExtraBold)) {
+    registerFont(poppinsExtraBold, { family: 'Poppins', weight: 'bold' });
+    console.log('Registered Poppins ExtraBold');
+  } else {
+    console.error('Poppins-ExtraBold.ttf not found at:', poppinsExtraBold);
   }
 
-  if (!fontRegistered) {
-    console.warn('No system fonts found, using canvas default');
+  // Register Medium for normal weight text
+  if (fs.existsSync(poppinsMedium)) {
+    registerFont(poppinsMedium, { family: 'Poppins', weight: 'normal' });
+    console.log('Registered Poppins Medium');
+  } else {
+    console.error('Poppins-Medium.ttf not found at:', poppinsMedium);
   }
 } catch (error) {
   console.error('Font registration error:', error);
@@ -180,13 +176,13 @@ async function drawSticker(
 
   // "You found me" text
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.10)}px StickerFont, Arial, sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.10)}px Poppins, Arial, sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText('You found me', x + STICKER_WIDTH_PX / 2, currentY + Math.round(cardHeight * 0.4));
 
   // "I'm + name" text
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px StickerFont, Arial, sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px Poppins, Arial, sans-serif`;
   ctx.textBaseline = 'middle';
   ctx.fillText(`I'm ${sticker.name}`, x + STICKER_WIDTH_PX / 2, currentY + Math.round(cardHeight * 0.75));
 
@@ -194,7 +190,7 @@ async function drawSticker(
 
   // "Read my story and expand it"
   ctx.fillStyle = '#ffffff';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.065)}px StickerFont, Arial, sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.065)}px Poppins, Arial, sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   ctx.fillText('Read my story', x + STICKER_WIDTH_PX / 2, currentY);
@@ -227,7 +223,7 @@ async function drawSticker(
   };
 
   const translationText = translations[sticker.language] || translations.fr;
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px StickerFont, Arial, sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Poppins, Arial, sans-serif`;
   ctx.textBaseline = 'top';
   ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.14));
 
@@ -264,18 +260,18 @@ async function drawSticker(
   ctx.fillRect(x + padding, currentY, contentWidth, urlBgHeight);
 
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px StickerFont, Arial, sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Poppins, Arial, sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText('or go to', x + STICKER_WIDTH_PX / 2, currentY + Math.round(urlBgHeight * 0.45));
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.06)}px StickerFont, Arial, sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.06)}px Poppins, Arial, sans-serif`;
   ctx.fillText('lightmyfire.app', x + STICKER_WIDTH_PX / 2, currentY + Math.round(urlBgHeight * 0.85));
 
   currentY += urlBgHeight + Math.round(STICKER_HEIGHT_PX * 0.03);
 
   // "and type my code"
   ctx.fillStyle = '#ffffff';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.065)}px StickerFont, Arial, sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.065)}px Poppins, Arial, sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   ctx.fillText('and type my code', x + STICKER_WIDTH_PX / 2, currentY);
@@ -307,7 +303,7 @@ async function drawSticker(
   };
 
   const codeText = codeTranslations[sticker.language] || codeTranslations.fr;
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px StickerFont, Arial, sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Poppins, Arial, sans-serif`;
   ctx.textBaseline = 'top';
   ctx.fillText(codeText, x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.075));
 
@@ -321,7 +317,7 @@ async function drawSticker(
   ctx.fillRect(x + padding, currentY, contentWidth, pinBgHeight);
 
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px StickerFont, Arial, sans-serif`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px Poppins, Arial, sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText(sticker.pinCode, x + STICKER_WIDTH_PX / 2, currentY + Math.round(pinBgHeight * 0.75));

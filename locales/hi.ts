@@ -271,7 +271,7 @@ export default {
   'order.payment.stickers_count': '{count} स्टिकर',
   'order.payment.total_amount': 'कुल राशि:',
   'order.payment.cardholder_info': 'कार्ड धारक की जानकारी',
-  'order.payment.full_name': 'पूरा नाम *',
+  'order.payment.full_name': 'कार्ड पर पूरा नाम *',
   'order.payment.full_name_placeholder': 'John Doe',
   'order.payment.email': 'ईमेल पता *',
   'order.payment.email_placeholder': 'john@example.com',

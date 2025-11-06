@@ -284,7 +284,7 @@ export default {
   'order.payment.stickers_count': '{count} pegatinas',
   'order.payment.total_amount': 'Importe total:',
   'order.payment.cardholder_info': 'Información del titular de la tarjeta',
-  'order.payment.full_name': 'Nombre completo *',
+  'order.payment.full_name': 'Nombre completo en la tarjeta *',
   'order.payment.full_name_placeholder': 'Juan Pérez',
   'order.payment.email': 'Correo electrónico *',
   'order.payment.email_placeholder': 'juan@ejemplo.com',

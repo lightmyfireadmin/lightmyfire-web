@@ -281,7 +281,7 @@ export default {
   'order.payment.stickers_count': '{count} ملصقات',
   'order.payment.total_amount': 'المبلغ الإجمالي:',
   'order.payment.cardholder_info': 'معلومات حامل البطاقة',
-  'order.payment.full_name': 'الاسم الكامل *',
+  'order.payment.full_name': 'الاسم الكامل على البطاقة *',
   'order.payment.full_name_placeholder': 'John Doe',
   'order.payment.email': 'عنوان البريد الإلكتروني *',
   'order.payment.email_placeholder': 'john@example.com',

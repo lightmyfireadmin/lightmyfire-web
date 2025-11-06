@@ -270,7 +270,7 @@ export default {
   'order.payment.stickers_count': '{count} สติกเกอร์',
   'order.payment.total_amount': 'จำนวนเงินทั้งสิ้น:',
   'order.payment.cardholder_info': 'ข้อมูลผู้ถือบัตร',
-  'order.payment.full_name': 'ชื่อเต็ม *',
+  'order.payment.full_name': 'ชื่อบนบัตร *',
   'order.payment.full_name_placeholder': 'John Doe',
   'order.payment.email': 'ที่อยู่อีเมล *',
   'order.payment.email_placeholder': 'john@example.com',

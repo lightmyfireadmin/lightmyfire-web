@@ -283,7 +283,7 @@ export default {
   'order.payment.stickers_count': '{count} наклеек',
   'order.payment.total_amount': 'Общая сумма:',
   'order.payment.cardholder_info': 'Информация о владельце карты',
-  'order.payment.full_name': 'Полное имя *',
+  'order.payment.full_name': 'Полное имя на карте *',
   'order.payment.full_name_placeholder': 'Иван Иванов',
   'order.payment.email': 'Адрес электронной почты *',
   'order.payment.email_placeholder': 'ivan@example.ru',

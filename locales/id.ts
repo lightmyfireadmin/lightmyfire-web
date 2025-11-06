@@ -270,7 +270,7 @@ export default {
   'order.payment.stickers_count': '{count} stiker',
   'order.payment.total_amount': 'Jumlah Total:',
   'order.payment.cardholder_info': 'Informasi Pemegang Kartu',
-  'order.payment.full_name': 'Nama Lengkap *',
+  'order.payment.full_name': 'Nama lengkap di kartu *',
   'order.payment.full_name_placeholder': 'John Doe',
   'order.payment.email': 'Alamat Email *',
   'order.payment.email_placeholder': 'john@example.com',

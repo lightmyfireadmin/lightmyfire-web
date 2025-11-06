@@ -324,7 +324,7 @@ export default {
   'order.payment.stickers_count': '{count}개 스티커',
   'order.payment.total_amount': '총액:',
   'order.payment.cardholder_info': '카드 소유자 정보',
-  'order.payment.full_name': '성명 *',
+  'order.payment.full_name': '카드에 기재된 이름 *',
   'order.payment.full_name_placeholder': 'John Doe',
   'order.payment.email': '이메일 주소 *',
   'order.payment.email_placeholder': 'john@example.com',

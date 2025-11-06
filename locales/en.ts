@@ -749,7 +749,7 @@ export default {
   'order.payment.stickers_count': '{count} stickers',
   'order.payment.total_amount': 'Total Amount:',
   'order.payment.cardholder_info': 'Cardholder Information',
-  'order.payment.full_name': 'Full Name *',
+  'order.payment.full_name': 'Full name on card *',
   'order.payment.full_name_placeholder': 'John Doe',
   'order.payment.email': 'Email Address *',
   'order.payment.email_placeholder': 'john@example.com',

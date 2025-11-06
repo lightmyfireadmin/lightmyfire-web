@@ -283,7 +283,7 @@ export default {
   'order.payment.stickers_count': '{count}枚のステッカー',
   'order.payment.total_amount': '合計金額：',
   'order.payment.cardholder_info': 'カード名義人情報',
-  'order.payment.full_name': 'フルネーム *',
+  'order.payment.full_name': 'カードに記載の氏名 *',
   'order.payment.full_name_placeholder': '山田太郎',
   'order.payment.email': 'メールアドレス *',
   'order.payment.email_placeholder': 'yamada@example.com',

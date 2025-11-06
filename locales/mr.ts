@@ -282,7 +282,7 @@ export default {
   'order.payment.stickers_count': '{count} स्टिकर्स',
   'order.payment.total_amount': 'एकूण रक्कम:',
   'order.payment.cardholder_info': 'कार्डधारक माहिती',
-  'order.payment.full_name': 'पूर्ण नाव *',
+  'order.payment.full_name': 'कार्डवर पूर्ण नाव *',
   'order.payment.full_name_placeholder': 'John Doe',
   'order.payment.email': 'ईमेल पत्ता *',
   'order.payment.email_placeholder': 'john@example.com',

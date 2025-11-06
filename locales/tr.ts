@@ -370,7 +370,7 @@ export default {
   'order.payment.stickers_count': '{count} çıkartma',
   'order.payment.total_amount': 'Toplam Tutar:',
   'order.payment.cardholder_info': 'Kart Sahibi Bilgileri',
-  'order.payment.full_name': 'Ad Soyad *',
+  'order.payment.full_name': 'Karttaki ad soyad *',
   'order.payment.full_name_placeholder': 'John Doe',
   'order.payment.email': 'E-posta Adresi *',
   'order.payment.email_placeholder': 'john@example.com',

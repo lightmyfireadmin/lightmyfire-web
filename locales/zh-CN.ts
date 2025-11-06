@@ -271,7 +271,7 @@ export default {
   'order.payment.stickers_count': '{count}张贴纸',
   'order.payment.total_amount': '总金额:',
   'order.payment.cardholder_info': '持卡人信息',
-  'order.payment.full_name': '全名*',
+  'order.payment.full_name': '卡上的姓名*',
   'order.payment.full_name_placeholder': 'John Doe',
   'order.payment.email': '电子邮箱地址*',
   'order.payment.email_placeholder': 'john@example.com',

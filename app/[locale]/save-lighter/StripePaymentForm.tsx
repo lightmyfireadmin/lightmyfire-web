@@ -53,6 +53,13 @@ function PaymentFormContent({
   const [cardholderName, setCardholderName] = useState('');
   const [cardholderEmail, setCardholderEmail] = useState(userEmail);
 
+  // Auto-fill cardholder name from shipping address (can be edited if different)
+  useEffect(() => {
+    if (shippingAddress?.name) {
+      setCardholderName(shippingAddress.name);
+    }
+  }, [shippingAddress]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 

@@ -282,7 +282,7 @@ export default {
   'order.payment.stickers_count': '{count} స్టిక్కర్‌లు',
   'order.payment.total_amount': 'మొత్తం మొత్తం:',
   'order.payment.cardholder_info': 'కార్డ్‌హోల్డర్ సమాచారం',
-  'order.payment.full_name': 'పూర్తి పేరు *',
+  'order.payment.full_name': 'కార్డ్‌పై పూర్తి పేరు *',
   'order.payment.full_name_placeholder': 'John Doe',
   'order.payment.email': 'ఇమెయిల్ చిరునామా *',
   'order.payment.email_placeholder': 'john@example.com',
