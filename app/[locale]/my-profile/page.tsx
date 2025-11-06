@@ -203,20 +203,20 @@ export default async function MyProfilePage() {
 
       {}
       <div className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-4">
-        <StatCard label="Contributions" value={stats.total_contributions} icon="📝" />
-        <StatCard label="Lighters Saved" value={stats.lighters_saved} icon="🔥" />
-        <StatCard label="Stories Joined" value={stats.lighters_contributed_to} icon="📖" />
-        <StatCard label="Likes Received" value={stats.likes_received} icon="❤️" />
+        <StatCard label={t('my_profile.stats.contributions')} value={stats.total_contributions} icon="📝" />
+        <StatCard label={t('my_profile.stats.lighters_saved')} value={stats.lighters_saved} icon="🔥" />
+        <StatCard label={t('my_profile.stats.stories_joined')} value={stats.lighters_contributed_to} icon="📖" />
+        <StatCard label={t('my_profile.stats.likes_received')} value={stats.likes_received} icon="❤️" />
       </div>
       {}
       <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
-        <h2 className="mb-4 text-xl font-semibold text-foreground">My Trophies</h2>
+        <h2 className="mb-4 text-xl font-semibold text-foreground">{t('my_profile.tabs.my_trophies')}</h2>
         <TrophyList trophies={myTrophies} />
       </div>
 
       {}
       <div className="mb-8 rounded-lg border border-border bg-background p-6 shadow-sm">
-        <h2 className="mb-4 text-xl font-semibold text-foreground">My Posts</h2>
+        <h2 className="mb-4 text-xl font-semibold text-foreground">{t('my_profile.tabs.my_posts')}</h2>
         <MyPostsList initialPosts={myPosts} />
       </div>
 
@@ -224,7 +224,7 @@ export default async function MyProfilePage() {
       <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-3">
         {}
         <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
-          <h2 className="mb-4 text-xl font-semibold text-foreground">Saved Lighters</h2>
+          <h2 className="mb-4 text-xl font-semibold text-foreground">{t('my_profile.saved_lighters')}</h2>
           {savedLightersRes.data && savedLightersRes.data.length > 0 ? (
             <ul className="space-y-2">
               {savedLightersRes.data.map((lighter: any) => (
@@ -247,7 +247,7 @@ export default async function MyProfilePage() {
         {}
         <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
           <div className="flex items-center justify-between gap-4 mb-4">
-            <h2 className="text-xl font-semibold text-foreground">Edit Profile</h2>
+            <h2 className="text-xl font-semibold text-foreground">{t('my_profile.edit_profile')}</h2>
             <div className="h-16 w-16 flex-shrink-0">
               <Image
                 src="/illustrations/personalise.png"
@@ -263,7 +263,7 @@ export default async function MyProfilePage() {
 
         {}
         <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
-          <h2 className="mb-4 text-xl font-semibold text-foreground">Security</h2>
+          <h2 className="mb-4 text-xl font-semibold text-foreground">{t('my_profile.security')}</h2>
           <UpdateAuthForm />
         </div>
       </div>

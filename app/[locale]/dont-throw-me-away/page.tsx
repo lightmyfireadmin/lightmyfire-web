@@ -69,16 +69,25 @@ export default function DontThrowMeAwayPage() {
             <div className="space-y-6">
               {}
               <div className="rounded-lg border border-border/50 p-6 bg-background">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                      <span className="text-2xl">⛽</span>
-                    </div>
+                <div className="flex flex-col md:flex-row items-start gap-6">
+                  <div className="flex-shrink-0 w-full md:w-48">
+                    <Image
+                      src="/newassets/butane_refillable.png"
+                      alt="Butane Refillable Lighter"
+                      width={192}
+                      height={192}
+                      className="w-full h-auto object-contain"
+                    />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-foreground mb-3">
-                      {t('refill_guide.section1_type1_title')}
-                    </h3>
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                        <span className="text-2xl">⛽</span>
+                      </div>
+                      <h3 className="text-xl font-semibold text-foreground">
+                        {t('refill_guide.section1_type1_title')}
+                      </h3>
+                    </div>
                     <p className="text-foreground text-sm leading-relaxed">
                       {t('refill_guide.section1_type1.desc')}
                     </p>
@@ -96,16 +105,25 @@ export default function DontThrowMeAwayPage() {
 
               {}
               <div className="rounded-lg border border-border/50 p-6 bg-background">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                      <span className="text-2xl">🔧</span>
-                    </div>
+                <div className="flex flex-col md:flex-row items-start gap-6">
+                  <div className="flex-shrink-0 w-full md:w-48">
+                    <Image
+                      src="/newassets/gasoline_refillable.png"
+                      alt="Gasoline Refillable Lighter"
+                      width={192}
+                      height={192}
+                      className="w-full h-auto object-contain"
+                    />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-foreground mb-3">
-                      {t('refill_guide.section1_type2_title')}
-                    </h3>
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                        <span className="text-2xl">🔧</span>
+                      </div>
+                      <h3 className="text-xl font-semibold text-foreground">
+                        {t('refill_guide.section1_type2_title')}
+                      </h3>
+                    </div>
                     <p className="text-foreground text-sm leading-relaxed">
                       {t('refill_guide.section1_type2_desc')}
                     </p>
@@ -123,16 +141,25 @@ export default function DontThrowMeAwayPage() {
 
               {}
               <div className="rounded-lg border border-border/50 p-6 bg-background">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-destructive/10">
-                      <span className="text-2xl">🗑️</span>
-                    </div>
+                <div className="flex flex-col md:flex-row items-start gap-6">
+                  <div className="flex-shrink-0 w-full md:w-48">
+                    <Image
+                      src="/newassets/non_refillable.png"
+                      alt="Non-Refillable Lighter"
+                      width={192}
+                      height={192}
+                      className="w-full h-auto object-contain"
+                    />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-foreground mb-3">
-                      {t('refill_guide.section1_type3_title')}
-                    </h3>
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-destructive/10">
+                        <span className="text-2xl">🗑️</span>
+                      </div>
+                      <h3 className="text-xl font-semibold text-foreground">
+                        {t('refill_guide.section1_type3_title')}
+                      </h3>
+                    </div>
                     <p className="text-foreground text-sm leading-relaxed">
                       {t('refill_guide.section1_type3_desc')}
                     </p>
@@ -163,6 +190,16 @@ export default function DontThrowMeAwayPage() {
                   <span className="text-3xl">⛽</span>
                   {t('refill_guide.section2_type1_title')}
                 </h3>
+
+                <div className="mb-6">
+                  <Image
+                    src="/newassets/butane_refill_process.png"
+                    alt="Butane Lighter Refill Process"
+                    width={800}
+                    height={400}
+                    className="w-full h-auto rounded-lg"
+                  />
+                </div>
 
                 <div className="space-y-6">
                   <div className="rounded-lg bg-primary/5 p-6 border border-primary/20">
@@ -201,7 +238,7 @@ export default function DontThrowMeAwayPage() {
 
                   <div className="rounded-lg bg-yellow-50 dark:bg-yellow-950/20 p-4 border border-yellow-200 dark:border-yellow-800">
                     <p className="text-sm text-yellow-900 dark:text-yellow-200">
-                      💡 <strong>Pro tip:</strong> Always wear safety glasses when refilling. If you feel resistance, do not force it—wait a few seconds and try again.
+                      💡 <strong>Pro tip:</strong> {t('refill_guide.pro_tip_butane')}
                     </p>
                   </div>
                 </div>
@@ -213,6 +250,16 @@ export default function DontThrowMeAwayPage() {
                   <span className="text-3xl">🔧</span>
                   {t('refill_guide.section2_type2_title')}
                 </h3>
+
+                <div className="mb-6">
+                  <Image
+                    src="/newassets/gasoline_refill_process.png"
+                    alt="Gasoline Lighter Refill Process"
+                    width={800}
+                    height={400}
+                    className="w-full h-auto rounded-lg"
+                  />
+                </div>
 
                 <div className="space-y-6">
                   <div className="rounded-lg bg-primary/5 p-6 border border-primary/20">
@@ -251,7 +298,7 @@ export default function DontThrowMeAwayPage() {
 
                   <div className="rounded-lg bg-blue-50 dark:bg-blue-950/20 p-4 border border-blue-200 dark:border-blue-800">
                     <p className="text-sm text-blue-900 dark:text-blue-200">
-                      ⚠️ <strong>Important:</strong> Never overfill fluid lighters. Let the lighter dry for 24 hours after refilling before use.
+                      ⚠️ <strong>Important:</strong> {t('refill_guide.important_gasoline')}
                     </p>
                   </div>
                 </div>
@@ -261,38 +308,38 @@ export default function DontThrowMeAwayPage() {
 
           {}
           <div className="rounded-lg border border-border bg-background/95 p-8 shadow-sm">
-            <h2 className="text-3xl font-bold text-foreground mb-6">Why It Matters</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-6">{t('refill_guide.why_it_matters.title')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-3">
                 <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-                  <span className="text-2xl">🌍</span> Environmental Impact
+                  <span className="text-2xl">🌍</span> {t('refill_guide.why_it_matters.environmental.title')}
                 </h3>
                 <p className="text-sm text-foreground">
-                  One refillable lighter can replace 50+ disposable lighters in its lifetime. That&apos;s 50+ lighters kept out of landfills for one person.
+                  {t('refill_guide.why_it_matters.environmental.description')}
                 </p>
               </div>
               <div className="space-y-3">
                 <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-                  <span className="text-2xl">💰</span> Cost Savings
+                  <span className="text-2xl">💰</span> {t('refill_guide.why_it_matters.cost.title')}
                 </h3>
                 <p className="text-sm text-foreground">
-                  A quality refillable lighter costs €5-20 but lasts years. Disposables cost €1-2 each. Refillables pay for themselves within months.
+                  {t('refill_guide.why_it_matters.cost.description')}
                 </p>
               </div>
               <div className="space-y-3">
                 <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-                  <span className="text-2xl">❤️</span> Reliability
+                  <span className="text-2xl">❤️</span> {t('refill_guide.why_it_matters.reliability.title')}
                 </h3>
                 <p className="text-sm text-foreground">
-                  Refillable lighters are built to last decades. They&apos;re more reliable in cold weather and harsh conditions than cheap disposables.
+                  {t('refill_guide.why_it_matters.reliability.description')}
                 </p>
               </div>
               <div className="space-y-3">
                 <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-                  <span className="text-2xl">🎯</span> Our Mission
+                  <span className="text-2xl">🎯</span> {t('refill_guide.why_it_matters.mission.title')}
                 </h3>
                 <p className="text-sm text-foreground">
-                  Every lighter you save with LightMyFire gets a story. Give your lighter a name, and it becomes more than an object—it becomes a companion.
+                  {t('refill_guide.why_it_matters.mission.description')}
                 </p>
               </div>
             </div>
@@ -301,10 +348,10 @@ export default function DontThrowMeAwayPage() {
           {}
           <div className="rounded-lg border-2 border-primary bg-primary/10 p-8 text-center">
             <h2 className="text-2xl font-bold text-foreground mb-4">
-              Ready to Save Your First Lighter?
+              {t('refill_guide.cta.title')}
             </h2>
             <p className="text-foreground mb-6">
-              Choose a refillable lighter, give it a name, and start its journey with LightMyFire.
+              {t('refill_guide.cta.description')}
             </p>
             <a
               href="/save-lighter"

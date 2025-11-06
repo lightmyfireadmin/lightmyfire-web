@@ -62,10 +62,10 @@ export default function FullStickerPreview({
   const [qrCodeUrl, setQrCodeUrl] = useState<string>('');
 
   useEffect(() => {
-    
+
     const generateQR = async () => {
       try {
-        const url = `${window.location.origin}/find`;
+        const url = `${window.location.origin}`;
         const qrDataUrl = await QRCode.toDataURL(url, {
           width: 200,
           margin: 1,
@@ -107,7 +107,7 @@ export default function FullStickerPreview({
             alt=""
             width={200}
             height={500}
-            className="w-full h-full object-cover opacity-80"
+            className="w-full h-full object-cover opacity-100"
           />
         </div>
 

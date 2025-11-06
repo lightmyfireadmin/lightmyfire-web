@@ -366,6 +366,13 @@ export default {
 
   // Account Settings (18 keys)
   'my_profile.tabs.settings': 'Cài Đặt',
+  'my_profile.stats.contributions': 'Contributions',
+  'my_profile.stats.lighters_saved': 'Lighters Saved',
+  'my_profile.stats.stories_joined': 'Stories Joined',
+  'my_profile.stats.likes_received': 'Likes Received',
+  'my_profile.saved_lighters': 'Saved Lighters',
+  'my_profile.edit_profile': 'Edit Profile',
+  'my_profile.security': 'Security',
   'my_profile.settings.account_title': 'Tài Khoản',
   'my_profile.settings.username_label': 'Tên Người Dùng',
   'my_profile.settings.email_label': 'Email',
