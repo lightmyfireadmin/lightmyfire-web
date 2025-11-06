@@ -12,7 +12,6 @@ export default {
   'home.pin_entry.subtitle': 'Введите PIN-код с наклейки, чтобы увидеть ее историю。',
   'home.pin_entry.label': 'PIN-код зажигалки',
   'home.pin_entry.button': 'Найти зажигалку',
-  'home.pin_entry.scan_qr': 'Сканировать QR',
   'home.pin_entry.loading': 'Поиск...',
   'home.pin_entry.error.generic': 'Произошла ошибка. Пожалуйста, попробуйте еще раз。',
   'home.pin_entry.error.invalid': 'Неверный PIN-код. Пожалуйста, попробуйте еще раз。',

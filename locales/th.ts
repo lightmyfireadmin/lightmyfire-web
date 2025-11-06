@@ -12,7 +12,6 @@ export default {
   'home.pin_entry.subtitle': 'Enter the PIN from the sticker to see its story.',
   'home.pin_entry.label': 'Lighter PIN',
   'home.pin_entry.button': 'Find Lighter',
-  'home.pin_entry.scan_qr': 'สแกน QR',
   'home.pin_entry.loading': 'Searching...',
   'home.pin_entry.error.generic': 'An error occurred. Please try again.',
   'home.pin_entry.error.invalid': 'Invalid PIN. Please try again.',

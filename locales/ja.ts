@@ -12,7 +12,6 @@ export default {
   'home.pin_entry.subtitle': 'ステッカーのPINを入力して、その物語をご覧ください。',
   'home.pin_entry.label': 'ライターPIN',
   'home.pin_entry.button': 'ライターを探す',
-  'home.pin_entry.scan_qr': 'QRスキャン',
   'home.pin_entry.loading': '検索中...',
   'home.pin_entry.error.generic': 'エラーが発生しました。もう一度お試しください。',
   'home.pin_entry.error.invalid': '無効なPINです。もう一度お試しください。',

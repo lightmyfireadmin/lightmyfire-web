@@ -13,7 +13,6 @@ export default {
   'home.pin_entry.subtitle': 'Gib die PIN vom Aufkleber ein, um seine Geschichte zu sehen.',
   'home.pin_entry.label': 'Feuerzeug-PIN',
   'home.pin_entry.button': 'Feuerzeug finden',
-  'home.pin_entry.scan_qr': 'QR Scannen',
   'home.pin_entry.loading': 'Sucht...',
   'home.pin_entry.error.generic': 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.',
   'home.pin_entry.error.invalid': 'Ungültige PIN. Bitte versuche es erneut.',

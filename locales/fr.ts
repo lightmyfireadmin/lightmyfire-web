@@ -13,7 +13,6 @@ export default {
   'home.pin_entry.subtitle': 'Entre le PIN de l\'autocollant pour voir son histoire.',
   'home.pin_entry.label': 'PIN du briquet',
   'home.pin_entry.button': 'Trouver le briquet',
-  'home.pin_entry.scan_qr': 'Scanner QR',
   'home.pin_entry.loading': 'Recherche...',
   'home.pin_entry.error.generic': 'Une erreur est survenue. Merci de réessayer.',
   'home.pin_entry.error.invalid': 'PIN invalide. Merci de réessayer.',

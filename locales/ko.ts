@@ -12,7 +12,6 @@ export default {
   'home.pin_entry.subtitle': '스티커의 PIN을 입력하여 이야기를 확인하세요。',
   'home.pin_entry.label': '라이터 PIN',
   'home.pin_entry.button': '라이터 찾기',
-  'home.pin_entry.scan_qr': 'QR 스캔',
   'home.pin_entry.loading': '검색 중...',
   'home.pin_entry.error.generic': '오류가 발생했습니다. 다시 시도해주세요。',
   'home.pin_entry.error.invalid': '잘못된 PIN입니다. 다시 시도해주세요。',

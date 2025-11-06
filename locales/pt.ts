@@ -13,7 +13,6 @@ export default {
     'home.pin_entry.subtitle': 'Insira o PIN do adesivo para ver sua história.',
     'home.pin_entry.label': 'PIN do Isqueiro',
     'home.pin_entry.button': 'Encontrar Isqueiro',
-  'home.pin_entry.scan_qr': 'Escanear QR',
     'home.pin_entry.loading': 'Procurando...',
     'home.pin_entry.error.generic': 'Ocorreu um erro. Por favor, tente novamente.',
     'home.pin_entry.error.invalid': 'PIN inválido. Por favor, tente novamente.',

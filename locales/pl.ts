@@ -12,7 +12,6 @@ export default {
   'home.pin_entry.subtitle': 'Wprowadź kod PIN z naklejki, aby zobaczyć jej historię。',
   'home.pin_entry.label': 'PIN zapalniczki',
   'home.pin_entry.button': 'Znajdź zapalniczkę',
-  'home.pin_entry.scan_qr': 'Skanuj QR',
   'home.pin_entry.loading': 'Wyszukiwanie...',
   'home.pin_entry.error.generic': 'Wystąpił błąd. Proszę spróbuj ponownie。',
   'home.pin_entry.error.invalid': 'Nieprawidłowy kod PIN. Proszę spróbuj ponownie。',

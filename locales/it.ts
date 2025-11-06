@@ -12,7 +12,6 @@ export default {
   'home.pin_entry.subtitle': "Inserisci il PIN dall'adesivo per vedere la sua storia.",
   'home.pin_entry.label': "PIN dell'accendino",
   'home.pin_entry.button': 'Trova accendino',
-  'home.pin_entry.scan_qr': 'Scansiona QR',
   'home.pin_entry.loading': 'Ricerca in corso...',
   'home.pin_entry.error.generic': 'Si è verificato un errore. Per favore, riprova.',
   'home.pin_entry.error.invalid': 'PIN non valido. Per favore, riprova.',

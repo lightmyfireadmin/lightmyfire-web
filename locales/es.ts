@@ -13,7 +13,6 @@ export default {
   'home.pin_entry.subtitle': 'Introduce el PIN de la pegatina para ver su historia.',
   'home.pin_entry.label': 'PIN del encendedor',
   'home.pin_entry.button': 'Buscar encendedor',
-  'home.pin_entry.scan_qr': 'Escanear QR',
   'home.pin_entry.loading': 'Buscando...',
   'home.pin_entry.error.generic': 'Ocurrió un error. Por favor, inténtalo de nuevo.',
   'home.pin_entry.error.invalid': 'PIN inválido. Por favor, inténtalo de nuevo.',

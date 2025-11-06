@@ -12,7 +12,6 @@ export default {
   'home.pin_entry.subtitle': 'أدخل رقم التعريف الشخصي من الملصق لترى قصتها。',
   'home.pin_entry.label': 'رقم التعريف الشخصي للولاعة',
   'home.pin_entry.button': 'ابحث عن ولاعة',
-  'home.pin_entry.scan_qr': 'مسح QR',
   'home.pin_entry.loading': 'جارٍ البحث...',
   'home.pin_entry.error.generic': 'حدث خطأ. يرجى المحاولة مرة أخرى。',
   'home.pin_entry.error.invalid': 'رقم التعريف الشخصي غير صالح. يرجى المحاولة مرة أخرى。',

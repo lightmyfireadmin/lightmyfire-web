@@ -12,7 +12,6 @@ export default {
   'home.pin_entry.subtitle': '输入贴纸上的PIN码以查看其故事。',
   'home.pin_entry.label': '打火机PIN码',
   'home.pin_entry.button': '查找打火机',
-  'home.pin_entry.scan_qr': '扫描二维码',
   'home.pin_entry.loading': '正在搜寻...',
   'home.pin_entry.error.generic': '发生错误。请再试一次。',
   'home.pin_entry.error.invalid': 'PIN码无效。请再试一次。',

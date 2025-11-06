@@ -13,7 +13,6 @@ export default {
     'home.pin_entry.subtitle': 'इसकी कहानी देखने के लिए स्टिकर से पिन दर्ज करें।',
     'home.pin_entry.label': 'लाइटर पिन',
     'home.pin_entry.button': 'लाइटर ढूंढें',
-  'home.pin_entry.scan_qr': 'QR स्कैन करें',
     'home.pin_entry.loading': 'खोजा जा रहा है...',
     'home.pin_entry.error.generic': 'एक त्रुटि हुई। कृपया पुन: प्रयास करें।',
     'home.pin_entry.error.invalid': 'अमान्य पिन। कृपया पुन: प्रयास करें।',

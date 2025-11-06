@@ -12,7 +12,6 @@ export default {
   'home.pin_entry.subtitle': 'Voer de pincode van de sticker in om het verhaal te zien。',
   'home.pin_entry.label': 'Pincode aansteker',
   'home.pin_entry.button': 'Vind aansteker',
-  'home.pin_entry.scan_qr': 'Scan QR',
   'home.pin_entry.loading': 'Bezig met zoeken...',
   'home.pin_entry.error.generic': 'Er is een fout opgetreden. Probeer het opnieuw。',
   'home.pin_entry.error.invalid': 'Ongeldige pincode. Probeer het opnieuw。',
