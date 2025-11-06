@@ -1,6 +1,36 @@
-import { createCanvas, loadImage, Image, Canvas, CanvasRenderingContext2D as NodeCanvasContext } from 'canvas';
+import { createCanvas, loadImage, Image, Canvas, CanvasRenderingContext2D as NodeCanvasContext, registerFont } from 'canvas';
 import { NextRequest, NextResponse } from 'next/server';
 import QRCode from 'qrcode';
+import path from 'path';
+import fs from 'fs';
+
+// Register fonts for text rendering
+// Try to use system fonts, fallback to sans-serif
+try {
+  // Check common font locations
+  const possibleFontPaths = [
+    '/System/Library/Fonts/Helvetica.ttc', // macOS
+    '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', // Linux
+    '/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf', // Linux alt
+    'C:\\Windows\\Fonts\\arial.ttf', // Windows
+  ];
+
+  let fontRegistered = false;
+  for (const fontPath of possibleFontPaths) {
+    if (fs.existsSync(fontPath)) {
+      registerFont(fontPath, { family: 'StickerFont', weight: 'bold' });
+      console.log('Registered font:', fontPath);
+      fontRegistered = true;
+      break;
+    }
+  }
+
+  if (!fontRegistered) {
+    console.warn('No system fonts found, using canvas default');
+  }
+} catch (error) {
+  console.error('Font registration error:', error);
+}
 
 // Printful sheet dimensions: 5.83 x 8.27 inches at 300 DPI
 const SHEET_WIDTH_INCHES = 5.83;
@@ -150,13 +180,13 @@ async function drawSticker(
 
   // "You found me" text
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.10)}px Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.10)}px StickerFont, Arial, sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText('You found me', x + STICKER_WIDTH_PX / 2, currentY + Math.round(cardHeight * 0.4));
 
   // "I'm + name" text
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px StickerFont, Arial, sans-serif`;
   ctx.textBaseline = 'middle';
   ctx.fillText(`I'm ${sticker.name}`, x + STICKER_WIDTH_PX / 2, currentY + Math.round(cardHeight * 0.75));
 
@@ -164,7 +194,7 @@ async function drawSticker(
 
   // "Read my story and expand it"
   ctx.fillStyle = '#ffffff';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.065)}px Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.065)}px StickerFont, Arial, sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   ctx.fillText('Read my story', x + STICKER_WIDTH_PX / 2, currentY);
@@ -197,7 +227,7 @@ async function drawSticker(
   };
 
   const translationText = translations[sticker.language] || translations.fr;
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px StickerFont, Arial, sans-serif`;
   ctx.textBaseline = 'top';
   ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.14));
 
@@ -207,8 +237,9 @@ async function drawSticker(
   const qrSize = Math.round(STICKER_HEIGHT_PX * 0.252);
   try {
     // Generate unique QR code for each lighter with pre-filled PIN
+    // Points to index page with PIN pre-filled to maintain app context
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://lightmyfire.app';
-    const qrUrl = `${baseUrl}/find?pin=${sticker.pinCode}`;
+    const qrUrl = `${baseUrl}/?pin=${sticker.pinCode}`;
 
     const qrDataUrl = await QRCode.toDataURL(qrUrl, {
       width: qrSize,
@@ -233,18 +264,18 @@ async function drawSticker(
   ctx.fillRect(x + padding, currentY, contentWidth, urlBgHeight);
 
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px StickerFont, Arial, sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText('or go to', x + STICKER_WIDTH_PX / 2, currentY + Math.round(urlBgHeight * 0.45));
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.06)}px Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.06)}px StickerFont, Arial, sans-serif`;
   ctx.fillText('lightmyfire.app', x + STICKER_WIDTH_PX / 2, currentY + Math.round(urlBgHeight * 0.85));
 
   currentY += urlBgHeight + Math.round(STICKER_HEIGHT_PX * 0.03);
 
   // "and type my code"
   ctx.fillStyle = '#ffffff';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.065)}px Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.065)}px StickerFont, Arial, sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   ctx.fillText('and type my code', x + STICKER_WIDTH_PX / 2, currentY);
@@ -276,7 +307,7 @@ async function drawSticker(
   };
 
   const codeText = codeTranslations[sticker.language] || codeTranslations.fr;
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.055)}px StickerFont, Arial, sans-serif`;
   ctx.textBaseline = 'top';
   ctx.fillText(codeText, x + STICKER_WIDTH_PX / 2, currentY + Math.round(STICKER_HEIGHT_PX * 0.075));
 
@@ -290,7 +321,7 @@ async function drawSticker(
   ctx.fillRect(x + padding, currentY, contentWidth, pinBgHeight);
 
   ctx.fillStyle = '#000000';
-  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px Arial`;
+  ctx.font = `bold ${Math.round(STICKER_HEIGHT_PX * 0.09)}px StickerFont, Arial, sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText(sticker.pinCode, x + STICKER_WIDTH_PX / 2, currentY + Math.round(pinBgHeight * 0.75));
