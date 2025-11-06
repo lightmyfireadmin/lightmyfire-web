@@ -131,6 +131,18 @@ export default {
   'home.how_it_works.step2.description': 'Pégala en tu encendedor y regálalo o "piérdelo". Su aventura comienza.',
   'home.how_it_works.step3.title': '3. Sigue',
   'home.how_it_works.step3.description': 'Quien lo encuentre puede escanear el código, introducir el PIN y añadir su propia historia, foto o canción a su aventura.',
+  'home.stats.title': 'Nuestro Impacto Comunitario',
+  'home.stats.subtitle': 'Juntos, estamos salvando encendedores de los vertederos y creando un movimiento global de narración creativa.',
+  'home.stats.lighters_saved': 'Encendedores Salvados',
+  'home.stats.plastic_saved': 'residuos plásticos prevenidos',
+  'home.stats.stories_created': 'Historias Creadas',
+  'home.stats.stories_subtext': 'Momentos capturados y compartidos',
+  'home.stats.countries_reached': 'Países Alcanzados',
+  'home.stats.global_community': 'Un movimiento verdaderamente global',
+  'home.stats.co2_saved': 'Impacto CO₂',
+  'home.stats.environmental_impact': 'Contribución ambiental',
+  'home.stats.join_movement': 'Únete a miles de LightSavers marcando la diferencia, un encendedor a la vez.',
+
 
   'save_lighter.helper.background_url': "Opcional. Esta URL de imagen será el fondo de la página de tu encendedor. Prueba un enlace de Imgur o Unsplash.",
 

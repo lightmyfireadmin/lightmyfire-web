@@ -118,6 +118,18 @@ export default {
   'home.how_it_works.step2.description': 'Stick it on your lighter and give it away or "lose" it. Its journey begins.',
   'home.how_it_works.step3.title': '3. Follow',
   'home.how_it_works.step3.description': 'Anyone who finds it can scan the code, enter the PIN, and add their own story, picture, or song to its journey.',
+  'home.stats.title': 'Tác Động Cộng Đồng Của Chúng Ta',
+  'home.stats.subtitle': 'Cùng nhau, chúng ta đang cứu bật lửa khỏi bãi rác và tạo ra một phong trào kể chuyện sáng tạo toàn cầu.',
+  'home.stats.lighters_saved': 'Bật Lửa Được Cứu',
+  'home.stats.plastic_saved': 'rác thải nhựa đã ngăn chặn',
+  'home.stats.stories_created': 'Câu Chuyện Được Tạo',
+  'home.stats.stories_subtext': 'Những khoảnh khắc được ghi lại và chia sẻ',
+  'home.stats.countries_reached': 'Quốc Gia Đạt Được',
+  'home.stats.global_community': 'Một phong trào thực sự toàn cầu',
+  'home.stats.co2_saved': 'Tác Động CO₂',
+  'home.stats.environmental_impact': 'Đóng góp môi trường',
+  'home.stats.join_movement': 'Tham gia cùng hàng nghìn LightSavers tạo nên sự khác biệt, từng bật lửa một.',
+
 
 
   'save_success.next_steps.title': 'Next Steps:',

@@ -130,6 +130,18 @@ export default {
   'home.how_it_works.step2.description': 'Stick it on your lighter and give it away or "lose" it. Its journey begins.',
   'home.how_it_works.step3.title': '3. Follow',
   'home.how_it_works.step3.description': 'Anyone who finds it can scan the code, enter the PIN, and add their own story, picture, or song to its journey.',
+  'home.stats.title': 'Вплив Нашої Спільноти',
+  'home.stats.subtitle': 'Разом ми рятуємо запальнички від сміттєзвалищ і створюємо глобальний рух творчого розповідання історій.',
+  'home.stats.lighters_saved': 'Врятованих Запальничок',
+  'home.stats.plastic_saved': 'запобігнутих пластикових відходів',
+  'home.stats.stories_created': 'Створених Історій',
+  'home.stats.stories_subtext': 'Зафіксовані та спільні моменти',
+  'home.stats.countries_reached': 'Країн Охоплено',
+  'home.stats.global_community': 'Справді глобальний рух',
+  'home.stats.co2_saved': 'Вплив CO₂',
+  'home.stats.environmental_impact': 'Екологічний внесок',
+  'home.stats.join_movement': 'Приєднуйтесь до тисяч LightSavers, які змінюють світ, по одній запальничці за раз.',
+
 
 
   'save_success.next_steps.title': 'Next Steps:',

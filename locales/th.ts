@@ -118,6 +118,18 @@ export default {
   'home.how_it_works.step2.description': 'Stick it on your lighter and give it away or "lose" it. Its journey begins.',
   'home.how_it_works.step3.title': '3. Follow',
   'home.how_it_works.step3.description': 'Anyone who finds it can scan the code, enter the PIN, and add their own story, picture, or song to its journey.',
+  'home.stats.title': 'ผลกระทบของชุมชนของเรา',
+  'home.stats.subtitle': 'เราร่วมกันช่วยไฟแช็กจากกองขยะและสร้างการเคลื่อนไหวเล่าเรื่องสร้างสรรค์ทั่วโลก',
+  'home.stats.lighters_saved': 'ไฟแช็กที่ช่วยไว้',
+  'home.stats.plastic_saved': 'ขยะพลาสติกที่ป้องกันได้',
+  'home.stats.stories_created': 'เรื่องราวที่สร้างขึ้น',
+  'home.stats.stories_subtext': 'ช่วงเวลาที่บันทึกและแบ่งปัน',
+  'home.stats.countries_reached': 'ประเทศที่เข้าถึง',
+  'home.stats.global_community': 'การเคลื่อนไหวระดับโลกอย่างแท้จริง',
+  'home.stats.co2_saved': 'ผลกระทบ CO₂',
+  'home.stats.environmental_impact': 'การมีส่วนร่วมด้านสิ่งแวดล้อม',
+  'home.stats.join_movement': 'เข้าร่วมกับ LightSavers นับพันที่สร้างความแตกต่าง ทีละไฟแช็ก',
+
 
 
   'save_success.next_steps.title': 'Next Steps:',

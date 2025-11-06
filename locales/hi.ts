@@ -119,6 +119,18 @@ export default {
     'home.how_it_works.step2.description': 'इसे अपने लाइटर पर चिपकाएं और इसे दे दें या "खो" दें। इसकी यात्रा शुरू होती है।',
     'home.how_it_works.step3.title': '3. अनुसरण करें',
     'home.how_it_works.step3.description': 'जो कोई भी इसे पाता है वह कोड को स्कैन कर सकता है, पिन दर्ज कर सकता है, और इसकी यात्रा में अपनी कहानी, तस्वीर या गीत जोड़ सकता है।',
+  'home.stats.title': 'Our Community Impact',
+  'home.stats.subtitle': 'Together, we\'re saving lighters from landfills and creating a global movement of creative storytelling.',
+  'home.stats.lighters_saved': 'Lighters Saved',
+  'home.stats.plastic_saved': 'plastic waste prevented',
+  'home.stats.stories_created': 'Stories Created',
+  'home.stats.stories_subtext': 'Moments captured & shared',
+  'home.stats.countries_reached': 'Countries Reached',
+  'home.stats.global_community': 'A truly global movement',
+  'home.stats.co2_saved': 'CO₂ Impact',
+  'home.stats.environmental_impact': 'Environmental contribution',
+  'home.stats.join_movement': 'Join thousands of LightSavers making a difference, one lighter at a time.',
+
   
     'save_lighter.helper.background_url': 'वैकल्पिक। यह छवि URL आपके लाइटर के पेज के लिए पृष्ठभूमि होगी। एक Imgur या Unsplash लिंक आज़माएँ।',
   

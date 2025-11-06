@@ -118,6 +118,18 @@ export default {
   'home.how_it_works.step2.description': '把它贴在你的打火机上，然后送人或“弄丢”它。它的旅程开始了。',
   'home.how_it_works.step3.title': '3. 关注',
   'home.how_it_works.step3.description': '任何找到它的人都可以扫描代码，输入PIN码，并将其自己的故事、图片或歌曲添加到其旅程中。',
+  'home.stats.title': '我们的社区影响',
+  'home.stats.subtitle': '我们一起从垃圾填埋场拯救打火机，创造一个全球性的创意叙事运动。',
+  'home.stats.lighters_saved': '拯救的打火机',
+  'home.stats.plastic_saved': '防止的塑料废物',
+  'home.stats.stories_created': '创建的故事',
+  'home.stats.stories_subtext': '捕获和分享的时刻',
+  'home.stats.countries_reached': '到达的国家',
+  'home.stats.global_community': '真正的全球运动',
+  'home.stats.co2_saved': 'CO₂影响',
+  'home.stats.environmental_impact': '环境贡献',
+  'home.stats.join_movement': '加入成千上万的LightSavers，一次一个打火机地改变世界。',
+
 
   'save_lighter.helper.background_url': "可选。此图片URL将作为您打火机页面的背景。请尝试使用Imgur或Unsplash链接。",
 

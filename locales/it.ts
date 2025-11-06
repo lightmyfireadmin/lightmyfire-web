@@ -130,6 +130,18 @@ export default {
   'home.how_it_works.step2.description': 'Attaccalo sul tuo accendino e regalalo o "perdilo". Il suo viaggio inizia.',
   'home.how_it_works.step3.title': '3. Segui',
   'home.how_it_works.step3.description': "Chiunque lo trovi può scansionare il codice, inserire il PIN e aggiungere la propria storia, foto o canzone al suo viaggio.",
+  'home.stats.title': 'Il Nostro Impatto Comunitario',
+  'home.stats.subtitle': 'Insieme, stiamo salvando accendini dalle discariche e creando un movimento globale di storytelling creativo.',
+  'home.stats.lighters_saved': 'Accendini Salvati',
+  'home.stats.plastic_saved': 'rifiuti di plastica prevenuti',
+  'home.stats.stories_created': 'Storie Create',
+  'home.stats.stories_subtext': 'Momenti catturati e condivisi',
+  'home.stats.countries_reached': 'Paesi Raggiunti',
+  'home.stats.global_community': 'Un movimento veramente globale',
+  'home.stats.co2_saved': 'Impatto CO₂',
+  'home.stats.environmental_impact': 'Contributo ambientale',
+  'home.stats.join_movement': 'Unisciti a migliaia di LightSavers che fanno la differenza, un accendino alla volta.',
+
 
   'save_lighter.helper.background_url': "Opzionale. Questo URL dell'immagine sarà lo sfondo della pagina del tuo accendino. Prova un link di Imgur o Unsplash.",
 

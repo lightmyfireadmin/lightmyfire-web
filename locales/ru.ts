@@ -130,6 +130,18 @@ export default {
   'home.how_it_works.step2.description': 'Наклейте ее на свою зажигалку и подарите ее или «потеряйте». Ее путешествие начинается。',
   'home.how_it_works.step3.title': '3. Следить',
   'home.how_it_works.step3.description': 'Любой, кто ее найдет, может отсканировать код, ввести PIN-код и добавить свою собственную историю, фотографию или песню в ее путешествие。',
+  'home.stats.title': 'Влияние Нашего Сообщества',
+  'home.stats.subtitle': 'Вместе мы спасаем зажигалки от свалок и создаем глобальное движение креативного повествования.',
+  'home.stats.lighters_saved': 'Спасенных Зажигалок',
+  'home.stats.plastic_saved': 'предотвращенных пластиковых отходов',
+  'home.stats.stories_created': 'Созданных Историй',
+  'home.stats.stories_subtext': 'Запечатленные и общие моменты',
+  'home.stats.countries_reached': 'Стран Охвачено',
+  'home.stats.global_community': 'Действительно глобальное движение',
+  'home.stats.co2_saved': 'Воздействие CO₂',
+  'home.stats.environmental_impact': 'Экологический вклад',
+  'home.stats.join_movement': 'Присоединяйтесь к тысячам LightSavers, меняющих мир, по одной зажигалке за раз.',
+
 
   'save_lighter.helper.background_url': "Необязательно. Этот URL-адрес изображения будет фоном для страницы вашей зажигалки. Попробуйте ссылку Imgur или Unsplash.",
 

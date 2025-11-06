@@ -130,6 +130,18 @@ export default {
   'home.how_it_works.step2.description': 'Stick it on your lighter and give it away or "lose" it. Its journey begins.',
   'home.how_it_works.step3.title': '3. Follow',
   'home.how_it_works.step3.description': 'Anyone who finds it can scan the code, enter the PIN, and add their own story, picture, or song to its journey.',
+  'home.stats.title': 'Topluluk Etkimiz',
+  'home.stats.subtitle': 'Birlikte, çakmakları çöplüklerden kurtarıyor ve yaratıcı hikaye anlatımının küresel bir hareketini yaratıyoruz.',
+  'home.stats.lighters_saved': 'Kurtarılan Çakmaklar',
+  'home.stats.plastic_saved': 'önlenen plastik atık',
+  'home.stats.stories_created': 'Oluşturulan Hikayeler',
+  'home.stats.stories_subtext': 'Yakalanan ve paylaşılan anlar',
+  'home.stats.countries_reached': 'Ulaşılan Ülkeler',
+  'home.stats.global_community': 'Gerçekten küresel bir hareket',
+  'home.stats.co2_saved': 'CO₂ Etkisi',
+  'home.stats.environmental_impact': 'Çevresel katkı',
+  'home.stats.join_movement': 'Bir seferde bir çakmakla fark yaratan binlerce LightSaver\'a katılın.',
+
 
 
   'save_success.next_steps.title': 'Next Steps:',

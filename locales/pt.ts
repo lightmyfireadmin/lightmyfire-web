@@ -131,6 +131,18 @@ export default {
     'home.how_it_works.step2.description': 'Cole no seu isqueiro e dê para alguém ou "perca-o". Sua jornada começa.',
     'home.how_it_works.step3.title': '3. Siga',
     'home.how_it_works.step3.description': 'Qualquer um que o encontrar pode escanear o código, inserir o PIN e adicionar sua própria história, foto ou música à sua jornada.',
+  'home.stats.title': 'Nosso Impacto Comunitário',
+  'home.stats.subtitle': 'Juntos, estamos salvando isqueiros de aterros e criando um movimento global de narrativa criativa.',
+  'home.stats.lighters_saved': 'Isqueiros Salvos',
+  'home.stats.plastic_saved': 'resíduos plásticos evitados',
+  'home.stats.stories_created': 'Histórias Criadas',
+  'home.stats.stories_subtext': 'Momentos capturados e compartilhados',
+  'home.stats.countries_reached': 'Países Alcançados',
+  'home.stats.global_community': 'Um movimento verdadeiramente global',
+  'home.stats.co2_saved': 'Impacto CO₂',
+  'home.stats.environmental_impact': 'Contribuição ambiental',
+  'home.stats.join_movement': 'Junte-se a milhares de LightSavers fazendo a diferença, um isqueiro de cada vez.',
+
   
     'save_lighter.helper.background_url': 'Opcional. Esta URL de imagem será o fundo da página do seu isqueiro. Tente um link do Imgur ou Unsplash.',
   

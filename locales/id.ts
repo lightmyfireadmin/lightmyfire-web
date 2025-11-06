@@ -118,6 +118,18 @@ export default {
   'home.how_it_works.step2.description': 'Stick it on your lighter and give it away or "lose" it. Its journey begins.',
   'home.how_it_works.step3.title': '3. Follow',
   'home.how_it_works.step3.description': 'Anyone who finds it can scan the code, enter the PIN, and add their own story, picture, or song to its journey.',
+  'home.stats.title': 'Dampak Komunitas Kami',
+  'home.stats.subtitle': 'Bersama-sama, kami menyelamatkan korek api dari tempat pembuangan sampah dan menciptakan gerakan penceritaan kreatif global.',
+  'home.stats.lighters_saved': 'Korek Api Terselamatkan',
+  'home.stats.plastic_saved': 'sampah plastik yang dicegah',
+  'home.stats.stories_created': 'Cerita Dibuat',
+  'home.stats.stories_subtext': 'Momen yang ditangkap & dibagikan',
+  'home.stats.countries_reached': 'Negara yang Dijangkau',
+  'home.stats.global_community': 'Gerakan yang benar-benar global',
+  'home.stats.co2_saved': 'Dampak CO₂',
+  'home.stats.environmental_impact': 'Kontribusi lingkungan',
+  'home.stats.join_movement': 'Bergabunglah dengan ribuan LightSavers yang membuat perbedaan, satu korek api pada satu waktu.',
+
 
 
   'save_success.next_steps.title': 'Next Steps:',

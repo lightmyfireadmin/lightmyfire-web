@@ -130,6 +130,18 @@ export default {
   'home.how_it_works.step2.description': 'Stick it on your lighter and give it away or "lose" it. Its journey begins.',
   'home.how_it_works.step3.title': '3. Follow',
   'home.how_it_works.step3.description': 'Anyone who finds it can scan the code, enter the PIN, and add their own story, picture, or song to its journey.',
+  'home.stats.title': 'Our Community Impact',
+  'home.stats.subtitle': 'Together, we\'re saving lighters from landfills and creating a global movement of creative storytelling.',
+  'home.stats.lighters_saved': 'Lighters Saved',
+  'home.stats.plastic_saved': 'plastic waste prevented',
+  'home.stats.stories_created': 'Stories Created',
+  'home.stats.stories_subtext': 'Moments captured & shared',
+  'home.stats.countries_reached': 'Countries Reached',
+  'home.stats.global_community': 'A truly global movement',
+  'home.stats.co2_saved': 'CO₂ Impact',
+  'home.stats.environmental_impact': 'Environmental contribution',
+  'home.stats.join_movement': 'Join thousands of LightSavers making a difference, one lighter at a time.',
+
 
   'save_success.next_steps.title': 'Next Steps:',
   'save_success.next_steps.step1': 'Print: Download the PDF and print it, ideally on sticker paper.',

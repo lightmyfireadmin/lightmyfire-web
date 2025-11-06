@@ -130,6 +130,18 @@ export default {
   'home.how_it_works.step2.description': 'Stick it on your lighter and give it away or "lose" it. Its journey begins.',
   'home.how_it_works.step3.title': '3. Follow',
   'home.how_it_works.step3.description': 'Anyone who finds it can scan the code, enter the PIN, and add their own story, picture, or song to its journey.',
+  'home.stats.title': 'Onze Community Impact',
+  'home.stats.subtitle': 'Samen redden we aanstekers van stortplaatsen en creëren we een wereldwijde beweging van creatief verhalen vertellen.',
+  'home.stats.lighters_saved': 'Geredde Aanstekers',
+  'home.stats.plastic_saved': 'plastic afval voorkomen',
+  'home.stats.stories_created': 'Verhalen Gecreëerd',
+  'home.stats.stories_subtext': 'Vastgelegde en gedeelde momenten',
+  'home.stats.countries_reached': 'Bereikte Landen',
+  'home.stats.global_community': 'Een echt wereldwijde beweging',
+  'home.stats.co2_saved': 'CO₂ Impact',
+  'home.stats.environmental_impact': 'Milieubijdrage',
+  'home.stats.join_movement': 'Sluit je aan bij duizenden LightSavers die het verschil maken, één aansteker tegelijk.',
+
 
   'save_lighter.helper.background_url': "Optional. This image URL will be the background for your lighter's page. Try an Imgur or Unsplash link.",
 

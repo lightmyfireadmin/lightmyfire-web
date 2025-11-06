@@ -130,6 +130,18 @@ export default {
   'home.how_it_works.step2.description': 'Stick it on your lighter and give it away or "lose" it. Its journey begins.',
   'home.how_it_works.step3.title': '3. Follow',
   'home.how_it_works.step3.description': 'Anyone who finds it can scan the code, enter the PIN, and add their own story, picture, or song to its journey.',
+  'home.stats.title': 'Nasz Wpływ Społeczności',
+  'home.stats.subtitle': 'Razem ratujemy zapalniczki przed wysypiskami i tworzymy globalny ruch kreatywnego opowiadania historii.',
+  'home.stats.lighters_saved': 'Uratowane Zapalniczki',
+  'home.stats.plastic_saved': 'zapobiegniętych odpadów plastikowych',
+  'home.stats.stories_created': 'Stworzone Historie',
+  'home.stats.stories_subtext': 'Uchwycone i udostępnione momenty',
+  'home.stats.countries_reached': 'Osiągnięte Kraje',
+  'home.stats.global_community': 'Prawdziwie globalny ruch',
+  'home.stats.co2_saved': 'Wpływ CO₂',
+  'home.stats.environmental_impact': 'Wkład ekologiczny',
+  'home.stats.join_movement': 'Dołącz do tysięcy LightSavers robiących różnicę, po jednej zapalniczce na raz.',
+
 
   'save_lighter.helper.background_url': "Optional. This image URL will be the background for your lighter's page. Try an Imgur or Unsplash link.",
 

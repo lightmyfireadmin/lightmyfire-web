@@ -12,6 +12,7 @@ import SuccessNotification from '@/app/components/SuccessNotification';
 import SignupWelcomeModal from '@/app/components/SignupWelcomeModal';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
+import CommunityStats from '@/app/components/CommunityStats';
 
 export const dynamic = 'force-dynamic';
 
@@ -169,6 +170,9 @@ export default async function Home() {
           </div>
         </div>
       </div>
+
+      {/* Community Impact Statistics */}
+      <CommunityStats />
 
       <RandomPostFeed />
     </div>

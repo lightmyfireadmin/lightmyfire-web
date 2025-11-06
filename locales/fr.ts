@@ -201,6 +201,17 @@ export default {
   'home.how_it_works.step1.alt': 'Sauver un briquet',
   'home.how_it_works.step2.alt': 'Partager le briquet',
   'home.how_it_works.step3.alt': 'Suivre l\'histoire',
+  'home.stats.title': 'L\'Impact de Notre Communauté',
+  'home.stats.subtitle': 'Ensemble, nous sauvons des briquets des décharges et créons un mouvement mondial de créativité narrative.',
+  'home.stats.lighters_saved': 'Briquets Sauvés',
+  'home.stats.plastic_saved': 'déchets plastiques évités',
+  'home.stats.stories_created': 'Histoires Créées',
+  'home.stats.stories_subtext': 'Moments capturés et partagés',
+  'home.stats.countries_reached': 'Pays Atteints',
+  'home.stats.global_community': 'Un mouvement vraiment mondial',
+  'home.stats.co2_saved': 'Impact CO₂',
+  'home.stats.environmental_impact': 'Contribution environnementale',
+  'home.stats.join_movement': 'Rejoignez des milliers de LightSavers qui font la différence, un briquet à la fois.',
 
   // --- Login & Auth (Missing Keys) ---
   'login.title': 'LightMyFire',

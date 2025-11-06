@@ -131,6 +131,17 @@ export default {
   'home.how_it_works.step2.description': 'Klebe ihn auf dein Feuerzeug und gib es weiter oder "verliere" es. Seine Reise beginnt.',
   'home.how_it_works.step3.title': '3. Folgen',
   'home.how_it_works.step3.description': 'Jeder, der es findet, kann den Code scannen, die PIN eingeben und seine eigene Geschichte, ein Bild oder einen Song zur Reise hinzufügen.',
+  'home.stats.title': 'Unser Community-Einfluss',
+  'home.stats.subtitle': 'Gemeinsam retten wir Feuerzeuge vor Mülldeponien und schaffen eine globale Bewegung kreativer Geschichten.',
+  'home.stats.lighters_saved': 'Gerettete Feuerzeuge',
+  'home.stats.plastic_saved': 'Plastikmüll verhindert',
+  'home.stats.stories_created': 'Erstellte Geschichten',
+  'home.stats.stories_subtext': 'Eingefangene und geteilte Momente',
+  'home.stats.countries_reached': 'Erreichte Länder',
+  'home.stats.global_community': 'Eine wirklich globale Bewegung',
+  'home.stats.co2_saved': 'CO₂-Auswirkung',
+  'home.stats.environmental_impact': 'Umweltbeitrag',
+  'home.stats.join_movement': 'Schließen Sie sich Tausenden von LightSavers an, die einen Unterschied machen, ein Feuerzeug nach dem anderen.',
 
   'save_lighter.helper.background_url': "Optional. Diese Bild-URL wird der Hintergrund für die Seite deines Feuerzeugs sein. Versuch\'s mit einem Imgur- or Unsplash-Link.",
 

@@ -130,6 +130,18 @@ export default {
   'home.how_it_works.step2.description': 'Stick it on your lighter and give it away or "lose" it. Its journey begins.',
   'home.how_it_works.step3.title': '3. Follow',
   'home.how_it_works.step3.description': 'Anyone who finds it can scan the code, enter the PIN, and add their own story, picture, or song to its journey.',
+  'home.stats.title': 'コミュニティの影響',
+  'home.stats.subtitle': '一緒に、埋め立て地からライターを救い、創造的な物語のグローバルな運動を作っています。',
+  'home.stats.lighters_saved': '救われたライター',
+  'home.stats.plastic_saved': 'プラスチック廃棄物の防止',
+  'home.stats.stories_created': '作成されたストーリー',
+  'home.stats.stories_subtext': 'キャプチャされ共有された瞬間',
+  'home.stats.countries_reached': '到達した国',
+  'home.stats.global_community': '真にグローバルな運動',
+  'home.stats.co2_saved': 'CO₂影響',
+  'home.stats.environmental_impact': '環境貢献',
+  'home.stats.join_movement': '一度に1つのライターで違いを生み出す何千ものLightSaversに参加してください。',
+
 
 
   'save_success.next_steps.title': 'Next Steps:',
