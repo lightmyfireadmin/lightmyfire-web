@@ -156,24 +156,6 @@ function PaymentFormContent({
         </div>
       )}
 
-      <div className="rounded-lg border border-border bg-background/50 p-4">
-        <h3 className="text-lg font-semibold text-foreground mb-4">{t('stripe.card_info')}</h3>
-        <div className="space-y-2 text-sm">
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">{t('order.payment.order_id')}</span>
-            <span className="font-mono text-foreground">{orderId}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">{t('order.payment.sticker_pack')}</span>
-            <span className="text-foreground">{t('order.payment.stickers_count', { count: packSize })}</span>
-          </div>
-          <div className="flex justify-between border-t border-border pt-2 mt-2">
-            <span className="font-semibold text-foreground">{t('order.payment.total_amount')}</span>
-            <span className="font-bold text-primary text-lg">€{payAmount}</span>
-          </div>
-        </div>
-      </div>
-
       <div className="space-y-4">
         <h3 className="text-lg font-semibold text-foreground">{t('order.payment.cardholder_info')}</h3>
         <div>
@@ -205,6 +187,9 @@ function PaymentFormContent({
             className="w-full px-4 py-2 rounded-md border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
             placeholder={t('order.payment.email_placeholder')}
           />
+          <p className="text-xs text-muted-foreground mt-2">
+            {t('order.payment.email_confirmation_notice')}
+          </p>
         </div>
       </div>
 
@@ -212,6 +197,10 @@ function PaymentFormContent({
         <h3 className="text-lg font-semibold text-foreground">{t('order.payment.card_info')}</h3>
         <div className="border border-border rounded-md p-4 bg-background/50">
           <CardElement options={cardElementOptions} />
+        </div>
+        <div className="text-sm text-muted-foreground">
+          <span className="font-medium">{t('order.payment.order_id')}:</span>{' '}
+          <span className="font-mono">{orderId}</span>
         </div>
       </div>
 

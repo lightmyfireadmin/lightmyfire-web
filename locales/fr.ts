@@ -707,6 +707,7 @@ export default {
   'order.payment.full_name_placeholder': 'Jean Dupont',
   'order.payment.email': 'Adresse e-mail *',
   'order.payment.email_placeholder': 'jean@exemple.com',
+  'order.payment.email_confirmation_notice': 'La confirmation de commande et les détails seront envoyés à cette adresse e-mail.',
   'order.payment.card_info': 'Informations de carte',
   'order.payment.security_message': 'Votre paiement est crypté et sécurisé par Stripe.',
   'order.payment.pay_button': 'Payer {amount} €',

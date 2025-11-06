@@ -742,6 +742,7 @@ export default {
   'order.payment.full_name_placeholder': 'John Doe',
   'order.payment.email': 'Email Address *',
   'order.payment.email_placeholder': 'john@example.com',
+  'order.payment.email_confirmation_notice': 'Order confirmation and details will be sent to this email address.',
   'order.payment.card_info': 'Card Information',
   'order.payment.security_message': 'Your payment is encrypted and secured by Stripe.',
   'order.payment.pay_button': 'Pay €{amount}',

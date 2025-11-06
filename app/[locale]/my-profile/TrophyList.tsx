@@ -34,16 +34,16 @@ interface LockedTrophyDef {
 }
 
 const ALL_TROPHIES: (UnlockedTrophy | LockedTrophyDef)[] = [
-  { id: 1, name: 'Fire Starter', description: 'Save your first lighter', icon_name: 'personalise', unlocked: false },
-  { id: 2, name: 'Story Teller', description: 'Add your first post', icon_name: 'telling_stories', unlocked: false },
-  { id: 3, name: 'Chronicles', description: 'Add 5 stories to lighters', icon_name: 'telling_stories', unlocked: false },
-  { id: 4, name: 'Epic Saga', description: 'Add 10 stories to lighters', icon_name: 'telling_stories', unlocked: false },
-  { id: 5, name: 'Collector', description: 'Save 5 different lighters', icon_name: 'personalise', unlocked: false },
-  { id: 6, name: 'Community Builder', description: 'Contribute to 10 different lighters', icon_name: 'around_the_world', unlocked: false },
-  { id: 7, name: 'Globe Trotter', description: 'Post from 5 different countries', icon_name: 'around_the_world', unlocked: false },
-  { id: 8, name: 'Popular Contributor', description: 'Get 50 likes on your posts', icon_name: 'personalise', unlocked: false },
-  { id: 9, name: 'Photographer', description: 'Add 10 photo posts', icon_name: 'telling_stories', unlocked: false },
-  { id: 10, name: 'Musician', description: 'Add 5 song posts', icon_name: 'telling_stories', unlocked: false },
+  { id: 1, name: 'Fire Starter', description: 'Save your first lighter', icon_name: 'fire_starter_trophy', unlocked: false },
+  { id: 2, name: 'Story Teller', description: 'Add your first post', icon_name: 'story_teller_trophy', unlocked: false },
+  { id: 3, name: 'Chronicles', description: 'Add 5 stories to lighters', icon_name: 'chronicles_trophy', unlocked: false },
+  { id: 4, name: 'Epic Saga', description: 'Add 10 stories to lighters', icon_name: 'epic_saga_trophy', unlocked: false },
+  { id: 5, name: 'Collector', description: 'Save 5 different lighters', icon_name: 'collector_trophy', unlocked: false },
+  { id: 6, name: 'Community Builder', description: 'Contribute to 10 different lighters', icon_name: 'community_builder_trophy', unlocked: false },
+  { id: 7, name: 'Globe Trotter', description: 'Post from 5 different countries', icon_name: 'globe_trotter_trophy', unlocked: false },
+  { id: 8, name: 'Popular Contributor', description: 'Get 50 likes on your posts', icon_name: 'popular_contributor_trophy', unlocked: false },
+  { id: 9, name: 'Photographer', description: 'Add 10 photo posts', icon_name: 'photographer_trophy', unlocked: false },
+  { id: 10, name: 'Musician', description: 'Add 5 song posts', icon_name: 'musician_trophy', unlocked: false },
 ];
 
 export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
@@ -88,7 +88,7 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-yellow-400 text-white shadow-md group-hover:shadow-lg transition-shadow">
                   {trophy.icon_name ? (
                     <Image
-                      src={`/illustrations/${trophy.icon_name}.png`}
+                      src={`/newassets/${trophy.icon_name}.png`}
                       alt={trophy.name}
                       width={56}
                       height={56}
@@ -136,7 +136,7 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gray-300 dark:bg-gray-600 text-gray-500 shadow-sm">
                   {trophy.icon_name ? (
                     <Image
-                      src={`/illustrations/${trophy.icon_name}.png`}
+                      src={`/newassets/${trophy.icon_name}.png`}
                       alt={trophy.name}
                       width={56}
                       height={56}
