@@ -147,8 +147,8 @@ const RandomPostFeed = () => {
           </div>
 
           {/* Action buttons */}
-          <div className="flex flex-col sm:flex-row justify-center gap-3 pt-4">
-            {/* Refresh button */}
+          <div className="flex justify-center pt-4">
+            {/* See More Stories button */}
             <button
               onClick={handleRefresh}
               disabled={isRefreshing}
@@ -163,22 +163,6 @@ const RandomPostFeed = () => {
                 {isRefreshing ? t('home.mosaic.loading') : t('home.mosaic.see_more')}
               </span>
             </button>
-
-            {/* Load More button */}
-            {hasMore && (
-              <button
-                onClick={loadMorePosts}
-                disabled={isLoadingMore}
-                className="group flex items-center gap-2 px-6 py-3 rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/90 transition-all duration-300 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <span className="font-medium">
-                  {isLoadingMore ? t('home.mosaic.loading') : t('home.mosaic.load_more')}
-                </span>
-                {isLoadingMore && (
-                  <ArrowPathIcon className="h-5 w-5 animate-spin" />
-                )}
-              </button>
-            )}
           </div>
 
           {/* Loading more indicator */}

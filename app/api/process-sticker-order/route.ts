@@ -138,26 +138,52 @@ export async function POST(request: NextRequest) {
     }
 
     // Create lighters in database and get PINs (using admin client to bypass RLS)
+    console.log('Creating lighters for user:', session.user.id);
+    console.log('Lighter data to create:', JSON.stringify(lighterData, null, 2));
+
     const { data: createdLighters, error: dbError } = await supabaseAdmin.rpc('create_bulk_lighters', {
       p_user_id: session.user.id,
       p_lighter_data: lighterData,
     });
 
-    if (dbError || !createdLighters) {
-      console.error('Database error:', dbError);
-      return NextResponse.json({ error: 'Failed to create lighters' }, { status: 500 });
+    if (dbError) {
+      console.error('Database error creating lighters:', {
+        error: dbError,
+        message: dbError.message,
+        details: dbError.details,
+        hint: dbError.hint,
+        code: dbError.code
+      });
+      return NextResponse.json({
+        error: 'Failed to create lighters',
+        details: dbError.message,
+        hint: dbError.hint
+      }, { status: 500 });
     }
 
+    if (!createdLighters || createdLighters.length === 0) {
+      console.error('No lighters were created - function returned empty result');
+      return NextResponse.json({
+        error: 'Failed to create lighters - no data returned from database'
+      }, { status: 500 });
+    }
+
+    console.log('Successfully created lighters:', createdLighters);
+
     // Generate sticker PNG with real PIN codes
+    // The function now returns sticker_language directly
     const stickerData = createdLighters.map((lighter: any) => ({
       id: lighter.lighter_id,
       name: lighter.lighter_name,
       pinCode: lighter.pin_code,
       backgroundColor: lighter.background_color,
-      language: lighterData.find((ld) => ld.name === lighter.lighter_name)?.language || 'en',
+      language: lighter.sticker_language || 'en',
     }));
 
+    console.log('Sticker data for generation:', stickerData);
+
     // Generate PNG (reuse existing generation logic)
+    console.log('Generating sticker PNG...');
     const generateResponse = await fetch(`${request.nextUrl.origin}/api/generate-printful-stickers`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -168,10 +194,20 @@ export async function POST(request: NextRequest) {
     });
 
     if (!generateResponse.ok) {
-      return NextResponse.json({ error: 'Failed to generate stickers' }, { status: 500 });
+      const errorText = await generateResponse.text();
+      console.error('Sticker generation failed:', {
+        status: generateResponse.status,
+        statusText: generateResponse.statusText,
+        error: errorText
+      });
+      return NextResponse.json({
+        error: 'Failed to generate stickers',
+        details: errorText
+      }, { status: 500 });
     }
 
     const pngBuffer = await generateResponse.arrayBuffer();
+    console.log('Sticker PNG generated successfully, size:', pngBuffer.byteLength, 'bytes');
 
     // Send email to dev address with sticker file and order details
     const transporter = nodemailer.createTransport({
