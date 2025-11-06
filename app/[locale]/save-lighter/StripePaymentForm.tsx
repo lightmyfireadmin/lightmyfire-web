@@ -143,6 +143,7 @@ function PaymentFormContent({
       },
       invalid: { color: '#ef4444' },
     },
+    hidePostalCode: true,
   };
 
   const payAmount = (totalAmount / 100).toFixed(2);
@@ -228,7 +229,7 @@ function PaymentFormContent({
       >
         {isLoading ? (
           <>
-            <LoadingSpinner color="primary" size="sm" />
+            <LoadingSpinner color="primary" size="sm" label="" />
             {t('order.payment.processing')}
           </>
         ) : (

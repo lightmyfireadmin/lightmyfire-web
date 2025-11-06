@@ -48,12 +48,8 @@ export default function DontThrowMeAwayPage() {
               {t('refill_guide.hero_title')}
             </h2>
             <div className="prose prose-lg max-w-none text-foreground space-y-4">
-              <p>
-                {t('refill_guide.hero_intro')}
-              </p>
-              <p>
-                {t('refill_guide.hero_social')}
-              </p>
+              <p dangerouslySetInnerHTML={{ __html: t('refill_guide.hero_intro') }} />
+              <p dangerouslySetInnerHTML={{ __html: t('refill_guide.hero_social') }} />
             </div>
           </div>
 
@@ -88,9 +84,7 @@ export default function DontThrowMeAwayPage() {
                         {t('refill_guide.section1_type1_title')}
                       </h3>
                     </div>
-                    <p className="text-foreground text-sm leading-relaxed">
-                      {t('refill_guide.section1_type1.desc')}
-                    </p>
+                    <p className="text-foreground text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: t('refill_guide.section1_type1.desc') }} />
                     <div className="mt-4 pt-4 border-t border-border/30">
                       <p className="text-xs text-muted-foreground font-semibold mb-2">Key indicators:</p>
                       <ul className="text-xs text-muted-foreground space-y-1">
@@ -187,17 +181,17 @@ export default function DontThrowMeAwayPage() {
               {}
               <div className="rounded-lg border border-border/50 p-8 bg-background">
                 <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-3">
-                  <span className="text-3xl">⛽</span>
+                  <span className="text-3xl">💨</span>
                   {t('refill_guide.section2_type1_title')}
                 </h3>
 
-                <div className="mb-6">
+                <div className="mb-6 flex justify-center">
                   <Image
                     src="/newassets/butane_refill_process.png"
                     alt="Butane Lighter Refill Process"
-                    width={800}
-                    height={400}
-                    className="w-full h-auto rounded-lg"
+                    width={267}
+                    height={133}
+                    className="w-1/3 h-auto rounded-lg"
                   />
                 </div>
 
@@ -217,9 +211,7 @@ export default function DontThrowMeAwayPage() {
                       <span className="text-lg">2️⃣</span>
                       {t('refill_guide.section2_type1_step2_title')}
                     </h4>
-                    <p className="text-sm text-foreground">
-                      {t('refill_guide.section2_type1_step2_desc')}
-                    </p>
+                    <p className="text-sm text-foreground" dangerouslySetInnerHTML={{ __html: t('refill_guide.section2_type1_step2_desc') }} />
                   </div>
 
                   <div className="rounded-lg bg-primary/5 p-6 border border-primary/20">
@@ -228,11 +220,11 @@ export default function DontThrowMeAwayPage() {
                       {t('refill_guide.section2_type1_step3_title')}
                     </h4>
                     <ol className="text-sm text-foreground space-y-3 list-decimal list-inside">
-                      <li>{t('refill_guide.section2_type1_step3_li1')}</li>
-                      <li>{t('refill_guide.section2_type1_step3_li2')}</li>
-                      <li>{t('refill_guide.section2_type1_step3_li3')}</li>
-                      <li>{t('refill_guide.section2_type1_step3_li4')}</li>
-                      <li>{t('refill_guide.section2_type1_step3_li5')}</li>
+                      <li dangerouslySetInnerHTML={{ __html: t('refill_guide.section2_type1_step3_li1') }} />
+                      <li dangerouslySetInnerHTML={{ __html: t('refill_guide.section2_type1_step3_li2') }} />
+                      <li dangerouslySetInnerHTML={{ __html: t('refill_guide.section2_type1_step3_li3') }} />
+                      <li dangerouslySetInnerHTML={{ __html: t('refill_guide.section2_type1_step3_li4') }} />
+                      <li dangerouslySetInnerHTML={{ __html: t('refill_guide.section2_type1_step3_li5') }} />
                     </ol>
                   </div>
 
@@ -247,17 +239,17 @@ export default function DontThrowMeAwayPage() {
               {}
               <div className="rounded-lg border border-border/50 p-8 bg-background">
                 <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-3">
-                  <span className="text-3xl">🔧</span>
+                  <span className="text-3xl">⛽</span>
                   {t('refill_guide.section2_type2_title')}
                 </h3>
 
-                <div className="mb-6">
+                <div className="mb-6 flex justify-center">
                   <Image
                     src="/newassets/gasoline_refill_process.png"
                     alt="Gasoline Lighter Refill Process"
-                    width={800}
-                    height={400}
-                    className="w-full h-auto rounded-lg"
+                    width={267}
+                    height={133}
+                    className="w-1/3 h-auto rounded-lg"
                   />
                 </div>
 
@@ -277,9 +269,7 @@ export default function DontThrowMeAwayPage() {
                       <span className="text-lg">2️⃣</span>
                       {t('refill_guide.section2_type2_step2_title')}
                     </h4>
-                    <p className="text-sm text-foreground">
-                      {t('refill_guide.section2_type2_step2_desc')}
-                    </p>
+                    <p className="text-sm text-foreground" dangerouslySetInnerHTML={{ __html: t('refill_guide.section2_type2_step2_desc') }} />
                   </div>
 
                   <div className="rounded-lg bg-primary/5 p-6 border border-primary/20">

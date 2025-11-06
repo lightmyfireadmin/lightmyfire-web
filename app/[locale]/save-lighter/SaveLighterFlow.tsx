@@ -218,6 +218,35 @@ export default function SaveLighterFlow({ user }: { user: User }) {
       )}
 
       {}
+      {customizations.length > 0 && !shippingAddress && (
+        <div className="rounded-lg border border-border bg-background p-6 shadow-md">
+          <h2 className="mb-6 text-xl font-semibold text-foreground">Your Sticker Design</h2>
+          <p className="text-sm text-muted-foreground mb-4">
+            Preview of your custom stickers. Sticker files will be generated after payment.
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            {customizations.slice(0, 5).map((sticker, index) => (
+              <div key={sticker.id} className="flex justify-center h-[300px]">
+                <div className="transform scale-[0.6] origin-top">
+                  <FullStickerPreview
+                    lighterName={sticker.name}
+                    pinCode={`LMF-${(index + 1).toString().padStart(2, '0')}`}
+                    backgroundColor={sticker.backgroundColor}
+                    language={sticker.language || selectedLanguage}
+                  />
+                </div>
+              </div>
+            ))}
+            {customizations.length > 5 && (
+              <div className="flex items-center justify-center text-muted-foreground text-sm">
+                +{customizations.length - 5} more
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {}
       {selectedPack !== null && (
         <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
           <h2 className="mb-4 text-2xl font-semibold text-foreground">Order Summary</h2>
@@ -319,35 +348,6 @@ export default function SaveLighterFlow({ user }: { user: User }) {
                 </span>
               </div>
             </div>
-          </div>
-        </div>
-      )}
-
-      {}
-      {customizations.length > 0 && !shippingAddress && (
-        <div className="rounded-lg border border-border bg-background p-6 shadow-md">
-          <h2 className="mb-6 text-xl font-semibold text-foreground">Your Sticker Design</h2>
-          <p className="text-sm text-muted-foreground mb-4">
-            Preview of your custom stickers. Sticker files will be generated after payment.
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {customizations.slice(0, 5).map((sticker, index) => (
-              <div key={sticker.id} className="flex justify-center h-[300px]">
-                <div className="transform scale-[0.6] origin-top">
-                  <FullStickerPreview
-                    lighterName={sticker.name}
-                    pinCode={`LMF-${(index + 1).toString().padStart(2, '0')}`}
-                    backgroundColor={sticker.backgroundColor}
-                    language={sticker.language || selectedLanguage}
-                  />
-                </div>
-              </div>
-            ))}
-            {customizations.length > 5 && (
-              <div className="flex items-center justify-center text-muted-foreground text-sm">
-                +{customizations.length - 5} more
-              </div>
-            )}
           </div>
         </div>
       )}
