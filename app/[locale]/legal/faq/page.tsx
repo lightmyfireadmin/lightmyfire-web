@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useI18n } from '@/locales/client';
 import { useState } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import ContactFormModal from '@/app/components/ContactFormModal';
 
 interface FAQItem {
   id: string;
@@ -15,6 +16,7 @@ interface FAQItem {
 export default function FAQ() {
   const t = useI18n();
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [showContactModal, setShowContactModal] = useState(false);
 
   const faqItems: FAQItem[] = [
     {
@@ -152,15 +154,22 @@ export default function FAQ() {
         <div className="mt-12 pt-8 border-t border-border">
           <p className="text-center text-muted-foreground">
             {t('faq.contact_footer')}{' '}
-            <a
-              href="mailto:support@lightmyfire.com"
+            <button
+              onClick={() => setShowContactModal(true)}
               className="text-primary hover:underline font-semibold"
             >
               {t('faq.contact_link')}
-            </a>
+            </button>
           </p>
         </div>
       </div>
+
+      {/* Contact Form Modal */}
+      <ContactFormModal
+        isOpen={showContactModal}
+        onClose={() => setShowContactModal(false)}
+        context="faq"
+      />
     </div>
   );
 }

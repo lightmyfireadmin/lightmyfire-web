@@ -5,6 +5,7 @@ import { useI18n, useCurrentLocale } from '@/locales/client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { CheckCircleIcon, EnvelopeIcon, FireIcon } from '@heroicons/react/24/outline';
+import ContactFormModal from '@/app/components/ContactFormModal';
 
 export default function OrderSuccessContent() {
   const t = useI18n();
@@ -15,6 +16,7 @@ export default function OrderSuccessContent() {
   const email = searchParams.get('email');
   const lighterCount = searchParams.get('count');
   const [showConfetti, setShowConfetti] = useState(true);
+  const [showContactModal, setShowContactModal] = useState(false);
 
   useEffect(() => {
     
@@ -163,12 +165,23 @@ export default function OrderSuccessContent() {
         <div className="mt-6 text-center text-sm text-muted-foreground">
           <p>
             {t('order.success.questions')}{' '}
-            <a href="mailto:editionsrevel@gmail.com" className="text-primary hover:underline">
+            <button
+              onClick={() => setShowContactModal(true)}
+              className="text-primary hover:underline font-semibold"
+            >
               {t('order.success.contact_us')}
-            </a>
+            </button>
           </p>
         </div>
       </div>
+
+      {/* Contact Form Modal */}
+      <ContactFormModal
+        isOpen={showContactModal}
+        onClose={() => setShowContactModal(false)}
+        subject="Question about my sticker order"
+        context="general"
+      />
     </div>
   );
 }
