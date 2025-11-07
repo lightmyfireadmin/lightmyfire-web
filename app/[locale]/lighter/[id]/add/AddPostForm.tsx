@@ -59,7 +59,8 @@ export default function AddPostForm({
 }) {
   const router = useRouter();
   const t = useI18n();
-  const { moderateText, moderateImage, isLoading: isModerating } = useContentModeration(user.id);
+  // SECURITY: Hook no longer needs userId - API gets it from session
+  const { moderateText, moderateImage, isLoading: isModerating } = useContentModeration();
 
   const [postType, setPostType] = useState<PostType>('text');
   const [title, setTitle] = useState('');
