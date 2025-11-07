@@ -4,6 +4,8 @@ import QRCode from 'qrcode';
 import path from 'path';
 import fs from 'fs';
 import archiver from 'archiver';
+import { cookies } from 'next/headers';
+import { createServerSupabaseClient } from '@/lib/supabase-server';
 
 // Register Poppins fonts for sticker text
 try {
@@ -134,6 +136,19 @@ function getContrastingTextColor(backgroundColorHex: string): string {
 
 export async function POST(request: NextRequest) {
   try {
+    // SECURITY: Verify authentication before allowing resource-intensive sticker generation
+    // This prevents unauthorized users from abusing the endpoint for DoS attacks
+    const cookieStore = cookies();
+    const supabase = createServerSupabaseClient(cookieStore);
+    const { data: { session } } = await supabase.auth.getSession();
+
+    if (!session) {
+      return NextResponse.json(
+        { error: 'Unauthorized. Please sign in to generate stickers.' },
+        { status: 401 }
+      );
+    }
+
     const { stickers, brandingText } = await request.json();
 
     if (!Array.isArray(stickers) || stickers.length === 0) {

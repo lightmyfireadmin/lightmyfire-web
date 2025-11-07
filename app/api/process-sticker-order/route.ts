@@ -5,6 +5,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { Resend } from 'resend';
 import Stripe from 'stripe';
 import { PACK_PRICING, VALID_PACK_SIZES } from '@/lib/constants';
+import { rateLimit } from '@/lib/rateLimit';
 
 interface LighterData {
   name: string;
@@ -58,6 +59,19 @@ export async function POST(request: NextRequest) {
 
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    // SECURITY: Rate limit order processing to prevent abuse
+    // Max 5 orders per minute per user to prevent flooding
+    const rateLimitResult = rateLimit(request, 'payment', session.user.id);
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        {
+          error: 'Too many order attempts. Please try again later.',
+          resetTime: rateLimitResult.resetTime
+        },
+        { status: 429 }
+      );
     }
 
     const { paymentIntentId, lighterData, shippingAddress }: OrderRequest = await request.json();
