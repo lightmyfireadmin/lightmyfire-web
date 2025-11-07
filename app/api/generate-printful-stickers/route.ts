@@ -280,8 +280,8 @@ async function drawSticker(
   const padding = Math.round(STICKER_WIDTH_PX * 0.05); // 24px at 600 DPI
   const contentWidth = STICKER_WIDTH_PX - padding * 2; // 424px at 600 DPI
   const contentHeight = STICKER_HEIGHT_PX - padding * 2; // 1134px at 600 DPI
-  const cornerRadius = Math.round(STICKER_WIDTH_PX * 0.08); // ~38px at 600 DPI
-  const cardRadius = Math.round(STICKER_WIDTH_PX * 0.04); // ~18px at 600 DPI
+  const cornerRadius = Math.round(STICKER_WIDTH_PX * 0.14); // ~67px at 600 DPI - rounder corners
+  const cardRadius = Math.round(STICKER_WIDTH_PX * 0.05); // ~24px at 600 DPI - rounder cards
   const smallGap = 4; // Very tight gap between cards for ultra-compact design
 
   // Draw colored background with rounded corners (kiss-cut sticker shape)
@@ -293,13 +293,23 @@ async function drawSticker(
   const textColor = getContrastingTextColor(sticker.backgroundColor);
 
   // Draw sticker_bg_layer.png overlay (between background and content)
+  // Clipped to sticker bounds to prevent cutting glitches
   try {
     const bgLayerPath = path.join(process.cwd(), 'public', 'newassets', 'sticker_bg_layer.png');
     const bgLayerBuffer = fs.readFileSync(bgLayerPath);
     const { Image } = await import('canvas');
     const bgLayerImage = new Image();
     bgLayerImage.src = bgLayerBuffer;
+
+    // Save context state
+    ctx.save();
+    // Clip to sticker shape to prevent overflow beyond background
+    roundRect(ctx, x, y, STICKER_WIDTH_PX, STICKER_HEIGHT_PX, cornerRadius);
+    ctx.clip();
+    // Draw layer within clipped region
     ctx.drawImage(bgLayerImage, x, y, STICKER_WIDTH_PX, STICKER_HEIGHT_PX);
+    // Restore context (remove clip)
+    ctx.restore();
   } catch (error) {
     console.error('Background layer loading error:', error);
   }
@@ -328,51 +338,49 @@ async function drawSticker(
 
   currentY += cardHeight + padding;
 
-  // Move invitation section and QR up 10 pixels for better spacing (doubled for 600 DPI)
+  // Move invitation section and QR up for better spacing
   currentY -= 10;
 
-  // "Read my story and expand it" - invitation call-to-action per spec
+  // "Tell them how we met" - more intriguing and engaging call-to-action
   ctx.fillStyle = textColor; // Use contrasting color
-  ctx.font = `800 38px Poppins, Arial, sans-serif`; // Per spec: 6.5% of height = 38px at 600 DPI doubled = 76px
+  ctx.font = `800 34px Poppins, Arial, sans-serif`; // Slightly reduced to prevent overflow
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
-  ctx.fillText('Read my story', x + STICKER_WIDTH_PX / 2, currentY + 4);
+  ctx.fillText('Tell them how we met', x + STICKER_WIDTH_PX / 2, currentY + 4);
 
-  ctx.font = `800 38px Poppins, Arial, sans-serif`;
-  ctx.fillText('and expand it', x + STICKER_WIDTH_PX / 2, currentY + 4 + 75); // 75px spacing per spec
-
-  // Translation - Complete language support for "Read my story and expand it"
+  // Translation - Complete language support (adapted for "Tell them how we met")
+  // Optimized to prevent overflow on stickers
   const translations: { [key: string]: string } = {
-    fr: 'Lis mon histoire et enrichis-la',
-    es: 'Lee mi historia y amplíala',
-    de: 'Lies meine Geschichte',
-    it: 'Leggi la mia storia',
-    pt: 'Leia minha história e expanda',
-    ar: 'اقرأ قصتي ووسعها',
-    fa: 'داستان من را بخوانید و گسترش دهید',
-    hi: 'मेरी कहानी पढ़ें और विस्तार करें',
-    id: 'Baca ceritaku dan perluas',
-    ja: '私の物語を読んで広げて',
-    ko: '내 이야기를 읽고 확장하세요',
-    mr: 'माझी कथा वाचा आणि विस्तृत करा',
-    nl: 'Lees mijn verhaal en breid het uit',
-    pl: 'Przeczytaj moją historię',
-    ru: 'Прочитай мою историю',
-    te: 'నా కథను చదవండి మరియు విస్తరించండి',
-    th: 'อ่านเรื่องราวของฉันและขยาย',
-    tr: 'Hikayemi oku ve genişlet',
-    uk: 'Прочитай мою історію',
-    ur: 'میری کہانی پڑھیں اور بڑھائیں',
-    vi: 'Đọc câu chuyện của tôi và mở rộng',
-    'zh-CN': '阅读我的故事并扩展',
+    fr: 'Dis comment on s\'est rencontrés',  // Shortened for space
+    es: 'Diles cómo nos conocimos',           // Optimized
+    de: 'Erzähl von unserem Treffen',       // Shortened
+    it: 'Racconta il nostro incontro',      // Optimized
+    pt: 'Conte como nos conhecemos',        // Already good
+    ar: 'أخبرهم بلقائنا',                   // Shortened
+    fa: 'از ملاقاتمان بگو',                 // Shortened
+    hi: 'बताओ हम कैसे मिले',                // Already good
+    id: 'Ceritakan pertemuan kita',         // Optimized
+    ja: '出会いを語って',                     // Shortened
+    ko: '만남을 말해줘',                      // Shortened
+    mr: 'सांग आम्ही कसे भेटलो',             // Already good
+    nl: 'Vertel hoe we elkaar vonden',      // Optimized
+    pl: 'Opowiedz jak się poznaliśmy',      // Already good
+    ru: 'Расскажи о встрече',                // Shortened
+    te: 'మన కలయిక చెప్పు',                   // Shortened
+    th: 'บอกว่าเราเจอกันอย่างไร',            // Optimized
+    tr: 'Tanışmamızı anlat',                 // Shortened
+    uk: 'Розкажи про зустріч',               // Shortened
+    ur: 'ملاقات بتائیں',                     // Shortened
+    vi: 'Kể về cuộc gặp gỡ',                 // Optimized
+    'zh-CN': '讲讲我们的相遇',                 // Optimized
   };
 
   const translationText = translations[sticker.language] || translations.fr;
-  ctx.font = `500 33px Poppins, Arial, sans-serif`; // Per spec: 5.5% = 33px at 600 DPI doubled = 66px
+  ctx.font = `500 28px Poppins, Arial, sans-serif`; // Reduced for overflow prevention
   ctx.textBaseline = 'top';
-  ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + 4 + 75 + 14); // 14px spacing per spec
+  ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + 42);
 
-  currentY += 150; // Spacing after invitation section
+  currentY += 80; // Adjusted spacing after invitation section
 
   // QR Code on white card - reduced by 0.7x factor for more color visibility
   const qrCardSize = Math.round(contentWidth * 0.7); // ~148px (70% of 212)
