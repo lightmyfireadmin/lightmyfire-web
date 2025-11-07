@@ -4,30 +4,13 @@ import { useState } from 'react';
 import { useI18n, useCurrentLocale } from '@/locales/client';
 import { getSecondLanguageOptions, getDefaultStickerLanguage, languageNames } from '@/locales/languages';
 import FullStickerPreview from './FullStickerPreview';
+import ColorPicker from './components/ColorPicker';
 
 interface LighterCustomization {
   id: string;
   name: string;
   backgroundColor: string;
 }
-
-const COLOR_PALETTE = [
-  '#FF6B6B', 
-  '#FF8B6B', 
-  '#FFA500', 
-  '#FFD700', 
-  '#90EE90', 
-  '#4CAF50', 
-  '#20B2AA', 
-  '#87CEEB', 
-  '#4169E1', 
-  '#8A2BE2', 
-  '#FF1493', 
-  '#FFB6C1', 
-  '#D3D3D3', 
-  '#800080', 
-  '#00CED1', 
-];
 
 const SECOND_LANGUAGES = getSecondLanguageOptions();
 
@@ -40,11 +23,18 @@ export default function LighterPersonalizationCards({
 }) {
   const t = useI18n();
   const currentLocale = useCurrentLocale();
+  // Default colors for initial lighter customizations (matches ColorPicker presets)
+  const DEFAULT_COLORS = [
+    '#FF6B6B', '#FF8B6B', '#FFA500', '#FFD700', '#90EE90',
+    '#4CAF50', '#20B2AA', '#87CEEB', '#4169E1', '#8A2BE2',
+    '#FF1493', '#FFB6C1', '#D3D3D3', '#800080', '#00CED1',
+  ];
+
   const [customizations, setCustomizations] = useState<LighterCustomization[]>(
     Array.from({ length: stickerCount }, (_, i) => ({
       id: `lighter-${i}`,
       name: '',
-      backgroundColor: COLOR_PALETTE[i % COLOR_PALETTE.length],
+      backgroundColor: DEFAULT_COLORS[i % DEFAULT_COLORS.length],
     }))
   );
   
@@ -234,44 +224,13 @@ export default function LighterPersonalizationCards({
               </div>
 
               {}
+              {/* Advanced Color Picker with all features */}
               <div>
-                <label className="block text-xs font-medium text-foreground mb-1.5">
-                  Pick Background Color
-                </label>
-                <div className="flex flex-wrap gap-1.5 mb-2">
-                  {COLOR_PALETTE.map((color) => (
-                    <button
-                      key={color}
-                      type="button"
-                      onClick={() =>
-                        handleColorChange(customization.id, color)
-                      }
-                      className={`h-8 w-8 rounded-full transition-transform border-2 ${
-                        customization.backgroundColor === color
-                          ? 'ring-2 ring-primary border-primary scale-110'
-                          : 'border-transparent hover:scale-105'
-                      }`}
-                      style={{ backgroundColor: color }}
-                      title={color}
-                    />
-                  ))}
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <div
-                    className="h-8 w-12 rounded border border-border shadow-sm"
-                    style={{ backgroundColor: customization.backgroundColor }}
-                  />
-                  <input
-                    type="text"
-                    value={customization.backgroundColor}
-                    onChange={(e) =>
-                      handleColorChange(customization.id, e.target.value)
-                    }
-                    placeholder="#FF6B6B"
-                    maxLength={7}
-                    className="w-24 px-2 py-1 text-xs font-mono rounded border border-input bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
-                  />
-                </div>
+                <ColorPicker
+                  value={customization.backgroundColor}
+                  onChange={(color) => handleColorChange(customization.id, color)}
+                  showPreview={false}
+                />
               </div>
             </div>
           );
