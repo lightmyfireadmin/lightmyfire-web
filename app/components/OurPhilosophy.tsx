@@ -34,7 +34,7 @@ export default function OurPhilosophy() {
           </div>
           <div className="flex items-center gap-2">
             <span className="text-sm text-muted-foreground hidden sm:inline">
-              {isExpanded ? 'Hide' : 'Learn More'}
+              {isExpanded ? t('philosophy.button.hide') : t('philosophy.button.learn_more')}
             </span>
             {isExpanded ? (
               <ChevronUpIcon className="h-6 w-6 text-primary" />
@@ -92,7 +92,7 @@ export default function OurPhilosophy() {
             {/* Call to Action */}
             <div className="pt-4 text-center">
               <p className="text-sm text-muted-foreground italic">
-                Join us in giving lighters a second life, one story at a time.
+                {t('philosophy.cta')}
               </p>
             </div>
           </div>

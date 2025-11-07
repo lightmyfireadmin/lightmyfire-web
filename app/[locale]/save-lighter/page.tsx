@@ -36,7 +36,7 @@ export default async function SaveLighterPage({ params }: { params: { locale: st
       {}
       <div className="mb-12 rounded-lg border border-border bg-background/95 p-8 shadow-md">
         <h2 className="mb-6 text-3xl font-bold text-foreground text-center">
-          Why It Matters
+          {t('save_lighter.why_it_matters')}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {}
@@ -48,9 +48,9 @@ export default async function SaveLighterPage({ params }: { params: { locale: st
               height={80}
               className="mb-4 w-20 h-20 object-contain"
             />
-            <h3 className="font-semibold text-foreground mb-2">Creative Journey</h3>
+            <h3 className="font-semibold text-foreground mb-2">{t('save_lighter.creative_journey')}</h3>
             <p className="text-sm text-muted-foreground">
-              Be part of a fun, global movement. Give lighters a second life with beautiful, hand-crafted stickers.
+              {t('save_lighter.creative_journey_desc')}
             </p>
           </div>
 
@@ -63,9 +63,9 @@ export default async function SaveLighterPage({ params }: { params: { locale: st
               height={80}
               className="mb-4 w-20 h-20 object-contain"
             />
-            <h3 className="font-semibold text-foreground mb-2">Human Mosaic</h3>
+            <h3 className="font-semibold text-foreground mb-2">{t('save_lighter.human_mosaic')}</h3>
             <p className="text-sm text-muted-foreground">
-              Join thousands of LightSavers creating a human mosaic of stories and creativity while fighting waste.
+              {t('save_lighter.human_mosaic_desc')}
             </p>
           </div>
 
@@ -78,9 +78,9 @@ export default async function SaveLighterPage({ params }: { params: { locale: st
               height={80}
               className="mb-4 w-20 h-20 object-contain"
             />
-            <h3 className="font-semibold text-foreground mb-2">Sustainable Impact</h3>
+            <h3 className="font-semibold text-foreground mb-2">{t('save_lighter.sustainable_impact')}</h3>
             <p className="text-sm text-muted-foreground">
-              Our stickers are hand-made and sustainably manufactured. Help maintain this project alive.
+              {t('save_lighter.sustainable_impact_desc')}
             </p>
           </div>
         </div>

@@ -220,9 +220,9 @@ export default function SaveLighterFlow({ user }: { user: User }) {
       {}
       {customizations.length > 0 && !shippingAddress && (
         <div className="rounded-lg border border-border bg-background p-6 shadow-md">
-          <h2 className="mb-6 text-xl font-semibold text-foreground">Your Sticker Design</h2>
+          <h2 className="mb-6 text-xl font-semibold text-foreground">{t('save_lighter.your_design')}</h2>
           <p className="text-sm text-muted-foreground mb-4">
-            Preview of your custom stickers. Sticker files will be generated after payment.
+            {t('save_lighter.design_preview')}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {customizations.slice(0, 5).map((sticker, index) => (
@@ -239,7 +239,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
             ))}
             {customizations.length > 5 && (
               <div className="flex items-center justify-center text-muted-foreground text-sm">
-                +{customizations.length - 5} more
+                {t('save_lighter.more_stickers', { count: customizations.length - 5 })}
               </div>
             )}
           </div>
@@ -263,7 +263,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
               <div className="flex justify-between">
                 <span>{t('order.summary.pack')}</span>
                 <span className="font-semibold text-foreground">
-                  {selectedPack} {selectedPack === 1 ? 'Sticker' : 'Stickers'}
+                  {selectedPack} {selectedPack === 1 ? t('save_lighter.sticker_singular') : t('save_lighter.sticker_plural')}
                 </span>
               </div>
               {customizations.length > 0 && (
@@ -398,7 +398,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
             }}
             className="px-6 py-2 rounded-md border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
           >
-            ← Change Pack
+            {t('save_lighter.change_pack')}
           </button>
         </div>
       )}

@@ -299,6 +299,9 @@ export default {
   'philosophy.p3': 'By giving a lighter a permanent, digital story, we give it sentimental value. <strong>Your lighter becomes a living artifact, a message in a bottle.</strong> And when something has value, we\'re less likely to throw it away.',
   'philosophy.p4': 'Our goal is simple: to create a global, human creativity mosaic, one lighter at a time, and reduce waste in the process. <strong>This is our stand against a throwaway culture. It\'s an experiment in collaborative art. It\'s a way to prove that if you give an object a story, you give it a soul.</strong>',
   'philosophy.image_alt': 'Global Creativity Mosaic',
+  'philosophy.button.hide': 'Hide',
+  'philosophy.button.learn_more': 'Learn More',
+  'philosophy.cta': 'Join us in giving lighters a second life, one story at a time.',
 
   // --- Refill Guide Page ---
   'refill_guide.title': 'Don\'t Throw Me Away',
@@ -442,6 +445,8 @@ export default {
 
   // --- Lighter Page ---
   'lighter.saved_by': 'Saved by',
+  'lighter.saved_by_label': 'Lighter Saved By',
+  'lighter.level': 'Level',
   'lighter.on': 'on',
   'lighter.add_to_story': 'Add to Story',
   'lighter.no_posts': 'This lighter has no stories yet. Be the first to add one!',
@@ -820,6 +825,21 @@ export default {
   'order.payment.error_process_order': 'Failed to process order',
   'order.payment.stripe_not_configured': 'Stripe not configured. Add NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY to .env.local',
   'order.payment.loading': 'Loading payment form...',
+
+  // Order Flow - Save Lighter Page
+  'save_lighter.why_it_matters': 'Why It Matters',
+  'save_lighter.creative_journey': 'Creative Journey',
+  'save_lighter.creative_journey_desc': 'Be part of a fun, global movement. Give lighters a second life with beautiful, hand-crafted stickers.',
+  'save_lighter.human_mosaic': 'Human Mosaic',
+  'save_lighter.human_mosaic_desc': 'Join thousands of LightSavers creating a human mosaic of stories and creativity while fighting waste.',
+  'save_lighter.sustainable_impact': 'Sustainable Impact',
+  'save_lighter.sustainable_impact_desc': 'Our stickers are hand-made and sustainably manufactured. Help maintain this project alive.',
+  'save_lighter.your_design': 'Your Sticker Design',
+  'save_lighter.design_preview': 'Preview of your custom stickers. Sticker files will be generated after payment.',
+  'save_lighter.more_stickers': '+{count} more',
+  'save_lighter.sticker_singular': 'Sticker',
+  'save_lighter.sticker_plural': 'Stickers',
+  'save_lighter.change_pack': '← Change Pack',
 
   // Order Success
   'order.success.title': 'Order Successful!',

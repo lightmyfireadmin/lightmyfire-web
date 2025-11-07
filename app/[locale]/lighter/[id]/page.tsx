@@ -12,6 +12,7 @@ import SuccessNotification from '@/app/components/SuccessNotification';
 import Image from 'next/image';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
+import { getI18n } from '@/locales/server';
 
 export async function generateMetadata({
   params,
@@ -61,6 +62,7 @@ export default async function LighterPage({
 }: {
   params: { id: string; locale: string };
 }) {
+  const t = await getI18n();
   const cookieStore = cookies();
   const supabase = createServerSupabaseClient(cookieStore);
 
@@ -175,7 +177,7 @@ export default async function LighterPage({
                 {posts?.length || 0}
               </p>
               <p className="text-lg text-muted-foreground font-medium mt-1">
-                {posts?.length === 1 ? 'Post' : 'Posts'}
+                {posts?.length === 1 ? t('lighter.post_single') : t('lighter.post_plural')}
               </p>
             </div>
           </div>
@@ -194,13 +196,13 @@ export default async function LighterPage({
           <div className="flex flex-col justify-start">
             <div className="rounded-lg border border-border bg-background p-6 shadow-md h-fit">
               <p className="text-sm text-muted-foreground uppercase tracking-wider font-semibold mb-3">
-                Lighter Saved By
+                {t('lighter.saved_by_label')}
               </p>
               <p className="text-2xl font-bold text-foreground">
                 {saverUsername}
               </p>
               <div className="mt-2 flex items-center gap-2">
-                <span className="text-sm font-medium text-muted-foreground">Level</span>
+                <span className="text-sm font-medium text-muted-foreground">{t('lighter.level')}</span>
                 <span className="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full text-sm font-bold bg-primary/10 text-primary border border-primary/20">
                   {saverLevel}
                 </span>
@@ -211,7 +213,7 @@ export default async function LighterPage({
                   className="btn-primary block w-full text-center flex items-center justify-center gap-2 py-3"
                 >
                   <PlusIcon className="h-5 w-5 text-white" />
-                  <span>Add to Story</span>
+                  <span>{t('lighter.add_to_story')}</span>
                 </Link>
               </div>
             </div>
