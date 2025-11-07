@@ -4,6 +4,8 @@ import QRCode from 'qrcode';
 import path from 'path';
 import fs from 'fs';
 import archiver from 'archiver';
+import { cookies } from 'next/headers';
+import { createServerSupabaseClient } from '@/lib/supabase-server';
 
 // Register Poppins fonts for sticker text
 try {
@@ -38,12 +40,12 @@ try {
   console.error('Font registration error:', error);
 }
 
-// Printful sheet dimensions: 5.83 x 8.27 inches at 600 DPI (double quality)
+// Printful sheet dimensions: 5.83 x 8.27 inches at 600 DPI (double quality for print perfection)
 const SHEET_WIDTH_INCHES = 5.83;
 const SHEET_HEIGHT_INCHES = 8.27;
 const DPI = 600;
-const SHEET_WIDTH_PX = Math.round(SHEET_WIDTH_INCHES * DPI);
-const SHEET_HEIGHT_PX = Math.round(SHEET_HEIGHT_INCHES * DPI);
+const SHEET_WIDTH_PX = Math.round(SHEET_WIDTH_INCHES * DPI); // 3498px
+const SHEET_HEIGHT_PX = Math.round(SHEET_HEIGHT_INCHES * DPI); // 4962px
 
 // Background Colors
 const CARD_BG_COLOR = '#FFFFFF';
@@ -134,6 +136,19 @@ function getContrastingTextColor(backgroundColorHex: string): string {
 
 export async function POST(request: NextRequest) {
   try {
+    // SECURITY: Verify authentication before allowing resource-intensive sticker generation
+    // This prevents unauthorized users from abusing the endpoint for DoS attacks
+    const cookieStore = cookies();
+    const supabase = createServerSupabaseClient(cookieStore);
+    const { data: { session } } = await supabase.auth.getSession();
+
+    if (!session) {
+      return NextResponse.json(
+        { error: 'Unauthorized. Please sign in to generate stickers.' },
+        { status: 401 }
+      );
+    }
+
     const { stickers, brandingText } = await request.json();
 
     if (!Array.isArray(stickers) || stickers.length === 0) {
@@ -276,11 +291,12 @@ async function drawSticker(
   (ctx as any).antialias = 'none';
   (ctx as any).textDrawingMode = 'glyph';
 
+  // Internal padding: 5% of sticker width
   const padding = Math.round(STICKER_WIDTH_PX * 0.05); // 24px at 600 DPI
   const contentWidth = STICKER_WIDTH_PX - padding * 2; // 424px at 600 DPI
   const contentHeight = STICKER_HEIGHT_PX - padding * 2; // 1134px at 600 DPI
-  const cornerRadius = Math.round(STICKER_WIDTH_PX * 0.08); // ~38px at 600 DPI
-  const cardRadius = Math.round(STICKER_WIDTH_PX * 0.04); // ~18px at 600 DPI
+  const cornerRadius = Math.round(STICKER_WIDTH_PX * 0.14); // ~67px at 600 DPI - rounder corners
+  const cardRadius = Math.round(STICKER_WIDTH_PX * 0.05); // ~24px at 600 DPI - rounder cards
   const smallGap = 4; // Very tight gap between cards for ultra-compact design
 
   // Draw colored background with rounded corners (kiss-cut sticker shape)
@@ -292,13 +308,23 @@ async function drawSticker(
   const textColor = getContrastingTextColor(sticker.backgroundColor);
 
   // Draw sticker_bg_layer.png overlay (between background and content)
+  // Clipped to sticker bounds to prevent cutting glitches
   try {
     const bgLayerPath = path.join(process.cwd(), 'public', 'newassets', 'sticker_bg_layer.png');
     const bgLayerBuffer = fs.readFileSync(bgLayerPath);
     const { Image } = await import('canvas');
     const bgLayerImage = new Image();
     bgLayerImage.src = bgLayerBuffer;
+
+    // Save context state
+    ctx.save();
+    // Clip to sticker shape to prevent overflow beyond background
+    roundRect(ctx, x, y, STICKER_WIDTH_PX, STICKER_HEIGHT_PX, cornerRadius);
+    ctx.clip();
+    // Draw layer within clipped region
     ctx.drawImage(bgLayerImage, x, y, STICKER_WIDTH_PX, STICKER_HEIGHT_PX);
+    // Restore context (remove clip)
+    ctx.restore();
   } catch (error) {
     console.error('Background layer loading error:', error);
   }
@@ -327,48 +353,49 @@ async function drawSticker(
 
   currentY += cardHeight + padding;
 
-  // Move "Tell them how we met" section and QR up 10 pixels for better spacing (doubled for 600 DPI)
+  // Move invitation section and QR up for better spacing
   currentY -= 10;
 
-  // "Tell them how we met" - intriguing and engaging call-to-action
+  // "Tell them how we met" - more intriguing and engaging call-to-action
   ctx.fillStyle = textColor; // Use contrasting color
-  ctx.font = `800 36px Poppins, Arial, sans-serif`; // Doubled for 600 DPI
+  ctx.font = `800 34px Poppins, Arial, sans-serif`; // Slightly reduced to prevent overflow
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
-  ctx.fillText('Tell them how we met', x + STICKER_WIDTH_PX / 2, currentY + 4); // Doubled for 600 DPI
+  ctx.fillText('Tell them how we met', x + STICKER_WIDTH_PX / 2, currentY + 4);
 
   // Translation - Complete language support (adapted for "Tell them how we met")
+  // Optimized to prevent overflow on stickers
   const translations: { [key: string]: string } = {
-    fr: 'Raconte comment on s\'est rencontrés',
-    es: 'Cuéntales cómo nos conocimos',
-    de: 'Erzähl, wie wir uns kennengelernt haben',
-    it: 'Racconta come ci siamo conosciuti',
-    pt: 'Conte como nos conhecemos',
-    ar: 'أخبرهم كيف التقينا',
-    fa: 'بگو چطور ما را ملاقات کردیم',
-    hi: 'बताओ हम कैसे मिले',
-    id: 'Ceritakan bagaimana kita bertemu',
-    ja: '出会いを教えて',
-    ko: '우리가 어떻게 만났는지 말해줘',
-    mr: 'आम्ही कसे भेटलो ते सांग',
-    nl: 'Vertel hoe we elkaar ontmoetten',
-    pl: 'Opowiedz jak się poznaliśmy',
-    ru: 'Расскажи, как мы встретились',
-    te: 'మేము ఎలా కలిశామో చెప్పు',
-    th: 'บอกพวกเขาว่าเราเจอกันได้ยังไง',
-    tr: 'Nasıl tanıştığımızı anlat',
-    uk: 'Розкажи, як ми зустрілися',
-    ur: 'بتائیں ہم کیسے ملے',
-    vi: 'Kể cho họ biết chúng ta gặp nhau thế nào',
-    'zh-CN': '告诉他们我们是怎么相遇的',
+    fr: 'Dis comment on s\'est rencontrés',  // Shortened for space
+    es: 'Diles cómo nos conocimos',           // Optimized
+    de: 'Erzähl von unserem Treffen',       // Shortened
+    it: 'Racconta il nostro incontro',      // Optimized
+    pt: 'Conte como nos conhecemos',        // Already good
+    ar: 'أخبرهم بلقائنا',                   // Shortened
+    fa: 'از ملاقاتمان بگو',                 // Shortened
+    hi: 'बताओ हम कैसे मिले',                // Already good
+    id: 'Ceritakan pertemuan kita',         // Optimized
+    ja: '出会いを語って',                     // Shortened
+    ko: '만남을 말해줘',                      // Shortened
+    mr: 'सांग आम्ही कसे भेटलो',             // Already good
+    nl: 'Vertel hoe we elkaar vonden',      // Optimized
+    pl: 'Opowiedz jak się poznaliśmy',      // Already good
+    ru: 'Расскажи о встрече',                // Shortened
+    te: 'మన కలయిక చెప్పు',                   // Shortened
+    th: 'บอกว่าเราเจอกันอย่างไร',            // Optimized
+    tr: 'Tanışmamızı anlat',                 // Shortened
+    uk: 'Розкажи про зустріч',               // Shortened
+    ur: 'ملاقات بتائیں',                     // Shortened
+    vi: 'Kể về cuộc gặp gỡ',                 // Optimized
+    'zh-CN': '讲讲我们的相遇',                 // Optimized
   };
 
   const translationText = translations[sticker.language] || translations.fr;
-  ctx.font = `500 28px Poppins, Arial, sans-serif`; // Doubled for 600 DPI
+  ctx.font = `500 28px Poppins, Arial, sans-serif`; // Reduced for overflow prevention
   ctx.textBaseline = 'top';
-  ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + 46); // Doubled for 600 DPI
+  ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + 42);
 
-  currentY += 16; // Very tight spacing after "Tell them how we met"
+  currentY += 80; // Adjusted spacing after invitation section
 
   // QR Code on white card - reduced by 0.7x factor for more color visibility
   const qrCardSize = Math.round(contentWidth * 0.7); // ~148px (70% of 212)
@@ -382,7 +409,7 @@ async function drawSticker(
 
   try {
     // Generate unique QR code for each lighter with pre-filled PIN
-    // Points to index page with PIN pre-filled to maintain app context
+    // Points to index page with PIN pre-filled to provide full context
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://lightmyfire.app';
     const qrUrl = `${baseUrl}/?pin=${sticker.pinCode}`;
 

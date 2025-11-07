@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import QRCode from 'qrcode';
 import { createCanvas } from 'canvas';
+import { cookies } from 'next/headers';
+import { createServerSupabaseClient } from '@/lib/supabase-server';
 
 // Mark this route as dynamic to prevent build-time execution
 export const dynamic = 'force-dynamic';
@@ -52,6 +54,19 @@ interface LighterSticker extends StickerDesign {
  */
 export async function POST(request: NextRequest) {
   try {
+    // SECURITY: Verify authentication before allowing resource-intensive PDF generation
+    // This prevents unauthorized users from abusing the endpoint for DoS attacks
+    const cookieStore = cookies();
+    const supabase = createServerSupabaseClient(cookieStore);
+    const { data: { session } } = await supabase.auth.getSession();
+
+    if (!session) {
+      return NextResponse.json(
+        { error: 'Unauthorized. Please sign in to generate stickers.' },
+        { status: 401 }
+      );
+    }
+
     console.log('Starting sticker PDF generation');
     console.log('Sheet dimensions:', {
       width: SHEET_WIDTH_PX,

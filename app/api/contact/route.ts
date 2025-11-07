@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { rateLimit } from '@/lib/rateLimit';
 
 export async function POST(request: NextRequest) {
   // Initialize Resend at runtime, not at module load time
@@ -10,6 +11,23 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       { error: 'Email service is not configured' },
       { status: 500 }
+    );
+  }
+
+  // SECURITY: Rate limit contact form to prevent spam and abuse
+  // Use IP-based rate limiting (3 requests per hour for public endpoint)
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ||
+             request.headers.get('x-real-ip') ||
+             'unknown';
+
+  const rateLimitResult = rateLimit(request, 'contact', ip);
+  if (!rateLimitResult.success) {
+    return NextResponse.json(
+      {
+        error: 'Too many contact attempts. Please try again later.',
+        resetTime: rateLimitResult.resetTime
+      },
+      { status: 429 }
     );
   }
 

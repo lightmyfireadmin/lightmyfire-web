@@ -59,7 +59,8 @@ export default function AddPostForm({
 }) {
   const router = useRouter();
   const t = useI18n();
-  const { moderateText, moderateImage, isLoading: isModerating } = useContentModeration(user.id);
+  // SECURITY: Hook no longer needs userId - API gets it from session
+  const { moderateText, moderateImage, isLoading: isModerating } = useContentModeration();
 
   const [postType, setPostType] = useState<PostType>('text');
   const [title, setTitle] = useState('');
@@ -438,7 +439,7 @@ export default function AddPostForm({
       {}
       <div className="mb-8">
         <p className="text-center text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wide">Select Post Type</p>
-        <div className="grid grid-cols-5 gap-2 relative">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-2 relative">
             <PostTypeButton
               selected={postType === 'text'}
               onClick={() => setPostType('text')}

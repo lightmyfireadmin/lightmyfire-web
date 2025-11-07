@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import { rateLimit } from '@/lib/rateLimit';
+import { cookies } from 'next/headers';
+import { createServerSupabaseClient } from '@/lib/supabase-server';
 
 export const dynamic = 'force-dynamic';
 
 interface ModerationRequest {
   text: string;
-  userId: string;
   contentType?: string; // 'post', 'comment', 'lighter_name', etc.
 }
 
@@ -31,8 +32,24 @@ interface ModerationResult {
  */
 export async function POST(request: NextRequest) {
   try {
+    // SECURITY: Verify authentication and get userId from session (not request body)
+    // This prevents users from moderating content on behalf of others
+    const cookieStore = cookies();
+    const supabase = createServerSupabaseClient(cookieStore);
+    const { data: { session } } = await supabase.auth.getSession();
+
+    if (!session) {
+      return NextResponse.json(
+        { error: 'Unauthorized. Please sign in to moderate content.' },
+        { status: 401 }
+      );
+    }
+
+    // Use authenticated user's ID (from session, not request body)
+    const userId = session.user.id;
+
     const body = await request.json() as ModerationRequest;
-    const { text, userId, contentType = 'general' } = body;
+    const { text, contentType = 'general' } = body;
 
     const rateLimitResult = rateLimit(request, 'moderation', userId);
     if (!rateLimitResult.success) {
@@ -49,13 +66,6 @@ export async function POST(request: NextRequest) {
     if (!text || typeof text !== 'string') {
       return NextResponse.json(
         { error: 'Text is required and must be a string' },
-        { status: 400 }
-      );
-    }
-
-    if (!userId || typeof userId !== 'string') {
-      return NextResponse.json(
-        { error: 'User ID is required' },
         { status: 400 }
       );
     }

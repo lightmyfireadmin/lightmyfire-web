@@ -13,7 +13,13 @@ interface UseModerationHook {
   error: string | null;
 }
 
-export function useContentModeration(userId: string): UseModerationHook {
+/**
+ * Content moderation hook using OpenAI Moderation API
+ *
+ * SECURITY UPDATE: Removed userId parameter - API endpoints now get userId from
+ * authenticated session to prevent users from moderating content on behalf of others.
+ */
+export function useContentModeration(): UseModerationHook {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -27,12 +33,12 @@ export function useContentModeration(userId: string): UseModerationHook {
           return { flagged: false };
         }
 
+        // SECURITY: No userId sent - API gets it from authenticated session
         const response = await fetch('/api/moderate-text', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             text: text.trim(),
-            userId,
           }),
         });
 
@@ -50,16 +56,16 @@ export function useContentModeration(userId: string): UseModerationHook {
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Unknown error';
         setError(errorMessage);
-        return { flagged: false }; 
+        return { flagged: false };
       } finally {
         setIsLoading(false);
       }
     },
-    [userId]
+    []
   );
 
   const moderateImage = useCallback(
-    async (imageSource: string): Promise<ModerationResult> => {
+    async (imageSource: string): Promise<ModerationResult> {
       setIsLoading(true);
       setError(null);
 
@@ -68,7 +74,6 @@ export function useContentModeration(userId: string): UseModerationHook {
           return { flagged: false };
         }
 
-        
         const isBase64 = imageSource.startsWith('data:');
         const isUrl = imageSource.startsWith('http');
 
@@ -77,10 +82,10 @@ export function useContentModeration(userId: string): UseModerationHook {
           return { flagged: false };
         }
 
-        const payload: Record<string, string> = { userId };
+        // SECURITY: No userId sent - API gets it from authenticated session
+        const payload: Record<string, string> = {};
 
         if (isBase64) {
-          
           const base64Data = imageSource.split(',')[1] || imageSource;
           payload.imageBase64 = base64Data;
         } else {
@@ -107,12 +112,12 @@ export function useContentModeration(userId: string): UseModerationHook {
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Unknown error';
         setError(errorMessage);
-        return { flagged: false }; 
+        return { flagged: false };
       } finally {
         setIsLoading(false);
       }
     },
-    [userId]
+    []
   );
 
   return {

@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { rateLimit } from '@/lib/rateLimit';
+import { VALID_PACK_SIZES } from '@/lib/constants';
 
 // Simplified shipping zones based on typical Printful rates for sticker sheets
 // These are approximate rates - actual rates should be fetched from Printful API
@@ -28,12 +30,37 @@ const SHIPPING_RATES = {
 
 export async function POST(request: NextRequest) {
   try {
+    // SECURITY: Rate limit shipping calculations to prevent abuse
+    // Use IP-based rate limiting (30 requests per minute)
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ||
+               request.headers.get('x-real-ip') ||
+               'unknown';
+
+    const rateLimitResult = rateLimit(request, 'shipping', ip);
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        {
+          error: 'Too many requests. Please try again later.',
+          resetTime: rateLimitResult.resetTime
+        },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const { countryCode, packSize } = body;
 
     if (!countryCode) {
       return NextResponse.json(
         { error: 'Country code is required' },
+        { status: 400 }
+      );
+    }
+
+    // Validate pack size if provided
+    if (packSize !== undefined && !VALID_PACK_SIZES.includes(packSize)) {
+      return NextResponse.json(
+        { error: 'Invalid pack size. Must be 10, 20, or 50.' },
         { status: 400 }
       );
     }
