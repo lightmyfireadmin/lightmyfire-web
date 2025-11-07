@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment, useState, useRef } from 'react';
+import { Fragment } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { Menu, Transition } from '@headlessui/react';
 import { GlobeAltIcon } from '@heroicons/react/24/outline';
@@ -18,18 +18,15 @@ export default function LanguageSwitcher() {
   const pathname = usePathname();
 
   const handleLocaleChange = (newLocale: string) => {
-    
-    
     const segments = pathname.split('/');
     segments[1] = newLocale;
     const newPathname = segments.join('/');
 
-    
     router.push(newPathname);
   };
 
   return (
-    <Menu as="div" className="relative inline-block text-left">
+    <Menu as="div" className="relative inline-block text-left z-[60]">
       <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-background px-3 py-2 text-sm font-semibold text-foreground shadow-sm ring-1 ring-inset ring-border hover:bg-muted whitespace-nowrap">
         <GlobeAltIcon className="h-5 w-5 text-muted-foreground" aria-hidden="true" />
         {languageNames[currentLocale as keyof typeof languageNames]?.nativeName || currentLocale}
@@ -44,7 +41,7 @@ export default function LanguageSwitcher() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-[60] mt-2 max-h-96 overflow-y-auto w-48 origin-top-right rounded-md bg-background shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 top-full z-[70] mt-2 max-h-96 overflow-y-auto w-48 origin-top-right rounded-md bg-background shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             {i18n.locales.map((locale) => (
               <Menu.Item key={locale}>
