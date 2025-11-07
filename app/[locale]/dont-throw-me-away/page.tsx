@@ -205,7 +205,7 @@ export default function DontThrowMeAwayPage() {
                     alt="Butane Lighter Refill Process"
                     width={267}
                     height={133}
-                    className="w-1/3 h-auto rounded-lg"
+                    className="w-2/3 sm:w-1/2 lg:w-1/3 h-auto rounded-lg"
                     loading="lazy"
                     quality={75}
                   />
@@ -244,9 +244,9 @@ export default function DontThrowMeAwayPage() {
                     </ol>
                   </div>
 
-                  <div className="rounded-lg bg-yellow-50 dark:bg-yellow-950/20 p-4 border border-yellow-200 dark:border-yellow-800">
-                    <p className="text-sm text-yellow-900 dark:text-yellow-200">
-                      💡 <strong>Pro tip:</strong> {t('refill_guide.pro_tip_butane')}
+                  <div className="rounded-lg bg-yellow-100 dark:bg-yellow-900/30 p-4 border-2 border-yellow-400 dark:border-yellow-600">
+                    <p className="text-sm text-yellow-900 dark:text-yellow-100 font-medium">
+                      💡 <strong className="text-yellow-800 dark:text-yellow-200">Pro tip:</strong> {t('refill_guide.pro_tip_butane')}
                     </p>
                   </div>
                 </div>
@@ -265,7 +265,7 @@ export default function DontThrowMeAwayPage() {
                     alt="Gasoline Lighter Refill Process"
                     width={267}
                     height={133}
-                    className="w-1/3 h-auto rounded-lg"
+                    className="w-2/3 sm:w-1/2 lg:w-1/3 h-auto rounded-lg"
                     loading="lazy"
                     quality={75}
                   />
@@ -304,9 +304,9 @@ export default function DontThrowMeAwayPage() {
                     </ol>
                   </div>
 
-                  <div className="rounded-lg bg-blue-50 dark:bg-blue-950/20 p-4 border border-blue-200 dark:border-blue-800">
-                    <p className="text-sm text-blue-900 dark:text-blue-200">
-                      ⚠️ <strong>Important:</strong> {t('refill_guide.important_gasoline')}
+                  <div className="rounded-lg bg-blue-100 dark:bg-blue-900/30 p-4 border-2 border-blue-400 dark:border-blue-600">
+                    <p className="text-sm text-blue-900 dark:text-blue-100 font-medium">
+                      ⚠️ <strong className="text-blue-800 dark:text-blue-200">Important:</strong> {t('refill_guide.important_gasoline')}
                     </p>
                   </div>
                 </div>

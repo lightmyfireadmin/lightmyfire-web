@@ -146,13 +146,13 @@ export default async function LighterPage({
         <div className="mb-8 border-b border-border pb-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             {}
-            <div className="hidden md:flex items-center justify-center">
+            <div className="flex md:flex items-center justify-center md:justify-start">
               <Image
                 src="/illustrations/telling_stories.png"
                 alt="Lighter illustration"
                 width={100}
                 height={100}
-                className="w-24 h-24 object-contain"
+                className="w-20 h-20 md:w-24 md:h-24 object-contain"
                 loading="lazy"
                 quality={80}
               />

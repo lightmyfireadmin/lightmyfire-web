@@ -181,19 +181,19 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
       {unlockedTrophies.length > 0 && (
         <div className="rounded-lg border-2 border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20 p-4">
           <p className="text-center text-sm font-semibold text-foreground">
-            <span className="text-yellow-600 dark:text-yellow-400">
+            <span className="text-2xl text-yellow-800 dark:text-yellow-200 font-bold">
               {unlockedTrophies.length}
             </span>
             {' '}
-            of
+            <span className="text-gray-700 dark:text-gray-300">of</span>
             {' '}
-            <span className="text-foreground">{ALL_TROPHIES.length}</span>
+            <span className="text-gray-800 dark:text-gray-200">{ALL_TROPHIES.length}</span>
             {' '}
-            achievements unlocked
+            <span className="text-gray-700 dark:text-gray-300">achievements unlocked</span>
           </p>
-          <div className="mt-2 w-full bg-gray-300 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+          <div className="mt-3 w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden shadow-inner">
             <div
-              className="bg-gradient-to-r from-yellow-400 to-yellow-600 h-full transition-all duration-500"
+              className="bg-gradient-to-r from-yellow-500 to-yellow-600 h-full transition-all duration-500 shadow-sm"
               style={{
                 width: `${(unlockedTrophies.length / ALL_TROPHIES.length) * 100}%`,
               }}

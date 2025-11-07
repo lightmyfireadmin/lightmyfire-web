@@ -98,7 +98,7 @@ export default async function Home() {
                 alt="Arrow pointing to save lighter button"
                 width={100}
                 height={100}
-                className="absolute top-1/2 -translate-y-1/2 w-[60px] h-[60px] lg:w-[100px] lg:h-[100px] left-[calc(100%-10px)] lg:left-[calc(100%-5px)]"
+                className="absolute top-1/2 -translate-y-1/2 w-[60px] h-[60px] lg:w-[100px] lg:h-[100px] left-[calc(100%+8px)] lg:left-[calc(100%+12px)]"
                 loading="lazy"
                 quality={80}
               />

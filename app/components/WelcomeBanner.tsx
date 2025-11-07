@@ -40,14 +40,14 @@ export default function WelcomeBanner({ isLoggedIn, username }: WelcomeBannerPro
 
   return (
     <div className="sticky top-0 z-40 bg-primary text-white shadow-md">
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2 sm:py-3 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4">
-        <div className="flex-1 flex items-center justify-center gap-2 text-center sm:text-left">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between gap-2">
+        <div className="flex-1 flex items-center justify-center gap-2 text-center sm:text-left pr-2">
           {isLoggedIn ? (
             <p className="text-xs sm:text-sm font-bold line-clamp-2 sm:line-clamp-1">
               👋 {t('banner.welcome')} {username || t('banner.user')}!
             </p>
           ) : (
-            <p className="text-xs sm:text-sm font-bold line-clamp-3 sm:line-clamp-1">
+            <p className="text-xs sm:text-sm font-bold line-clamp-2 sm:line-clamp-1">
               🔥 {t('banner.connect_cta')}{' '}
               <Link
                 href={`/${lang}/login`}
@@ -60,10 +60,10 @@ export default function WelcomeBanner({ isLoggedIn, username }: WelcomeBannerPro
         </div>
         <button
           onClick={handleClose}
-          className="flex-shrink-0 p-1 hover:bg-white/20 rounded transition-colors"
+          className="flex-shrink-0 p-1 hover:bg-white/20 rounded transition-colors self-start sm:self-center"
           aria-label={t('banner.close')}
         >
-          <XMarkIcon className="h-4 w-4 text-white" />
+          <XMarkIcon className="h-5 w-5 sm:h-4 sm:w-4 text-white" />
         </button>
       </div>
     </div>

@@ -86,7 +86,7 @@ function PostCard({
                ${post.post_type === 'image' ? 'text-green-600' : ''}
                ${post.post_type === 'location' ? 'text-yellow-600' : ''}
                ${post.post_type === 'song' ? 'text-red-600' : ''}
-               ${post.post_type === 'refuel' ? 'text-orange-600' : 'text-muted-foreground'}
+               ${post.post_type === 'refuel' ? 'text-orange-700 dark:text-orange-400' : 'text-muted-foreground'}
              `}
              aria-hidden="true"
            />
@@ -132,7 +132,7 @@ function PostCard({
         {isRefuelPost && (
           <p className={`
             font-semibold
-            ${post.post_type === 'refuel' ? 'text-orange-600' : ''}
+            ${post.post_type === 'refuel' ? 'text-orange-700 dark:text-orange-400' : ''}
           `}>
              {t('post.refuel_message')}
           </p>
