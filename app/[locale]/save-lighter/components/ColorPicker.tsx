@@ -266,7 +266,7 @@ export default function ColorPicker({
           🎨 Popular Colors
         </label>
         <div
-          className="grid grid-cols-15 gap-1.5"
+          className="flex flex-wrap gap-2"
           role="radiogroup"
           aria-label="Popular color palette"
         >
@@ -282,7 +282,7 @@ export default function ColorPicker({
               onClick={() => handleColorChange(color.hex)}
               onKeyDown={(e) => handleColorKeyDown(e, idx, color.hex)}
               className={cn(
-                'relative w-full aspect-square rounded-md border-2 transition-all duration-200',
+                'relative w-12 h-12 rounded-md border-2 transition-all duration-200',
                 'hover:scale-105 active:scale-95',
                 'focus:outline-none focus:ring-1 focus:ring-primary',
                 'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100',
