@@ -38,12 +38,12 @@ try {
   console.error('Font registration error:', error);
 }
 
-// Printful sheet dimensions: 5.83 x 8.27 inches at 600 DPI (double quality)
+// Printful sheet dimensions: 5.83 x 8.27 inches at 600 DPI (double quality for print perfection)
 const SHEET_WIDTH_INCHES = 5.83;
 const SHEET_HEIGHT_INCHES = 8.27;
 const DPI = 600;
-const SHEET_WIDTH_PX = Math.round(SHEET_WIDTH_INCHES * DPI);
-const SHEET_HEIGHT_PX = Math.round(SHEET_HEIGHT_INCHES * DPI);
+const SHEET_WIDTH_PX = Math.round(SHEET_WIDTH_INCHES * DPI); // 3498px
+const SHEET_HEIGHT_PX = Math.round(SHEET_HEIGHT_INCHES * DPI); // 4962px
 
 // Background Colors
 const CARD_BG_COLOR = '#FFFFFF';
@@ -276,6 +276,7 @@ async function drawSticker(
   (ctx as any).antialias = 'none';
   (ctx as any).textDrawingMode = 'glyph';
 
+  // Internal padding: 5% of sticker width
   const padding = Math.round(STICKER_WIDTH_PX * 0.05); // 24px at 600 DPI
   const contentWidth = STICKER_WIDTH_PX - padding * 2; // 424px at 600 DPI
   const contentHeight = STICKER_HEIGHT_PX - padding * 2; // 1134px at 600 DPI
@@ -327,48 +328,51 @@ async function drawSticker(
 
   currentY += cardHeight + padding;
 
-  // Move "Tell them how we met" section and QR up 10 pixels for better spacing (doubled for 600 DPI)
+  // Move invitation section and QR up 10 pixels for better spacing (doubled for 600 DPI)
   currentY -= 10;
 
-  // "Tell them how we met" - intriguing and engaging call-to-action
+  // "Read my story and expand it" - invitation call-to-action per spec
   ctx.fillStyle = textColor; // Use contrasting color
-  ctx.font = `800 36px Poppins, Arial, sans-serif`; // Doubled for 600 DPI
+  ctx.font = `800 38px Poppins, Arial, sans-serif`; // Per spec: 6.5% of height = 38px at 600 DPI doubled = 76px
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
-  ctx.fillText('Tell them how we met', x + STICKER_WIDTH_PX / 2, currentY + 4); // Doubled for 600 DPI
+  ctx.fillText('Read my story', x + STICKER_WIDTH_PX / 2, currentY + 4);
 
-  // Translation - Complete language support (adapted for "Tell them how we met")
+  ctx.font = `800 38px Poppins, Arial, sans-serif`;
+  ctx.fillText('and expand it', x + STICKER_WIDTH_PX / 2, currentY + 4 + 75); // 75px spacing per spec
+
+  // Translation - Complete language support for "Read my story and expand it"
   const translations: { [key: string]: string } = {
-    fr: 'Raconte comment on s\'est rencontrés',
-    es: 'Cuéntales cómo nos conocimos',
-    de: 'Erzähl, wie wir uns kennengelernt haben',
-    it: 'Racconta come ci siamo conosciuti',
-    pt: 'Conte como nos conhecemos',
-    ar: 'أخبرهم كيف التقينا',
-    fa: 'بگو چطور ما را ملاقات کردیم',
-    hi: 'बताओ हम कैसे मिले',
-    id: 'Ceritakan bagaimana kita bertemu',
-    ja: '出会いを教えて',
-    ko: '우리가 어떻게 만났는지 말해줘',
-    mr: 'आम्ही कसे भेटलो ते सांग',
-    nl: 'Vertel hoe we elkaar ontmoetten',
-    pl: 'Opowiedz jak się poznaliśmy',
-    ru: 'Расскажи, как мы встретились',
-    te: 'మేము ఎలా కలిశామో చెప్పు',
-    th: 'บอกพวกเขาว่าเราเจอกันได้ยังไง',
-    tr: 'Nasıl tanıştığımızı anlat',
-    uk: 'Розкажи, як ми зустрілися',
-    ur: 'بتائیں ہم کیسے ملے',
-    vi: 'Kể cho họ biết chúng ta gặp nhau thế nào',
-    'zh-CN': '告诉他们我们是怎么相遇的',
+    fr: 'Lis mon histoire et enrichis-la',
+    es: 'Lee mi historia y amplíala',
+    de: 'Lies meine Geschichte',
+    it: 'Leggi la mia storia',
+    pt: 'Leia minha história e expanda',
+    ar: 'اقرأ قصتي ووسعها',
+    fa: 'داستان من را بخوانید و گسترش دهید',
+    hi: 'मेरी कहानी पढ़ें और विस्तार करें',
+    id: 'Baca ceritaku dan perluas',
+    ja: '私の物語を読んで広げて',
+    ko: '내 이야기를 읽고 확장하세요',
+    mr: 'माझी कथा वाचा आणि विस्तृत करा',
+    nl: 'Lees mijn verhaal en breid het uit',
+    pl: 'Przeczytaj moją historię',
+    ru: 'Прочитай мою историю',
+    te: 'నా కథను చదవండి మరియు విస్తరించండి',
+    th: 'อ่านเรื่องราวของฉันและขยาย',
+    tr: 'Hikayemi oku ve genişlet',
+    uk: 'Прочитай мою історію',
+    ur: 'میری کہانی پڑھیں اور بڑھائیں',
+    vi: 'Đọc câu chuyện của tôi và mở rộng',
+    'zh-CN': '阅读我的故事并扩展',
   };
 
   const translationText = translations[sticker.language] || translations.fr;
-  ctx.font = `500 28px Poppins, Arial, sans-serif`; // Doubled for 600 DPI
+  ctx.font = `500 33px Poppins, Arial, sans-serif`; // Per spec: 5.5% = 33px at 600 DPI doubled = 66px
   ctx.textBaseline = 'top';
-  ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + 46); // Doubled for 600 DPI
+  ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + 4 + 75 + 14); // 14px spacing per spec
 
-  currentY += 16; // Very tight spacing after "Tell them how we met"
+  currentY += 150; // Spacing after invitation section
 
   // QR Code on white card - reduced by 0.7x factor for more color visibility
   const qrCardSize = Math.round(contentWidth * 0.7); // ~148px (70% of 212)
@@ -382,9 +386,9 @@ async function drawSticker(
 
   try {
     // Generate unique QR code for each lighter with pre-filled PIN
-    // Points to index page with PIN pre-filled to maintain app context
+    // Points to find page with PIN pre-filled for direct lighter discovery
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://lightmyfire.app';
-    const qrUrl = `${baseUrl}/?pin=${sticker.pinCode}`;
+    const qrUrl = `${baseUrl}/find?pin=${sticker.pinCode}`;
 
     const qrDataUrl = await QRCode.toDataURL(qrUrl, {
       width: qrSize,
