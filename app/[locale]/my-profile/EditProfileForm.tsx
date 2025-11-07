@@ -51,7 +51,7 @@ export default function EditProfileForm({ user, profile }: { user: User; profile
     <div className="space-y-4">
       <div>
         <label htmlFor="username" className="block text-sm font-medium text-muted-foreground">
-          Username
+          {t('settings.profile.username_label')}
         </label>
         <input
           type="text"
@@ -97,11 +97,11 @@ export default function EditProfileForm({ user, profile }: { user: User; profile
         className="btn-primary flex justify-center items-center gap-2 py-3 hover:shadow-lg transition-shadow duration-200"
       >
         {loading ? (
-          <LoadingSpinner size="sm" color="foreground" label="Saving..." />
+          <LoadingSpinner size="sm" color="foreground" label={t('settings.profile.saving')} />
         ) : (
           <>
             <span>💾</span>
-            <span>Save Profile</span>
+            <span>{t('settings.profile.save_button')}</span>
           </>
         )}
       </button>

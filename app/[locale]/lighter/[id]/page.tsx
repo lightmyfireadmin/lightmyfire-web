@@ -71,7 +71,7 @@ export default async function LighterPage({
 
   const { data: lighter } = await supabase
     .from('lighters')
-    .select('id, name, pin_code, custom_background_url, saver_id, profiles:saver_id(username)')
+    .select('id, name, pin_code, custom_background_url, saver_id, profiles:saver_id(username, level)')
     .eq('id', params.id)
     .single();
 
@@ -81,6 +81,7 @@ export default async function LighterPage({
 
 
   const saverUsername = (lighter.profiles as any)?.username || 'Anonymous';
+  const saverLevel = (lighter.profiles as any)?.level || 1;
 
   
   let postsResponse = await supabase
@@ -198,6 +199,12 @@ export default async function LighterPage({
               <p className="text-2xl font-bold text-foreground">
                 {saverUsername}
               </p>
+              <div className="mt-2 flex items-center gap-2">
+                <span className="text-sm font-medium text-muted-foreground">Level</span>
+                <span className="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full text-sm font-bold bg-primary/10 text-primary border border-primary/20">
+                  {saverLevel}
+                </span>
+              </div>
               <div className="mt-6 pt-6 border-t border-border/50">
                 <Link
                   href={`/${params.locale}/lighter/${lighter.id}/add`}

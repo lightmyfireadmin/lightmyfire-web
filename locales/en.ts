@@ -599,6 +599,9 @@ export default {
   'settings.profile.nationality_optional': '(optional)',
   'settings.profile.nationality_placeholder': 'Select a country',
   'settings.profile.show_nationality_label': 'Show my nationality on my posts',
+  'settings.profile.save_button': 'Save Profile',
+  'settings.profile.saving': 'Saving...',
+  'settings.profile.username_label': 'Username',
 
   // --- My Posts List ---
   'my_posts.post_type_default': 'A {type} post',

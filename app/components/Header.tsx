@@ -45,7 +45,6 @@ function LogoLink({ href, lang }: { href: string; lang: string }) {
 const navigation = [
   { key: 'nav.how_it_works', href: '/legal/faq', icon: QuestionMarkCircleIcon },
   { key: 'nav.save_lighter', href: '/save-lighter', icon: HeartIcon },
-  { key: 'nav.our_philosophy', href: '/about', icon: GlobeAltIcon },
   { key: 'nav.refill_guide', href: '/dont-throw-me-away', icon: PlusIcon },
 ] as const;
 
