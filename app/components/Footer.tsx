@@ -9,8 +9,8 @@ export default function Footer({ lang }: { lang: string }) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-muted border-t border-border mt-auto w-full">
-      <div className="w-full px-4 sm:px-6 py-8 sm:py-12 pb-12 md:flex md:items-center md:justify-between lg:px-8">
+    <footer className="bg-muted border-t border-border mt-auto w-full pb-24 sm:pb-20">
+      <div className="w-full px-4 sm:px-6 py-8 sm:py-12 md:flex md:items-center md:justify-between lg:px-8">
         {}
         <div className="flex justify-center space-x-6 md:order-2">
           <a href="#" className="text-muted-foreground hover:text-foreground" title={t('footer.instagram_aria')}>

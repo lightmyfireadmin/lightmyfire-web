@@ -73,6 +73,11 @@ function PaymentFormContent({
       return;
     }
 
+    if (!cardholderEmail.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cardholderEmail)) {
+      setError(t('order.payment.error_email_invalid'));
+      return;
+    }
+
     setIsLoading(true);
     setError(null);
 

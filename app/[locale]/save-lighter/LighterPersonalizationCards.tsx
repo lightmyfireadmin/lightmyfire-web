@@ -310,8 +310,8 @@ export default function LighterPersonalizationCards({
 
       {}
       {!canSave && (
-        <div className="rounded-lg border border-yellow-500/50 bg-gray-100 dark:bg-gray-800 p-3">
-          <p className="text-sm text-yellow-700 dark:text-yellow-600 flex items-center gap-2">
+        <div className="rounded-lg border border-yellow-500/50 bg-gray-200 sm:bg-gray-100 dark:bg-gray-700 dark:sm:bg-gray-800 p-3">
+          <p className="text-sm text-yellow-800 sm:text-yellow-700 dark:text-yellow-500 dark:sm:text-yellow-600 flex items-center gap-2">
             <span>⚠️</span>
             <span>
               {useApplyAll

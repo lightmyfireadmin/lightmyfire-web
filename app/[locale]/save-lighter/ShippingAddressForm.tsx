@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useI18n } from '@/locales/client';
+import { postcodeValidator } from 'postcode-validator';
 
 export interface ShippingAddress {
   name: string;
@@ -62,7 +63,11 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
     }
     if (!formData.address.trim()) newErrors.address = t('order.shipping.error_address');
     if (!formData.city.trim()) newErrors.city = t('order.shipping.error_city');
-    if (!formData.postalCode.trim()) newErrors.postalCode = t('order.shipping.error_postal');
+    if (!formData.postalCode.trim()) {
+      newErrors.postalCode = t('order.shipping.error_postal');
+    } else if (formData.country && !postcodeValidator(formData.postalCode, formData.country)) {
+      newErrors.postalCode = t('order.shipping.error_postal_invalid');
+    }
     if (!formData.country) newErrors.country = t('order.shipping.error_country');
 
     setErrors(newErrors);

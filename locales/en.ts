@@ -762,6 +762,7 @@ export default {
   'order.shipping.error_address': 'Street address is required',
   'order.shipping.error_city': 'City is required',
   'order.shipping.error_postal': 'Postal code is required',
+  'order.shipping.error_postal_invalid': 'Invalid postal code for selected country',
   'order.shipping.error_country': 'Country is required',
   'order.shipping.continue_button': 'Continue to Payment',
 
@@ -808,6 +809,7 @@ export default {
   'order.payment.privacy_link': 'Privacy Policy',
   'order.payment.error_stripe_not_loaded': 'Stripe has not loaded. Please refresh and try again.',
   'order.payment.error_name_required': 'Please enter your full name',
+  'order.payment.error_email_invalid': 'Please enter a valid email address',
   'order.payment.error_create_intent': 'Failed to create payment intent',
   'order.payment.error_payment_failed': 'Payment failed',
   'order.payment.error_requires_action': 'Your card requires additional verification.',
