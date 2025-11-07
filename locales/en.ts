@@ -347,6 +347,27 @@ export default {
   'refill_guide.section2_type2_alt': 'A person pouring lighter fluid onto the cotton of an insert',
   'refill_guide.pro_tip_butane': 'Always wear safety glasses when refilling. If you feel resistance, do not force it—wait a few seconds and try again.',
   'refill_guide.important_gasoline': 'Never overfill fluid lighters. Let the lighter dry for 24 hours after refilling before use.',
+
+  // Refill Guide - Statistics
+  'refill_guide.stats.lighters_sold': 'Disposable lighters sold yearly',
+  'refill_guide.stats.lighters_sold_worldwide': 'Worldwide',
+  'refill_guide.stats.years_decompose': 'Years to decompose',
+  'refill_guide.stats.years_decompose_location': 'In landfills',
+  'refill_guide.stats.waste_reduction': 'Waste reduction',
+  'refill_guide.stats.waste_reduction_method': 'With refillable lighters',
+
+  // Refill Guide - Key Indicators
+  'refill_guide.key_indicators': 'Key indicators:',
+  'refill_guide.type1.indicator1': 'Small round metal valve on the bottom',
+  'refill_guide.type1.indicator2': 'Similar to a tire valve',
+  'refill_guide.type1.indicator3': 'Most common type',
+  'refill_guide.type2.indicator1': 'Metal lighter (often iconic design)',
+  'refill_guide.type2.indicator2': 'Inner block can be pulled out',
+  'refill_guide.type2.indicator3': 'Cotton visible inside',
+  'refill_guide.type3.indicator1': 'Flat, sealed plastic bottom',
+  'refill_guide.type3.indicator2': 'No valve or removable parts',
+  'refill_guide.type3.indicator3': 'Single-use only',
+
   'refill_guide.why_it_matters.title': 'Why It Matters',
   'refill_guide.why_it_matters.environmental.title': 'Environmental Impact',
   'refill_guide.why_it_matters.environmental.description': 'One refillable lighter can replace 50+ disposable lighters in its lifetime. That\'s 50+ lighters kept out of landfills for one person.',

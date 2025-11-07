@@ -30,18 +30,18 @@ export default function DontThrowMeAwayPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="rounded-lg border-2 border-primary/20 bg-primary/5 p-6 text-center">
               <p className="text-4xl font-bold text-primary mb-2">650M</p>
-              <p className="text-sm font-semibold text-foreground">Disposable lighters sold yearly</p>
-              <p className="text-xs text-muted-foreground mt-2">Worldwide</p>
+              <p className="text-sm font-semibold text-foreground">{t('refill_guide.stats.lighters_sold')}</p>
+              <p className="text-xs text-muted-foreground mt-2">{t('refill_guide.stats.lighters_sold_worldwide')}</p>
             </div>
             <div className="rounded-lg border-2 border-primary/20 bg-primary/5 p-6 text-center">
               <p className="text-4xl font-bold text-primary mb-2">150+</p>
-              <p className="text-sm font-semibold text-foreground">Years to decompose</p>
-              <p className="text-xs text-muted-foreground mt-2">In landfills</p>
+              <p className="text-sm font-semibold text-foreground">{t('refill_guide.stats.years_decompose')}</p>
+              <p className="text-xs text-muted-foreground mt-2">{t('refill_guide.stats.years_decompose_location')}</p>
             </div>
             <div className="rounded-lg border-2 border-primary/20 bg-primary/5 p-6 text-center">
               <p className="text-4xl font-bold text-primary mb-2">90%</p>
-              <p className="text-sm font-semibold text-foreground">Waste reduction</p>
-              <p className="text-xs text-muted-foreground mt-2">With refillable lighters</p>
+              <p className="text-sm font-semibold text-foreground">{t('refill_guide.stats.waste_reduction')}</p>
+              <p className="text-xs text-muted-foreground mt-2">{t('refill_guide.stats.waste_reduction_method')}</p>
             </div>
           </div>
         </div>
@@ -96,11 +96,11 @@ export default function DontThrowMeAwayPage() {
                     </div>
                     <p className="text-foreground text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: sanitizeHTML(t('refill_guide.section1_type1.desc')) }} />
                     <div className="mt-4 pt-4 border-t border-border/30">
-                      <p className="text-xs text-muted-foreground font-semibold mb-2">Key indicators:</p>
+                      <p className="text-xs text-muted-foreground font-semibold mb-2">{t('refill_guide.key_indicators')}</p>
                       <ul className="text-xs text-muted-foreground space-y-1">
-                        <li>✓ Small round metal valve on the bottom</li>
-                        <li>✓ Similar to a tire valve</li>
-                        <li>✓ Most common type</li>
+                        <li>✓ {t('refill_guide.type1.indicator1')}</li>
+                        <li>✓ {t('refill_guide.type1.indicator2')}</li>
+                        <li>✓ {t('refill_guide.type1.indicator3')}</li>
                       </ul>
                     </div>
                   </div>
@@ -134,11 +134,11 @@ export default function DontThrowMeAwayPage() {
                       {t('refill_guide.section1_type2_desc')}
                     </p>
                     <div className="mt-4 pt-4 border-t border-border/30">
-                      <p className="text-xs text-muted-foreground font-semibold mb-2">Key indicators:</p>
+                      <p className="text-xs text-muted-foreground font-semibold mb-2">{t('refill_guide.key_indicators')}</p>
                       <ul className="text-xs text-muted-foreground space-y-1">
-                        <li>✓ Metal lighter (often iconic design)</li>
-                        <li>✓ Inner block can be pulled out</li>
-                        <li>✓ Cotton visible inside</li>
+                        <li>✓ {t('refill_guide.type2.indicator1')}</li>
+                        <li>✓ {t('refill_guide.type2.indicator2')}</li>
+                        <li>✓ {t('refill_guide.type2.indicator3')}</li>
                       </ul>
                     </div>
                   </div>
@@ -172,11 +172,11 @@ export default function DontThrowMeAwayPage() {
                       {t('refill_guide.section1_type3_desc')}
                     </p>
                     <div className="mt-4 pt-4 border-t border-border/30">
-                      <p className="text-xs text-muted-foreground font-semibold mb-2">Key indicators:</p>
+                      <p className="text-xs text-muted-foreground font-semibold mb-2">{t('refill_guide.key_indicators')}</p>
                       <ul className="text-xs text-muted-foreground space-y-1">
-                        <li>✗ Flat, sealed plastic bottom</li>
-                        <li>✗ No valve or removable parts</li>
-                        <li>✗ Single-use only</li>
+                        <li>✗ {t('refill_guide.type3.indicator1')}</li>
+                        <li>✗ {t('refill_guide.type3.indicator2')}</li>
+                        <li>✗ {t('refill_guide.type3.indicator3')}</li>
                       </ul>
                     </div>
                   </div>
