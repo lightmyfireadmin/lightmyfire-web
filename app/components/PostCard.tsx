@@ -125,7 +125,7 @@ function PostCard({
 
         {post.post_type === 'location' && (
           <p className="text-foreground">
-            {post.location_name || 'A location'}
+            {post.location_name || t('post.default_location')}
           </p>
         )}
 
@@ -142,7 +142,7 @@ function PostCard({
           <div className="relative w-full rounded-md border border-border overflow-hidden">
             <Image
               src={post.content_url}
-              alt={post.title || 'User upload'}
+              alt={post.title || t('post.user_upload_alt')}
               width={600}
               height={400}
               className="w-full h-auto object-cover"
@@ -158,7 +158,7 @@ function PostCard({
               width="100%"
               height="100%"
               src={`https://www.youtube.com/embed/${embedId}`}
-              title={post.title || "YouTube video player"}
+              title={post.title || t('post.youtube_player_title')}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

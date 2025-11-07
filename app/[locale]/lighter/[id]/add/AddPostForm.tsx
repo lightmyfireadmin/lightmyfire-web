@@ -115,7 +115,7 @@ export default function AddPostForm({
       });
       const data = await response.json();
       if (data.error) {
-        setError(`YouTube Search Error: ${data.error}`);
+        setError(t('add_post.error.youtube_api_error', { message: data.error }));
         setYoutubeSearchResults([]);
         setShowYoutubeResults(false);
       } else {
@@ -124,7 +124,7 @@ export default function AddPostForm({
       }
     } catch (err) {
       console.error('YouTube Search Error:', err);
-      setError('Failed to search YouTube. Please try again.');
+      setError(t('add_post.error.youtube_search_failed'));
       setYoutubeSearchResults([]);
       setShowYoutubeResults(false);
     }
@@ -148,9 +148,9 @@ export default function AddPostForm({
       const selectedFile = e.target.files[0];
       
       if (selectedFile.size > 2 * 1024 * 1024) {
-        setError('File is too large. Please select a file smaller than 2MB.');
+        setError(t('add_post.error.file_too_large'));
         setFile(null);
-        e.target.value = ''; 
+        e.target.value = '';
         return;
       }
       setError('');
@@ -168,7 +168,7 @@ export default function AddPostForm({
 
     if (postType === 'image' && imageUploadMode === 'upload') {
       if (!file) {
-        setError('Please select a file to upload.');
+        setError(t('add_post.error.no_file_selected'));
         return;
       }
 
@@ -183,7 +183,7 @@ export default function AddPostForm({
         .upload(filePath, file);
 
       if (uploadError) {
-        setError('Failed to upload image. Please try again.');
+        setError(t('add_post.error.upload_failed'));
         setLoading(false);
         setUploading(false);
         return;
@@ -198,18 +198,18 @@ export default function AddPostForm({
     }
 
     if (postType === 'song' && songInputMode === 'search') {
-      
+
       if (!finalContentUrl) {
-        setError('Please select a song from the search results.');
+        setError(t('add_post.error.no_song_selected'));
         return;
       }
     } else if ((postType === 'song' || (postType === 'image' && imageUploadMode === 'url')) && !isValidUrl(finalContentUrl)) {
-      setError('Please enter a valid URL.');
+      setError(t('add_post.error.invalid_url'));
       return;
     }
 
     if (postType === 'location' && (locationLat === '' || locationLng === '')) {
-      setError('Please enter valid latitude and longitude.');
+      setError(t('add_post.error.no_location_selected'));
       return;
     }
 
@@ -295,10 +295,10 @@ export default function AddPostForm({
         p_is_public: isPublic,
       });
 
-    if (rpcError) { setError(`Error: ${rpcError.message}`); setLoading(false); }
+    if (rpcError) { setError(t('add_post.error.rpc_error', { message: rpcError.message })); setLoading(false); }
     else if (data && !data.success) { setError(data.message); setLoading(false); }
     else if (data && data.success) { router.push(`/lighter/${lighterId}`); router.refresh(); }
-    else { setError('An unexpected error occurred. Please try again.'); setLoading(false); }
+    else { setError(t('add_post.error.unexpected')); setLoading(false); }
   };
 
   const renderFormInputs = () => {
@@ -306,20 +306,20 @@ export default function AddPostForm({
     const textareaClass = `${inputClass} h-32`;
 
     switch (postType) {
-      case 'text': return <textarea value={contentText} onChange={(e) => setContentText(e.target.value)} className={textareaClass} placeholder="Your poem, your story, your thoughts..." required />;
+      case 'text': return <textarea value={contentText} onChange={(e) => setContentText(e.target.value)} className={textareaClass} placeholder={t('add_post.placeholder.text')} required />;
       case 'song':
         return (
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <button type="button" onClick={() => setSongInputMode('search')} className={`px-3 py-1 text-sm rounded-md ${songInputMode === 'search' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>Search</button>
-              <button type="button" onClick={() => setSongInputMode('url')} className={`px-3 py-1 text-sm rounded-md ${songInputMode === 'url' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>URL</button>
+              <button type="button" onClick={() => setSongInputMode('search')} className={`px-3 py-1 text-sm rounded-md ${songInputMode === 'search' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>{t('add_post.song_input_mode.search')}</button>
+              <button type="button" onClick={() => setSongInputMode('url')} className={`px-3 py-1 text-sm rounded-md ${songInputMode === 'url' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>{t('add_post.song_input_mode.url')}</button>
             </div>
             {songInputMode === 'url' ? (
               <div className="space-y-2">
-                <input type="url" value={contentUrl} onChange={(e) => setContentUrl(e.target.value)} className={inputClass} placeholder="YouTube Song URL" required />
+                <input type="url" value={contentUrl} onChange={(e) => setContentUrl(e.target.value)} className={inputClass} placeholder={t('add_post.placeholder.youtube_url')} required />
                 {contentUrl && contentUrl.includes('youtube.com') && (
                   <div className="mt-3">
-                    <p className="text-sm text-muted-foreground mb-2">Video preview:</p>
+                    <p className="text-sm text-muted-foreground mb-2">{t('add_post.youtube_search.video_preview')}</p>
                     <div className="rounded-lg overflow-hidden border border-border">
                       <iframe
                         width="100%"
@@ -344,12 +344,12 @@ export default function AddPostForm({
                     setShowYoutubeResults(true);
                   }}
                   className={inputClass}
-                  placeholder="Search YouTube for a song..."
+                  placeholder={t('add_post.placeholder.youtube_search')}
                 />
-                {youtubeSearchLoading && <p className="text-sm text-muted-foreground">Searching...</p>}
+                {youtubeSearchLoading && <p className="text-sm text-muted-foreground">{t('add_post.youtube_search.searching')}</p>}
                 {contentUrl && !showYoutubeResults && (
                   <div className="mt-3">
-                    <p className="text-sm text-muted-foreground mb-2">Selected video:</p>
+                    <p className="text-sm text-muted-foreground mb-2">{t('add_post.youtube_search.selected_video')}</p>
                     <div className="rounded-lg overflow-hidden border border-border">
                       <iframe
                         width="100%"
@@ -387,7 +387,7 @@ export default function AddPostForm({
                         </div>
                       ))
                     ) : (
-                      !youtubeSearchLoading && youtubeSearchQuery && <p className="p-2 text-sm text-muted-foreground">No results found.</p>
+                      !youtubeSearchLoading && youtubeSearchQuery && <p className="p-2 text-sm text-muted-foreground">{t('add_post.youtube_search.no_results')}</p>
                     )}
                   </div>
                 )}
@@ -399,11 +399,11 @@ export default function AddPostForm({
         return (
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <button type="button" onClick={() => setImageUploadMode('url')} className={`px-3 py-1 text-sm rounded-md ${imageUploadMode === 'url' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>URL</button>
-              <button type="button" onClick={() => setImageUploadMode('upload')} className={`px-3 py-1 text-sm rounded-md ${imageUploadMode === 'upload' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>Upload</button>
+              <button type="button" onClick={() => setImageUploadMode('url')} className={`px-3 py-1 text-sm rounded-md ${imageUploadMode === 'url' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>{t('add_post.image_upload_mode.url')}</button>
+              <button type="button" onClick={() => setImageUploadMode('upload')} className={`px-3 py-1 text-sm rounded-md ${imageUploadMode === 'upload' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>{t('add_post.image_upload_mode.upload')}</button>
             </div>
             {imageUploadMode === 'url' ? (
-              <input type="url" value={contentUrl} onChange={(e) => setContentUrl(e.target.value)} className={inputClass} placeholder="Image URL (e.g., Imgur)" required={imageUploadMode === 'url'} />
+              <input type="url" value={contentUrl} onChange={(e) => setContentUrl(e.target.value)} className={inputClass} placeholder={t('add_post.placeholder.image_url')} required={imageUploadMode === 'url'} />
             ) : (
               <input type="file" onChange={handleFileChange} className={`${inputClass} p-0 file:p-3 file:mr-4 file:border-0 file:bg-muted file:text-foreground hover:file:bg-muted/80`} accept="image/png, image/jpeg, image:gif" required={imageUploadMode === 'upload'} />
             )}
@@ -430,54 +430,54 @@ export default function AddPostForm({
       className="w-full max-w-2xl rounded-xl bg-background p-6 sm:p-8 shadow-lg"
     >
       <h1 className="mb-2 text-center text-3xl font-bold text-foreground">
-        Add to the Story
+        {t('add_post.title')}
       </h1>
       <p className="mb-6 text-center text-lg text-muted-foreground">
-        You are adding a post to <span className="font-semibold text-foreground">{lighterName}</span>
+        {t('add_post.subtitle', { lighterName })}
       </p>
 
       {}
       <div className="mb-8">
-        <p className="text-center text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wide">Select Post Type</p>
+        <p className="text-center text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wide">{t('add_post.select_post_type')}</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-2 relative">
             <PostTypeButton
               selected={postType === 'text'}
               onClick={() => setPostType('text')}
               icon="📝"
-              label="Text"
-              subtitle="Story, Thought, Poem"
+              label={t('add_post.post_type.text')}
+              subtitle={t('add_post.subtitle.text')}
               colorClass="border-blue-500 text-blue-700 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/30"
             />
             <PostTypeButton
               selected={postType === 'song'}
               onClick={() => setPostType('song')}
               icon="🎵"
-              label="Song"
-              subtitle="YouTube"
+              label={t('add_post.post_type.song')}
+              subtitle={t('add_post.subtitle.song')}
               colorClass="border-green-500 text-green-700 dark:text-green-400 bg-green-100 dark:bg-green-900/30"
             />
             <PostTypeButton
               selected={postType === 'image'}
               onClick={() => setPostType('image')}
               icon="📸"
-              label="Photo"
-              subtitle="Screenshot"
+              label={t('add_post.post_type.image')}
+              subtitle={t('add_post.subtitle.image')}
               colorClass="border-red-500 text-red-700 dark:text-red-400 bg-red-100 dark:bg-red-900/30"
             />
             <PostTypeButton
               selected={postType === 'location'}
               onClick={() => setPostType('location')}
               icon="📍"
-              label="Place"
-              subtitle="Where Found It"
+              label={t('add_post.post_type.location')}
+              subtitle={t('add_post.subtitle.location')}
               colorClass="border-purple-500 text-purple-700 dark:text-purple-400 bg-purple-100 dark:bg-purple-900/30"
             />
             <PostTypeButton
               selected={postType === 'refuel'}
               onClick={() => setPostType('refuel')}
               icon="🔥"
-              label="Refuel"
-              subtitle="Lighter Refill"
+              label={t('add_post.post_type.refuel')}
+              subtitle={t('add_post.subtitle.refuel')}
               colorClass="border-orange-500 text-orange-700 dark:text-orange-400 bg-orange-100 dark:bg-orange-900/30"
             />
           </div>
@@ -491,16 +491,16 @@ export default function AddPostForm({
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             className="w-full rounded-lg border border-input p-3 text-foreground bg-background focus:border-primary focus:ring-primary"
-            placeholder="Title (Optional)"
+            placeholder={t('add_post.placeholder.title')}
           />
         )}
         {renderFormInputs()}
         {}
         <div className="space-y-3 pt-2">
-          {postType === 'location' && (<Checkbox id="isFindLocation" label="This is where I found this lighter" checked={isFindLocation} onChange={setIsFindLocation} />)}
-          {postType !== 'location' && postType !== 'refuel' && (<Checkbox id="isCreation" label="This is something I&apos;ve made" checked={isCreation} onChange={setIsCreation} />)}
-          <Checkbox id="isAnonymous" label="Post anonymously" checked={isAnonymous} onChange={setIsAnonymous} />
-          <Checkbox id="isPublic" label="Allow this post to appear in public feeds (e.g., homepage)" checked={isPublic} onChange={setIsPublic} />
+          {postType === 'location' && (<Checkbox id="isFindLocation" label={t('add_post.checkbox.is_find_location')} checked={isFindLocation} onChange={setIsFindLocation} />)}
+          {postType !== 'location' && postType !== 'refuel' && (<Checkbox id="isCreation" label={t('add_post.checkbox.is_creation')} checked={isCreation} onChange={setIsCreation} />)}
+          <Checkbox id="isAnonymous" label={t('add_post.checkbox.is_anonymous')} checked={isAnonymous} onChange={setIsAnonymous} />
+          <Checkbox id="isPublic" label={t('add_post.checkbox.is_public')} checked={isPublic} onChange={setIsPublic} />
         </div>
       </div>
 
@@ -521,7 +521,7 @@ export default function AddPostForm({
               ? 'text-orange-800 dark:text-orange-200'
               : 'text-yellow-800 dark:text-yellow-200'
           }`}>
-            ⚠️ Content Review
+            {t('add_post.moderation.content_review')}
           </p>
           <p className={`text-sm mt-1 ${
             moderationError.severity === 'high'
@@ -534,7 +534,7 @@ export default function AddPostForm({
           </p>
           {moderationError.severity === 'low' && (
             <p className="text-xs mt-2 text-yellow-600 dark:text-yellow-400">
-              💡 Tip: Consider revising your content to be more community-friendly.
+              {t('add_post.moderation.tip')}
             </p>
           )}
         </div>
@@ -547,16 +547,16 @@ export default function AddPostForm({
       >
         {loading || uploading ? (
           <>
-            <Image src="/loading.gif" alt="Loading..." width={24} height={24} unoptimized={true} className="mr-2" />
-            {uploading ? 'Uploading...' : 'Posting...'}
+            <Image src="/loading.gif" alt={t('add_post.button.loading_alt')} width={24} height={24} unoptimized={true} className="mr-2" />
+            {uploading ? t('add_post.button.uploading') : t('add_post.button.posting')}
           </>
         ) : isModerating ? (
           <>
-            <Image src="/loading.gif" alt="Checking..." width={24} height={24} unoptimized={true} className="mr-2" />
-            Checking content...
+            <Image src="/loading.gif" alt={t('add_post.button.checking_alt')} width={24} height={24} unoptimized={true} className="mr-2" />
+            {t('add_post.button.checking_content')}
           </>
         ) : (
-          'Add to Story'
+          t('add_post.button.add_to_story')
         )}
       </button>
     </form>

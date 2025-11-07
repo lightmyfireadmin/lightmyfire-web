@@ -2,19 +2,20 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { useCurrentLocale } from '@/locales/client';
+import { useCurrentLocale, useI18n } from '@/locales/client';
 import EmptyState from './EmptyState';
 
 function EmptyLighterPosts({ lighterId }: { lighterId: string }) {
   const locale = useCurrentLocale();
+  const t = useI18n();
 
   return (
     <EmptyState
       illustration="/illustrations/dreaming_hoping.png"
-      title="The Story Begins..."
-      description="This lighter's journey has just started. Be the first to add a chapter to its story and inspire others!"
+      title={t('empty_lighter.title')}
+      description={t('empty_lighter.description')}
       action={{
-        label: 'Add the First Post',
+        label: t('empty_lighter.action'),
         onClick: () => (window.location.href = `/${locale}/lighter/${lighterId}/add`),
       }}
     />
