@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { useI18n } from '@/locales/client';
 
 interface LocationSearchResult {
   lat: string | number;
@@ -24,6 +25,7 @@ interface LocationPickerProps {
 }
 
 export default function LocationPicker({ value, onChange }: LocationPickerProps) {
+  const t = useI18n();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<LocationSearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -91,9 +93,9 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
     <div className="space-y-4">
       {}
       <div className="rounded-lg border border-input bg-background p-4">
-        <p className="text-sm text-muted-foreground mb-2">Selected Location</p>
+        <p className="text-sm text-muted-foreground mb-2">{t('location.selected_location')}</p>
         <p className="text-lg font-semibold text-foreground">
-          {value.name || 'No location selected'}
+          {value.name || t('location.no_location_selected')}
         </p>
         {value.lat && value.lng && (
           <>
@@ -114,7 +116,7 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
                       marginWidth={0}
                       src={`https://www.openstreetmap.org/export/embed.html?bbox=${value.lng - 0.005},${value.lat - 0.005},${value.lng + 0.005},${value.lat + 0.005}&layer=mapnik&marker=${value.lat},${value.lng}`}
                       style={{ border: 0 }}
-                      title="Location map"
+                      title={t('location.map_title')}
                     />
                     {/* Center marker indicator */}
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
@@ -130,23 +132,23 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
                       rel="noopener noreferrer"
                       className="text-primary hover:underline"
                     >
-                      View larger map
+                      {t('location.view_larger_map')}
                     </a>
                   </div>
                 </>
               ) : (
                 <div className="bg-muted p-6 text-center space-y-3">
                   <div className="text-4xl">🗺️</div>
-                  <p className="text-sm text-foreground font-medium">Map Preview Available</p>
+                  <p className="text-sm text-foreground font-medium">{t('location.map_preview_title')}</p>
                   <p className="text-xs text-muted-foreground">
-                    This map uses OpenStreetMap with no tracking cookies. We only store your preference locally to remember this choice.
+                    {t('location.map_consent_description')}
                   </p>
                   <button
                     type="button"
                     onClick={handleMapConsent}
                     className="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/90 transition-colors"
                   >
-                    Show Map
+                    {t('location.show_map_button')}
                   </button>
                 </div>
               )}
@@ -164,7 +166,7 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
             value={searchQuery}
             onChange={(e) => handleSearchChange(e.target.value)}
             onFocus={() => searchQuery && setShowResults(true)}
-            placeholder="Search for a location (city, address, landmark)..."
+            placeholder={t('location.search_placeholder')}
             className="w-full rounded-lg border border-input bg-background pl-10 pr-4 py-3 text-foreground focus:border-primary focus:ring-primary"
           />
           {isSearching && (
@@ -197,7 +199,7 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
 
         {showResults && searchQuery && searchResults.length === 0 && !isSearching && (
           <div className="absolute top-full left-0 right-0 mt-1 rounded-lg border border-border bg-background shadow-lg p-4 z-50">
-            <p className="text-sm text-muted-foreground text-center">No locations found. Try a different search term.</p>
+            <p className="text-sm text-muted-foreground text-center">{t('location.no_results')}</p>
           </div>
         )}
       </div>
@@ -206,14 +208,14 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
       {value.lat && value.lng && (
         <details className="text-sm">
           <summary className="cursor-pointer text-muted-foreground hover:text-foreground">
-            Edit coordinates manually
+            {t('location.edit_coordinates')}
           </summary>
           <div className="mt-3 space-y-2">
             <input
               type="number"
               value={value.lat}
               onChange={(e) => onChange({ ...value, lat: parseFloat(e.target.value) || '' })}
-              placeholder="Latitude"
+              placeholder={t('location.latitude_placeholder')}
               step="any"
               className="w-full rounded-lg border border-input bg-background p-2 text-sm text-foreground"
             />
@@ -221,7 +223,7 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
               type="number"
               value={value.lng}
               onChange={(e) => onChange({ ...value, lng: parseFloat(e.target.value) || '' })}
-              placeholder="Longitude"
+              placeholder={t('location.longitude_placeholder')}
               step="any"
               className="w-full rounded-lg border border-input bg-background p-2 text-sm text-foreground"
             />

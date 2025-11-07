@@ -75,10 +75,10 @@ export default function Header({ session, username }: { session: Session | null;
           <Link
             href={`/${lang}`}
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-foreground hover:bg-muted"
-            aria-label="Search for lighter"
-            title="Find a lighter"
+            aria-label={t('nav.search_aria')}
+            title={t('nav.search_title')}
           >
-            <span className="sr-only">Search lighter</span>
+            <span className="sr-only">{t('nav.search_aria')}</span>
             <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
           </Link>
           <button
@@ -89,7 +89,7 @@ export default function Header({ session, username }: { session: Session | null;
               e.stopPropagation();
               setMobileMenuOpen(true);
             }}
-            aria-label="Open mobile menu"
+            aria-label={t('nav.open_menu')}
           >
             <span className="sr-only">{t('nav.open_menu')}</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
@@ -102,8 +102,8 @@ export default function Header({ session, username }: { session: Session | null;
               pathname === `/${lang}` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary',
               'text-sm leading-6 flex items-center'
             )}
-            aria-label="Search lighter"
-            title="Find a lighter"
+            aria-label={t('nav.search_aria')}
+            title={t('nav.search_title')}
           >
             <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
           </Link>

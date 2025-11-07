@@ -80,7 +80,7 @@ export default function PinEntryForm() {
         <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center">
           <Image
             src="/illustrations/around_the_world.png"
-            alt="Found a lighter"
+            alt={t('home.pin_entry.image_alt')}
             width={48}
             height={48}
             className="w-full h-full object-contain"

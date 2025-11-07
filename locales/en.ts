@@ -41,6 +41,7 @@ export default {
   'home.pin_entry.loading': 'Searching...',
   'home.pin_entry.error.generic': 'An error occurred. Please try again.',
   'home.pin_entry.error.invalid': 'Invalid PIN. Please try again.',
+  'home.pin_entry.image_alt': 'Found a lighter',
   'home.mosaic.title': 'Stories from the Mosaic',
   'home.mosaic.subtitle': 'These random posts were added by nice people like you, who chose to give a lighter one more story to tell. Posts appear here only if you choose so.',
   'home.mosaic.no_stories': 'No public stories yet. Be the first to save a lighter!',
@@ -560,8 +561,19 @@ export default {
   'add_post.error.unexpected': 'An unexpected error occurred. Please try again.',
   'add_post.error.youtube_search_failed': 'Failed to search YouTube. Please try again.',
 
-  // --- Location Search (Utility) ---
-  'location.search_placeholder': 'Search for a location...',
+  // --- Location Search / Location Picker ---
+  'location.search_placeholder': 'Search for a location (city, address, landmark)...',
+  'location.selected_location': 'Selected Location',
+  'location.no_location_selected': 'No location selected',
+  'location.map_title': 'Location map',
+  'location.view_larger_map': 'View larger map',
+  'location.map_preview_title': 'Map Preview Available',
+  'location.map_consent_description': 'This map uses OpenStreetMap with no tracking cookies. We only store your preference locally to remember this choice.',
+  'location.show_map_button': 'Show Map',
+  'location.no_results': 'No locations found. Try a different search term.',
+  'location.edit_coordinates': 'Edit coordinates manually',
+  'location.latitude_placeholder': 'Latitude',
+  'location.longitude_placeholder': 'Longitude',
 
   // --- Post Card ---
   'post.anonymous': 'Anonymous',
