@@ -65,7 +65,7 @@ export function useContentModeration(): UseModerationHook {
   );
 
   const moderateImage = useCallback(
-    async (imageSource: string): Promise<ModerationResult> {
+    async (imageSource: string): Promise<ModerationResult> => {
       setIsLoading(true);
       setError(null);
 

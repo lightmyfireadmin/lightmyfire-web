@@ -242,28 +242,6 @@ export default {
   'login.tab.signup': 'S\'inscrire',
   'auth.login_to_like': 'Tu dois être connecté pour aimer un post',
 
-  // --- Notifications (Missing Keys) ---
-  'notifications.profile_updated': 'Profil mis à jour avec succès !',
-  'notifications.password_updated': 'Mot de passe mis à jour avec succès !',
-  'notifications.post_deleted_success': 'Ton post a été supprimé avec succès.',
-  'notifications.action_success': 'Succès',
-  'notifications.action_error': 'Erreur',
-
-  // --- Generic UI (Missing Keys) ---
-  'empty_state.default_title': 'Rien à voir ici',
-  'empty_state.default_message': 'Il semble que ce contenu ne soit pas encore disponible.',
-  'not_found.title': '404 - Page non trouvée',
-  'not_found.message': 'Oups ! La page que tu cherches n\'existe pas.',
-  'not_found.go_home': 'Retour à l\'accueil',
-  'error.generic_title': 'Quelque chose s\'est mal passé',
-  'error.generic_message': 'Une erreur inattendue s\'est produite. Veuillez réessayer.',
-  'error.try_again': 'Réessayer',
-
-  // --- Cookie Consent (Missing Keys) ---
-  'cookie_consent.title': 'Nous respectons votre vie privée',
-  'cookie_consent.message': 'Nous utilisons des cookies pour vous garantir la meilleure expérience sur notre site web. En continuant à utiliser ce site, vous acceptez notre politique de confidentialité et l\'utilisation de cookies.',
-  'cookie_consent.accept': 'Accepter et continuer',
-  'cookie_consent.privacy_link': 'Politique de confidentialité',
 
   // Cookie Consent (New)
   'cookie.message': 'Nous utilisons des cookies uniquement pour les fonctionnalités de base, jamais pour le suivi. Votre vie privée est protégée. Consultez notre {privacyLink} pour plus de détails.',
