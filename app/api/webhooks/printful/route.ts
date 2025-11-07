@@ -167,12 +167,14 @@ async function handlePackageShipped(
     // Send shipping notification email
     if (customerEmail) {
       await sendOrderShippedEmail({
+        orderId: stickerOrder.id,
         customerEmail,
         customerName,
-        orderNumber: stickerOrder.id,
         trackingNumber: shipment.tracking_number,
         trackingUrl: shipment.tracking_url,
         carrier: shipment.carrier,
+        quantity: stickerOrder.quantity || 0,
+        lighterNames: stickerOrder.lighter_names || [],
         estimatedDelivery: '5-10 business days',
       });
 
