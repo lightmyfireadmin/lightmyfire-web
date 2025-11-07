@@ -30,42 +30,58 @@ const CommunityStats = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        // Fetch total lighters
-        const { count: lightersCount } = await supabase
-          .from('lighters')
-          .select('*', { count: 'exact', head: true });
+        // Run all count queries in parallel for better performance
+        const [
+          { count: lightersCount },
+          { count: postsCount },
+          { count: usersCount },
+          { data: uniqueCountries }
+        ] = await Promise.all([
+          // Fetch total lighters
+          supabase
+            .from('lighters')
+            .select('*', { count: 'exact', head: true }),
 
-        // Fetch total posts (stories)
-        const { count: postsCount } = await supabase
-          .from('posts')
-          .select('*', { count: 'exact', head: true })
-          .eq('is_public', true);
+          // Fetch total posts (stories)
+          supabase
+            .from('posts')
+            .select('*', { count: 'exact', head: true })
+            .eq('is_public', true),
 
-        // Fetch unique countries from posts with location data
-        const { data: locationPosts } = await supabase
-          .from('posts')
-          .select('location_name')
-          .eq('is_public', true)
-          .not('location_name', 'is', null);
+          // Fetch active users (users who created lighters or posts)
+          supabase
+            .from('profiles')
+            .select('*', { count: 'exact', head: true }),
 
-        // Extract unique countries (approximate - based on location names)
-        const uniqueLocations = new Set(
-          locationPosts?.map(post => {
-            // Simple extraction - you might want to enhance this
-            const parts = post.location_name?.split(',') || [];
-            return parts[parts.length - 1]?.trim();
-          }).filter(Boolean)
-        );
-
-        // Fetch active users (users who created lighters or posts)
-        const { count: usersCount } = await supabase
-          .from('profiles')
-          .select('*', { count: 'exact', head: true });
+          // Fetch unique countries using RPC if available, otherwise use optimized query
+          // Only fetch the last part of location_name (country) to reduce data transfer
+          supabase.rpc('get_community_stats').then(
+            (result) => result.data,
+            // Fallback if RPC doesn't exist yet
+            () => supabase
+              .from('posts')
+              .select('location_name')
+              .eq('is_public', true)
+              .not('location_name', 'is', null)
+              .then(({ data }) => {
+                const uniqueLocations = new Set(
+                  data?.map(post => {
+                    const parts = post.location_name?.split(',') || [];
+                    return parts[parts.length - 1]?.trim();
+                  }).filter(Boolean)
+                );
+                return { countries_reached: uniqueLocations.size };
+              })
+          )
+        ]);
 
         setStats({
           lightersSaved: lightersCount || 0,
           storiesCreated: postsCount || 0,
-          countriesReached: Math.max(uniqueLocations.size, 5), // Minimum 5 for visual appeal
+          countriesReached: Math.max(
+            uniqueCountries?.countries_reached || 0,
+            5
+          ),
           activeUsers: usersCount || 0,
         });
       } catch (error) {

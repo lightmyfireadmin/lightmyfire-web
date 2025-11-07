@@ -53,6 +53,8 @@ function Toast({ id, type, title, message, duration, onClose }: ToastProps) {
   );
 }
 
+const MemoizedToast = React.memo(Toast);
+
 export default function ToastContainer() {
   const { toasts, removeToast } = useToast();
 
@@ -66,7 +68,7 @@ export default function ToastContainer() {
     >
       {toasts.map((toast) => (
         <div key={toast.id} className="pointer-events-auto">
-          <Toast {...toast} onClose={removeToast} />
+          <MemoizedToast {...toast} onClose={removeToast} />
         </div>
       ))}
     </div>

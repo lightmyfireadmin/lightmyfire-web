@@ -1,10 +1,11 @@
 'use client';
 
+import React from 'react';
 import Link from 'next/link';
 import { useCurrentLocale } from '@/locales/client';
 import EmptyState from './EmptyState';
 
-export default function EmptyLighterPosts({ lighterId }: { lighterId: string }) {
+function EmptyLighterPosts({ lighterId }: { lighterId: string }) {
   const locale = useCurrentLocale();
 
   return (
@@ -19,3 +20,5 @@ export default function EmptyLighterPosts({ lighterId }: { lighterId: string }) 
     />
   );
 }
+
+export default React.memo(EmptyLighterPosts);

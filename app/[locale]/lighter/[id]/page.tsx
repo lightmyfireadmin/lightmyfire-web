@@ -71,7 +71,7 @@ export default async function LighterPage({
 
   const { data: lighter } = await supabase
     .from('lighters')
-    .select('id, name, pin_code, custom_background_url, saver_id')
+    .select('id, name, pin_code, custom_background_url, saver_id, profiles:saver_id(username)')
     .eq('id', params.id)
     .single();
 
@@ -79,17 +79,8 @@ export default async function LighterPage({
     notFound();
   }
 
-  
-  let saverUsername = '';
-  if (lighter.saver_id) {
-    const { data: saverProfile } = await supabase
-      .from('profiles')
-      .select('username')
-      .eq('id', lighter.saver_id)
-      .single();
 
-    saverUsername = saverProfile?.username || 'Anonymous';
-  }
+  const saverUsername = (lighter.profiles as any)?.username || 'Anonymous';
 
   
   let postsResponse = await supabase

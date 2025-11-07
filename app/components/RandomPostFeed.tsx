@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
 import { DetailedPost } from '@/lib/types';
 import { useI18n } from '@/locales/client';
@@ -21,7 +21,7 @@ const RandomPostFeed = () => {
   const POSTS_PER_LOAD = 4;
 
   // Fetch posts with smooth transition
-  const fetchPosts = async (showRefreshing = false) => {
+  const fetchPosts = useCallback(async (showRefreshing = false) => {
     if (showRefreshing) {
       setIsRefreshing(true);
       setIsTransitioning(true);
@@ -58,10 +58,10 @@ const RandomPostFeed = () => {
         setIsLoading(false);
       }
     }
-  };
+  }, [POSTS_TO_SHOW]);
 
   // Load more posts
-  const loadMorePosts = async () => {
+  const loadMorePosts = useCallback(async () => {
     if (isLoadingMore || !hasMore) return;
 
     setIsLoadingMore(true);
@@ -81,16 +81,16 @@ const RandomPostFeed = () => {
     } finally {
       setIsLoadingMore(false);
     }
-  };
+  }, [isLoadingMore, hasMore, POSTS_PER_LOAD]);
 
   // Initial load
   useEffect(() => {
     fetchPosts(false);
-  }, []);
+  }, [fetchPosts]);
 
-  const handleRefresh = () => {
+  const handleRefresh = useCallback(() => {
     fetchPosts(true);
-  };
+  }, [fetchPosts]);
 
   if (isLoading) {
     return (
@@ -128,7 +128,7 @@ const RandomPostFeed = () => {
           >
             {posts.map((post, index) => (
               <div
-                key={`${post.id}-${Date.now()}`}
+                key={post.id}
                 className={`transition-all duration-500 ease-out hover:scale-[1.02] ${
                   isTransitioning ? 'opacity-0' : 'opacity-100'
                 }`}

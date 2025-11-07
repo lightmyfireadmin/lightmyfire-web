@@ -41,7 +41,7 @@ const iconMap: { [key in DetailedPost['post_type']]: React.ElementType } = {
     refuel: FireIcon,
 };
 
-export default function PostCard({
+function PostCard({
   post,
   isLoggedIn,
   isMini = false,
@@ -180,3 +180,5 @@ export default function PostCard({
     </div>
   );
 }
+
+export default React.memo(PostCard);

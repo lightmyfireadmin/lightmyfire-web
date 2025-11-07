@@ -16,13 +16,17 @@ import LanguageSwitcher from './LanguageSwitcher';
 function LogoLink({ href, lang }: { href: string; lang: string }) {
   const [showHalo, setShowHalo] = useState(false);
 
+  useEffect(() => {
+    if (showHalo) {
+      const timer = setTimeout(() => {
+        setShowHalo(false);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [showHalo]);
+
   const handleClick = () => {
     setShowHalo(true);
-    
-    const timer = setTimeout(() => {
-      setShowHalo(false);
-    }, 1000);
-    return () => clearTimeout(timer);
   };
 
   return (
@@ -33,7 +37,7 @@ function LogoLink({ href, lang }: { href: string; lang: string }) {
         showHalo ? 'shadow-lg shadow-primary/30' : ''
       }`}
     >
-      <Image src="/LOGOLONG.png" alt="LightMyFire" width={150} height={40} />
+      <Image src="/LOGOLONG.png" alt="LightMyFire" width={150} height={40} priority quality={85} />
     </Link>
   );
 }
