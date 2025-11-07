@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import QRCode from 'qrcode';
 import path from 'path';
 import fs from 'fs';
-import archiver from 'archiver';
 
 // Register Poppins fonts for sticker text
 try {
@@ -128,8 +127,8 @@ function getLuminance(hex: string): number {
 // Helper function to get contrasting text color (black or white) based on background
 function getContrastingTextColor(backgroundColorHex: string): string {
   const luminance = getLuminance(backgroundColorHex);
-  // Threshold is 0.65. Dark backgrounds (< 0.65) get white text, light backgrounds get black text.
-  return luminance < 0.65 ? '#ffffff' : '#000000';
+  // Threshold is 0.65 (more sensitive). Light backgrounds (> 0.65) get black text.
+  return luminance > 0.65 ? '#000000' : '#ffffff';
 }
 
 export async function POST(request: NextRequest) {
@@ -143,66 +142,58 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Calculate how many sheets we need
-    const numSheets = Math.ceil(stickers.length / TOTAL_STICKERS);
+    // Create canvas with transparent background
+    const canvas = createCanvas(SHEET_WIDTH_PX, SHEET_HEIGHT_PX);
+    const ctx = canvas.getContext('2d');
 
-    // If only one sheet, return PNG directly (backward compatibility)
-    if (numSheets === 1) {
-      const buffer = await generateSingleSheet(stickers);
-      return new NextResponse(new Uint8Array(buffer), {
-        status: 200,
-        headers: {
-          'Content-Type': 'image/png',
-          'Content-Disposition': `attachment; filename="lightmyfire-stickers-printful.png"`,
-          'Content-Length': buffer.length.toString(),
-        },
-      });
+    // Transparent background (Printful requirement for kiss-cut)
+    ctx.clearRect(0, 0, SHEET_WIDTH_PX, SHEET_HEIGHT_PX);
+
+    // Calculate centering offset for top section
+    const topSectionUsedWidth = STICKERS_PER_ROW * STICKER_WIDTH_PX + (STICKERS_PER_ROW - 1) * GAP_PX;
+    const topOffsetX = Math.round((SHEET_WIDTH_PX - topSectionUsedWidth) / 2);
+    const topOffsetY = Math.round(GAP_PX / 2);
+
+    // Draw stickers in top section
+    let stickerIndex = 0;
+    for (let row = 0; row < ROWS_TOP && stickerIndex < stickers.length; row++) {
+      for (let col = 0; col < STICKERS_PER_ROW && stickerIndex < stickers.length; col++) {
+        const x = topOffsetX + col * (STICKER_WIDTH_PX + GAP_PX);
+        const y = topOffsetY + row * (STICKER_HEIGHT_PX + GAP_PX);
+        await drawSticker(ctx, stickers[stickerIndex], x, y);
+        stickerIndex++;
+      }
     }
 
-    // Multiple sheets - generate all sheets and package in ZIP
-    const sheets: { filename: string; buffer: Buffer }[] = [];
+    // Draw stickers in bottom-left section
+    const bottomLeftUsedWidth = STICKERS_PER_ROW_BOTTOM * STICKER_WIDTH_PX + (STICKERS_PER_ROW_BOTTOM - 1) * GAP_PX;
+    const bottomOffsetX = Math.round((BOTTOM_LEFT_WIDTH_PX - bottomLeftUsedWidth) / 2);
+    const bottomOffsetY = SHEET_HEIGHT_PX - RESERVED_PX + Math.round(GAP_PX / 2);
 
-    for (let i = 0; i < numSheets; i++) {
-      const startIdx = i * TOTAL_STICKERS;
-      const endIdx = Math.min(startIdx + TOTAL_STICKERS, stickers.length);
-      const sheetStickers = stickers.slice(startIdx, endIdx);
-
-      const buffer = await generateSingleSheet(sheetStickers);
-      sheets.push({
-        filename: `lightmyfire-stickers-sheet-${i + 1}.png`,
-        buffer
-      });
+    for (let row = 0; row < ROWS_BOTTOM && stickerIndex < stickers.length; row++) {
+      for (let col = 0; col < STICKERS_PER_ROW_BOTTOM && stickerIndex < stickers.length; col++) {
+        const x = bottomOffsetX + col * (STICKER_WIDTH_PX + GAP_PX);
+        const y = bottomOffsetY + row * (STICKER_HEIGHT_PX + GAP_PX);
+        await drawSticker(ctx, stickers[stickerIndex], x, y);
+        stickerIndex++;
+      }
     }
 
-    // Create ZIP file
-    const { Readable } = await import('stream');
-    const archive = archiver('zip', { zlib: { level: 9 } });
-    const chunks: Buffer[] = [];
+    // Leave branding area empty (branding will be on physical background)
+    // The 3"×3" bottom-right area is reserved but left transparent for branding on the background
 
-    // Collect ZIP data
-    archive.on('data', (chunk: Buffer) => chunks.push(chunk));
-
-    // Wait for ZIP to finish
-    const zipPromise = new Promise<Buffer>((resolve, reject) => {
-      archive.on('end', () => resolve(Buffer.concat(chunks)));
-      archive.on('error', reject);
+    // Convert to PNG buffer
+    const buffer = canvas.toBuffer('image/png', {
+      compressionLevel: 9,
+      filters: Canvas.PNG_FILTER_NONE
     });
 
-    // Add all sheets to ZIP
-    for (const sheet of sheets) {
-      archive.append(sheet.buffer, { name: sheet.filename });
-    }
-
-    // Finalize ZIP
-    await archive.finalize();
-    const zipBuffer = await zipPromise;
-
-    return new NextResponse(new Uint8Array(zipBuffer), {
+    return new NextResponse(new Uint8Array(buffer), {
       status: 200,
       headers: {
-        'Content-Type': 'application/zip',
-        'Content-Disposition': `attachment; filename="lightmyfire-stickers-printful.zip"`,
-        'Content-Length': zipBuffer.length.toString(),
+        'Content-Type': 'image/png',
+        'Content-Disposition': `attachment; filename="lightmyfire-stickers-printful.png"`,
+        'Content-Length': buffer.length.toString(),
       },
     });
   } catch (error) {
@@ -212,57 +203,6 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
-}
-
-/**
- * Generate a single sheet of stickers (up to 10 stickers)
- */
-async function generateSingleSheet(stickers: StickerData[]): Promise<Buffer> {
-  // Create canvas with transparent background
-  const canvas = createCanvas(SHEET_WIDTH_PX, SHEET_HEIGHT_PX);
-  const ctx = canvas.getContext('2d');
-
-  // Transparent background (Printful requirement for kiss-cut)
-  ctx.clearRect(0, 0, SHEET_WIDTH_PX, SHEET_HEIGHT_PX);
-
-  // Calculate centering offset for top section
-  const topSectionUsedWidth = STICKERS_PER_ROW * STICKER_WIDTH_PX + (STICKERS_PER_ROW - 1) * GAP_PX;
-  const topOffsetX = Math.round((SHEET_WIDTH_PX - topSectionUsedWidth) / 2);
-  const topOffsetY = Math.round(GAP_PX / 2);
-
-  // Draw stickers in top section
-  let stickerIndex = 0;
-  for (let row = 0; row < ROWS_TOP && stickerIndex < stickers.length; row++) {
-    for (let col = 0; col < STICKERS_PER_ROW && stickerIndex < stickers.length; col++) {
-      const x = topOffsetX + col * (STICKER_WIDTH_PX + GAP_PX);
-      const y = topOffsetY + row * (STICKER_HEIGHT_PX + GAP_PX);
-      await drawSticker(ctx, stickers[stickerIndex], x, y);
-      stickerIndex++;
-    }
-  }
-
-  // Draw stickers in bottom-left section
-  const bottomLeftUsedWidth = STICKERS_PER_ROW_BOTTOM * STICKER_WIDTH_PX + (STICKERS_PER_ROW_BOTTOM - 1) * GAP_PX;
-  const bottomOffsetX = Math.round((BOTTOM_LEFT_WIDTH_PX - bottomLeftUsedWidth) / 2);
-  const bottomOffsetY = SHEET_HEIGHT_PX - RESERVED_PX + Math.round(GAP_PX / 2);
-
-  for (let row = 0; row < ROWS_BOTTOM && stickerIndex < stickers.length; row++) {
-    for (let col = 0; col < STICKERS_PER_ROW_BOTTOM && stickerIndex < stickers.length; col++) {
-      const x = bottomOffsetX + col * (STICKER_WIDTH_PX + GAP_PX);
-      const y = bottomOffsetY + row * (STICKER_HEIGHT_PX + GAP_PX);
-      await drawSticker(ctx, stickers[stickerIndex], x, y);
-      stickerIndex++;
-    }
-  }
-
-  // Leave branding area empty (branding will be on physical background)
-  // The 3"×3" bottom-right area is reserved but left transparent for branding on the background
-
-  // Convert to PNG buffer
-  return canvas.toBuffer('image/png', {
-    compressionLevel: 9,
-    filters: Canvas.PNG_FILTER_NONE
-  });
 }
 
 async function drawSticker(
@@ -281,7 +221,7 @@ async function drawSticker(
   const contentHeight = STICKER_HEIGHT_PX - padding * 2; // 1134px at 600 DPI
   const cornerRadius = Math.round(STICKER_WIDTH_PX * 0.08); // ~38px at 600 DPI
   const cardRadius = Math.round(STICKER_WIDTH_PX * 0.04); // ~18px at 600 DPI
-  const smallGap = 4; // Very tight gap between cards for ultra-compact design
+  const smallGap = 16; // Gap between cards (doubled for 600 DPI)
 
   // Draw colored background with rounded corners (kiss-cut sticker shape)
   ctx.fillStyle = sticker.backgroundColor;
@@ -368,7 +308,7 @@ async function drawSticker(
   ctx.textBaseline = 'top';
   ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + 46); // Doubled for 600 DPI
 
-  currentY += 16; // Very tight spacing after "Tell them how we met"
+  currentY += 80; // Reduced section height (doubled for 600 DPI)
 
   // QR Code on white card - reduced by 0.7x factor for more color visibility
   const qrCardSize = Math.round(contentWidth * 0.7); // ~148px (70% of 212)
@@ -459,8 +399,7 @@ async function drawSticker(
   ctx.textBaseline = 'top';
   ctx.fillText(codeText, x + STICKER_WIDTH_PX / 2, currentY + 23);
 
-  currentY += 38; // Section height
-  currentY += smallGap;
+  currentY += 38; // Reduced section height
 
   // PIN code
   const pinBgHeight = 52; // Fixed size per programmer's spec
@@ -499,7 +438,7 @@ async function drawSticker(
     const logoBgWidth = logoTargetWidth + (logoPadding * 2);
     const logoBgHeight = logoTargetHeight + (logoPadding * 2);
 
-    // Position logo (vertically centered in remaining space)
+    // Position logo to stay in same visual position (vertically centered in remaining space)
     const remainingHeight = STICKER_HEIGHT_PX - currentY + y - padding;
     const logoBgY = currentY + (remainingHeight - logoBgHeight) / 2;
 
@@ -514,9 +453,9 @@ async function drawSticker(
 
     // Draw logo centered in cream background
     const logoX = logoBgX + logoPadding;
-    const logoImageY = logoBgY + logoPadding;
+    const logoY = logoBgY + logoPadding;
 
-    ctx.drawImage(logoImage, logoX, logoImageY, logoTargetWidth, logoTargetHeight);
+    ctx.drawImage(logoImage, logoX, logoY, logoTargetWidth, logoTargetHeight);
   } catch (error) {
     console.error('Logo loading error:', error);
   }

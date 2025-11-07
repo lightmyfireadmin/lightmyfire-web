@@ -44,12 +44,15 @@ export default function TestStickersPage() {
         throw new Error(errorData.error || 'Failed to generate stickers');
       }
 
-      // Download the PNG file
+      // Download the file (PNG for 10 stickers, ZIP for 20/50 stickers)
       const blob = await response.blob();
+      const contentType = response.headers.get('Content-Type');
+      const extension = contentType === 'application/zip' ? 'zip' : 'png';
+
       const downloadUrl = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = downloadUrl;
-      a.download = `test-stickers-${Date.now()}.png`;
+      a.download = `test-stickers-${Date.now()}.${extension}`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(downloadUrl);

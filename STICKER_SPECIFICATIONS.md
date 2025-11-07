@@ -78,13 +78,13 @@
 
 | Element | Size Formula | Actual Size | Weight |
 |---------|--------------|-------------|--------|
-| "You found me" | 10% of height | **59px** | Bold |
+| "You found me" | 10% of height | **59px** | Normal |
 | Lighter name | 9% of height | **53px** | Bold |
-| "Read my story" | 6.5% of height | **38px** | Bold |
-| Translations | 5.5% of height | **33px** | Bold |
-| URL "or go to" | 5.5% of height | **33px** | Bold |
+| "Read my story" | 6.5% of height | **38px** | Normal |
+| Translations | 5.5% of height | **33px** | Normal |
+| URL "or go to" | 5.5% of height | **33px** | Normal |
 | URL "lightmyfire.app" | 6% of height | **35px** | Bold |
-| "and type my code" | 6.5% of height | **38px** | Bold |
+| "and type my code" | 6.5% of height | **38px** | Normal |
 | PIN code | 9% of height | **53px** | Bold |
 
 ### Text Alignment
@@ -273,6 +273,35 @@ Stickers support any hex color for the main background. Popular choices:
 - **Backend:** Cairo graphics library
 - **Capabilities:** Server-side Canvas API implementation
 
+### Pixel-Perfect Rendering Settings
+For crisp text and graphics without anti-aliasing blur:
+```javascript
+ctx.imageSmoothingEnabled = false;
+ctx.antialias = 'none';
+ctx.textDrawingMode = 'glyph';
+```
+
+### Kiss-Cut Rounded Corners
+- **Main sticker shape:** 8% radius (rounded corners for kiss-cut appearance)
+- **White content cards:** 4% radius (subtle rounded corners)
+- **Implementation:** Custom `roundRect()` function using quadratic curves
+
+### Auto-Contrasting Text Color
+- **Algorithm:** Calculates luminance of background color using sRGB conversion
+- **Threshold:** 0.5 luminance (light backgrounds get black text, dark get white)
+- **Applies to:** Text rendered directly on colored background
+- **Benefit:** Ensures readability on both light and dark backgrounds (e.g., #FFEAA7 yellow gets black text)
+
+### QR Code on White Card
+- **Card size:** 148×148 pixels with rounded corners
+- **QR code size:** 132×132 pixels centered within card
+- **Benefit:** Improved scannability with consistent white background regardless of sticker color
+
+### Background Layer Overlay
+- **File:** `/public/newassets/sticker_bg_layer.png`
+- **Position:** Between colored background and white content cards
+- **Purpose:** Decorative overlay for visual depth
+
 ### PNG Export Settings
 ```javascript
 canvas.toBuffer('image/png', {
@@ -337,12 +366,17 @@ Total Capacity: 10 stickers per sheet
 
 1. **Transparent Background:** Essential for Printful kiss-cut stickers - only sticker shapes are cut, not the full rectangle
 2. **High DPI:** 300 DPI ensures print quality for physical products
-3. **Centering:** Stickers are centered in their sections to maintain visual balance
-4. **Gap Purpose:** 1cm gap provides cutting tolerance and ensures proper lighter fit
-5. **Reserved Area:** Left transparent to allow physical background customization for events, brands, etc.
-6. **Font Registration:** Fonts must be registered before canvas creation due to node-canvas requirements
-7. **QR URL Format:** Points to index page with PIN query parameter to maintain app context
-8. **Aspect Ratio:** 2:5 vertical ratio specifically designed for BIC lighter dimensions
+3. **Rounded Corners:** Main sticker has 8% radius for kiss-cut appearance; white cards have 4% radius for polish
+4. **Auto-Contrasting Text:** Automatically uses black text on light backgrounds (luminance > 0.5) and white text on dark backgrounds
+5. **QR Scannability:** QR codes are placed on white cards for consistent scanning regardless of background color
+6. **Background Overlay:** sticker_bg_layer.png adds decorative depth between background and content
+7. **Pixel-Perfect Rendering:** Anti-aliasing disabled for crisp text and graphics without blur
+8. **Centering:** Stickers are centered in their sections to maintain visual balance
+9. **Gap Purpose:** 1cm gap provides cutting tolerance and ensures proper lighter fit
+10. **Reserved Area:** Left transparent to allow physical background customization for events, brands, etc.
+11. **Font Registration:** Fonts must be registered before canvas creation due to node-canvas requirements
+12. **QR URL Format:** Points to index page with PIN query parameter to maintain app context
+13. **Aspect Ratio:** 2:5 vertical ratio specifically designed for BIC lighter dimensions
 
 ---
 
@@ -364,6 +398,8 @@ Total Capacity: 10 stickers per sheet
 - **v1.2** - Updated QR codes to point to index page with PIN
 - **v1.3** - Added comprehensive multi-language support (23 languages)
 - **v1.4** - Added development testing utilities
+- **v1.5** - Pixel-perfect rendering + rounded corners + background overlay layer
+- **v1.6** - Auto-contrasting text colors + QR code on white card for better scannability
 
 ---
 

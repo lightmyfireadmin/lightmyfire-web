@@ -206,15 +206,17 @@ export async function POST(request: NextRequest) {
       }, { status: 500 });
     }
 
-    const pngBuffer = await generateResponse.arrayBuffer();
-    console.log('Sticker PNG generated successfully, size:', pngBuffer.byteLength, 'bytes');
+    const fileBuffer = await generateResponse.arrayBuffer();
+    const contentType = generateResponse.headers.get('Content-Type') || 'image/png';
+    const fileExtension = contentType === 'application/zip' ? 'zip' : 'png';
+    console.log(`Sticker file generated successfully (${contentType}), size: ${fileBuffer.byteLength} bytes`);
 
-    // Upload sticker PNG to Supabase Storage
-    const fileName = `${session.user.id}/${paymentIntentId}.png`;
+    // Upload sticker file to Supabase Storage (PNG for 10 stickers, ZIP for 20/50 stickers)
+    const fileName = `${session.user.id}/${paymentIntentId}.${fileExtension}`;
     const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
       .from('sticker-orders')
-      .upload(fileName, pngBuffer, {
-        contentType: 'image/png',
+      .upload(fileName, fileBuffer, {
+        contentType,
         upsert: false,
       });
 
@@ -249,7 +251,7 @@ export async function POST(request: NextRequest) {
         shipping_postal_code: shippingAddress.postalCode,
         shipping_country: shippingAddress.country,
         sticker_file_url: stickerFileUrl,
-        sticker_file_size: pngBuffer.byteLength,
+        sticker_file_size: fileBuffer.byteLength,
         lighter_ids: createdLighters.map((l: any) => l.lighter_id),
       });
 
@@ -358,8 +360,8 @@ The sticker PNG file is attached. Please fulfill this order.
         `,
         attachments: [
           {
-            filename: `stickers-${paymentIntentId}.png`,
-            content: Buffer.from(pngBuffer),
+            filename: `stickers-${paymentIntentId}.${fileExtension}`,
+            content: Buffer.from(fileBuffer),
           },
         ],
       });
