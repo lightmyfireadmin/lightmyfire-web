@@ -394,9 +394,9 @@ async function drawSticker(
 
   try {
     // Generate unique QR code for each lighter with pre-filled PIN
-    // Points to find page with PIN pre-filled for direct lighter discovery
+    // Points to index page with PIN pre-filled to provide full context
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://lightmyfire.app';
-    const qrUrl = `${baseUrl}/find?pin=${sticker.pinCode}`;
+    const qrUrl = `${baseUrl}/?pin=${sticker.pinCode}`;
 
     const qrDataUrl = await QRCode.toDataURL(qrUrl, {
       width: qrSize,
