@@ -108,6 +108,9 @@ export default {
   'notifications.post_deleted_success': 'Post deleted. It\'s like it was never there.',
   'notifications.action_success': 'Success',
   'notifications.action_error': 'Error',
+  'notifications.trophy_earned': '🏆 Trophy Unlocked: {trophy_name}! You\'re on fire!',
+  'notifications.lighter_saved': 'Success! {lighterName} is ready for adventure! 🌍',
+  'notifications.sticker_downloaded': 'Stickers ready! Time to set {lighterName} free. 🚀',
   'confirm_modal.cancel': 'Cancel',
   'confirm_modal.confirm': 'Confirm',
   'empty_state.default_title': 'This space is waiting for you ✨',
@@ -123,6 +126,8 @@ export default {
   'error.network': 'Oops! Looks like the internet hiccupped. Check your connection and try again. 🌐',
   'error.upload_too_large': 'That image is too big! Please resize it to under 2MB and try again. 📸',
   'error.invalid_pin': 'Hmm, that PIN doesn\'t match any lighter we know. Double-check the sticker!',
+  'error.rate_limit': 'Whoa there, speedy! 🏃‍♂️\n\nYou\'re adding posts faster than we can keep up. Take a 24-hour break to let others add to this lighter\'s story, then come back!\n\n(This helps keep our mosaic diverse and interesting for everyone.)',
+  'error.content_flagged': 'Heads up! Our community guidelines flag this content as {reason}. Let\'s keep LightMyFire welcoming for everyone. 🌟',
 
   // --- Legal Pages Structural Content ---
   'legal.privacy.title': 'Privacy Policy',
@@ -463,6 +468,11 @@ export default {
   'add_post.subtitle.refuel': 'Keep it alive',
   'add_post.placeholder.title': 'Title (Optional)',
   'add_post.placeholder.text': 'Your poem, your story, your thoughts...',
+  'add_post.prompt_v1': 'What memory does this lighter hold? Tell its story...',
+  'add_post.prompt_v2': 'Where did you find this lighter? What happened next?',
+  'add_post.prompt_v3': 'A thought, a poem, a moment—share what\'s on your mind...',
+  'add_post.prompt_v4': 'What song is playing right now? Describe the vibe...',
+  'add_post.prompt_v5': 'If this lighter could talk, what would it say?',
   'add_post.song_input_mode.url': 'URL',
   'add_post.song_input_mode.search': 'Search',
   'add_post.placeholder.youtube_url': 'YouTube Song URL',
@@ -489,6 +499,14 @@ export default {
   'add_post.button.loading_alt': 'Loading...',
   'add_post.button.search': 'Search',
   'add_post.button.select': 'Select',
+
+  // --- Loading States ---
+  'loading.posting_v1': 'Adding your story to the timeline...',
+  'loading.posting_v2': 'Weaving your moment into the mosaic...',
+  'loading.posting_v3': 'Lighting up this lighter\'s journey...',
+  'loading.posting_v4': 'Making this lighter\'s story brighter...',
+  'loading.searching': 'Following the trail... 🔍',
+  'loading.generating_stickers': 'Crafting your lighter\'s passport... ✨',
   'add_post.error.file_too_large': 'File is too large. Please select a file smaller than 2MB.',
   'add_post.error.youtube_api_error': 'YouTube API Error: {message}',
   'add_post.error.no_file_selected': 'Please select a file to upload.',
@@ -533,9 +551,9 @@ export default {
   'my_profile.saved_lighters': 'Saved Lighters',
   'my_profile.edit_profile': 'Edit Profile',
   'my_profile.security': 'Security',
-  'my_profile.no_lighters_saved': 'You haven\'t saved any lighters yet. Become a LightSaver to start a new journey!',
+  'my_profile.no_lighters_saved': 'Ready to give a lighter a second life? 🔥\nSave your first lighter and start collecting stories from around the world!',
   'my_profile.save_first_lighter': 'Save Your First Lighter',
-  'my_profile.no_posts': 'You haven\'t made any posts yet.',
+  'my_profile.no_posts': 'Your story collection is waiting to begin! 📖\nFind a lighter and add your first post.',
   'my_profile.find_lighter_to_post': 'Find a Lighter',
   'my_profile.trophies.coming_soon': 'Trophy case coming soon!',
   'my_profile.trophies.subtitle': 'Collect achievements by saving and sharing stories.',
@@ -626,7 +644,7 @@ export default {
 
   // --- Other Components ---
   'badge.moderator_tooltip': 'This user is part of moderation',
-  'empty_posts.title': 'No Stories Yet',
+  'empty_posts.title': 'This lighter\'s story is waiting to be written! ✨',
   'empty_posts.message': 'Be the first to add a story, picture, or song to this lighter\'s journey!',
   'empty_posts.action': 'Add the First Post',
   'signup_welcome.title': 'Welcome to LightMyFire!',
@@ -858,5 +876,13 @@ export default {
   'language.id': 'Bahasa Indonesia',
   'language.uk': 'Українська',
   'language.tr': 'Türkçe',
+
+  // --- Email Subject Lines ---
+  'email.order_shipped_subject': 'Your lighter-saving kit is on the way! 🚀✨',
+  'email.first_post_subject': 'You lit the first spark! 🔥 Welcome to the LightSaver family',
+  'email.trophy_earned_subject': '🏆 Achievement unlocked: {trophy_name}!',
+  'email.lighter_activity_subject': 'Your lighter is making new friends! 🌍',
+  'email.moderation_approved_subject': 'Good news! Your story is now live. 🎉',
+  'email.moderation_rejected_subject': 'About your recent post... let\'s chat',
 
 } as const;

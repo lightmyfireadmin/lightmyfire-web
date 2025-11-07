@@ -43,7 +43,7 @@ export default {
   'flag.error_flagging': 'Impossible de signaler le post. Merci de réessayer.',
   'confirm_modal.cancel': 'Annuler',
   'confirm_modal.confirm': 'Confirmer',
-  'my_posts.no_posts': 'Tu n\'as encore fait aucun post.',
+  'my_posts.no_posts': 'Ta collection d\'histoires attend de commencer ! 📖\nTrouve un briquet et ajoute ton premier post.',
   'my_posts.post_type_default': 'Un post {type}',
   'my_posts.on': 'sur',
   'my_posts.a_lighter': 'un briquet',
@@ -57,7 +57,7 @@ export default {
   'my_posts.no_posts_description': 'Commence à partager tes histoires avec la communauté. Visite un briquet pour ajouter ton premier post !',
   'my_posts.no_posts_action': 'Trouver un briquet',
   'badge.moderator_tooltip': 'Cet utilisateur fait partie de la modération',
-  'my_profile.no_lighters_saved': 'Tu n\'as encore sauvé aucun briquet. Deviens un LightSaver pour commencer une nouvelle aventure !',
+  'my_profile.no_lighters_saved': 'Prêt à donner une seconde vie à un briquet ? 🔥\nSauve ton premier briquet et commence à collectionner des histoires du monde entier !',
   'add_post.checkbox.is_find_location': 'C\'est ici que j\'ai trouvé ce briquet',
   'add_post.checkbox.is_creation': 'C\'est ma création originale',
   'add_post.checkbox.is_anonymous': 'Poster anonymement',
@@ -71,6 +71,14 @@ export default {
   'add_post.error.unexpected': 'Une erreur inattendue est survenue. Merci de réessayer.',
   'add_post.error.youtube_search_failed': 'Échec de la recherche YouTube. Merci de réessayer.',
   'add_post.placeholder.text': 'Ton poème, ton histoire, tes pensées...',
+
+  // --- Loading States ---
+  'loading.posting_v1': 'Ajout de ton histoire à la chronologie...',
+  'loading.posting_v2': 'Tissage de ton moment dans la mosaïque...',
+  'loading.posting_v3': 'Illumination du voyage de ce briquet...',
+  'loading.posting_v4': 'L\'histoire de ce briquet devient plus lumineuse...',
+  'loading.searching': 'Je suis la piste... 🔍',
+  'loading.generating_stickers': 'Création du passeport de ton briquet... ✨',
   'add_post.song_input_mode.url': 'URL',
   'add_post.song_input_mode.search': 'Recherche',
   'add_post.placeholder.youtube_url': 'URL de la chanson YouTube',
@@ -94,6 +102,11 @@ export default {
   'add_post.subtitle.location': 'Marque le voyage',
   'add_post.subtitle.refuel': 'Garde-le en vie',
   'add_post.placeholder.title': 'Titre (Optionnel)',
+  'add_post.prompt_v1': 'Quel souvenir ce briquet garde-t-il ? Raconte son histoire...',
+  'add_post.prompt_v2': 'Où as-tu trouvé ce briquet ? Que s\'est-il passé ensuite ?',
+  'add_post.prompt_v3': 'Une pensée, un poème, un moment—partage ce qui te passe par la tête...',
+  'add_post.prompt_v4': 'Quelle chanson joue en ce moment ? Décris l\'ambiance...',
+  'add_post.prompt_v5': 'Si ce briquet pouvait parler, que dirait-il ?',
   'add_post.button.uploading': 'Envoi...',
   'add_post.button.posting': 'Publication...',
   'add_post.button.add_to_story': 'Ajouter à l\'histoire',
@@ -141,6 +154,9 @@ export default {
   'notifications.post_deleted_success': 'Post supprimé. Comme si il n\'avait jamais existé.',
   'notifications.action_success': 'Succès',
   'notifications.action_error': 'Erreur',
+  'notifications.trophy_earned': '🏆 Trophée Débloqué : {trophy_name} ! Tu assures !',
+  'notifications.lighter_saved': 'Succès ! {lighterName} est prêt pour l\'aventure ! 🌍',
+  'notifications.sticker_downloaded': 'Stickers prêts ! Il est temps de libérer {lighterName}. 🚀',
   'empty_state.default_title': 'Cet espace n\'attend que toi ✨',
   'empty_state.default_message': 'Rien ici pour l\'instant, mais ça va changer !',
   'empty_state.no_posts_title': 'L\'histoire de ce briquet n\'attend que toi !',
@@ -151,6 +167,8 @@ export default {
   'error.network': 'Oups ! Internet a fait un petit hoquet. Vérifie ta connexion et réessaie. 🌐',
   'error.upload_too_large': 'Cette image est trop lourde ! Merci de la réduire à moins de 2 Mo. 📸',
   'error.invalid_pin': 'Hmm, ce PIN ne correspond à aucun briquet que l\'on connaît. Vérifie l\'autocollant !',
+  'error.rate_limit': 'Doucement champion ! 🏃‍♂️\n\nTu ajoutes des posts plus vite qu\'on ne peut suivre. Fais une pause de 24 heures pour laisser d\'autres personnes contribuer à l\'histoire de ce briquet, puis reviens !\n\n(Cela aide à garder notre mosaïque diversifiée et intéressante pour tout le monde.)',
+  'error.content_flagged': 'Petite alerte ! Nos directives communautaires signalent ce contenu comme {reason}. Gardons LightMyFire accueillant pour tout le monde. 🌟',
 
   'signup_welcome.title': 'Bienvenue sur LightMyFire !',
   'signup_welcome.subtitle': 'Merci d\'avoir rejoint notre communauté ! Voici quelques choses que tu peux faire :',
@@ -618,7 +636,7 @@ export default {
   'moderation.view_post': 'Voir le post',
 
   // --- Empty States (Missing Keys) ---
-  'empty_posts.title': 'Pas encore d\'histoires',
+  'empty_posts.title': 'L\'histoire de ce briquet attend d\'être écrite ! ✨',
   'empty_posts.message': 'Sois le premier à ajouter une histoire, une photo ou une chanson au voyage de ce briquet !',
   'empty_posts.action': 'Ajouter le premier post',
 
@@ -830,9 +848,17 @@ export default {
   'language.ko': '한국어',
   'language.zh-CN': '中文',
   // Profile Settings
-  'settings.profile.nationality_label': 'Nationality',
-  'settings.profile.nationality_optional': '(optional)',
-  'settings.profile.nationality_placeholder': 'Select a country',
-  'settings.profile.show_nationality_label': 'Show my nationality on posts',
+  'settings.profile.nationality_label': 'Nationalité',
+  'settings.profile.nationality_optional': '(optionnel)',
+  'settings.profile.nationality_placeholder': 'Sélectionner un pays',
+  'settings.profile.show_nationality_label': 'Afficher ma nationalité sur mes posts',
+
+  // --- Email Subject Lines ---
+  'email.order_shipped_subject': 'Ton kit de sauvetage de briquets est en route ! 🚀✨',
+  'email.first_post_subject': 'Tu as allumé la première étincelle ! 🔥 Bienvenue dans la famille LightSaver',
+  'email.trophy_earned_subject': '🏆 Achievement débloqué : {trophy_name} !',
+  'email.lighter_activity_subject': 'Ton briquet se fait de nouveaux amis ! 🌍',
+  'email.moderation_approved_subject': 'Bonne nouvelle ! Ton histoire est maintenant en ligne. 🎉',
+  'email.moderation_rejected_subject': 'À propos de ton post récent... discutons-en',
 
 } as const;
