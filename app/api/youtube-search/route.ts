@@ -1,7 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { rateLimit } from '@/lib/rateLimit';
 
 export async function POST(request: NextRequest) {
   try {
+    // SECURITY: Rate limit YouTube searches to prevent API quota exhaustion
+    // Use IP-based rate limiting (20 requests per minute)
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ||
+               request.headers.get('x-real-ip') ||
+               'unknown';
+
+    const rateLimitResult = rateLimit(request, 'youtube', ip);
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        {
+          error: 'Too many search requests. Please try again later.',
+          resetTime: rateLimitResult.resetTime
+        },
+        { status: 429 }
+      );
+    }
+
     const { query } = await request.json();
 
     // Validate input
