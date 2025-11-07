@@ -230,7 +230,7 @@ function PaymentFormContent({
       >
         {isLoading ? (
           <>
-            <LoadingSpinner color="primary" size="sm" label="" />
+            <LoadingSpinner color="white" size="sm" label="" />
             {t('order.payment.processing')}
           </>
         ) : (

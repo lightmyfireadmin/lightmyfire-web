@@ -1,7 +1,7 @@
 'use client';
 
 type SpinnerSize = 'sm' | 'md' | 'lg';
-type SpinnerColor = 'primary' | 'foreground' | 'muted';
+type SpinnerColor = 'primary' | 'foreground' | 'muted' | 'white';
 
 interface LoadingSpinnerProps {
   size?: SpinnerSize;
@@ -19,6 +19,7 @@ const colorClasses: Record<SpinnerColor, string> = {
   primary: 'text-primary',
   foreground: 'text-foreground',
   muted: 'text-muted-foreground',
+  white: 'text-white',
 };
 
 export default function LoadingSpinner({

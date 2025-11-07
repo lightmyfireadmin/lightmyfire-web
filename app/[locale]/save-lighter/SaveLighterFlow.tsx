@@ -285,7 +285,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
                   <div className="border-t border-border pt-3 mt-3">
                     <p className="text-sm font-semibold text-foreground mb-2">{t('order.summary.shipping_method')}</p>
                     <div className="space-y-2">
-                      <label className="flex items-center justify-between p-3 border-2 rounded-lg cursor-pointer transition-colors hover:bg-muted/50 {selectedShipping === 'standard' ? 'border-primary bg-primary/5' : 'border-border'}">
+                      <label className={`flex items-center justify-between p-3 border-2 rounded-lg cursor-pointer transition-colors hover:bg-muted/50 ${selectedShipping === 'standard' ? 'border-primary bg-primary/5' : 'border-border'}`}>
                         <div className="flex items-center gap-3">
                           <input
                             type="radio"
@@ -302,7 +302,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
                         </div>
                         <span className="font-semibold text-foreground">{formatCurrency(shippingRates.standard, 'EUR', locale)}</span>
                       </label>
-                      <label className="flex items-center justify-between p-3 border-2 rounded-lg cursor-pointer transition-colors hover:bg-muted/50 {selectedShipping === 'express' ? 'border-primary bg-primary/5' : 'border-border'}">
+                      <label className={`flex items-center justify-between p-3 border-2 rounded-lg cursor-pointer transition-colors hover:bg-muted/50 ${selectedShipping === 'express' ? 'border-primary bg-primary/5' : 'border-border'}`}>
                         <div className="flex items-center gap-3">
                           <input
                             type="radio"
