@@ -138,15 +138,21 @@ export async function POST(request: NextRequest) {
   try {
     // SECURITY: Verify authentication before allowing resource-intensive sticker generation
     // This prevents unauthorized users from abusing the endpoint for DoS attacks
-    const cookieStore = cookies();
-    const supabase = createServerSupabaseClient(cookieStore);
-    const { data: { session } } = await supabase.auth.getSession();
+    // Exception: Allow internal calls from test endpoint in development
+    const isTestEndpoint = request.headers.get('x-internal-test') === 'true';
+    const isDevelopment = process.env.NODE_ENV !== 'production';
 
-    if (!session) {
-      return NextResponse.json(
-        { error: 'Unauthorized. Please sign in to generate stickers.' },
-        { status: 401 }
-      );
+    if (!isTestEndpoint || !isDevelopment) {
+      const cookieStore = cookies();
+      const supabase = createServerSupabaseClient(cookieStore);
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (!session) {
+        return NextResponse.json(
+          { error: 'Unauthorized. Please sign in to generate stickers.' },
+          { status: 401 }
+        );
+      }
     }
 
     const { stickers, brandingText } = await request.json();
