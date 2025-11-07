@@ -98,8 +98,9 @@ export default async function Home() {
                 alt="Arrow pointing to save lighter button"
                 width={100}
                 height={100}
-                priority
                 className="absolute top-1/2 -translate-y-1/2 w-[60px] h-[60px] lg:w-[100px] lg:h-[100px] left-[calc(100%-10px)] lg:left-[calc(100%-5px)]"
+                loading="lazy"
+                quality={80}
               />
             </div>
           </div>
@@ -121,6 +122,8 @@ export default async function Home() {
                 width={120}
                 height={128}
                 className="h-full w-auto object-contain"
+                loading="lazy"
+                quality={80}
               />
             </div>
             <h3 className="mb-2 text-lg sm:text-xl font-semibold text-foreground">
@@ -140,6 +143,8 @@ export default async function Home() {
                 width={120}
                 height={128}
                 className="h-full w-auto object-contain"
+                loading="lazy"
+                quality={80}
               />
             </div>
             <h3 className="mb-2 text-lg sm:text-xl font-semibold text-foreground">
@@ -159,6 +164,8 @@ export default async function Home() {
                 width={120}
                 height={128}
                 className="h-full w-auto object-contain"
+                loading="lazy"
+                quality={80}
               />
             </div>
             <h3 className="mb-2 text-lg sm:text-xl font-semibold text-foreground">

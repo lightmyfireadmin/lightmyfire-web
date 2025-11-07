@@ -147,6 +147,7 @@ export default function PostCard({
               height={400}
               className="w-full h-auto object-cover"
               priority={false}
+              quality={80}
             />
           </div>
         )}

@@ -93,6 +93,8 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
                       width={56}
                       height={56}
                       className="drop-shadow-sm"
+                      loading="lazy"
+                      quality={75}
                     />
                   ) : (
                     <TrophyIcon />
@@ -141,6 +143,8 @@ export default function TrophyList({ trophies }: { trophies: Trophy[] }) {
                       width={56}
                       height={56}
                       className="grayscale opacity-60"
+                      loading="lazy"
+                      quality={75}
                     />
                   ) : (
                     <TrophyIcon />

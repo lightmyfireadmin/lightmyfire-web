@@ -162,6 +162,8 @@ export default async function LighterPage({
                 width={100}
                 height={100}
                 className="w-24 h-24 object-contain"
+                loading="lazy"
+                quality={80}
               />
             </div>
 

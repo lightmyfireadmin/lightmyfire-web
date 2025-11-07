@@ -46,6 +46,8 @@ export default function AboutPage() {
             width={300}
             height={200}
             className="mx-auto my-6"
+            loading="lazy"
+            quality={80}
           />
         </div>
       </div>
