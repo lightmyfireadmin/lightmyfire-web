@@ -9,6 +9,11 @@ export const metadata: Metadata = {
     { rel: 'icon', url: '/favicon.ico' },
     { rel: 'apple-touch-icon', url: '/webclip.png' },
   ],
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+  },
 };
 
 export default function RootLayout({

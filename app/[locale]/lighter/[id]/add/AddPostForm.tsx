@@ -438,7 +438,7 @@ export default function AddPostForm({
       {}
       <div className="mb-8">
         <p className="text-center text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wide">Select Post Type</p>
-        <div className="grid grid-cols-5 gap-2 relative">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-2 relative">
             <PostTypeButton
               selected={postType === 'text'}
               onClick={() => setPostType('text')}
