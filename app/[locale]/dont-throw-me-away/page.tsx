@@ -73,6 +73,8 @@ export default function DontThrowMeAwayPage() {
                       width={192}
                       height={192}
                       className="w-full h-auto object-contain"
+                      loading="lazy"
+                      quality={75}
                     />
                   </div>
                   <div className="flex-1">
@@ -107,6 +109,8 @@ export default function DontThrowMeAwayPage() {
                       width={192}
                       height={192}
                       className="w-full h-auto object-contain"
+                      loading="lazy"
+                      quality={75}
                     />
                   </div>
                   <div className="flex-1">
@@ -143,6 +147,8 @@ export default function DontThrowMeAwayPage() {
                       width={192}
                       height={192}
                       className="w-full h-auto object-contain"
+                      loading="lazy"
+                      quality={75}
                     />
                   </div>
                   <div className="flex-1">
@@ -192,6 +198,8 @@ export default function DontThrowMeAwayPage() {
                     width={267}
                     height={133}
                     className="w-1/3 h-auto rounded-lg"
+                    loading="lazy"
+                    quality={75}
                   />
                 </div>
 
@@ -250,6 +258,8 @@ export default function DontThrowMeAwayPage() {
                     width={267}
                     height={133}
                     className="w-1/3 h-auto rounded-lg"
+                    loading="lazy"
+                    quality={75}
                   />
                 </div>
 
@@ -347,7 +357,7 @@ export default function DontThrowMeAwayPage() {
               href="/save-lighter"
               className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition"
             >
-              Save Your First Lighter
+              {t('my_profile.save_first_lighter')}
             </a>
           </div>
         </div>
