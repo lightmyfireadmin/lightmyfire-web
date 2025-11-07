@@ -282,7 +282,7 @@ export default function ColorPicker({
               onClick={() => handleColorChange(color.hex)}
               onKeyDown={(e) => handleColorKeyDown(e, idx, color.hex)}
               className={cn(
-                'relative w-12 h-12 rounded-md border-2 transition-all duration-200',
+                'relative w-10 h-10 sm:w-8 sm:h-8 rounded-md border-2 transition-all duration-200',
                 'hover:scale-105 active:scale-95',
                 'focus:outline-none focus:ring-1 focus:ring-primary',
                 'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100',
