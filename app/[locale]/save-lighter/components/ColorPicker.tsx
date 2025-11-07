@@ -24,24 +24,15 @@ const PRESET_COLORS = [
   { hex: '#20B2AA', name: 'Turquoise' },
   { hex: '#87CEEB', name: 'Sky Blue' },
   { hex: '#4169E1', name: 'Royal Blue' },
-  { hex: '#00CED1', name: 'Dark Turquoise' },
 
-  // Accent colors (Purples, Pinks)
+  // Accent colors (Purples, Pinks, Grays)
   { hex: '#8A2BE2', name: 'Blue Violet' },
-  { hex: '#800080', name: 'Deep Purple' },
   { hex: '#FF1493', name: 'Deep Pink' },
   { hex: '#FFB6C1', name: 'Light Pink' },
+  { hex: '#D3D3D3', name: 'Light Gray' },
+  { hex: '#808080', name: 'Gray' },
 ];
 
-/**
- * LightMyFire brand colors - signature palette
- */
-const BRAND_COLORS = [
-  { hex: '#FF6B35', name: 'Fire Orange', icon: '🔥', description: 'Our signature color' },
-  { hex: '#1E88E5', name: 'Ocean Blue', icon: '🌊', description: 'Journey & adventure' },
-  { hex: '#388E3C', name: 'Forest Green', icon: '🌲', description: 'Nature & growth' },
-  { hex: '#FFB74D', name: 'Sunset Gold', icon: '🌅', description: 'Warmth & memories' },
-];
 
 // ============================================================================
 // Color Utility Functions
@@ -191,15 +182,19 @@ export default function ColorPicker({
     setHexInput(value);
   }, [value]);
 
-  // Handle color change with history tracking
-  const handleColorChange = useCallback((newColor: string) => {
+  // Handle color change (without history tracking)
+  const handleColorChange = useCallback((newColor: string, saveToHistory = true) => {
     if (isValidHex(newColor) && !disabled) {
       onChange(newColor);
-      addToHistory(newColor);
 
-      // Haptic feedback on mobile
-      if ('vibrate' in navigator) {
-        navigator.vibrate(10);
+      // Only save to history if explicitly requested
+      if (saveToHistory) {
+        addToHistory(newColor);
+
+        // Haptic feedback on mobile
+        if ('vibrate' in navigator) {
+          navigator.vibrate(10);
+        }
       }
     }
   }, [onChange, addToHistory, disabled]);
@@ -214,10 +209,22 @@ export default function ColorPicker({
     }
   };
 
-  // Handle native color picker change
+  // Handle native color picker change (live preview, no history)
   const handleNativePickerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newColor = e.target.value.toUpperCase();
-    handleColorChange(newColor);
+    handleColorChange(newColor, false); // Don't save to history while dragging
+  };
+
+  // Handle native color picker commit (save to history)
+  const handleNativePickerBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const newColor = e.target.value.toUpperCase();
+    if (isValidHex(newColor)) {
+      addToHistory(newColor);
+      // Haptic feedback on mobile
+      if ('vibrate' in navigator) {
+        navigator.vibrate(10);
+      }
+    }
   };
 
   // Keyboard navigation for preset colors
@@ -255,11 +262,11 @@ export default function ColorPicker({
     <div className={cn('space-y-4', className)}>
       {/* Popular Colors Palette */}
       <div>
-        <label className="block text-sm font-semibold text-foreground mb-3">
+        <label className="block text-sm font-semibold text-foreground mb-2">
           🎨 Popular Colors
         </label>
         <div
-          className="grid grid-cols-5 sm:grid-cols-10 gap-2 sm:gap-2.5"
+          className="grid grid-cols-15 gap-1.5"
           role="radiogroup"
           aria-label="Popular color palette"
         >
@@ -275,12 +282,12 @@ export default function ColorPicker({
               onClick={() => handleColorChange(color.hex)}
               onKeyDown={(e) => handleColorKeyDown(e, idx, color.hex)}
               className={cn(
-                'relative w-full aspect-square rounded-lg border-3 transition-all duration-200',
-                'hover:scale-110 active:scale-95',
-                'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
+                'relative w-full aspect-square rounded-md border-2 transition-all duration-200',
+                'hover:scale-105 active:scale-95',
+                'focus:outline-none focus:ring-1 focus:ring-primary',
                 'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100',
                 value.toLowerCase() === color.hex.toLowerCase()
-                  ? 'border-primary scale-110 shadow-lg ring-2 ring-primary ring-offset-2'
+                  ? 'border-primary scale-105 shadow-md ring-1 ring-primary'
                   : 'border-border hover:border-primary/50'
               )}
               style={{ backgroundColor: color.hex }}
@@ -290,49 +297,6 @@ export default function ColorPicker({
                 <span className="absolute inset-0 flex items-center justify-center text-white text-lg font-bold drop-shadow-md">
                   ✓
                 </span>
-              )}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* LightMyFire Brand Colors */}
-      <div className="p-4 rounded-lg bg-primary/5 border-2 border-primary/20">
-        <label className="block text-sm font-bold text-foreground mb-3 flex items-center gap-2">
-          <span>🔥</span>
-          LightMyFire Signature Colors
-        </label>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          {BRAND_COLORS.map((color) => (
-            <button
-              key={color.hex}
-              type="button"
-              disabled={disabled}
-              onClick={() => handleColorChange(color.hex)}
-              className={cn(
-                'flex items-center gap-3 p-3 rounded-lg border-2 transition-all duration-200',
-                'hover:scale-102 active:scale-98',
-                'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
-                'disabled:opacity-50 disabled:cursor-not-allowed',
-                value.toLowerCase() === color.hex.toLowerCase()
-                  ? 'border-primary bg-primary/10 scale-102 shadow-md'
-                  : 'border-border hover:border-primary/50'
-              )}
-            >
-              <div
-                className="w-10 h-10 rounded-full border-2 border-white shadow-md flex-shrink-0"
-                style={{ backgroundColor: color.hex }}
-              />
-              <div className="flex flex-col items-start text-left min-w-0">
-                <span className="text-sm font-medium truncate w-full">
-                  {color.icon} {color.name}
-                </span>
-                <span className="text-[10px] text-muted-foreground font-mono">
-                  {color.hex}
-                </span>
-              </div>
-              {value.toLowerCase() === color.hex.toLowerCase() && (
-                <span className="ml-auto text-primary font-bold">✓</span>
               )}
             </button>
           ))}
@@ -391,6 +355,7 @@ export default function ColorPicker({
               type="color"
               value={value}
               onChange={handleNativePickerChange}
+              onBlur={handleNativePickerBlur}
               disabled={disabled}
               className="absolute inset-0 opacity-0 cursor-pointer disabled:cursor-not-allowed"
               aria-label="Visual color picker"

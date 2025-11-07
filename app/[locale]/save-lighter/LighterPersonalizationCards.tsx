@@ -178,59 +178,66 @@ export default function LighterPersonalizationCards({
                 Lighter #{useApplyAll ? '1' : actualIndex}
               </h4>
 
-              {}
-              <div className="mb-3 p-3 border-2 border-dashed border-border/50 rounded-md bg-muted/20">
-                {customization.name.length >= 3 ? (
-                  <FullStickerPreview
-                    lighterName={customization.name}
-                    pinCode="ABC-123"
-                    backgroundColor={customization.backgroundColor}
-                    language={selectedLanguage}
-                  />
-                ) : (
-                  <div className="flex items-center justify-center h-24">
-                    <p className="text-xs text-muted-foreground text-center">
-                      Enter a name (min 3 characters) to see preview
+              {/* Desktop: Side-by-side layout, Mobile: Stacked */}
+              <div className="flex flex-col lg:flex-row gap-4">
+                {/* Preview Section */}
+                <div className="lg:w-1/3 flex-shrink-0">
+                  <div className="p-3 border-2 border-dashed border-border/50 rounded-md bg-muted/20 h-full flex items-center justify-center">
+                    {customization.name.length >= 3 ? (
+                      <FullStickerPreview
+                        lighterName={customization.name}
+                        pinCode="ABC-123"
+                        backgroundColor={customization.backgroundColor}
+                        language={selectedLanguage}
+                      />
+                    ) : (
+                      <div className="flex items-center justify-center h-24">
+                        <p className="text-xs text-muted-foreground text-center">
+                          Enter a name (min 3 characters) to see preview
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Customization Controls */}
+                <div className="flex-1 space-y-3">
+                  {/* Name Input */}
+                  <div>
+                    <label className="block text-xs font-medium text-foreground mb-1">
+                      Name (3-16 characters)
+                    </label>
+                    <input
+                      type="text"
+                      value={customization.name}
+                      onChange={(e) =>
+                        handleNameChange(customization.id, e.target.value)
+                      }
+                      minLength={3}
+                      maxLength={16}
+                      className={`w-full px-2 py-1.5 rounded text-sm border ${
+                        nameLength > 0 && !isNameValid
+                          ? 'border-red-500 focus:ring-red-500'
+                          : 'border-input focus:ring-primary'
+                      } bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1`}
+                      placeholder="Lighter name..."
+                    />
+                    <p className={`mt-0.5 text-xs ${
+                      nameLength > 0 && !isNameValid ? 'text-red-500' : 'text-muted-foreground'
+                    }`}>
+                      {nameLength}/16 {nameLength > 0 && !isNameValid && '(min 3)'}
                     </p>
                   </div>
-                )}
-              </div>
 
-              {}
-              <div className="mb-3">
-                <label className="block text-xs font-medium text-foreground mb-1">
-                  Name (3-16 characters)
-                </label>
-                <input
-                  type="text"
-                  value={customization.name}
-                  onChange={(e) =>
-                    handleNameChange(customization.id, e.target.value)
-                  }
-                  minLength={3}
-                  maxLength={16}
-                  className={`w-full px-2 py-1.5 rounded text-sm border ${
-                    nameLength > 0 && !isNameValid
-                      ? 'border-red-500 focus:ring-red-500'
-                      : 'border-input focus:ring-primary'
-                  } bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1`}
-                  placeholder="Lighter name..."
-                />
-                <p className={`mt-0.5 text-xs ${
-                  nameLength > 0 && !isNameValid ? 'text-red-500' : 'text-muted-foreground'
-                }`}>
-                  {nameLength}/16 {nameLength > 0 && !isNameValid && '(min 3)'}
-                </p>
-              </div>
-
-              {}
-              {/* Advanced Color Picker with all features */}
-              <div>
-                <ColorPicker
-                  value={customization.backgroundColor}
-                  onChange={(color) => handleColorChange(customization.id, color)}
-                  showPreview={false}
-                />
+                  {/* Color Picker */}
+                  <div>
+                    <ColorPicker
+                      value={customization.backgroundColor}
+                      onChange={(color) => handleColorChange(customization.id, color)}
+                      showPreview={false}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           );
