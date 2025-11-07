@@ -264,15 +264,59 @@ export default function LighterPersonalizationCards({
         </ul>
       </div>
 
+      {/* Sticker Quality Information */}
+      <div className="rounded-lg border border-border bg-background/80 p-3">
+        <h4 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
+          <span>✨</span>
+          <span>{t('order.quality.title')}</span>
+        </h4>
+        <ul className="space-y-1 text-xs text-muted-foreground">
+          <li className="flex items-center gap-2">
+            <span className="text-primary">•</span>
+            <span>{t('order.quality.glossy_finish')}</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-primary">•</span>
+            <span>{t('order.quality.fast_application')}</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-primary">•</span>
+            <span>{t('order.quality.durability')}</span>
+          </li>
+        </ul>
+      </div>
+
+      {/* Application Guidelines */}
+      <div className="rounded-lg border border-blue-200 bg-blue-50 dark:bg-blue-950/20 p-3">
+        <h4 className="text-sm font-semibold text-blue-900 dark:text-blue-100 mb-2 flex items-center gap-2">
+          <span>💡</span>
+          <span>{t('order.guidelines.title')}</span>
+        </h4>
+        <ul className="space-y-1.5 text-xs text-blue-800 dark:text-blue-200">
+          <li className="flex items-start gap-2">
+            <span className="text-blue-600 dark:text-blue-400 mt-0.5">1.</span>
+            <span>{t('order.guidelines.step1')}</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-blue-600 dark:text-blue-400 mt-0.5">2.</span>
+            <span>{t('order.guidelines.step2')}</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-blue-600 dark:text-blue-400 mt-0.5">3.</span>
+            <span>{t('order.guidelines.step3')}</span>
+          </li>
+        </ul>
+      </div>
+
       {}
       {!canSave && (
-        <div className="rounded-lg border border-yellow-500/50 bg-yellow-50 dark:bg-yellow-950/20 p-3">
-          <p className="text-sm text-yellow-800 dark:text-yellow-200 flex items-center gap-2">
+        <div className="rounded-lg border border-yellow-500/50 bg-gray-100 dark:bg-gray-800 p-3">
+          <p className="text-sm text-yellow-700 dark:text-yellow-600 flex items-center gap-2">
             <span>⚠️</span>
             <span>
               {useApplyAll
-                ? 'Please fill in the lighter name (3-16 characters) before continuing.'
-                : 'Please fill in all lighter names (3-16 characters each) before continuing.'}
+                ? t('order.customization.validation_warning_single')
+                : t('order.customization.validation_warning_multiple')}
             </span>
           </p>
         </div>
@@ -290,7 +334,7 @@ export default function LighterPersonalizationCards({
         }`}
       >
         <span>💾</span>
-        <span>Save Sticker Customizations</span>
+        <span>{t('order.customization.save_button')}</span>
       </button>
     </div>
   );

@@ -709,13 +709,33 @@ export default {
   'order.customization.validation_warning_multiple': 'Please fill in all lighter names (3-16 characters each) before continuing.',
   'order.customization.save_button': 'Save Sticker Customizations',
 
+  // Sticker Quality
+  'order.quality.title': 'Premium Quality Stickers',
+  'order.quality.glossy_finish': 'Glossy finish',
+  'order.quality.fast_application': 'Fast and easy application',
+  'order.quality.durability': '2–3 year durability',
+
+  // Application Guidelines
+  'order.guidelines.title': 'Application Guidelines',
+  'order.guidelines.step1': 'Apply the sticker to a clean, dust-free, oil-free, and moisture-free surface.',
+  'order.guidelines.step2': 'After application, press the sticker down with a clean cloth to maximize adhesion and avoid air bubbles.',
+  'order.guidelines.step3': 'Make sure the sticker is applied correctly the first time. With every reapplication, the sticker\'s ability to stick will decrease.',
+
   // Order Summary
   'order.summary.title': 'Order Summary',
   'order.summary.pack': 'Pack:',
   'order.summary.language': 'Language:',
   'order.summary.stickers': 'Stickers:',
   'order.summary.customized': '✓ Customized',
+  'order.summary.shipping_method': 'Shipping Method:',
+  'order.summary.shipping_standard': 'Standard Shipping',
+  'order.summary.shipping_standard_time': '7-14 business days',
+  'order.summary.shipping_express': 'Express Shipping',
+  'order.summary.shipping_express_time': '3-5 business days',
+  'order.summary.subtotal': 'Subtotal:',
+  'order.summary.shipping': 'Shipping:',
   'order.summary.total': 'Total:',
+  'order.summary.shipping_calculated': '+ shipping',
 
   // Sticker Preview
   'order.preview.title': 'Your Sticker Design',

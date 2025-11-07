@@ -247,112 +247,6 @@ export default function SaveLighterFlow({ user }: { user: User }) {
       )}
 
       {}
-      {selectedPack !== null && (
-        <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
-          <h2 className="mb-4 text-2xl font-semibold text-foreground">Order Summary</h2>
-          <div className="space-y-3 text-muted-foreground">
-            <div className="flex justify-between">
-              <span>Pack:</span>
-              <span className="font-semibold text-foreground">
-                {selectedPack} {selectedPack === 1 ? 'Sticker' : 'Stickers'}
-              </span>
-            </div>
-            {customizations.length > 0 && (
-              <>
-                <div className="flex justify-between">
-                  <span>Language:</span>
-                  <span className="font-semibold text-foreground">{getLanguageName(selectedLanguage)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Stickers:</span>
-                  <span className="font-semibold text-foreground">
-                    ✓ Customized
-                  </span>
-                </div>
-              </>
-            )}
-            {shippingRates && (
-              <>
-                <div className="border-t border-border pt-3 mt-3">
-                  <p className="text-sm font-semibold text-foreground mb-2">Shipping Method:</p>
-                  <div className="space-y-2">
-                    <label className="flex items-center justify-between p-3 border-2 rounded-lg cursor-pointer transition-colors hover:bg-muted/50 {selectedShipping === 'standard' ? 'border-primary bg-primary/5' : 'border-border'}">
-                      <div className="flex items-center gap-3">
-                        <input
-                          type="radio"
-                          name="shipping"
-                          value="standard"
-                          checked={selectedShipping === 'standard'}
-                          onChange={() => setSelectedShipping('standard')}
-                          className="w-4 h-4 text-primary"
-                        />
-                        <div>
-                          <p className="font-medium text-foreground">Standard Shipping</p>
-                          <p className="text-xs text-muted-foreground">7-14 business days</p>
-                        </div>
-                      </div>
-                      <span className="font-semibold text-foreground">{formatCurrency(shippingRates.standard, 'EUR', locale)}</span>
-                    </label>
-                    <label className="flex items-center justify-between p-3 border-2 rounded-lg cursor-pointer transition-colors hover:bg-muted/50 {selectedShipping === 'express' ? 'border-primary bg-primary/5' : 'border-border'}">
-                      <div className="flex items-center gap-3">
-                        <input
-                          type="radio"
-                          name="shipping"
-                          value="express"
-                          checked={selectedShipping === 'express'}
-                          onChange={() => setSelectedShipping('express')}
-                          className="w-4 h-4 text-primary"
-                        />
-                        <div>
-                          <p className="font-medium text-foreground">Express Shipping</p>
-                          <p className="text-xs text-muted-foreground">3-5 business days</p>
-                        </div>
-                      </div>
-                      <span className="font-semibold text-foreground">{formatCurrency(shippingRates.express, 'EUR', locale)}</span>
-                    </label>
-                  </div>
-                </div>
-              </>
-            )}
-            <div className="border-t border-border pt-3 mt-3">
-              <div className="flex justify-between mb-2">
-                <span className="text-foreground">Subtotal:</span>
-                <span className="font-semibold text-foreground">
-                  {getPackPriceDisplay(selectedPack || 10, locale)}
-                </span>
-              </div>
-              {shippingRates && (
-                <div className="flex justify-between mb-2">
-                  <span className="text-foreground">Shipping:</span>
-                  <span className="font-semibold text-foreground">
-                    {formatCurrency(shippingRates[selectedShipping], 'EUR', locale)}
-                  </span>
-                </div>
-              )}
-              <div className="flex justify-between pt-2 border-t border-border">
-                <span className="font-semibold text-foreground text-lg">Total: </span>
-                <span className="font-bold text-primary text-lg">
-                  {shippingRates ? (
-                    formatCurrency(
-                      PACK_PRICING[selectedPack as keyof typeof PACK_PRICING] +
-                      shippingRates[selectedShipping],
-                      'EUR',
-                      locale
-                    )
-                  ) : (
-                    <>
-                      {getPackPriceDisplay(selectedPack || 10, locale)}
-                      <span className="text-sm text-muted-foreground ml-1">+ shipping</span>
-                    </>
-                  )}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {}
       {customizations.length > 0 && !shippingAddress && (
         <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
           <ShippingAddressForm onSave={handleShippingSave} userEmail={user.email || undefined} />
@@ -361,30 +255,137 @@ export default function SaveLighterFlow({ user }: { user: User }) {
 
       {}
       {customizations.length > 0 && shippingAddress && (
-        <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
-          <h2 className="mb-6 text-xl font-semibold text-foreground">
-            {t('save_lighter.payment_details_title')}
-          </h2>
-          <StripePaymentForm
-            orderId={`LMF-${Date.now()}`}
-            totalAmount={
-              PACK_PRICING[selectedPack as keyof typeof PACK_PRICING] +
-              (shippingRates ? shippingRates[selectedShipping] : 0)
-            }
-            userEmail={shippingAddress.email}
-            packSize={selectedPack || 10}
-            lighterData={customizations.map(c => ({
-              name: c.name,
-              backgroundColor: c.backgroundColor,
-              language: c.language || selectedLanguage
-            }))}
-            shippingAddress={shippingAddress}
-            onSuccess={(lighterIds) => {
+        <>
+          {/* Order Summary - moved above payment */}
+          <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
+            <h2 className="mb-4 text-2xl font-semibold text-foreground">{t('order.summary.title')}</h2>
+            <div className="space-y-3 text-muted-foreground">
+              <div className="flex justify-between">
+                <span>{t('order.summary.pack')}</span>
+                <span className="font-semibold text-foreground">
+                  {selectedPack} {selectedPack === 1 ? 'Sticker' : 'Stickers'}
+                </span>
+              </div>
+              {customizations.length > 0 && (
+                <>
+                  <div className="flex justify-between">
+                    <span>{t('order.summary.language')}</span>
+                    <span className="font-semibold text-foreground">{getLanguageName(selectedLanguage)}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>{t('order.summary.stickers')}</span>
+                    <span className="font-semibold text-foreground">
+                      {t('order.summary.customized')}
+                    </span>
+                  </div>
+                </>
+              )}
+              {shippingRates && (
+                <>
+                  <div className="border-t border-border pt-3 mt-3">
+                    <p className="text-sm font-semibold text-foreground mb-2">{t('order.summary.shipping_method')}</p>
+                    <div className="space-y-2">
+                      <label className="flex items-center justify-between p-3 border-2 rounded-lg cursor-pointer transition-colors hover:bg-muted/50 {selectedShipping === 'standard' ? 'border-primary bg-primary/5' : 'border-border'}">
+                        <div className="flex items-center gap-3">
+                          <input
+                            type="radio"
+                            name="shipping"
+                            value="standard"
+                            checked={selectedShipping === 'standard'}
+                            onChange={() => setSelectedShipping('standard')}
+                            className="w-4 h-4 text-primary"
+                          />
+                          <div>
+                            <p className="font-medium text-foreground">{t('order.summary.shipping_standard')}</p>
+                            <p className="text-xs text-muted-foreground">{t('order.summary.shipping_standard_time')}</p>
+                          </div>
+                        </div>
+                        <span className="font-semibold text-foreground">{formatCurrency(shippingRates.standard, 'EUR', locale)}</span>
+                      </label>
+                      <label className="flex items-center justify-between p-3 border-2 rounded-lg cursor-pointer transition-colors hover:bg-muted/50 {selectedShipping === 'express' ? 'border-primary bg-primary/5' : 'border-border'}">
+                        <div className="flex items-center gap-3">
+                          <input
+                            type="radio"
+                            name="shipping"
+                            value="express"
+                            checked={selectedShipping === 'express'}
+                            onChange={() => setSelectedShipping('express')}
+                            className="w-4 h-4 text-primary"
+                          />
+                          <div>
+                            <p className="font-medium text-foreground">{t('order.summary.shipping_express')}</p>
+                            <p className="text-xs text-muted-foreground">{t('order.summary.shipping_express_time')}</p>
+                          </div>
+                        </div>
+                        <span className="font-semibold text-foreground">{formatCurrency(shippingRates.express, 'EUR', locale)}</span>
+                      </label>
+                    </div>
+                  </div>
+                </>
+              )}
+              <div className="border-t border-border pt-3 mt-3">
+                <div className="flex justify-between mb-2">
+                  <span className="text-foreground">{t('order.summary.subtotal')}</span>
+                  <span className="font-semibold text-foreground">
+                    {getPackPriceDisplay(selectedPack || 10, locale)}
+                  </span>
+                </div>
+                {shippingRates && (
+                  <div className="flex justify-between mb-2">
+                    <span className="text-foreground">{t('order.summary.shipping')}</span>
+                    <span className="font-semibold text-foreground">
+                      {formatCurrency(shippingRates[selectedShipping], 'EUR', locale)}
+                    </span>
+                  </div>
+                )}
+                <div className="flex justify-between pt-2 border-t border-border">
+                  <span className="font-semibold text-foreground text-lg">{t('order.summary.total')} </span>
+                  <span className="font-bold text-primary text-lg">
+                    {shippingRates ? (
+                      formatCurrency(
+                        PACK_PRICING[selectedPack as keyof typeof PACK_PRICING] +
+                        shippingRates[selectedShipping],
+                        'EUR',
+                        locale
+                      )
+                    ) : (
+                      <>
+                        {getPackPriceDisplay(selectedPack || 10, locale)}
+                        <span className="text-sm text-muted-foreground ml-1">{t('order.summary.shipping_calculated')}</span>
+                      </>
+                    )}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-              window.location.href = `/${locale}/save-lighter/order-success?email=${encodeURIComponent(shippingAddress.email)}&count=${lighterIds.length}`;
-            }}
-          />
-        </div>
+          {/* Payment Form */}
+          <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
+            <h2 className="mb-6 text-xl font-semibold text-foreground">
+              {t('save_lighter.payment_details_title')}
+            </h2>
+            <StripePaymentForm
+              orderId={`LMF-${Date.now()}`}
+              totalAmount={
+                PACK_PRICING[selectedPack as keyof typeof PACK_PRICING] +
+                (shippingRates ? shippingRates[selectedShipping] : 0)
+              }
+              userEmail={shippingAddress.email}
+              packSize={selectedPack || 10}
+              lighterData={customizations.map(c => ({
+                name: c.name,
+                backgroundColor: c.backgroundColor,
+                language: c.language || selectedLanguage
+              }))}
+              shippingAddress={shippingAddress}
+              onSuccess={(lighterIds) => {
+
+                window.location.href = `/${locale}/save-lighter/order-success?email=${encodeURIComponent(shippingAddress.email)}&count=${lighterIds.length}`;
+              }}
+            />
+          </div>
+        </>
       )}
 
       {}
