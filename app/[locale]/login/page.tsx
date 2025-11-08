@@ -4,7 +4,7 @@ import { supabase } from '@/lib/supabase';
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useToast } from '@/lib/context/ToastContext';
 import { useI18n, useCurrentLocale } from '@/locales/client';
 import Link from 'next/link';
@@ -17,6 +17,7 @@ export default function LoginPage() {
   const locale = useCurrentLocale();
   const [authAttempts, setAuthAttempts] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
+  const isProcessingRef = useRef(false);
 
   const getRedirectUrl = () => {
     let url =
@@ -44,7 +45,8 @@ export default function LoginPage() {
     } = supabase.auth.onAuthStateChange(async (event, session) => {
       console.log('Auth state change:', event, session ? 'Session exists' : 'No session');
 
-      if (event === 'SIGNED_IN' && session && !isProcessing) {
+      if (event === 'SIGNED_IN' && session && !isProcessingRef.current) {
+        isProcessingRef.current = true;
         setIsProcessing(true);
         setAuthAttempts(prev => prev + 1);
 
@@ -64,22 +66,21 @@ export default function LoginPage() {
               router.refresh();
             } else {
               console.error('Session lost during login process');
-              if (authAttempts < 2) {
-                addToast({ message: t('auth.session_error_retry'), type: 'warning' });
-              } else {
-                addToast({ message: t('auth.session_error'), type: 'error' });
-              }
+              addToast({ message: t('auth.session_error'), type: 'error' });
+              isProcessingRef.current = false;
               setIsProcessing(false);
             }
           } catch (error) {
             console.error('Login verification error:', error);
             addToast({ message: t('auth.login_error'), type: 'error' });
+            isProcessingRef.current = false;
             setIsProcessing(false);
           }
         }, 500);
       }
 
       if (event === 'SIGNED_OUT') {
+        isProcessingRef.current = false;
         setIsProcessing(false);
         setAuthAttempts(0);
       }
@@ -93,7 +94,7 @@ export default function LoginPage() {
       if (timeoutId) clearTimeout(timeoutId);
       subscription?.unsubscribe();
     };
-  }, [router, addToast, t, locale, authAttempts, isProcessing]);
+  }, [router, addToast, t, locale]);
 
   return (
     <div className="flex min-h-screen items-center justify-center p-4">
