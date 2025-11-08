@@ -126,9 +126,9 @@ export async function GET(request: NextRequest, { params }: { params: { locale: 
     }
   }
 
-  
+
   if (hasError) {
-    return NextResponse.redirect(`${requestUrl.origin}/${locale}/login?error=auth_failed`);
+    return NextResponse.redirect(`${requestUrl.origin}/${locale}?error=auth_failed`);
   }
 
   const queryParam = isNewUser ? 'signup_success=true' : 'login_success=true';

@@ -8,7 +8,7 @@ import { getI18n, getCurrentLocale } from '@/locales/server';
 import RandomPostFeed from '@/app/components/RandomPostFeed';
 import InfoPopup from '@/app/components/InfoPopup';
 import { Suspense } from 'react';
-import SuccessNotification from '@/app/components/SuccessNotification';
+import AuthNotification from '@/app/components/AuthNotification';
 import SignupWelcomeModal from '@/app/components/SignupWelcomeModal';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
@@ -32,7 +32,7 @@ export default async function Home() {
   return (
     <div>
       <Suspense fallback={null}>
-        <SuccessNotification />
+        <AuthNotification />
       </Suspense>
       <Suspense fallback={null}>
         <SignupWelcomeModal />
