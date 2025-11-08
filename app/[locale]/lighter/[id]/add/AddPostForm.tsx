@@ -38,7 +38,7 @@ function PostTypeButton({
       className={`p-3 rounded-lg border-2 transition-all duration-200 text-center ${
         selected
           ? `${colorClass} shadow-md scale-105 font-semibold`
-          : 'border-border text-muted-foreground hover:text-foreground hover:border-border'
+          : 'border-border text-muted-foreground hover:text-foreground hover:border-border active:bg-muted/50 md:active:bg-transparent'
       }`}
     >
       <div className="text-2xl mb-1">{icon}</div>
