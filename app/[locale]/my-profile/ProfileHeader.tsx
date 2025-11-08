@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import ModeratorBadge from '@/app/components/ModeratorBadge';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
+import { useCurrentLocale } from '@/locales/client';
 
 interface ProfileHeaderProps {
   username: string;
@@ -33,6 +34,7 @@ export default function ProfileHeader({
   role,
 }: ProfileHeaderProps) {
   const [showLevelTooltip, setShowLevelTooltip] = useState(false);
+  const locale = useCurrentLocale();
 
   const currentLevelPoints = getTotalPointsForLevel(level);
   const nextLevelPoints = getTotalPointsForLevel(level + 1);
@@ -107,11 +109,22 @@ export default function ProfileHeader({
         </div>
       )}
 
-      {role === 'moderator' && (
-        <Link href="/moderation" className="inline-flex items-center gap-2 px-4 py-3 rounded-md bg-sky-500 text-white hover:bg-sky-600 transition-colors duration-200 font-medium shadow-md hover:shadow-lg">
-          <span>🛡️</span>
-          <span>Go to Moderation</span>
-        </Link>
+      {/* Admin and Moderator Links */}
+      {(role === 'admin' || role === 'moderator') && (
+        <div className="flex flex-wrap gap-3 mt-4">
+          {role === 'admin' && (
+            <Link href={`/${locale}/admin`} className="inline-flex items-center gap-2 px-4 py-3 rounded-md bg-red-500 text-white hover:bg-red-600 transition-colors duration-200 font-medium shadow-md hover:shadow-lg">
+              <span>👑</span>
+              <span>Admin Panel</span>
+            </Link>
+          )}
+          {(role === 'admin' || role === 'moderator') && (
+            <Link href={`/${locale}/moderation`} className="inline-flex items-center gap-2 px-4 py-3 rounded-md bg-sky-500 text-white hover:bg-sky-600 transition-colors duration-200 font-medium shadow-md hover:shadow-lg">
+              <span>🛡️</span>
+              <span>Moderation Panel</span>
+            </Link>
+          )}
+        </div>
       )}
     </div>
   );
