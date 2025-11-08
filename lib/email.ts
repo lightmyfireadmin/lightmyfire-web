@@ -283,157 +283,10 @@ export async function sendOrderShippedEmail(data: OrderShippedData) {
 }
 
 // ============================================================================
-// MODERATION EMAILS
+// MODERATION EMAILS - REMOVED
 // ============================================================================
-
-interface PostFlaggedData {
-  userEmail: string;
-  userName?: string;
-  postType: string;
-  postContent: string;
-  lighterName: string;
-  lighterPin: string;
-  flagReason?: string;
-  postId: string;
-}
-
-/**
- * Notify user their post has been flagged and is under review
- */
-export async function sendPostFlaggedEmail(data: PostFlaggedData) {
-  const content = `
-    <p>Hi ${data.userName || 'there'},</p>
-    <p>Your recent post on lighter "<strong>${data.lighterName}</strong>" has been flagged for review by our community moderation team.</p>
-
-    <div class="section">
-      <h3>📋 Post Details</h3>
-      <p><strong>Lighter:</strong> ${data.lighterName} (PIN: <span class="pin-code">${data.lighterPin}</span>)</p>
-      <p><strong>Post Type:</strong> <span class="badge badge-info">${data.postType}</span></p>
-      <p><strong>Content:</strong></p>
-      <div class="highlight-box">
-        ${data.postContent}
-      </div>
-      ${data.flagReason ? `<p><strong>Flag Reason:</strong> ${data.flagReason}</p>` : ''}
-    </div>
-
-    <div class="section">
-      <h3>⏱️ What Happens Next?</h3>
-      <p>Our moderation team will review this post within 24 hours. Your post is temporarily hidden until the review is complete.</p>
-      <p>If approved, your post will be made visible again. If rejected, you'll receive an explanation.</p>
-    </div>
-
-    <p>We strive to keep LightMyFire a positive, respectful space for everyone. Thank you for your understanding.</p>
-  `;
-
-  return sendEmail({
-    to: data.userEmail,
-    subject: `Your Post is Under Review`,
-    html: wrapEmailTemplate(content, 'Post Flagged', 'Your content is being reviewed'),
-    from: EMAIL_CONFIG.from.moderation,
-  });
-}
-
-interface PostApprovedData {
-  userEmail: string;
-  userName?: string;
-  postType: string;
-  lighterName: string;
-  lighterPin: string;
-  postUrl: string;
-}
-
-/**
- * Notify user their flagged post has been approved
- */
-export async function sendPostApprovedEmail(data: PostApprovedData) {
-  const content = `
-    <p>Good news, ${data.userName || 'there'}! ✅</p>
-    <p>Your post on lighter "<strong>${data.lighterName}</strong>" has been reviewed and <strong>approved</strong> by our moderation team.</p>
-
-    <div class="section">
-      <h3>✅ Post Approved</h3>
-      <p><strong>Lighter:</strong> ${data.lighterName} (PIN: <span class="pin-code">${data.lighterPin}</span>)</p>
-      <p><strong>Post Type:</strong> <span class="badge badge-success">${data.postType}</span></p>
-      <p><strong>Status:</strong> <span class="badge badge-success">Live & Visible</span></p>
-    </div>
-
-    <div style="text-align: center; margin: 30px 0;">
-      <a href="${data.postUrl}" class="button">View Your Post</a>
-    </div>
-
-    <p>Your post is now visible to everyone. Thank you for contributing positively to the LightMyFire community! 🔥</p>
-  `;
-
-  return sendEmail({
-    to: data.userEmail,
-    subject: `✅ Your Post Has Been Approved`,
-    html: wrapEmailTemplate(content, 'Post Approved', 'Your content is now live'),
-    from: EMAIL_CONFIG.from.moderation,
-  });
-}
-
-interface PostRejectedData {
-  userEmail: string;
-  userName?: string;
-  postType: string;
-  postContent: string;
-  lighterName: string;
-  lighterPin: string;
-  rejectionReason: string;
-  violationDetails?: string;
-  appealUrl?: string;
-}
-
-/**
- * Notify user their post has been rejected
- */
-export async function sendPostRejectedEmail(data: PostRejectedData) {
-  const content = `
-    <p>Hi ${data.userName || 'there'},</p>
-    <p>After reviewing your post on lighter "<strong>${data.lighterName}</strong>", our moderation team has determined it violates our community guidelines.</p>
-
-    <div class="section">
-      <h3>❌ Post Rejected</h3>
-      <p><strong>Lighter:</strong> ${data.lighterName} (PIN: <span class="pin-code">${data.lighterPin}</span>)</p>
-      <p><strong>Post Type:</strong> <span class="badge badge-danger">${data.postType}</span></p>
-      <p><strong>Status:</strong> <span class="badge badge-danger">Removed</span></p>
-    </div>
-
-    <div class="highlight-box">
-      <p><strong>Reason for Rejection:</strong></p>
-      <p>${data.rejectionReason}</p>
-      ${data.violationDetails ? `<p style="margin-top: 10px;"><strong>Details:</strong> ${data.violationDetails}</p>` : ''}
-    </div>
-
-    <div class="section">
-      <h3>📖 Community Guidelines</h3>
-      <p>Please review our community guidelines to understand what content is acceptable on LightMyFire:</p>
-      <ul>
-        <li>Be respectful and kind</li>
-        <li>No hate speech, harassment, or bullying</li>
-        <li>No explicit or inappropriate content</li>
-        <li>No spam or misleading information</li>
-        <li>No illegal content or activities</li>
-      </ul>
-    </div>
-
-    ${data.appealUrl ? `
-      <div style="text-align: center; margin: 30px 0;">
-        <p>Think this was a mistake?</p>
-        <a href="${data.appealUrl}" class="button">Appeal This Decision</a>
-      </div>
-    ` : ''}
-
-    <p>We appreciate your understanding as we work to maintain a positive community for all LightSavers.</p>
-  `;
-
-  return sendEmail({
-    to: data.userEmail,
-    subject: `Your Post Could Not Be Approved`,
-    html: wrapEmailTemplate(content, 'Post Rejected', 'Review required'),
-    from: EMAIL_CONFIG.from.moderation,
-  });
-}
+// NOTE: Users are NEVER notified about moderation status per product requirements.
+// Moderators handle all communication manually on a case-by-case basis.
 
 // ============================================================================
 // ENGAGEMENT EMAILS
@@ -800,10 +653,7 @@ export const emailService = {
   sendOrderConfirmationEmail,
   sendOrderShippedEmail,
 
-  // Moderation emails
-  sendPostFlaggedEmail,
-  sendPostApprovedEmail,
-  sendPostRejectedEmail,
+  // Moderation emails - REMOVED (users are never notified of moderation status)
 
   // Engagement emails
   sendFirstPostCelebrationEmail,

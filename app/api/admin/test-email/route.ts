@@ -144,43 +144,8 @@ export async function POST(request: NextRequest) {
         });
         break;
 
-      case 'post_flagged':
-        result = await emailService.sendPostFlaggedEmail({
-          userEmail: recipientEmail,
-          userName: 'Test User',
-          lighterName: 'The Wanderer',
-          lighterPin: 'ABCD1234',
-          postType: 'text',
-          postContent: 'This is a test post that has been flagged for review.',
-          postId: 'test-post-id',
-          flagReason: 'Potentially inappropriate content',
-        });
-        break;
-
-      case 'post_approved':
-        result = await emailService.sendPostApprovedEmail({
-          userEmail: recipientEmail,
-          userName: 'Test User',
-          lighterName: 'The Wanderer',
-          lighterPin: 'ABCD1234',
-          postType: 'text',
-          postUrl: `${baseUrl}/en/lighter/test-lighter-id`,
-        });
-        break;
-
-      case 'post_rejected':
-        result = await emailService.sendPostRejectedEmail({
-          userEmail: recipientEmail,
-          userName: 'Test User',
-          lighterName: 'The Wanderer',
-          lighterPin: 'ABCD1234',
-          postType: 'text',
-          postContent: 'This is the content that was rejected.',
-          rejectionReason: 'Content violates community guidelines',
-          violationDetails: 'The post contained language that doesn\'t align with our community standards.',
-          appealUrl: `${baseUrl}/en/support`,
-        });
-        break;
+      // MODERATION EMAILS REMOVED - Users are never notified of moderation status
+      // Moderators handle all communication manually on case-by-case basis
 
       case 'moderator_invite':
         result = await emailService.sendModeratorInviteEmail({

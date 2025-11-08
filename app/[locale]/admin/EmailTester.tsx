@@ -9,9 +9,10 @@ const EMAIL_TYPES = [
   { value: 'first_post', label: '🌟 First Post Celebration', description: 'Sent when user adds their first post' },
   { value: 'trophy_earned', label: '🏆 Trophy Earned', description: 'Sent when user unlocks an achievement' },
   { value: 'lighter_activity', label: '🔔 Lighter Activity', description: 'Sent when someone interacts with user\'s lighter' },
-  { value: 'post_flagged', label: '⚠️ Post Flagged', description: 'Sent when user\'s post is flagged' },
-  { value: 'post_approved', label: '✅ Post Approved', description: 'Sent when flagged post is approved' },
-  { value: 'post_rejected', label: '❌ Post Rejected', description: 'Sent when flagged post is rejected' },
+  // MODERATION EMAILS REMOVED - Users are never notified of moderation status
+  // { value: 'post_flagged', label: '⚠️ Post Flagged', description: 'Sent when user\'s post is flagged' },
+  // { value: 'post_approved', label: '✅ Post Approved', description: 'Sent when flagged post is approved' },
+  // { value: 'post_rejected', label: '❌ Post Rejected', description: 'Sent when flagged post is rejected' },
   { value: 'moderator_invite', label: '👮 Moderator Invite', description: 'Sent to invite user to moderation team' },
 ];
 

@@ -36,46 +36,8 @@ await emailService.sendOrderShippedEmail({
 
 ### Moderation Emails
 
-#### Notify User Their Post Was Flagged
-```typescript
-await emailService.sendPostFlaggedEmail({
-  userEmail: 'user@example.com',
-  userName: 'John',
-  postType: 'Text Post',
-  postContent: 'This was my post content...',
-  lighterName: 'My Lighter',
-  lighterPin: '123-456',
-  flagReason: 'Reported as inappropriate',
-  postId: 'post_123'
-});
-```
-
-#### Notify User Their Post Was Approved
-```typescript
-await emailService.sendPostApprovedEmail({
-  userEmail: 'user@example.com',
-  userName: 'John',
-  postType: 'Text Post',
-  lighterName: 'My Lighter',
-  lighterPin: '123-456',
-  postUrl: 'https://lightmyfire.app/en/lighter/abc123'
-});
-```
-
-#### Notify User Their Post Was Rejected
-```typescript
-await emailService.sendPostRejectedEmail({
-  userEmail: 'user@example.com',
-  userName: 'John',
-  postType: 'Text Post',
-  postContent: 'This was my post content...',
-  lighterName: 'My Lighter',
-  lighterPin: '123-456',
-  rejectionReason: 'Violates community guidelines',
-  violationDetails: 'Content contains hate speech',
-  appealUrl: 'https://lightmyfire.app/en/appeal?post=123'
-});
-```
+**IMPORTANT:** Users are NEVER notified about moderation status (flagged, approved, rejected).
+Moderators handle all user communication manually on a case-by-case basis.
 
 ### Engagement Emails
 
@@ -226,47 +188,12 @@ if (!result.success) {
 ### When to send emails:
 
 1. **Order Shipped** - When Printful/fulfillment updates order status
-2. **Post Flagged** - Immediately when post receives flag
-3. **Post Approved/Rejected** - When moderator takes action
-4. **First Post** - Right after post is created (check if first)
-5. **Trophy Earned** - When achievement is unlocked
-6. **Lighter Activity** - Configurable (immediate, daily digest, weekly)
-7. **Moderator Invite** - When admin promotes user
+2. **First Post** - Right after post is created (check if first)
+3. **Trophy Earned** - When achievement is unlocked
+4. **Lighter Activity** - Configurable (immediate, daily digest, weekly)
+5. **Moderator Invite** - When admin promotes user
 
-### Example API route integration:
-
-```typescript
-// app/api/moderate-post/route.ts
-import { emailService } from '@/lib/email';
-
-export async function POST(request: Request) {
-  // ... moderation logic ...
-
-  if (action === 'approve') {
-    await emailService.sendPostApprovedEmail({
-      userEmail: post.author_email,
-      userName: post.author_name,
-      postType: post.type,
-      lighterName: lighter.name,
-      lighterPin: lighter.pin_code,
-      postUrl: `${baseUrl}/${locale}/lighter/${post.lighter_id}`
-    });
-  } else if (action === 'reject') {
-    await emailService.sendPostRejectedEmail({
-      userEmail: post.author_email,
-      userName: post.author_name,
-      postType: post.type,
-      postContent: post.content,
-      lighterName: lighter.name,
-      lighterPin: lighter.pin_code,
-      rejectionReason: moderationReason,
-      violationDetails: moderationDetails
-    });
-  }
-
-  // ... rest of logic ...
-}
-```
+**Note:** Users are NEVER notified about moderation actions. Moderators contact users manually when needed.
 
 ## Localization (Future Enhancement)
 

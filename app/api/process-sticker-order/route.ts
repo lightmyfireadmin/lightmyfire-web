@@ -321,7 +321,7 @@ The sticker PNG file is attached. Please fulfill this order.
 
     try {
       await resend.emails.send({
-        from: 'LightMyFire Orders <onboarding@resend.dev>',
+        from: 'LightMyFire Orders <orders@lightmyfire.app>',
         to: [fulfillmentEmail],
         subject: `New Sticker Order - ${lighterData.length} stickers - ${paymentIntentId}`,
         html: `

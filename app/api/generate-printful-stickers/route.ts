@@ -93,6 +93,182 @@ interface StickerData {
   language: string;
 }
 
+// Sticker text translations
+const STICKER_TEXTS: Record<string, {
+  youFoundMe: string;
+  tellThemHowWeMet: string;
+  orGoTo: string;
+  website: string;
+  andTypeMyCode: string;
+}> = {
+  'en': {
+    youFoundMe: "You found me! I'm",
+    tellThemHowWeMet: "Tell them how we met",
+    orGoTo: "or go to",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "and type my code"
+  },
+  'fr': {
+    youFoundMe: "Je m'appelle",
+    tellThemHowWeMet: "Raconte notre rencontre",
+    orGoTo: "ou rends-toi ici :",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "et rentre mon code"
+  },
+  'es': {
+    youFoundMe: "Me llamo",
+    tellThemHowWeMet: "Diles cómo nos conocimos",
+    orGoTo: "o visita",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "e introduce mi código"
+  },
+  'de': {
+    youFoundMe: "Ich bin",
+    tellThemHowWeMet: "Erzähl von unserem Treffen",
+    orGoTo: "oder geh zu",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "und gib meinen Code ein"
+  },
+  'it': {
+    youFoundMe: "Mi chiamo",
+    tellThemHowWeMet: "Racconta il nostro incontro",
+    orGoTo: "o vai su",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "e digita il mio codice"
+  },
+  'pt': {
+    youFoundMe: "Meu nome é",
+    tellThemHowWeMet: "Conte como nos conhecemos",
+    orGoTo: "ou acesse",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "e digite meu código"
+  },
+  'nl': {
+    youFoundMe: "Ik ben",
+    tellThemHowWeMet: "Vertel hoe we elkaar vonden",
+    orGoTo: "of ga naar",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "en typ mijn code"
+  },
+  'ru': {
+    youFoundMe: "Меня зовут",
+    tellThemHowWeMet: "Расскажи о встрече",
+    orGoTo: "или зайди на",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "и введи мой код"
+  },
+  'pl': {
+    youFoundMe: "Nazywam się",
+    tellThemHowWeMet: "Opowiedz jak się poznaliśmy",
+    orGoTo: "lub wejdź na",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "i wpisz mój kod"
+  },
+  'ja': {
+    youFoundMe: "私の名前は",
+    tellThemHowWeMet: "出会いを語って",
+    orGoTo: "またはこちら：",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "私のコードを入力"
+  },
+  'ko': {
+    youFoundMe: "내 이름은",
+    tellThemHowWeMet: "만남을 말해줘",
+    orGoTo: "또는 방문:",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "내 코드를 입력하세요"
+  },
+  'zh-CN': {
+    youFoundMe: "我叫",
+    tellThemHowWeMet: "讲讲我们的相遇",
+    orGoTo: "或访问",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "并输入我的代码"
+  },
+  'ar': {
+    youFoundMe: "اسمي",
+    tellThemHowWeMet: "أخبرهم بلقائنا",
+    orGoTo: "أو ادخل على",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "وأدخل رمزي"
+  },
+  'fa': {
+    youFoundMe: "اسم من",
+    tellThemHowWeMet: "از ملاقاتمان بگو",
+    orGoTo: "یا برو به",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "و کد من را وارد کنید"
+  },
+  'hi': {
+    youFoundMe: "मेरा नाम है",
+    tellThemHowWeMet: "बताओ हम कैसे मिले",
+    orGoTo: "या जाएं",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "और मेरा कोड टाइप करें"
+  },
+  'id': {
+    youFoundMe: "Namaku",
+    tellThemHowWeMet: "Ceritakan pertemuan kita",
+    orGoTo: "atau kunjungi",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "dan ketik kodeku"
+  },
+  'mr': {
+    youFoundMe: "माझे नाव",
+    tellThemHowWeMet: "सांग आम्ही कसे भेटलो",
+    orGoTo: "किंवा येथे जा",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "आणि माझा कोड टाइप करा"
+  },
+  'te': {
+    youFoundMe: "నా పేరు",
+    tellThemHowWeMet: "మన కలయిక చెప్పు",
+    orGoTo: "లేదా వెళ్ళు",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "మరియు నా కోడ్ టైప్ చేయండి"
+  },
+  'th': {
+    youFoundMe: "ฉันชื่อ",
+    tellThemHowWeMet: "บอกว่าเราเจอกันอย่างไร",
+    orGoTo: "หรือไปที่",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "และพิมพ์รหัสของฉัน"
+  },
+  'tr': {
+    youFoundMe: "Adım",
+    tellThemHowWeMet: "Tanışmamızı anlat",
+    orGoTo: "veya git",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "ve kodumu yaz"
+  },
+  'uk': {
+    youFoundMe: "Мене звати",
+    tellThemHowWeMet: "Розкажи про зустріч",
+    orGoTo: "або зайди на",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "і введи мій код"
+  },
+  'ur': {
+    youFoundMe: "میرا نام",
+    tellThemHowWeMet: "ملاقات بتائیں",
+    orGoTo: "یا جائیں",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "اور میرا کوڈ ٹائپ کریں"
+  },
+  'vi': {
+    youFoundMe: "Tên tôi là",
+    tellThemHowWeMet: "Kể về cuộc gặp gỡ",
+    orGoTo: "hoặc truy cập",
+    website: "LIGHTMYFIRE.APP",
+    andTypeMyCode: "và nhập mã của tôi"
+  }
+};
+
+// Get sticker texts for a language (fallback to English)
+function getStickerTexts(language: string) {
+  return STICKER_TEXTS[language] || STICKER_TEXTS['en'];
+}
+
 // Helper function to calculate luminance of a hex color
 function getLuminance(hex: string): number {
   let r = 0, g = 0, b = 0;
@@ -220,22 +396,33 @@ export async function POST(request: NextRequest) {
 
     // Create ZIP file using proper stream handling
     const archive = archiver('zip', { zlib: { level: 9 } });
-    const chunks: Uint8Array[] = [];
+    const chunks: Buffer[] = [];
 
-    // Wait for ZIP to finish
+    // Wait for ZIP to finish - archiver needs to be listened on directly
     const zipPromise = new Promise<Buffer>((resolve, reject) => {
-      archive.on('data', (chunk: Uint8Array) => chunks.push(chunk));
-      archive.on('end', () => {
-        const totalLength = chunks.reduce((acc, chunk) => acc + chunk.length, 0);
-        const result = new Uint8Array(totalLength);
-        let offset = 0;
-        for (const chunk of chunks) {
-          result.set(chunk, offset);
-          offset += chunk.length;
-        }
-        resolve(Buffer.from(result));
+      // Listen to data events from the archiver directly
+      archive.on('data', (chunk: Buffer) => {
+        chunks.push(chunk);
       });
-      archive.on('error', reject);
+
+      // Listen to finish event when archiver is done
+      archive.on('finish', () => {
+        const zipBuffer = Buffer.concat(chunks);
+        resolve(zipBuffer);
+      });
+
+      archive.on('error', (err) => {
+        console.error('Archiver error:', err);
+        reject(err);
+      });
+
+      archive.on('warning', (err) => {
+        if (err.code === 'ENOENT') {
+          console.warn('Archiver warning:', err);
+        } else {
+          reject(err);
+        }
+      });
     });
 
     // Add all sheets to ZIP
@@ -243,8 +430,10 @@ export async function POST(request: NextRequest) {
       archive.append(sheet.buffer, { name: sheet.filename });
     }
 
-    // Finalize ZIP
-    archive.finalize();
+    // Finalize ZIP - MUST call this to trigger finish event
+    await archive.finalize();
+
+    // Wait for the ZIP to be fully generated
     const zipBuffer = await zipPromise;
 
     return new NextResponse(new Uint8Array(zipBuffer), {
@@ -375,12 +564,15 @@ async function drawSticker(
   roundRect(ctx, x + padding, currentY, contentWidth, cardHeight, cardRadius);
   ctx.fill();
 
+  // Get translations for this sticker's language
+  const texts = getStickerTexts(sticker.language);
+
   // "You found me! I'm" text - on same line
   ctx.fillStyle = '#000000';
   ctx.font = `500 36px Poppins, Arial, sans-serif`; // Doubled for 600 DPI
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText("You found me! I'm", x + STICKER_WIDTH_PX / 2, currentY + 44); // Doubled for 600 DPI
+  ctx.fillText(texts.youFoundMe, x + STICKER_WIDTH_PX / 2, currentY + 44); // Doubled for 600 DPI
 
   // Name text
   ctx.font = `800 48px Poppins, Arial, sans-serif`; // Doubled for 600 DPI
@@ -396,39 +588,7 @@ async function drawSticker(
   ctx.font = `800 34px Poppins, Arial, sans-serif`; // Slightly reduced to prevent overflow
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
-  ctx.fillText('Tell them how we met', x + STICKER_WIDTH_PX / 2, currentY + 4);
-
-  // Translation - Complete language support (adapted for "Tell them how we met")
-  // Optimized to prevent overflow on stickers
-  const translations: { [key: string]: string } = {
-    fr: 'Dis comment on s\'est rencontrés',  // Shortened for space
-    es: 'Diles cómo nos conocimos',           // Optimized
-    de: 'Erzähl von unserem Treffen',       // Shortened
-    it: 'Racconta il nostro incontro',      // Optimized
-    pt: 'Conte como nos conhecemos',        // Already good
-    ar: 'أخبرهم بلقائنا',                   // Shortened
-    fa: 'از ملاقاتمان بگو',                 // Shortened
-    hi: 'बताओ हम कैसे मिले',                // Already good
-    id: 'Ceritakan pertemuan kita',         // Optimized
-    ja: '出会いを語って',                     // Shortened
-    ko: '만남을 말해줘',                      // Shortened
-    mr: 'सांग आम्ही कसे भेटलो',             // Already good
-    nl: 'Vertel hoe we elkaar vonden',      // Optimized
-    pl: 'Opowiedz jak się poznaliśmy',      // Already good
-    ru: 'Расскажи о встрече',                // Shortened
-    te: 'మన కలయిక చెప్పు',                   // Shortened
-    th: 'บอกว่าเราเจอกันอย่างไร',            // Optimized
-    tr: 'Tanışmamızı anlat',                 // Shortened
-    uk: 'Розкажи про зустріч',               // Shortened
-    ur: 'ملاقات بتائیں',                     // Shortened
-    vi: 'Kể về cuộc gặp gỡ',                 // Optimized
-    'zh-CN': '讲讲我们的相遇',                 // Optimized
-  };
-
-  const translationText = translations[sticker.language] || translations.fr;
-  ctx.font = `500 28px Poppins, Arial, sans-serif`; // Reduced for overflow prevention
-  ctx.textBaseline = 'top';
-  ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + 42);
+  ctx.fillText(texts.tellThemHowWeMet, x + STICKER_WIDTH_PX / 2, currentY + 4);
 
   currentY += 100; // Increased spacing after invitation section for breathing room
 
@@ -476,10 +636,10 @@ async function drawSticker(
   ctx.font = `500 32px Poppins, Arial, sans-serif`; // Doubled from 16px
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText('or go to', x + STICKER_WIDTH_PX / 2, currentY + 38); // Adjusted position
+  ctx.fillText(texts.orGoTo, x + STICKER_WIDTH_PX / 2, currentY + 38); // Adjusted position
   // Use Poppins-Bold and all caps for better letter spacing and readability at small scale
   ctx.font = `bold 36px Poppins, Arial, sans-serif`; // Doubled from 18px
-  ctx.fillText('LIGHTMYFIRE.APP', x + STICKER_WIDTH_PX / 2, currentY + 80); // Adjusted position
+  ctx.fillText(texts.website, x + STICKER_WIDTH_PX / 2, currentY + 80); // Adjusted position
 
   currentY += urlBgHeight + smallGap;
 
@@ -488,38 +648,7 @@ async function drawSticker(
   ctx.font = `800 36px Poppins, Arial, sans-serif`; // Heavy bold (800 weight)
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
-  ctx.fillText('and type my code', x + STICKER_WIDTH_PX / 2, currentY + 4);
-
-  // Translation - Complete language support (shorter versions)
-  const codeTranslations: { [key: string]: string } = {
-    fr: 'et entre mon code',
-    es: 'e introduce mi código',
-    de: 'und gib meinen Code ein',
-    it: 'e digita il mio codice',
-    pt: 'e digite meu código',
-    ar: 'وأدخل رمزي',
-    fa: 'و کد من را وارد کنید',
-    hi: 'और मेरा कोड टाइप करें',
-    id: 'dan ketik kodeku',
-    ja: '私のコードを入力',
-    ko: '내 코드를 입력하세요',
-    mr: 'आणि माझा कोड टाइप करा',
-    nl: 'en typ mijn code',
-    pl: 'i wpisz mój kod',
-    ru: 'и введи мой код',
-    te: 'మరియు నా కోడ్ టైప్ చేయండి',
-    th: 'และพิมพ์รหัสของฉัน',
-    tr: 've kodumu yaz',
-    uk: 'і введи мій код',
-    ur: 'اور میرا کوڈ ٹائپ کریں',
-    vi: 'và nhập mã của tôi',
-    'zh-CN': '并输入我的代码',
-  };
-
-  const codeText = codeTranslations[sticker.language] || codeTranslations.fr;
-  ctx.font = `500 28px Poppins, Arial, sans-serif`; // Doubled from 14px
-  ctx.textBaseline = 'top';
-  ctx.fillText(codeText, x + STICKER_WIDTH_PX / 2, currentY + 46); // Adjusted position
+  ctx.fillText(texts.andTypeMyCode, x + STICKER_WIDTH_PX / 2, currentY + 4);
 
   currentY += 76; // Section height - doubled from 38
   currentY += (smallGap * 3); // TRIPLED gap before PIN code
