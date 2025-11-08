@@ -138,12 +138,34 @@ export async function POST(request: NextRequest) {
   try {
     // SECURITY: Verify authentication before allowing resource-intensive sticker generation
     // This prevents unauthorized users from abusing the endpoint for DoS attacks
-    // Exception: Allow internal calls from test endpoint in development
+    // Exceptions:
+    // 1. Internal calls from process-sticker-order endpoint (with internal auth header)
+    // 2. Test endpoint calls in development
+    const internalAuth = request.headers.get('x-internal-auth');
+    const userId = request.headers.get('x-user-id');
     const isTestEndpoint = request.headers.get('x-internal-test') === 'true';
     const isDevelopment = process.env.NODE_ENV !== 'production';
 
-    // Only skip auth checks when BOTH conditions are true (internal test AND development)
-    if (!(isTestEndpoint && isDevelopment)) {
+    // Check for internal authentication (server-to-server)
+    let isInternalAuth = false;
+    if (internalAuth && userId && process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      try {
+        const decoded = Buffer.from(internalAuth, 'base64').toString('utf-8');
+        const [authUserId, timestamp, serviceKey] = decoded.split(':');
+
+        // Verify internal auth token
+        const isValidUser = authUserId === userId;
+        const isValidKey = serviceKey === process.env.SUPABASE_SERVICE_ROLE_KEY;
+        const isRecent = Date.now() - parseInt(timestamp) < 60000; // 1 minute
+
+        isInternalAuth = isValidUser && isValidKey && isRecent;
+      } catch (e) {
+        console.error('Internal auth validation failed:', e);
+      }
+    }
+
+    // Only skip auth checks if internal auth OR (test endpoint AND development)
+    if (!isInternalAuth && !(isTestEndpoint && isDevelopment)) {
       const cookieStore = cookies();
       const supabase = createServerSupabaseClient(cookieStore);
       const { data: { session } } = await supabase.auth.getSession();

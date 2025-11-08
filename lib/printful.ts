@@ -4,13 +4,18 @@
 
 /**
  * Printful API Configuration
- * Requires PRINTFUL_API_KEY environment variable
+ * Requires PRINTFUL_API_KEY and PRINTFUL_STORE_ID environment variables
  */
 const PRINTFUL_API_BASE = 'https://api.printful.com';
 const PRINTFUL_API_KEY = process.env.PRINTFUL_API_KEY;
+const PRINTFUL_STORE_ID = process.env.PRINTFUL_STORE_ID;
 
 if (!PRINTFUL_API_KEY && process.env.NODE_ENV === 'production') {
   console.warn('⚠️  PRINTFUL_API_KEY not configured. Order fulfillment disabled.');
+}
+
+if (!PRINTFUL_STORE_ID && process.env.NODE_ENV === 'production') {
+  console.warn('⚠️  PRINTFUL_STORE_ID not configured. Some API endpoints may fail.');
 }
 
 /**
@@ -72,11 +77,17 @@ class PrintfulClient {
 
   /**
    * Calculate shipping rates for order
+   * Note: Requires PRINTFUL_STORE_ID when you have multiple stores
    */
   async calculateShipping(order: PrintfulShippingRequest) {
+    // Add store_id to the request if available
+    const requestBody = PRINTFUL_STORE_ID
+      ? { ...order, store_id: parseInt(PRINTFUL_STORE_ID, 10) }
+      : order;
+
     return this.request<PrintfulShippingRates>('/shipping/rates', {
       method: 'POST',
-      body: JSON.stringify(order),
+      body: JSON.stringify(requestBody),
     });
   }
 

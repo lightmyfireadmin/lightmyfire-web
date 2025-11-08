@@ -198,9 +198,20 @@ export async function POST(request: NextRequest) {
 
     // Generate PNG (reuse existing generation logic)
     console.log('Generating sticker PNG...');
+
+    // Create internal authentication token for server-to-server call
+    // This allows the generate endpoint to trust this internal request
+    const internalAuthToken = Buffer.from(
+      `${session.user.id}:${Date.now()}:${process.env.SUPABASE_SERVICE_ROLE_KEY}`
+    ).toString('base64');
+
     const generateResponse = await fetch(`${request.nextUrl.origin}/api/generate-printful-stickers`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'x-internal-auth': internalAuthToken,
+        'x-user-id': session.user.id,
+      },
       body: JSON.stringify({
         stickers: stickerData,
         brandingText: 'LightMyFire',
