@@ -88,14 +88,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!orderId) {
-      return NextResponse.json(
-        { error: 'Order ID is required' },
-        { status: 400 }
-      );
-    }
+    // Order ID is optional for test generation
+    const actualOrderId = orderId || `test-${Date.now()}`;
 
-    console.log(`Generating sticker sheet for order ${orderId} with ${stickers.length} stickers`);
+    console.log(`Generating sticker sheet for order ${actualOrderId} with ${stickers.length} stickers`);
 
     // Ensure stickers have required fields
     const validatedStickers = stickers.map((s: Partial<LighterSticker>) => ({
@@ -120,7 +116,7 @@ export async function POST(request: NextRequest) {
     return new NextResponse(new Uint8Array(foregroundPNG), {
       headers: {
         'Content-Type': 'image/png',
-        'Content-Disposition': `attachment; filename="stickers-${orderId}.png"`,
+        'Content-Disposition': `attachment; filename="stickers-${actualOrderId}.png"`,
         'Cache-Control': 'no-store, no-cache, must-revalidate',
         'Content-Length': foregroundPNG.length.toString(),
       },

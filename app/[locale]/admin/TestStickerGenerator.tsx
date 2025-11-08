@@ -63,12 +63,12 @@ export default function TestStickerGenerator() {
         throw new Error(errorData.error || 'Failed to generate stickers');
       }
 
-      // Download the PDF
+      // Download the PNG
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `test-stickers-${sheetCount}sheet${sheetCount > 1 ? 's' : ''}-${Date.now()}.pdf`;
+      a.download = `test-stickers-${sheetCount}sheet${sheetCount > 1 ? 's' : ''}-${Date.now()}.png`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
@@ -85,7 +85,7 @@ export default function TestStickerGenerator() {
     <div className="bg-card border border-border rounded-lg p-6">
       <h2 className="text-xl font-semibold text-foreground mb-4">🧪 Test Sticker Generator</h2>
       <p className="text-sm text-muted-foreground mb-6">
-        Generate test stickers without calling Printful. All stickers will have identical properties except pin codes.
+        Generate test sticker sheets without calling Printful. Creates PNG files with stickers that have identical properties except pin codes.
       </p>
 
       <div className="space-y-4">
@@ -212,7 +212,7 @@ export default function TestStickerGenerator() {
         </button>
 
         <p className="text-xs text-muted-foreground text-center">
-          This will download a PDF file with {sheetCount} sheet{sheetCount > 1 ? 's' : ''} of identical stickers
+          This will download a PNG file with {sheetCount} sheet{sheetCount > 1 ? 's' : ''} of identical stickers
         </p>
       </div>
     </div>

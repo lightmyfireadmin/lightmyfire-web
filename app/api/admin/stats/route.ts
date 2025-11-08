@@ -40,9 +40,7 @@ export async function GET(request: NextRequest) {
       usersResult,
       ordersResult,
       lightersResult,
-      postsResult,
-      pendingOrdersResult,
-      completedOrdersResult
+      postsResult
     ] = await Promise.all([
       // Count total users
       supabase
@@ -62,19 +60,7 @@ export async function GET(request: NextRequest) {
       // Count total posts
       supabase
         .from('posts')
-        .select('id', { count: 'exact', head: true }),
-
-      // Count pending orders
-      supabase
-        .from('sticker_orders')
         .select('id', { count: 'exact', head: true })
-        .in('status', ['pending', 'processing']),
-
-      // Count completed/delivered orders
-      supabase
-        .from('sticker_orders')
-        .select('id', { count: 'exact', head: true })
-        .in('status', ['shipped', 'delivered'])
     ]);
 
     // Check for errors
@@ -82,8 +68,6 @@ export async function GET(request: NextRequest) {
     if (ordersResult.error) throw ordersResult.error;
     if (lightersResult.error) throw lightersResult.error;
     if (postsResult.error) throw postsResult.error;
-    if (pendingOrdersResult.error) throw pendingOrdersResult.error;
-    if (completedOrdersResult.error) throw completedOrdersResult.error;
 
     // Compile statistics
     const stats = {
@@ -91,8 +75,6 @@ export async function GET(request: NextRequest) {
       orderCount: ordersResult.count || 0,
       lighterCount: lightersResult.count || 0,
       postCount: postsResult.count || 0,
-      pendingOrders: pendingOrdersResult.count || 0,
-      completedOrders: completedOrdersResult.count || 0,
     };
 
     return NextResponse.json({

@@ -11,8 +11,6 @@ interface DatabaseStats {
   orderCount: number;
   lighterCount: number;
   postCount: number;
-  pendingOrders: number;
-  completedOrders: number;
 }
 
 interface TestScenario {
@@ -334,7 +332,7 @@ export default function AdminTestingPage() {
             📊 Database Statistics
           </h2>
           {stats ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-muted/50 rounded-lg p-4">
                 <div className="text-3xl font-bold text-primary">{stats.userCount}</div>
                 <div className="text-sm text-muted-foreground mt-1">Total Users</div>
@@ -350,14 +348,6 @@ export default function AdminTestingPage() {
               <div className="bg-muted/50 rounded-lg p-4">
                 <div className="text-3xl font-bold text-primary">{stats.postCount}</div>
                 <div className="text-sm text-muted-foreground mt-1">Total Posts</div>
-              </div>
-              <div className="bg-muted/50 rounded-lg p-4">
-                <div className="text-3xl font-bold text-yellow-600">{stats.pendingOrders}</div>
-                <div className="text-sm text-muted-foreground mt-1">Pending Orders</div>
-              </div>
-              <div className="bg-muted/50 rounded-lg p-4">
-                <div className="text-3xl font-bold text-green-600">{stats.completedOrders}</div>
-                <div className="text-sm text-muted-foreground mt-1">Completed Orders</div>
               </div>
             </div>
           ) : (
