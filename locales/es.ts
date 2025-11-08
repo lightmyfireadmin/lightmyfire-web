@@ -245,6 +245,7 @@ export default {
   'home.stats.environmental_impact': 'Contribución ambiental',
   'home.stats.global_community': 'Un movimiento verdaderamente global',
   'home.stats.join_movement': 'Únete a miles de LightSavers marcando la diferencia, un encendedor a la vez.',
+  'home.stats.citations_title': 'Fuentes',
   'home.stats.lighters_saved': 'Encendedores salvados',
   'home.stats.plastic_saved': 'Residuos plásticos evitados',
   'home.stats.stories_created': 'Historias creadas',

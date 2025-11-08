@@ -76,6 +76,7 @@ export default {
   'home.stats.co2_saved': 'CO₂ Impact',
   'home.stats.environmental_impact': 'Environmental contribution',
   'home.stats.join_movement': 'Join thousands of LightSavers making a difference, one lighter at a time.',
+  'home.stats.citations_title': 'Sources',
 
   // --- Welcome Banner ---
   'banner.welcome': 'Welcome',

@@ -196,40 +196,40 @@ const CommunityStats = () => {
         {/* Citations */}
         <div className="mt-6 pt-6 border-t border-border/50">
           <h3 className="text-xs font-semibold text-muted-foreground mb-3">
-            {t('home.stats.citations_title') || 'Sources'}
+            {t('home.stats.citations_title') || t('home.stats.citations.title') || 'Sources'}
           </h3>
           <div className="space-y-2 text-xs text-muted-foreground">
             <p>
               <span className="font-semibold">[1]</span> Average lighter weight and plastic composition -
               <a
-                href="https://www.sciencedirect.com/science/article/pii/S0304389418305776"
+                href="https://www.plasticseurope.org/en/resources/market-data"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:underline ml-1"
               >
-                ScienceDirect Study ↗
+                Plastics Europe Data ↗
               </a>
             </p>
             <p>
               <span className="font-semibold">[2]</span> Plastic decomposition timeframes -
               <a
-                href="https://www.epa.gov/trash-free-waters/how-long-does-it-take-trash-decompose"
+                href="https://oceanservice.noaa.gov/facts/plasticdebris.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:underline ml-1"
               >
-                EPA Environmental Facts ↗
+                NOAA Ocean Facts ↗
               </a>
             </p>
             <p>
               <span className="font-semibold">[3]</span> Manufacturing carbon footprint estimates -
               <a
-                href="https://www.ipcc.ch/reports/"
+                href="https://www.epa.gov/ghgemissions/overview-greenhouse-gases"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:underline ml-1"
               >
-                IPCC Climate Reports ↗
+                EPA Greenhouse Gas Data ↗
               </a>
             </p>
           </div>

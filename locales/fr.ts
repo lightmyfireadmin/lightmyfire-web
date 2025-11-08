@@ -278,6 +278,7 @@ Tu ajoutes des posts plus vite qu\'on ne peut suivre. Prends une pause de 24h po
   'home.stats.environmental.impact': 'Contribution environnementale',
   'home.stats.global.community': 'Un mouvement vraiment mondial',
   'home.stats.join.movement': 'Rejoins des milliers de LightSavers qui font la différence, un briquet à la fois.',
+  'home.stats.citations.title': 'Sources',
   'home.stats.lighters.saved': 'Briquets sauvés',
   'home.stats.plastic.saved': 'Déchets plastiques évités',
   'home.stats.stories.created': 'Histoires créées',

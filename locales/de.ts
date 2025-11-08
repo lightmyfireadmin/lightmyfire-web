@@ -241,6 +241,7 @@ export default {
   'home.stats.environmental_impact': 'Umweltbeitrag',
   'home.stats.global_community': 'Eine wahrhaft globale Bewegung',
   'home.stats.join_movement': 'Schließ dich Tausenden LightSaver*innen an, die einen Unterschied machen—ein Feuerzeug nach dem anderen.',
+  'home.stats.citations_title': 'Quellen',
   'home.stats.lighters_saved': 'Gerettete Feuerzeuge',
   'home.stats.plastic_saved': 'Vermiedener Plastikmüll',
   'home.stats.stories_created': 'Erstellte Geschichten',
