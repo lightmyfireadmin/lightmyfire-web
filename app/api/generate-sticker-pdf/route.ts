@@ -14,34 +14,29 @@ interface StickerDesign {
   language?: string;
 }
 
-// Sheet dimensions: 8.5 x 5.5 inches at 300 DPI (standard kiss-cut sheet)
-const SHEET_WIDTH_INCHES = 8.5;
-const SHEET_HEIGHT_INCHES = 5.5;
-const DPI = 300;
-const SHEET_WIDTH_PX = Math.round(SHEET_WIDTH_INCHES * DPI);
-const SHEET_HEIGHT_PX = Math.round(SHEET_HEIGHT_INCHES * DPI);
+// DPI setting: 600 DPI for high-quality printing
+const DPI = 600;
+
+// Sticker dimensions: exactly 2cm × 5cm
+const STICKER_WIDTH_CM = 2;
+const STICKER_HEIGHT_CM = 5;
+const CM_TO_INCHES = 1 / 2.54;
+const STICKER_WIDTH_PX = Math.round((STICKER_WIDTH_CM * CM_TO_INCHES) * DPI); // 472px
+const STICKER_HEIGHT_PX = Math.round((STICKER_HEIGHT_CM * CM_TO_INCHES) * DPI); // 1181px
 
 // Grid layout: 5 columns x 2 rows = 10 stickers per sheet
 const STICKERS_PER_ROW = 5;
 const STICKERS_PER_COLUMN = 2;
 
-// Calculate sticker dimensions to fit the grid with gaps
-const MARGIN_INCHES = 0.25; // 0.25" margin on each side
-const GAP_INCHES = 0.125; // 0.125" gap between stickers
+// Spacing
+const MARGIN_CM = 0.5; // 0.5cm margin
+const GAP_CM = 0.3; // 0.3cm gap between stickers
+const MARGIN_PX = Math.round((MARGIN_CM * CM_TO_INCHES) * DPI);
+const GAP_PX = Math.round((GAP_CM * CM_TO_INCHES) * DPI);
 
-const MARGIN_PX = Math.round(MARGIN_INCHES * DPI);
-const GAP_PX = Math.round(GAP_INCHES * DPI);
-
-// Available space for stickers
-const AVAILABLE_WIDTH = SHEET_WIDTH_PX - (MARGIN_PX * 2);
-const AVAILABLE_HEIGHT = SHEET_HEIGHT_PX - (MARGIN_PX * 2);
-
-// Calculate sticker dimensions based on available space
-const TOTAL_GAP_WIDTH = GAP_PX * (STICKERS_PER_ROW - 1);
-const TOTAL_GAP_HEIGHT = GAP_PX * (STICKERS_PER_COLUMN - 1);
-
-const STICKER_WIDTH_PX = Math.round((AVAILABLE_WIDTH - TOTAL_GAP_WIDTH) / STICKERS_PER_ROW);
-const STICKER_HEIGHT_PX = Math.round((AVAILABLE_HEIGHT - TOTAL_GAP_HEIGHT) / STICKERS_PER_COLUMN);
+// Calculate sheet dimensions based on sticker grid
+const SHEET_WIDTH_PX = (MARGIN_PX * 2) + (STICKER_WIDTH_PX * STICKERS_PER_ROW) + (GAP_PX * (STICKERS_PER_ROW - 1));
+const SHEET_HEIGHT_PX = (MARGIN_PX * 2) + (STICKER_HEIGHT_PX * STICKERS_PER_COLUMN) + (GAP_PX * (STICKERS_PER_COLUMN - 1));
 
 interface LighterSticker extends StickerDesign {
   pinCode: string;
