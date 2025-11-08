@@ -456,7 +456,7 @@ async function drawSticker(
     console.error('QR code generation error:', error);
   }
 
-  currentY += qrCardSize + (smallGap * 3); // TRIPLED gap for more space
+  currentY += qrCardSize + (smallGap * 6); // DOUBLED from tripled gap for more space
 
   // "or go to lightmyfire.app" section - DOUBLED SIZE
   const urlBgHeight = 116; // Doubled from 58
@@ -477,9 +477,9 @@ async function drawSticker(
 
   currentY += urlBgHeight + smallGap;
 
-  // "and type my code" - DOUBLED SIZE
+  // "and type my code" - DOUBLED SIZE with HEAVY BOLD
   ctx.fillStyle = textColor; // Use contrasting color
-  ctx.font = `500 36px Poppins, Arial, sans-serif`; // Doubled from 18px
+  ctx.font = `800 36px Poppins, Arial, sans-serif`; // Heavy bold (800 weight)
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   ctx.fillText('and type my code', x + STICKER_WIDTH_PX / 2, currentY + 4);
@@ -536,22 +536,96 @@ async function drawSticker(
 
   // Logo section at bottom - cream background with rounded bottom corners matching sticker
   try {
-    // Calculate remaining space to bottom of sticker (accounting for bottom padding)
-    const remainingSpaceFromY = STICKER_HEIGHT_PX - (currentY - y) - padding;
+    // Calculate remaining space to bottom of sticker (no padding, go to edge)
+    const creamBgTop = currentY;
+    const creamBgBottom = y + STICKER_HEIGHT_PX; // Go all the way to bottom of sticker
+    const creamBgHeight = creamBgBottom - creamBgTop;
 
     // Draw cream background with rounded bottom corners to match sticker shape
     ctx.fillStyle = LOGO_BG_COLOR;
     // Use path to create shape with rounded bottom corners only
     ctx.beginPath();
-    ctx.moveTo(x, currentY); // Top left (no radius)
-    ctx.lineTo(x + STICKER_WIDTH_PX, currentY); // Top right (no radius)
-    ctx.lineTo(x + STICKER_WIDTH_PX, currentY + remainingSpaceFromY - cornerRadius); // Right side
-    ctx.arcTo(x + STICKER_WIDTH_PX, currentY + remainingSpaceFromY, x + STICKER_WIDTH_PX - cornerRadius, currentY + remainingSpaceFromY, cornerRadius); // Bottom right corner
-    ctx.lineTo(x + cornerRadius, currentY + remainingSpaceFromY); // Bottom edge
-    ctx.arcTo(x, currentY + remainingSpaceFromY, x, currentY + remainingSpaceFromY - cornerRadius, cornerRadius); // Bottom left corner
-    ctx.lineTo(x, currentY); // Left side back to top
+    ctx.moveTo(x, creamBgTop); // Top left (no radius)
+    ctx.lineTo(x + STICKER_WIDTH_PX, creamBgTop); // Top right (no radius)
+    ctx.lineTo(x + STICKER_WIDTH_PX, creamBgBottom - cornerRadius); // Right side
+    ctx.arcTo(x + STICKER_WIDTH_PX, creamBgBottom, x + STICKER_WIDTH_PX - cornerRadius, creamBgBottom, cornerRadius); // Bottom right corner
+    ctx.lineTo(x + cornerRadius, creamBgBottom); // Bottom edge
+    ctx.arcTo(x, creamBgBottom, x, creamBgBottom - cornerRadius, cornerRadius); // Bottom left corner
+    ctx.lineTo(x, creamBgTop); // Left side back to top
     ctx.closePath();
     ctx.fill();
+
+    // Add legal disclaimer text at top of cream section
+    const disclaimerPadding = 20;
+    const disclaimerWidth = STICKER_WIDTH_PX - (disclaimerPadding * 2);
+    const disclaimerText = "LightMyFire is a community-driven project aiming at giving value to otherwise often deprecated objects. The website lightmyfire.app has been audited to maintain your safety and anonymity. This sticker and LightMyFire have no affiliation with the legal representation of the object/surface this sticker was found on. LightMyFire cannot be held responsible for the private use of this sticker, i.e. the displayed content and location.";
+
+    ctx.fillStyle = '#000000';
+    ctx.font = `500 16px Poppins, Arial, sans-serif`; // Small but readable
+    ctx.textAlign = 'left'; // Left align for justified appearance
+    ctx.textBaseline = 'top';
+
+    // Word wrap function for justified text
+    const wrapText = (text: string, maxWidth: number): string[] => {
+      const words = text.split(' ');
+      const lines: string[] = [];
+      let currentLine = '';
+
+      for (const word of words) {
+        const testLine = currentLine ? `${currentLine} ${word}` : word;
+        const metrics = ctx.measureText(testLine);
+
+        if (metrics.width > maxWidth && currentLine) {
+          lines.push(currentLine);
+          currentLine = word;
+        } else {
+          currentLine = testLine;
+        }
+      }
+
+      if (currentLine) {
+        lines.push(currentLine);
+      }
+
+      return lines;
+    };
+
+    const disclaimerLines = wrapText(disclaimerText, disclaimerWidth);
+    const lineHeight = 20;
+    let disclaimerY = creamBgTop + disclaimerPadding;
+
+    // Draw each line with justification (except last line)
+    disclaimerLines.forEach((line, index) => {
+      const isLastLine = index === disclaimerLines.length - 1;
+
+      if (isLastLine) {
+        // Last line: left-aligned, no justification
+        ctx.textAlign = 'left';
+        ctx.fillText(line, x + disclaimerPadding, disclaimerY);
+      } else {
+        // Justify by adding space between words
+        const words = line.split(' ');
+        if (words.length === 1) {
+          ctx.textAlign = 'left';
+          ctx.fillText(line, x + disclaimerPadding, disclaimerY);
+        } else {
+          const lineWidth = ctx.measureText(line).width;
+          const spaceWidth = (disclaimerWidth - lineWidth) / (words.length - 1);
+          let wordX = x + disclaimerPadding;
+
+          words.forEach((word, wordIndex) => {
+            ctx.fillText(word, wordX, disclaimerY);
+            const wordWidth = ctx.measureText(word).width;
+            wordX += wordWidth + ctx.measureText(' ').width + spaceWidth;
+          });
+        }
+      }
+
+      disclaimerY += lineHeight;
+    });
+
+    const disclaimerTotalHeight = disclaimerLines.length * lineHeight;
+    const disclaimerBottomY = creamBgTop + disclaimerPadding + disclaimerTotalHeight;
 
     // Load and draw logo
     const logoPath = path.join(process.cwd(), 'public', 'LOGOLONG.png');
@@ -560,15 +634,16 @@ async function drawSticker(
     const logoImage = new Image();
     logoImage.src = logoBuffer;
 
-    // Logo sizing - fit to sticker width with padding
+    // Logo sizing - fit to available space
     const logoPadding = 40;
     const logoTargetWidth = STICKER_WIDTH_PX - (logoPadding * 2);
     const logoAspectRatio = logoImage.height / logoImage.width;
     const logoTargetHeight = Math.round(logoTargetWidth * logoAspectRatio);
 
-    // Center logo in cream section
+    // Center logo vertically between disclaimer bottom and sticker bottom
+    const availableSpace = creamBgBottom - disclaimerBottomY;
     const logoX = x + logoPadding;
-    const logoY = currentY + (remainingSpaceFromY - logoTargetHeight) / 2;
+    const logoY = disclaimerBottomY + (availableSpace - logoTargetHeight) / 2;
 
     ctx.drawImage(logoImage, logoX, logoY, logoTargetWidth, logoTargetHeight);
 
