@@ -167,26 +167,10 @@ export async function GET(request: NextRequest) {
       },
     ];
 
-    // Generate sticker sheet using our existing endpoint
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    const stickerResponse = await fetch(`${baseUrl}/api/generate-sticker-pdf`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Cookie': request.headers.get('cookie') || '',
-      },
-      body: JSON.stringify({
-        stickers: testStickers,
-        orderId: `printful-test-${Date.now()}`,
-      }),
-    });
-
-    if (!stickerResponse.ok) {
-      const errorText = await stickerResponse.text();
-      throw new Error(`Sticker generation failed: ${errorText}`);
-    }
-
-    const stickerPng = await stickerResponse.arrayBuffer();
+    // Note: We're skipping actual sticker generation in this test to avoid
+    // serverless function self-calling issues. This test focuses on Printful API connectivity.
+    // For full sticker generation testing, use the Test Sticker Generator component on the admin panel.
+    const stickerPng = null;
 
     // Test Printful API connectivity
     const printfulResponse = await fetch('https://api.printful.com/store/products', {
@@ -318,7 +302,7 @@ export async function GET(request: NextRequest) {
 
           <div class="success">
             <strong>✅ Test Completed Successfully</strong>
-            <p style="margin: 5px 0 0 0;">Both sticker generation and Printful API connectivity have been verified.</p>
+            <p style="margin: 5px 0 0 0;">Printful API connectivity has been verified.</p>
           </div>
 
           <div class="section">
@@ -326,11 +310,7 @@ export async function GET(request: NextRequest) {
             <div class="stats">
               <div class="stat-card">
                 <div class="stat-value">${testStickers.length}</div>
-                <div class="stat-label">Test Stickers Generated</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-value">${Math.round(stickerPng.byteLength / 1024)} KB</div>
-                <div class="stat-label">PNG File Size</div>
+                <div class="stat-label">Test Sticker Data Points</div>
               </div>
               <div class="stat-card">
                 <div class="stat-value">${printfulResponse.status}</div>
@@ -340,16 +320,17 @@ export async function GET(request: NextRequest) {
                 <div class="stat-value">${printfulData.result?.length || 0}</div>
                 <div class="stat-label">Products Available</div>
               </div>
+              <div class="stat-card">
+                <div class="stat-value">${printfulResponse.ok ? '✅' : '❌'}</div>
+                <div class="stat-label">API Connected</div>
+              </div>
             </div>
           </div>
 
           <div class="section">
-            <h2>🎨 Generated Sticker Sheet</h2>
+            <h2>🎨 Sticker Generation</h2>
             <div class="info">
-              <p><strong>Info:</strong> A test sticker sheet has been generated with ${testStickers.length} stickers. The PNG was generated successfully (${Math.round(stickerPng.byteLength / 1024)} KB).</p>
-            </div>
-            <div class="sticker-preview">
-              <img src="data:image/png;base64,${Buffer.from(stickerPng).toString('base64')}" alt="Test Sticker Sheet" />
+              <p><strong>Note:</strong> For actual sticker generation testing, please use the <strong>Test Sticker Generator</strong> component on the main admin panel. This endpoint focuses on validating Printful API connectivity.</p>
             </div>
           </div>
 
