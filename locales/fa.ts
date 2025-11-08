@@ -142,7 +142,6 @@ export default {
   'home.stats.environmental_impact': 'Environmental contribution',
   'home.stats.join_movement': 'Join thousands of LightSavers making a difference, one lighter at a time.',
 
-
   'save_success.next_steps.title': 'Next Steps:',
   'save_success.next_steps.step1': 'Print: Download the PDF and print it, ideally on sticker paper.',
   'save_success.next_steps.step2': 'Stick: Cut out the sticker and apply it to your lighter.',
@@ -195,8 +194,7 @@ export default {
   'legal.faq.title': 'Frequently Asked Questions',
   'legal.about.title': 'About LightMyFire',
 
-  // Pack Selection
-  'order.pack_selection.title': 'بسته خود را انتخاب کنید',
+    'order.pack_selection.title': 'بسته خود را انتخاب کنید',
   'order.pack_selection.subtitle': 'تعداد برچسبهای سفارشی را انتخاب کنید که می خواهید سفارش دهید',
   'order.pack.starting_lightsaver': 'LightSaver شروع',
   'order.pack.committed_lightsaver': 'LightSaver متعهد',
@@ -211,14 +209,12 @@ export default {
   'order.pack.price_calculated': 'قیمت در هنگام تسویه حساب محاسبه می شود',
   'order.pack.select_button': 'انتخاب',
 
-  // Custom Branding
-  'order.custom_branding.title': 'برندسازی سفارشی برای رویدادها و برندها',
+    'order.custom_branding.title': 'برندسازی سفارشی برای رویدادها و برندها',
   'order.custom_branding.description': 'برای یک رویداد برنامه ریزی می کنید یا می خواهید برندسازی سفارشی روی برگ های برچسب خود داشته باشید؟ ما می توانیم منطقه برندسازی را برای سازمان، برند یا رویداد خاص شما شخصی سازی کنیم!',
   'order.custom_branding.button': 'برای برندسازی سفارشی با ما تماس بگیرید',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // Lighter Customization
-  'order.customization.title': 'برچسب های خود را سفارشی کنید',
+    'order.customization.title': 'برچسب های خود را سفارشی کنید',
   'order.customization.subtitle': 'هر فندک را شخصی سازی کنید',
   'order.customization.apply_to_all': 'اعمال برای همه',
   'order.customization.lighter_number': 'فندک #{number}',
@@ -238,21 +234,18 @@ export default {
   'order.customization.validation_warning_multiple': 'لطفا تمام نام های فندک (هر 3-16 کاراکتر) را قبل از ادامه پر کنید.',
   'order.customization.save_button': 'ذخیره سفارشی سازی برچسب',
 
-  // Order Summary
-  'order.summary.title': 'خلاصه سفارش',
+    'order.summary.title': 'خلاصه سفارش',
   'order.summary.pack': 'بسته:',
   'order.summary.language': 'زبان:',
   'order.summary.stickers': 'برچسب ها:',
   'order.summary.customized': '✓ سفارشی',
   'order.summary.total': 'کل:',
 
-  // Sticker Preview
-  'order.preview.title': 'طراحی برچسب شما',
+    'order.preview.title': 'طراحی برچسب شما',
   'order.preview.description': 'پیش نمایش برچسب های سفارشی. فایل های برچسب پس از پرداخت ایجاد خواهند شد.',
   'order.preview.more_stickers': '+{count} بیشتر',
 
-  // Shipping Address
-  'order.shipping.title': 'اطلاعات حمل و نقل',
+    'order.shipping.title': 'اطلاعات حمل و نقل',
   'order.shipping.description': 'لطفا آدرس حمل و نقل خود را برای تحویل برچسب ارائه دهید',
   'order.shipping.name_label': 'نام کامل *',
   'order.shipping.name_placeholder': 'John Doe',
@@ -274,8 +267,7 @@ export default {
   'order.shipping.error_country': 'کشور مورد نیاز است',
   'order.shipping.continue_button': 'ادامه به پرداخت',
 
-  // Payment
-  'order.payment.title': 'جزئیات پرداخت',
+    'order.payment.title': 'جزئیات پرداخت',
   'order.payment.order_id': 'شناسه سفارش:',
   'order.payment.sticker_pack': 'بسته برچسب:',
   'order.payment.stickers_count': '{count} برچسب',
@@ -303,8 +295,7 @@ export default {
   'order.payment.stripe_not_configured': 'Stripe پیکربندی نشده است. NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY را به .env.local اضافه کنید',
   'order.payment.loading': 'بارگذاری فرم پرداخت...',
 
-  // Order Success
-  'order.success.title': 'سفارش موفق!',
+    'order.success.title': 'سفارش موفق!',
   'order.success.subtitle': 'با تشکر برای سفارش شما',
   'order.success.confirmation_sent': 'ایمیل تایید ارسال شد',
   'order.success.confirmation_description': 'ایمیل تایید برای:',
@@ -326,11 +317,9 @@ export default {
   'order.success.questions': 'سؤالی درباره سفارش دارید؟',
   'order.success.contact_us': 'با ما تماس بگیرید',
 
-  // Change Pack
-  'order.change_pack': '← تغییر بسته',
+    'order.change_pack': '← تغییر بسته',
 
-  // Cookie Consent
-  'cookie.message': 'ما فقط برای عملکرد اساسی از کوکی استفاده می‌کنیم - هرگز برای ردیابی نیست. حریم خصوصی شما محافظت می‌شود. برای جزئیات {privacyLink} ما را ببینید.',
+    'cookie.message': 'ما فقط برای عملکرد اساسی از کوکی استفاده می‌کنیم - هرگز برای ردیابی نیست. حریم خصوصی شما محافظت می‌شود. برای جزئیات {privacyLink} ما را ببینید.',
   'cookie.privacy_link_text': 'سیاست حریم خصوصی',
   'cookie.accept': 'قبول',
   'cookie.decline': 'رد',
@@ -339,8 +328,7 @@ export default {
   'cookie_consent.accept': 'قبول و ادامه',
   'cookie_consent.privacy_link': 'سیاست حریم خصوصی',
 
-  // FAQ Page - Full Content
-  'faq.subtitle': 'پاسخ‌ها به سؤالات متداول درباره LightMyFire را بیابید',
+    'faq.subtitle': 'پاسخ‌ها به سؤالات متداول درباره LightMyFire را بیابید',
   'faq.what_is.question': 'LightMyFire چیست؟',
   'faq.what_is.answer': 'این یک پروژه برای کاهش زباله و ایجاد یک "موزاییک انسانی" است. ما برچسب‌هایی با کدهای QR می‌فروشیم که روی فندک می‌گذارید. هر کسی که آن فندک را پیدا کند می‌تواند کد را اسکن کند، PIN منحصر به فرد آن را وارد کند و یک داستان، تصویر یا آهنگ به دفترچه دیجیتال آن اضافه کند. این یک راه منحصر به فرد برای اتصال جهانی مردم و دادن زندگی دوباره به فندک‌هاست.',
   'faq.how_add_story.question': 'چگونه داستانی به یک فندک اضافه کنم؟',
@@ -374,8 +362,7 @@ export default {
   'faq.contact_footer': 'نمی‌توانید پاسخ خود را پیدا کنید؟',
   'faq.contact_link': 'با ما تماس بگیرید',
 
-  // Account Settings
-  'settings.auth.error.passwords_no_match': 'رمزهای عبور مطابقت ندارند.',
+    'settings.auth.error.passwords_no_match': 'رمزهای عبور مطابقت ندارند.',
   'settings.auth.success_message': 'به‌روزرسانی موفق! لطفا ایمیل خود را برای تأیید تغییرات بررسی کنید اگر آدرس ایمیل خود را به‌روز کرده‌اید.',
   'settings.auth.title': 'تنظیمات حساب',
   'settings.auth.oauth_notice': '✓ شما از طریق {provider} وارد شده‌اید. احراز هویت شما به طور ایمن توسط ارائه‌دهنده شما مدیریت می‌شود.',
@@ -394,8 +381,7 @@ export default {
   'settings.auth.update_button': 'به‌روزرسانی جزئیات احراز هویت',
   'settings.auth.saving': 'در حال ذخیره...',
 
-  // Country Names
-  'country.AT': 'اتریش',
+    'country.AT': 'اتریش',
   'country.BE': 'بلژیک',
   'country.CA': 'کانادا',
   'country.CH': 'سوئیس',
@@ -416,16 +402,14 @@ export default {
   'country.SE': 'سوئد',
   'country.US': 'ایالات متحده',
 
-  // Additional Save Lighter Keys
-  'save_lighter.helper.background_url': 'اختیاری. این URL تصویر پس‌زمینه صفحه فندک شما خواهد بود. یک لینک Imgur یا Unsplash را امتحان کنید.',
+    'save_lighter.helper.background_url': 'اختیاری. این URL تصویر پس‌زمینه صفحه فندک شما خواهد بود. یک لینک Imgur یا Unsplash را امتحان کنید.',
   'save_lighter.error.failed_to_save': 'ذخیره فندک ناموفق بود: {message}',
   'save_lighter.pack_count': 'بسته {count} برچسب',
   'save_lighter.pack_total': 'کل: {price}',
   'save_lighter.payment_mock': 'شبیه‌سازی پرداخت',
   'save_success.generating_sticker': 'در حال ایجاد برچسب...',
 
-  // Refill Guide (Don't Throw Me Away page)
-  'refill_guide.title': 'Don\'t Throw Me Away',
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature. A single company like BIC sold over 2.5 billion in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',

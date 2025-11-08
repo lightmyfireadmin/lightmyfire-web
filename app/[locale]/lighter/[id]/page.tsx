@@ -81,7 +81,6 @@ export default async function LighterPage({
     notFound();
   }
 
-
   const saverUsername = (lighter.profiles as any)?.username || 'Anonymous';
   const saverLevel = (lighter.profiles as any)?.level || 1;
 

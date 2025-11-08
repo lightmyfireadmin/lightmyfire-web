@@ -87,7 +87,6 @@ export default function FullStickerPreview({
   
   const textColor = getContrastTextColor(backgroundColor);
 
-
   return (
     <div className="flex justify-center items-center p-4">
       <div

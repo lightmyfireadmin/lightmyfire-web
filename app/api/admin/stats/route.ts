@@ -1,5 +1,3 @@
-// app/api/admin/stats/route.ts
-// API route to fetch database statistics for admin testing dashboard
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
@@ -9,8 +7,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
-    // Authenticate user and verify admin status
-    const cookieStore = cookies();
+        const cookieStore = cookies();
     const supabase = createServerSupabaseClient(cookieStore);
     const { data: { session } } = await supabase.auth.getSession();
 
@@ -21,8 +18,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Check if user is admin
-    const { data: profile } = await supabase
+        const { data: profile } = await supabase
       .from('profiles')
       .select('role')
       .eq('id', session.user.id)
@@ -35,42 +31,35 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Fetch all statistics in parallel
-    const [
+        const [
       usersResult,
       ordersResult,
       lightersResult,
       postsResult
     ] = await Promise.all([
-      // Count total users
-      supabase
+            supabase
         .from('profiles')
         .select('id', { count: 'exact', head: true }),
 
-      // Count total orders
-      supabase
+            supabase
         .from('sticker_orders')
         .select('id', { count: 'exact', head: true }),
 
-      // Count total lighters
-      supabase
+            supabase
         .from('lighters')
         .select('id', { count: 'exact', head: true }),
 
-      // Count total posts
-      supabase
+            supabase
         .from('posts')
         .select('id', { count: 'exact', head: true })
     ]);
 
-    // Check for errors
-    if (usersResult.error) throw usersResult.error;
+        if (usersResult.error) throw usersResult.error;
     if (ordersResult.error) throw ordersResult.error;
     if (lightersResult.error) throw lightersResult.error;
     if (postsResult.error) throw postsResult.error;
 
-    // Compile statistics
-    const stats = {
+        const stats = {
       userCount: usersResult.count || 0,
       orderCount: ordersResult.count || 0,
       lighterCount: lightersResult.count || 0,

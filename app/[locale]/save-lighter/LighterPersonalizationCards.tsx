@@ -23,8 +23,7 @@ export default function LighterPersonalizationCards({
 }) {
   const t = useI18n() as any;
   const currentLocale = useCurrentLocale();
-  // Default colors for initial lighter customizations (matches ColorPicker presets)
-  const DEFAULT_COLORS = [
+    const DEFAULT_COLORS = [
     '#FF6B6B', '#FF8B6B', '#FFA500', '#FFD700', '#90EE90',
     '#4CAF50', '#20B2AA', '#87CEEB', '#4169E1', '#8A2BE2',
     '#FF1493', '#FFB6C1', '#D3D3D3', '#800080', '#00CED1',
@@ -178,9 +177,9 @@ export default function LighterPersonalizationCards({
                 Lighter #{useApplyAll ? '1' : actualIndex}
               </h4>
 
-              {/* Desktop: Side-by-side layout, Mobile: Stacked */}
+              {}
               <div className="flex flex-col lg:flex-row gap-4">
-                {/* Preview Section */}
+                {}
                 <div className="lg:w-1/3 flex-shrink-0">
                   <div className="p-3 border-2 border-dashed border-border/50 rounded-md bg-muted/20 h-full flex items-center justify-center">
                     {customization.name.length >= 3 ? (
@@ -200,9 +199,9 @@ export default function LighterPersonalizationCards({
                   </div>
                 </div>
 
-                {/* Customization Controls */}
+                {}
                 <div className="flex-1 space-y-3">
-                  {/* Name Input */}
+                  {}
                   <div>
                     <label className="block text-xs font-medium text-foreground mb-1">
                       Name (3-16 characters)
@@ -229,7 +228,7 @@ export default function LighterPersonalizationCards({
                     </p>
                   </div>
 
-                  {/* Color Picker */}
+                  {}
                   <div>
                     <ColorPicker
                       value={customization.backgroundColor}
@@ -264,7 +263,7 @@ export default function LighterPersonalizationCards({
         </ul>
       </div>
 
-      {/* Sticker Quality Information */}
+      {}
       <div className="rounded-lg border border-border bg-background/80 p-3">
         <h4 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
           <span>✨</span>
@@ -286,7 +285,7 @@ export default function LighterPersonalizationCards({
         </ul>
       </div>
 
-      {/* Application Guidelines */}
+      {}
       <div className="rounded-lg border border-gray-300 md:border-blue-200 bg-gray-100 md:bg-blue-50 md:dark:bg-blue-950/20 p-3">
         <h4 className="text-sm font-semibold text-gray-900 md:text-blue-900 md:dark:text-blue-100 mb-2 flex items-center gap-2">
           <span>💡</span>

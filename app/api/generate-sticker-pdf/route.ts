@@ -7,30 +7,26 @@ import archiver from 'archiver';
 import { cookies } from 'next/headers';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 
-// Register Poppins fonts for sticker text
 try {
   const poppinsExtraBold = path.join(process.cwd(), 'public', 'fonts', 'Poppins-ExtraBold.ttf');
   const poppinsBold = path.join(process.cwd(), 'public', 'fonts', 'Poppins-Bold.ttf');
   const poppinsMedium = path.join(process.cwd(), 'public', 'fonts', 'Poppins-Medium.ttf');
 
-  // Register ExtraBold for bold text
-  if (fs.existsSync(poppinsExtraBold)) {
+    if (fs.existsSync(poppinsExtraBold)) {
     registerFont(poppinsExtraBold, { family: 'Poppins', weight: '800' });
     console.log('Registered Poppins ExtraBold');
   } else {
     console.error('Poppins-ExtraBold.ttf not found at:', poppinsExtraBold);
   }
 
-  // Register Bold for medium-bold text
-  if (fs.existsSync(poppinsBold)) {
+    if (fs.existsSync(poppinsBold)) {
     registerFont(poppinsBold, { family: 'Poppins', weight: 'bold' });
     console.log('Registered Poppins Bold');
   } else {
     console.error('Poppins-Bold.ttf not found at:', poppinsBold);
   }
 
-  // Register Medium for normal weight text
-  if (fs.existsSync(poppinsMedium)) {
+    if (fs.existsSync(poppinsMedium)) {
     registerFont(poppinsMedium, { family: 'Poppins', weight: '500' });
     console.log('Registered Poppins Medium');
   } else {
@@ -40,18 +36,12 @@ try {
   console.error('Font registration error:', error);
 }
 
-// Printful sheet dimensions: 5.83 x 8.27 inches at 600 DPI (double quality for print perfection)
 const SHEET_WIDTH_INCHES = 5.83;
 const SHEET_HEIGHT_INCHES = 8.27;
 const DPI = 600;
-const SHEET_WIDTH_PX = Math.round(SHEET_WIDTH_INCHES * DPI); // 3498px
-const SHEET_HEIGHT_PX = Math.round(SHEET_HEIGHT_INCHES * DPI); // 4962px
-
-// Background Colors
+const SHEET_WIDTH_PX = Math.round(SHEET_WIDTH_INCHES * DPI); const SHEET_HEIGHT_PX = Math.round(SHEET_HEIGHT_INCHES * DPI); 
 const CARD_BG_COLOR = '#FFFFFF';
-const LOGO_BG_COLOR = '#FFF4D6'; // Slightly darker cream for logo section (machine detection)
-
-// Sticker dimensions: 5cm high x 2cm wide
+const LOGO_BG_COLOR = '#FFF4D6'; 
 const STICKER_WIDTH_CM = 2;
 const STICKER_HEIGHT_CM = 5;
 const CM_TO_INCHES = 1 / 2.54;
@@ -60,26 +50,21 @@ const STICKER_HEIGHT_INCHES = STICKER_HEIGHT_CM * CM_TO_INCHES;
 const STICKER_WIDTH_PX = Math.round(STICKER_WIDTH_INCHES * DPI);
 const STICKER_HEIGHT_PX = Math.round(STICKER_HEIGHT_INCHES * DPI);
 
-// Gap between stickers: 1cm (for proper lighter fit and spacing)
 const GAP_CM = 1.0;
 const GAP_INCHES = GAP_CM * CM_TO_INCHES;
 const GAP_PX = Math.round(GAP_INCHES * DPI);
 
-// Reserved area (bottom-right): 3" × 3"
 const RESERVED_INCHES = 3;
 const RESERVED_CM = RESERVED_INCHES / CM_TO_INCHES;
 const RESERVED_PX = Math.round(RESERVED_INCHES * DPI);
 
-// Calculate sticker grid
 const STICKER_WITH_GAP_PX = STICKER_WIDTH_PX + GAP_PX;
 const STICKER_WITH_GAP_HEIGHT_PX = STICKER_HEIGHT_PX + GAP_PX;
 
-// Top section (full width, above reserved area)
 const TOP_SECTION_HEIGHT_PX = SHEET_HEIGHT_PX - RESERVED_PX;
 const STICKERS_PER_ROW = Math.floor(SHEET_WIDTH_PX / STICKER_WITH_GAP_PX);
 const ROWS_TOP = Math.floor(TOP_SECTION_HEIGHT_PX / STICKER_WITH_GAP_HEIGHT_PX);
 
-// Bottom-left section
 const BOTTOM_LEFT_WIDTH_PX = SHEET_WIDTH_PX - RESERVED_PX;
 const STICKERS_PER_ROW_BOTTOM = Math.floor(BOTTOM_LEFT_WIDTH_PX / STICKER_WITH_GAP_PX);
 const ROWS_BOTTOM = Math.floor(RESERVED_PX / STICKER_WITH_GAP_HEIGHT_PX);
@@ -93,29 +78,24 @@ interface StickerData {
   language: string;
 }
 
-// Helper function to calculate luminance of a hex color
 function getLuminance(hex: string): number {
   let r = 0, g = 0, b = 0;
 
-  // 3-digit hex
-  if (hex.length === 4) {
+    if (hex.length === 4) {
     r = parseInt(hex[1] + hex[1], 16);
     g = parseInt(hex[2] + hex[2], 16);
     b = parseInt(hex[3] + hex[3], 16);
   }
-  // 6-digit hex
-  else if (hex.length === 7) {
+    else if (hex.length === 7) {
     r = parseInt(hex.substring(1, 3), 16);
     g = parseInt(hex.substring(3, 5), 16);
     b = parseInt(hex.substring(5, 7), 16);
   }
 
   if (isNaN(r) || isNaN(g) || isNaN(b)) {
-    return 0; // Default to black on error
-  }
+    return 0;   }
 
-  // Convert to sRGB and then to luminance
-  const sR = r / 255;
+    const sR = r / 255;
   const sG = g / 255;
   const sB = b / 255;
 
@@ -123,49 +103,37 @@ function getLuminance(hex: string): number {
   const linG = sG <= 0.03928 ? sG / 12.92 : Math.pow((sG + 0.055) / 1.055, 2.4);
   const linB = sB <= 0.03928 ? sB / 12.92 : Math.pow((sB + 0.055) / 1.055, 2.4);
 
-  // Relative luminance formula
-  return 0.2126 * linR + 0.7152 * linG + 0.0722 * linB;
+    return 0.2126 * linR + 0.7152 * linG + 0.0722 * linB;
 }
 
-// Helper function to get contrasting text color (black or white) based on background
 function getContrastingTextColor(backgroundColorHex: string): string {
   const luminance = getLuminance(backgroundColorHex);
-  // Threshold is 0.65. Dark backgrounds (< 0.65) get white text, light backgrounds get black text.
-  return luminance < 0.65 ? '#ffffff' : '#000000';
+    return luminance < 0.65 ? '#ffffff' : '#000000';
 }
 
 export async function POST(request: NextRequest) {
   try {
-    // SECURITY: Verify authentication before allowing resource-intensive sticker generation
-    // This prevents unauthorized users from abusing the endpoint for DoS attacks
-    // Exceptions:
-    // 1. Internal calls from process-sticker-order endpoint (with internal auth header)
-    // 2. Test endpoint calls in development
-    const internalAuth = request.headers.get('x-internal-auth');
+                        const internalAuth = request.headers.get('x-internal-auth');
     const userId = request.headers.get('x-user-id');
     const isTestEndpoint = request.headers.get('x-internal-test') === 'true';
     const isDevelopment = process.env.NODE_ENV !== 'production';
 
-    // Check for internal authentication (server-to-server)
-    let isInternalAuth = false;
+        let isInternalAuth = false;
     if (internalAuth && userId && process.env.SUPABASE_SERVICE_ROLE_KEY) {
       try {
         const decoded = Buffer.from(internalAuth, 'base64').toString('utf-8');
         const [authUserId, timestamp, serviceKey] = decoded.split(':');
 
-        // Verify internal auth token
-        const isValidUser = authUserId === userId;
+                const isValidUser = authUserId === userId;
         const isValidKey = serviceKey === process.env.SUPABASE_SERVICE_ROLE_KEY;
-        const isRecent = Date.now() - parseInt(timestamp) < 60000; // 1 minute
-
+        const isRecent = Date.now() - parseInt(timestamp) < 60000; 
         isInternalAuth = isValidUser && isValidKey && isRecent;
       } catch (e) {
         console.error('Internal auth validation failed:', e);
       }
     }
 
-    // Only skip auth checks if internal auth OR (test endpoint AND development)
-    if (!isInternalAuth && !(isTestEndpoint && isDevelopment)) {
+        if (!isInternalAuth && !(isTestEndpoint && isDevelopment)) {
       const cookieStore = cookies();
       const supabase = createServerSupabaseClient(cookieStore);
       const { data: { session } } = await supabase.auth.getSession();
@@ -187,11 +155,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Calculate how many sheets we need
-    const numSheets = Math.ceil(stickers.length / TOTAL_STICKERS);
+        const numSheets = Math.ceil(stickers.length / TOTAL_STICKERS);
 
-    // If only one sheet, return PNG directly (backward compatibility)
-    if (numSheets === 1) {
+        if (numSheets === 1) {
       const buffer = await generateSingleSheet(stickers);
       return new NextResponse(new Uint8Array(buffer), {
         status: 200,
@@ -203,8 +169,7 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Multiple sheets - generate all sheets and package in ZIP
-    const sheets: { filename: string; buffer: Buffer }[] = [];
+        const sheets: { filename: string; buffer: Buffer }[] = [];
 
     for (let i = 0; i < numSheets; i++) {
       const startIdx = i * TOTAL_STICKERS;
@@ -218,12 +183,10 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Create ZIP file using proper stream handling
-    const archive = archiver('zip', { zlib: { level: 9 } });
+        const archive = archiver('zip', { zlib: { level: 9 } });
     const chunks: Uint8Array[] = [];
 
-    // Wait for ZIP to finish
-    const zipPromise = new Promise<Buffer>((resolve, reject) => {
+        const zipPromise = new Promise<Buffer>((resolve, reject) => {
       archive.on('data', (chunk: Uint8Array) => chunks.push(chunk));
       archive.on('end', () => {
         const totalLength = chunks.reduce((acc, chunk) => acc + chunk.length, 0);
@@ -238,13 +201,11 @@ export async function POST(request: NextRequest) {
       archive.on('error', reject);
     });
 
-    // Add all sheets to ZIP
-    for (const sheet of sheets) {
+        for (const sheet of sheets) {
       archive.append(sheet.buffer, { name: sheet.filename });
     }
 
-    // Finalize ZIP
-    archive.finalize();
+        archive.finalize();
     const zipBuffer = await zipPromise;
 
     return new NextResponse(new Uint8Array(zipBuffer), {
@@ -264,24 +225,17 @@ export async function POST(request: NextRequest) {
   }
 }
 
-/**
- * Generate a single sheet of stickers (up to 10 stickers)
- */
 async function generateSingleSheet(stickers: StickerData[]): Promise<Buffer> {
-  // Create canvas with transparent background
-  const canvas = createCanvas(SHEET_WIDTH_PX, SHEET_HEIGHT_PX);
+    const canvas = createCanvas(SHEET_WIDTH_PX, SHEET_HEIGHT_PX);
   const ctx = canvas.getContext('2d');
 
-  // Transparent background (Printful requirement for kiss-cut)
-  ctx.clearRect(0, 0, SHEET_WIDTH_PX, SHEET_HEIGHT_PX);
+    ctx.clearRect(0, 0, SHEET_WIDTH_PX, SHEET_HEIGHT_PX);
 
-  // Calculate centering offset for top section
-  const topSectionUsedWidth = STICKERS_PER_ROW * STICKER_WIDTH_PX + (STICKERS_PER_ROW - 1) * GAP_PX;
+    const topSectionUsedWidth = STICKERS_PER_ROW * STICKER_WIDTH_PX + (STICKERS_PER_ROW - 1) * GAP_PX;
   const topOffsetX = Math.round((SHEET_WIDTH_PX - topSectionUsedWidth) / 2);
   const topOffsetY = Math.round(GAP_PX / 2);
 
-  // Draw stickers in top section
-  let stickerIndex = 0;
+    let stickerIndex = 0;
   for (let row = 0; row < ROWS_TOP && stickerIndex < stickers.length; row++) {
     for (let col = 0; col < STICKERS_PER_ROW && stickerIndex < stickers.length; col++) {
       const x = topOffsetX + col * (STICKER_WIDTH_PX + GAP_PX);
@@ -291,8 +245,7 @@ async function generateSingleSheet(stickers: StickerData[]): Promise<Buffer> {
     }
   }
 
-  // Draw stickers in bottom-left section
-  const bottomLeftUsedWidth = STICKERS_PER_ROW_BOTTOM * STICKER_WIDTH_PX + (STICKERS_PER_ROW_BOTTOM - 1) * GAP_PX;
+    const bottomLeftUsedWidth = STICKERS_PER_ROW_BOTTOM * STICKER_WIDTH_PX + (STICKERS_PER_ROW_BOTTOM - 1) * GAP_PX;
   const bottomOffsetX = Math.round((BOTTOM_LEFT_WIDTH_PX - bottomLeftUsedWidth) / 2);
   const bottomOffsetY = SHEET_HEIGHT_PX - RESERVED_PX + Math.round(GAP_PX / 2);
 
@@ -305,11 +258,8 @@ async function generateSingleSheet(stickers: StickerData[]): Promise<Buffer> {
     }
   }
 
-  // Leave branding area empty (branding will be on physical background)
-  // The 3"×3" bottom-right area is reserved but left transparent for branding on the background
-
-  // Convert to PNG buffer
-  return canvas.toBuffer('image/png', {
+    
+    return canvas.toBuffer('image/png', {
     compressionLevel: 9,
     filters: Canvas.PNG_FILTER_NONE
   });
@@ -321,131 +271,68 @@ async function drawSticker(
   x: number,
   y: number
 ) {
-  // Pixel-perfect rendering settings for crisp text and graphics
-  ctx.imageSmoothingEnabled = false;
+    ctx.imageSmoothingEnabled = false;
   (ctx as any).antialias = 'none';
   (ctx as any).textDrawingMode = 'glyph';
 
-  // Internal padding: 5% of sticker width
-  const padding = Math.round(STICKER_WIDTH_PX * 0.05); // 24px at 600 DPI
-  const contentWidth = STICKER_WIDTH_PX - padding * 2; // 424px at 600 DPI
-  const contentHeight = STICKER_HEIGHT_PX - padding * 2; // 1134px at 600 DPI
-  const cornerRadius = Math.round(STICKER_WIDTH_PX * 0.14); // ~67px at 600 DPI - rounder corners
-  const cardRadius = Math.round(STICKER_WIDTH_PX * 0.05); // ~24px at 600 DPI - rounder cards
-  const smallGap = 4; // Very tight gap between cards for ultra-compact design
-
-  // Draw colored background with rounded corners (kiss-cut sticker shape)
-  ctx.fillStyle = sticker.backgroundColor;
+    const padding = Math.round(STICKER_WIDTH_PX * 0.05);   const contentWidth = STICKER_WIDTH_PX - padding * 2;   const contentHeight = STICKER_HEIGHT_PX - padding * 2;   const cornerRadius = Math.round(STICKER_WIDTH_PX * 0.14);   const cardRadius = Math.round(STICKER_WIDTH_PX * 0.05);   const smallGap = 4; 
+    ctx.fillStyle = sticker.backgroundColor;
   roundRect(ctx, x, y, STICKER_WIDTH_PX, STICKER_HEIGHT_PX, cornerRadius);
   ctx.fill();
 
-  // Get contrasting text color for this background (black for light backgrounds, white for dark)
-  const textColor = getContrastingTextColor(sticker.backgroundColor);
+    const textColor = getContrastingTextColor(sticker.backgroundColor);
 
-  // Draw sticker_bg_layer.png overlay (between background and content)
-  // Clipped to sticker bounds to prevent cutting glitches
-  try {
+      try {
     const bgLayerPath = path.join(process.cwd(), 'public', 'newassets', 'sticker_bg_layer.png');
     const bgLayerBuffer = fs.readFileSync(bgLayerPath);
     const { Image } = await import('canvas');
     const bgLayerImage = new Image();
     bgLayerImage.src = bgLayerBuffer;
 
-    // Save context state
-    ctx.save();
-    // Clip to sticker shape to prevent overflow beyond background
-    roundRect(ctx, x, y, STICKER_WIDTH_PX, STICKER_HEIGHT_PX, cornerRadius);
+        ctx.save();
+        roundRect(ctx, x, y, STICKER_WIDTH_PX, STICKER_HEIGHT_PX, cornerRadius);
     ctx.clip();
-    // Draw layer within clipped region
-    ctx.drawImage(bgLayerImage, x, y, STICKER_WIDTH_PX, STICKER_HEIGHT_PX);
-    // Restore context (remove clip)
-    ctx.restore();
+        ctx.drawImage(bgLayerImage, x, y, STICKER_WIDTH_PX, STICKER_HEIGHT_PX);
+        ctx.restore();
   } catch (error) {
     console.error('Background layer loading error:', error);
   }
 
   let currentY = y + padding;
 
-  // White card for "You found me! I'm" + name
-  // Reduced to fit text tightly + padding
-  const cardHeight = 140; // Compact height for 2 text lines (doubled for 600 DPI)
-
-  // Draw white background with rounded corners
-  ctx.fillStyle = CARD_BG_COLOR;
+      const cardHeight = 140; 
+    ctx.fillStyle = CARD_BG_COLOR;
   roundRect(ctx, x + padding, currentY, contentWidth, cardHeight, cardRadius);
   ctx.fill();
 
-  // "You found me! I'm" text - on same line
-  ctx.fillStyle = '#000000';
-  ctx.font = `500 36px Poppins, Arial, sans-serif`; // Doubled for 600 DPI
-  ctx.textAlign = 'center';
+    ctx.fillStyle = '#000000';
+  ctx.font = `500 36px Poppins, Arial, sans-serif`;   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText("You found me! I'm", x + STICKER_WIDTH_PX / 2, currentY + 44); // Doubled for 600 DPI
-
-  // Name text
-  ctx.font = `800 48px Poppins, Arial, sans-serif`; // Doubled for 600 DPI
-  ctx.fillText(sticker.name, x + STICKER_WIDTH_PX / 2, currentY + 96); // Doubled for 600 DPI
-
+  ctx.fillText("You found me! I'm", x + STICKER_WIDTH_PX / 2, currentY + 44); 
+    ctx.font = `800 48px Poppins, Arial, sans-serif`;   ctx.fillText(sticker.name, x + STICKER_WIDTH_PX / 2, currentY + 96); 
   currentY += cardHeight + padding;
 
-  // Move invitation section and QR up for better spacing
-  currentY -= 10;
+    currentY -= 10;
 
-  // "Tell them how we met" - more intriguing and engaging call-to-action
-  ctx.fillStyle = textColor; // Use contrasting color
-  ctx.font = `800 34px Poppins, Arial, sans-serif`; // Slightly reduced to prevent overflow
-  ctx.textAlign = 'center';
+    ctx.fillStyle = textColor;   ctx.font = `800 34px Poppins, Arial, sans-serif`;   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   ctx.fillText('Tell them how we met', x + STICKER_WIDTH_PX / 2, currentY + 4);
 
-  // Translation - Complete language support (adapted for "Tell them how we met")
-  // Optimized to prevent overflow on stickers
-  const translations: { [key: string]: string } = {
-    fr: 'Dis comment on s\'est rencontrés',  // Shortened for space
-    es: 'Diles cómo nos conocimos',           // Optimized
-    de: 'Erzähl von unserem Treffen',       // Shortened
-    it: 'Racconta il nostro incontro',      // Optimized
-    pt: 'Conte como nos conhecemos',        // Already good
-    ar: 'أخبرهم بلقائنا',                   // Shortened
-    fa: 'از ملاقاتمان بگو',                 // Shortened
-    hi: 'बताओ हम कैसे मिले',                // Already good
-    id: 'Ceritakan pertemuan kita',         // Optimized
-    ja: '出会いを語って',                     // Shortened
-    ko: '만남을 말해줘',                      // Shortened
-    mr: 'सांग आम्ही कसे भेटलो',             // Already good
-    nl: 'Vertel hoe we elkaar vonden',      // Optimized
-    pl: 'Opowiedz jak się poznaliśmy',      // Already good
-    ru: 'Расскажи о встрече',                // Shortened
-    te: 'మన కలయిక చెప్పు',                   // Shortened
-    th: 'บอกว่าเราเจอกันอย่างไร',            // Optimized
-    tr: 'Tanışmamızı anlat',                 // Shortened
-    uk: 'Розкажи про зустріч',               // Shortened
-    ur: 'ملاقات بتائیں',                     // Shortened
-    vi: 'Kể về cuộc gặp gỡ',                 // Optimized
-    'zh-CN': '讲讲我们的相遇',                 // Optimized
-  };
+      const translations: { [key: string]: string } = {
+    fr: 'Dis comment on s\'est rencontrés',      es: 'Diles cómo nos conocimos',               de: 'Erzähl von unserem Treffen',           it: 'Racconta il nostro incontro',          pt: 'Conte como nos conhecemos',            ar: 'أخبرهم بلقائنا',                       fa: 'از ملاقاتمان بگو',                     hi: 'बताओ हम कैसे मिले',                    id: 'Ceritakan pertemuan kita',             ja: '出会いを語って',                         ko: '만남을 말해줘',                          mr: 'सांग आम्ही कसे भेटलो',                 nl: 'Vertel hoe we elkaar vonden',          pl: 'Opowiedz jak się poznaliśmy',          ru: 'Расскажи о встрече',                    te: 'మన కలయిక చెప్పు',                       th: 'บอกว่าเราเจอกันอย่างไร',                tr: 'Tanışmamızı anlat',                     uk: 'Розкажи про зустріч',                   ur: 'ملاقات بتائیں',                         vi: 'Kể về cuộc gặp gỡ',                     'zh-CN': '讲讲我们的相遇',                   };
 
   const translationText = translations[sticker.language] || translations.fr;
-  ctx.font = `500 28px Poppins, Arial, sans-serif`; // Reduced for overflow prevention
-  ctx.textBaseline = 'top';
+  ctx.font = `500 28px Poppins, Arial, sans-serif`;   ctx.textBaseline = 'top';
   ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + 42);
 
-  currentY += 100; // Increased spacing after invitation section for breathing room
-
-  // QR Code on white card - reduced by 0.7x factor for more color visibility
-  const qrCardSize = Math.round(contentWidth * 0.7); // ~148px (70% of 212)
-  const qrSize = Math.round(qrCardSize * 0.89); // ~132px
-
-  // Draw square white card for QR code (same padding on all sides)
-  ctx.fillStyle = CARD_BG_COLOR;
-  const qrCardX = x + padding + (contentWidth - qrCardSize) / 2; // Center the card
-  roundRect(ctx, qrCardX, currentY, qrCardSize, qrCardSize, cardRadius);
+  currentY += 100; 
+    const qrCardSize = Math.round(contentWidth * 0.7);   const qrSize = Math.round(qrCardSize * 0.89); 
+    ctx.fillStyle = CARD_BG_COLOR;
+  const qrCardX = x + padding + (contentWidth - qrCardSize) / 2;   roundRect(ctx, qrCardX, currentY, qrCardSize, qrCardSize, cardRadius);
   ctx.fill();
 
   try {
-    // Generate unique QR code for each lighter with pre-filled PIN
-    // Points to index page with PIN pre-filled to provide full context
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://lightmyfire.app';
+            const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://lightmyfire.app';
     const qrUrl = `${baseUrl}/?pin=${sticker.pinCode}`;
 
     const qrDataUrl = await QRCode.toDataURL(qrUrl, {
@@ -462,36 +349,23 @@ async function drawSticker(
     console.error('QR code generation error:', error);
   }
 
-  currentY += qrCardSize + (smallGap * 6); // DOUBLED from tripled gap for more space
-
-  // "or go to lightmyfire.app" section - DOUBLED SIZE
-  const urlBgHeight = 116; // Doubled from 58
-
-  // Draw white background with rounded corners
-  ctx.fillStyle = CARD_BG_COLOR;
+  currentY += qrCardSize + (smallGap * 6); 
+    const urlBgHeight = 116; 
+    ctx.fillStyle = CARD_BG_COLOR;
   roundRect(ctx, x + padding, currentY, contentWidth, urlBgHeight, cardRadius);
   ctx.fill();
 
   ctx.fillStyle = '#000000';
-  ctx.font = `500 32px Poppins, Arial, sans-serif`; // Doubled from 16px
-  ctx.textAlign = 'center';
+  ctx.font = `500 32px Poppins, Arial, sans-serif`;   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText('or go to', x + STICKER_WIDTH_PX / 2, currentY + 38); // Adjusted position
-  // Use Poppins-Bold and all caps for better letter spacing and readability at small scale
-  ctx.font = `bold 36px Poppins, Arial, sans-serif`; // Doubled from 18px
-  ctx.fillText('LIGHTMYFIRE.APP', x + STICKER_WIDTH_PX / 2, currentY + 80); // Adjusted position
-
+  ctx.fillText('or go to', x + STICKER_WIDTH_PX / 2, currentY + 38);     ctx.font = `bold 36px Poppins, Arial, sans-serif`;   ctx.fillText('LIGHTMYFIRE.APP', x + STICKER_WIDTH_PX / 2, currentY + 80); 
   currentY += urlBgHeight + smallGap;
 
-  // "and type my code" - DOUBLED SIZE with HEAVY BOLD
-  ctx.fillStyle = textColor; // Use contrasting color
-  ctx.font = `800 36px Poppins, Arial, sans-serif`; // Heavy bold (800 weight)
-  ctx.textAlign = 'center';
+    ctx.fillStyle = textColor;   ctx.font = `800 36px Poppins, Arial, sans-serif`;   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   ctx.fillText('and type my code', x + STICKER_WIDTH_PX / 2, currentY + 4);
 
-  // Translation - Complete language support (shorter versions)
-  const codeTranslations: { [key: string]: string } = {
+    const codeTranslations: { [key: string]: string } = {
     fr: 'et entre mon code',
     es: 'e introduce mi código',
     de: 'und gib meinen Code ein',
@@ -517,62 +391,36 @@ async function drawSticker(
   };
 
   const codeText = codeTranslations[sticker.language] || codeTranslations.fr;
-  ctx.font = `500 28px Poppins, Arial, sans-serif`; // Doubled from 14px
-  ctx.textBaseline = 'top';
-  ctx.fillText(codeText, x + STICKER_WIDTH_PX / 2, currentY + 46); // Adjusted position
-
-  currentY += 76; // Section height - doubled from 38
-  currentY += (smallGap * 3); // TRIPLED gap before PIN code
-
-  // PIN code - DOUBLED SIZE
-  const pinBgHeight = 104; // Doubled from 52
-
-  // Draw white background with rounded corners
-  ctx.fillStyle = CARD_BG_COLOR;
+  ctx.font = `500 28px Poppins, Arial, sans-serif`;   ctx.textBaseline = 'top';
+  ctx.fillText(codeText, x + STICKER_WIDTH_PX / 2, currentY + 46); 
+  currentY += 76;   currentY += (smallGap * 3); 
+    const pinBgHeight = 104; 
+    ctx.fillStyle = CARD_BG_COLOR;
   roundRect(ctx, x + padding, currentY, contentWidth, pinBgHeight, cardRadius);
   ctx.fill();
 
   ctx.fillStyle = '#000000';
-  ctx.font = `800 64px Poppins, Arial, sans-serif`; // Doubled from 32px
-  ctx.textAlign = 'center';
+  ctx.font = `800 64px Poppins, Arial, sans-serif`;   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText(sticker.pinCode, x + STICKER_WIDTH_PX / 2, currentY + pinBgHeight / 2);
 
-  currentY += pinBgHeight + (smallGap * 4); // QUADRUPLED gap before logo
+  currentY += pinBgHeight + (smallGap * 4); 
+    try {
+        const creamBgTop = currentY + 5;
+    const creamBgBottom = y + STICKER_HEIGHT_PX + 5;     const creamBgHeight = creamBgBottom - creamBgTop;
 
-  // Logo section at bottom - cream background with rounded bottom corners matching sticker
-  try {
-    // Move cream section down by 5 pixels to cover any background gap
-    const creamBgTop = currentY + 5;
-    const creamBgBottom = y + STICKER_HEIGHT_PX + 5; // Extend beyond sticker bottom to ensure coverage
-    const creamBgHeight = creamBgBottom - creamBgTop;
-
-    // Draw cream background with rounded bottom corners to match sticker shape
-    ctx.fillStyle = LOGO_BG_COLOR;
-    // Use path to create shape with rounded bottom corners only
-    ctx.beginPath();
-    ctx.moveTo(x, creamBgTop); // Top left (no radius)
-    ctx.lineTo(x + STICKER_WIDTH_PX, creamBgTop); // Top right (no radius)
-    ctx.lineTo(x + STICKER_WIDTH_PX, creamBgBottom - cornerRadius); // Right side
-    ctx.arcTo(x + STICKER_WIDTH_PX, creamBgBottom, x + STICKER_WIDTH_PX - cornerRadius, creamBgBottom, cornerRadius); // Bottom right corner
-    ctx.lineTo(x + cornerRadius, creamBgBottom); // Bottom edge
-    ctx.arcTo(x, creamBgBottom, x, creamBgBottom - cornerRadius, cornerRadius); // Bottom left corner
-    ctx.lineTo(x, creamBgTop); // Left side back to top
-    ctx.closePath();
+        ctx.fillStyle = LOGO_BG_COLOR;
+        ctx.beginPath();
+    ctx.moveTo(x, creamBgTop);     ctx.lineTo(x + STICKER_WIDTH_PX, creamBgTop);     ctx.lineTo(x + STICKER_WIDTH_PX, creamBgBottom - cornerRadius);     ctx.arcTo(x + STICKER_WIDTH_PX, creamBgBottom, x + STICKER_WIDTH_PX - cornerRadius, creamBgBottom, cornerRadius);     ctx.lineTo(x + cornerRadius, creamBgBottom);     ctx.arcTo(x, creamBgBottom, x, creamBgBottom - cornerRadius, cornerRadius);     ctx.lineTo(x, creamBgTop);     ctx.closePath();
     ctx.fill();
 
-    // Add legal disclaimer text at top of cream section
-    const disclaimerPadding = 10; // Reduced by half from 20
-    const disclaimerWidth = STICKER_WIDTH_PX - (disclaimerPadding * 2);
+        const disclaimerPadding = 10;     const disclaimerWidth = STICKER_WIDTH_PX - (disclaimerPadding * 2);
     const disclaimerText = "LightMyFire (LMF) is a community-driven project aiming at giving value to often deprecated objects. lightmyfire.app was audited to ensure online safety and anonymity. LMF has no affiliation with any legal representation of the support this sticker was found on. LMF cannot be held responsible for any private use of this sticker, i.e. displayed content and location.";
 
     ctx.fillStyle = '#000000';
-    ctx.font = `500 16px Poppins, Arial, sans-serif`; // Small but readable
-    ctx.textAlign = 'left'; // Left align for justified appearance
-    ctx.textBaseline = 'top';
+    ctx.font = `500 16px Poppins, Arial, sans-serif`;     ctx.textAlign = 'left';     ctx.textBaseline = 'top';
 
-    // Word wrap function for justified text
-    const wrapText = (text: string, maxWidth: number): string[] => {
+        const wrapText = (text: string, maxWidth: number): string[] => {
       const words = text.split(' ');
       const lines: string[] = [];
       let currentLine = '';
@@ -600,17 +448,14 @@ async function drawSticker(
     const lineHeight = 20;
     let disclaimerY = creamBgTop + disclaimerPadding;
 
-    // Draw each line with justification (except last line)
-    disclaimerLines.forEach((line, index) => {
+        disclaimerLines.forEach((line, index) => {
       const isLastLine = index === disclaimerLines.length - 1;
 
       if (isLastLine) {
-        // Last line: left-aligned, no justification
-        ctx.textAlign = 'left';
+                ctx.textAlign = 'left';
         ctx.fillText(line, x + disclaimerPadding, disclaimerY);
       } else {
-        // Justify by adding space between words
-        const words = line.split(' ');
+                const words = line.split(' ');
         if (words.length === 1) {
           ctx.textAlign = 'left';
           ctx.fillText(line, x + disclaimerPadding, disclaimerY);
@@ -633,29 +478,22 @@ async function drawSticker(
     const disclaimerTotalHeight = disclaimerLines.length * lineHeight;
     const disclaimerBottomY = creamBgTop + disclaimerPadding + disclaimerTotalHeight;
 
-    // Load and draw logo
-    const logoPath = path.join(process.cwd(), 'public', 'LOGOLONG.png');
+        const logoPath = path.join(process.cwd(), 'public', 'LOGOLONG.png');
     const logoBuffer = fs.readFileSync(logoPath);
     const { Image } = await import('canvas');
     const logoImage = new Image();
     logoImage.src = logoBuffer;
 
-    // Logo sizing - fit to available space (0.6x scale) with high quality rendering
-    const logoPadding = 40;
+        const logoPadding = 40;
     const logoBaseWidth = STICKER_WIDTH_PX - (logoPadding * 2);
-    const logoTargetWidth = Math.round(logoBaseWidth * 0.6); // 60% of available width
-    const logoAspectRatio = logoImage.height / logoImage.width;
+    const logoTargetWidth = Math.round(logoBaseWidth * 0.6);     const logoAspectRatio = logoImage.height / logoImage.width;
     const logoTargetHeight = Math.round(logoTargetWidth * logoAspectRatio);
 
-    // Center logo vertically between disclaimer bottom and sticker bottom
-    const availableSpace = creamBgBottom - disclaimerBottomY;
-    const logoX = x + (STICKER_WIDTH_PX - logoTargetWidth) / 2; // Center horizontally
-    const logoY = disclaimerBottomY + (availableSpace - logoTargetHeight) / 2;
+        const availableSpace = creamBgBottom - disclaimerBottomY;
+    const logoX = x + (STICKER_WIDTH_PX - logoTargetWidth) / 2;     const logoY = disclaimerBottomY + (availableSpace - logoTargetHeight) / 2;
 
-    // Enable high-quality image rendering
-    ctx.imageSmoothingEnabled = true;
-    // @ts-ignore - imageSmoothingQuality is supported in node-canvas but not in types
-    ctx.imageSmoothingQuality = 'high';
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
 
     ctx.drawImage(logoImage, logoX, logoY, logoTargetWidth, logoTargetHeight);
 
@@ -666,11 +504,6 @@ async function drawSticker(
   }
 }
 
-// NOTE: drawBrandingArea function removed
-// The 3"×3" bottom-right reserved area is intentionally left empty/transparent
-// Branding will be printed on the physical sticker sheet background, not on the PNG
-// This allows for customizable branding for events, brands, etc.
-
 function roundRect(
   ctx: NodeCanvasContext,
   x: number,
@@ -679,8 +512,7 @@ function roundRect(
   height: number,
   radius: number
 ) {
-  // Ensure radius doesn't exceed half of width or height
-  if (width < 2 * radius) radius = width / 2;
+    if (width < 2 * radius) radius = width / 2;
   if (height < 2 * radius) radius = height / 2;
 
   ctx.beginPath();

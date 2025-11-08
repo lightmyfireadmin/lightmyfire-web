@@ -4,60 +4,36 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { cn } from '@/lib/utils';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
-// ============================================================================
-// Color Definitions
-// ============================================================================
-
-/**
- * Preset color palette - carefully selected for good contrast and variety
- */
 const PRESET_COLORS = [
-  // Warm colors (Reds, Oranges, Yellows)
-  { hex: '#FF6B6B', name: 'Coral Red' },
+    { hex: '#FF6B6B', name: 'Coral Red' },
   { hex: '#FF8B6B', name: 'Sunset Orange' },
   { hex: '#FFA500', name: 'Warm Orange' },
   { hex: '#FFD700', name: 'Golden Yellow' },
   { hex: '#FFEB3B', name: 'Bright Yellow' },
 
-  // Cool colors (Greens, Blues, Purples)
-  { hex: '#90EE90', name: 'Light Green' },
+    { hex: '#90EE90', name: 'Light Green' },
   { hex: '#4CAF50', name: 'Forest Green' },
   { hex: '#20B2AA', name: 'Turquoise' },
   { hex: '#87CEEB', name: 'Sky Blue' },
   { hex: '#4169E1', name: 'Royal Blue' },
 
-  // Accent colors (Purples, Pinks, Grays)
-  { hex: '#8A2BE2', name: 'Blue Violet' },
+    { hex: '#8A2BE2', name: 'Blue Violet' },
   { hex: '#FF1493', name: 'Deep Pink' },
   { hex: '#FFB6C1', name: 'Light Pink' },
   { hex: '#D3D3D3', name: 'Light Gray' },
   { hex: '#808080', name: 'Gray' },
 ];
 
-
-// ============================================================================
-// Color Utility Functions
-// ============================================================================
-
-/**
- * Validate HEX color format
- */
 const isValidHex = (hex: string): boolean => {
   return /^#[0-9A-F]{6}$/i.test(hex);
 };
 
-/**
- * Format HEX input (auto-add # and limit to 6 chars)
- */
 const formatHexInput = (input: string): string => {
   let cleaned = input.replace(/[^0-9A-Fa-f]/g, '');
   if (cleaned.length > 6) cleaned = cleaned.slice(0, 6);
   return cleaned ? `#${cleaned.toUpperCase()}` : '';
 };
 
-/**
- * Convert HEX to RGB
- */
 const hexToRgb = (hex: string): [number, number, number] => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
@@ -65,9 +41,6 @@ const hexToRgb = (hex: string): [number, number, number] => {
     : [0, 0, 0];
 };
 
-/**
- * Calculate relative luminance (WCAG formula)
- */
 const getLuminance = (hex: string): number => {
   const rgb = hexToRgb(hex);
   const [r, g, b] = rgb.map(val => {
@@ -79,9 +52,6 @@ const getLuminance = (hex: string): number => {
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 };
 
-/**
- * Calculate contrast ratio between two colors
- */
 const getContrastRatio = (color1: string, color2: string): number => {
   const lum1 = getLuminance(color1);
   const lum2 = getLuminance(color2);
@@ -90,27 +60,18 @@ const getContrastRatio = (color1: string, color2: string): number => {
   return (lighter + 0.05) / (darker + 0.05);
 };
 
-/**
- * Check if color has good contrast with white or black text (WCAG AA: 4.5:1)
- */
 const hasGoodContrast = (bgColor: string): boolean => {
   const whiteContrast = getContrastRatio(bgColor, '#FFFFFF');
   const blackContrast = getContrastRatio(bgColor, '#000000');
   return Math.max(whiteContrast, blackContrast) >= 4.5;
 };
 
-/**
- * Get recommended text color (black or white) for background
- */
 const getTextColor = (bgColor: string): string => {
   const whiteContrast = getContrastRatio(bgColor, '#FFFFFF');
   const blackContrast = getContrastRatio(bgColor, '#000000');
   return whiteContrast > blackContrast ? '#FFFFFF' : '#000000';
 };
 
-/**
- * Convert RGB to HEX
- */
 const rgbToHex = (r: number, g: number, b: number): string => {
   return '#' + [r, g, b].map(x => {
     const hex = x.toString(16);
@@ -118,9 +79,6 @@ const rgbToHex = (r: number, g: number, b: number): string => {
   }).join('').toUpperCase();
 };
 
-/**
- * Convert HSV to RGB
- */
 const hsvToRgb = (h: number, s: number, v: number): [number, number, number] => {
   const c = v * s;
   const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
@@ -149,9 +107,6 @@ const hsvToRgb = (h: number, s: number, v: number): [number, number, number] => 
   ];
 };
 
-/**
- * Convert RGB to HSV
- */
 const rgbToHsv = (r: number, g: number, b: number): [number, number, number] => {
   r /= 255;
   g /= 255;
@@ -178,10 +133,6 @@ const rgbToHsv = (r: number, g: number, b: number): [number, number, number] => 
   return [h, s, v];
 };
 
-// ============================================================================
-// Color History (LocalStorage)
-// ============================================================================
-
 const COLOR_HISTORY_KEY = 'lightmyfire_color_history';
 const MAX_HISTORY = 10;
 
@@ -203,8 +154,7 @@ const useColorHistory = () => {
     if (!isValidHex(color)) return;
 
     setHistory(prev => {
-      // Remove duplicates and add to front
-      const updated = [color, ...prev.filter(c => c.toLowerCase() !== color.toLowerCase())]
+            const updated = [color, ...prev.filter(c => c.toLowerCase() !== color.toLowerCase())]
         .slice(0, MAX_HISTORY);
 
       try {
@@ -219,10 +169,6 @@ const useColorHistory = () => {
 
   return { history, addToHistory };
 };
-
-// ============================================================================
-// Modern Color Picker Modal Component
-// ============================================================================
 
 interface ModernColorPickerModalProps {
   isOpen: boolean;
@@ -249,8 +195,7 @@ function ModernColorPickerModal({ isOpen, onClose, initialColor, onColorSelect }
     setValue(v);
   }, [isOpen, initialColor]);
 
-  // Draw saturation/value gradient
-  useEffect(() => {
+    useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -260,13 +205,11 @@ function ModernColorPickerModal({ isOpen, onClose, initialColor, onColorSelect }
     const width = canvas.width;
     const height = canvas.height;
 
-    // Draw saturation gradient (left to right)
-    for (let x = 0; x < width; x++) {
+        for (let x = 0; x < width; x++) {
       const s = x / width;
       const gradient = ctx.createLinearGradient(0, 0, 0, height);
 
-      // Draw value gradient (top to bottom) for this saturation
-      for (let y = 0; y < height; y++) {
+            for (let y = 0; y < height; y++) {
         const v = 1 - (y / height);
         const [r, g, b] = hsvToRgb(hue, s, v);
         gradient.addColorStop(y / height, `rgb(${r},${g},${b})`);
@@ -307,7 +250,7 @@ function ModernColorPickerModal({ isOpen, onClose, initialColor, onColorSelect }
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-4" onClick={onClose}>
       <div className="bg-background rounded-2xl shadow-2xl p-6 w-full max-w-sm" onClick={(e) => e.stopPropagation()}>
-        {/* Header */}
+        {}
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-foreground">Pick a Color</h3>
           <button
@@ -319,7 +262,7 @@ function ModernColorPickerModal({ isOpen, onClose, initialColor, onColorSelect }
           </button>
         </div>
 
-        {/* Saturation/Value Canvas */}
+        {}
         <div className="mb-4">
           <canvas
             ref={canvasRef}
@@ -359,7 +302,7 @@ function ModernColorPickerModal({ isOpen, onClose, initialColor, onColorSelect }
             }}
             onTouchEnd={() => setIsDragging(false)}
           />
-          {/* Crosshair indicator */}
+          {}
           <div
             className="relative -mt-48 pointer-events-none"
             style={{
@@ -372,7 +315,7 @@ function ModernColorPickerModal({ isOpen, onClose, initialColor, onColorSelect }
           </div>
         </div>
 
-        {/* Hue Slider */}
+        {}
         <div className="mb-4">
           <label className="block text-sm font-medium text-foreground mb-2">Hue</label>
           <input
@@ -390,7 +333,7 @@ function ModernColorPickerModal({ isOpen, onClose, initialColor, onColorSelect }
           />
         </div>
 
-        {/* Preview and HEX */}
+        {}
         <div className="flex items-center gap-3 mb-4">
           <div
             className="w-16 h-16 rounded-lg border-2 border-border shadow-inner"
@@ -404,7 +347,7 @@ function ModernColorPickerModal({ isOpen, onClose, initialColor, onColorSelect }
           </div>
         </div>
 
-        {/* Action Buttons */}
+        {}
         <div className="flex gap-2">
           <button
             onClick={onClose}
@@ -424,10 +367,6 @@ function ModernColorPickerModal({ isOpen, onClose, initialColor, onColorSelect }
   );
 }
 
-// ============================================================================
-// Component Props
-// ============================================================================
-
 interface ColorPickerProps {
   value: string;
   onChange: (color: string) => void;
@@ -435,10 +374,6 @@ interface ColorPickerProps {
   showPreview?: boolean;
   className?: string;
 }
-
-// ============================================================================
-// Main Component
-// ============================================================================
 
 export default function ColorPicker({
   value,
@@ -452,30 +387,25 @@ export default function ColorPicker({
   const [showColorModal, setShowColorModal] = useState(false);
   const { history, addToHistory } = useColorHistory();
 
-  // Sync hexInput with value prop
-  useEffect(() => {
+    useEffect(() => {
     setHexInput(value);
   }, [value]);
 
-  // Handle color change (without history tracking)
-  const handleColorChange = useCallback((newColor: string, saveToHistory = true) => {
+    const handleColorChange = useCallback((newColor: string, saveToHistory = true) => {
     if (isValidHex(newColor) && !disabled) {
       onChange(newColor);
 
-      // Only save to history if explicitly requested
-      if (saveToHistory) {
+            if (saveToHistory) {
         addToHistory(newColor);
 
-        // Haptic feedback on mobile
-        if ('vibrate' in navigator) {
+                if ('vibrate' in navigator) {
           navigator.vibrate(10);
         }
       }
     }
   }, [onChange, addToHistory, disabled]);
 
-  // Handle HEX input change
-  const handleHexInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleHexInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatHexInput(e.target.value);
     setHexInput(formatted);
 
@@ -484,13 +414,11 @@ export default function ColorPicker({
     }
   };
 
-  // Handle modern color picker selection
-  const handleModernPickerSelect = (newColor: string) => {
+    const handleModernPickerSelect = (newColor: string) => {
     handleColorChange(newColor, true);
   };
 
-  // Keyboard navigation for preset colors
-  const handleColorKeyDown = (e: React.KeyboardEvent, index: number, color: string) => {
+    const handleColorKeyDown = (e: React.KeyboardEvent, index: number, color: string) => {
     switch (e.key) {
       case 'ArrowRight':
         e.preventDefault();
@@ -522,7 +450,7 @@ export default function ColorPicker({
 
   return (
     <div className={cn('space-y-4', className)}>
-      {/* Popular Colors Palette */}
+      {}
       <div>
         <label className="block text-sm font-semibold text-foreground mb-2">
           🎨 Popular Colors
@@ -565,14 +493,14 @@ export default function ColorPicker({
         </div>
       </div>
 
-      {/* Custom Color Input (HEX + Native Picker) */}
+      {}
       <div className="space-y-3">
         <label className="block text-sm font-semibold text-foreground">
           ✏️ Custom Color
         </label>
 
         <div className="flex gap-2">
-          {/* HEX Input */}
+          {}
           <div className="flex-1">
             <div className="relative">
               <input
@@ -594,7 +522,7 @@ export default function ColorPicker({
                 aria-label="HEX color code"
                 aria-invalid={!isHexValid}
               />
-              {/* Color preview swatch in input */}
+              {}
               {isHexValid && (
                 <div
                   className="absolute right-2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-md border-2 border-white shadow-sm"
@@ -610,7 +538,7 @@ export default function ColorPicker({
             )}
           </div>
 
-          {/* Modern Color Picker Button */}
+          {}
           <button
             type="button"
             onClick={() => setShowColorModal(true)}
@@ -630,7 +558,7 @@ export default function ColorPicker({
         </div>
       </div>
 
-      {/* Modern Color Picker Modal */}
+      {}
       <ModernColorPickerModal
         isOpen={showColorModal}
         onClose={() => setShowColorModal(false)}
@@ -638,7 +566,7 @@ export default function ColorPicker({
         onColorSelect={handleModernPickerSelect}
       />
 
-      {/* Color History */}
+      {}
       {history.length > 0 && (
         <div>
           <label className="block text-sm font-medium text-muted-foreground mb-2">
@@ -675,10 +603,10 @@ export default function ColorPicker({
         </div>
       )}
 
-      {/* Contrast Warning */}
+      {}
       {showPreview && isHexValid && (
         <div className="space-y-3">
-          {/* Preview with current color */}
+          {}
           <div className="p-4 rounded-lg border-2 border-border">
             <label className="block text-sm font-medium text-muted-foreground mb-2">
               👀 Preview
@@ -696,7 +624,7 @@ export default function ColorPicker({
             </div>
           </div>
 
-          {/* Contrast Accessibility Check */}
+          {}
           {!hasContrast && (
             <div className="flex items-start gap-2 p-3 rounded-lg bg-amber-50 border border-amber-200 text-amber-800">
               <span className="text-lg flex-shrink-0">⚠️</span>

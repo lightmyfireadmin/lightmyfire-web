@@ -93,8 +93,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
       setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
 
-    // Trigger address search when typing in address field
-    if (field === 'address' && value.length > 2) {
+        if (field === 'address' && value.length > 2) {
       if (searchTimeoutRef.current) {
         clearTimeout(searchTimeoutRef.current);
       }
@@ -107,8 +106,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
     }
   };
 
-  // Search address using OpenStreetMap Nominatim
-  const searchAddress = async (query: string) => {
+    const searchAddress = async (query: string) => {
     if (!query || query.length < 3) return;
 
     setIsSearching(true);
@@ -131,19 +129,16 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
     }
   };
 
-  // Handle address selection from suggestions
-  const handleAddressSelect = (suggestion: any) => {
+    const handleAddressSelect = (suggestion: any) => {
     const address = suggestion.address;
 
-    // Extract address components
-    const streetNumber = address.house_number || '';
+        const streetNumber = address.house_number || '';
     const street = address.road || address.street || '';
     const city = address.city || address.town || address.village || address.municipality || '';
     const postalCode = address.postcode || '';
     const countryCode = address.country_code?.toUpperCase() || '';
 
-    // Build full street address
-    const fullAddress = `${streetNumber} ${street}`.trim();
+        const fullAddress = `${streetNumber} ${street}`.trim();
 
     setFormData((prev) => ({
       ...prev,
@@ -158,8 +153,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
     setErrors({});
   };
 
-  // Close suggestions when clicking outside
-  useEffect(() => {
+    useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (addressInputRef.current && !addressInputRef.current.contains(event.target as Node)) {
         setShowSuggestions(false);

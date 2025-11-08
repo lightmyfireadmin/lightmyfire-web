@@ -22,8 +22,7 @@ export default async function AdminPanelPage() {
     redirect(`/${locale}/login?message=You must be logged in to access the admin panel.`);
   }
 
-  // Check if user is admin by querying the profiles table directly
-  const { data: profile, error: profileError } = await supabase
+    const { data: profile, error: profileError } = await supabase
     .from('profiles')
     .select('role')
     .eq('id', session.user.id)
@@ -58,7 +57,7 @@ export default async function AdminPanelPage() {
         <p className="text-muted-foreground">Manage sticker orders, process refunds, and manage moderators</p>
       </div>
 
-      {/* Quick Links */}
+      {}
       <div className="mb-8 bg-card border border-border rounded-lg p-6">
         <h2 className="text-xl font-semibold text-foreground mb-4">Quick Links</h2>
         <div className="flex flex-wrap gap-3">
@@ -71,17 +70,17 @@ export default async function AdminPanelPage() {
         </div>
       </div>
 
-      {/* Email Testing Dashboard */}
+      {}
       <div className="mb-8">
         <EmailTester />
       </div>
 
-      {/* Test Sticker Generator */}
+      {}
       <div className="mb-8">
         <TestStickerGenerator />
       </div>
 
-      {/* Moderators Management */}
+      {}
       <div className="mb-8">
         {moderatorsError ? (
           <div className="rounded-md bg-red-50 dark:bg-red-950/20 p-4 text-red-800 dark:text-red-200">

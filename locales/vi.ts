@@ -130,8 +130,6 @@ export default {
   'home.stats.environmental_impact': 'Đóng góp môi trường',
   'home.stats.join_movement': 'Tham gia cùng hàng nghìn LightSavers tạo nên sự khác biệt, từng bật lửa một.',
 
-
-
   'save_success.next_steps.title': 'Next Steps:',
   'save_success.next_steps.step1': 'Print: Download the PDF and print it, ideally on sticker paper.',
   'save_success.next_steps.step2': 'Stick: Cut out the sticker and apply it to your lighter.',
@@ -184,8 +182,7 @@ export default {
   'legal.faq.title': 'Frequently Asked Questions',
   'legal.about.title': 'About LightMyFire',
 
-  // Pack Selection
-  'order.pack_selection.title': 'Chọn Gói Của Bạn',
+    'order.pack_selection.title': 'Chọn Gói Của Bạn',
   'order.pack_selection.subtitle': 'Chọn số lượng nhãn dán tùy chỉnh bạn muốn đặt hàng',
   'order.pack.starting_lightsaver': 'LightSaver Khởi Đầu',
   'order.pack.committed_lightsaver': 'LightSaver Cam Kết',
@@ -200,14 +197,12 @@ export default {
   'order.pack.price_calculated': 'Giá được tính toán khi thanh toán',
   'order.pack.select_button': 'Chọn',
 
-  // Custom Branding
-  'order.custom_branding.title': 'Thương Hiệu Tùy Chỉnh Cho Sự Kiện & Thương Hiệu',
+    'order.custom_branding.title': 'Thương Hiệu Tùy Chỉnh Cho Sự Kiện & Thương Hiệu',
   'order.custom_branding.description': 'Đang lên kế hoạch cho một sự kiện hoặc muốn thương hiệu tùy chỉnh trên tờ nhãn dán của bạn? Chúng tôi có thể cá nhân hóa khu vực thương hiệu cho tổ chức, thương hiệu hoặc sự kiện đặc biệt của bạn!',
   'order.custom_branding.button': 'Liên Hệ Chúng Tôi Để Thương Hiệu Tùy Chỉnh',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // Lighter Customization
-  'order.customization.title': 'Tùy Chỉnh Nhãn Dán Của Bạn',
+    'order.customization.title': 'Tùy Chỉnh Nhãn Dán Của Bạn',
   'order.customization.subtitle': 'Cá nhân hóa từng chiếc bật lửa',
   'order.customization.apply_to_all': 'Áp Dụng Cho Tất Cả',
   'order.customization.lighter_number': 'Bật Lửa #{number}',
@@ -227,21 +222,18 @@ export default {
   'order.customization.validation_warning_multiple': 'Vui lòng điền tất cả tên bật lửa (mỗi 3-16 ký tự) trước khi tiếp tục.',
   'order.customization.save_button': 'Lưu Tùy Chỉnh Nhãn Dán',
 
-  // Order Summary
-  'order.summary.title': 'Tóm Tắt Đơn Hàng',
+    'order.summary.title': 'Tóm Tắt Đơn Hàng',
   'order.summary.pack': 'Gói:',
   'order.summary.language': 'Ngôn Ngữ:',
   'order.summary.stickers': 'Nhãn Dán:',
   'order.summary.customized': '✓ Đã Tùy Chỉnh',
   'order.summary.total': 'Tổng Cộng:',
 
-  // Sticker Preview
-  'order.preview.title': 'Thiết Kế Nhãn Dán Của Bạn',
+    'order.preview.title': 'Thiết Kế Nhãn Dán Của Bạn',
   'order.preview.description': 'Bản xem trước nhãn dán tùy chỉnh. Tệp nhãn dán sẽ được tạo sau khi thanh toán.',
   'order.preview.more_stickers': '+{count} thêm',
 
-  // Shipping Address
-  'order.shipping.title': 'Thông Tin Vận Chuyển',
+    'order.shipping.title': 'Thông Tin Vận Chuyển',
   'order.shipping.description': 'Vui lòng cung cấp địa chỉ vận chuyển của bạn để giao nhãn dán',
   'order.shipping.name_label': 'Họ Tên *',
   'order.shipping.name_placeholder': 'John Doe',
@@ -263,8 +255,7 @@ export default {
   'order.shipping.error_country': 'Yêu cầu quốc gia',
   'order.shipping.continue_button': 'Tiếp Tục Đến Thanh Toán',
 
-  // Payment
-  'order.payment.title': 'Chi Tiết Thanh Toán',
+    'order.payment.title': 'Chi Tiết Thanh Toán',
   'order.payment.order_id': 'ID Đơn Hàng:',
   'order.payment.sticker_pack': 'Gói Nhãn Dán:',
   'order.payment.stickers_count': '{count} nhãn dán',
@@ -292,8 +283,7 @@ export default {
   'order.payment.stripe_not_configured': 'Stripe chưa được cấu hình. Thêm NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY vào .env.local',
   'order.payment.loading': 'Đang tải biểu mẫu thanh toán...',
 
-  // Order Success
-  'order.success.title': 'Đơn Hàng Thành Công!',
+    'order.success.title': 'Đơn Hàng Thành Công!',
   'order.success.subtitle': 'Cảm ơn bạn đã đặt hàng',
   'order.success.confirmation_sent': 'Email Xác Nhận Đã Gửi',
   'order.success.confirmation_description': 'Email xác nhận đã được gửi đến:',
@@ -315,11 +305,9 @@ export default {
   'order.success.questions': 'Có câu hỏi về đơn hàng của bạn?',
   'order.success.contact_us': 'Liên Hệ Với Chúng Tôi',
 
-  // Change Pack
-  'order.change_pack': '← Thay Đổi Gói',
+    'order.change_pack': '← Thay Đổi Gói',
 
-  // Cookie Consent (8 keys)
-  'cookie.message': 'Chúng tôi chỉ sử dụng cookie cho chức năng cơ bản—không bao giờ để theo dõi. Quyền riêng tư của bạn được bảo vệ. Xem {privacyLink} của chúng tôi để biết chi tiết.',
+    'cookie.message': 'Chúng tôi chỉ sử dụng cookie cho chức năng cơ bản—không bao giờ để theo dõi. Quyền riêng tư của bạn được bảo vệ. Xem {privacyLink} của chúng tôi để biết chi tiết.',
   'cookie.privacy_link_text': 'Chính Sách Bảo Mật',
   'cookie.accept': 'Chấp Nhận',
   'cookie.decline': 'Từ Chối',
@@ -328,8 +316,7 @@ export default {
   'cookie_consent.accept': 'Chấp Nhận & Tiếp Tục',
   'cookie_consent.privacy_link': 'Chính Sách Bảo Mật',
 
-  // FAQ Content (33 keys)
-  'faq.subtitle': 'Tìm câu trả lời cho các câu hỏi thường gặp về LightMyFire',
+    'faq.subtitle': 'Tìm câu trả lời cho các câu hỏi thường gặp về LightMyFire',
   'faq.what_is.question': 'LightMyFire là gì?',
   'faq.what_is.answer': 'Đây là một dự án để giảm rác thải và tạo ra một "bức tranh khảm nhân loại". Chúng tôi bán nhãn dán có mã QR mà bạn dán lên bật lửa. Bất kỳ ai tìm thấy bật lửa đó đều có thể quét mã, nhập PIN và thêm câu chuyện, hình ảnh hoặc bài hát vào sổ nhật ký kỹ thuật số của nó. Đây là một cách độc đáo để kết nối mọi người trên toàn cầu và cho bật lửa một cuộc sống thứ hai.',
   'faq.how_add_story.question': 'Làm thế nào để tôi thêm câu chuyện vào bật lửa?',
@@ -377,8 +364,7 @@ export default {
   'faq.q7.title': 'Bản đồ hoạt động như thế nào?',
   'faq.q7.desc': 'Trên trang của mỗi bật lửa, bạn sẽ tìm thấy một bản đồ hiển thị hành trình của bật lửa cụ thể đó. Mỗi khi ai đó tạo bài đăng "vị trí", tọa độ sẽ được ghi lại và thêm vào bản đồ, theo dấu đường đi của bật lửa trên toàn cầu.',
 
-  // Account Settings (18 keys)
-  'my_profile.tabs.settings': 'Cài Đặt',
+    'my_profile.tabs.settings': 'Cài Đặt',
   'my_profile.stats.contributions': 'Contributions',
   'my_profile.stats.lighters_saved': 'Lighters Saved',
   'my_profile.stats.stories_joined': 'Stories Joined',
@@ -404,8 +390,7 @@ export default {
   'my_profile.settings.placeholder.password': '••••••••',
   'my_profile.settings.placeholder.password_confirm': 'Nhập lại mật khẩu mới',
 
-  // Country Names (20 keys)
-  'country.AT': 'Áo',
+    'country.AT': 'Áo',
   'country.BE': 'Bỉ',
   'country.CA': 'Canada',
   'country.CH': 'Thụy Sĩ',
@@ -426,8 +411,7 @@ export default {
   'country.SE': 'Thụy Điển',
   'country.US': 'Hoa Kỳ',
 
-  // --- Refill Guide Page ---
-  'refill_guide.title': 'Don\'t Throw Me Away',
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature. A single company like BIC sold over 2.5 billion in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',

@@ -142,8 +142,6 @@ export default {
   'home.stats.environmental_impact': 'Çevresel katkı',
   'home.stats.join_movement': 'Bir seferde bir çakmakla fark yaratan binlerce LightSaver\'a katılın.',
 
-
-
   'save_success.next_steps.title': 'Next Steps:',
   'save_success.next_steps.step1': 'Print: Download the PDF and print it, ideally on sticker paper.',
   'save_success.next_steps.step2': 'Stick: Cut out the sticker and apply it to your lighter.',
@@ -196,19 +194,16 @@ export default {
   'legal.faq.title': 'Sıkça Sorulan Sorular',
   'legal.about.title': 'LightMyFire Hakkında',
 
-  // Cookie Consent
-  'cookie.message': 'Çerezleri yalnızca temel işlevsellik için kullanırız—asla takip için değil. Gizliliğiniz korunmaktadır. Ayrıntılar için {privacyLink} bölümüne bakın.',
+    'cookie.message': 'Çerezleri yalnızca temel işlevsellik için kullanırız—asla takip için değil. Gizliliğiniz korunmaktadır. Ayrıntılar için {privacyLink} bölümüne bakın.',
   'cookie.privacy_link_text': 'Gizlilik Politikası',
   'cookie.accept': 'Kabul Et',
   'cookie.decline': 'Reddet',
-  // Legacy keys (kept for compatibility)
-  'cookie_consent.title': 'Gizliliğinize değer veriyoruz',
+    'cookie_consent.title': 'Gizliliğinize değer veriyoruz',
   'cookie_consent.message': 'Web sitemizde en iyi deneyimi yaşamanızı sağlamak için çerezler kullanıyoruz. Bu siteyi kullanmaya devam ederek, gizlilik politikamızı ve çerez kullanımını kabul etmiş olursunuz.',
   'cookie_consent.accept': 'Kabul Et ve Devam Et',
   'cookie_consent.privacy_link': 'Gizlilik Politikası',
 
-  // FAQ Page - Full Content
-  'faq.subtitle': 'LightMyFire hakkında sık sorulan sorulara yanıt bulun',
+    'faq.subtitle': 'LightMyFire hakkında sık sorulan sorulara yanıt bulun',
   'faq.what_is.question': 'LightMyFire nedir?',
   'faq.what_is.answer': 'İsrafı azaltmak ve bir "insan mozaiği" oluşturmak için bir proje. Çakmağa yapıştırdığınız QR kodlu etiketler satıyoruz. Bu çakmağı bulan herkes kodu tarayabilir, PIN kodunu girebilir ve dijital günlüğüne bir hikaye, fotoğraf veya şarkı ekleyebilir. Dünya çapında insanları birbirine bağlamanın ve çakmaklara ikinci bir hayat vermenin benzersiz bir yolu.',
   'faq.how_add_story.question': 'Bir çakmağa nasıl hikaye eklerim?',
@@ -242,8 +237,7 @@ export default {
   'faq.contact_footer': 'Cevabınızı bulamadınız mı?',
   'faq.contact_link': 'Bizimle iletişime geçin',
 
-  // Account Settings / Update Auth Form
-  'settings.auth.error.passwords_no_match': 'Parolalar eşleşmiyor.',
+    'settings.auth.error.passwords_no_match': 'Parolalar eşleşmiyor.',
   'settings.auth.success_message': 'Güncelleme başarılı! E-posta adresinizi güncellediyseniz, değişiklikleri onaylamak için lütfen e-postanızı kontrol edin.',
   'settings.auth.title': 'Hesap Ayarları',
   'settings.auth.oauth_notice': '✓ {provider} aracılığıyla giriş yaptınız. Kimlik doğrulamanız sağlayıcınız tarafından güvenli bir şekilde yönetilir.',
@@ -262,8 +256,7 @@ export default {
   'settings.auth.update_button': 'Kimlik Doğrulama Detaylarını Güncelle',
   'settings.auth.saving': 'Kaydediliyor...',
 
-  // Country Names
-  'country.AT': 'Avusturya',
+    'country.AT': 'Avusturya',
   'country.BE': 'Belçika',
   'country.CA': 'Kanada',
   'country.CH': 'İsviçre',
@@ -284,8 +277,7 @@ export default {
   'country.SE': 'İsveç',
   'country.US': 'Amerika Birleşik Devletleri',
 
-  // Pack Selection
-  'order.pack_selection.title': 'Paketinizi Seçin',
+    'order.pack_selection.title': 'Paketinizi Seçin',
   'order.pack_selection.subtitle': 'Sipariş etmek istediğiniz özel çıkartma sayısını seçin',
   'order.pack.starting_lightsaver': 'LightSaver\'ı Başlat',
   'order.pack.committed_lightsaver': 'LightSaver\'a Bağlı',
@@ -300,14 +292,12 @@ export default {
   'order.pack.price_calculated': 'Fiyat ödeme sırasında hesaplanır',
   'order.pack.select_button': 'Seç',
 
-  // Custom Branding
-  'order.custom_branding.title': 'Etkinlikler ve Markalar için Özel Markalama',
+    'order.custom_branding.title': 'Etkinlikler ve Markalar için Özel Markalama',
   'order.custom_branding.description': 'Bir etkinlik planlıyor veya çıkartma sayfalarında özel markalama mı istiyorsunuz? Kuruluşunuz, markanız veya özel etkinliğiniz için markalama alanını kişiselleştirebiliriz!',
   'order.custom_branding.button': 'Özel Markalama için Bizimle İletişime Geçin',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // Lighter Customization
-  'order.customization.title': 'Çıkartmalarınızı Özelleştirin',
+    'order.customization.title': 'Çıkartmalarınızı Özelleştirin',
   'order.customization.subtitle': 'Her çakmağı kişiselleştirin',
   'order.customization.apply_to_all': 'Tümüne Uygula',
   'order.customization.lighter_number': 'Çakmak #{number}',
@@ -327,21 +317,18 @@ export default {
   'order.customization.validation_warning_multiple': 'Lütfen devam etmeden önce tüm çakmak adlarını doldurun (her biri 3-16 karakter).',
   'order.customization.save_button': 'Çıkartma Özelleştirmelerini Kaydet',
 
-  // Order Summary
-  'order.summary.title': 'Sipariş Özeti',
+    'order.summary.title': 'Sipariş Özeti',
   'order.summary.pack': 'Paket:',
   'order.summary.language': 'Dil:',
   'order.summary.stickers': 'Çıkartmalar:',
   'order.summary.customized': '✓ Özelleştirilmiş',
   'order.summary.total': 'Toplam:',
 
-  // Sticker Preview
-  'order.preview.title': 'Çıkartma Tasarımınız',
+    'order.preview.title': 'Çıkartma Tasarımınız',
   'order.preview.description': 'Özel çıkartmaların önizlemesi. Çıkartma dosyaları ödeme sonrası oluşturulacaktır.',
   'order.preview.more_stickers': '+{count} daha',
 
-  // Shipping Address
-  'order.shipping.title': 'Kargo Bilgileri',
+    'order.shipping.title': 'Kargo Bilgileri',
   'order.shipping.description': 'Lütfen çıkartmaların teslimatı için kargo adresinizi sağlayın',
   'order.shipping.name_label': 'Ad Soyad *',
   'order.shipping.name_placeholder': 'John Doe',
@@ -363,8 +350,7 @@ export default {
   'order.shipping.error_country': 'Ülke gereklidir',
   'order.shipping.continue_button': 'Ödemeye Devam Et',
 
-  // Payment
-  'order.payment.title': 'Ödeme Detayları',
+    'order.payment.title': 'Ödeme Detayları',
   'order.payment.order_id': 'Sipariş ID:',
   'order.payment.sticker_pack': 'Çıkartma Paketi:',
   'order.payment.stickers_count': '{count} çıkartma',
@@ -392,8 +378,7 @@ export default {
   'order.payment.stripe_not_configured': 'Stripe yapılandırılmadı. NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY\'i .env.local dosyasına ekleyin',
   'order.payment.loading': 'Ödeme formu yükleniyor...',
 
-  // Order Success
-  'order.success.title': 'Sipariş Başarılı!',
+    'order.success.title': 'Sipariş Başarılı!',
   'order.success.subtitle': 'Siparişiniz için teşekkür ederiz',
   'order.success.confirmation_sent': 'Onay E-postası Gönderildi',
   'order.success.confirmation_description': 'Onay e-postası gönderildi:',
@@ -415,10 +400,8 @@ export default {
   'order.success.questions': 'Siparişiniz hakkında sorusu var mı?',
   'order.success.contact_us': 'Bizimle İletişime Geçin',
 
-  // Change Pack
-
-  // Refill Guide (Don't Throw Me Away page)
-  'refill_guide.title': 'Don\'t Throw Me Away',
+  
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature. A single company like BIC sold over 2.5 billion in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',

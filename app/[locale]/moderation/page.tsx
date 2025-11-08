@@ -24,18 +24,14 @@ export default async function ModerationPage() {
     .eq('id', session.user.id)
     .single();
 
-  // Allow both moderators and admins to access moderation panel
-  if (profile?.role !== 'moderator' && profile?.role !== 'admin') {
+    if (profile?.role !== 'moderator' && profile?.role !== 'admin') {
     redirect(`/${locale}?message=You do not have permission to access this page.`);
   }
 
-
-  // Fetch posts requiring review (flagged by users, API, or moderation failure)
-  const { data: flaggedPosts, error } = await supabase
+    const { data: flaggedPosts, error } = await supabase
     .from('detailed_posts')
     .select('*')
-    .eq('requires_review', true)  // Core filter: all posts needing review
-    .order('created_at', { ascending: false});
+    .eq('requires_review', true)      .order('created_at', { ascending: false});
 
   if (error) {
     return <p className="text-center text-error">Error loading posts for review.</p>;

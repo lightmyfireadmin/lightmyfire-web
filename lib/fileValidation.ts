@@ -1,11 +1,7 @@
-/**
- * File Upload Validation
- * Validates files by checking magic numbers (file signatures) instead of just extensions
- */
+
 
 import { FILE_UPLOAD } from './constants';
 
-// File signatures (magic numbers) for validation
 const FILE_SIGNATURES = {
   PNG: {
     signature: [0x89, 0x50, 0x4e, 0x47],
@@ -30,21 +26,14 @@ interface FileValidationResult {
   detectedMimeType?: string;
 }
 
-/**
- * Check file signature (magic number) to verify file type
- * @param file - The file to check
- * @returns Promise with validation result
- */
 export async function validateFileSignature(
   file: File
 ): Promise<FileValidationResult> {
   try {
-    // Read the first 4 bytes of the file
-    const buffer = await file.slice(0, 4).arrayBuffer();
+        const buffer = await file.slice(0, 4).arrayBuffer();
     const view = new Uint8Array(buffer);
 
-    // Check against known signatures
-    for (const [key, sig] of Object.entries(FILE_SIGNATURES)) {
+        for (const [key, sig] of Object.entries(FILE_SIGNATURES)) {
       const isMatch = sig.signature.every(
         (byte, index) => view[index] === byte
       );
@@ -68,11 +57,6 @@ export async function validateFileSignature(
   }
 }
 
-/**
- * Validate file size
- * @param file - The file to check
- * @returns Error message if invalid, null if valid
- */
 export function validateFileSize(file: File): string | null {
   if (file.size > FILE_UPLOAD.MAX_SIZE_BYTES) {
     return `File is too large. Maximum size is ${FILE_UPLOAD.MAX_SIZE_MB}MB.`;
@@ -80,17 +64,10 @@ export function validateFileSize(file: File): string | null {
   return null;
 }
 
-/**
- * Comprehensive file validation
- * Checks size, mime type, and magic number
- * @param file - The file to validate
- * @returns Promise with validation result
- */
 export async function validateFile(
   file: File
 ): Promise<FileValidationResult> {
-  // Check file size
-  const sizeError = validateFileSize(file);
+    const sizeError = validateFileSize(file);
   if (sizeError) {
     return {
       valid: false,
@@ -98,14 +75,10 @@ export async function validateFile(
     };
   }
 
-  // Check MIME type (client-side check, not reliable alone)
-  if (!FILE_UPLOAD.ACCEPTED_TYPES.includes(file.type as 'image/png' | 'image/jpeg' | 'image/gif')) {
-    // Don't block immediately - check magic number instead
-    // This allows for files with wrong MIME type but correct content
-  }
+    if (!FILE_UPLOAD.ACCEPTED_TYPES.includes(file.type as 'image/png' | 'image/jpeg' | 'image/gif')) {
+          }
 
-  // Check magic number (file signature) - most reliable
-  const signatureResult = await validateFileSignature(file);
+    const signatureResult = await validateFileSignature(file);
   if (!signatureResult.valid) {
     return signatureResult;
   }
@@ -116,25 +89,11 @@ export async function validateFile(
   };
 }
 
-/**
- * Sanitize filename to prevent path traversal attacks
- * @param filename - The original filename
- * @returns Sanitized filename
- */
 export function sanitizeFilename(filename: string): string {
-  // Remove path separators and special characters
-  return filename
-    .replace(/^.*[\\/]/, '') // Remove path
-    .replace(/[^a-z0-9._-]/gi, '_') // Replace special chars
-    .toLowerCase();
+    return filename
+    .replace(/^.*[\\/]/, '')     .replace(/[^a-z0-9._-]/gi, '_')     .toLowerCase();
 }
 
-/**
- * Generate safe filename for upload
- * @param userId - The user ID
- * @param originalFilename - The original filename
- * @returns Safe filename for storage
- */
 export function generateSafeFilename(
   userId: string,
   originalFilename: string

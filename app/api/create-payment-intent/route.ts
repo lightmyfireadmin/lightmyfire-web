@@ -59,9 +59,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Calculate amount in cents (smallest currency unit)
-    // Amount from client should already be in cents, but we ensure it's an integer
-    const amountInCents = Math.round(amount);
+            const amountInCents = Math.round(amount);
 
     if (amountInCents < 50) {
       return NextResponse.json(
@@ -70,8 +68,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create Stripe Payment Intent
-    const paymentIntent = await stripe.paymentIntents.create({
+        const paymentIntent = await stripe.paymentIntents.create({
       amount: amountInCents,
       currency: currency.toLowerCase(),
       metadata: {
@@ -83,8 +80,7 @@ export async function POST(request: NextRequest) {
       description: `LightMyFire Sticker Pack - Order ${orderId}`,
     });
 
-    // Return client secret to client
-    return NextResponse.json(
+        return NextResponse.json(
       {
         success: true,
         clientSecret: paymentIntent.client_secret,

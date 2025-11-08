@@ -109,7 +109,7 @@ export default function ProfileHeader({
         </div>
       )}
 
-      {/* Admin and Moderator Links */}
+      {}
       {(role === 'admin' || role === 'moderator') && (
         <div className="flex flex-wrap gap-3 mt-4">
           {role === 'admin' && (

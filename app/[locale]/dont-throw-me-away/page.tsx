@@ -369,7 +369,7 @@ export default function DontThrowMeAwayPage() {
             </a>
           </div>
 
-          {/* Citations and Sources */}
+          {}
           <div className="rounded-lg border border-border bg-muted/50 p-6">
             <h2 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
               <span className="text-2xl">📚</span> {t('refill_guide.citations.title')}

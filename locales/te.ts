@@ -142,8 +142,6 @@ export default {
   'home.stats.environmental_impact': 'Environmental contribution',
   'home.stats.join_movement': 'Join thousands of LightSavers making a difference, one lighter at a time.',
 
-
-
   'save_success.next_steps.title': 'Next Steps:',
   'save_success.next_steps.step1': 'Print: Download the PDF and print it, ideally on sticker paper.',
   'save_success.next_steps.step2': 'Stick: Cut out the sticker and apply it to your lighter.',
@@ -196,8 +194,7 @@ export default {
   'legal.faq.title': 'Frequently Asked Questions',
   'legal.about.title': 'About LightMyFire',
 
-  // Pack Selection
-  'order.pack_selection.title': 'మీ ప్యాక్ ఎంచుకోండి',
+    'order.pack_selection.title': 'మీ ప్యాక్ ఎంచుకోండి',
   'order.pack_selection.subtitle': 'మీరు ఆర్డర్ చేయాలనుకున్న కస్టమ్ స్టిక్కర్‌ల సంఖ్యను ఎంచుకోండి',
   'order.pack.starting_lightsaver': 'ప్రారంభ LightSaver',
   'order.pack.committed_lightsaver': 'నిబద్ధ LightSaver',
@@ -212,14 +209,12 @@ export default {
   'order.pack.price_calculated': 'చెక్‌అవుట్‌లో ధర లెక్కించబడుతుంది',
   'order.pack.select_button': 'ఎంచుకోండి',
 
-  // Custom Branding
-  'order.custom_branding.title': 'ఈవెంట్‌ల మరియు బ్రాండ్‌ల కోసం కస్టమ్ బ్రాండింగ్',
+    'order.custom_branding.title': 'ఈవెంట్‌ల మరియు బ్రాండ్‌ల కోసం కస్టమ్ బ్రాండింగ్',
   'order.custom_branding.description': 'ఈవెంట్‌ను ప్లాన్ చేస్తున్నారా లేదా మీ స్టిక్కర్ షీట్‌లపై కస్టమ్ బ్రాండింగ్ కావాలా? మేము మీ సంస్థ, ব్రాండ్ లేదా ప్రత్యేక ఈవెంట్ కోసం బ్రాండింగ్ ఎరియాను వ్యక్తిగతీకరించవచ్చు!',
   'order.custom_branding.button': 'కస్టమ్ బ్రాండింగ్ కోసం మమ్మల్ని సంప్రదించండి',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // Lighter Customization
-  'order.customization.title': 'మీ స్టిక్కర్‌లను కస్టమైజ్ చేయండి',
+    'order.customization.title': 'మీ స్టిక్కర్‌లను కస్టమైజ్ చేయండి',
   'order.customization.subtitle': 'ప్రతి లైటర్‌ను వ్యక్తిగతీకరించండి',
   'order.customization.apply_to_all': 'అన్నింటికీ వర్తించు',
   'order.customization.lighter_number': 'లైటర్ #{number}',
@@ -239,21 +234,18 @@ export default {
   'order.customization.validation_warning_multiple': 'దయచేసి ముందుకు వెళ్లే ముందు అన్ని లైటర్ పేర్లను నమోదు చేయండి (ఒక్కొక్కటి 3-16 ఆక్షరాలు).',
   'order.customization.save_button': 'స్టిక్కర్ కస్టమైజేషన్‌లను సేవ్ చేయండి',
 
-  // Order Summary
-  'order.summary.title': 'ఆర్డర్ సారాంశం',
+    'order.summary.title': 'ఆర్డర్ సారాంశం',
   'order.summary.pack': 'ప్యాక్:',
   'order.summary.language': 'భాష:',
   'order.summary.stickers': 'స్టిక్కర్‌లు:',
   'order.summary.customized': '✓ కస్టమైజ్ చేసిన',
   'order.summary.total': 'మొత్తం:',
 
-  // Sticker Preview
-  'order.preview.title': 'మీ స్టిక్కర్ డిజైన్',
+    'order.preview.title': 'మీ స్టిక్కర్ డిజైన్',
   'order.preview.description': 'కస్టమ్ స్టిక్కర్‌ల ప్రివ్యూ. చెక్‌అవుట్ తర్వాత స్టిక్కర్ ఫైళ్లు రూపొందించబడతాయి.',
   'order.preview.more_stickers': '+{count} మరిన్ని',
 
-  // Shipping Address
-  'order.shipping.title': 'షిప్పింగ్ సమాచారం',
+    'order.shipping.title': 'షిప్పింగ్ సమాచారం',
   'order.shipping.description': 'స్టిక్కర్‌ల డెలివరీ కోసం దయచేసి మీ షిప్పింగ్ చిరునామా అందించండి',
   'order.shipping.name_label': 'పూర్తి పేరు *',
   'order.shipping.name_placeholder': 'John Doe',
@@ -275,8 +267,7 @@ export default {
   'order.shipping.error_country': 'దేశం అవసరం',
   'order.shipping.continue_button': 'చెక్‌అవుట్‌కు కొనసాగండి',
 
-  // Payment
-  'order.payment.title': 'చెల్లింపు వివరాలు',
+    'order.payment.title': 'చెల్లింపు వివరాలు',
   'order.payment.order_id': 'ఆర్డర్ ID:',
   'order.payment.sticker_pack': 'స్టిక్కర్ ప్యాక్:',
   'order.payment.stickers_count': '{count} స్టిక్కర్‌లు',
@@ -304,8 +295,7 @@ export default {
   'order.payment.stripe_not_configured': 'Stripe కాన్ఫిగర్ చేయబడలేదు. NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ను .env.local కు జోడించండి',
   'order.payment.loading': 'చెల్లింపు ఫారమ్‌ను లోడ్ చేస్తున్నారు...',
 
-  // Order Success
-  'order.success.title': 'ఆర్డర్ విజయవంతమైనది!',
+    'order.success.title': 'ఆర్డర్ విజయవంతమైనది!',
   'order.success.subtitle': 'మీ ఆర్డర్‌కు ధన్యవాదాలు',
   'order.success.confirmation_sent': 'నిర్ధారణ ఇమెయిల్ పంపబడింది',
   'order.success.confirmation_description': 'ధృవీకరణ ఇమెయిల్ పంపబడింది:',
@@ -327,11 +317,9 @@ export default {
   'order.success.questions': 'మీ ఆర్డర్ గురించి ప్రశ్నలు ఉన్నాయా?',
   'order.success.contact_us': 'మమ్మల్ని సంప్రదించండి',
 
-  // Change Pack
-  'order.change_pack': '← ప్యాక్‌ను మార్చండి',
+    'order.change_pack': '← ప్యాక్‌ను మార్చండి',
 
-  // Cookie Consent
-  'cookie.message': 'మేము కుకీలను ప్రాథమిక ఫంక్షనాలిటీ కోసం మాత్రమే ఉపయోగిస్తాము—ట్రాకింగ్ కోసం ఎప్పుడూ కాదు. మీ గోప్యత రక్షించబడింది. వివరాల కోసం మా {privacyLink} చూడండి।',
+    'cookie.message': 'మేము కుకీలను ప్రాథమిక ఫంక్షనాలిటీ కోసం మాత్రమే ఉపయోగిస్తాము—ట్రాకింగ్ కోసం ఎప్పుడూ కాదు. మీ గోప్యత రక్షించబడింది. వివరాల కోసం మా {privacyLink} చూడండి।',
   'cookie.privacy_link_text': 'గోప్యతా విధానం',
   'cookie.accept': 'అంగీకరించు',
   'cookie.decline': 'తిరస్కరించు',
@@ -340,8 +328,7 @@ export default {
   'cookie_consent.accept': 'అంగీకరించండి & కొనసాగించండి',
   'cookie_consent.privacy_link': 'గోప్యతా విధానం',
 
-  // FAQ Content
-  'faq.subtitle': 'LightMyFire గురించి సాధారణ ప్రశ్నలకు సమాధానాలు కనుగొనండి',
+    'faq.subtitle': 'LightMyFire గురించి సాధారణ ప్రశ్నలకు సమాధానాలు కనుగొనండి',
   'faq.what_is.question': 'LightMyFire అంటే ఏమిటి?',
   'faq.what_is.answer': 'ఇది వ్యర్థాలను తగ్గించడానికి మరియు "మానవ మొజాయిక్"ను సృష్టించడానికి ఒక ప్రాజెక్ట్. మేము QR కోడ్‌లతో స్టిక్కర్లను విక్రయిస్తాము, వాటిని మీరు లైటర్‌పై అతికిస్తారు. ఆ లైటర్‌ను కనుగొన్న ఎవరైనా కోడ్‌ను స్కాన్ చేయవచ్చు, దాని పిన్‌ను నమోదు చేయవచ్చు మరియు దాని డిజిటల్ లాగ్‌బుక్‌లో ఒక కథ, చిత్రం లేదా పాటను జోడించవచ్చు. ప్రజలను ప్రపంచవ్యాప్తంగా కనెక్ట్ చేయడానికి మరియు లైటర్లకు రెండవ జీవితాన్ని ఇవ్వడానికి ఇది ఒక ప్రత్యేకమైన మార్గం.',
   'faq.how_add_story.question': 'నేను లైటర్‌కు కథను ఎలా జోడిస్తాను?',
@@ -375,8 +362,7 @@ export default {
   'faq.contact_footer': 'మీ సమాధానం కనుగొనలేకపోయారా?',
   'faq.contact_link': 'మమ్మల్ని సంప్రదించండి',
 
-  // Account Settings
-  'settings.auth.error.passwords_no_match': 'పాస్‌వర్డ్‌లు సరిపోలడం లేదు.',
+    'settings.auth.error.passwords_no_match': 'పాస్‌వర్డ్‌లు సరిపోలడం లేదు.',
   'settings.auth.success_message': 'అప్‌డేట్ విజయవంతమైంది! మీరు మీ ఇమెయిల్‌ను అప్‌డేట్ చేసినట్లయితే మార్పులను నిర్ధారించడానికి దయచేసి మీ ఇమెయిల్‌ను తనిఖీ చేయండి.',
   'settings.auth.title': 'ఖాతా సెట్టింగ్‌లు',
   'settings.auth.oauth_notice': '✓ మీరు {provider} ద్వారా లాగిన్ అయ్యారు. మీ ప్రమాణీకరణ మీ ప్రొవైడర్ ద్వారా సురక్షితంగా నిర్వహించబడుతుంది.',
@@ -395,8 +381,7 @@ export default {
   'settings.auth.update_button': 'ప్రమాణీకరణ వివరాలను అప్‌డేట్ చేయండి',
   'settings.auth.saving': 'సేవ్ చేస్తున్నారు...',
 
-  // Country Names
-  'country.AT': 'ఆస్ట్రియా',
+    'country.AT': 'ఆస్ట్రియా',
   'country.BE': 'బెల్జియం',
   'country.CA': 'కెనడా',
   'country.CH': 'స్విట్జర్లాండ్',
@@ -417,15 +402,13 @@ export default {
   'country.SE': 'స్వీడన్',
   'country.US': 'యునైటెడ్ స్టేట్స్',
 
-  // Save Lighter Flow
-  'save_lighter.error.failed_to_save': 'లైటర్‌ను సేవ్ చేయడంలో విఫలమైంది: {message}',
+    'save_lighter.error.failed_to_save': 'లైటర్‌ను సేవ్ చేయడంలో విఫలమైంది: {message}',
   'save_lighter.pack_count': '{count} స్టిక్కర్ల ప్యాక్',
   'save_lighter.pack_total': 'మొత్తం: {price}',
   'save_lighter.payment_mock': 'చెల్లింపును అనుకరించు',
   'save_success.next_steps.download_label': 'డౌన్‌లోడ్',
 
-  // Refill Guide (Don't Throw Me Away page)
-  'refill_guide.title': 'Don\'t Throw Me Away',
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature. A single company like BIC sold over 2.5 billion in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',

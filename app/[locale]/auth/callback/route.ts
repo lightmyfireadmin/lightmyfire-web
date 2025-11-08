@@ -126,7 +126,6 @@ export async function GET(request: NextRequest, { params }: { params: { locale: 
     }
   }
 
-
   if (hasError) {
     return NextResponse.redirect(`${requestUrl.origin}/${locale}?error=auth_failed`);
   }

@@ -142,7 +142,6 @@ export default {
   'home.stats.environmental_impact': 'Environmental contribution',
   'home.stats.join_movement': 'Join thousands of LightSavers making a difference, one lighter at a time.',
 
-
   'save_success.next_steps.title': 'Next Steps:',
   'save_success.next_steps.step1': 'Print: Download the PDF and print it, ideally on sticker paper.',
   'save_success.next_steps.step2': 'Stick: Cut out the sticker and apply it to your lighter.',
@@ -195,8 +194,7 @@ export default {
   'legal.faq.title': 'الأسئلة الشائعة',
   'legal.about.title': 'حول LightMyFire',
 
-  // اختيار الحزمة
-  'order.pack_selection.title': 'اختر حزمتك',
+    'order.pack_selection.title': 'اختر حزمتك',
   'order.pack_selection.subtitle': 'اختر عدد الملصقات المخصصة التي تريد طلبها',
   'order.pack.starting_lightsaver': 'LightSaver الناشئة',
   'order.pack.committed_lightsaver': 'LightSaver الملتزمة',
@@ -211,14 +209,12 @@ export default {
   'order.pack.price_calculated': 'يتم حساب السعر عند الدفع',
   'order.pack.select_button': 'اختر',
 
-  // العلامة التجارية المخصصة
-  'order.custom_branding.title': 'العلامة التجارية المخصصة للفعاليات والعلامات التجارية',
+    'order.custom_branding.title': 'العلامة التجارية المخصصة للفعاليات والعلامات التجارية',
   'order.custom_branding.description': 'هل تخطط لحدث أو تريد علامة تجارية مخصصة على ملاءات الملصقات الخاصة بك؟ يمكننا تخصيص منطقة العلامة التجارية لمنظمتك أو علامتك التجارية أو حدثك الخاص!',
   'order.custom_branding.button': 'اتصل بنا للعلامة التجارية المخصصة',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // تخصيص الولاعة
-  'order.customization.title': 'خصص الملصقات الخاصة بك',
+    'order.customization.title': 'خصص الملصقات الخاصة بك',
   'order.customization.subtitle': 'شخصية كل ولاعة',
   'order.customization.apply_to_all': 'تطبيق على الكل',
   'order.customization.lighter_number': 'الولاعة #{number}',
@@ -238,21 +234,18 @@ export default {
   'order.customization.validation_warning_multiple': 'يرجى ملء جميع أسماء الولاعات (3-16 حروف لكل منها) قبل المتابعة.',
   'order.customization.save_button': 'حفظ تخصيصات الملصقات',
 
-  // ملخص الطلب
-  'order.summary.title': 'ملخص الطلب',
+    'order.summary.title': 'ملخص الطلب',
   'order.summary.pack': 'الحزمة:',
   'order.summary.language': 'اللغة:',
   'order.summary.stickers': 'الملصقات:',
   'order.summary.customized': '✓ مخصص',
   'order.summary.total': 'الإجمالي:',
 
-  // معاينة الملصق
-  'order.preview.title': 'تصميم الملصق الخاص بك',
+    'order.preview.title': 'تصميم الملصق الخاص بك',
   'order.preview.description': 'معاينة الملصقات المخصصة. سيتم إنشاء ملفات الملصقات بعد الدفع.',
   'order.preview.more_stickers': '+{count} المزيد',
 
-  // عنوان الشحن
-  'order.shipping.title': 'معلومات الشحن',
+    'order.shipping.title': 'معلومات الشحن',
   'order.shipping.description': 'يرجى تقديم عنوان الشحن الخاص بك لتسليم الملصقات',
   'order.shipping.name_label': 'الاسم الكامل *',
   'order.shipping.name_placeholder': 'John Doe',
@@ -274,8 +267,7 @@ export default {
   'order.shipping.error_country': 'الدولة مطلوبة',
   'order.shipping.continue_button': 'متابعة إلى الدفع',
 
-  // الدفع
-  'order.payment.title': 'تفاصيل الدفع',
+    'order.payment.title': 'تفاصيل الدفع',
   'order.payment.order_id': 'معرف الطلب:',
   'order.payment.sticker_pack': 'حزمة الملصقات:',
   'order.payment.stickers_count': '{count} ملصقات',
@@ -303,8 +295,7 @@ export default {
   'order.payment.stripe_not_configured': 'لم يتم تكوين Stripe. أضف NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY إلى .env.local',
   'order.payment.loading': 'جاري تحميل نموذج الدفع...',
 
-  // نجاح الطلب
-  'order.success.title': 'تم الطلب بنجاح!',
+    'order.success.title': 'تم الطلب بنجاح!',
   'order.success.subtitle': 'شكرا على طلبك',
   'order.success.confirmation_sent': 'تم إرسال بريد تأكيد',
   'order.success.confirmation_description': 'تم إرسال بريد التأكيد إلى:',
@@ -326,11 +317,9 @@ export default {
   'order.success.questions': 'هل لديك أسئلة حول طلبك؟',
   'order.success.contact_us': 'اتصل بنا',
 
-  // تغيير الحزمة
-  'order.change_pack': '← تغيير الحزمة',
+    'order.change_pack': '← تغيير الحزمة',
 
-  // Cookie Consent
-  'cookie.message': 'نحن نستخدم ملفات تعريف الارتباط فقط للوظائف الأساسية - ليس للتتبع أبدًا. خصوصيتك محمية. راجع {privacyLink} للحصول على التفاصيل.',
+    'cookie.message': 'نحن نستخدم ملفات تعريف الارتباط فقط للوظائف الأساسية - ليس للتتبع أبدًا. خصوصيتك محمية. راجع {privacyLink} للحصول على التفاصيل.',
   'cookie.privacy_link_text': 'سياسة الخصوصية',
   'cookie.accept': 'قبول',
   'cookie.decline': 'رفض',
@@ -339,8 +328,7 @@ export default {
   'cookie_consent.accept': 'قبول والمتابعة',
   'cookie_consent.privacy_link': 'سياسة الخصوصية',
 
-  // FAQ Page - Full Content
-  'faq.subtitle': 'اعثر على إجابات للأسئلة الشائعة حول LightMyFire',
+    'faq.subtitle': 'اعثر على إجابات للأسئلة الشائعة حول LightMyFire',
   'faq.what_is.question': 'ما هو LightMyFire؟',
   'faq.what_is.answer': 'إنه مشروع لتقليل النفايات وإنشاء "فسيفساء إنسانية". نبيع ملصقات بها رموز QR تضعها على ولاعة. يمكن لأي شخص يجد تلك الولاعة مسح الرمز وإدخال رقم التعريف الشخصي الخاص بها وإضافة قصة أو صورة أو أغنية إلى سجلها الرقمي. إنها طريقة فريدة لربط الناس عالميًا ومنح الولاعات حياة ثانية.',
   'faq.how_add_story.question': 'كيف أضيف قصة إلى ولاعة؟',
@@ -374,8 +362,7 @@ export default {
   'faq.contact_footer': 'لا يمكنك العثور على إجابتك؟',
   'faq.contact_link': 'اتصل بنا',
 
-  // Account Settings
-  'settings.auth.error.passwords_no_match': 'كلمات المرور غير متطابقة.',
+    'settings.auth.error.passwords_no_match': 'كلمات المرور غير متطابقة.',
   'settings.auth.success_message': 'تم التحديث بنجاح! يرجى التحقق من بريدك الإلكتروني لتأكيد التغييرات إذا قمت بتحديث عنوان بريدك الإلكتروني.',
   'settings.auth.title': 'إعدادات الحساب',
   'settings.auth.oauth_notice': '✓ أنت مسجل الدخول عبر {provider}. تتم إدارة المصادقة الخاصة بك بشكل آمن من قبل مزودك.',
@@ -394,8 +381,7 @@ export default {
   'settings.auth.update_button': 'تحديث تفاصيل المصادقة',
   'settings.auth.saving': 'جارٍ الحفظ...',
 
-  // Country Names
-  'country.AT': 'النمسا',
+    'country.AT': 'النمسا',
   'country.BE': 'بلجيكا',
   'country.CA': 'كندا',
   'country.CH': 'سويسرا',
@@ -416,16 +402,14 @@ export default {
   'country.SE': 'السويد',
   'country.US': 'الولايات المتحدة',
 
-  // Additional Save Lighter Keys
-  'save_lighter.helper.background_url': 'اختياري. سيكون عنوان URL هذا للصورة خلفية لصفحة ولاعتك. جرب رابط Imgur أو Unsplash.',
+    'save_lighter.helper.background_url': 'اختياري. سيكون عنوان URL هذا للصورة خلفية لصفحة ولاعتك. جرب رابط Imgur أو Unsplash.',
   'save_lighter.error.failed_to_save': 'فشل حفظ الولاعة: {message}',
   'save_lighter.pack_count': 'حزمة {count} ملصقات',
   'save_lighter.pack_total': 'الإجمالي: {price}',
   'save_lighter.payment_mock': 'محاكاة الدفع',
   'save_success.generating_sticker': 'جارٍ إنشاء الملصق...',
 
-  // Refill Guide (Don't Throw Me Away page)
-  'refill_guide.title': 'Don\'t Throw Me Away',
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature. A single company like BIC sold over 2.5 billion in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',

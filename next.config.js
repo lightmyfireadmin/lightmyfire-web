@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig} */
+
 
 const ContentSecurityPolicy = `
   default-src 'self';

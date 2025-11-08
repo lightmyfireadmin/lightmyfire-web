@@ -33,8 +33,7 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
   const [mapConsent, setMapConsent] = useState(false);
   const searchRef = useRef<NodeJS.Timeout>();
 
-  // Check localStorage for map consent
-  useEffect(() => {
+    useEffect(() => {
     const consent = localStorage.getItem('osm_map_consent');
     if (consent === 'true') {
       setMapConsent(true);
@@ -102,7 +101,7 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
             <p className="text-xs text-muted-foreground mt-2">
               📍 {value.lat}, {value.lng}
             </p>
-            {/* OpenStreetMap Preview */}
+            {}
             <div className="mt-3 rounded overflow-hidden border border-border">
               {mapConsent ? (
                 <>
@@ -118,7 +117,7 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
                       style={{ border: 0 }}
                       title={t('location.map_title')}
                     />
-                    {/* Center marker indicator */}
+                    {}
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
                       <div className="w-6 h-6 bg-red-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center">
                         <div className="w-2 h-2 bg-white rounded-full"></div>

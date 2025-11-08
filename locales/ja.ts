@@ -142,8 +142,6 @@ export default {
   'home.stats.environmental_impact': '環境貢献',
   'home.stats.join_movement': '一度に1つのライターで違いを生み出す何千ものLightSaversに参加してください。',
 
-
-
   'save_success.next_steps.title': 'Next Steps:',
   'save_success.next_steps.step1': 'Print: Download the PDF and print it, ideally on sticker paper.',
   'save_success.next_steps.step2': 'Stick: Cut out the sticker and apply it to your lighter.',
@@ -196,9 +194,7 @@ export default {
   'legal.faq.title': 'よくある質問',
   'legal.about.title': 'LightMyFireについて',
 
-  // --- Sticker Order Flow ---
-  // Pack Selection
-  'order.pack_selection.title': 'パックを選択',
+      'order.pack_selection.title': 'パックを選択',
   'order.pack_selection.subtitle': '注文するカスタムステッカーの数を選択してください',
   'order.pack.starting_lightsaver': 'スターティングライトセーバー',
   'order.pack.committed_lightsaver': 'コミットライトセーバー',
@@ -213,14 +209,12 @@ export default {
   'order.pack.price_calculated': '価格はチェックアウト時に計算されます',
   'order.pack.select_button': '選択',
 
-  // Custom Branding
-  'order.custom_branding.title': 'イベント・ブランド向けカスタムブランディング',
+    'order.custom_branding.title': 'イベント・ブランド向けカスタムブランディング',
   'order.custom_branding.description': 'イベントを計画していますか、またはステッカーシートにカスタムブランディングが必要ですか？組織、ブランド、または特別なイベント用にブランディングエリアをカスタマイズできます！',
   'order.custom_branding.button': 'カスタムブランディングについてお問い合わせ',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // Lighter Customization
-  'order.customization.title': 'ステッカーをカスタマイズ',
+    'order.customization.title': 'ステッカーをカスタマイズ',
   'order.customization.subtitle': '各ライターをパーソナライズ',
   'order.customization.apply_to_all': 'すべてに適用',
   'order.customization.lighter_number': 'ライター #{number}',
@@ -240,21 +234,18 @@ export default {
   'order.customization.validation_warning_multiple': '続行する前にすべてのライター名（各3〜16文字）を入力してください。',
   'order.customization.save_button': 'ステッカーのカスタマイズを保存',
 
-  // Order Summary
-  'order.summary.title': '注文概要',
+    'order.summary.title': '注文概要',
   'order.summary.pack': 'パック：',
   'order.summary.language': '言語：',
   'order.summary.stickers': 'ステッカー：',
   'order.summary.customized': '✓ カスタマイズ済み',
   'order.summary.total': '合計：',
 
-  // Sticker Preview
-  'order.preview.title': 'ステッカーデザイン',
+    'order.preview.title': 'ステッカーデザイン',
   'order.preview.description': 'カスタムステッカーのプレビュー。ステッカーファイルは支払い後に生成されます。',
   'order.preview.more_stickers': '他{count}個',
 
-  // Shipping Address
-  'order.shipping.title': '配送情報',
+    'order.shipping.title': '配送情報',
   'order.shipping.description': 'ステッカー配送のための住所を入力してください',
   'order.shipping.name_label': 'フルネーム *',
   'order.shipping.name_placeholder': '山田太郎',
@@ -276,8 +267,7 @@ export default {
   'order.shipping.error_country': '国は必須です',
   'order.shipping.continue_button': '支払いへ進む',
 
-  // Payment
-  'order.payment.title': '支払い詳細',
+    'order.payment.title': '支払い詳細',
   'order.payment.order_id': '注文ID：',
   'order.payment.sticker_pack': 'ステッカーパック：',
   'order.payment.stickers_count': '{count}枚のステッカー',
@@ -305,8 +295,7 @@ export default {
   'order.payment.stripe_not_configured': 'Stripeが設定されていません。.env.localにNEXT_PUBLIC_STRIPE_PUBLISHABLE_KEYを追加してください',
   'order.payment.loading': '支払いフォームを読み込み中...',
 
-  // Order Success
-  'order.success.title': '注文成功！',
+    'order.success.title': '注文成功！',
   'order.success.subtitle': 'ご注文ありがとうございます',
   'order.success.confirmation_sent': '確認メール送信済み',
   'order.success.confirmation_description': '確認メールが送信されました：',
@@ -328,11 +317,9 @@ export default {
   'order.success.questions': 'ご注文についてご質問がありますか？',
   'order.success.contact_us': 'お問い合わせ',
 
-  // Change Pack
-  'order.change_pack': '← パックを変更',
+    'order.change_pack': '← パックを変更',
 
-  // Cookie Consent
-  'cookie.message': '基本機能のためだけにクッキーを使用し、トラッキングには一切使用しません。プライバシーは保護されています。詳細は{privacyLink}をご覧ください。',
+    'cookie.message': '基本機能のためだけにクッキーを使用し、トラッキングには一切使用しません。プライバシーは保護されています。詳細は{privacyLink}をご覧ください。',
   'cookie.privacy_link_text': 'プライバシーポリシー',
   'cookie.accept': '承認',
   'cookie.decline': '拒否',
@@ -341,8 +328,7 @@ export default {
   'cookie_consent.accept': '承認して続ける',
   'cookie_consent.privacy_link': 'プライバシーポリシー',
 
-  // FAQ Page - Full Content
-  'faq.subtitle': 'LightMyFireに関するよくある質問への回答',
+    'faq.subtitle': 'LightMyFireに関するよくある質問への回答',
   'faq.what_is.question': 'LightMyFireとは何ですか？',
   'faq.what_is.answer': '廃棄物を削減し、「人間のモザイク」を作るプロジェクトです。ライターに貼るQRコード付きステッカーを販売しています。そのライターを見つけた人は、コードをスキャンしてPINを入力し、ストーリー、写真、または曲をデジタルログブックに追加できます。これは人々をグローバルにつなぎ、ライターに第二の人生を与えるユニークな方法です。',
   'faq.how_add_story.question': 'ライターにストーリーを追加するにはどうすればよいですか？',
@@ -376,8 +362,7 @@ export default {
   'faq.contact_footer': '答えが見つかりませんか？',
   'faq.contact_link': 'お問い合わせ',
 
-  // Account Settings / Update Auth Form
-  'settings.auth.error.passwords_no_match': 'パスワードが一致しません。',
+    'settings.auth.error.passwords_no_match': 'パスワードが一致しません。',
   'settings.auth.success_message': '更新に成功しました！メールアドレスを更新した場合は、変更を確認するためにメールをご確認ください。',
   'settings.auth.title': 'アカウント設定',
   'settings.auth.oauth_notice': '✓ {provider}経由でログインしています。認証はプロバイダーによって安全に管理されています。',
@@ -396,8 +381,7 @@ export default {
   'settings.auth.update_button': '認証情報を更新',
   'settings.auth.saving': '保存中...',
 
-  // Country Names
-  'country.AT': 'オーストリア',
+    'country.AT': 'オーストリア',
   'country.BE': 'ベルギー',
   'country.CA': 'カナダ',
   'country.CH': 'スイス',
@@ -418,8 +402,7 @@ export default {
   'country.SE': 'スウェーデン',
   'country.US': 'アメリカ',
 
-  // --- Refill Guide Page ---
-  'refill_guide.title': 'Don\'t Throw Me Away',
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature. A single company like BIC sold over 2.5 billion in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',

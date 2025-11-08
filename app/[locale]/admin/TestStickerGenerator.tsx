@@ -36,19 +36,16 @@ export default function TestStickerGenerator() {
     setError(null);
 
     try {
-      // Calculate total stickers (10 per sheet)
-      const totalStickers = sheetCount * 10;
+            const totalStickers = sheetCount * 10;
 
-      // Generate stickers with identical properties except pin codes
-      const stickers = Array.from({ length: totalStickers }, (_, i) => ({
+            const stickers = Array.from({ length: totalStickers }, (_, i) => ({
         name: lighterName,
         pinCode: `TST-${String(i + 1).padStart(3, '0')}`,
         backgroundColor: backgroundColor,
         language: language,
       }));
 
-      // Call the sticker generation API
-      const response = await fetch('/api/generate-sticker-pdf', {
+            const response = await fetch('/api/generate-sticker-pdf', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -63,8 +60,7 @@ export default function TestStickerGenerator() {
         throw new Error(errorData.error || 'Failed to generate stickers');
       }
 
-      // Download the PNG
-      const blob = await response.blob();
+            const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -89,7 +85,7 @@ export default function TestStickerGenerator() {
       </p>
 
       <div className="space-y-4">
-        {/* Lighter Name */}
+        {}
         <div>
           <label htmlFor="lighterName" className="block text-sm font-medium text-foreground mb-2">
             Lighter Name
@@ -105,7 +101,7 @@ export default function TestStickerGenerator() {
           />
         </div>
 
-        {/* Background Color */}
+        {}
         <div>
           <label htmlFor="backgroundColor" className="block text-sm font-medium text-foreground mb-2">
             Background Color
@@ -140,7 +136,7 @@ export default function TestStickerGenerator() {
           </div>
         </div>
 
-        {/* Language */}
+        {}
         <div>
           <label htmlFor="language" className="block text-sm font-medium text-foreground mb-2">
             Sticker Language
@@ -159,7 +155,7 @@ export default function TestStickerGenerator() {
           </select>
         </div>
 
-        {/* Sheet Count */}
+        {}
         <div>
           <label className="block text-sm font-medium text-foreground mb-2">
             Number of Sheets (10 stickers per sheet)
@@ -185,14 +181,14 @@ export default function TestStickerGenerator() {
           </div>
         </div>
 
-        {/* Error Message */}
+        {}
         {error && (
           <div className="rounded-md bg-red-50 dark:bg-red-950/20 p-4 text-red-800 dark:text-red-200">
             <p className="text-sm font-medium">{error}</p>
           </div>
         )}
 
-        {/* Generate Button */}
+        {}
         <button
           onClick={handleGenerate}
           disabled={loading || !lighterName.trim()}

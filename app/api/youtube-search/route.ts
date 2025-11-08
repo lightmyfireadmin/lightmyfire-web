@@ -3,9 +3,7 @@ import { rateLimit } from '@/lib/rateLimit';
 
 export async function POST(request: NextRequest) {
   try {
-    // SECURITY: Rate limit YouTube searches to prevent API quota exhaustion
-    // Use IP-based rate limiting (20 requests per minute)
-    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ||
+            const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ||
                request.headers.get('x-real-ip') ||
                'unknown';
 
@@ -22,8 +20,7 @@ export async function POST(request: NextRequest) {
 
     const { query } = await request.json();
 
-    // Validate input
-    if (!query || typeof query !== 'string') {
+        if (!query || typeof query !== 'string') {
       return NextResponse.json(
         { error: 'Invalid query parameter' },
         { status: 400 }
@@ -37,8 +34,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get API key from server-side environment (NOT exposed to client)
-    const apiKey = process.env.YOUTUBE_API_KEY;
+        const apiKey = process.env.YOUTUBE_API_KEY;
 
     if (!apiKey) {
       console.error('YOUTUBE_API_KEY is not set');
@@ -48,15 +44,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Call YouTube API from server (secure)
-    const response = await fetch(
+        const response = await fetch(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&maxResults=5&key=${apiKey}`
     );
 
     const data = await response.json();
 
-    // Check for API errors
-    if (data.error) {
+        if (data.error) {
       console.error('YouTube API Error:', data.error);
       return NextResponse.json(
         {
@@ -67,8 +61,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Return only necessary data (transform response for safety)
-    const items = (data.items || []).map((video: any) => ({
+        const items = (data.items || []).map((video: any) => ({
       id: { videoId: video.id.videoId },
       snippet: {
         title: video.snippet.title,

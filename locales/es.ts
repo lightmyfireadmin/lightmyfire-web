@@ -1082,8 +1082,7 @@ export default {
   'terms.ul9.li2': 'Artículos incorrectos enviados',
   'terms.ul9.li3': 'No entrega debido a nuestro error',
 
-  // Notifications
-  'notifications.success': '¡Éxito!',
+    'notifications.success': '¡Éxito!',
   'notifications.error': 'Error',
   'notifications.warning': 'Advertencia',
   'notifications.auth_failed': 'Error de autenticación. Por favor, inténtalo de nuevo.',

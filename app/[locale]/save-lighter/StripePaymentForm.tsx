@@ -60,8 +60,7 @@ function PaymentFormContent({
   const [cardholderName, setCardholderName] = useState('');
   const [cardholderEmail, setCardholderEmail] = useState(userEmail);
 
-  // Auto-fill cardholder name from shipping address (can be edited if different)
-  useEffect(() => {
+    useEffect(() => {
     if (shippingAddress?.name) {
       setCardholderName(shippingAddress.name);
     }
@@ -214,7 +213,7 @@ function PaymentFormContent({
         </div>
       </div>
 
-      {/* Pricing Summary - Right before payment */}
+      {}
       <div className="border-t border-border pt-4 space-y-2">
         <div className="flex justify-between text-muted-foreground">
           <span>{t('order.summary.subtotal')}</span>

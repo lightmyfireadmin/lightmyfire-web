@@ -1,6 +1,5 @@
 export default {
-  // --- Navigation ---
-  'nav.how_it_works': 'How It Works',
+    'nav.how_it_works': 'How It Works',
   'nav.our_philosophy': 'Our Philosophy',
   'nav.refill_guide': 'Refill it!',
   'nav.save_lighter': 'Become a LightSaver',
@@ -13,8 +12,7 @@ export default {
   'nav.search_aria': 'Search for lighter',
   'nav.search_title': 'Find a lighter',
 
-  // --- Footer ---
-  'footer.social.instagram': 'Instagram',
+    'footer.social.instagram': 'Instagram',
   'footer.social.tiktok': 'TikTok',
   'footer.social.facebook': 'Facebook',
   'footer.links.privacy': 'Privacy Policy',
@@ -28,8 +26,7 @@ export default {
   'footer.facebook_aria': 'Facebook',
   'footer.disclaimer': 'This project is an independent creative endeavor, not affiliated with any lighter manufacturers.',
 
-  // --- Home Page ---
-  'home.hero.title': 'Too Young To Die',
+    'home.hero.title': 'Too Young To Die',
   'home.hero.subtitle': 'Billions of us Lightees get tossed every year. Found, loved, lost, forgotten... But we have stories to tell! Give us a chance.',
   'home.hero.cta': 'Become a LightSaver',
   'home.hero.popup_content': 'The PIN is on the sticker. It\'s your lighter\'s unique code—its passport to a global journey of stories.',
@@ -78,15 +75,13 @@ export default {
   'home.stats.join_movement': 'Join thousands of LightSavers making a difference, one lighter at a time.',
   'home.stats.citations_title': 'Sources',
 
-  // --- Welcome Banner ---
-  'banner.welcome': 'Welcome',
+    'banner.welcome': 'Welcome',
   'banner.user': 'User',
   'banner.connect_cta': 'Join the LightSavers\' community!',
   'banner.connect_link': 'Log in or Sign up',
   'banner.close': 'Close banner',
 
-  // --- Auth/Login & Signup ---
-  'login.title': 'LightMyFire',
+    'login.title': 'LightMyFire',
   'login.email_label': 'Email Address',
   'login.password_label': 'Password',
   'login.forgot_password': 'Forgot your password?',
@@ -98,8 +93,7 @@ export default {
   'auth.login_to_flag': 'Log in to flag posts',
   'auth.login_to_like': 'Log in to like posts',
 
-  // --- Notifications, Errors, and Generic UI ---
-  'notifications.login_success': 'Welcome back, LightSaver! Your lighters missed you. 💫',
+    'notifications.login_success': 'Welcome back, LightSaver! Your lighters missed you. 💫',
   'notifications.logout_success': 'See you next time! ✨',
   'notifications.signup_success': 'Welcome to the LightSaver family! 🌟',
   'notifications.post_success': 'Story added! 🎉 You just made this lighter\'s journey brighter.',
@@ -139,25 +133,21 @@ export default {
   'error.rate_limit': 'Whoa there, speedy! 🏃‍♂️\n\nYou\'re adding posts faster than we can keep up. Take a 24-hour break to let others add to this lighter\'s story, then come back!\n\n(This keeps our mosaic diverse and interesting for everyone.)',
   'error.content_flagged': 'Heads up! Our community guidelines flag this content as {reason}. Let\'s keep LightMyFire welcoming for everyone. 🌟',
 
-  // --- Legal Pages Structural Content ---
-  'legal.privacy.title': 'Privacy Policy',
+    'legal.privacy.title': 'Privacy Policy',
   'legal.terms.title': 'Terms of Service',
   'legal.faq.title': 'Frequently Asked Questions',
   'legal.about.title': 'About LightMyFire',
 
-  // Cookie Consent
-  'cookie.message': 'We use cookies only for basic functionality—never for tracking. Your privacy matters. See our {privacyLink} for details.',
+    'cookie.message': 'We use cookies only for basic functionality—never for tracking. Your privacy matters. See our {privacyLink} for details.',
   'cookie.privacy_link_text': 'Privacy Policy',
   'cookie.accept': 'Accept',
   'cookie.decline': 'Decline',
-  // Legacy keys (kept for compatibility)
-  'cookie_consent.title': 'We value your privacy',
+    'cookie_consent.title': 'We value your privacy',
   'cookie_consent.message': 'We use cookies to ensure you get the best experience on our website. By continuing, you agree to our privacy policy and cookie use.',
   'cookie_consent.accept': 'Accept & Continue',
   'cookie_consent.privacy_link': 'Privacy Policy',
 
-  // Privacy Policy (Structural Keys)
-  'privacy.last_updated': 'Last updated: November 8, 2025',
+    'privacy.last_updated': 'Last updated: November 8, 2025',
   'privacy.p1': 'LightMyFire ("we," "us," or "our") is operated by Revel Editions SASU, a SASU company registered in France (RCS: 849 409 313). We are committed to protecting your privacy and complying with the General Data Protection Regulation (GDPR). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and services.',
   'privacy.h3.data_controller': '1. Data Controller',
   'privacy.p2': 'The data controller for your personal information is:<br><br><strong>Revel Editions SASU</strong><br>145 Rue de Noisy-le-Sec<br>93260 Les Lilas, France<br><br><strong>Contact Email:</strong> privacy@lightmyfire.app<br><strong>Data Protection Officer:</strong> dpo@lightmyfire.app',
@@ -277,8 +267,7 @@ export default {
   'privacy.ul16.li3': '<strong>Postal Address:</strong> Revel Editions SASU, [Complete Address], France',
   'privacy.p32': 'We aim to respond to all requests within 30 days. If your request is complex, we may extend this by an additional 60 days and will inform you.',
 
-  // Terms of Service (Structural Keys)
-  'terms.last_updated': 'Last updated: October 28, 2025',
+    'terms.last_updated': 'Last updated: October 28, 2025',
   'terms.p1': 'These Terms of Service ("Terms") govern your access to and use of LightMyFire (the "Service"), operated by Revel Editions SASU, a company registered in France. By creating an account or using our Service, you enter into a legally binding agreement with us.',
   'terms.h3.acceptance': '1. Acceptance of Terms',
   'terms.p2': 'By accessing or using LightMyFire, you agree to be bound by these Terms, our Privacy Policy, and all applicable laws. If you do not agree with any part of these Terms, you must not use the Service. Your continued use constitutes acceptance of any modifications we make to these Terms.',
@@ -437,8 +426,7 @@ export default {
   'terms.ul17.li2': '<strong>Support:</strong> support@lightmyfire.app',
   'terms.ul17.li3': '<strong>Address:</strong> Revel Editions SASU, Cs 20008 145 Rue de Noisy-le-Sec 93260 Les Lilas, France',
 
-  // --- How It Works / FAQ ---
-  'how_it_works_details.title': 'How It Works: From Spark to Global Story',
+    'how_it_works_details.title': 'How It Works: From Spark to Global Story',
   'how_it_works_details.step1.title': '1. Save',
   'how_it_works_details.step1.desc': 'Give a lighter a name to create its digital logbook and download your unique PIN/QR sticker.',
   'how_it_works_details.step2.title': '2. Share',
@@ -466,8 +454,7 @@ export default {
   'faq.q7.title': 'How does the map work?',
   'faq.q7.desc': 'On each lighter\'s page, you\'ll find a map that shows the journey of that specific lighter. Every time someone makes a "location" post, the coordinates are recorded and added to the map, tracing the lighter\'s path across the globe.',
 
-  // FAQ Page - Full Content
-  'faq.subtitle': 'Find answers to common questions about LightMyFire',
+    'faq.subtitle': 'Find answers to common questions about LightMyFire',
   'faq.what_is.question': 'What is LightMyFire?',
   'faq.what_is.answer': 'It\'s a project to reduce waste and create a "human mosaic." We sell stickers with QR codes that you put on a lighter. Anyone who finds that lighter can scan the code, enter its PIN, and add a story, picture, or song to its digital logbook. It\'s a unique way to connect people globally and give lighters a second life.',
   'faq.how_add_story.question': 'How do I add a story to a lighter?',
@@ -501,8 +488,7 @@ export default {
   'faq.contact_footer': 'Can\'t find your answer?',
   'faq.contact_link': 'Contact us',
 
-  // --- Philosophy Page ---
-  'philosophy.title': 'Our Philosophy',
+    'philosophy.title': 'Our Philosophy',
   'philosophy.lead': 'We believe that even the smallest, most disposable object can carry a great story.',
   'philosophy.p1': '<strong>LightMyFire</strong> was born from a simple idea: what if we stopped treating lighters as throwaway items? <strong>In a world of mass consumption where billions of these items are discarded every year,</strong> what if we saw them as companions, as tiny vessels for our memories, ideas, and creativity?',
   'philosophy.p2': 'The everyday lighter is <strong>a powerful social catalyst.</strong> It\'s no personal possession; it belongs to everyone. It passes from hand to hand, from friend to stranger, at parties, concerts, and quiet meetups. It hears our secrets and lights our way. <strong>It\'s the silent witness to a great conversation, the spark for a new friendship. But its story is ephemeral, lost as soon as it\'s passed on.</strong>',
@@ -513,8 +499,7 @@ export default {
   'philosophy.button.learn_more': 'Learn More',
   'philosophy.cta': 'Join us in giving lighters a second life, one story at a time.',
 
-  // --- Refill Guide Page ---
-  'refill_guide.title': 'Don\'t Throw Me Away',
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature<sup class="citation">[1]</sup>. Major lighter manufacturers reported selling over 2.5 billion units in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',
@@ -558,16 +543,14 @@ export default {
   'refill_guide.pro_tip_butane': 'Always wear safety glasses when refilling. If you feel resistance, do not force it—wait a few seconds and try again.',
   'refill_guide.important_gasoline': 'Never overfill fluid lighters. Let the lighter dry for 24 hours after refilling before use.',
 
-  // Refill Guide - Statistics
-  'refill_guide.stats.lighters_sold': 'Disposable lighters sold yearly',
+    'refill_guide.stats.lighters_sold': 'Disposable lighters sold yearly',
   'refill_guide.stats.lighters_sold_worldwide': 'Worldwide',
   'refill_guide.stats.years_decompose': 'Years to decompose',
   'refill_guide.stats.years_decompose_location': 'In landfills',
   'refill_guide.stats.waste_reduction': 'Waste reduction',
   'refill_guide.stats.waste_reduction_method': 'With refillable lighters',
 
-  // Refill Guide - Key Indicators
-  'refill_guide.key_indicators': 'Key indicators:',
+    'refill_guide.key_indicators': 'Key indicators:',
   'refill_guide.type1.indicator1': 'Small round metal valve on the bottom',
   'refill_guide.type1.indicator2': 'Similar to a tire valve',
   'refill_guide.type1.indicator3': 'Most common type',
@@ -590,14 +573,12 @@ export default {
   'refill_guide.cta.title': 'Ready to Save Your First Lighter?',
   'refill_guide.cta.description': 'Choose a refillable lighter, give it a name, and start its journey with LightMyFire.',
 
-  // Refill Guide - Citations and Sources
-  'refill_guide.citations.title': 'Sources & References',
+    'refill_guide.citations.title': 'Sources & References',
   'refill_guide.citations.1.text': 'Global lighter production and environmental impact data',
   'refill_guide.citations.1.source': 'World Economic Forum - Plastic Waste Statistics (2023)',
   'refill_guide.citations.1.url': 'https://www.weforum.org/agenda/2023/plastic-waste/',
 
-  // --- Save Lighter Flow ---
-  'save_lighter.title': 'Become a LightSaver',
+    'save_lighter.title': 'Become a LightSaver',
   'save_lighter.introduction': 'Purchase sticker packs to save lighters and share their stories with the world. Each sticker has a unique PIN that links to a lighter\'s journey.',
   'save_lighter.pack_5.title': '5 Stickers',
   'save_lighter.pack_5.price': '$4.99',
@@ -628,13 +609,11 @@ export default {
   'save_lighter.pack_total': 'Total: {price}',
   'save_lighter.payment_mock': 'Simulate Payment',
 
-  // --- Stripe Payment Keys ---
-  'stripe.card_info': 'Card Information',
+    'stripe.card_info': 'Card Information',
   'stripe.pay_button': 'Pay {amount}',
   'stripe.error.generic': 'Payment failed. Please check your details or try again.',
 
-  // --- Lighter Personalization ---
-  'lighter_personalization.title': 'Customize Your Stickers',
+    'lighter_personalization.title': 'Customize Your Stickers',
   'lighter_personalization.subtitle': 'Personalize each lighter',
   'lighter_personalization.apply_all': 'Apply to All',
   'lighter_personalization.lighter_count': 'Lighter #{index}',
@@ -661,8 +640,7 @@ export default {
   'lighter_personalization.warning_fill_name': 'Please fill in the lighter name (3-16 characters) before continuing.',
   'lighter_personalization.button_save_customizations': 'Save Sticker Customizations',
 
-  // --- Save Lighter Success ---
-  'save_success.loading': 'Loading your lighter\'s details...',
+    'save_success.loading': 'Loading your lighter\'s details...',
   'save_success.lighter_not_found': 'Could not find lighter.',
   'save_success.title': 'Success!',
   'save_success.message': 'You\'ve saved {lighterName}!',
@@ -680,8 +658,7 @@ export default {
   'save_success.generating_sticker': 'Generating Sticker...',
   'save_success.error_fetching': 'An error occurred while fetching lighter details.',
 
-  // --- Lighter Page ---
-  'lighter.saved_by': 'Saved by',
+    'lighter.saved_by': 'Saved by',
   'lighter.saved_by_label': 'Lighter Saved By',
   'lighter.level': 'Level',
   'lighter.on': 'on',
@@ -694,18 +671,15 @@ export default {
   'lighter.map.markers': '{count} locations',
   'lighter.map.center_coords': 'Center: Lat {lat}, Lng {lng}',
 
-  // Empty Lighter State
-  'empty_lighter.title': 'The Story Begins...',
+    'empty_lighter.title': 'The Story Begins...',
   'empty_lighter.description': 'This lighter\'s journey has just started. Be the first to add a chapter to its story and inspire others!',
   'empty_lighter.action': 'Add the First Post',
 
-  // Post Card Fallbacks
-  'post.default_location': 'A location',
+    'post.default_location': 'A location',
   'post.user_upload_alt': 'User upload',
   'post.youtube_player_title': 'YouTube video player',
 
-  // --- Add Post Form ---
-  'add_post.title': 'Add to the Story',
+    'add_post.title': 'Add to the Story',
   'add_post.subtitle': 'You are adding a post to {lighterName}',
   'add_post.select_post_type': 'Select Post Type',
   'add_post.options': 'Options',
@@ -758,8 +732,7 @@ export default {
   'add_post.moderation.content_review': '⚠️ Content Review',
   'add_post.moderation.tip': '💡 Tip: Consider revising to be more community-friendly.',
 
-  // --- Loading States ---
-  'loading.posting_v1': 'Adding your story to the timeline...',
+    'loading.posting_v1': 'Adding your story to the timeline...',
   'loading.posting_v2': 'Weaving your moment into the mosaic...',
   'loading.posting_v3': 'Lighting up this lighter\'s journey...',
   'loading.posting_v4': 'Making this Lightee\'s story brighter...',
@@ -776,8 +749,7 @@ export default {
   'add_post.error.unexpected': 'An unexpected error occurred. Please try again.',
   'add_post.error.youtube_search_failed': 'Failed to search YouTube. Try again.',
 
-  // --- Location Search / Location Picker ---
-  'location.search_placeholder': 'Search for a location (city, address, landmark)...',
+    'location.search_placeholder': 'Search for a location (city, address, landmark)...',
   'location.selected_location': 'Selected Location',
   'location.no_location_selected': 'No location selected',
   'location.map_title': 'Location map',
@@ -790,8 +762,7 @@ export default {
   'location.latitude_placeholder': 'Latitude',
   'location.longitude_placeholder': 'Longitude',
 
-  // --- Post Card ---
-  'post.anonymous': 'Anonymous',
+    'post.anonymous': 'Anonymous',
   'post.post_type.text': 'wrote a story',
   'post.post_type.image': 'shared an image',
   'post.post_type.song': 'shared a song',
@@ -807,8 +778,7 @@ export default {
   'flag.confirm_message': 'Are you sure you want to flag this post for review? This cannot be undone.',
   'flag.error_flagging': 'Could not flag post. Try again.',
 
-  // --- My Profile ---
-  'my_profile.title': 'My Profile',
+    'my_profile.title': 'My Profile',
   'my_profile.tabs.my_lighters': 'My Lighters',
   'my_profile.tabs.my_posts': 'My Posts',
   'my_profile.tabs.my_trophies': 'My Trophies',
@@ -845,8 +815,7 @@ export default {
   'my_profile.settings.placeholder.password': '••••••••',
   'my_profile.settings.placeholder.password_confirm': 'Re-enter new password',
 
-  // Account Settings / Update Auth Form
-  'settings.auth.error.passwords_no_match': 'Passwords don\'t match.',
+    'settings.auth.error.passwords_no_match': 'Passwords don\'t match.',
   'settings.auth.success_message': 'Update successful! Check your email to confirm changes if you updated your email address.',
   'settings.auth.title': 'Account Settings',
   'settings.auth.oauth_notice': '✓ You\'re logged in via {provider}. Your authentication is managed securely by your provider.',
@@ -872,8 +841,7 @@ export default {
   'settings.profile.saving': 'Saving...',
   'settings.profile.username_label': 'Username',
 
-  // --- My Posts List ---
-  'my_posts.post_type_default': 'A {type} post',
+    'my_posts.post_type_default': 'A {type} post',
   'my_posts.on': 'on',
   'my_posts.a_lighter': 'a lighter',
   'my_posts.the': 'the',
@@ -886,8 +854,7 @@ export default {
   'my_posts.no_posts_description': 'Start sharing your stories with the community. Visit a lighter to add your first post!',
   'my_posts.no_posts_action': 'Find a Lighter',
 
-  // --- Moderation ---
-  'moderation.title': 'Moderation Queue',
+    'moderation.title': 'Moderation Queue',
   'moderation.no_posts': 'No posts currently flagged for moderation.',
   'moderation.approve': 'Approve',
   'moderation.delete': 'Delete',
@@ -914,8 +881,7 @@ export default {
   'moderation.content_type': 'Type',
   'moderation.view_post': 'View Post',
 
-  // --- Other Components ---
-  'badge.moderator_tooltip': 'This user is part of moderation',
+    'badge.moderator_tooltip': 'This user is part of moderation',
   'empty_posts.title': 'This lighter\'s story is waiting to be written! ✨',
   'empty_posts.message': 'Be the first to add a story, picture, or song to this lighter\'s journey!',
   'empty_posts.action': 'Add the First Post',
@@ -929,9 +895,7 @@ export default {
   'signup_welcome.cta_explore': 'Explore the Community',
   'signup_welcome.close': 'Close',
 
-  // --- Sticker Order Flow ---
-  // Pack Selection
-  'order.pack_selection.title': 'Choose Your Pack',
+      'order.pack_selection.title': 'Choose Your Pack',
   'order.pack_selection.subtitle': 'Select how many custom stickers you want to order',
   'order.pack.starting_lightsaver': 'Starting LightSaver',
   'order.pack.committed_lightsaver': 'Committed LightSaver',
@@ -946,22 +910,19 @@ export default {
   'order.pack.price_calculated': 'Price calculated at checkout',
   'order.pack.select_button': 'Select',
 
-  // Custom Branding
-  'order.custom_branding.title': 'Custom Branding for Events & Brands',
+    'order.custom_branding.title': 'Custom Branding for Events & Brands',
   'order.custom_branding.description': 'Planning an event or want custom branding on your sticker sheets? We can personalize the branding area for your organization, brand, or special event!',
   'order.custom_branding.button': 'Contact Us for Custom Branding',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // Save Lighter Flow - Pack Selection
-  'order.choose_pack_title': 'Choose Your Pack',
+    'order.choose_pack_title': 'Choose Your Pack',
   'order.choose_pack_subtitle': 'Select how many custom stickers you want to order',
   'order.pack_sheets_single': 'sheet',
   'order.pack_sheets_plural': 'sheets',
   'order.price_at_checkout': 'Price calculated at checkout',
   'order.pack_select_button': 'Select',
 
-  // Lighter Customization
-  'order.customization.title': 'Customize Your Stickers',
+    'order.customization.title': 'Customize Your Stickers',
   'order.customization.subtitle': 'Personalize each lighter',
   'order.customization.apply_to_all': 'Apply to All',
   'order.customization.lighter_number': 'Lighter #{number}',
@@ -981,20 +942,17 @@ export default {
   'order.customization.validation_warning_multiple': 'Please fill in all lighter names (3-16 characters each) before continuing.',
   'order.customization.save_button': 'Save Sticker Customizations',
 
-  // Sticker Quality
-  'order.quality.title': 'Premium Quality Stickers',
+    'order.quality.title': 'Premium Quality Stickers',
   'order.quality.glossy_finish': 'Glossy finish',
   'order.quality.fast_application': 'Fast and easy application',
   'order.quality.durability': '2–3 year durability',
 
-  // Application Guidelines
-  'order.guidelines.title': 'Application Guidelines',
+    'order.guidelines.title': 'Application Guidelines',
   'order.guidelines.step1': 'Apply the sticker to a clean, dust-free, oil-free, and moisture-free surface.',
   'order.guidelines.step2': 'After application, press the sticker down with a clean cloth to maximize adhesion and avoid air bubbles.',
   'order.guidelines.step3': 'Make sure the sticker is applied correctly the first time. With every reapplication, the sticker\'s ability to stick will decrease.',
 
-  // Order Summary
-  'order.summary.title': 'Order Summary',
+    'order.summary.title': 'Order Summary',
   'order.summary.pack': 'Pack:',
   'order.summary.language': 'Language:',
   'order.summary.stickers': 'Stickers:',
@@ -1009,13 +967,11 @@ export default {
   'order.summary.total': 'Total:',
   'order.summary.shipping_calculated': '+ shipping',
 
-  // Sticker Preview
-  'order.preview.title': 'Your Sticker Design',
+    'order.preview.title': 'Your Sticker Design',
   'order.preview.description': 'Preview of your custom stickers. Sticker files will be generated after payment.',
   'order.preview.more_stickers': '+{count} more',
 
-  // Shipping Address
-  'order.shipping.title': 'Shipping Information',
+    'order.shipping.title': 'Shipping Information',
   'order.shipping.description': 'Please provide your shipping address for sticker delivery',
   'order.shipping.name_label': 'Full Name *',
   'order.shipping.name_placeholder': 'John Doe',
@@ -1038,8 +994,7 @@ export default {
   'order.shipping.error_country': 'Country is required',
   'order.shipping.continue_button': 'Continue to Payment',
 
-  // Country Names
-  'country.AT': 'Austria',
+    'country.AT': 'Austria',
   'country.BE': 'Belgium',
   'country.CA': 'Canada',
   'country.CH': 'Switzerland',
@@ -1060,8 +1015,7 @@ export default {
   'country.SE': 'Sweden',
   'country.US': 'United States',
 
-  // Payment
-  'order.payment.title': 'Payment Details',
+    'order.payment.title': 'Payment Details',
   'order.payment.order_id': 'Order ID:',
   'order.payment.sticker_pack': 'Sticker Pack:',
   'order.payment.stickers_count': '{count} stickers',
@@ -1090,8 +1044,7 @@ export default {
   'order.payment.stripe_not_configured': 'Stripe not configured. Add NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY to .env.local',
   'order.payment.loading': 'Loading payment form...',
 
-  // Order Flow - Save Lighter Page
-  'save_lighter.why_it_matters': 'Why It Matters',
+    'save_lighter.why_it_matters': 'Why It Matters',
   'save_lighter.creative_journey': 'Creative Journey',
   'save_lighter.creative_journey_desc': 'Be part of a fun, global movement. Give lighters a second life with beautiful, hand-crafted stickers.',
   'save_lighter.human_mosaic': 'Human Mosaic',
@@ -1105,8 +1058,7 @@ export default {
   'save_lighter.sticker_plural': 'Stickers',
   'save_lighter.change_pack': '← Change Pack',
 
-  // Order Success
-  'order.success.title': 'Order Successful!',
+    'order.success.title': 'Order Successful!',
   'order.success.subtitle': 'Thank you for your order',
   'order.success.confirmation_sent': 'Confirmation Email Sent',
   'order.success.confirmation_description': 'A confirmation email has been sent to:',
@@ -1128,11 +1080,9 @@ export default {
   'order.success.questions': 'Questions about your order?',
   'order.success.contact_us': 'Contact us',
 
-  // Change Pack
-  'order.change_pack': '← Change Pack',
+    'order.change_pack': '← Change Pack',
 
-  // Contact Form
-  'contact.modal_title': 'Contact Us',
+    'contact.modal_title': 'Contact Us',
   'contact.name_label': 'Name',
   'contact.name_placeholder': 'Your name',
   'contact.email_label': 'Email',
@@ -1149,8 +1099,7 @@ export default {
   'contact.success_subtitle': 'We\'ll get back to you soon.',
   'contact.button': 'Contact Us',
 
-  // How It Works Page
-  'how_it_works.title': 'How It Works',
+    'how_it_works.title': 'How It Works',
   'how_it_works.subtitle': 'Save lighters, share stories, spread the flame',
   'how_it_works.step1.title': 'Find Your Lighter',
   'how_it_works.step1.desc': 'Discover a lighter with a unique ID or save your own',
@@ -1161,8 +1110,7 @@ export default {
   'how_it_works.cant_find_answer': "Can't find your answer?",
   'how_it_works.contact_us': 'Contact us',
 
-  // Language Names for Order Summary
-  'language.en': 'English',
+    'language.en': 'English',
   'language.fr': 'Français',
   'language.es': 'Español',
   'language.de': 'Deutsch',
@@ -1186,8 +1134,7 @@ export default {
   'language.uk': 'Українська',
   'language.tr': 'Türkçe',
 
-  // --- Email Subject Lines ---
-  'email.order_shipped_subject': 'Your lighter-saving kit is on the way! 🚀✨',
+    'email.order_shipped_subject': 'Your lighter-saving kit is on the way! 🚀✨',
   'email.first_post_subject': 'You lit the first spark! 🔥 Welcome to the LightSaver family',
   'email.trophy_earned_subject': '🏆 Achievement unlocked: {trophy_name}!',
   'email.lighter_activity_subject': 'Your lighter is making new friends! 🌍',

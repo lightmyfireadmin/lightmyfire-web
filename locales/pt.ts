@@ -1,6 +1,5 @@
 export default {
-    // Banner translations
-  'banner.welcome': 'Bem-vindo(a)',
+      'banner.welcome': 'Bem-vindo(a)',
   'banner.user': 'Usuário(a)',
   'banner.connect_cta': 'Junte-se à comunidade LightSaver!',
   'banner.connect_link': 'Entrar / Cadastrar-se',
@@ -112,8 +111,7 @@ export default {
     'save_lighter.title': 'Torne-se um LightSaver',
     'save_lighter.introduction': 'Compre pacotes de adesivos para salvar isqueiros e compartilhar suas histórias com o mundo. Cada adesivo tem um PIN único que se conecta à jornada de um isqueiro.',
     'save_lighter.pack_5.title': '5 Adesivos',
-    'save_lighter.pack_5.price': 'R$ 24,99', // Ajuste a moeda/preço conforme necessário
-    'save_lighter.pack_5.description': 'Perfeito para começar sua jornada LightSaver.',
+    'save_lighter.pack_5.price': 'R$ 24,99',     'save_lighter.pack_5.description': 'Perfeito para começar sua jornada LightSaver.',
     'save_lighter.pack_10.title': '10 Adesivos',
     'save_lighter.pack_10.price': 'R$ 44,99',
     'save_lighter.pack_10.description': 'Dobre seu impacto e salve mais isqueiros.',
@@ -196,8 +194,7 @@ export default {
   'legal.faq.title': 'Perguntas Frequentes',
   'legal.about.title': 'Sobre o LightMyFire',
 
-  // Cookie Consent
-  'cookie.message': 'Usamos cookies apenas para funcionalidades básicas—nunca para rastreamento. Sua privacidade está protegida. Veja nossa {privacyLink} para detalhes.',
+    'cookie.message': 'Usamos cookies apenas para funcionalidades básicas—nunca para rastreamento. Sua privacidade está protegida. Veja nossa {privacyLink} para detalhes.',
   'cookie.privacy_link_text': 'Política de Privacidade',
   'cookie.accept': 'Aceitar',
   'cookie.decline': 'Recusar',
@@ -206,8 +203,7 @@ export default {
   'cookie_consent.accept': 'Aceitar e Continuar',
   'cookie_consent.privacy_link': 'Política de Privacidade',
 
-  // FAQ Page - Full Content
-  'faq.subtitle': 'Encontre respostas para perguntas comuns sobre o LightMyFire',
+    'faq.subtitle': 'Encontre respostas para perguntas comuns sobre o LightMyFire',
   'faq.what_is.question': 'O que é o LightMyFire?',
   'faq.what_is.answer': 'É um projeto para reduzir o desperdício e criar um "mosaico humano". Vendemos adesivos com códigos QR que você coloca em um isqueiro. Qualquer pessoa que encontrar esse isqueiro pode escanear o código, inserir o PIN e adicionar uma história, foto ou música ao seu diário digital. É uma forma única de conectar pessoas globalmente e dar aos isqueiros uma segunda vida.',
   'faq.how_add_story.question': 'Como adiciono uma história a um isqueiro?',
@@ -241,8 +237,7 @@ export default {
   'faq.contact_footer': 'Não encontrou sua resposta?',
   'faq.contact_link': 'Entre em contato',
 
-  // Account Settings / Update Auth Form
-  'settings.auth.error.passwords_no_match': 'As senhas não correspondem.',
+    'settings.auth.error.passwords_no_match': 'As senhas não correspondem.',
   'settings.auth.success_message': 'Atualização bem-sucedida! Verifique seu email para confirmar as alterações se você atualizou seu endereço de email.',
   'settings.auth.title': 'Configurações da Conta',
   'settings.auth.oauth_notice': '✓ Você está logado via {provider}. Sua autenticação é gerenciada com segurança pelo seu provedor.',
@@ -261,8 +256,7 @@ export default {
   'settings.auth.update_button': 'Atualizar Detalhes de Autenticação',
   'settings.auth.saving': 'Salvando...',
 
-  // Country Names
-  'country.AT': 'Áustria',
+    'country.AT': 'Áustria',
   'country.BE': 'Bélgica',
   'country.CA': 'Canadá',
   'country.CH': 'Suíça',
@@ -283,8 +277,7 @@ export default {
   'country.SE': 'Suécia',
   'country.US': 'Estados Unidos',
 
-  // Save Lighter Flow - Pack Selection
-  'order.choose_pack_title': 'Escolha Seu Pacote',
+    'order.choose_pack_title': 'Escolha Seu Pacote',
   'order.choose_pack_subtitle': 'Selecione quantos adesivos personalizados você deseja encomendar',
   'order.pack_sheets_single': 'folha',
   'order.pack_sheets_plural': 'folhas',
@@ -298,9 +291,7 @@ export default {
   'save_success.generating_sticker': 'Gerando Adesivo...',
   'save_success.error_fetching': 'Ocorreu um erro ao buscar os detalhes do isqueiro.',
 
-  // --- Sticker Order Flow ---
-  // Pack Selection
-  'order.pack_selection.title': 'Escolha seu pacote',
+      'order.pack_selection.title': 'Escolha seu pacote',
   'order.pack_selection.subtitle': 'Selecione quantos adesivos personalizados você deseja encomendar',
   'order.pack.starting_lightsaver': 'LightSaver Iniciante',
   'order.pack.committed_lightsaver': 'LightSaver Comprometido',
@@ -315,14 +306,12 @@ export default {
   'order.pack.price_calculated': 'Preço calculado no checkout',
   'order.pack.select_button': 'Selecionar',
 
-  // Custom Branding
-  'order.custom_branding.title': 'Personalização para eventos e marcas',
+    'order.custom_branding.title': 'Personalização para eventos e marcas',
   'order.custom_branding.description': 'Está planejando um evento ou quer uma identidade visual personalizada nas suas folhas de adesivos? Podemos personalizar a área de marca para sua organização, marca ou evento especial!',
   'order.custom_branding.button': 'Entre em contato para personalização',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // Lighter Customization
-  'order.customization.title': 'Personalize seus adesivos',
+    'order.customization.title': 'Personalize seus adesivos',
   'order.customization.subtitle': 'Personalize cada isqueiro',
   'order.customization.apply_to_all': 'Aplicar a todos',
   'order.customization.lighter_number': 'Isqueiro #{number}',
@@ -342,21 +331,18 @@ export default {
   'order.customization.validation_warning_multiple': 'Por favor, preencha todos os nomes dos isqueiros (3-16 caracteres cada) antes de continuar.',
   'order.customization.save_button': 'Salvar personalizações',
 
-  // Order Summary
-  'order.summary.title': 'Resumo do pedido',
+    'order.summary.title': 'Resumo do pedido',
   'order.summary.pack': 'Pacote:',
   'order.summary.language': 'Idioma:',
   'order.summary.stickers': 'Adesivos:',
   'order.summary.customized': '✓ Personalizados',
   'order.summary.total': 'Total:',
 
-  // Sticker Preview
-  'order.preview.title': 'Design dos seus adesivos',
+    'order.preview.title': 'Design dos seus adesivos',
   'order.preview.description': 'Prévia dos seus adesivos personalizados. Os arquivos dos adesivos serão gerados após o pagamento.',
   'order.preview.more_stickers': '+{count} a mais',
 
-  // Shipping Address
-  'order.shipping.title': 'Informações de envio',
+    'order.shipping.title': 'Informações de envio',
   'order.shipping.description': 'Por favor, forneça seu endereço de entrega para o envio dos adesivos',
   'order.shipping.name_label': 'Nome completo *',
   'order.shipping.name_placeholder': 'João Silva',
@@ -378,8 +364,7 @@ export default {
   'order.shipping.error_country': 'País é obrigatório',
   'order.shipping.continue_button': 'Continuar para pagamento',
 
-  // Payment
-  'order.payment.title': 'Detalhes de pagamento',
+    'order.payment.title': 'Detalhes de pagamento',
   'order.payment.order_id': 'ID do pedido:',
   'order.payment.sticker_pack': 'Pacote de adesivos:',
   'order.payment.stickers_count': '{count} adesivos',
@@ -407,8 +392,7 @@ export default {
   'order.payment.stripe_not_configured': 'Stripe não configurado. Adicione NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ao .env.local',
   'order.payment.loading': 'Carregando formulário de pagamento...',
 
-  // Order Success
-  'order.success.title': 'Pedido realizado com sucesso!',
+    'order.success.title': 'Pedido realizado com sucesso!',
   'order.success.subtitle': 'Obrigado pelo seu pedido',
   'order.success.confirmation_sent': 'Email de confirmação enviado',
   'order.success.confirmation_description': 'Um email de confirmação foi enviado para:',
@@ -430,8 +414,7 @@ export default {
   'order.success.questions': 'Dúvidas sobre seu pedido?',
   'order.success.contact_us': 'Entre em contato',
 
-  // Change Pack
-  'order.change_pack': '← Trocar pacote',
+    'order.change_pack': '← Trocar pacote',
 
   'language.en': 'English',
   'language.fr': 'Français',
@@ -446,8 +429,7 @@ export default {
   'language.ko': '한국어',
   'language.zh-CN': '中文',
 
-  // --- Refill Guide Page ---
-  'refill_guide.title': 'Don\'t Throw Me Away',
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature. A single company like BIC sold over 2.5 billion in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',

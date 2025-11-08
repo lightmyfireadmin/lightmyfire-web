@@ -1,6 +1,5 @@
 export default {
-  // --- Add ---
-  'add.post.button.add.to.story': 'Ajouter à l\'histoire',
+    'add.post.button.add.to.story': 'Ajouter à l\'histoire',
   'add.post.button.checking.alt': 'Vérification...',
   'add.post.button.checking.content': 'Vérification du contenu...',
   'add.post.button.loading.alt': 'Chargement...',
@@ -63,26 +62,21 @@ export default {
   'add.post.youtube.search.selected.video': 'Vidéo sélectionnée :',
   'add.post.youtube.search.video.preview': 'Aperçu vidéo :',
 
-  // --- Auth ---
-  'auth.login.to.flag': 'Connecte-toi pour signaler des publications',
+    'auth.login.to.flag': 'Connecte-toi pour signaler des publications',
   'auth.login.to.like': 'Connecte-toi pour aimer des publications',
 
-  // --- Badge ---
-  'badge.moderator.tooltip': 'Cet·te utilisateur·rice fait partie de la modération',
+    'badge.moderator.tooltip': 'Cet·te utilisateur·rice fait partie de la modération',
 
-  // --- Banner ---
-  'banner.close': 'Fermer la bannière',
+    'banner.close': 'Fermer la bannière',
   'banner.connect.cta': 'Rejoins la communauté des LightSavers !',
   'banner.connect.link': 'Connexion ou Inscription',
   'banner.user': 'Utilisateur·rice',
   'banner.welcome': 'Bienvenue',
 
-  // --- Confirm ---
-  'confirm.modal.cancel': 'Annuler',
+    'confirm.modal.cancel': 'Annuler',
   'confirm.modal.confirm': 'Confirmer',
 
-  // --- Contact ---
-  'contact.button': 'Contacte-nous',
+    'contact.button': 'Contacte-nous',
   'contact.cancel': 'Annuler',
   'contact.email.label': 'Email',
   'contact.email.placeholder': 'ton.email@exemple.com',
@@ -99,8 +93,7 @@ export default {
   'contact.success.message': 'Message envoyé avec succès !',
   'contact.success.subtitle': 'Nous te répondrons bientôt.',
 
-  // --- Cookie ---
-  'cookie.accept': 'Accepter',
+    'cookie.accept': 'Accepter',
   'cookie.consent.accept': 'Accepter et continuer',
   'cookie.consent.message': 'Nous utilisons des cookies pour t\'offrir la meilleure expérience sur notre site. En continuant, tu acceptes notre politique de confidentialité et l\'utilisation de cookies.',
   'cookie.consent.privacy.link': 'Politique de confidentialité',
@@ -109,8 +102,7 @@ export default {
   'cookie.message': 'Nous utilisons des cookies uniquement pour les fonctionnalités de base—jamais pour le suivi. Ta vie privée compte. Consulte notre {privacyLink} pour plus de détails.',
   'cookie.privacy.link.text': 'Politique de confidentialité',
 
-  // --- Country ---
-  'country.AT': 'Autriche',
+    'country.AT': 'Autriche',
   'country.BE': 'Belgique',
   'country.CA': 'Canada',
   'country.CH': 'Suisse',
@@ -131,16 +123,14 @@ export default {
   'country.SE': 'Suède',
   'country.US': 'États-Unis',
 
-  // --- Email ---
-  'email.first.post.subject': 'Tu as allumé la première étincelle ! 🔥 Bienvenue dans la famille LightSaver',
+    'email.first.post.subject': 'Tu as allumé la première étincelle ! 🔥 Bienvenue dans la famille LightSaver',
   'email.lighter.activity.subject': 'Ton briquet se fait de nouveaux amis ! 🌍',
   'email.moderation.approved.subject': 'Bonne nouvelle ! Ton histoire est maintenant en ligne. 🎉',
   'email.moderation.rejected.subject': 'À propos de ton post récent... discutons-en',
   'email.order.shipped.subject': 'Ton kit LightSaver est en route ! 🚀✨',
   'email.trophy.earned.subject': '🏆 Réalisation débloquée : {trophy\_name} !',
 
-  // --- Empty ---
-  'empty.lighter.action': 'Ajouter le premier post',
+    'empty.lighter.action': 'Ajouter le premier post',
   'empty.lighter.description': 'Le voyage de ce briquet vient juste de commencer. Sois le·la premier·ère à ajouter un chapitre et inspirer les autres !',
   'empty.lighter.title': 'L\'histoire commence...',
   'empty.posts.action': 'Ajouter le premier post',
@@ -151,8 +141,7 @@ export default {
   'empty.state.no.posts.message': 'Sois le·la premier·ère à ajouter une publication et commencer son voyage.',
   'empty.state.no.posts.title': 'L\'histoire de ce briquet attend d\'être écrite !',
 
-  // --- Error ---
-  'error.content.flagged': 'Attention ! Nos règles de communauté signalent ce contenu comme {reason}. Gardons LightMyFire accueillant pour tous. 🌟',
+    'error.content.flagged': 'Attention ! Nos règles de communauté signalent ce contenu comme {reason}. Gardons LightMyFire accueillant pour tous. 🌟',
   'error.generic.message': 'Un petit problème de notre côté. Tu veux réessayer ?',
   'error.generic.title': 'Oups ! Quelque chose s\'est mal passé',
   'error.invalid.pin': 'Hmm, ce PIN ne correspond à aucun briquet que nous connaissons. Vérifie l\'autocollant !',
@@ -165,8 +154,7 @@ Tu ajoutes des posts plus vite qu\'on ne peut suivre. Prends une pause de 24h po
   'error.try.again': 'Réessayer',
   'error.upload.too.large': 'Cette image est trop lourde ! Choisis-en une de moins de 2 Mo. 📸',
 
-  // --- Faq ---
-  'faq.buy.stickers.answer': 'Après avoir conçu ton briquet et personnalisé ton autocollant, achète des packs directement via notre plateforme. Nous proposons des packs de 10, 20 ou 50 autocollants. Finalise ton achat via paiement Stripe sécurisé. Les autocollants sont imprimés professionnellement et expédiés avec suivi.',
+    'faq.buy.stickers.answer': 'Après avoir conçu ton briquet et personnalisé ton autocollant, achète des packs directement via notre plateforme. Nous proposons des packs de 10, 20 ou 50 autocollants. Finalise ton achat via paiement Stripe sécurisé. Les autocollants sont imprimés professionnellement et expédiés avec suivi.',
   'faq.buy.stickers.question': 'Comment acheter des packs d\'autocollants ?',
   'faq.contact.footer': 'Tu ne trouves pas ta réponse ?',
   'faq.contact.link': 'Contacte-nous',
@@ -214,15 +202,13 @@ Tu ajoutes des posts plus vite qu\'on ne peut suivre. Prends une pause de 24h po
   'faq.what.is.answer': 'Un projet pour réduire les déchets et créer une mosaïque humaine mondiale. Nous vendons des autocollants QR code pour briquets. Quiconque trouve ce briquet peut scanner le code, entrer le PIN et ajouter une histoire, photo ou chanson à son voyage numérique—connectant les gens mondialement et donnant aux briquets une seconde vie.',
   'faq.what.is.question': 'Qu\'est-ce que LightMyFire ?',
 
-  // --- Flag ---
-  'flag.confirm.message': 'Es-tu sûr de vouloir signaler ce post pour examen ? Cela ne peut pas être annulé.',
+    'flag.confirm.message': 'Es-tu sûr de vouloir signaler ce post pour examen ? Cela ne peut pas être annulé.',
   'flag.confirm.title': 'Signaler ce post ?',
   'flag.error.flagging': 'Impossible de signaler le post. Réessaie.',
   'flag.flag': 'Signaler',
   'flag.flagged': 'Signalé',
 
-  // --- Footer ---
-  'footer.copyright': '© {year} Revel Editions SASU. Tous droits réservés.',
+    'footer.copyright': '© {year} Revel Editions SASU. Tous droits réservés.',
   'footer.disclaimer': 'Ce projet est une initiative créative indépendante, non affiliée aux fabricants de briquets.',
   'footer.facebook.aria': 'Facebook',
   'footer.instagram.aria': 'Instagram',
@@ -236,8 +222,7 @@ Tu ajoutes des posts plus vite qu\'on ne peut suivre. Prends une pause de 24h po
   'footer.social.tiktok': 'TikTok',
   'footer.tiktok.aria': 'TikTok',
 
-  // --- Home ---
-  'home.become.lightsaver.alt': 'Illustration de partage',
+    'home.become.lightsaver.alt': 'Illustration de partage',
   'home.become.lightsaver.alt.arrow': 'Flèche pointant vers le bouton sauver un briquet',
   'home.become.lightsaver.subtitle': 'Rejoins notre mission pour donner une seconde vie aux briquets. Crée de beaux autocollants, partage des histoires et fais partie d\'une communauté créative mondiale qui combat le gaspillage.',
   'home.become.lightsaver.title': 'Deviens un·e LightSaver',
@@ -286,8 +271,7 @@ Tu ajoutes des posts plus vite qu\'on ne peut suivre. Prends une pause de 24h po
   'home.stats.subtitle': 'Ensemble, nous sauvons des briquets des décharges et construisons un mouvement mondial de narration créative.',
   'home.stats.title': 'L\'impact de notre communauté',
 
-  // --- How ---
-  'how.it.works.cant.find.answer': 'Tu ne trouves pas ta réponse ?',
+    'how.it.works.cant.find.answer': 'Tu ne trouves pas ta réponse ?',
   'how.it.works.contact.us': 'Contacte-nous',
   'how.it.works.details.step1.desc': 'Donne un nom à ton briquet, créant son carnet de voyage numérique. Télécharge ton autocollant PIN/QR unique.',
   'how.it.works.details.step1.title': '1. Sauve',
@@ -311,8 +295,7 @@ Tu ajoutes des posts plus vite qu\'on ne peut suivre. Prends une pause de 24h po
   'how.it.works.subtitle': 'Sauve des briquets, partage des histoires, propage la flamme',
   'how.it.works.title': 'Comment ça marche',
 
-  // --- Language ---
-  'language.ar': 'Arabe',
+    'language.ar': 'Arabe',
   'language.de': 'Allemand',
   'language.en': 'Anglais',
   'language.es': 'Espagnol',
@@ -335,14 +318,12 @@ Tu ajoutes des posts plus vite qu\'on ne peut suivre. Prends une pause de 24h po
   'language.ur': 'Ourdou',
   'language.vi': 'Vietnamien',
 
-  // --- Legal ---
-  'legal.about.title': 'À propos de LightMyFire',
+    'legal.about.title': 'À propos de LightMyFire',
   'legal.faq.title': 'Questions fréquentes',
   'legal.privacy.title': 'Politique de confidentialité',
   'legal.terms.title': 'Conditions d\'utilisation',
 
-  // --- Lighter ---
-  'lighter.add.to.story': 'Ajouter à l\'histoire',
+    'lighter.add.to.story': 'Ajouter à l\'histoire',
   'lighter.level': 'Niveau',
   'lighter.map.center.coords': 'Centre : Lat {lat}, Lng {lng}',
   'lighter.map.markers': '{count} localisations',
@@ -381,16 +362,14 @@ Tu ajoutes des posts plus vite qu\'on ne peut suivre. Prends une pause de 24h po
   'lighter.saved.by': 'Sauvé par',
   'lighter.saved.by.label': 'Briquet sauvé par',
 
-  // --- Loading ---
-  'loading.generating.stickers': 'Création du passeport de ton briquet... ✨',
+    'loading.generating.stickers': 'Création du passeport de ton briquet... ✨',
   'loading.posting.v1': 'Ajout de ton histoire à la chronologie...',
   'loading.posting.v2': 'Tissage de ton moment dans la mosaïque...',
   'loading.posting.v3': 'Illumination du voyage de ce briquet...',
   'loading.posting.v4': 'Rendre l\'histoire de ce briquet plus lumineuse...',
   'loading.searching': 'Suivi de la piste... 🔍',
 
-  // --- Location ---
-  'location.edit.coordinates': 'Modifier les coordonnées manuellement',
+    'location.edit.coordinates': 'Modifier les coordonnées manuellement',
   'location.latitude.placeholder': 'Latitude',
   'location.longitude.placeholder': 'Longitude',
   'location.map.consent.description': 'Cette carte utilise OpenStreetMap sans cookies de suivi. Nous stockons uniquement ta préférence localement.',
@@ -403,8 +382,7 @@ Tu ajoutes des posts plus vite qu\'on ne peut suivre. Prends une pause de 24h po
   'location.show.map.button': 'Afficher la carte',
   'location.view.larger.map': 'Voir une carte plus grande',
 
-  // --- Login ---
-  'login.button.signin': 'Se connecter',
+    'login.button.signin': 'Se connecter',
   'login.button.signup': 'S\'inscrire',
   'login.email.label': 'Adresse e-mail',
   'login.forgot.password': 'Mot de passe oublié ?',
@@ -414,8 +392,7 @@ Tu ajoutes des posts plus vite qu\'on ne peut suivre. Prends une pause de 24h po
   'login.tab.signup': 'Inscription',
   'login.title': 'LightMyFire',
 
-  // --- Moderation ---
-  'moderation.action.confirm': 'Confirmer l\'action',
+    'moderation.action.confirm': 'Confirmer l\'action',
   'moderation.approve': 'Approuver',
   'moderation.approve.confirm.message': 'Es-tu sûr de vouloir approuver ce post ? Il deviendra public.',
   'moderation.approve.confirm.title': 'Approuver le post ?',
@@ -442,8 +419,7 @@ Tu ajoutes des posts plus vite qu\'on ne peut suivre. Prends une pause de 24h po
   'moderation.title': 'File de modération',
   'moderation.view.post': 'Voir le post',
 
-  // --- My ---
-  'my.posts.a.lighter': 'un briquet',
+    'my.posts.a.lighter': 'un briquet',
   'my.posts.confirm.delete.message': 'Es-tu sûr ? Cette action est permanente.',
   'my.posts.confirm.delete.title': 'Supprimer ce post ?',
   'my.posts.delete': 'Supprimer',
@@ -494,8 +470,7 @@ Trouve un briquet et ajoute ton premier post.',
   'my.profile.trophies.subtitle': 'Collecte des réalisations en sauvant et partageant des histoires.',
   'my.profile.trophies.unlocked': 'Débloqué !',
 
-  // --- Nav ---
-  'nav.close.menu': 'Fermer le menu principal',
+    'nav.close.menu': 'Fermer le menu principal',
   'nav.how.it.works': 'Comment ça marche',
   'nav.login.signup': 'Connexion / Inscription',
   'nav.logo.alt': 'LightMyFire',
@@ -508,13 +483,11 @@ Trouve un briquet et ajoute ton premier post.',
   'nav.search.aria': 'Rechercher un briquet',
   'nav.search.title': 'Trouver un briquet',
 
-  // --- Not ---
-  'not.found.go.home': 'Retour à l\'accueil',
+    'not.found.go.home': 'Retour à l\'accueil',
   'not.found.message': 'Oups ! La page que tu cherches n\'existe pas.',
   'not.found.title': '404 - Page introuvable',
 
-  // --- Notifications ---
-  'notifications.action.error': 'Erreur',
+    'notifications.action.error': 'Erreur',
   'notifications.action.success': 'Succès',
   'notifications.lighter.saved': 'Succès ! {lighterName} est prêt pour l\'aventure ! 🌍',
   'notifications.login.success': 'Content·e de te revoir, LightSaver ! Tes briquets t\'ont manqué. 💫',
@@ -529,8 +502,7 @@ Trouve un briquet et ajoute ton premier post.',
   'notifications.sticker.downloaded': 'Autocollants prêts ! C\'est l\'heure de libérer {lighterName}. 🚀',
   'notifications.trophy.earned': '🏆 Trophée débloqué : {trophy\_name} ! Tu es en feu !',
 
-  // --- Order ---
-  'order.change.pack': '← Changer de pack',
+    'order.change.pack': '← Changer de pack',
   'order.choose.pack.subtitle': 'Sélectionne combien d\'autocollants personnalisés tu veux commander',
   'order.choose.pack.title': 'Choisis ton pack',
   'order.custom.branding.button': 'Contacte-nous pour le branding personnalisé',
@@ -670,8 +642,7 @@ Trouve un briquet et ajoute ton premier post.',
   'order.summary.title': 'Récapitulatif de commande',
   'order.summary.total': 'Total :',
 
-  // --- Philosophy ---
-  'philosophy.button.hide': 'Masquer',
+    'philosophy.button.hide': 'Masquer',
   'philosophy.button.learn.more': 'En savoir plus',
   'philosophy.cta': 'Rejoins-nous pour donner une seconde vie aux briquets, une histoire à la fois.',
   'philosophy.image.alt': 'Mosaïque mondiale de créativité',
@@ -682,8 +653,7 @@ Trouve un briquet et ajoute ton premier post.',
   'philosophy.p4': 'Notre objectif est simple : créer une mosaïque mondiale de créativité humaine, un briquet à la fois, tout en réduisant les déchets. <strong>C\'est notre position contre la culture du jetable. Une expérience d\'art collaboratif. Une façon de prouver que si tu donnes une histoire à un objet, tu lui donnes une âme.</strong>',
   'philosophy.title': 'Notre philosophie',
 
-  // --- Post ---
-  'post.anonymous': 'Anonyme',
+    'post.anonymous': 'Anonyme',
   'post.default.location': 'Un lieu',
   'post.like.button': 'J\'aime',
   'post.location.at': 'à',
@@ -697,8 +667,7 @@ Trouve un briquet et ajoute ton premier post.',
   'post.youtube.load.error': 'Impossible de charger la vidéo YouTube (URL invalide ?)',
   'post.youtube.player.title': 'Lecteur vidéo YouTube',
 
-  // --- Privacy ---
-  'privacy.h3.automated.decisions': '7. Décisions automatisées',
+    'privacy.h3.automated.decisions': '7. Décisions automatisées',
   'privacy.h3.changes': '9. Modifications de cette politique de confidentialité',
   'privacy.h3.children': '8. Confidentialité des enfants',
   'privacy.h3.contact': '10. Nous contacter',
@@ -818,8 +787,7 @@ Trouve un briquet et ajoute ton premier post.',
   'privacy.ul9.li4': 'Tu es seul·e responsable des implications en matière de confidentialité de toutes les données de localisation que tu partages',
   'privacy.ul9.li5': 'Tu peux supprimer tes posts de localisation à tout moment depuis ton profil',
 
-  // --- Refill ---
-  'refill.guide.citations.1.source': 'Forum Économique Mondial - Statistiques sur les déchets plastiques (2023)',
+    'refill.guide.citations.1.source': 'Forum Économique Mondial - Statistiques sur les déchets plastiques (2023)',
   'refill.guide.citations.1.text': 'Données sur la production mondiale de briquets et l\'impact environnemental',
   'refill.guide.citations.1.url': '[https://www.weforum.org/agenda/2023/plastic-waste/](https://www.weforum.org/agenda/2023/plastic-waste/)',
   'refill.guide.citations.title': 'Sources & Références',
@@ -894,8 +862,7 @@ Trouve un briquet et ajoute ton premier post.',
   'refill.guide.why.it.matters.reliability.title': 'Fiabilité',
   'refill.guide.why.it.matters.title': 'Pourquoi c\'est important',
 
-  // --- Save ---
-  'save.lighter.background.url.label': 'URL de fond personnalisée (optionnel)',
+    'save.lighter.background.url.label': 'URL de fond personnalisée (optionnel)',
   'save.lighter.background.url.placeholder': 'https://.../mon-image.png',
   'save.lighter.button.save.lighter': 'Sauver le briquet',
   'save.lighter.button.saving': 'Sauvegarde...',
@@ -956,8 +923,7 @@ Trouve un briquet et ajoute ton premier post.',
   'save.success.pin.intro': 'Le PIN unique de ton briquet est :',
   'save.success.title': 'Succès !',
 
-  // --- Settings ---
-  'settings.auth.change.via.provider': 'Pour changer d\'email ou d\'authentification, visite les paramètres de ton {providerLink}.',
+    'settings.auth.change.via.provider': 'Pour changer d\'email ou d\'authentification, visite les paramètres de ton {providerLink}.',
   'settings.auth.confirm.password.label': 'Confirmer le nouveau mot de passe',
   'settings.auth.confirm.password.placeholder': 'Confirme le nouveau mot de passe',
   'settings.auth.current.email': 'Email actuel',
@@ -983,8 +949,7 @@ Trouve un briquet et ajoute ton premier post.',
   'settings.profile.show.nationality.label': 'Afficher ma nationalité sur mes posts',
   'settings.profile.username.label': 'Nom d\'utilisateur',
 
-  // --- Signup ---
-  'signup.welcome.action.community': 'Connecte-toi avec d\'autres LightSavers du monde entier',
+    'signup.welcome.action.community': 'Connecte-toi avec d\'autres LightSavers du monde entier',
   'signup.welcome.action.find': 'Trouve un briquet et ajoute à son voyage',
   'signup.welcome.action.lighter': 'Sauve un briquet et commence à collectionner des histoires',
   'signup.welcome.close': 'Fermer',
@@ -994,13 +959,11 @@ Trouve un briquet et ajoute ton premier post.',
   'signup.welcome.subtitle': 'Merci de nous rejoindre ! Voici quelques choses que tu peux faire :',
   'signup.welcome.title': 'Bienvenue sur LightMyFire !',
 
-  // --- Stripe ---
-  'stripe.card.info': 'Informations de carte',
+    'stripe.card.info': 'Informations de carte',
   'stripe.error.generic': 'Le paiement a échoué. Vérifie tes détails et réessaie.',
   'stripe.pay.button': 'Payer {amount}',
 
-  // --- Terms ---
-  'terms.h3.acceptance': '1. Acceptation des conditions',
+    'terms.h3.acceptance': '1. Acceptation des conditions',
   'terms.h3.contact.terms': '12. Informations de contact',
   'terms.h3.dispute.resolution': '9. Résolution des litiges et loi applicable',
   'terms.h3.eligibility': '2. Éligibilité et exigences de compte',
@@ -1159,8 +1122,7 @@ Trouve un briquet et ajoute ton premier post.',
   'terms.ul9.li2': 'Articles incorrects expédiés',
   'terms.ul9.li3': 'Non-livraison due à notre erreur',
 
-  // Notifications
-  'notifications.success': 'Succès !',
+    'notifications.success': 'Succès !',
   'notifications.error': 'Erreur',
   'notifications.warning': 'Avertissement',
   'notifications.auth_failed': 'Échec de l\'authentification. Veuillez réessayer.',
@@ -1169,6 +1131,5 @@ Trouve un briquet et ajoute ton premier post.',
   'notifications.session_expired': 'Votre session a expiré. Veuillez vous reconnecter pour continuer.',
   'notifications.password_reset_sent': 'E-mail de réinitialisation de mot de passe envoyé ! Vérifiez votre boîte de réception.',
 
-  // Language selector
-  'language.zh-CN': '中文',
+    'language.zh-CN': '中文',
 } as const;

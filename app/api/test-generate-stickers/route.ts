@@ -1,26 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-/**
- * Test endpoint for sticker generation
- * Bypasses payment flow for quick testing
- *
- * Usage:
- * - GET /api/test-generate-stickers - Uses default test data
- * - POST /api/test-generate-stickers - Accepts custom sticker data
- *
- * Returns: PNG file for download
- */
 export async function GET(request: NextRequest) {
-  // Only allow in development
-  if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'production') {
     return NextResponse.json(
       { error: 'This endpoint is only available in development' },
       { status: 403 }
     );
   }
 
-  // Default test stickers (10 stickers with variety)
-  const testStickers = [
+    const testStickers = [
     { name: 'Sunset Beach', pinCode: 'ABC-123', backgroundColor: '#FF6B6B', language: 'en' },
     { name: 'Mountain Peak', pinCode: 'DEF-456', backgroundColor: '#4ECDC4', language: 'fr' },
     { name: 'City Lights', pinCode: 'GHI-789', backgroundColor: '#45B7D1', language: 'es' },
@@ -37,8 +25,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  // Only allow in development
-  if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'production') {
     return NextResponse.json(
       { error: 'This endpoint is only available in development' },
       { status: 403 }
@@ -50,8 +37,7 @@ export async function POST(request: NextRequest) {
 
     let testStickers = stickers;
 
-    // If count is provided, generate that many test stickers
-    if (count && !stickers) {
+        if (count && !stickers) {
       const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DFE6E9', '#74B9FF', '#A29BFE', '#FD79A8', '#FDCB6E'];
       const languages = ['en', 'fr', 'es', 'de', 'it', 'pt', 'ja', 'ko', 'zh-CN', 'nl'];
 
@@ -74,8 +60,7 @@ export async function POST(request: NextRequest) {
 
 async function generateStickers(request: NextRequest, stickers: any[]) {
   try {
-    // Call the sticker generation API with internal test header to bypass auth in development
-    const generateResponse = await fetch(`${request.nextUrl.origin}/api/generate-printful-stickers`, {
+        const generateResponse = await fetch(`${request.nextUrl.origin}/api/generate-printful-stickers`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -98,8 +83,7 @@ async function generateStickers(request: NextRequest, stickers: any[]) {
     const pngBuffer = await generateResponse.arrayBuffer();
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
 
-    // Return PNG file for download
-    return new NextResponse(new Uint8Array(pngBuffer), {
+        return new NextResponse(new Uint8Array(pngBuffer), {
       status: 200,
       headers: {
         'Content-Type': 'image/png',

@@ -58,7 +58,7 @@ export default function ForgotPasswordPage() {
     <div className="flex min-h-screen items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="rounded-xl bg-background p-6 sm:p-8 shadow-lg border border-border">
-          {/* Header */}
+          {}
           <div className="mb-6">
             <Link
               href={`/${locale}/login`}
@@ -76,7 +76,7 @@ export default function ForgotPasswordPage() {
           </div>
 
           {sent ? (
-            /* Success State */
+            
             <div className="rounded-md bg-green-50 dark:bg-green-950 p-4 border border-green-200 dark:border-green-800">
               <div className="flex">
                 <div className="flex-shrink-0">
@@ -115,7 +115,7 @@ export default function ForgotPasswordPage() {
               </div>
             </div>
           ) : (
-            /* Form */
+            
             <form onSubmit={handleResetPassword} className="space-y-4">
               <div>
                 <label
@@ -172,7 +172,7 @@ export default function ForgotPasswordPage() {
             </form>
           )}
 
-          {/* Divider */}
+          {}
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-border" />
@@ -184,7 +184,7 @@ export default function ForgotPasswordPage() {
             </div>
           </div>
 
-          {/* Footer */}
+          {}
           <div className="text-center text-sm">
             <span className="text-muted-foreground">{t('auth.remember_password')} </span>
             <Link

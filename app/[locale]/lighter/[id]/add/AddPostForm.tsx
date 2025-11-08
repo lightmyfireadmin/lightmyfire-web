@@ -59,8 +59,7 @@ export default function AddPostForm({
 }) {
   const router = useRouter();
   const t = useI18n() as any;
-  // SECURITY: Hook no longer needs userId - API gets it from session
-  const { moderateText, moderateImage, isLoading: isModerating } = useContentModeration();
+    const { moderateText, moderateImage, isLoading: isModerating } = useContentModeration();
 
   const [postType, setPostType] = useState<PostType>('text');
   const [title, setTitle] = useState('');
@@ -130,7 +129,6 @@ export default function AddPostForm({
     }
     setYoutubeSearchLoading(false);
   }, [t]);
-
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -215,16 +213,11 @@ export default function AddPostForm({
 
     setLoading(true);
 
-    // Track if moderation failed or content was flagged by API
-    let moderationFailed = false;
+        let moderationFailed = false;
     let contentFlaggedByApi = false;
 
-    // SECURITY: Content moderation - CRITICAL for launch
-    // If moderation API flags content, user sees error and post is blocked
-    // If moderation API fails, post goes to review queue silently
-    try {
-      // Moderate text content
-      if (postType === 'text' && contentText.trim()) {
+                try {
+            if (postType === 'text' && contentText.trim()) {
         const textMod = await moderateText(contentText);
         if (textMod.flagged) {
           setModerationError({
@@ -236,8 +229,7 @@ export default function AddPostForm({
         }
       }
 
-      // Moderate title (all post types)
-      if (title.trim()) {
+            if (title.trim()) {
         const titleMod = await moderateText(title);
         if (titleMod.flagged) {
           setModerationError({
@@ -249,8 +241,7 @@ export default function AddPostForm({
         }
       }
 
-      // Moderate location name
-      if (postType === 'location' && locationName.trim()) {
+            if (postType === 'location' && locationName.trim()) {
         const locMod = await moderateText(locationName);
         if (locMod.flagged) {
           setModerationError({
@@ -262,8 +253,7 @@ export default function AddPostForm({
         }
       }
 
-      // Moderate image content
-      if ((postType === 'image' || postType === 'refuel') && finalContentUrl) {
+            if ((postType === 'image' || postType === 'refuel') && finalContentUrl) {
         const imageMod = await moderateImage(finalContentUrl);
         if (imageMod.flagged) {
           setModerationError({
@@ -275,9 +265,7 @@ export default function AddPostForm({
         }
       }
     } catch (modError) {
-      // MODERATION FAILURE HANDLING: If moderation API fails, send post to review queue
-      // This prevents website blockage while maintaining safety
-      console.error('Moderation system failure - post will require manual review:', {
+                  console.error('Moderation system failure - post will require manual review:', {
         error: modError,
         errorMessage: modError instanceof Error ? modError.message : 'Unknown error',
         errorStack: modError instanceof Error ? modError.stack : undefined,
@@ -285,10 +273,8 @@ export default function AddPostForm({
         timestamp: new Date().toISOString(),
       });
 
-      // Set flag to send this post to moderation queue (handled in RPC)
-      moderationFailed = true;
-      // Continue with post submission - it will be hidden until manual review
-    }
+            moderationFailed = true;
+          }
 
     
     
@@ -307,8 +293,7 @@ export default function AddPostForm({
         p_is_creation: isCreation,
         p_is_anonymous: isAnonymous,
         p_is_public: isPublic,
-        p_requires_review: moderationFailed, // Send to review queue if moderation API failed
-      });
+        p_requires_review: moderationFailed,       });
 
     if (rpcError) {
       setError(t('add_post.error.rpc_error', { message: rpcError.message }));
@@ -319,8 +304,7 @@ export default function AddPostForm({
       setLoading(false);
     }
     else if (data && data.success) {
-      // Show success message - user doesn't know if post is under review
-      router.push(`/lighter/${lighterId}`);
+            router.push(`/lighter/${lighterId}`);
       router.refresh();
     }
     else {
@@ -368,8 +352,7 @@ export default function AddPostForm({
                   value={youtubeSearchQuery}
                   onChange={(e) => {
                     setYoutubeSearchQuery(e.target.value);
-                    setContentUrl(''); // Clear selection to allow new search
-                    setShowYoutubeResults(true);
+                    setContentUrl('');                     setShowYoutubeResults(true);
                   }}
                   className={inputClass}
                   placeholder={t('add_post.placeholder.youtube_search')}

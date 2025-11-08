@@ -14,8 +14,7 @@ import { getI18n, getCurrentLocale } from '@/locales/server';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 60; // Cache for 60 seconds to reduce database load
-
+export const revalidate = 60; 
 function calculateLevel(points: number): number {
   
   
@@ -148,14 +147,10 @@ export default async function MyProfilePage() {
       likes_received: statsRes.data?.likes_received ?? 0,
   };
 
-
   const calculatedPoints = calculatePoints(stats);
   const calculatedLevel = calculateLevel(calculatedPoints);
 
-
-  // Only update if there's a meaningful difference (level change or 10+ point difference)
-  // This prevents excessive database writes on every page load
-  const shouldUpdate = profile && (
+      const shouldUpdate = profile && (
     profile.level !== calculatedLevel ||
     Math.abs((profile.points ?? 0) - calculatedPoints) >= 10
   );
@@ -176,8 +171,7 @@ export default async function MyProfilePage() {
       profile.points = updatedProfile.points;
     }
   } else if (profile) {
-    // Use calculated values for display even if not updating DB
-    profile.level = calculatedLevel;
+        profile.level = calculatedLevel;
     profile.points = calculatedPoints;
   }
 

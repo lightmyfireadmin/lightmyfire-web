@@ -142,12 +142,10 @@ export default {
   'home.stats.environmental_impact': 'Contributo ambientale',
   'home.stats.join_movement': 'Unisciti a migliaia di LightSavers che fanno la differenza, un accendino alla volta.',
 
-
   'save_lighter.helper.background_url': "Opzionale. Questo URL dell'immagine sarà lo sfondo della pagina del tuo accendino. Prova un link di Imgur o Unsplash.",
 
   'add_post.helper.find_location': "Aiuta a tracciare il viaggio dell'accendino sulla mappa!",
   'add_post.helper.is_public': 'Se deselezionato, il tuo post sarà visibile solo su questa pagina dell\'accendino.',
-
 
   'save_lighter.form_title': 'Salva un accendino',
   'save_lighter.form_subtitle': 'Sei un LightSaver! Dai un nome al tuo accendino per iniziare il suo viaggio.',
@@ -197,9 +195,7 @@ export default {
   'legal.faq.title': 'Domande frequenti',
   'legal.about.title': 'Informazioni su LightMyFire',
 
-  // --- Sticker Order Flow ---
-  // Pack Selection
-  'order.pack_selection.title': 'Scegli il tuo pacchetto',
+      'order.pack_selection.title': 'Scegli il tuo pacchetto',
   'order.pack_selection.subtitle': 'Seleziona quanti adesivi personalizzati desideri ordinare',
   'order.pack.starting_lightsaver': 'LightSaver Principiante',
   'order.pack.committed_lightsaver': 'LightSaver Impegnato',
@@ -214,14 +210,12 @@ export default {
   'order.pack.price_calculated': 'Prezzo calcolato al checkout',
   'order.pack.select_button': 'Seleziona',
 
-  // Custom Branding
-  'order.custom_branding.title': 'Branding personalizzato per eventi e marchi',
+    'order.custom_branding.title': 'Branding personalizzato per eventi e marchi',
   'order.custom_branding.description': 'Stai pianificando un evento o desideri un branding personalizzato sui tuoi fogli di adesivi? Possiamo personalizzare l\'area di branding per la tua organizzazione, marchio o evento speciale!',
   'order.custom_branding.button': 'Contattaci per il branding personalizzato',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // Lighter Customization
-  'order.customization.title': 'Personalizza i tuoi adesivi',
+    'order.customization.title': 'Personalizza i tuoi adesivi',
   'order.customization.subtitle': 'Personalizza ogni accendino',
   'order.customization.apply_to_all': 'Applica a tutti',
   'order.customization.lighter_number': 'Accendino #{number}',
@@ -241,21 +235,18 @@ export default {
   'order.customization.validation_warning_multiple': 'Per favore, compila tutti i nomi degli accendini (3-16 caratteri ciascuno) prima di continuare.',
   'order.customization.save_button': 'Salva personalizzazioni',
 
-  // Order Summary
-  'order.summary.title': 'Riepilogo ordine',
+    'order.summary.title': 'Riepilogo ordine',
   'order.summary.pack': 'Pacchetto:',
   'order.summary.language': 'Lingua:',
   'order.summary.stickers': 'Adesivi:',
   'order.summary.customized': '✓ Personalizzati',
   'order.summary.total': 'Totale:',
 
-  // Sticker Preview
-  'order.preview.title': 'Il tuo design adesivo',
+    'order.preview.title': 'Il tuo design adesivo',
   'order.preview.description': 'Anteprima dei tuoi adesivi personalizzati. I file degli adesivi verranno generati dopo il pagamento.',
   'order.preview.more_stickers': '+{count} altri',
 
-  // Shipping Address
-  'order.shipping.title': 'Informazioni di spedizione',
+    'order.shipping.title': 'Informazioni di spedizione',
   'order.shipping.description': 'Per favore, fornisci il tuo indirizzo di spedizione per la consegna degli adesivi',
   'order.shipping.name_label': 'Nome completo *',
   'order.shipping.name_placeholder': 'Mario Rossi',
@@ -277,8 +268,7 @@ export default {
   'order.shipping.error_country': 'Il paese è obbligatorio',
   'order.shipping.continue_button': 'Continua al pagamento',
 
-  // Payment
-  'order.payment.title': 'Dettagli di pagamento',
+    'order.payment.title': 'Dettagli di pagamento',
   'order.payment.order_id': 'ID ordine:',
   'order.payment.sticker_pack': 'Pacchetto adesivi:',
   'order.payment.stickers_count': '{count} adesivi',
@@ -306,8 +296,7 @@ export default {
   'order.payment.stripe_not_configured': 'Stripe non configurato. Aggiungi NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY a .env.local',
   'order.payment.loading': 'Caricamento modulo di pagamento...',
 
-  // Order Success
-  'order.success.title': 'Ordine completato!',
+    'order.success.title': 'Ordine completato!',
   'order.success.subtitle': 'Grazie per il tuo ordine',
   'order.success.confirmation_sent': 'Email di conferma inviata',
   'order.success.confirmation_description': 'Un\'email di conferma è stata inviata a:',
@@ -329,17 +318,14 @@ export default {
   'order.success.questions': 'Domande sul tuo ordine?',
   'order.success.contact_us': 'Contattaci',
 
-  // Change Pack
-  'order.change_pack': '← Cambia pacchetto',
+    'order.change_pack': '← Cambia pacchetto',
 
-  // Cookie Consent (New)
-  'cookie.message': 'Utilizziamo cookie solo per funzionalità di base, mai per tracciamento. La tua privacy è protetta. Vedi la nostra {privacyLink} per i dettagli.',
+    'cookie.message': 'Utilizziamo cookie solo per funzionalità di base, mai per tracciamento. La tua privacy è protetta. Vedi la nostra {privacyLink} per i dettagli.',
   'cookie.privacy_link_text': 'Informativa sulla privacy',
   'cookie.accept': 'Accetta',
   'cookie.decline': 'Rifiuta',
 
-  // FAQ Page - Full Content (New)
-  'faq.subtitle': 'Trova risposte alle domande comuni su LightMyFire',
+    'faq.subtitle': 'Trova risposte alle domande comuni su LightMyFire',
   'faq.what_is.question': 'Cos\'è LightMyFire?',
   'faq.what_is.answer': 'È un progetto per ridurre gli sprechi e creare un "mosaico umano". Vendiamo adesivi con codici QR che metti su un accendino. Chiunque trovi quell\'accendino può scansionare il codice, inserire il PIN e aggiungere una storia, una foto o una canzone al suo registro digitale. È un modo unico per connettere le persone a livello globale e dare agli accendini una seconda vita.',
   'faq.how_add_story.question': 'Come aggiungo una storia a un accendino?',
@@ -373,8 +359,7 @@ export default {
   'faq.contact_footer': 'Non trovi la tua risposta?',
   'faq.contact_link': 'Contattaci',
 
-  // Account Settings / Update Auth Form (New)
-  'settings.auth.error.passwords_no_match': 'Le password non corrispondono.',
+    'settings.auth.error.passwords_no_match': 'Le password non corrispondono.',
   'settings.auth.success_message': 'Aggiornamento riuscito! Per favore controlla la tua email per confermare le modifiche se hai aggiornato il tuo indirizzo email.',
   'settings.auth.title': 'Impostazioni account',
   'settings.auth.oauth_notice': '✓ Hai effettuato l\'accesso tramite {provider}. La tua autenticazione è gestita in modo sicuro dal tuo provider.',
@@ -393,16 +378,14 @@ export default {
   'settings.auth.update_button': 'Aggiorna dettagli autenticazione',
   'settings.auth.saving': 'Salvataggio...',
 
-  // Save Lighter Flow - Pack Selection (New)
-  'order.choose_pack_title': 'Scegli il tuo pacchetto',
+    'order.choose_pack_title': 'Scegli il tuo pacchetto',
   'order.choose_pack_subtitle': 'Seleziona quanti adesivi personalizzati vuoi ordinare',
   'order.pack_sheets_single': 'foglio',
   'order.pack_sheets_plural': 'fogli',
   'order.price_at_checkout': 'Prezzo calcolato al checkout',
   'order.pack_select_button': 'Seleziona',
 
-  // Country Names (New)
-  'country.AT': 'Austria',
+    'country.AT': 'Austria',
   'country.BE': 'Belgio',
   'country.CA': 'Canada',
   'country.CH': 'Svizzera',
@@ -423,8 +406,7 @@ export default {
   'country.SE': 'Svezia',
   'country.US': 'Stati Uniti',
 
-  // Contact Form (New)
-  'contact.modal_title': 'Contattaci',
+    'contact.modal_title': 'Contattaci',
   'contact.name_label': 'Nome',
   'contact.name_placeholder': 'Il tuo nome',
   'contact.email_label': 'Email',
@@ -441,8 +423,7 @@ export default {
   'contact.success_subtitle': 'Ti risponderemo presto.',
   'contact.button': 'Contattaci',
 
-  // How It Works Page (New)
-  'how_it_works.title': 'Come funziona',
+    'how_it_works.title': 'Come funziona',
   'how_it_works.subtitle': 'Salva accendini, condividi storie, diffondi la fiamma',
   'how_it_works.step1.title': 'Trova il tuo accendino',
   'how_it_works.step1.desc': 'Scopri un accendino con un ID unico o salva il tuo',
@@ -465,14 +446,12 @@ export default {
   'language.ja': '日本語',
   'language.ko': '한국어',
   'language.zh-CN': '中文',
-  // Profile Settings
-  'settings.profile.nationality_label': 'Nationality',
+    'settings.profile.nationality_label': 'Nationality',
   'settings.profile.nationality_optional': '(optional)',
   'settings.profile.nationality_placeholder': 'Select a country',
   'settings.profile.show_nationality_label': 'Show my nationality on posts',
 
-  // --- Refill Guide Page ---
-  'refill_guide.title': 'Don\'t Throw Me Away',
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature. A single company like BIC sold over 2.5 billion in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',

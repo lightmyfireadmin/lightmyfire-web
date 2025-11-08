@@ -142,8 +142,6 @@ export default {
   'home.stats.environmental_impact': '환경 기여',
   'home.stats.join_movement': '한 번에 하나의 라이터로 변화를 만드는 수천 명의 LightSavers에 참여하세요.',
 
-
-
   'save_success.next_steps.title': 'Next Steps:',
   'save_success.next_steps.step1': 'Print: Download the PDF and print it, ideally on sticker paper.',
   'save_success.next_steps.step2': 'Stick: Cut out the sticker and apply it to your lighter.',
@@ -238,8 +236,7 @@ export default {
 
     'legal.about.title': 'LightMyFire 정보',
 
-  // 팩 선택
-  'order.pack_selection.title': '팩 선택',
+    'order.pack_selection.title': '팩 선택',
   'order.pack_selection.subtitle': '주문하고 싶은 커스텀 스티커의 개수를 선택하세요',
   'order.pack.starting_lightsaver': 'LightSaver 시작',
   'order.pack.committed_lightsaver': '헌신적인 LightSaver',
@@ -254,14 +251,12 @@ export default {
   'order.pack.price_calculated': '가격은 결제 시 계산됩니다',
   'order.pack.select_button': '선택',
 
-  // 커스텀 브랜딩
-  'order.custom_branding.title': '이벤트 및 브랜드를 위한 커스텀 브랜딩',
+    'order.custom_branding.title': '이벤트 및 브랜드를 위한 커스텀 브랜딩',
   'order.custom_branding.description': '이벤트를 계획 중이거나 스티커 시트에 커스텀 브랜딩을 원하시나요? 조직, 브랜드 또는 특별한 이벤트를 위해 브랜딩 영역을 개인화할 수 있습니다!',
   'order.custom_branding.button': '커스텀 브랜딩 문의',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // 라이터 커스터마이징
-  'order.customization.title': '스티커 커스터마이징',
+    'order.customization.title': '스티커 커스터마이징',
   'order.customization.subtitle': '각 라이터를 개인화하세요',
   'order.customization.apply_to_all': '모두에 적용',
   'order.customization.lighter_number': '라이터 #{number}',
@@ -281,21 +276,18 @@ export default {
   'order.customization.validation_warning_multiple': '계속하기 전에 모든 라이터 이름을 입력해주세요 (각 3-16자).',
   'order.customization.save_button': '스티커 커스터마이징 저장',
 
-  // 주문 요약
-  'order.summary.title': '주문 요약',
+    'order.summary.title': '주문 요약',
   'order.summary.pack': '팩:',
   'order.summary.language': '언어:',
   'order.summary.stickers': '스티커:',
   'order.summary.customized': '✓ 커스터마이징됨',
   'order.summary.total': '합계:',
 
-  // 스티커 미리보기
-  'order.preview.title': '스티커 디자인',
+    'order.preview.title': '스티커 디자인',
   'order.preview.description': '커스텀 스티커의 미리보기입니다. 스티커 파일은 결제 후 생성됩니다.',
   'order.preview.more_stickers': '+{count}개 더보기',
 
-  // 배송 주소
-  'order.shipping.title': '배송 정보',
+    'order.shipping.title': '배송 정보',
   'order.shipping.description': '스티커 배송을 위해 배송 주소를 입력해주세요',
   'order.shipping.name_label': '성명 *',
   'order.shipping.name_placeholder': 'John Doe',
@@ -317,8 +309,7 @@ export default {
   'order.shipping.error_country': '국가가 필수입니다',
   'order.shipping.continue_button': '결제로 계속',
 
-  // 결제
-  'order.payment.title': '결제 상세정보',
+    'order.payment.title': '결제 상세정보',
   'order.payment.order_id': '주문 ID:',
   'order.payment.sticker_pack': '스티커 팩:',
   'order.payment.stickers_count': '{count}개 스티커',
@@ -346,8 +337,7 @@ export default {
   'order.payment.stripe_not_configured': 'Stripe이 구성되지 않았습니다. .env.local에 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY를 추가하세요',
   'order.payment.loading': '결제 양식 로딩 중...',
 
-  // 주문 성공
-  'order.success.title': '주문 성공!',
+    'order.success.title': '주문 성공!',
   'order.success.subtitle': '주문해주셔서 감사합니다',
   'order.success.confirmation_sent': '확인 이메일 전송됨',
   'order.success.confirmation_description': '확인 이메일이 다음 주소로 전송되었습니다:',
@@ -369,11 +359,9 @@ export default {
   'order.success.questions': '주문에 관한 질문이 있으신가요?',
   'order.success.contact_us': '문의하기',
 
-  // 팩 변경
-  'order.change_pack': '← 팩 변경',
+    'order.change_pack': '← 팩 변경',
 
-  // 쿠키 동의
-  'cookie.message': '기본 기능을 위해서만 쿠키를 사용하며 추적에는 절대 사용하지 않습니다. 귀하의 개인정보는 보호됩니다. 자세한 내용은 {privacyLink}를 참조하세요.',
+    'cookie.message': '기본 기능을 위해서만 쿠키를 사용하며 추적에는 절대 사용하지 않습니다. 귀하의 개인정보는 보호됩니다. 자세한 내용은 {privacyLink}를 참조하세요.',
   'cookie.privacy_link_text': '개인정보 처리방침',
   'cookie.accept': '수락',
   'cookie.decline': '거부',
@@ -382,8 +370,7 @@ export default {
   'cookie_consent.accept': '수락 및 계속',
   'cookie_consent.privacy_link': '개인정보 처리방침',
 
-  // FAQ 페이지 - 전체 콘텐츠
-  'faq.subtitle': 'LightMyFire에 대한 자주 묻는 질문에 대한 답변을 찾아보세요',
+    'faq.subtitle': 'LightMyFire에 대한 자주 묻는 질문에 대한 답변을 찾아보세요',
   'faq.what_is.question': 'LightMyFire는 무엇인가요?',
   'faq.what_is.answer': '폐기물을 줄이고 "인간 모자이크"를 만들기 위한 프로젝트입니다. 라이터에 붙이는 QR 코드가 있는 스티커를 판매합니다. 그 라이터를 찾은 사람은 누구나 코드를 스캔하고 PIN을 입력하여 이야기, 사진 또는 노래를 디지털 로그북에 추가할 수 있습니다. 이것은 전 세계 사람들을 연결하고 라이터에 두 번째 생명을 부여하는 독특한 방법입니다.',
   'faq.how_add_story.question': '라이터에 이야기를 추가하려면 어떻게 해야 하나요?',
@@ -417,8 +404,7 @@ export default {
   'faq.contact_footer': '답변을 찾을 수 없나요?',
   'faq.contact_link': '문의하기',
 
-  // 계정 설정 / 인증 업데이트 양식
-  'settings.auth.error.passwords_no_match': '비밀번호가 일치하지 않습니다.',
+    'settings.auth.error.passwords_no_match': '비밀번호가 일치하지 않습니다.',
   'settings.auth.success_message': '업데이트 성공! 이메일 주소를 업데이트한 경우 변경 사항을 확인하려면 이메일을 확인하세요.',
   'settings.auth.title': '계정 설정',
   'settings.auth.oauth_notice': '✓ {provider}를 통해 로그인되었습니다. 인증은 공급자가 안전하게 관리합니다.',
@@ -437,8 +423,7 @@ export default {
   'settings.auth.update_button': '인증 세부정보 업데이트',
   'settings.auth.saving': '저장 중...',
 
-  // 국가 이름
-  'country.AT': '오스트리아',
+    'country.AT': '오스트리아',
   'country.BE': '벨기에',
   'country.CA': '캐나다',
   'country.CH': '스위스',
@@ -459,8 +444,7 @@ export default {
   'country.SE': '스웨덴',
   'country.US': '미국',
 
-  // --- Refill Guide Page ---
-  'refill_guide.title': 'Don\'t Throw Me Away',
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature. A single company like BIC sold over 2.5 billion in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',

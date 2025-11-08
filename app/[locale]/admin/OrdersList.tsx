@@ -256,7 +256,7 @@ export default function OrdersList({ orders: initialOrders }: OrdersListProps) {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
                       <div className="flex flex-col gap-2">
-                        {/* Resend Fulfillment Button - Available for all paid orders */}
+                        {}
                         {order.status === 'paid' && (
                           <button
                             onClick={() => handleResendFulfillment(order)}
@@ -274,7 +274,7 @@ export default function OrdersList({ orders: initialOrders }: OrdersListProps) {
                           </button>
                         )}
 
-                        {/* Refund Button */}
+                        {}
                         {order.status === 'paid' && order.refund_status !== 'refunded' ? (
                           <button
                             onClick={() => handleRefund(order)}

@@ -8,8 +8,7 @@ export const dynamic = 'force-dynamic';
 
 interface ModerationRequest {
   text: string;
-  contentType?: string; // 'post', 'comment', 'lighter_name', etc.
-}
+  contentType?: string; }
 
 interface CategoryScore {
   [category: string]: number;
@@ -25,16 +24,9 @@ interface ModerationResult {
   severityLevel?: 'low' | 'medium' | 'high';
 }
 
-/**
- * Moderate text content using OpenAI's multimodal Moderation API
- * Uses the new omni-moderation-latest model (free)
- * Checks for: sexual content, hate speech, harassment, violence, self-harm, illegal activities, etc.
- */
 export async function POST(request: NextRequest) {
   try {
-    // SECURITY: Verify authentication and get userId from session (not request body)
-    // This prevents users from moderating content on behalf of others
-    const cookieStore = cookies();
+            const cookieStore = cookies();
     const supabase = createServerSupabaseClient(cookieStore);
     const { data: { session } } = await supabase.auth.getSession();
 
@@ -45,8 +37,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Use authenticated user's ID (from session, not request body)
-    const userId = session.user.id;
+        const userId = session.user.id;
 
     const body = await request.json() as ModerationRequest;
     const { text, contentType = 'general' } = body;
@@ -59,8 +50,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // CRITICAL: Verify OpenAI API key is configured
-    if (!process.env.OPENAI_API_KEY) {
+        if (!process.env.OPENAI_API_KEY) {
       console.error('CRITICAL: OPENAI_API_KEY is not configured in environment variables');
       return NextResponse.json(
         { error: 'Content moderation system is not configured. Please contact support.' },
@@ -79,29 +69,24 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate text length
-    if (text.length > 10000) {
+        if (text.length > 10000) {
       return NextResponse.json(
         { error: 'Text is too long (max 10000 characters)' },
         { status: 400 }
       );
     }
 
-    // Use OpenAI's omni-moderation-latest model (free, multimodal)
-    // CRITICAL: This call MUST succeed - any errors will be caught and result in blocking the post
-    const moderation = await openai.moderations.create({
+            const moderation = await openai.moderations.create({
       model: 'omni-moderation-latest',
       input: text,
     });
 
     const result = moderation.results[0];
 
-    // Convert Categories to plain object
-    const categoriesObj: { [key: string]: boolean } = {};
+        const categoriesObj: { [key: string]: boolean } = {};
     const scoresObj: CategoryScore = {};
 
-    // Extract categories and scores from OpenAI response
-    for (const [key, value] of Object.entries(result.categories)) {
+        for (const [key, value] of Object.entries(result.categories)) {
       categoriesObj[key] = value as boolean;
     }
 
@@ -109,8 +94,7 @@ export async function POST(request: NextRequest) {
       scoresObj[key] = value as number;
     }
 
-    // Determine severity level based on flagged categories and scores
-    const severity = calculateSeverity(scoresObj, categoriesObj);
+        const severity = calculateSeverity(scoresObj, categoriesObj);
 
     const moderationResult: ModerationResult = {
       flagged: result.flagged,
@@ -119,8 +103,7 @@ export async function POST(request: NextRequest) {
       severityLevel: severity,
     };
 
-    // If flagged, add detailed reason and flagged categories
-    if (result.flagged) {
+        if (result.flagged) {
       const flaggedCategories = Object.entries(categoriesObj)
         .filter(([, flagged]) => flagged)
         .map(([category]) => category);
@@ -128,8 +111,7 @@ export async function POST(request: NextRequest) {
       moderationResult.reason = `Content violates policy: ${formatCategoryNames(flaggedCategories).join(', ')}`;
     }
 
-    // Log moderation result to database for audit trail
-    try {
+        try {
       await logModerationResult({
         userId,
         contentType,
@@ -142,8 +124,7 @@ export async function POST(request: NextRequest) {
       });
     } catch (logError) {
       console.error('Failed to log moderation result:', logError);
-      // Don't fail the request if logging fails
-    }
+          }
 
     return NextResponse.json(moderationResult, { status: 200 });
   } catch (error) {
@@ -166,42 +147,32 @@ export async function POST(request: NextRequest) {
   }
 }
 
-/**
- * Calculate severity level based on flagged categories and scores
- */
 function calculateSeverity(
   scores: CategoryScore,
   categories: { [key: string]: boolean }
 ): 'low' | 'medium' | 'high' {
-  // Critical categories that should be marked as high severity
-  const criticalCategories = [
+    const criticalCategories = [
     'child_sexual_abuse_material_csat',
     'self_harm',
     'violence',
   ];
 
-  // Check if any critical categories are flagged
-  for (const category of criticalCategories) {
+    for (const category of criticalCategories) {
     if (categories[category]) {
       return 'high';
     }
   }
 
-  // Check score thresholds for medium severity
-  const mediumCategories = ['hate', 'harassment', 'sexual'];
+    const mediumCategories = ['hate', 'harassment', 'sexual'];
   const hasMediumScore = mediumCategories.some((cat) => (scores[cat] || 0) > 0.5);
 
   if (hasMediumScore) {
     return 'medium';
   }
 
-  // Everything else is low severity (but still flagged)
-  return 'low';
+    return 'low';
 }
 
-/**
- * Format category names for human-readable output
- */
 function formatCategoryNames(categories: string[]): string[] {
   const nameMap: { [key: string]: string } = {
     sexual: 'Sexual Content',
@@ -219,9 +190,6 @@ function formatCategoryNames(categories: string[]): string[] {
   return categories.map((cat) => nameMap[cat] || cat);
 }
 
-/**
- * Log moderation results to database for audit trail
- */
 async function logModerationResult(data: {
   userId: string;
   contentType: string;
@@ -233,9 +201,7 @@ async function logModerationResult(data: {
   timestamp: string;
 }): Promise<void> {
   try {
-    // Call a client-side logging endpoint or log locally for now
-    // In production, this would be called by the client after receiving the moderation result
-    console.log('Moderation check completed:', {
+            console.log('Moderation check completed:', {
       userId: data.userId,
       contentType: data.contentType,
       flagged: data.flagged,
@@ -243,6 +209,5 @@ async function logModerationResult(data: {
     });
   } catch (err) {
     console.error('Failed to log moderation:', err);
-    // Don't throw - logging should not block the request
-  }
+      }
 }

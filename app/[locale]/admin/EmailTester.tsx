@@ -9,8 +9,7 @@ const EMAIL_TYPES = [
   { value: 'first_post', label: '🌟 First Post Celebration', description: 'Sent when user adds their first post' },
   { value: 'trophy_earned', label: '🏆 Trophy Earned', description: 'Sent when user unlocks an achievement' },
   { value: 'lighter_activity', label: '🔔 Lighter Activity', description: 'Sent when someone interacts with user\'s lighter' },
-  // MODERATION EMAILS REMOVED - Users are never notified of moderation status
-  // { value: 'post_flagged', label: '⚠️ Post Flagged', description: 'Sent when user\'s post is flagged' },
+    // { value: 'post_flagged', label: '⚠️ Post Flagged', description: 'Sent when user\'s post is flagged' },
   // { value: 'post_approved', label: '✅ Post Approved', description: 'Sent when flagged post is approved' },
   // { value: 'post_rejected', label: '❌ Post Rejected', description: 'Sent when flagged post is rejected' },
   { value: 'moderator_invite', label: '👮 Moderator Invite', description: 'Sent to invite user to moderation team' },
@@ -73,7 +72,7 @@ export default function EmailTester() {
       </p>
 
       <div className="space-y-6">
-        {/* Email Type Selection */}
+        {}
         <div>
           <label htmlFor="emailType" className="block text-sm font-medium text-foreground mb-2">
             Email Template
@@ -97,7 +96,7 @@ export default function EmailTester() {
           )}
         </div>
 
-        {/* Recipient Email Input */}
+        {}
         <div>
           <label htmlFor="recipientEmail" className="block text-sm font-medium text-foreground mb-2">
             Recipient Email
@@ -115,7 +114,7 @@ export default function EmailTester() {
           </p>
         </div>
 
-        {/* Send Button */}
+        {}
         <div>
           <button
             onClick={handleSendTestEmail}
@@ -136,7 +135,7 @@ export default function EmailTester() {
           </button>
         </div>
 
-        {/* Result Message */}
+        {}
         {result && (
           <div
             className={`p-4 rounded-md border ${
@@ -149,7 +148,7 @@ export default function EmailTester() {
           </div>
         )}
 
-        {/* Info Box */}
+        {}
         <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900 rounded-md p-4">
           <h3 className="text-sm font-semibold text-blue-900 dark:text-blue-100 mb-2">
             ℹ️ Email Configuration Status
@@ -164,7 +163,7 @@ export default function EmailTester() {
           </div>
         </div>
 
-        {/* Available Email Templates Overview */}
+        {}
         <div className="bg-muted/30 border border-border rounded-md p-4">
           <h3 className="text-sm font-semibold text-foreground mb-3">
             📋 Available Email Templates ({EMAIL_TYPES.length})

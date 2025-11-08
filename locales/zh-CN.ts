@@ -130,7 +130,6 @@ export default {
   'home.stats.environmental_impact': '环境贡献',
   'home.stats.join_movement': '加入成千上万的LightSavers，一次一个打火机地改变世界。',
 
-
   'save_lighter.helper.background_url': "可选。此图片URL将作为您打火机页面的背景。请尝试使用Imgur或Unsplash链接。",
 
   'save_success.next_steps.title': '下一步：',
@@ -185,8 +184,7 @@ export default {
   'legal.faq.title': '常见问题',
   'legal.about.title': '关于LightMyFire',
 
-  // 包选择
-  'order.pack_selection.title': '选择您的包',
+    'order.pack_selection.title': '选择您的包',
   'order.pack_selection.subtitle': '选择您要订购的自定义贴纸数量',
   'order.pack.starting_lightsaver': '开始使用LightSaver',
   'order.pack.committed_lightsaver': '专注的LightSaver',
@@ -201,14 +199,12 @@ export default {
   'order.pack.price_calculated': '价格在结账时计算',
   'order.pack.select_button': '选择',
 
-  // 自定义品牌
-  'order.custom_branding.title': '为活动和品牌定制品牌',
+    'order.custom_branding.title': '为活动和品牌定制品牌',
   'order.custom_branding.description': '计划举办活动或想在贴纸上定制品牌？我们可以为您的组织、品牌或特殊活动个性化品牌区域！',
   'order.custom_branding.button': '联系我们了解定制品牌',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // 打火机定制
-  'order.customization.title': '定制您的贴纸',
+    'order.customization.title': '定制您的贴纸',
   'order.customization.subtitle': '个性化每个打火机',
   'order.customization.apply_to_all': '全部应用',
   'order.customization.lighter_number': '打火机#{number}',
@@ -228,21 +224,18 @@ export default {
   'order.customization.validation_warning_multiple': '请在继续之前填写所有打火机名称(每个3-16个字符)。',
   'order.customization.save_button': '保存贴纸定制',
 
-  // 订单摘要
-  'order.summary.title': '订单摘要',
+    'order.summary.title': '订单摘要',
   'order.summary.pack': '包:',
   'order.summary.language': '语言:',
   'order.summary.stickers': '贴纸:',
   'order.summary.customized': '✓已定制',
   'order.summary.total': '总计:',
 
-  // 贴纸预览
-  'order.preview.title': '您的贴纸设计',
+    'order.preview.title': '您的贴纸设计',
   'order.preview.description': '自定义贴纸的预览。贴纸文件将在付款后生成。',
   'order.preview.more_stickers': '+{count}个更多',
 
-  // 配送地址
-  'order.shipping.title': '配送信息',
+    'order.shipping.title': '配送信息',
   'order.shipping.description': '请提供您的配送地址以送达贴纸',
   'order.shipping.name_label': '全名*',
   'order.shipping.name_placeholder': 'John Doe',
@@ -264,8 +257,7 @@ export default {
   'order.shipping.error_country': '需要国家',
   'order.shipping.continue_button': '继续到付款',
 
-  // 付款
-  'order.payment.title': '付款详情',
+    'order.payment.title': '付款详情',
   'order.payment.order_id': '订单ID:',
   'order.payment.sticker_pack': '贴纸包:',
   'order.payment.stickers_count': '{count}张贴纸',
@@ -293,8 +285,7 @@ export default {
   'order.payment.stripe_not_configured': 'Stripe未配置。请将NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY添加到.env.local',
   'order.payment.loading': '加载付款表单中...',
 
-  // 订单成功
-  'order.success.title': '订单成功！',
+    'order.success.title': '订单成功！',
   'order.success.subtitle': '感谢您的订单',
   'order.success.confirmation_sent': '确认电子邮件已发送',
   'order.success.confirmation_description': '确认电子邮件已发送至:',
@@ -316,11 +307,9 @@ export default {
   'order.success.questions': '对您的订单有疑问？',
   'order.success.contact_us': '联系我们',
 
-  // 更改包
-  'order.change_pack': '← 更改包',
+    'order.change_pack': '← 更改包',
 
-  // Cookie同意
-  'cookie.message': '我们仅使用Cookie进行基本功能，从不用于跟踪。您的隐私受到保护。有关详细信息，请参阅我们的{privacyLink}。',
+    'cookie.message': '我们仅使用Cookie进行基本功能，从不用于跟踪。您的隐私受到保护。有关详细信息，请参阅我们的{privacyLink}。',
   'cookie.privacy_link_text': '隐私政策',
   'cookie.accept': '接受',
   'cookie.decline': '拒绝',
@@ -329,8 +318,7 @@ export default {
   'cookie_consent.accept': '接受并继续',
   'cookie_consent.privacy_link': '隐私政策',
 
-  // FAQ页面 - 完整内容
-  'faq.subtitle': '查找有关LightMyFire常见问题的答案',
+    'faq.subtitle': '查找有关LightMyFire常见问题的答案',
   'faq.what_is.question': '什么是LightMyFire？',
   'faq.what_is.answer': '这是一个减少浪费并创建"人类马赛克"的项目。我们销售带有QR码的贴纸，您可以将其贴在打火机上。找到该打火机的任何人都可以扫描代码，输入PIN码，并将故事、图片或歌曲添加到其数字日志中。这是一种独特的方式，可以在全球范围内连接人们，并赋予打火机第二次生命。',
   'faq.how_add_story.question': '如何向打火机添加故事？',
@@ -364,8 +352,7 @@ export default {
   'faq.contact_footer': '找不到答案？',
   'faq.contact_link': '联系我们',
 
-  // 账户设置 / 更新认证表单
-  'settings.auth.error.passwords_no_match': '密码不匹配。',
+    'settings.auth.error.passwords_no_match': '密码不匹配。',
   'settings.auth.success_message': '更新成功！如果您更新了电子邮件地址，请检查您的电子邮件以确认更改。',
   'settings.auth.title': '账户设置',
   'settings.auth.oauth_notice': '✓ 您通过{provider}登录。您的身份验证由您的提供商安全管理。',
@@ -384,8 +371,7 @@ export default {
   'settings.auth.update_button': '更新认证详情',
   'settings.auth.saving': '保存中...',
 
-  // 国家名称
-  'country.AT': '奥地利',
+    'country.AT': '奥地利',
   'country.BE': '比利时',
   'country.CA': '加拿大',
   'country.CH': '瑞士',
@@ -406,8 +392,7 @@ export default {
   'country.SE': '瑞典',
   'country.US': '美国',
 
-  // --- Refill Guide Page ---
-  'refill_guide.title': 'Don\'t Throw Me Away',
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature. A single company like BIC sold over 2.5 billion in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',

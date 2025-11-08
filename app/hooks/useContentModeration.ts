@@ -13,12 +13,6 @@ interface UseModerationHook {
   error: string | null;
 }
 
-/**
- * Content moderation hook using OpenAI Moderation API
- *
- * SECURITY UPDATE: Removed userId parameter - API endpoints now get userId from
- * authenticated session to prevent users from moderating content on behalf of others.
- */
 export function useContentModeration(): UseModerationHook {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -33,8 +27,7 @@ export function useContentModeration(): UseModerationHook {
           return { flagged: false };
         }
 
-        // SECURITY: No userId sent - API gets it from authenticated session
-        const response = await fetch('/api/moderate-text', {
+                const response = await fetch('/api/moderate-text', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -56,9 +49,7 @@ export function useContentModeration(): UseModerationHook {
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Unknown error';
         setError(errorMessage);
-        // CRITICAL SECURITY FIX: Re-throw error instead of returning { flagged: false }
-        // This ensures moderation failures are caught by the form's error handler
-        throw new Error(`Text moderation failed: ${errorMessage}`);
+                        throw new Error(`Text moderation failed: ${errorMessage}`);
       } finally {
         setIsLoading(false);
       }
@@ -84,8 +75,7 @@ export function useContentModeration(): UseModerationHook {
           return { flagged: false };
         }
 
-        // SECURITY: No userId sent - API gets it from authenticated session
-        const payload: Record<string, string> = {};
+                const payload: Record<string, string> = {};
 
         if (isBase64) {
           const base64Data = imageSource.split(',')[1] || imageSource;
@@ -114,9 +104,7 @@ export function useContentModeration(): UseModerationHook {
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Unknown error';
         setError(errorMessage);
-        // CRITICAL SECURITY FIX: Re-throw error instead of returning { flagged: false }
-        // This ensures moderation failures are caught by the form's error handler
-        throw new Error(`Image moderation failed: ${errorMessage}`);
+                        throw new Error(`Image moderation failed: ${errorMessage}`);
       } finally {
         setIsLoading(false);
       }

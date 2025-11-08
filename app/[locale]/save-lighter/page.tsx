@@ -39,7 +39,7 @@ export default async function SaveLighterPage({ params }: { params: { locale: st
           {t('save_lighter.why_it_matters')}
         </h2>
 
-        {/* Desktop: 3-column grid */}
+        {}
         <div className="hidden md:grid grid-cols-3 gap-6">
           <div className="flex flex-col items-center text-center">
             <Image
@@ -84,7 +84,7 @@ export default async function SaveLighterPage({ params }: { params: { locale: st
           </div>
         </div>
 
-        {/* Mobile: Alternating layout with bigger images on sides */}
+        {}
         <div className="md:hidden space-y-6">
           {}
           <div className="flex gap-4 items-start">

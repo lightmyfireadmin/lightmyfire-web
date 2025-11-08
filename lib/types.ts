@@ -1,6 +1,4 @@
-// lib/types.ts
 
-// Main Post type, used by Lighter Page, Homepage, Profile Page
 export type DetailedPost = {
   id: number;
   lighter_id: string;
@@ -23,30 +21,23 @@ export type DetailedPost = {
   nationality: string | null;
   show_nationality: boolean;
   role?: 'user' | 'moderator' | 'admin' | null;
-  // Champs ajoutés pour la synchronisation
-  is_public: boolean;
+    is_public: boolean;
   is_flagged: boolean;
   flagged_count: number;
 };
 
-// Type specifically for the My Contributions list on the profile page
 export type MyPostWithLighter = {
   id: number;
   title: string | null;
-  post_type: string; // Keep as string here, could be more specific if needed
-  created_at: string;
+  post_type: string;   created_at: string;
   lighter_id: string;
-  lighters: { // This structure comes from the Supabase join
-    name: string;
+  lighters: {     name: string;
   } | null;
 };
 
-// Type for Trophies
 export type Trophy = {
   id: number;
   name: string;
   description: string;
-  icon_name: string | null; // Corresponds to trophy table column
-};
+  icon_name: string | null; };
 
-// Add other shared types here if needed later

@@ -9,8 +9,7 @@ export const dynamic = 'force-dynamic';
 interface ModerationRequest {
   imageUrl: string;
   imageBase64?: string;
-  contentType?: string; // 'post', 'profile', 'lighter_preview', etc.
-}
+  contentType?: string; }
 
 interface CategoryScore {
   [category: string]: number;
@@ -26,16 +25,9 @@ interface ModerationResult {
   severityLevel?: 'low' | 'medium' | 'high';
 }
 
-/**
- * Moderate image content using OpenAI's multimodal Moderation API
- * Uses the new omni-moderation-latest model (free)
- * Checks for: sexual content, hate speech, violence, harassment, self-harm, illegal activities
- */
 export async function POST(request: NextRequest) {
   try {
-    // SECURITY: Verify authentication and get userId from session (not request body)
-    // This prevents users from moderating content on behalf of others
-    const cookieStore = cookies();
+            const cookieStore = cookies();
     const supabase = createServerSupabaseClient(cookieStore);
     const { data: { session } } = await supabase.auth.getSession();
 
@@ -46,8 +38,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Use authenticated user's ID (from session, not request body)
-    const userId = session.user.id;
+        const userId = session.user.id;
 
     const body = await request.json() as ModerationRequest;
     const { imageUrl, imageBase64, contentType = 'general' } = body;
@@ -60,8 +51,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // CRITICAL: Verify OpenAI API key is configured
-    if (!process.env.OPENAI_API_KEY) {
+        if (!process.env.OPENAI_API_KEY) {
       console.error('CRITICAL: OPENAI_API_KEY is not configured in environment variables');
       return NextResponse.json(
         { error: 'Content moderation system is not configured. Please contact support.' },
@@ -80,17 +70,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Prepare image input for OpenAI moderation
-    let imageInput: string;
+        let imageInput: string;
 
     if (imageBase64) {
-      // Ensure base64 string is clean (remove data URL prefix if present)
-      const cleanBase64 = imageBase64.includes(',')
+            const cleanBase64 = imageBase64.includes(',')
         ? imageBase64.split(',')[1]
         : imageBase64;
 
-      // Validate base64 format
-      if (!/^[A-Za-z0-9+/=]+$/.test(cleanBase64)) {
+            if (!/^[A-Za-z0-9+/=]+$/.test(cleanBase64)) {
         return NextResponse.json(
           { error: 'Invalid base64 image data' },
           { status: 400 }
@@ -99,8 +86,7 @@ export async function POST(request: NextRequest) {
 
       imageInput = `data:image/png;base64,${cleanBase64}`;
     } else if (imageUrl) {
-      // Validate URL format
-      try {
+            try {
         new URL(imageUrl);
       } catch {
         return NextResponse.json(
@@ -113,8 +99,7 @@ export async function POST(request: NextRequest) {
       throw new Error('No valid image source provided');
     }
 
-    // Use OpenAI's omni-moderation-latest model (free, multimodal)
-    const moderation = await openai.moderations.create({
+        const moderation = await openai.moderations.create({
       model: 'omni-moderation-latest',
       input: [
         {
@@ -128,12 +113,10 @@ export async function POST(request: NextRequest) {
 
     const result = moderation.results[0];
 
-    // Convert Categories to plain object
-    const categoriesObj: { [key: string]: boolean } = {};
+        const categoriesObj: { [key: string]: boolean } = {};
     const scoresObj: CategoryScore = {};
 
-    // Extract categories and scores from OpenAI response
-    for (const [key, value] of Object.entries(result.categories)) {
+        for (const [key, value] of Object.entries(result.categories)) {
       categoriesObj[key] = value as boolean;
     }
 
@@ -141,8 +124,7 @@ export async function POST(request: NextRequest) {
       scoresObj[key] = value as number;
     }
 
-    // Determine severity level
-    const severity = calculateSeverity(scoresObj, categoriesObj);
+        const severity = calculateSeverity(scoresObj, categoriesObj);
 
     const moderationResult: ModerationResult = {
       flagged: result.flagged,
@@ -151,8 +133,7 @@ export async function POST(request: NextRequest) {
       severityLevel: severity,
     };
 
-    // If flagged, add detailed reason
-    if (result.flagged) {
+        if (result.flagged) {
       const flaggedCategories = Object.entries(categoriesObj)
         .filter(([, flagged]) => flagged)
         .map(([category]) => category);
@@ -160,8 +141,7 @@ export async function POST(request: NextRequest) {
       moderationResult.reason = `Image violates policy: ${formatCategoryNames(flaggedCategories).join(', ')}`;
     }
 
-    // Log moderation result for audit trail
-    try {
+        try {
       await logModerationResult({
         userId,
         contentType,
@@ -174,8 +154,7 @@ export async function POST(request: NextRequest) {
       });
     } catch (logError) {
       console.error('Failed to log moderation result:', logError);
-      // Don't fail the request if logging fails
-    }
+          }
 
     return NextResponse.json(moderationResult, { status: 200 });
   } catch (error) {
@@ -203,42 +182,32 @@ export async function POST(request: NextRequest) {
   }
 }
 
-/**
- * Calculate severity level based on flagged categories and scores
- */
 function calculateSeverity(
   scores: CategoryScore,
   categories: { [key: string]: boolean }
 ): 'low' | 'medium' | 'high' {
-  // Critical categories that should be marked as high severity
-  const criticalCategories = [
+    const criticalCategories = [
     'child_sexual_abuse_material_csat',
     'self_harm',
     'violence',
   ];
 
-  // Check if any critical categories are flagged
-  for (const category of criticalCategories) {
+    for (const category of criticalCategories) {
     if (categories[category]) {
       return 'high';
     }
   }
 
-  // Check score thresholds for medium severity
-  const mediumCategories = ['sexual', 'hate', 'harassment'];
+    const mediumCategories = ['sexual', 'hate', 'harassment'];
   const hasMediumScore = mediumCategories.some((cat) => (scores[cat] || 0) > 0.5);
 
   if (hasMediumScore) {
     return 'medium';
   }
 
-  // Everything else is low severity (but still flagged)
-  return 'low';
+    return 'low';
 }
 
-/**
- * Format category names for human-readable output
- */
 function formatCategoryNames(categories: string[]): string[] {
   const nameMap: { [key: string]: string } = {
     sexual: 'Sexual Content',
@@ -256,9 +225,6 @@ function formatCategoryNames(categories: string[]): string[] {
   return categories.map((cat) => nameMap[cat] || cat);
 }
 
-/**
- * Log moderation results to database for audit trail
- */
 async function logModerationResult(data: {
   userId: string;
   contentType: string;
@@ -270,9 +236,7 @@ async function logModerationResult(data: {
   timestamp: string;
 }): Promise<void> {
   try {
-    // Call a client-side logging endpoint or log locally for now
-    // In production, this would be called by the client after receiving the moderation result
-    console.log('Image moderation check completed:', {
+            console.log('Image moderation check completed:', {
       userId: data.userId,
       contentType: data.contentType,
       flagged: data.flagged,
@@ -280,6 +244,5 @@ async function logModerationResult(data: {
     });
   } catch (err) {
     console.error('Failed to log image moderation:', err);
-    // Don't throw - logging should not block the request
-  }
+      }
 }

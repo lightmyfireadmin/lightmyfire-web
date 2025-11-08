@@ -130,8 +130,6 @@ export default {
   'home.stats.environmental_impact': 'Kontribusi lingkungan',
   'home.stats.join_movement': 'Bergabunglah dengan ribuan LightSavers yang membuat perbedaan, satu korek api pada satu waktu.',
 
-
-
   'save_success.next_steps.title': 'Next Steps:',
   'save_success.next_steps.step1': 'Print: Download the PDF and print it, ideally on sticker paper.',
   'save_success.next_steps.step2': 'Stick: Cut out the sticker and apply it to your lighter.',
@@ -184,8 +182,7 @@ export default {
   'legal.faq.title': 'Frequently Asked Questions',
   'legal.about.title': 'About LightMyFire',
 
-  // Pack Selection
-  'order.pack_selection.title': 'Pilih Paket Anda',
+    'order.pack_selection.title': 'Pilih Paket Anda',
   'order.pack_selection.subtitle': 'Pilih jumlah stiker khusus yang ingin Anda pesan',
   'order.pack.starting_lightsaver': 'Mulai LightSaver',
   'order.pack.committed_lightsaver': 'Komit LightSaver',
@@ -200,14 +197,12 @@ export default {
   'order.pack.price_calculated': 'Harga dihitung saat checkout',
   'order.pack.select_button': 'Pilih',
 
-  // Custom Branding
-  'order.custom_branding.title': 'Branding Khusus untuk Acara & Merek',
+    'order.custom_branding.title': 'Branding Khusus untuk Acara & Merek',
   'order.custom_branding.description': 'Merencanakan acara atau ingin branding khusus di lembar stiker Anda? Kami dapat mempersonalisasi area branding untuk organisasi, merek, atau acara khusus Anda!',
   'order.custom_branding.button': 'Hubungi Kami untuk Branding Khusus',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // Lighter Customization
-  'order.customization.title': 'Kustomisasi Stiker Anda',
+    'order.customization.title': 'Kustomisasi Stiker Anda',
   'order.customization.subtitle': 'Personalisasi setiap korek api',
   'order.customization.apply_to_all': 'Terapkan ke Semua',
   'order.customization.lighter_number': 'Korek Api #{number}',
@@ -227,21 +222,18 @@ export default {
   'order.customization.validation_warning_multiple': 'Harap isi semua nama korek api (masing-masing 3-16 karakter) sebelum melanjutkan.',
   'order.customization.save_button': 'Simpan Kustomisasi Stiker',
 
-  // Order Summary
-  'order.summary.title': 'Ringkasan Pesanan',
+    'order.summary.title': 'Ringkasan Pesanan',
   'order.summary.pack': 'Paket:',
   'order.summary.language': 'Bahasa:',
   'order.summary.stickers': 'Stiker:',
   'order.summary.customized': '✓ Dikustomisasi',
   'order.summary.total': 'Total:',
 
-  // Sticker Preview
-  'order.preview.title': 'Desain Stiker Anda',
+    'order.preview.title': 'Desain Stiker Anda',
   'order.preview.description': 'Pratinjau stiker khusus. File stiker akan dibuat setelah pembayaran.',
   'order.preview.more_stickers': '+{count} lagi',
 
-  // Shipping Address
-  'order.shipping.title': 'Informasi Pengiriman',
+    'order.shipping.title': 'Informasi Pengiriman',
   'order.shipping.description': 'Silakan berikan alamat pengiriman Anda untuk pengiriman stiker',
   'order.shipping.name_label': 'Nama Lengkap *',
   'order.shipping.name_placeholder': 'John Doe',
@@ -263,8 +255,7 @@ export default {
   'order.shipping.error_country': 'Negara diperlukan',
   'order.shipping.continue_button': 'Lanjutkan ke Pembayaran',
 
-  // Payment
-  'order.payment.title': 'Detail Pembayaran',
+    'order.payment.title': 'Detail Pembayaran',
   'order.payment.order_id': 'ID Pesanan:',
   'order.payment.sticker_pack': 'Paket Stiker:',
   'order.payment.stickers_count': '{count} stiker',
@@ -292,8 +283,7 @@ export default {
   'order.payment.stripe_not_configured': 'Stripe tidak dikonfigurasi. Tambahkan NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ke .env.local',
   'order.payment.loading': 'Memuat formulir pembayaran...',
 
-  // Order Success
-  'order.success.title': 'Pesanan Berhasil!',
+    'order.success.title': 'Pesanan Berhasil!',
   'order.success.subtitle': 'Terima kasih atas pesanan Anda',
   'order.success.confirmation_sent': 'Email Konfirmasi Terkirim',
   'order.success.confirmation_description': 'Email konfirmasi telah dikirim ke:',
@@ -315,11 +305,9 @@ export default {
   'order.success.questions': 'Pertanyaan tentang pesanan Anda?',
   'order.success.contact_us': 'Hubungi Kami',
 
-  // Change Pack
-  'order.change_pack': '← Ubah Paket',
+    'order.change_pack': '← Ubah Paket',
 
-  // Cookie Consent (8 keys)
-  'cookie.message': 'Kami hanya menggunakan cookie untuk fungsi dasar—tidak pernah untuk pelacakan. Privasi Anda terlindungi. Lihat {privacyLink} kami untuk detail.',
+    'cookie.message': 'Kami hanya menggunakan cookie untuk fungsi dasar—tidak pernah untuk pelacakan. Privasi Anda terlindungi. Lihat {privacyLink} kami untuk detail.',
   'cookie.privacy_link_text': 'Kebijakan Privasi',
   'cookie.accept': 'Terima',
   'cookie.decline': 'Tolak',
@@ -328,8 +316,7 @@ export default {
   'cookie_consent.accept': 'Terima & Lanjutkan',
   'cookie_consent.privacy_link': 'Kebijakan Privasi',
 
-  // FAQ Content (33 keys)
-  'faq.subtitle': 'Temukan jawaban untuk pertanyaan umum tentang LightMyFire',
+    'faq.subtitle': 'Temukan jawaban untuk pertanyaan umum tentang LightMyFire',
   'faq.what_is.question': 'Apa itu LightMyFire?',
   'faq.what_is.answer': 'Ini adalah proyek untuk mengurangi limbah dan menciptakan "mosaik manusia". Kami menjual stiker dengan kode QR yang Anda tempel di korek api. Siapa pun yang menemukan korek api itu dapat memindai kode, memasukkan PIN, dan menambahkan cerita, gambar, atau lagu ke buku catatan digitalnya. Ini adalah cara unik untuk menghubungkan orang-orang secara global dan memberi korek api kehidupan kedua.',
   'faq.how_add_story.question': 'Bagaimana cara menambahkan cerita ke korek api?',
@@ -377,8 +364,7 @@ export default {
   'faq.q7.title': 'Bagaimana cara kerja peta?',
   'faq.q7.desc': 'Di halaman setiap korek api, Anda akan menemukan peta yang menunjukkan perjalanan korek api spesifik itu. Setiap kali seseorang membuat postingan "lokasi", koordinat dicatat dan ditambahkan ke peta, melacak jalur korek api di seluruh dunia.',
 
-  // Account Settings (18 keys)
-  'my_profile.tabs.settings': 'Pengaturan',
+    'my_profile.tabs.settings': 'Pengaturan',
   'my_profile.stats.contributions': 'Contributions',
   'my_profile.stats.lighters_saved': 'Lighters Saved',
   'my_profile.stats.stories_joined': 'Stories Joined',
@@ -404,8 +390,7 @@ export default {
   'my_profile.settings.placeholder.password': '••••••••',
   'my_profile.settings.placeholder.password_confirm': 'Masukkan kembali kata sandi baru',
 
-  // Country Names (20 keys)
-  'country.AT': 'Austria',
+    'country.AT': 'Austria',
   'country.BE': 'Belgia',
   'country.CA': 'Kanada',
   'country.CH': 'Swiss',
@@ -426,8 +411,7 @@ export default {
   'country.SE': 'Swedia',
   'country.US': 'Amerika Serikat',
 
-  // --- Refill Guide Page ---
-  'refill_guide.title': 'Don\'t Throw Me Away',
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature. A single company like BIC sold over 2.5 billion in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',

@@ -3,8 +3,7 @@ import { Resend } from 'resend';
 import { rateLimit } from '@/lib/rateLimit';
 
 export async function POST(request: NextRequest) {
-  // Initialize Resend at runtime, not at module load time
-  const apiKey = process.env.RESEND_API_KEY;
+    const apiKey = process.env.RESEND_API_KEY;
 
   if (!apiKey) {
     console.error('RESEND_API_KEY is not set');
@@ -14,9 +13,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // SECURITY: Rate limit contact form to prevent spam and abuse
-  // Use IP-based rate limiting (3 requests per hour for public endpoint)
-  const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ||
+      const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ||
              request.headers.get('x-real-ip') ||
              'unknown';
 
@@ -35,8 +32,7 @@ export async function POST(request: NextRequest) {
   try {
     const { name, email, phone, message, subject } = await request.json();
 
-    // Validate inputs
-    if (!name || typeof name !== 'string' || name.length < 2) {
+        if (!name || typeof name !== 'string' || name.length < 2) {
       return NextResponse.json(
         { error: 'Valid name is required' },
         { status: 400 }
@@ -57,15 +53,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Sanitize inputs (basic)
-    const sanitizedName = name.trim().substring(0, 100);
+        const sanitizedName = name.trim().substring(0, 100);
     const sanitizedEmail = email.trim().substring(0, 100);
     const sanitizedPhone = phone ? phone.trim().substring(0, 20) : 'Not provided';
     const sanitizedMessage = message.trim().substring(0, 5000);
     const sanitizedSubject = subject || 'LightMyFire Contact Form';
 
-    // Send email using Resend
-    const { data, error } = await resend.emails.send({
+        const { data, error } = await resend.emails.send({
       from: 'LightMyFire <noreply@lightmyfire.app>',
       to: ['editionsrevel@gmail.com'],
       replyTo: sanitizedEmail,

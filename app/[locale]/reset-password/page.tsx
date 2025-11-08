@@ -21,13 +21,11 @@ export default function ResetPasswordPage() {
   const locale = useCurrentLocale();
 
   useEffect(() => {
-    // Check if we have a valid recovery token
-    supabase.auth.getSession().then(({ data: { session } }) => {
+        supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
         setIsValidToken(true);
       } else {
-        // Invalid or expired token
-        addToast({ message: t('auth.invalid_reset_link'), type: 'error' });
+                addToast({ message: t('auth.invalid_reset_link'), type: 'error' });
         router.push(`/${locale}/forgot-password`);
       }
     });
@@ -57,8 +55,7 @@ export default function ResetPasswordPage() {
 
       addToast({ message: t('auth.password_updated'), type: 'success' });
 
-      // Redirect to home after a short delay
-      setTimeout(() => {
+            setTimeout(() => {
         router.push(`/${locale}`);
       }, 2000);
     } catch (error: any) {
@@ -107,7 +104,7 @@ export default function ResetPasswordPage() {
     <div className="flex min-h-screen items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="rounded-xl bg-background p-6 sm:p-8 shadow-lg border border-border">
-          {/* Header */}
+          {}
           <div className="mb-6">
             <h1 className="text-center text-3xl font-bold text-foreground">
               {t('auth.reset_password_title')}
@@ -117,9 +114,9 @@ export default function ResetPasswordPage() {
             </p>
           </div>
 
-          {/* Form */}
+          {}
           <form onSubmit={handleResetPassword} className="space-y-4">
-            {/* New Password */}
+            {}
             <div>
               <label
                 htmlFor="password"
@@ -154,7 +151,7 @@ export default function ResetPasswordPage() {
               </div>
             </div>
 
-            {/* Confirm Password */}
+            {}
             <div>
               <label
                 htmlFor="confirmPassword"
@@ -189,7 +186,7 @@ export default function ResetPasswordPage() {
               </div>
             </div>
 
-            {/* Password Requirements */}
+            {}
             <div className="rounded-md bg-muted p-3 text-xs text-muted-foreground">
               <p className="font-medium mb-1">{t('auth.password_requirements')}</p>
               <ul className="list-disc list-inside space-y-0.5">
@@ -237,7 +234,7 @@ export default function ResetPasswordPage() {
             </button>
           </form>
 
-          {/* Footer */}
+          {}
           <div className="mt-6 text-center text-sm">
             <Link
               href={`/${locale}/login`}

@@ -7,8 +7,7 @@ export async function POST(request: NextRequest) {
     const cookieStore = cookies();
     const supabase = createServerSupabaseClient(cookieStore);
 
-    // Verify user is authenticated
-    const {
+        const {
       data: { session },
     } = await supabase.auth.getSession();
 
@@ -16,22 +15,19 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Verify user is admin
-    const { data: userRole, error: roleError } = await supabase.rpc('get_my_role');
+        const { data: userRole, error: roleError } = await supabase.rpc('get_my_role');
 
     if (roleError || userRole !== 'admin') {
       return NextResponse.json({ error: 'Access denied. Admin privileges required.' }, { status: 403 });
     }
 
-    // Parse request body
-    const { orderId, paymentIntentId } = await request.json();
+        const { orderId, paymentIntentId } = await request.json();
 
     if (!orderId || !paymentIntentId) {
       return NextResponse.json({ error: 'Missing orderId or paymentIntentId' }, { status: 400 });
     }
 
-    // Call the Supabase Edge Function to process the refund
-    const { data: refundData, error: refundError } = await supabase.functions.invoke('refund-payment', {
+        const { data: refundData, error: refundError } = await supabase.functions.invoke('refund-payment', {
       body: {
         paymentIntentId,
         orderId,

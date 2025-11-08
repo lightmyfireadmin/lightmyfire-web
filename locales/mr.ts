@@ -142,8 +142,6 @@ export default {
   'home.stats.environmental_impact': 'Environmental contribution',
   'home.stats.join_movement': 'Join thousands of LightSavers making a difference, one lighter at a time.',
 
-
-
   'save_success.next_steps.title': 'Next Steps:',
   'save_success.next_steps.step1': 'Print: Download the PDF and print it, ideally on sticker paper.',
   'save_success.next_steps.step2': 'Stick: Cut out the sticker and apply it to your lighter.',
@@ -196,8 +194,7 @@ export default {
   'legal.faq.title': 'Frequently Asked Questions',
   'legal.about.title': 'About LightMyFire',
 
-  // Pack Selection
-  'order.pack_selection.title': 'आपला पॅक निवडा',
+    'order.pack_selection.title': 'आपला पॅक निवडा',
   'order.pack_selection.subtitle': 'आप ज्या कस्टम स्टिकर्स ऑर्डर करू इच्छित आहात त्यांची संख्या निवडा',
   'order.pack.starting_lightsaver': 'प्रारंभिक LightSaver',
   'order.pack.committed_lightsaver': 'प्रतिबद्ध LightSaver',
@@ -212,14 +209,12 @@ export default {
   'order.pack.price_calculated': 'चेकआउटमध्ये किंमत मोजली जाते',
   'order.pack.select_button': 'निवडा',
 
-  // Custom Branding
-  'order.custom_branding.title': 'इव्हेंट्स आणि ब्र्याण्ड्ससाठी कस्टम ब्र्याण्डिंग',
+    'order.custom_branding.title': 'इव्हेंट्स आणि ब्र्याण्ड्ससाठी कस्टम ब्र्याण्डिंग',
   'order.custom_branding.description': 'एखादी कार्यक्रमाचे नियोजन करत आहात किंवा आपल्या स्टिकर शीटवर कस्टम ब्र्याण्डिंग हवी आहे? आम्ही आपल्या संस्थेसाठी, ब्र्याण्डसाठी किंवा विशेष कार्यक्रमासाठी ब्र्याण्डिंग क्षेत्र सांगितले शकतो!',
   'order.custom_branding.button': 'कस्टम ब्र्याण्डिंगसाठी आमच्याशी संपर्क साधा',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // Lighter Customization
-  'order.customization.title': 'आपल्या स्टिकर्स कस्टमाइज करा',
+    'order.customization.title': 'आपल्या स्टिकर्स कस्टमाइज करा',
   'order.customization.subtitle': 'प्रत्येक लाइटर व्यक्तिगत करा',
   'order.customization.apply_to_all': 'सर्वांना लागू करा',
   'order.customization.lighter_number': 'लाइटर #{number}',
@@ -239,21 +234,18 @@ export default {
   'order.customization.validation_warning_multiple': 'कृपया पुढे जाण्यापूर्वी सर्व लाइटर नाव भरा (प्रत्येक 3-16 वर्ण)।',
   'order.customization.save_button': 'स्टिकर कस्टमाइজेशन सेव करा',
 
-  // Order Summary
-  'order.summary.title': 'ऑर्डर सारांश',
+    'order.summary.title': 'ऑर्डर सारांश',
   'order.summary.pack': 'पॅक:',
   'order.summary.language': 'भाषा:',
   'order.summary.stickers': 'स्टिकर्स:',
   'order.summary.customized': '✓ कस्टमाइज केलेले',
   'order.summary.total': 'एकूण:',
 
-  // Sticker Preview
-  'order.preview.title': 'आपली स्टिकर डिजाइन',
+    'order.preview.title': 'आपली स्टिकर डिजाइन',
   'order.preview.description': 'कस्टम स्टिकर्सचा पूर्वावलोकन। भुगतानानंतर स्टिकर फाइलें तयार केल्या जातील।',
   'order.preview.more_stickers': '+{count} अधिक',
 
-  // Shipping Address
-  'order.shipping.title': 'शिपिंग माहिती',
+    'order.shipping.title': 'शिपिंग माहिती',
   'order.shipping.description': 'स्टिकर्स वितरणासाठी कृपया आपला शिपिंग पत्ता द्या',
   'order.shipping.name_label': 'पूर्ण नाव *',
   'order.shipping.name_placeholder': 'John Doe',
@@ -275,8 +267,7 @@ export default {
   'order.shipping.error_country': 'देश आवश्यक आहे',
   'order.shipping.continue_button': 'भुगतानाकडे जा',
 
-  // Payment
-  'order.payment.title': 'भुगतान तपशील',
+    'order.payment.title': 'भुगतान तपशील',
   'order.payment.order_id': 'ऑर्डर ID:',
   'order.payment.sticker_pack': 'स्टिकर पॅक:',
   'order.payment.stickers_count': '{count} स्टिकर्स',
@@ -304,8 +295,7 @@ export default {
   'order.payment.stripe_not_configured': 'Stripe कॉन्फिगर केलेले नाही। NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ला .env.local ला जोडा',
   'order.payment.loading': 'भुगतान फॉर्म लोड करत आहे...',
 
-  // Order Success
-  'order.success.title': 'ऑर्डर यशस्वी!',
+    'order.success.title': 'ऑर्डर यशस्वी!',
   'order.success.subtitle': 'आपल्या ऑर्डरचे आभार',
   'order.success.confirmation_sent': 'पुष्टीकरण ईमेल पाठविली गेली',
   'order.success.confirmation_description': 'पुष्टीकरण ईमेल पाठविली गेली आहे:',
@@ -327,11 +317,9 @@ export default {
   'order.success.questions': 'आपल्या ऑर्डरबद्दल प्रश्न आहेत?',
   'order.success.contact_us': 'आमच्याशी संपर्क साधा',
 
-  // Change Pack
-  'order.change_pack': '← पॅक बदला',
+    'order.change_pack': '← पॅक बदला',
 
-  // Cookie Consent
-  'cookie.message': 'आम्ही कुकीजचा वापर फक्त मूलभूत कार्यक्षमतेसाठी करतो—कधीही ट्रॅकिंगसाठी नाही। तुमची गोपनीयता संरक्षित आहे। तपशीलांसाठी आमचे {privacyLink} पहा।',
+    'cookie.message': 'आम्ही कुकीजचा वापर फक्त मूलभूत कार्यक्षमतेसाठी करतो—कधीही ट्रॅकिंगसाठी नाही। तुमची गोपनीयता संरक्षित आहे। तपशीलांसाठी आमचे {privacyLink} पहा।',
   'cookie.privacy_link_text': 'गोपनीयता धोरण',
   'cookie.accept': 'स्वीकारा',
   'cookie.decline': 'नकार द्या',
@@ -340,8 +328,7 @@ export default {
   'cookie_consent.accept': 'स्वीकारा आणि सुरू ठेवा',
   'cookie_consent.privacy_link': 'गोपनीयता धोरण',
 
-  // FAQ Content
-  'faq.subtitle': 'LightMyFire बद्दल सामान्य प्रश्नांची उत्तरे शोधा',
+    'faq.subtitle': 'LightMyFire बद्दल सामान्य प्रश्नांची उत्तरे शोधा',
   'faq.what_is.question': 'LightMyFire म्हणजे काय?',
   'faq.what_is.answer': 'हा कचरा कमी करण्याचा आणि "मानवी मोज़ेक" तयार करण्याचा एक प्रकल्प आहे. आम्ही QR कोड असलेले स्टिकर्स विकतो जे तुम्ही लाइटरवर लावता. कोणीही त्या लाइटरला सापडल्यास तो कोड स्कॅन करू शकतो, त्याचा पिन प्रविष्ट करू शकतो आणि त्याच्या डिजिटल लॉगबुकमध्ये एक कथा, चित्र किंवा गाणे जोडू शकतो. लोकांना जागतिक स्तरावर जोडण्याचा आणि लाइटर्सना दुसरे जीवन देण्याचा हा एक अनोखा मार्ग आहे.',
   'faq.how_add_story.question': 'मी लाइटरमध्ये कथा कशी जोडू?',
@@ -375,8 +362,7 @@ export default {
   'faq.contact_footer': 'तुमचे उत्तर सापडत नाही?',
   'faq.contact_link': 'आमच्याशी संपर्क साधा',
 
-  // Account Settings
-  'settings.auth.error.passwords_no_match': 'पासवर्ड जुळत नाहीत.',
+    'settings.auth.error.passwords_no_match': 'पासवर्ड जुळत नाहीत.',
   'settings.auth.success_message': 'अपडेट यशस्वी! तुम्ही तुमचा ईमेल अपडेट केला असल्यास कृपया बदलांची पुष्टी करण्यासाठी तुमचा ईमेल तपासा.',
   'settings.auth.title': 'खाते सेटिंग्ज',
   'settings.auth.oauth_notice': '✓ तुम्ही {provider} द्वारे लॉग इन आहात. तुमचे प्रमाणीकरण तुमच्या प्रदात्याद्वारे सुरक्षितपणे व्यवस्थापित केले जाते.',
@@ -395,8 +381,7 @@ export default {
   'settings.auth.update_button': 'प्रमाणीकरण तपशील अपडेट करा',
   'settings.auth.saving': 'सेव्ह करत आहे...',
 
-  // Country Names
-  'country.AT': 'ऑस्ट्रिया',
+    'country.AT': 'ऑस्ट्रिया',
   'country.BE': 'बेल्जियम',
   'country.CA': 'कॅनडा',
   'country.CH': 'स्वित्झर्लंड',
@@ -417,15 +402,13 @@ export default {
   'country.SE': 'स्वीडन',
   'country.US': 'युनायटेड स्टेट्स',
 
-  // Save Lighter Flow
-  'save_lighter.error.failed_to_save': 'लाइटर सेव्ह करण्यात अयशस्वी: {message}',
+    'save_lighter.error.failed_to_save': 'लाइटर सेव्ह करण्यात अयशस्वी: {message}',
   'save_lighter.pack_count': '{count} स्टिकर्सचा पॅक',
   'save_lighter.pack_total': 'एकूण: {price}',
   'save_lighter.payment_mock': 'पेमेंटचे अनुकरण करा',
   'save_success.next_steps.download_label': 'डाउनलोड',
 
-  // Refill Guide (Don't Throw Me Away page)
-  'refill_guide.title': 'Don\'t Throw Me Away',
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature. A single company like BIC sold over 2.5 billion in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',

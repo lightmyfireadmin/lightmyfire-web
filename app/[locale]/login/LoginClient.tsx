@@ -26,33 +26,28 @@ export default function LoginClient() {
   };
 
   useEffect(() => {
-    // Single subscription to auth state changes
-    const {
+        const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
       console.log('[LoginClient] Auth event:', event);
 
-      // Only handle SIGNED_IN event once
-      if (event === 'SIGNED_IN' && session && !hasRedirectedRef.current) {
+            if (event === 'SIGNED_IN' && session && !hasRedirectedRef.current) {
         console.log('[LoginClient] User signed in, initiating redirect');
         hasRedirectedRef.current = true;
         setIsRedirecting(true);
 
-        // Use window.location for clean redirect
-        setTimeout(() => {
+                setTimeout(() => {
           window.location.href = `/${locale}?login_success=true`;
         }, 300);
       }
 
-      // Reset redirect flag on sign out
-      if (event === 'SIGNED_OUT') {
+            if (event === 'SIGNED_OUT') {
         hasRedirectedRef.current = false;
         setIsRedirecting(false);
       }
     });
 
-    // Cleanup subscription on unmount
-    return () => {
+        return () => {
       subscription?.unsubscribe();
     };
   }, [locale]);
@@ -137,7 +132,7 @@ export default function LoginClient() {
             }}
           />
 
-          {/* Forgot Password Link */}
+          {}
           <div className="mt-4 text-center">
             <Link
               href={`/${locale}/forgot-password`}

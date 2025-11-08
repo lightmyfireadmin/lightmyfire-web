@@ -181,10 +181,10 @@ export default async function Home() {
         </div>
       </div>
 
-      {/* Community Impact Statistics */}
+      {}
       <CommunityStats />
 
-      {/* Our Philosophy - Expandable Section */}
+      {}
       <OurPhilosophy />
 
       <RandomPostFeed />

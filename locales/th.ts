@@ -130,8 +130,6 @@ export default {
   'home.stats.environmental_impact': 'การมีส่วนร่วมด้านสิ่งแวดล้อม',
   'home.stats.join_movement': 'เข้าร่วมกับ LightSavers นับพันที่สร้างความแตกต่าง ทีละไฟแช็ก',
 
-
-
   'save_success.next_steps.title': 'Next Steps:',
   'save_success.next_steps.step1': 'Print: Download the PDF and print it, ideally on sticker paper.',
   'save_success.next_steps.step2': 'Stick: Cut out the sticker and apply it to your lighter.',
@@ -184,8 +182,7 @@ export default {
   'legal.faq.title': 'Frequently Asked Questions',
   'legal.about.title': 'About LightMyFire',
 
-  // Pack Selection
-  'order.pack_selection.title': 'เลือกแพ็กของคุณ',
+    'order.pack_selection.title': 'เลือกแพ็กของคุณ',
   'order.pack_selection.subtitle': 'เลือกจำนวนสติกเกอร์ที่กำหนดเองที่คุณต้องการสั่งซื้อ',
   'order.pack.starting_lightsaver': 'LightSaver เริ่มต้น',
   'order.pack.committed_lightsaver': 'LightSaver ที่มีความมั่นใจ',
@@ -200,14 +197,12 @@ export default {
   'order.pack.price_calculated': 'คำนวณราคาที่ชำระเงิน',
   'order.pack.select_button': 'เลือก',
 
-  // Custom Branding
-  'order.custom_branding.title': 'แบรนดิ้งที่กำหนดเองสำหรับอีเวนต์และแบรนด์',
+    'order.custom_branding.title': 'แบรนดิ้งที่กำหนดเองสำหรับอีเวนต์และแบรนด์',
   'order.custom_branding.description': 'วางแผนสำหรับอีเวนต์หรือต้องการแบรนดิ้งที่กำหนดเองบนแผ่นสติกเกอร์ของคุณ? เราสามารถจัดเตรียมพื้นที่แบรนดิ้งสำหรับองค์กร แบรนด์ หรืออีเวนต์พิเศษของคุณได้!',
   'order.custom_branding.button': 'ติดต่อเราสำหรับแบรนดิ้งที่กำหนดเอง',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // Lighter Customization
-  'order.customization.title': 'ปรับแต่งสติกเกอร์ของคุณ',
+    'order.customization.title': 'ปรับแต่งสติกเกอร์ของคุณ',
   'order.customization.subtitle': 'ปรับแต่งไฟแช็กแต่ละอัน',
   'order.customization.apply_to_all': 'นำไปใช้กับทั้งหมด',
   'order.customization.lighter_number': 'ไฟแช็ก #{number}',
@@ -227,21 +222,18 @@ export default {
   'order.customization.validation_warning_multiple': 'กรุณากรอกชื่อไฟแช็กทั้งหมด (ละ 3-16 ตัวอักษร) ก่อนดำเนินการต่อ',
   'order.customization.save_button': 'บันทึกการปรับแต่งสติกเกอร์',
 
-  // Order Summary
-  'order.summary.title': 'สรุปคำสั่ง',
+    'order.summary.title': 'สรุปคำสั่ง',
   'order.summary.pack': 'แพ็ค:',
   'order.summary.language': 'ภาษา:',
   'order.summary.stickers': 'สติกเกอร์:',
   'order.summary.customized': '✓ ปรับแต่งแล้ว',
   'order.summary.total': 'รวม:',
 
-  // Sticker Preview
-  'order.preview.title': 'ดีไซน์สติกเกอร์ของคุณ',
+    'order.preview.title': 'ดีไซน์สติกเกอร์ของคุณ',
   'order.preview.description': 'ตัวอย่างสติกเกอร์ที่กำหนดเอง ไฟล์สติกเกอร์จะสร้างขึ้นหลังการชำระเงิน',
   'order.preview.more_stickers': '+{count} เพิ่มเติม',
 
-  // Shipping Address
-  'order.shipping.title': 'ข้อมูลการจัดส่ง',
+    'order.shipping.title': 'ข้อมูลการจัดส่ง',
   'order.shipping.description': 'กรุณาระบุที่อยู่ในการจัดส่งของคุณเพื่อส่งมอบสติกเกอร์',
   'order.shipping.name_label': 'ชื่อเต็ม *',
   'order.shipping.name_placeholder': 'John Doe',
@@ -263,8 +255,7 @@ export default {
   'order.shipping.error_country': 'จำเป็นต้องมีประเทศ',
   'order.shipping.continue_button': 'ดำเนินการไปที่การชำระเงิน',
 
-  // Payment
-  'order.payment.title': 'รายละเอียดการชำระเงิน',
+    'order.payment.title': 'รายละเอียดการชำระเงิน',
   'order.payment.order_id': 'ID คำสั่ง:',
   'order.payment.sticker_pack': 'แพ็กสติกเกอร์:',
   'order.payment.stickers_count': '{count} สติกเกอร์',
@@ -292,8 +283,7 @@ export default {
   'order.payment.stripe_not_configured': 'ไม่ได้กำหนดค่า Stripe เพิ่ม NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ไปยัง .env.local',
   'order.payment.loading': 'กำลังโหลดแบบฟอร์มการชำระเงิน...',
 
-  // Order Success
-  'order.success.title': 'คำสั่งสำเร็จ!',
+    'order.success.title': 'คำสั่งสำเร็จ!',
   'order.success.subtitle': 'ขอบคุณสำหรับคำสั่งของคุณ',
   'order.success.confirmation_sent': 'ส่งอีเมลยืนยันแล้ว',
   'order.success.confirmation_description': 'ส่งอีเมลยืนยันถึง:',
@@ -315,11 +305,9 @@ export default {
   'order.success.questions': 'มีคำถามเกี่ยวกับคำสั่งของคุณ?',
   'order.success.contact_us': 'ติดต่อเรา',
 
-  // Change Pack
-  'order.change_pack': '← เปลี่ยนแพ็ค',
+    'order.change_pack': '← เปลี่ยนแพ็ค',
 
-  // Cookie Consent (8 keys)
-  'cookie.message': 'เราใช้คุกกี้เพื่อการทำงานพื้นฐานเท่านั้น ไม่เคยใช้เพื่อการติดตาม ความเป็นส่วนตัวของคุณได้รับการปกป้อง ดูที่ {privacyLink} ของเราสำหรับรายละเอียด',
+    'cookie.message': 'เราใช้คุกกี้เพื่อการทำงานพื้นฐานเท่านั้น ไม่เคยใช้เพื่อการติดตาม ความเป็นส่วนตัวของคุณได้รับการปกป้อง ดูที่ {privacyLink} ของเราสำหรับรายละเอียด',
   'cookie.privacy_link_text': 'นโยบายความเป็นส่วนตัว',
   'cookie.accept': 'ยอมรับ',
   'cookie.decline': 'ปฏิเสธ',
@@ -328,8 +316,7 @@ export default {
   'cookie_consent.accept': 'ยอมรับและดำเนินการต่อ',
   'cookie_consent.privacy_link': 'นโยบายความเป็นส่วนตัว',
 
-  // FAQ Content (33 keys)
-  'faq.subtitle': 'ค้นหาคำตอบสำหรับคำถามทั่วไปเกี่ยวกับ LightMyFire',
+    'faq.subtitle': 'ค้นหาคำตอบสำหรับคำถามทั่วไปเกี่ยวกับ LightMyFire',
   'faq.what_is.question': 'LightMyFire คืออะไร?',
   'faq.what_is.answer': 'มันคือโครงการเพื่อลดขยะและสร้าง "โมเสกของมนุษย์" เราขายสติกเกอร์ที่มีรหัส QR ที่คุณติดบนไฟแช็ก ใครก็ตามที่พบไฟแช็กสามารถสแกนรหัส ป้อน PIN และเพิ่มเรื่องราว รูปภาพ หรือเพลงในสมุดบันทึกดิจิทัลของมัน มันเป็นวิธีที่ไม่เหมือนใครในการเชื่อมโยงผู้คนทั่วโลกและให้ชีวิตที่สองแก่ไฟแช็ก',
   'faq.how_add_story.question': 'ฉันจะเพิ่มเรื่องราวลงในไฟแช็กได้อย่างไร?',
@@ -377,8 +364,7 @@ export default {
   'faq.q7.title': 'แผนที่ทำงานอย่างไร?',
   'faq.q7.desc': 'บนหน้าของไฟแช็กแต่ละอัน คุณจะพบแผนที่ที่แสดงเส้นทางของไฟแช็กเฉพาะนั้น ทุกครั้งที่มีคนสร้างโพสต์ "สถานที่" พิกัดจะถูกบันทึกและเพิ่มลงในแผนที่ ติดตามเส้นทางของไฟแช็กทั่วโลก',
 
-  // Account Settings (18 keys)
-  'my_profile.tabs.settings': 'การตั้งค่า',
+    'my_profile.tabs.settings': 'การตั้งค่า',
   'my_profile.stats.contributions': 'Contributions',
   'my_profile.stats.lighters_saved': 'Lighters Saved',
   'my_profile.stats.stories_joined': 'Stories Joined',
@@ -404,8 +390,7 @@ export default {
   'my_profile.settings.placeholder.password': '••••••••',
   'my_profile.settings.placeholder.password_confirm': 'ป้อนรหัสผ่านใหม่อีกครั้ง',
 
-  // Country Names (20 keys)
-  'country.AT': 'ออสเตรีย',
+    'country.AT': 'ออสเตรีย',
   'country.BE': 'เบลเยียม',
   'country.CA': 'แคนาดา',
   'country.CH': 'สวิตเซอร์แลนด์',
@@ -426,8 +411,7 @@ export default {
   'country.SE': 'สวีเดน',
   'country.US': 'สหรัฐอเมริกา',
 
-  // --- Refill Guide Page ---
-  'refill_guide.title': 'Don\'t Throw Me Away',
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature. A single company like BIC sold over 2.5 billion in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',

@@ -1063,11 +1063,9 @@ export default {
   'terms.ul9.li2': 'Falsch versendeten Artikeln',
   'terms.ul9.li3': 'Nichtlieferung aufgrund unseres Fehlers',
 
-  // Home - How It Works
-  'home.how_it_works.step2.description': 'Klebe es auf und lass es los. Gib es einem Freund oder „verliere" es an einem lustigen Ort: seine Reise beginnt. Benutze es nicht, um herauszufinden, welcher Freund dein Feuerzeug gestohlen hat. Teile zufällige Gedanken, dein neuestes Gedicht, ein Lied, das dir gefallen hat. Erwähne dein neues Lieblingscafé in der Stadt. Erzähle der Community, wo du diesen Lightee gefunden hast. Bewerbe dein selbstgemachtes Armband-Nebengeschäft. Teile dein drittes Sonnenuntergangsfoto des Abends. Es ist deine Wahl.',
+    'home.how_it_works.step2.description': 'Klebe es auf und lass es los. Gib es einem Freund oder „verliere" es an einem lustigen Ort: seine Reise beginnt. Benutze es nicht, um herauszufinden, welcher Freund dein Feuerzeug gestohlen hat. Teile zufällige Gedanken, dein neuestes Gedicht, ein Lied, das dir gefallen hat. Erwähne dein neues Lieblingscafé in der Stadt. Erzähle der Community, wo du diesen Lightee gefunden hast. Bewerbe dein selbstgemachtes Armband-Nebengeschäft. Teile dein drittes Sonnenuntergangsfoto des Abends. Es ist deine Wahl.',
 
-  // Notifications
-  'notifications.success': 'Erfolg!',
+    'notifications.success': 'Erfolg!',
   'notifications.error': 'Fehler',
   'notifications.warning': 'Warnung',
   'notifications.auth_failed': 'Authentifizierung fehlgeschlagen. Bitte versuche es erneut.',
@@ -1076,14 +1074,12 @@ export default {
   'notifications.session_expired': 'Deine Sitzung ist abgelaufen. Bitte melde dich erneut an, um fortzufahren.',
   'notifications.password_reset_sent': 'E-Mail zum Zurücksetzen des Passworts gesendet! Überprüfe deinen Posteingang.',
 
-  // Privacy Policy
-  'privacy.p1': 'LightMyFire („wir", „uns" oder „unser") wird von Revel Editions SASU betrieben, einer in Frankreich registrierten SASU-Gesellschaft (RCS: 849 409 313). Wir verpflichten uns, deine Privatsphäre zu schützen und die Datenschutz-Grundverordnung (DSGVO) einzuhalten. Diese Datenschutzerklärung erklärt, wie wir deine Informationen sammeln, verwenden, offenlegen und schützen, wenn du unsere Website und Dienste nutzt.',
+    'privacy.p1': 'LightMyFire („wir", „uns" oder „unser") wird von Revel Editions SASU betrieben, einer in Frankreich registrierten SASU-Gesellschaft (RCS: 849 409 313). Wir verpflichten uns, deine Privatsphäre zu schützen und die Datenschutz-Grundverordnung (DSGVO) einzuhalten. Diese Datenschutzerklärung erklärt, wie wir deine Informationen sammeln, verwenden, offenlegen und schützen, wenn du unsere Website und Dienste nutzt.',
   'privacy.h4.right_erasure': '6.3. Recht auf Löschung - „Recht auf Vergessenwerden" (Art. 17 DSGVO)',
   'privacy.p18': 'Du kannst die Löschung deiner personenbezogenen Daten beantragen. Du kannst einzelne Beiträge jederzeit über „Mein Profil" löschen. Um dein gesamtes Konto und alle zugehörigen Daten zu löschen, kontaktiere uns unter privacy@lightmyfire.app. Hinweis: Wir können bestimmte Daten aufbewahren, wenn gesetzlich vorgeschrieben (z.B. Bestellhistorie für Steuerzwecke).',
   'privacy.ul15.li3': 'Das „Zuletzt aktualisiert"-Datum oben in dieser Richtlinie aktualisieren',
 
-  // Terms of Service
-  'terms.p1': 'Diese Nutzungsbedingungen („Bedingungen") regeln deinen Zugang zu und die Nutzung von LightMyFire (der „Dienst"), betrieben von Revel Editions SASU, einem in Frankreich registrierten Unternehmen. Durch das Erstellen eines Kontos oder die Nutzung unseres Dienstes gehst du einen rechtsverbindlichen Vertrag mit uns ein.',
+    'terms.p1': 'Diese Nutzungsbedingungen („Bedingungen") regeln deinen Zugang zu und die Nutzung von LightMyFire (der „Dienst"), betrieben von Revel Editions SASU, einem in Frankreich registrierten Unternehmen. Durch das Erstellen eines Kontos oder die Nutzung unseres Dienstes gehst du einen rechtsverbindlichen Vertrag mit uns ein.',
   'terms.p8': 'Alle Inhalte, Funktionen und Funktionalitäten des Dienstes – einschließlich, aber nicht beschränkt auf Text, Grafiken, Logos, Symbole, Bilder, Audioclips, Datenkompilationen, Software und das „Look and Feel" der Website – sind ausschließliches Eigentum von Revel Editions SASU und sind durch internationale Urheber-, Marken- und andere Gesetze zum Schutz des geistigen Eigentums geschützt.',
   'terms.p9': '„LightMyFire", „LightSaver" und die zugehörigen Logos sind Marken von Revel Editions SASU. Du darfst diese Marken nicht ohne unsere vorherige schriftliche Genehmigung verwenden.',
   'terms.p10': 'Durch das Posten von nutzergenerierten Inhalten („UGC") auf dem Dienst gewährst du Revel Editions SASU eine weltweite, nicht-exklusive, lizenzgebührenfreie, unbefristete, übertragbare Lizenz, um:',
@@ -1092,21 +1088,16 @@ export default {
   'terms.p26': 'DER DIENST WIRD „WIE BESEHEN" UND „WIE VERFÜGBAR" OHNE JEGLICHE GARANTIEN BEREITGESTELLT, WEDER AUSDRÜCKLICH NOCH STILLSCHWEIGEND, EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF GARANTIEN DER MARKTGÄNGIGKEIT, EIGNUNG FÜR EINEN BESTIMMTEN ZWECK, EIGENTUMSRECHT, NICHTVERLETZUNG ODER UNUNTERBROCHENEN ODER FEHLERFREIEN DIENST. WIR GARANTIEREN NICHT, DASS:',
   'terms.ul16.li1': 'Wir aktualisieren das „Zuletzt aktualisiert"-Datum',
 
-  // How It Works Details
-  'how_it_works_details.step2.desc': 'Klebe es auf dein Feuerzeug und gib es weg oder „verliere" es. Seine Reise beginnt.',
+    'how_it_works_details.step2.desc': 'Klebe es auf dein Feuerzeug und gib es weg oder „verliere" es. Seine Reise beginnt.',
   'how_it_works_details.step6.desc': 'Durch deine Teilnahme schalten du und deine Feuerzeuge Erfolge frei. Füge deinen ersten Beitrag hinzu, um die „Erster Funke"-Trophäe zu erhalten. Beobachte, wie dein Feuerzeug in ein neues Land reist, um die „Globetrotter"-Trophäe zu verdienen. Schau in dein Profil, um alle <strong>Trophäen</strong> zu sehen, die du gesammelt hast!',
 
-  // FAQ
-  'faq.q4.desc': 'Du hast zwei Möglichkeiten. Alle Beiträge sind auf der Seite des Feuerzeugs sichtbar (die den PIN zum Zugriff erfordert). Wenn du postest, kannst du auch ein Kästchen ankreuzen, um es „öffentlich" zu machen, wodurch es auf unserem Homepage-Mosaik erscheinen kann.',
+    'faq.q4.desc': 'Du hast zwei Möglichkeiten. Alle Beiträge sind auf der Seite des Feuerzeugs sichtbar (die den PIN zum Zugriff erfordert). Wenn du postest, kannst du auch ein Kästchen ankreuzen, um es „öffentlich" zu machen, wodurch es auf unserem Homepage-Mosaik erscheinen kann.',
   'faq.public_post.answer': 'Du hast die volle Kontrolle! Alle Beiträge sind auf der privaten Seite des Feuerzeugs sichtbar (die den PIN zum Zugriff erfordert). Wenn du postest, kannst du auch ein Kästchen ankreuzen, um es „öffentlich" zu machen, wodurch es auf unserem Homepage-Mosaik erscheinen und von allen Besuchern der Website gesehen werden kann.',
 
-  // Save Lighter
-  'save_lighter.show_username_label': 'Meinen Benutzernamen als „LightSaver" anzeigen',
+    'save_lighter.show_username_label': 'Meinen Benutzernamen als „LightSaver" anzeigen',
 
-  // Add Post
-  'add_post.youtube_search.no_results': 'Keine Ergebnisse gefunden.',
+    'add_post.youtube_search.no_results': 'Keine Ergebnisse gefunden.',
   'add_post.refuel_message': 'Du bist ein Held! Durch Klicken auf „Posten" fügst du einen „Aufgetankt"-Eintrag zur Geschichte dieses Feuerzeugs hinzu.',
 
-  // Language selector
-  'language.zh-CN': '中文',
+    'language.zh-CN': '中文',
 } as const;

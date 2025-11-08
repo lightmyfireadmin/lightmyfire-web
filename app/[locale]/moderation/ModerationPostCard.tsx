@@ -21,8 +21,7 @@ export default function ModerationPostCard({ post, onAction }: ModerationPostCar
   const handleApprove = async () => {
     setLoading(true);
     try {
-      // Use approve_post RPC function to set requires_review=false
-      const { error } = await supabase.rpc('approve_post', { post_id: post.id });
+            const { error } = await supabase.rpc('approve_post', { post_id: post.id });
 
       if (error) throw error;
 
@@ -49,8 +48,7 @@ export default function ModerationPostCard({ post, onAction }: ModerationPostCar
   const handleReject = async () => {
     setLoading(true);
     try {
-      // Use reject_post RPC function to keep requires_review=true (hidden)
-      const { error } = await supabase.rpc('reject_post', { post_id: post.id });
+            const { error } = await supabase.rpc('reject_post', { post_id: post.id });
 
       if (error) throw error;
 

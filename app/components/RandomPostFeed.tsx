@@ -20,8 +20,7 @@ const RandomPostFeed = () => {
   const POSTS_TO_SHOW = 4;
   const POSTS_PER_LOAD = 4;
 
-  // Fetch posts with smooth transition
-  const fetchPosts = useCallback(async (showRefreshing = false) => {
+    const fetchPosts = useCallback(async (showRefreshing = false) => {
     if (showRefreshing) {
       setIsRefreshing(true);
       setIsTransitioning(true);
@@ -34,12 +33,9 @@ const RandomPostFeed = () => {
 
       if (data) {
         if (showRefreshing) {
-          // Fade out current posts
-          setTimeout(() => {
+                    setTimeout(() => {
             setPosts(data);
-            setHasMore(true); // Reset hasMore when refreshing
-            // Fade in new posts
-            setTimeout(() => {
+            setHasMore(true);                         setTimeout(() => {
               setIsTransitioning(false);
               setTimeout(() => setIsRefreshing(false), 100);
             }, 50);
@@ -60,8 +56,7 @@ const RandomPostFeed = () => {
     }
   }, [POSTS_TO_SHOW]);
 
-  // Load more posts
-  const loadMorePosts = useCallback(async () => {
+    const loadMorePosts = useCallback(async () => {
     if (isLoadingMore || !hasMore) return;
 
     setIsLoadingMore(true);
@@ -83,8 +78,7 @@ const RandomPostFeed = () => {
     }
   }, [isLoadingMore, hasMore, POSTS_PER_LOAD]);
 
-  // Initial load
-  useEffect(() => {
+    useEffect(() => {
     fetchPosts(false);
   }, [fetchPosts]);
 
@@ -115,10 +109,10 @@ const RandomPostFeed = () => {
         {t('home.mosaic.subtitle')}
       </p>
 
-      {/* Render posts */}
+      {}
       {posts.length > 0 ? (
         <div className="space-y-6">
-          {/* Posts grid with enhanced animations */}
+          {}
           <div
             className={`grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 transition-all duration-500 ease-in-out ${
               isTransitioning
@@ -146,9 +140,9 @@ const RandomPostFeed = () => {
             ))}
           </div>
 
-          {/* Action buttons */}
+          {}
           <div className="flex justify-center pt-4">
-            {/* See More Stories button */}
+            {}
             <button
               onClick={handleRefresh}
               disabled={isRefreshing}
@@ -165,7 +159,7 @@ const RandomPostFeed = () => {
             </button>
           </div>
 
-          {/* Loading more indicator */}
+          {}
           {isLoadingMore && (
             <div className="mt-6">
               <MosaicSkeleton count={POSTS_PER_LOAD} />

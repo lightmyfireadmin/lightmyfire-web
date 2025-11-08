@@ -7,8 +7,7 @@ export interface Toast {
   type: ToastType;
   title?: string;
   message: string;
-  duration?: number; // 0 means permanent until manually closed
-}
+  duration?: number; }
 
 interface ToastContextType {
   toasts: Toast[];
@@ -31,13 +30,11 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     const newToast: Toast = {
       ...toast,
       id,
-      duration: toast.duration ?? 5000, // Default 5 seconds
-    };
+      duration: toast.duration ?? 5000,     };
 
     setToasts((prev) => [...prev, newToast]);
 
-    // Auto-remove toast after duration
-    if (newToast.duration && newToast.duration > 0) {
+        if (newToast.duration && newToast.duration > 0) {
       setTimeout(() => {
         removeToast(id);
       }, newToast.duration);

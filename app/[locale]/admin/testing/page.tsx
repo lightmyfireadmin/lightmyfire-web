@@ -45,8 +45,7 @@ export default function AdminTestingPage() {
         return;
       }
 
-      // Check if user is admin
-      const { data: profile } = await supabase
+            const { data: profile } = await supabase
         .from('profiles')
         .select('role')
         .eq('id', session.user.id)
@@ -262,12 +261,10 @@ export default function AdminTestingPage() {
 
   function handleQuickAction(url: string, testData?: any) {
     if (url.startsWith('#')) {
-      // Scroll to section
-      const element = document.querySelector(url);
+            const element = document.querySelector(url);
       element?.scrollIntoView({ behavior: 'smooth' });
     } else {
-      // Open in new tab
-      window.open(url, '_blank');
+            window.open(url, '_blank');
     }
   }
 
@@ -316,7 +313,7 @@ export default function AdminTestingPage() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
+        {}
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
             🧪 Admin Testing Dashboard
@@ -326,7 +323,7 @@ export default function AdminTestingPage() {
           </p>
         </div>
 
-        {/* Database Statistics */}
+        {}
         <div className="bg-card border border-border rounded-lg p-6 mb-8 shadow-sm">
           <h2 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
             📊 Database Statistics
@@ -363,7 +360,7 @@ export default function AdminTestingPage() {
           </button>
         </div>
 
-        {/* Test Scenarios */}
+        {}
         <div className="bg-card border border-border rounded-lg p-6 mb-8 shadow-sm">
           <h2 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
             ✅ Test Scenarios
@@ -407,7 +404,7 @@ export default function AdminTestingPage() {
           </div>
         </div>
 
-        {/* Sticker Generation Tool */}
+        {}
         <div id="sticker-generator" className="bg-card border border-border rounded-lg p-6 mb-8 shadow-sm">
           <h2 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
             🏷️ Sticker Generation Test Tool
@@ -439,7 +436,7 @@ export default function AdminTestingPage() {
           </div>
         </div>
 
-        {/* Sitemap & Documentation */}
+        {}
         <div className="bg-card border border-border rounded-lg p-6 shadow-sm">
           <h2 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
             🗺️ Sitemap & Documentation

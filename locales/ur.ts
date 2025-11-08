@@ -142,8 +142,6 @@ export default {
   'home.stats.environmental_impact': 'Environmental contribution',
   'home.stats.join_movement': 'Join thousands of LightSavers making a difference, one lighter at a time.',
 
-
-
   'save_success.next_steps.title': 'Next Steps:',
   'save_success.next_steps.step1': 'Print: Download the PDF and print it, ideally on sticker paper.',
   'save_success.next_steps.step2': 'Stick: Cut out the sticker and apply it to your lighter.',
@@ -196,8 +194,7 @@ export default {
   'legal.faq.title': 'Frequently Asked Questions',
   'legal.about.title': 'About LightMyFire',
 
-  // Pack Selection
-  'order.pack_selection.title': 'اپنا پیکج منتخب کریں',
+    'order.pack_selection.title': 'اپنا پیکج منتخب کریں',
   'order.pack_selection.subtitle': 'اپنے موصول کرنے کے لیے کسٹم اسٹکرز کی تعداد منتخب کریں',
   'order.pack.starting_lightsaver': 'LightSaver شروع کریں',
   'order.pack.committed_lightsaver': 'LightSaver متعہد',
@@ -212,14 +209,12 @@ export default {
   'order.pack.price_calculated': 'قیمت چیک آؤٹ پر شمار کی جاتی ہے',
   'order.pack.select_button': 'منتخب کریں',
 
-  // Custom Branding
-  'order.custom_branding.title': 'ایونٹس اور برانڈز کے لیے کسٹم برانڈنگ',
+    'order.custom_branding.title': 'ایونٹس اور برانڈز کے لیے کسٹم برانڈنگ',
   'order.custom_branding.description': 'کیا آپ کسی ایونٹ کی منصوبہ بندی کر رہے ہیں یا اپنی اسٹکر شیٹوں پر کسٹم برانڈنگ چاہتے ہیں؟ ہم آپ کی تنظیم، برانڈ یا خصوصی ایونٹ کے لیے برانڈنگ ایریا کو نیا روپ دے سکتے ہیں!',
   'order.custom_branding.button': 'کسٹم برانڈنگ کے لیے ہم سے رابطہ کریں',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // Lighter Customization
-  'order.customization.title': 'اپنے اسٹکرز کو کسٹمائز کریں',
+    'order.customization.title': 'اپنے اسٹکرز کو کسٹمائز کریں',
   'order.customization.subtitle': 'ہر لائٹر کو ذاتی نوعیت دیں',
   'order.customization.apply_to_all': 'تمام پر لاگو کریں',
   'order.customization.lighter_number': 'لائٹر #{number}',
@@ -239,21 +234,18 @@ export default {
   'order.customization.validation_warning_multiple': 'براہ کرم آگے بڑھنے سے پہلے تمام لائٹرز کے نام درج کریں (ہر ایک 3-16 حروف)۔',
   'order.customization.save_button': 'اسٹکر کسٹمائزیشن محفوظ کریں',
 
-  // Order Summary
-  'order.summary.title': 'آرڈر کا خلاصہ',
+    'order.summary.title': 'آرڈر کا خلاصہ',
   'order.summary.pack': 'پیکج:',
   'order.summary.language': 'زبان:',
   'order.summary.stickers': 'اسٹکرز:',
   'order.summary.customized': '✓ کسٹمائز شدہ',
   'order.summary.total': 'کل:',
 
-  // Sticker Preview
-  'order.preview.title': 'آپ کا اسٹکر ڈیزائن',
+    'order.preview.title': 'آپ کا اسٹکر ڈیزائن',
   'order.preview.description': 'کسٹم اسٹکرز کی پیش نمائش۔ اسٹکر فائلیں ادائیگی کے بعد بنائی جائیں گی۔',
   'order.preview.more_stickers': '+{count} مزید',
 
-  // Shipping Address
-  'order.shipping.title': 'شپنگ کی معلومات',
+    'order.shipping.title': 'شپنگ کی معلومات',
   'order.shipping.description': 'براہ کرم اسٹکرز کی ترسیل کے لیے اپنا ڈاک کا پتہ فراہم کریں',
   'order.shipping.name_label': 'مکمل نام *',
   'order.shipping.name_placeholder': 'John Doe',
@@ -275,8 +267,7 @@ export default {
   'order.shipping.error_country': 'ملک درکار ہے',
   'order.shipping.continue_button': 'ادائیگی کے لیے جاری رکھیں',
 
-  // Payment
-  'order.payment.title': 'ادائیگی کی تفصیلات',
+    'order.payment.title': 'ادائیگی کی تفصیلات',
   'order.payment.order_id': 'آرڈر ID:',
   'order.payment.sticker_pack': 'اسٹکر پیکج:',
   'order.payment.stickers_count': '{count} اسٹکرز',
@@ -304,8 +295,7 @@ export default {
   'order.payment.stripe_not_configured': 'Stripe ترتیب نہیں دیا گیا۔ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY کو .env.local میں شامل کریں',
   'order.payment.loading': 'ادائیگی کی شکل لوڈ ہو رہی ہے...',
 
-  // Order Success
-  'order.success.title': 'آرڈر کامیاب!',
+    'order.success.title': 'آرڈر کامیاب!',
   'order.success.subtitle': 'آپ کے آرڈر کے لیے شکریہ',
   'order.success.confirmation_sent': 'تصدیق کی ای میل بھیجی گئی',
   'order.success.confirmation_description': 'تصدیق کی ای میل بھیجی گئی ہے:',
@@ -327,11 +317,9 @@ export default {
   'order.success.questions': 'کیا آپ کے آرڈر کے بارے میں کوئی سوالات ہیں؟',
   'order.success.contact_us': 'ہم سے رابطہ کریں',
 
-  // Change Pack
-  'order.change_pack': '← پیکج تبدیل کریں',
+    'order.change_pack': '← پیکج تبدیل کریں',
 
-  // Cookie Consent
-  'cookie.message': 'ہم صرف بنیادی فعالیت کے لیے کوکیز استعمال کرتے ہیں - ٹریکنگ کے لیے کبھی نہیں۔ آپ کی رازداری محفوظ ہے۔ تفصیلات کے لیے ہماری {privacyLink} دیکھیں۔',
+    'cookie.message': 'ہم صرف بنیادی فعالیت کے لیے کوکیز استعمال کرتے ہیں - ٹریکنگ کے لیے کبھی نہیں۔ آپ کی رازداری محفوظ ہے۔ تفصیلات کے لیے ہماری {privacyLink} دیکھیں۔',
   'cookie.privacy_link_text': 'رازداری کی پالیسی',
   'cookie.accept': 'قبول کریں',
   'cookie.decline': 'انکار کریں',
@@ -340,8 +328,7 @@ export default {
   'cookie_consent.accept': 'قبول کریں اور جاری رکھیں',
   'cookie_consent.privacy_link': 'رازداری کی پالیسی',
 
-  // FAQ Page - Full Content
-  'faq.subtitle': 'LightMyFire کے بارے میں عام سوالات کے جوابات تلاش کریں',
+    'faq.subtitle': 'LightMyFire کے بارے میں عام سوالات کے جوابات تلاش کریں',
   'faq.what_is.question': 'LightMyFire کیا ہے؟',
   'faq.what_is.answer': 'یہ فضلہ کو کم کرنے اور "انسانی موزیک" بنانے کا ایک منصوبہ ہے۔ ہم QR کوڈز والے اسٹکرز فروخت کرتے ہیں جو آپ لائٹر پر لگاتے ہیں۔ کوئی بھی جو اس لائٹر کو تلاش کرتا ہے وہ کوڈ کو اسکین کر سکتا ہے، اس کا منفرد PIN داخل کر سکتا ہے، اور اس کی ڈیجیٹل لاگ بک میں کہانی، تصویر، یا گانا شامل کر سکتا ہے۔ یہ لوگوں کو عالمی سطح پر جوڑنے اور لائٹرز کو دوسری زندگی دینے کا ایک منفرد طریقہ ہے۔',
   'faq.how_add_story.question': 'میں لائٹر میں کہانی کیسے شامل کروں؟',
@@ -375,8 +362,7 @@ export default {
   'faq.contact_footer': 'اپنا جواب نہیں مل سکتا؟',
   'faq.contact_link': 'ہم سے رابطہ کریں',
 
-  // Account Settings
-  'settings.auth.error.passwords_no_match': 'پاس ورڈز مماثل نہیں ہیں۔',
+    'settings.auth.error.passwords_no_match': 'پاس ورڈز مماثل نہیں ہیں۔',
   'settings.auth.success_message': 'اپ ڈیٹ کامیاب! اگر آپ نے اپنا ای میل ایڈریس اپ ڈیٹ کیا ہے تو براہ کرم تبدیلیوں کی تصدیق کے لیے اپنا ای میل چیک کریں۔',
   'settings.auth.title': 'اکاؤنٹ کی ترتیبات',
   'settings.auth.oauth_notice': '✓ آپ {provider} کے ذریعے لاگ ان ہیں۔ آپ کی توثیق آپ کے فراہم کنندہ کے ذریعہ محفوظ طریقے سے منظم کی جاتی ہے۔',
@@ -395,8 +381,7 @@ export default {
   'settings.auth.update_button': 'تصدیقی تفصیلات اپ ڈیٹ کریں',
   'settings.auth.saving': 'محفوظ ہو رہا ہے...',
 
-  // Country Names
-  'country.AT': 'آسٹریا',
+    'country.AT': 'آسٹریا',
   'country.BE': 'بیلجیم',
   'country.CA': 'کینیڈا',
   'country.CH': 'سوئٹزرلینڈ',
@@ -417,16 +402,14 @@ export default {
   'country.SE': 'سویڈن',
   'country.US': 'ریاستہائے متحدہ',
 
-  // Additional Save Lighter Keys
-  'save_lighter.helper.background_url': 'اختیاری۔ یہ تصویر URL آپ کے لائٹر کے صفحہ کے لیے پس منظر ہوگا۔ Imgur یا Unsplash لنک آزمائیں۔',
+    'save_lighter.helper.background_url': 'اختیاری۔ یہ تصویر URL آپ کے لائٹر کے صفحہ کے لیے پس منظر ہوگا۔ Imgur یا Unsplash لنک آزمائیں۔',
   'save_lighter.error.failed_to_save': 'لائٹر محفوظ کرنے میں ناکام: {message}',
   'save_lighter.pack_count': '{count} اسٹکرز کا پیکج',
   'save_lighter.pack_total': 'کل: {price}',
   'save_lighter.payment_mock': 'ادائیگی کی نقل کریں',
   'save_success.generating_sticker': 'اسٹکر بنایا جا رہا ہے...',
 
-  // Refill Guide (Don't Throw Me Away page)
-  'refill_guide.title': 'Don\'t Throw Me Away',
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature. A single company like BIC sold over 2.5 billion in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',

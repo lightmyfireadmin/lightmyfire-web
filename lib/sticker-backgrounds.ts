@@ -1,11 +1,5 @@
-// lib/sticker-backgrounds.ts
-// LightMyFire Sticker Sheet Background Generator
-// Creates beautiful, printable backgrounds for Printful sticker sheets
 
-/**
- * Background themes for sticker sheets
- * Each theme includes color palette and illustration style
- */
+
 export const BACKGROUND_THEMES = {
   FIRE: {
     name: 'Fire & Flame',
@@ -77,10 +71,6 @@ export const BACKGROUND_THEMES = {
 
 export type ThemeName = keyof typeof BACKGROUND_THEMES;
 
-/**
- * Sticker sheet dimensions for Printful
- * Standard sticker sheet sizes
- */
 export const SHEET_DIMENSIONS = {
   SMALL: {
     width: 4,
@@ -105,10 +95,6 @@ export const SHEET_DIMENSIONS = {
   },
 } as const;
 
-/**
- * Corner illustration SVG paths
- * Scalable vector graphics for high-quality printing
- */
 export const CORNER_ILLUSTRATIONS = {
   flames: {
     topLeft: `
@@ -300,9 +286,6 @@ export const CORNER_ILLUSTRATIONS = {
   },
 };
 
-/**
- * Generate SVG background for sticker sheet
- */
 export function generateStickerBackground(
   theme: ThemeName = 'FIRE',
   size: keyof typeof SHEET_DIMENSIONS = 'MEDIUM'
@@ -375,27 +358,17 @@ export function generateStickerBackground(
   return svg;
 }
 
-/**
- * Generate printable PDF with background
- * Returns base64 encoded PNG for use with Printful
- */
 export async function generatePrintableBackground(
   theme: ThemeName = 'FIRE',
   size: keyof typeof SHEET_DIMENSIONS = 'MEDIUM'
 ): Promise<string> {
   const svg = generateStickerBackground(theme, size);
 
-  // For Node.js environment, would use sharp or canvas
-  // For browser, would use canvas API
-  // This is a placeholder that returns the SVG as base64
-
+      
   const base64 = Buffer.from(svg).toString('base64');
   return `data:image/svg+xml;base64,${base64}`;
 }
 
-/**
- * Get all available themes for display
- */
 export function getAllThemes() {
   return Object.entries(BACKGROUND_THEMES).map(([key, theme]) => ({
     id: key as ThemeName,
@@ -403,10 +376,6 @@ export function getAllThemes() {
   }));
 }
 
-/**
- * Printful template configuration
- * For use with Printful's API
- */
 export function getPrintfulTemplateConfig(
   theme: ThemeName = 'FIRE',
   size: keyof typeof SHEET_DIMENSIONS = 'MEDIUM'
@@ -414,18 +383,15 @@ export function getPrintfulTemplateConfig(
   const dimensions = SHEET_DIMENSIONS[size];
 
   return {
-    variant_id: 9413, // Printful's Kiss Cut Sheet variant ID
-    files: [
+    variant_id: 9413,     files: [
       {
-        type: 'back', // Background layer
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/sticker-backgrounds/${theme}/${size}`,
+        type: 'back',         url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/sticker-backgrounds/${theme}/${size}`,
       },
     ],
     options: [
       {
         id: 'stitch_color',
-        value: '#FFFFFF', // White kiss-cut border
-      },
+        value: '#FFFFFF',       },
     ],
     dimensions: {
       width: dimensions.width,

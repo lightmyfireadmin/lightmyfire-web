@@ -26,18 +26,9 @@ interface OrderRequest {
   };
 }
 
-/**
- * Process sticker order after successful payment
- * 1. Verify payment with Stripe
- * 2. Create lighters in database with auto-generated PINs
- * 3. Generate sticker PNG files with real PINs
- * 4. Email files to dev email for fulfillment
- * 5. Check for trophy unlocks
- */
 export async function POST(request: NextRequest) {
   try {
-    // Use service role key for admin operations (creating lighters, bypassing RLS)
-    const supabaseAdmin = createClient(
+        const supabaseAdmin = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.SUPABASE_SERVICE_ROLE_KEY!,
       {
@@ -48,12 +39,10 @@ export async function POST(request: NextRequest) {
       }
     );
 
-    // Create separate client for user session verification (with cookies)
-    const cookieStore = cookies();
+        const cookieStore = cookies();
     const supabase = createServerSupabaseClient(cookieStore);
 
-    // Get authenticated user
-    const {
+        const {
       data: { session },
     } = await supabase.auth.getSession();
 
@@ -61,9 +50,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // SECURITY: Rate limit order processing to prevent abuse
-    // Max 5 orders per minute per user to prevent flooding
-    const rateLimitResult = rateLimit(request, 'payment', session.user.id);
+            const rateLimitResult = rateLimit(request, 'payment', session.user.id);
     if (!rateLimitResult.success) {
       return NextResponse.json(
         {
@@ -76,13 +63,11 @@ export async function POST(request: NextRequest) {
 
     const { paymentIntentId, lighterData, shippingAddress }: OrderRequest = await request.json();
 
-    // Validate input
-    if (!paymentIntentId || !lighterData || lighterData.length === 0) {
+        if (!paymentIntentId || !lighterData || lighterData.length === 0) {
       return NextResponse.json({ error: 'Invalid request data' }, { status: 400 });
     }
 
-    // Verify payment with Stripe
-    if (!process.env.STRIPE_SECRET_KEY) {
+        if (!process.env.STRIPE_SECRET_KEY) {
       console.error('STRIPE_SECRET_KEY not configured');
       return NextResponse.json({ error: 'Payment system not configured' }, { status: 500 });
     }
@@ -102,23 +87,18 @@ export async function POST(request: NextRequest) {
         }, { status: 400 });
       }
 
-      // Additional verification: validate pack size and check amount
-      const packSize = lighterData.length;
+            const packSize = lighterData.length;
 
-      // Validate pack size
-      if (!VALID_PACK_SIZES.includes(packSize as any)) {
+            if (!VALID_PACK_SIZES.includes(packSize as any)) {
         console.error('Invalid pack size:', packSize);
         return NextResponse.json({
           error: 'Invalid pack size. Must be 10, 20, or 50 stickers.'
         }, { status: 400 });
       }
 
-      // Get expected base price (stickers only, without shipping)
-      const expectedBaseAmount = PACK_PRICING[packSize as keyof typeof PACK_PRICING];
+            const expectedBaseAmount = PACK_PRICING[packSize as keyof typeof PACK_PRICING];
 
-      // Payment intent includes shipping cost, so total should be >= base amount
-      // We verify the amount is at least the base sticker price
-      // (shipping rates vary by country, so we can't do exact match)
+                  // (shipping rates vary by country, so we can't do exact match)
       if (paymentIntent.amount < expectedBaseAmount) {
         console.error('Payment amount too low:', {
           expectedMinimum: expectedBaseAmount,
@@ -130,8 +110,7 @@ export async function POST(request: NextRequest) {
         }, { status: 400 });
       }
 
-      // Sanity check: amount shouldn't be more than 10x the base price
-      // (prevents fraudulent high charges)
+            // (prevents fraudulent high charges)
       const maxReasonableAmount = expectedBaseAmount * 10;
       if (paymentIntent.amount > maxReasonableAmount) {
         console.error('Payment amount suspiciously high:', {
@@ -151,8 +130,7 @@ export async function POST(request: NextRequest) {
       }, { status: 500 });
     }
 
-    // Create lighters in database and get PINs (using admin client to bypass RLS)
-    console.log('Creating lighters for user:', session.user.id);
+        console.log('Creating lighters for user:', session.user.id);
     console.log('Lighter data to create:', JSON.stringify(lighterData, null, 2));
 
     const { data: createdLighters, error: dbError } = await supabaseAdmin.rpc('create_bulk_lighters', {
@@ -184,9 +162,7 @@ export async function POST(request: NextRequest) {
 
     console.log('Successfully created lighters:', createdLighters);
 
-    // Generate sticker PNG with real PIN codes
-    // The function now returns sticker_language directly
-    const stickerData = createdLighters.map((lighter: any) => ({
+            const stickerData = createdLighters.map((lighter: any) => ({
       id: lighter.lighter_id,
       name: lighter.lighter_name,
       pinCode: lighter.pin_code,
@@ -196,12 +172,9 @@ export async function POST(request: NextRequest) {
 
     console.log('Sticker data for generation:', stickerData);
 
-    // Generate PNG (reuse existing generation logic)
-    console.log('Generating sticker PNG...');
+        console.log('Generating sticker PNG...');
 
-    // Create internal authentication token for server-to-server call
-    // This allows the generate endpoint to trust this internal request
-    const internalAuthToken = Buffer.from(
+            const internalAuthToken = Buffer.from(
       `${session.user.id}:${Date.now()}:${process.env.SUPABASE_SERVICE_ROLE_KEY}`
     ).toString('base64');
 
@@ -236,8 +209,7 @@ export async function POST(request: NextRequest) {
     const fileExtension = contentType === 'application/zip' ? 'zip' : 'png';
     console.log(`Sticker file generated successfully (${contentType}), size: ${fileBuffer.byteLength} bytes`);
 
-    // Upload sticker file to Supabase Storage (PNG for 10 stickers, ZIP for 20/50 stickers)
-    const fileName = `${session.user.id}/${paymentIntentId}.${fileExtension}`;
+        const fileName = `${session.user.id}/${paymentIntentId}.${fileExtension}`;
     const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
       .from('sticker-orders')
       .upload(fileName, fileBuffer, {
@@ -247,22 +219,18 @@ export async function POST(request: NextRequest) {
 
     if (uploadError) {
       console.error('Failed to upload sticker to storage:', uploadError);
-      // Continue anyway - we'll still try to email it
-    }
+          }
 
-    // Get public URL for the uploaded file (signed URL valid for 7 days)
-    let stickerFileUrl = null;
+        let stickerFileUrl = null;
     if (uploadData) {
       const { data: urlData } = await supabaseAdmin.storage
         .from('sticker-orders')
-        .createSignedUrl(fileName, 604800); // 7 days in seconds
-
+        .createSignedUrl(fileName, 604800); 
       stickerFileUrl = urlData?.signedUrl || null;
       console.log('Sticker uploaded to storage:', stickerFileUrl);
     }
 
-    // Save order to database for emergency backup
-    const { error: orderError } = await supabaseAdmin
+        const { error: orderError } = await supabaseAdmin
       .from('sticker_orders')
       .insert({
         user_id: session.user.id,
@@ -284,13 +252,11 @@ export async function POST(request: NextRequest) {
 
     if (orderError) {
       console.error('Failed to save order to database:', orderError);
-      // Continue anyway - main order is already processed
-    } else {
+          } else {
       console.log('Order saved to database successfully');
     }
 
-    // Initialize Resend for reliable email delivery
-    const resend = new Resend(process.env.RESEND_API_KEY);
+        const resend = new Resend(process.env.RESEND_API_KEY);
 
     const orderDetails = `
 New Sticker Order - ${paymentIntentId}
@@ -316,8 +282,7 @@ ${createdLighters
 The sticker PNG file is attached. Please fulfill this order.
     `;
 
-    // Send order to fulfillment email using Resend
-    const fulfillmentEmail = process.env.FULFILLMENT_EMAIL || 'editionsrevel@gmail.com';
+        const fulfillmentEmail = process.env.FULFILLMENT_EMAIL || 'editionsrevel@gmail.com';
     let fulfillmentEmailSent = false;
     let customerEmailSent = false;
 
@@ -395,19 +360,16 @@ The sticker PNG file is attached. Please fulfill this order.
       fulfillmentEmailSent = true;
       console.log('Fulfillment email sent successfully via Resend');
 
-      // Update order record
-      await supabaseAdmin
+            await supabaseAdmin
         .from('sticker_orders')
         .update({ fulfillment_email_sent: true })
         .eq('payment_intent_id', paymentIntentId);
 
     } catch (emailError) {
       console.error('Failed to send fulfillment email:', emailError);
-      // Don't fail the order - stickers are stored in database
-    }
+          }
 
-    // Send confirmation email to customer using Resend
-    try {
+        try {
       await resend.emails.send({
         from: 'LightMyFire <onboarding@resend.dev>',
         to: [shippingAddress.email],
@@ -492,19 +454,16 @@ The sticker PNG file is attached. Please fulfill this order.
       customerEmailSent = true;
       console.log('Customer confirmation email sent successfully via Resend');
 
-      // Update order record
-      await supabaseAdmin
+            await supabaseAdmin
         .from('sticker_orders')
         .update({ customer_email_sent: true })
         .eq('payment_intent_id', paymentIntentId);
 
     } catch (emailError) {
       console.error('Failed to send customer confirmation email:', emailError);
-      // Don't fail the order, customer can see order in their account
-    }
+          }
 
-    // Return success with created lighter IDs and email status
-    const warnings = [];
+        const warnings = [];
     if (!fulfillmentEmailSent) {
       warnings.push('Fulfillment email failed to send - manual follow-up required');
     }

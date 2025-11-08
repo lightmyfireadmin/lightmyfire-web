@@ -142,8 +142,6 @@ export default {
   'home.stats.environmental_impact': 'Екологічний внесок',
   'home.stats.join_movement': 'Приєднуйтесь до тисяч LightSavers, які змінюють світ, по одній запальничці за раз.',
 
-
-
   'save_success.next_steps.title': 'Next Steps:',
   'save_success.next_steps.step1': 'Print: Download the PDF and print it, ideally on sticker paper.',
   'save_success.next_steps.step2': 'Stick: Cut out the sticker and apply it to your lighter.',
@@ -196,19 +194,16 @@ export default {
   'legal.faq.title': 'Часті питання',
   'legal.about.title': 'Про LightMyFire',
 
-  // Cookie Consent
-  'cookie.message': 'Ми використовуємо файли cookie лише для базової функціональності—ніколи для відстеження. Ваша конфіденційність захищена. Перегляньте нашу {privacyLink} для деталей.',
+    'cookie.message': 'Ми використовуємо файли cookie лише для базової функціональності—ніколи для відстеження. Ваша конфіденційність захищена. Перегляньте нашу {privacyLink} для деталей.',
   'cookie.privacy_link_text': 'Політику конфіденційності',
   'cookie.accept': 'Прийняти',
   'cookie.decline': 'Відхилити',
-  // Legacy keys (kept for compatibility)
-  'cookie_consent.title': 'Ми цінуємо вашу конфіденційність',
+    'cookie_consent.title': 'Ми цінуємо вашу конфіденційність',
   'cookie_consent.message': 'Ми використовуємо файли cookie, щоб забезпечити вам найкращий досвід на нашому сайті. Продовжуючи використовувати цей сайт, ви погоджуєтесь з нашою політикою конфіденційності та використанням файлів cookie.',
   'cookie_consent.accept': 'Прийняти та продовжити',
   'cookie_consent.privacy_link': 'Політика конфіденційності',
 
-  // FAQ Page - Full Content
-  'faq.subtitle': 'Знайдіть відповіді на поширені питання про LightMyFire',
+    'faq.subtitle': 'Знайдіть відповіді на поширені питання про LightMyFire',
   'faq.what_is.question': 'Що таке LightMyFire?',
   'faq.what_is.answer': 'Це проект, спрямований на скорочення відходів та створення "людської мозаїки". Ми продаємо наклейки з QR-кодами, які ви клеїте на запальничку. Кожен, хто знайде цю запальничку, може відсканувати код, ввести PIN-код і додати історію, фотографію або пісню до її цифрового журналу. Це унікальний спосіб об\'єднати людей по всьому світу та дати запальничкам друге життя.',
   'faq.how_add_story.question': 'Як додати історію до запальнички?',
@@ -242,8 +237,7 @@ export default {
   'faq.contact_footer': 'Не можете знайти відповідь?',
   'faq.contact_link': 'Зв\'яжіться з нами',
 
-  // Account Settings / Update Auth Form
-  'settings.auth.error.passwords_no_match': 'Паролі не співпадають.',
+    'settings.auth.error.passwords_no_match': 'Паролі не співпадають.',
   'settings.auth.success_message': 'Оновлення успішне! Будь ласка, перевірте свою електронну пошту, щоб підтвердити зміни, якщо ви оновили свою адресу електронної пошти.',
   'settings.auth.title': 'Налаштування облікового запису',
   'settings.auth.oauth_notice': '✓ Ви увійшли через {provider}. Ваша автентифікація безпечно керується вашим провайдером.',
@@ -262,8 +256,7 @@ export default {
   'settings.auth.update_button': 'Оновити дані автентифікації',
   'settings.auth.saving': 'Збереження...',
 
-  // Country Names
-  'country.AT': 'Австрія',
+    'country.AT': 'Австрія',
   'country.BE': 'Бельгія',
   'country.CA': 'Канада',
   'country.CH': 'Швейцарія',
@@ -284,8 +277,7 @@ export default {
   'country.SE': 'Швеція',
   'country.US': 'Сполучені Штати',
 
-  // Pack Selection
-  'order.pack_selection.title': 'Виберіть свій пакет',
+    'order.pack_selection.title': 'Виберіть свій пакет',
   'order.pack_selection.subtitle': 'Виберіть кількість спеціальних наклейок, які ви хочете замовити',
   'order.pack.starting_lightsaver': 'LightSaver для початківців',
   'order.pack.committed_lightsaver': 'Зобов\'язаний LightSaver',
@@ -300,14 +292,12 @@ export default {
   'order.pack.price_calculated': 'Ціна розраховується під час оформлення замовлення',
   'order.pack.select_button': 'Вибрати',
 
-  // Custom Branding
-  'order.custom_branding.title': 'Спеціальне брендування для заходів та брендів',
+    'order.custom_branding.title': 'Спеціальне брендування для заходів та брендів',
   'order.custom_branding.description': 'Плануєте захід або хочете спеціального брендування на листах наклейок? Ми можемо персоналізувати область брендування для вашої організації, бренду чи спеціального заходу!',
   'order.custom_branding.button': 'Зв\'яжіться з нами для спеціального брендування',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // Lighter Customization
-  'order.customization.title': 'Налаштуйте свої наклейки',
+    'order.customization.title': 'Налаштуйте свої наклейки',
   'order.customization.subtitle': 'Персоналізуйте кожну запальничку',
   'order.customization.apply_to_all': 'Застосувати до всіх',
   'order.customization.lighter_number': 'Запальничка #{number}',
@@ -327,21 +317,18 @@ export default {
   'order.customization.validation_warning_multiple': 'Будь ласка, заповніть всі назви запальничок (по 3-16 символів кожна) перед тим, як продовжити.',
   'order.customization.save_button': 'Зберегти налаштування наклейок',
 
-  // Order Summary
-  'order.summary.title': 'Резюме замовлення',
+    'order.summary.title': 'Резюме замовлення',
   'order.summary.pack': 'Пакет:',
   'order.summary.language': 'Мова:',
   'order.summary.stickers': 'Наклейки:',
   'order.summary.customized': '✓ Налаштовано',
   'order.summary.total': 'Всього:',
 
-  // Sticker Preview
-  'order.preview.title': 'Дизайн вашої наклейки',
+    'order.preview.title': 'Дизайн вашої наклейки',
   'order.preview.description': 'Попередній перегляд спеціальних наклейок. Файли наклейок будуть створені після оплати.',
   'order.preview.more_stickers': '+{count} ще',
 
-  // Shipping Address
-  'order.shipping.title': 'Інформація про доставку',
+    'order.shipping.title': 'Інформація про доставку',
   'order.shipping.description': 'Будь ласка, надайте свою адресу доставки для отримання наклейок',
   'order.shipping.name_label': 'Повне ім\'я *',
   'order.shipping.name_placeholder': 'John Doe',
@@ -363,8 +350,7 @@ export default {
   'order.shipping.error_country': 'Потрібна країна',
   'order.shipping.continue_button': 'Перейти до оплати',
 
-  // Payment
-  'order.payment.title': 'Деталі платежу',
+    'order.payment.title': 'Деталі платежу',
   'order.payment.order_id': 'ID замовлення:',
   'order.payment.sticker_pack': 'Пакет наклейок:',
   'order.payment.stickers_count': '{count} наклейок',
@@ -392,8 +378,7 @@ export default {
   'order.payment.stripe_not_configured': 'Stripe не налаштовано. Додайте NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY до .env.local',
   'order.payment.loading': 'Завантаження форми платежу...',
 
-  // Order Success
-  'order.success.title': 'Замовлення успішне!',
+    'order.success.title': 'Замовлення успішне!',
   'order.success.subtitle': 'Дякуємо за ваше замовлення',
   'order.success.confirmation_sent': 'Лист підтвердження відправлено',
   'order.success.confirmation_description': 'Лист підтвердження відправлено на:',
@@ -415,10 +400,8 @@ export default {
   'order.success.questions': 'Маєте питання щодо вашого замовлення?',
   'order.success.contact_us': 'Зв\'яжіться з нами',
 
-  // Change Pack
-
-  // Refill Guide (Don't Throw Me Away page)
-  'refill_guide.title': 'Don\'t Throw Me Away',
+  
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature. A single company like BIC sold over 2.5 billion in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',

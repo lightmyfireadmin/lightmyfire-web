@@ -1,7 +1,4 @@
-/**
- * Language names mapping for all supported locales
- * Maps locale codes to their native language names
- */
+
 
 export const languageNames: Record<string, { nativeName: string; englishName: string }> = {
   en: { nativeName: 'English', englishName: 'English' },
@@ -29,13 +26,8 @@ export const languageNames: Record<string, { nativeName: string; englishName: st
   'zh-CN': { nativeName: '中文', englishName: 'Mandarin Chinese' },
 };
 
-/**
- * Get supported second languages for stickers (excluding English which is always included)
- * All locales are now supported for sticker second language
- */
 export const getSecondLanguageOptions = () => {
-  // All languages are now supported for stickers (excluding English)
-  return Object.entries(languageNames)
+    return Object.entries(languageNames)
     .filter(([code]) => code !== 'en')
     .map(([code, { nativeName }]) => ({
       code,
@@ -45,16 +37,10 @@ export const getSecondLanguageOptions = () => {
     .sort((a, b) => a.label.localeCompare(b.label));
 };
 
-/**
- * Get default second language for stickers based on user's current locale
- * Returns 'fr' by default, unless user's locale is not English, then use their locale
- */
 export const getDefaultStickerLanguage = (currentLocale: string): string => {
-  // If current locale is not English, use it as default
-  if (currentLocale !== 'en' && languageNames[currentLocale]) {
+    if (currentLocale !== 'en' && languageNames[currentLocale]) {
     return currentLocale;
   }
 
-  // Otherwise default to French
-  return 'fr';
+    return 'fr';
 };

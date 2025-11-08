@@ -17,15 +17,12 @@ export default function PinEntryForm() {
   const router = useRouter();
   const lang = useCurrentLocale();
 
-  // Pre-fill PIN from URL query parameter (e.g., /find?pin=ABC-123)
-  useEffect(() => {
+    useEffect(() => {
     const pinFromUrl = searchParams.get('pin');
     if (pinFromUrl) {
-      // Clean and format the PIN
-      let formattedPin = pinFromUrl.toUpperCase().replace(/[^A-Z0-9]/g, '');
+            let formattedPin = pinFromUrl.toUpperCase().replace(/[^A-Z0-9]/g, '');
 
-      // Add hyphen if not present and valid format
-      if (formattedPin.length >= 3 && !formattedPin.includes('-')) {
+            if (formattedPin.length >= 3 && !formattedPin.includes('-')) {
         formattedPin = `${formattedPin.slice(0, 3)}-${formattedPin.slice(3)}`;
       }
 
@@ -72,7 +69,6 @@ export default function PinEntryForm() {
 
     setLoading(false);
   };
-
 
   return (
     <div className="w-full max-w-md rounded-lg bg-background p-5 sm:p-6 lg:p-8 shadow-md lg:shadow-lg">

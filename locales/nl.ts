@@ -142,7 +142,6 @@ export default {
   'home.stats.environmental_impact': 'Milieubijdrage',
   'home.stats.join_movement': 'Sluit je aan bij duizenden LightSavers die het verschil maken, één aansteker tegelijk.',
 
-
   'save_lighter.helper.background_url': "Optional. This image URL will be the background for your lighter's page. Try an Imgur or Unsplash link.",
 
   'save_success.next_steps.title': 'Next Steps:',
@@ -241,8 +240,7 @@ export default {
 
     'legal.about.title': 'Over LightMyFire',
 
-  // Cookie Consent
-  'cookie.message': 'We gebruiken cookies alleen voor basisfunctionaliteit—nooit voor tracking. Uw privacy is beschermd. Zie ons {privacyLink} voor details.',
+    'cookie.message': 'We gebruiken cookies alleen voor basisfunctionaliteit—nooit voor tracking. Uw privacy is beschermd. Zie ons {privacyLink} voor details.',
   'cookie.privacy_link_text': 'Privacybeleid',
   'cookie.accept': 'Accepteren',
   'cookie.decline': 'Afwijzen',
@@ -251,8 +249,7 @@ export default {
   'cookie_consent.accept': 'Accepteren en doorgaan',
   'cookie_consent.privacy_link': 'Privacybeleid',
 
-  // FAQ Page - Full Content
-  'faq.subtitle': 'Vind antwoorden op veelgestelde vragen over LightMyFire',
+    'faq.subtitle': 'Vind antwoorden op veelgestelde vragen over LightMyFire',
   'faq.what_is.question': 'Wat is LightMyFire?',
   'faq.what_is.answer': 'Het is een project om afval te verminderen en een "menselijk mozaïek" te creëren. We verkopen stickers met QR-codes die je op een aansteker plakt. Iedereen die die aansteker vindt, kan de code scannen, de pincode invoeren en een verhaal, foto of nummer toevoegen aan het digitale logboek. Het is een unieke manier om mensen wereldwijd te verbinden en aanstekers een tweede leven te geven.',
   'faq.how_add_story.question': 'Hoe voeg ik een verhaal toe aan een aansteker?',
@@ -286,8 +283,7 @@ export default {
   'faq.contact_footer': 'Kun je je antwoord niet vinden?',
   'faq.contact_link': 'Neem contact met ons op',
 
-  // Account Settings / Update Auth Form
-  'settings.auth.error.passwords_no_match': 'Wachtwoorden komen niet overeen.',
+    'settings.auth.error.passwords_no_match': 'Wachtwoorden komen niet overeen.',
   'settings.auth.success_message': 'Update succesvol! Controleer je e-mail om de wijzigingen te bevestigen als je je e-mailadres hebt bijgewerkt.',
   'settings.auth.title': 'Accountinstellingen',
   'settings.auth.oauth_notice': '✓ Je bent ingelogd via {provider}. Je authenticatie wordt veilig beheerd door je provider.',
@@ -306,8 +302,7 @@ export default {
   'settings.auth.update_button': 'Authenticatiegegevens bijwerken',
   'settings.auth.saving': 'Opslaan...',
 
-  // Country Names
-  'country.AT': 'Oostenrijk',
+    'country.AT': 'Oostenrijk',
   'country.BE': 'België',
   'country.CA': 'Canada',
   'country.CH': 'Zwitserland',
@@ -328,8 +323,7 @@ export default {
   'country.SE': 'Zweden',
   'country.US': 'Verenigde Staten',
 
-  // Save Lighter Flow - Pack Selection
-  'order.choose_pack_title': 'Kies uw pakket',
+    'order.choose_pack_title': 'Kies uw pakket',
   'order.choose_pack_subtitle': 'Selecteer hoeveel aangepaste stickers u wilt bestellen',
   'order.pack_sheets_single': 'vel',
   'order.pack_sheets_plural': 'vellen',
@@ -343,9 +337,7 @@ export default {
   'save_success.generating_sticker': 'Sticker genereren...',
   'save_success.error_fetching': 'Er is een fout opgetreden bij het ophalen van aanstekerdetails.',
 
-  // --- Sticker Order Flow ---
-  // Pack Selection
-  'order.pack_selection.title': 'Kies uw pakket',
+      'order.pack_selection.title': 'Kies uw pakket',
   'order.pack_selection.subtitle': 'Selecteer hoeveel aangepaste stickers u wilt bestellen',
   'order.pack.starting_lightsaver': 'Beginnende LightSaver',
   'order.pack.committed_lightsaver': 'Toegewijde LightSaver',
@@ -360,14 +352,12 @@ export default {
   'order.pack.price_calculated': 'Prijs berekend bij afrekenen',
   'order.pack.select_button': 'Selecteren',
 
-  // Custom Branding
-  'order.custom_branding.title': 'Aangepaste branding voor evenementen en merken',
+    'order.custom_branding.title': 'Aangepaste branding voor evenementen en merken',
   'order.custom_branding.description': 'Plant u een evenement of wilt u aangepaste branding op uw stickervellen? We kunnen het brandinggebied personaliseren voor uw organisatie, merk of speciaal evenement!',
   'order.custom_branding.button': 'Neem contact met ons op voor aangepaste branding',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // Lighter Customization
-  'order.customization.title': 'Personaliseer uw stickers',
+    'order.customization.title': 'Personaliseer uw stickers',
   'order.customization.subtitle': 'Personaliseer elke aansteker',
   'order.customization.apply_to_all': 'Toepassen op alle',
   'order.customization.lighter_number': 'Aansteker #{number}',
@@ -387,21 +377,18 @@ export default {
   'order.customization.validation_warning_multiple': 'Vul alle namen van de aanstekers in (elk 3-16 tekens) voordat u doorgaat.',
   'order.customization.save_button': 'Personalisaties opslaan',
 
-  // Order Summary
-  'order.summary.title': 'Besteloverzicht',
+    'order.summary.title': 'Besteloverzicht',
   'order.summary.pack': 'Pakket:',
   'order.summary.language': 'Taal:',
   'order.summary.stickers': 'Stickers:',
   'order.summary.customized': '✓ Gepersonaliseerd',
   'order.summary.total': 'Totaal:',
 
-  // Sticker Preview
-  'order.preview.title': 'Uw stickerontwerp',
+    'order.preview.title': 'Uw stickerontwerp',
   'order.preview.description': 'Voorbeeld van uw aangepaste stickers. Stickerbestanden worden gegenereerd na betaling.',
   'order.preview.more_stickers': '+{count} meer',
 
-  // Shipping Address
-  'order.shipping.title': 'Verzendinformatie',
+    'order.shipping.title': 'Verzendinformatie',
   'order.shipping.description': 'Geef uw verzendadres op voor bezorging van de stickers',
   'order.shipping.name_label': 'Volledige naam *',
   'order.shipping.name_placeholder': 'Jan Jansen',
@@ -423,8 +410,7 @@ export default {
   'order.shipping.error_country': 'Land is verplicht',
   'order.shipping.continue_button': 'Ga door naar betaling',
 
-  // Payment
-  'order.payment.title': 'Betalingsdetails',
+    'order.payment.title': 'Betalingsdetails',
   'order.payment.order_id': 'Bestelnummer:',
   'order.payment.sticker_pack': 'Stickerpakket:',
   'order.payment.stickers_count': '{count} stickers',
@@ -452,8 +438,7 @@ export default {
   'order.payment.stripe_not_configured': 'Stripe niet geconfigureerd. Voeg NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY toe aan .env.local',
   'order.payment.loading': 'Betalingsformulier laden...',
 
-  // Order Success
-  'order.success.title': 'Bestelling gelukt!',
+    'order.success.title': 'Bestelling gelukt!',
   'order.success.subtitle': 'Bedankt voor uw bestelling',
   'order.success.confirmation_sent': 'Bevestigingsmail verzonden',
   'order.success.confirmation_description': 'Een bevestigingsmail is verzonden naar:',
@@ -475,8 +460,7 @@ export default {
   'order.success.questions': 'Vragen over uw bestelling?',
   'order.success.contact_us': 'Neem contact met ons op',
 
-  // Change Pack
-  'order.change_pack': '← Pakket wijzigen',
+    'order.change_pack': '← Pakket wijzigen',
 
   'language.en': 'English',
   'language.fr': 'Français',
@@ -491,8 +475,7 @@ export default {
   'language.ko': '한국어',
   'language.zh-CN': '中文',
 
-  // --- Refill Guide Page ---
-  'refill_guide.title': 'Don\'t Throw Me Away',
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature. A single company like BIC sold over 2.5 billion in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',

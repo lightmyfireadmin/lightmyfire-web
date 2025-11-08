@@ -1,4 +1,3 @@
-// Convert ISO country code to flag emoji
 export function countryCodeToFlag(code: string | null): string {
   if (!code || code.length !== 2) return '';
 
@@ -10,7 +9,6 @@ export function countryCodeToFlag(code: string | null): string {
   return String.fromCodePoint(...codePoints);
 }
 
-// Get country name from code
 export function getCountryName(code: string | null): string {
   if (!code) return '';
 

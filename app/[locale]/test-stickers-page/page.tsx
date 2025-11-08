@@ -8,8 +8,7 @@ export default function TestStickersPage() {
   const [error, setError] = useState<string | null>(null);
   const [count, setCount] = useState(10);
 
-  // Only show in development
-  if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'production') {
     return (
       <div className="min-h-screen flex items-center justify-center p-4">
         <div className="text-center">
@@ -44,8 +43,7 @@ export default function TestStickersPage() {
         throw new Error(errorData.error || 'Failed to generate stickers');
       }
 
-      // Download the file (PNG for 10 stickers, ZIP for 20/50 stickers)
-      const blob = await response.blob();
+            const blob = await response.blob();
       const contentType = response.headers.get('Content-Type');
       const extension = contentType === 'application/zip' ? 'zip' : 'png';
 
@@ -87,7 +85,7 @@ export default function TestStickersPage() {
           )}
 
           <div className="space-y-6">
-            {/* Default Test Stickers */}
+            {}
             <div className="border border-border rounded-lg p-6 bg-muted/50">
               <h2 className="text-xl font-semibold text-foreground mb-3">Quick Test (10 Stickers)</h2>
               <p className="text-sm text-muted-foreground mb-4">
@@ -111,7 +109,7 @@ export default function TestStickersPage() {
               </button>
             </div>
 
-            {/* Custom Count */}
+            {}
             <div className="border border-border rounded-lg p-6">
               <h2 className="text-xl font-semibold text-foreground mb-3">Custom Test</h2>
               <p className="text-sm text-muted-foreground mb-4">
@@ -151,7 +149,7 @@ export default function TestStickersPage() {
               </button>
             </div>
 
-            {/* Info Box */}
+            {}
             <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
               <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
                 <span>💡</span> How it works

@@ -46,16 +46,14 @@ export default function MyOrdersPage() {
 
   const checkAuthAndFetchOrders = useCallback(async () => {
     try {
-      // Check authentication
-      const { data: { session } } = await supabase.auth.getSession();
+            const { data: { session } } = await supabase.auth.getSession();
 
       if (!session) {
         router.push('/');
         return;
       }
 
-      // Fetch orders
-      const response = await fetch('/api/my-orders');
+            const response = await fetch('/api/my-orders');
 
       if (!response.ok) {
         if (response.status === 401) {
@@ -163,7 +161,7 @@ export default function MyOrdersPage() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
+        {}
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
             My Orders
@@ -173,7 +171,7 @@ export default function MyOrdersPage() {
           </p>
         </div>
 
-        {/* Orders List */}
+        {}
         {orders.length === 0 ? (
           <div className="bg-card border border-border rounded-lg p-12 text-center">
             <div className="text-6xl mb-4">📦</div>
@@ -197,7 +195,7 @@ export default function MyOrdersPage() {
                 key={order.id}
                 className="bg-card border border-border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
               >
-                {/* Order Header */}
+                {}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 pb-4 border-b border-border">
                   <div>
                     <div className="flex items-center gap-3 mb-2">
@@ -226,9 +224,9 @@ export default function MyOrdersPage() {
                   </div>
                 </div>
 
-                {/* Order Details Grid */}
+                {}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  {/* Shipping Address */}
+                  {}
                   <div>
                     <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
                       📍 Shipping Address
@@ -243,7 +241,7 @@ export default function MyOrdersPage() {
                     </div>
                   </div>
 
-                  {/* Sticker Names */}
+                  {}
                   {order.lighterNames && order.lighterNames.length > 0 && (
                     <div>
                       <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
@@ -263,7 +261,7 @@ export default function MyOrdersPage() {
                   )}
                 </div>
 
-                {/* Tracking Information */}
+                {}
                 {order.trackingNumber && (
                   <div className="bg-muted/50 rounded-lg p-4 mb-4">
                     <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
@@ -310,7 +308,7 @@ export default function MyOrdersPage() {
                   </div>
                 )}
 
-                {/* Hold/Failure Messages */}
+                {}
                 {order.onHold && order.holdReason && (
                   <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mb-4">
                     <h4 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
@@ -353,7 +351,7 @@ export default function MyOrdersPage() {
                   </div>
                 )}
 
-                {/* Customer Service */}
+                {}
                 <div className="pt-4 border-t border-border">
                   <p className="text-sm text-muted-foreground">
                     Need help?{' '}

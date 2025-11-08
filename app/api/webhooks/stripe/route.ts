@@ -51,8 +51,7 @@ export async function POST(request: NextRequest) {
       }
     );
 
-    // Check if we've already processed this webhook event (idempotency)
-    const { data: existingEvent } = await supabase
+        const { data: existingEvent } = await supabase
       .from('webhook_events')
       .select('id')
       .eq('id', event.id)
@@ -63,8 +62,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ received: true, status: 'already_processed' }, { status: 200 });
     }
 
-    // Store webhook event to prevent duplicate processing
-    const { error: insertError } = await supabase
+        const { error: insertError } = await supabase
       .from('webhook_events')
       .insert({
         id: event.id,
@@ -73,9 +71,7 @@ export async function POST(request: NextRequest) {
       });
 
     if (insertError) {
-      // If insert fails due to unique constraint, another instance already processed it
-      if (insertError.code === '23505') { // Unique violation
-        console.log(`Webhook event ${event.id} was processed by another instance`);
+            if (insertError.code === '23505') {         console.log(`Webhook event ${event.id} was processed by another instance`);
         return NextResponse.json({ received: true, status: 'already_processed' }, { status: 200 });
       }
       console.error('Failed to insert webhook event:', insertError);

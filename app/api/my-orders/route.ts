@@ -1,5 +1,3 @@
-// app/api/my-orders/route.ts
-// API route to fetch user's sticker orders
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
@@ -9,8 +7,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
-    // Authenticate user
-    const cookieStore = cookies();
+        const cookieStore = cookies();
     const supabase = createServerSupabaseClient(cookieStore);
     const { data: { session } } = await supabase.auth.getSession();
 
@@ -21,8 +18,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Fetch user's orders
-    const { data: orders, error } = await supabase
+        const { data: orders, error } = await supabase
       .from('sticker_orders')
       .select('*')
       .eq('user_id', session.user.id)
@@ -36,8 +32,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Transform orders for frontend
-    const transformedOrders = orders?.map((order) => ({
+        const transformedOrders = orders?.map((order) => ({
       id: order.id,
       orderId: order.payment_intent_id || `LMF-${order.id}`,
       status: order.status || 'pending',

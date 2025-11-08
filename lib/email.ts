@@ -1,13 +1,7 @@
-/**
- * LightMyFire Email Service
- * Centralized email templates and sending logic using Resend
- *
- * All email templates support multi-language content and follow brand guidelines
- */
+
 
 import { Resend } from 'resend';
 
-// Initialize Resend client
 let resendClient: Resend | null = null;
 
 function getResendClient(): Resend {
@@ -21,7 +15,6 @@ function getResendClient(): Resend {
   return resendClient;
 }
 
-// Email configuration
 const EMAIL_CONFIG = {
   from: {
     default: 'LightMyFire <noreply@lightmyfire.app>',
@@ -42,7 +35,6 @@ const EMAIL_CONFIG = {
   },
 };
 
-// Common email styles
 const EMAIL_STYLES = `
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -141,10 +133,6 @@ const EMAIL_STYLES = `
   }
 `;
 
-// ============================================================================
-// HELPER FUNCTIONS
-// ============================================================================
-
 interface SendEmailOptions {
   to: string | string[];
   subject: string;
@@ -157,9 +145,6 @@ interface SendEmailOptions {
   }>;
 }
 
-/**
- * Send email using Resend
- */
 async function sendEmail(options: SendEmailOptions): Promise<{ success: boolean; error?: string; id?: string }> {
   try {
     const resend = getResendClient();
@@ -188,9 +173,6 @@ async function sendEmail(options: SendEmailOptions): Promise<{ success: boolean;
   }
 }
 
-/**
- * Wrap content in standard email template
- */
 function wrapEmailTemplate(content: string, title: string, subtitle?: string): string {
   return `
     <!DOCTYPE html>
@@ -224,10 +206,6 @@ function wrapEmailTemplate(content: string, title: string, subtitle?: string): s
   `;
 }
 
-// ============================================================================
-// ORDER EMAILS
-// ============================================================================
-
 interface OrderShippedData {
   orderId: string;
   customerName: string;
@@ -240,9 +218,6 @@ interface OrderShippedData {
   estimatedDelivery?: string;
 }
 
-/**
- * Send order shipped notification with tracking information
- */
 export async function sendOrderShippedEmail(data: OrderShippedData) {
   const content = `
     <p>Great news, <strong>${data.customerName}</strong>! 📦</p>
@@ -282,16 +257,6 @@ export async function sendOrderShippedEmail(data: OrderShippedData) {
   });
 }
 
-// ============================================================================
-// MODERATION EMAILS - REMOVED
-// ============================================================================
-// NOTE: Users are NEVER notified about moderation status per product requirements.
-// Moderators handle all communication manually on a case-by-case basis.
-
-// ============================================================================
-// ENGAGEMENT EMAILS
-// ============================================================================
-
 interface FirstPostData {
   userEmail: string;
   userName?: string;
@@ -301,9 +266,6 @@ interface FirstPostData {
   lighterUrl: string;
 }
 
-/**
- * Celebrate user's first post
- */
 export async function sendFirstPostCelebrationEmail(data: FirstPostData) {
   const content = `
     <p>Congratulations, ${data.userName || 'LightSaver'}! 🎉</p>
@@ -359,9 +321,6 @@ interface TrophyEarnedData {
   profileUrl: string;
 }
 
-/**
- * Notify user they earned a trophy
- */
 export async function sendTrophyEarnedEmail(data: TrophyEarnedData) {
   const content = `
     <p>Awesome work, ${data.userName || 'LightSaver'}! 🏆</p>
@@ -406,9 +365,6 @@ interface LighterActivityData {
   lighterUrl: string;
 }
 
-/**
- * Notify user of activity on their lighter
- */
 export async function sendLighterActivityEmail(data: LighterActivityData) {
   const activityTitles = {
     new_post: 'New Story Added',
@@ -453,10 +409,6 @@ export async function sendLighterActivityEmail(data: LighterActivityData) {
   });
 }
 
-// ============================================================================
-// ACCOUNT & ONBOARDING EMAILS
-// ============================================================================
-
 interface WelcomeEmailData {
   userEmail: string;
   userName: string;
@@ -464,9 +416,6 @@ interface WelcomeEmailData {
   saveLighterUrl: string;
 }
 
-/**
- * Welcome email for new signups
- */
 export async function sendWelcomeEmail(data: WelcomeEmailData) {
   const content = `
     <p>Hi <strong>${data.userName}</strong>! 👋</p>
@@ -504,10 +453,6 @@ export async function sendWelcomeEmail(data: WelcomeEmailData) {
   });
 }
 
-// ============================================================================
-// ORDER CONFIRMATION & SHIPPING EMAILS
-// ============================================================================
-
 interface OrderConfirmationEmailData {
   userEmail: string;
   userName: string;
@@ -526,9 +471,6 @@ interface OrderConfirmationEmailData {
   orderDetailsUrl: string;
 }
 
-/**
- * Order confirmation email sent immediately after payment
- */
 export async function sendOrderConfirmationEmail(data: OrderConfirmationEmailData) {
   const content = `
     <p>Hi <strong>${data.userName}</strong>,</p>
@@ -582,10 +524,6 @@ export async function sendOrderConfirmationEmail(data: OrderConfirmationEmailDat
   });
 }
 
-// ============================================================================
-// ADMIN & MODERATION TEAM EMAILS
-// ============================================================================
-
 interface ModeratorInviteData {
   userEmail: string;
   userName: string;
@@ -594,9 +532,6 @@ interface ModeratorInviteData {
   moderatorResponsibilities: string[];
 }
 
-/**
- * Invite user to become a moderator
- */
 export async function sendModeratorInviteEmail(data: ModeratorInviteData) {
   const content = `
     <p>Hi <strong>${data.userName}</strong>,</p>
@@ -641,36 +576,24 @@ export async function sendModeratorInviteEmail(data: ModeratorInviteData) {
   });
 }
 
-// ============================================================================
-// EXPORTS
-// ============================================================================
-
 export const emailService = {
-  // Account & Onboarding
-  sendWelcomeEmail,
+    sendWelcomeEmail,
 
-  // Order emails
-  sendOrderConfirmationEmail,
+    sendOrderConfirmationEmail,
   sendOrderShippedEmail,
 
-  // Moderation emails - REMOVED (users are never notified of moderation status)
-
-  // Engagement emails
-  sendFirstPostCelebrationEmail,
+  
+    sendFirstPostCelebrationEmail,
   sendTrophyEarnedEmail,
   sendLighterActivityEmail,
 
-  // Admin emails
-  sendModeratorInviteEmail,
+    sendModeratorInviteEmail,
 
-  // Low-level send function (for custom emails)
-  sendCustomEmail: sendEmail,
+    sendCustomEmail: sendEmail,
 
-  // Template wrapper (for custom templates)
-  wrapTemplate: wrapEmailTemplate,
+    wrapTemplate: wrapEmailTemplate,
 
-  // Configuration
-  config: EMAIL_CONFIG,
+    config: EMAIL_CONFIG,
 };
 
 export default emailService;

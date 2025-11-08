@@ -1,8 +1,4 @@
-/**
- * Logger Service
- * Provides structured logging with multiple log levels
- * Supports environment-based verbosity and optional external service integration
- */
+
 
 export enum LogLevel {
   DEBUG = 'DEBUG',
@@ -55,18 +51,11 @@ class Logger {
   private async sendToExternalService(entry: LogEntry): Promise<void> {
     if (!this.config.enableExternalService) return;
 
-    // TODO: Implement external service integration
-    // Example: Send to Sentry, LogRocket, DataDog, etc.
-    // This is a placeholder for future integration
-    try {
+                try {
       // await fetch('/api/logs', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(entry),
-      // });
+                        // });
     } catch (error) {
-      // Fail silently to avoid recursion
-      if (this.isDevelopment) {
+            if (this.isDevelopment) {
         console.error('Failed to send log to external service:', error);
       }
     }
@@ -75,8 +64,7 @@ class Logger {
   private async logEntry(entry: LogEntry): Promise<void> {
     if (!this.shouldLog(entry.level)) return;
 
-    // Console logging
-    if (this.config.enableConsole) {
+        if (this.config.enableConsole) {
       const formatted = this.formatMessage(entry);
       const style = this.getConsoleStyle(entry.level);
 
@@ -88,16 +76,14 @@ class Logger {
           entry.error
         );
       } else {
-        // In production, use basic logging
-        console[entry.level.toLowerCase() as 'debug' | 'info' | 'warn' | 'error'](
+                console[entry.level.toLowerCase() as 'debug' | 'info' | 'warn' | 'error'](
           formatted,
           entry.context
         );
       }
     }
 
-    // External service integration
-    await this.sendToExternalService(entry);
+        await this.sendToExternalService(entry);
   }
 
   private getConsoleStyle(level: LogLevel): string {
@@ -160,11 +146,8 @@ class Logger {
   }
 }
 
-// Export a singleton instance
 export const logger = new Logger({
   enableConsole: true,
-  enableExternalService: false, // Enable when external service is set up
-});
+  enableExternalService: false, });
 
-// Export logger class for testing or custom instances
 export default Logger;

@@ -11,7 +11,6 @@ import ContactFormModal from '@/app/components/ContactFormModal';
 import { PACK_PRICING } from '@/lib/constants';
 import { formatCurrency } from '@/lib/utils';
 
-// Map locale codes to language names
 const getLanguageName = (code: string): string => {
   const languageMap: { [key: string]: string } = {
     'en': 'English',
@@ -41,7 +40,6 @@ const getLanguageName = (code: string): string => {
   return languageMap[code] || code;
 };
 
-// Helper function to get pack price formatted for display
 const getPackPriceDisplay = (packSize: number, locale: string): string => {
   const priceInCents = PACK_PRICING[packSize as keyof typeof PACK_PRICING];
   return priceInCents ? formatCurrency(priceInCents, 'EUR', locale) : formatCurrency(0, 'EUR', locale);
@@ -100,8 +98,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
   const handleShippingSave = async (address: ShippingAddress) => {
     setShippingAddress(address);
 
-    // Calculate shipping rates with full address for accurate Printful pricing
-    setLoadingShipping(true);
+        setLoadingShipping(true);
     try {
       const response = await fetch('/api/calculate-shipping', {
         method: 'POST',
@@ -122,8 +119,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
           express: data.rates.express.rate,
         });
 
-        // Log if fallback rates were used
-        if (data.usedFallback) {
+                if (data.usedFallback) {
           console.log('Using fallback shipping rates (Printful API unavailable)');
         } else {
           console.log('Using live Printful shipping rates');
@@ -266,7 +262,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
       {}
       {customizations.length > 0 && shippingAddress && (
         <>
-          {/* Order Summary - Basic Info Only */}
+          {}
           <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
             <h2 className="mb-4 text-2xl font-semibold text-foreground">{t('order.summary.title')}</h2>
             <div className="space-y-3 text-muted-foreground">
@@ -336,7 +332,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
             </div>
           </div>
 
-          {/* Payment Form with Integrated Pricing */}
+          {}
           <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
             <h2 className="mb-6 text-xl font-semibold text-foreground">
               {t('save_lighter.payment_details_title')}

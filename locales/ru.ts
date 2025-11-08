@@ -142,7 +142,6 @@ export default {
   'home.stats.environmental_impact': 'Экологический вклад',
   'home.stats.join_movement': 'Присоединяйтесь к тысячам LightSavers, меняющих мир, по одной зажигалке за раз.',
 
-
   'save_lighter.helper.background_url': "Необязательно. Этот URL-адрес изображения будет фоном для страницы вашей зажигалки. Попробуйте ссылку Imgur или Unsplash.",
 
   'save_success.next_steps.title': 'Следующие шаги:',
@@ -196,9 +195,7 @@ export default {
   'legal.faq.title': 'Часто задаваемые вопросы',
   'legal.about.title': 'О LightMyFire',
 
-  // --- Sticker Order Flow ---
-  // Pack Selection
-  'order.pack_selection.title': 'Выберите свой пакет',
+      'order.pack_selection.title': 'Выберите свой пакет',
   'order.pack_selection.subtitle': 'Выберите, сколько персонализированных наклеек вы хотите заказать',
   'order.pack.starting_lightsaver': 'Начинающий ЛайтСейвер',
   'order.pack.committed_lightsaver': 'Преданный ЛайтСейвер',
@@ -213,14 +210,12 @@ export default {
   'order.pack.price_calculated': 'Цена рассчитывается при оформлении заказа',
   'order.pack.select_button': 'Выбрать',
 
-  // Custom Branding
-  'order.custom_branding.title': 'Индивидуальный брендинг для мероприятий и брендов',
+    'order.custom_branding.title': 'Индивидуальный брендинг для мероприятий и брендов',
   'order.custom_branding.description': 'Планируете мероприятие или хотите индивидуальный брендинг на ваших листах наклеек? Мы можем персонализировать область брендинга для вашей организации, бренда или особого мероприятия!',
   'order.custom_branding.button': 'Свяжитесь с нами для индивидуального брендинга',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // Lighter Customization
-  'order.customization.title': 'Персонализируйте свои наклейки',
+    'order.customization.title': 'Персонализируйте свои наклейки',
   'order.customization.subtitle': 'Персонализируйте каждую зажигалку',
   'order.customization.apply_to_all': 'Применить ко всем',
   'order.customization.lighter_number': 'Зажигалка #{number}',
@@ -240,21 +235,18 @@ export default {
   'order.customization.validation_warning_multiple': 'Пожалуйста, заполните все названия зажигалок (по 3-16 символов каждое) перед продолжением.',
   'order.customization.save_button': 'Сохранить персонализацию',
 
-  // Order Summary
-  'order.summary.title': 'Сводка заказа',
+    'order.summary.title': 'Сводка заказа',
   'order.summary.pack': 'Пакет:',
   'order.summary.language': 'Язык:',
   'order.summary.stickers': 'Наклейки:',
   'order.summary.customized': '✓ Персонализировано',
   'order.summary.total': 'Итого:',
 
-  // Sticker Preview
-  'order.preview.title': 'Ваш дизайн наклейки',
+    'order.preview.title': 'Ваш дизайн наклейки',
   'order.preview.description': 'Предпросмотр ваших персонализированных наклеек. Файлы наклеек будут созданы после оплаты.',
   'order.preview.more_stickers': '+{count} еще',
 
-  // Shipping Address
-  'order.shipping.title': 'Информация о доставке',
+    'order.shipping.title': 'Информация о доставке',
   'order.shipping.description': 'Пожалуйста, укажите ваш адрес доставки для отправки наклеек',
   'order.shipping.name_label': 'Полное имя *',
   'order.shipping.name_placeholder': 'Иван Иванов',
@@ -276,8 +268,7 @@ export default {
   'order.shipping.error_country': 'Страна обязательна',
   'order.shipping.continue_button': 'Перейти к оплате',
 
-  // Payment
-  'order.payment.title': 'Платежные реквизиты',
+    'order.payment.title': 'Платежные реквизиты',
   'order.payment.order_id': 'ID заказа:',
   'order.payment.sticker_pack': 'Пакет наклеек:',
   'order.payment.stickers_count': '{count} наклеек',
@@ -305,8 +296,7 @@ export default {
   'order.payment.stripe_not_configured': 'Stripe не настроен. Добавьте NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY в .env.local',
   'order.payment.loading': 'Загрузка платежной формы...',
 
-  // Order Success
-  'order.success.title': 'Заказ успешно оформлен!',
+    'order.success.title': 'Заказ успешно оформлен!',
   'order.success.subtitle': 'Спасибо за ваш заказ',
   'order.success.confirmation_sent': 'Письмо с подтверждением отправлено',
   'order.success.confirmation_description': 'Письмо с подтверждением было отправлено на:',
@@ -328,11 +318,9 @@ export default {
   'order.success.questions': 'Вопросы о вашем заказе?',
   'order.success.contact_us': 'Свяжитесь с нами',
 
-  // Change Pack
-  'order.change_pack': '← Изменить пакет',
+    'order.change_pack': '← Изменить пакет',
 
-  // Cookie Consent
-  'cookie.message': 'Мы используем куки только для базовой функциональности—никогда для отслеживания. Ваша конфиденциальность защищена. См. нашу {privacyLink} для подробностей.',
+    'cookie.message': 'Мы используем куки только для базовой функциональности—никогда для отслеживания. Ваша конфиденциальность защищена. См. нашу {privacyLink} для подробностей.',
   'cookie.privacy_link_text': 'Политику конфиденциальности',
   'cookie.accept': 'Принять',
   'cookie.decline': 'Отклонить',
@@ -341,8 +329,7 @@ export default {
   'cookie_consent.accept': 'Принять и продолжить',
   'cookie_consent.privacy_link': 'Политика конфиденциальности',
 
-  // FAQ Page - Full Content
-  'faq.subtitle': 'Найдите ответы на распространенные вопросы о LightMyFire',
+    'faq.subtitle': 'Найдите ответы на распространенные вопросы о LightMyFire',
   'faq.what_is.question': 'Что такое LightMyFire?',
   'faq.what_is.answer': 'Это проект по сокращению отходов и созданию «человеческой мозаики». Мы продаем наклейки с QR-кодами, которые вы клеите на зажигалку. Любой, кто найдет эту зажигалку, может отсканировать код, ввести PIN-код и добавить историю, фото или песню в ее цифровой журнал. Это уникальный способ связать людей по всему миру и дать зажигалкам вторую жизнь.',
   'faq.how_add_story.question': 'Как добавить историю к зажигалке?',
@@ -376,8 +363,7 @@ export default {
   'faq.contact_footer': 'Не можете найти свой ответ?',
   'faq.contact_link': 'Свяжитесь с нами',
 
-  // Account Settings / Update Auth Form
-  'settings.auth.error.passwords_no_match': 'Пароли не совпадают.',
+    'settings.auth.error.passwords_no_match': 'Пароли не совпадают.',
   'settings.auth.success_message': 'Обновление успешно! Пожалуйста, проверьте свою электронную почту для подтверждения изменений, если вы обновили свой адрес электронной почты.',
   'settings.auth.title': 'Настройки аккаунта',
   'settings.auth.oauth_notice': '✓ Вы вошли через {provider}. Ваша аутентификация управляется безопасно вашим провайдером.',
@@ -396,8 +382,7 @@ export default {
   'settings.auth.update_button': 'Обновить данные аутентификации',
   'settings.auth.saving': 'Сохранение...',
 
-  // Country Names
-  'country.AT': 'Австрия',
+    'country.AT': 'Австрия',
   'country.BE': 'Бельгия',
   'country.CA': 'Канада',
   'country.CH': 'Швейцария',
@@ -418,8 +403,7 @@ export default {
   'country.SE': 'Швеция',
   'country.US': 'Соединенные Штаты',
 
-  // Save Lighter Flow - Pack Selection
-  'order.choose_pack_title': 'Выберите ваш пакет',
+    'order.choose_pack_title': 'Выберите ваш пакет',
   'order.choose_pack_subtitle': 'Выберите, сколько персонализированных наклеек вы хотите заказать',
   'order.pack_sheets_single': 'лист',
   'order.pack_sheets_plural': 'листов',
@@ -444,8 +428,7 @@ export default {
   'language.ko': '한국어',
   'language.zh-CN': '中文',
 
-  // --- Refill Guide Page ---
-  'refill_guide.title': 'Don\'t Throw Me Away',
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature. A single company like BIC sold over 2.5 billion in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',

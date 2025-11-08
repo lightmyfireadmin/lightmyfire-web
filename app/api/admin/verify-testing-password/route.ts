@@ -1,5 +1,3 @@
-// app/api/admin/verify-testing-password/route.ts
-// Server-side password verification for admin testing dashboard
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
@@ -9,8 +7,7 @@ export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
   try {
-    // Authenticate user and verify admin status
-    const cookieStore = cookies();
+        const cookieStore = cookies();
     const supabase = createServerSupabaseClient(cookieStore);
     const { data: { session } } = await supabase.auth.getSession();
 
@@ -21,8 +18,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if user is admin
-    const { data: profile } = await supabase
+        const { data: profile } = await supabase
       .from('profiles')
       .select('role')
       .eq('id', session.user.id)
@@ -35,14 +31,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get password from request
-    const { password } = await request.json();
+        const { password } = await request.json();
 
-    // Get server-side password from environment
-    const ADMIN_TESTING_PASSWORD = process.env.ADMIN_TESTING_PASSWORD || 'lightmyfire2025';
+        const ADMIN_TESTING_PASSWORD = process.env.ADMIN_TESTING_PASSWORD || 'lightmyfire2025';
 
-    // Verify password
-    if (password === ADMIN_TESTING_PASSWORD) {
+        if (password === ADMIN_TESTING_PASSWORD) {
       return NextResponse.json({
         success: true,
         authenticated: true,

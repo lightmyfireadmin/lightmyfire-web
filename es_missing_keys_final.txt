@@ -1,8 +1,0 @@
-notifications.success
-notifications.error
-notifications.warning
-notifications.auth_failed
-notifications.invalid_credentials
-notifications.user_not_found
-notifications.session_expired
-notifications.password_reset_sent

@@ -20,7 +20,7 @@ export default function OurPhilosophy() {
   return (
     <div className="mx-auto w-full max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
       <div className="rounded-lg border border-border bg-gradient-to-br from-primary/5 to-primary/10 shadow-md overflow-hidden">
-        {/* Header - Always Visible */}
+        {}
         <button
           onClick={() => setIsExpanded(!isExpanded)}
           className="w-full px-6 py-5 flex items-center justify-between hover:bg-primary/5 transition-colors"
@@ -44,19 +44,19 @@ export default function OurPhilosophy() {
           </div>
         </button>
 
-        {/* Expandable Content */}
+        {}
         <div
           className={`transition-all duration-300 ease-in-out overflow-hidden ${
             isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
           <div className="px-6 pb-6 space-y-4 border-t border-border/50 pt-6">
-            {/* Lead */}
+            {}
             <p className="text-lg font-semibold text-primary italic">
               {t('philosophy.lead')}
             </p>
 
-            {/* Philosophy Paragraphs - Mobile: Very dark grey for readability */}
+            {}
             <div className="space-y-4 text-gray-900 md:text-foreground">
               <div
                 className="prose prose-lg max-w-none md:dark:prose-invert"
@@ -76,7 +76,7 @@ export default function OurPhilosophy() {
               />
             </div>
 
-            {/* Image */}
+            {}
             <div className="flex justify-center pt-4">
               <Image
                 src="/illustrations/around_the_world.png"
@@ -89,7 +89,7 @@ export default function OurPhilosophy() {
               />
             </div>
 
-            {/* Call to Action */}
+            {}
             <div className="pt-4 text-center">
               <p className="text-sm text-muted-foreground italic">
                 {t('philosophy.cta')}

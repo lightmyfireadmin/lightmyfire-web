@@ -14,9 +14,7 @@ const RATE_LIMITS = {
   moderation: { requests: 10, windowMs: 60 * 1000 },
   youtube: { requests: 20, windowMs: 60 * 1000 },
   admin: { requests: 50, windowMs: 60 * 1000 },
-  contact: { requests: 3, windowMs: 60 * 60 * 1000 }, // 3 per hour for public contact
-  shipping: { requests: 30, windowMs: 60 * 1000 }, // 30 per minute for shipping calc
-  default: { requests: 30, windowMs: 60 * 1000 },
+  contact: { requests: 3, windowMs: 60 * 60 * 1000 },   shipping: { requests: 30, windowMs: 60 * 1000 },   default: { requests: 30, windowMs: 60 * 1000 },
 } as const;
 
 export type RateLimitType = keyof typeof RATE_LIMITS;

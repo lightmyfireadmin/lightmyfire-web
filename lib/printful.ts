@@ -1,11 +1,5 @@
-// lib/printful.ts
-// Printful API Client for Automatic Order Fulfillment
-// Official API Docs: https://developers.printful.com/
 
-/**
- * Printful API Configuration
- * Requires PRINTFUL_API_KEY and PRINTFUL_STORE_ID environment variables
- */
+
 const PRINTFUL_API_BASE = 'https://api.printful.com';
 const PRINTFUL_API_KEY = process.env.PRINTFUL_API_KEY;
 const PRINTFUL_STORE_ID = process.env.PRINTFUL_STORE_ID;
@@ -18,9 +12,6 @@ if (!PRINTFUL_STORE_ID && process.env.NODE_ENV === 'production') {
   console.warn('⚠️  PRINTFUL_STORE_ID not configured. Some API endpoints may fail.');
 }
 
-/**
- * Printful API Client
- */
 class PrintfulClient {
   private apiKey: string;
   private baseUrl: string;
@@ -30,9 +21,7 @@ class PrintfulClient {
     this.baseUrl = PRINTFUL_API_BASE;
   }
 
-  /**
-   * Make API request to Printful
-   */
+  
   private async request<T>(
     endpoint: string,
     options: RequestInit = {}
@@ -61,27 +50,19 @@ class PrintfulClient {
     return data.result as T;
   }
 
-  /**
-   * Get product information
-   */
+  
   async getProduct(productId: number) {
     return this.request<PrintfulProduct>(`/products/${productId}`);
   }
 
-  /**
-   * Get product variant information
-   */
+  
   async getVariant(variantId: number) {
     return this.request<PrintfulVariant>(`/products/variant/${variantId}`);
   }
 
-  /**
-   * Calculate shipping rates for order
-   * Note: Requires PRINTFUL_STORE_ID when you have multiple stores
-   */
+  
   async calculateShipping(order: PrintfulShippingRequest) {
-    // Add store_id to the request if available
-    const requestBody = PRINTFUL_STORE_ID
+        const requestBody = PRINTFUL_STORE_ID
       ? { ...order, store_id: parseInt(PRINTFUL_STORE_ID, 10) }
       : order;
 
@@ -91,9 +72,7 @@ class PrintfulClient {
     });
   }
 
-  /**
-   * Create order (draft)
-   */
+  
   async createOrder(order: PrintfulOrderRequest) {
     return this.request<PrintfulOrder>('/orders', {
       method: 'POST',
@@ -101,34 +80,26 @@ class PrintfulClient {
     });
   }
 
-  /**
-   * Confirm order for fulfillment
-   */
+  
   async confirmOrder(orderId: string | number) {
     return this.request<PrintfulOrder>(`/orders/${orderId}/confirm`, {
       method: 'POST',
     });
   }
 
-  /**
-   * Get order details
-   */
+  
   async getOrder(orderId: string | number) {
     return this.request<PrintfulOrder>(`/orders/${orderId}`);
   }
 
-  /**
-   * Cancel order
-   */
+  
   async cancelOrder(orderId: string | number) {
     return this.request<PrintfulOrder>(`/orders/${orderId}`, {
       method: 'DELETE',
     });
   }
 
-  /**
-   * Get all orders
-   */
+  
   async getOrders(params?: {
     status?: 'draft' | 'pending' | 'fulfilled' | 'canceled';
     offset?: number;
@@ -143,17 +114,12 @@ class PrintfulClient {
     return this.request<PrintfulOrder[]>(`/orders${query ? `?${query}` : ''}`);
   }
 
-  /**
-   * Get store information
-   */
+  
   async getStoreInfo() {
     return this.request<PrintfulStore>('/store');
   }
 }
 
-/**
- * Printful Error Class
- */
 export class PrintfulError extends Error {
   constructor(
     message: string,
@@ -165,9 +131,6 @@ export class PrintfulError extends Error {
   }
 }
 
-/**
- * Printful Types
- */
 export interface PrintfulProduct {
   id: number;
   type: string;
@@ -391,18 +354,12 @@ export interface PrintfulStore {
   created: number;
 }
 
-/**
- * LightMyFire-specific Printful Configuration
- */
 export const LIGHTMYFIRE_PRINTFUL_CONFIG = {
-  // Kiss Cut Sticker Sheet - 8.5" x 11"
-  STICKER_SHEET_VARIANT_ID: 9413,
+    STICKER_SHEET_VARIANT_ID: 9413,
 
-  // Default shipping method
-  DEFAULT_SHIPPING: 'STANDARD',
+    DEFAULT_SHIPPING: 'STANDARD',
 
-  // Packing slip configuration
-  PACKING_SLIP: {
+    PACKING_SLIP: {
     logo_url: `${process.env.NEXT_PUBLIC_BASE_URL}/logo-printful.png`,
     message: `Thank you for being a LightSaver!
 
@@ -418,22 +375,15 @@ Keep the flame alive! 🔥
 The LightMyFire Team`,
   },
 
-  // File upload settings
-  FILE_SETTINGS: {
-    type: 'back' as const, // Background image
-    required_dpi: 600,
+    FILE_SETTINGS: {
+    type: 'back' as const,     required_dpi: 600,
     max_file_size_mb: 50,
   },
 };
 
-/**
- * Create Printful order for LightMyFire stickers
- */
 export async function createStickerOrder(params: {
-  orderId: string; // Our internal order ID
-  packSize: 10 | 20 | 50;
-  stickerPdfUrl: string; // URL to generated sticker PDF
-  customer: {
+  orderId: string;   packSize: 10 | 20 | 50;
+  stickerPdfUrl: string;   customer: {
     name: string;
     email: string;
     address1: string;
@@ -445,16 +395,12 @@ export async function createStickerOrder(params: {
     phone?: string;
   };
   retailCosts: {
-    subtotal: number; // in cents
-    shipping: number; // in cents
-    tax?: number; // in cents
-  };
+    subtotal: number;     shipping: number;     tax?: number;   };
   backgroundTheme?: string;
 }) {
   const client = new PrintfulClient();
 
-  // Prepare order request
-  const orderRequest: PrintfulOrderRequest = {
+    const orderRequest: PrintfulOrderRequest = {
     recipient: {
       name: params.customer.name,
       email: params.customer.email,
@@ -469,8 +415,7 @@ export async function createStickerOrder(params: {
     items: [
       {
         variant_id: LIGHTMYFIRE_PRINTFUL_CONFIG.STICKER_SHEET_VARIANT_ID,
-        quantity: Math.ceil(params.packSize / 10), // 10 stickers per sheet
-        files: [
+        quantity: Math.ceil(params.packSize / 10),         files: [
           {
             url: params.stickerPdfUrl,
             type: 'back',
@@ -479,8 +424,7 @@ export async function createStickerOrder(params: {
         options: [
           {
             id: 'stitch_color',
-            value: '#FFFFFF', // White kiss-cut border
-          },
+            value: '#FFFFFF',           },
         ],
       },
     ],
@@ -500,11 +444,9 @@ export async function createStickerOrder(params: {
   };
 
   try {
-    // Create draft order
-    const order = await client.createOrder(orderRequest);
+        const order = await client.createOrder(orderRequest);
 
-    // Confirm order for fulfillment
-    const confirmedOrder = await client.confirmOrder(order.id);
+        const confirmedOrder = await client.confirmOrder(order.id);
 
     return {
       success: true,
@@ -512,9 +454,7 @@ export async function createStickerOrder(params: {
       status: confirmedOrder.status,
       tracking: confirmedOrder.shipments[0]?.tracking_number || null,
       estimatedDelivery: {
-        min: 5, // days
-        max: 10, // days
-      },
+        min: 5,         max: 10,       },
     };
   } catch (error) {
     if (error instanceof PrintfulError) {
@@ -535,9 +475,6 @@ export async function createStickerOrder(params: {
   }
 }
 
-/**
- * Get order status from Printful
- */
 export async function getPrintfulOrderStatus(printfulOrderId: number) {
   const client = new PrintfulClient();
 
@@ -567,9 +504,6 @@ export async function getPrintfulOrderStatus(printfulOrderId: number) {
   }
 }
 
-/**
- * Cancel Printful order
- */
 export async function cancelPrintfulOrder(printfulOrderId: number) {
   const client = new PrintfulClient();
 
@@ -585,10 +519,6 @@ export async function cancelPrintfulOrder(printfulOrderId: number) {
   }
 }
 
-/**
- * Verify Printful webhook signature
- * Printful sends X-Pf-Signature header with HMAC
- */
 export function verifyPrintfulWebhook(
   payload: string,
   signature: string
@@ -609,9 +539,6 @@ export function verifyPrintfulWebhook(
   return hmac === signature;
 }
 
-/**
- * Singleton instance
- */
 export const printful = new PrintfulClient();
 
 export default printful;

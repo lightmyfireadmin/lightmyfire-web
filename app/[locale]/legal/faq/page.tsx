@@ -164,7 +164,7 @@ export default function FAQ() {
         </div>
       </div>
 
-      {/* Contact Form Modal */}
+      {}
       <ContactFormModal
         isOpen={showContactModal}
         onClose={() => setShowContactModal(false)}

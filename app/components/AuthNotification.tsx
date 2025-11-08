@@ -34,8 +34,7 @@ export default function AuthNotification() {
   useEffect(() => {
     let config: NotificationConfig | null = null;
 
-    // Check URL parameters for auth events
-    if (searchParams.get('signup_success') === 'true') {
+        if (searchParams.get('signup_success') === 'true') {
       config = {
         type: 'success',
         title: t('notifications.success'),
@@ -140,11 +139,9 @@ export default function AuthNotification() {
       setNotification(config);
       setIsVisible(true);
 
-      // Animate in
-      setTimeout(() => setIsAnimating(true), 10);
+            setTimeout(() => setIsAnimating(true), 10);
 
-      // Auto-hide after 6 seconds
-      const timer = setTimeout(() => {
+            const timer = setTimeout(() => {
         handleClose();
       }, 6000);
 
@@ -158,8 +155,7 @@ export default function AuthNotification() {
       setIsVisible(false);
       setNotification(null);
 
-      // Clean up URL parameters
-      const url = new URL(window.location.href);
+            const url = new URL(window.location.href);
       url.searchParams.delete('signup_success');
       url.searchParams.delete('login_success');
       url.searchParams.delete('logout_success');
@@ -167,8 +163,7 @@ export default function AuthNotification() {
       url.searchParams.delete('password_updated');
       url.searchParams.delete('error');
 
-      // Use replace to avoid adding to history
-      router.replace(url.pathname + url.search, { scroll: false });
+            router.replace(url.pathname + url.search, { scroll: false });
     }, 300);
   };
 
@@ -178,7 +173,7 @@ export default function AuthNotification() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center p-4 sm:p-6 md:p-8 pointer-events-none">
-      {/* Notification Box */}
+      {}
       <div
         className={`
           relative w-full max-w-md pointer-events-auto
@@ -190,17 +185,16 @@ export default function AuthNotification() {
             : '-translate-y-4 opacity-0 scale-95'
           }
         `}
-        style={{ marginTop: '80px' }} // Space from top nav
-      >
-        {/* Content */}
+        style={{ marginTop: '80px' }}       >
+        {}
         <div className="p-6">
           <div className="flex items-start gap-4">
-            {/* Icon */}
+            {}
             <div className={`flex-shrink-0 ${notification.iconColor}`}>
               <notification.icon className="h-7 w-7" />
             </div>
 
-            {/* Text */}
+            {}
             <div className="flex-1 min-w-0">
               <h3 className={`text-lg font-bold ${notification.textColor} mb-1`}>
                 {notification.title}
@@ -210,7 +204,7 @@ export default function AuthNotification() {
               </p>
             </div>
 
-            {/* Close button */}
+            {}
             <button
               onClick={handleClose}
               className={`
@@ -230,7 +224,7 @@ export default function AuthNotification() {
           </div>
         </div>
 
-        {/* Progress bar */}
+        {}
         <div className="h-1 bg-black/5 dark:bg-white/5 overflow-hidden rounded-b-xl">
           <div
             className={`h-full ${notification.iconColor} bg-current opacity-40`}

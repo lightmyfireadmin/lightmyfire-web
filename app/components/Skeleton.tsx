@@ -1,7 +1,4 @@
-/**
- * Skeleton Loading Component
- * Provides various skeleton shapes for loading states
- */
+
 
 interface SkeletonProps {
   className?: string;
@@ -41,9 +38,6 @@ export function Skeleton({
   );
 }
 
-/**
- * Card Skeleton - for post cards
- */
 export function CardSkeleton() {
   return (
     <div className="rounded-lg border border-border bg-background p-4 space-y-3">
@@ -63,9 +57,6 @@ export function CardSkeleton() {
   );
 }
 
-/**
- * Lighter Card Skeleton
- */
 export function LighterCardSkeleton() {
   return (
     <div className="rounded-lg border border-border bg-background p-6 space-y-4">
@@ -86,9 +77,6 @@ export function LighterCardSkeleton() {
   );
 }
 
-/**
- * List Skeleton - for lists of items
- */
 export function ListSkeleton({ count = 5 }: { count?: number }) {
   return (
     <div className="space-y-3">
@@ -105,19 +93,16 @@ export function ListSkeleton({ count = 5 }: { count?: number }) {
   );
 }
 
-/**
- * Table Skeleton
- */
 export function TableSkeleton({ rows = 5, cols = 4 }: { rows?: number; cols?: number }) {
   return (
     <div className="space-y-3">
-      {/* Header */}
+      {}
       <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
         {Array.from({ length: cols }).map((_, i) => (
           <Skeleton key={i} className="h-8" />
         ))}
       </div>
-      {/* Rows */}
+      {}
       {Array.from({ length: rows }).map((_, rowIndex) => (
         <div key={rowIndex} className="grid gap-4" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
           {Array.from({ length: cols }).map((_, colIndex) => (
@@ -129,9 +114,6 @@ export function TableSkeleton({ rows = 5, cols = 4 }: { rows?: number; cols?: nu
   );
 }
 
-/**
- * Mosaic Skeleton - for home page mosaic
- */
 export function MosaicSkeleton({ count = 12 }: { count?: number }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -142,13 +124,10 @@ export function MosaicSkeleton({ count = 12 }: { count?: number }) {
   );
 }
 
-/**
- * Profile Skeleton
- */
 export function ProfileSkeleton() {
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {}
       <div className="flex items-center gap-4">
         <Skeleton variant="circular" className="h-24 w-24" />
         <div className="flex-1 space-y-2">
@@ -158,7 +137,7 @@ export function ProfileSkeleton() {
         </div>
       </div>
 
-      {/* Stats */}
+      {}
       <div className="grid grid-cols-3 gap-4">
         {Array.from({ length: 3 }).map((_, i) => (
           <div key={i} className="space-y-2">
@@ -168,7 +147,7 @@ export function ProfileSkeleton() {
         ))}
       </div>
 
-      {/* Content */}
+      {}
       <div className="space-y-4">
         <Skeleton className="h-6 w-32" />
         <ListSkeleton count={3} />

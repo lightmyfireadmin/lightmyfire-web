@@ -30,35 +30,28 @@ const CommunityStats = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        // Run all count queries in parallel for better performance
-        const [
+                const [
           { count: lightersCount },
           { count: postsCount },
           { count: usersCount },
           { data: uniqueCountries }
         ] = await Promise.all([
-          // Fetch total lighters
-          supabase
+                    supabase
             .from('lighters')
             .select('*', { count: 'exact', head: true }),
 
-          // Fetch total posts (stories)
-          supabase
+                    supabase
             .from('posts')
             .select('*', { count: 'exact', head: true })
             .eq('is_public', true),
 
-          // Fetch active users (users who created lighters or posts)
-          supabase
+                    supabase
             .from('profiles')
             .select('*', { count: 'exact', head: true }),
 
-          // Fetch unique countries using RPC if available, otherwise use optimized query
-          // Only fetch the last part of location_name (country) to reduce data transfer
-          supabase.rpc('get_community_stats').then(
+                              supabase.rpc('get_community_stats').then(
             (result) => result.data,
-            // Fallback if RPC doesn't exist yet
-            () => supabase
+                        () => supabase
               .from('posts')
               .select('location_name')
               .eq('is_public', true)
@@ -94,11 +87,8 @@ const CommunityStats = () => {
     fetchStats();
   }, []);
 
-  // Calculate environmental impact (approximate)
-  // Average disposable lighter weighs ~21g [1], plastic takes 150+ years to decompose [2]
-  const plasticSavedKg = Math.round((stats.lightersSaved * 21) / 1000 * 10) / 10;
-  const co2SavedKg = Math.round(stats.lightersSaved * 0.15 * 10) / 10; // Approximate CO2 per lighter production [3]
-
+      const plasticSavedKg = Math.round((stats.lightersSaved * 21) / 1000 * 10) / 10;
+  const co2SavedKg = Math.round(stats.lightersSaved * 0.15 * 10) / 10; 
   const statItems = [
     {
       icon: FireIcon,
@@ -186,14 +176,14 @@ const CommunityStats = () => {
           ))}
         </div>
 
-        {/* Call to action */}
+        {}
         <div className="mt-8 pt-6 border-t border-border/50 text-center">
           <p className="text-sm sm:text-base text-muted-foreground italic">
             {t('home.stats.join_movement')}
           </p>
         </div>
 
-        {/* Citations */}
+        {}
         <div className="mt-6 pt-6 border-t border-border/50">
           <h3 className="text-xs font-semibold text-muted-foreground mb-3">
             {t('home.stats.citations_title') || t('home.stats.citations.title') || 'Sources'}

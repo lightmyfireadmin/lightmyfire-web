@@ -3,17 +3,12 @@ import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { cookies } from 'next/headers';
 import { emailService } from '@/lib/email';
 
-/**
- * Admin endpoint to test email sending with sample data
- * POST /api/admin/test-email
- */
 export async function POST(request: NextRequest) {
   try {
     const cookieStore = cookies();
     const supabase = createServerSupabaseClient(cookieStore);
 
-    // Check authentication
-    const {
+        const {
       data: { session },
     } = await supabase.auth.getSession();
 
@@ -24,8 +19,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if user is admin
-    const { data: profile, error: profileError } = await supabase
+        const { data: profile, error: profileError } = await supabase
       .from('profiles')
       .select('role')
       .eq('id', session.user.id)
@@ -38,8 +32,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Parse request body
-    const body = await request.json();
+        const body = await request.json();
     const { emailType, recipientEmail } = body;
 
     if (!emailType || !recipientEmail) {
@@ -49,8 +42,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(recipientEmail)) {
       return NextResponse.json(
         { error: 'Invalid email format' },
@@ -58,11 +50,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Base URL for links
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://lightmyfire.app';
+        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://lightmyfire.app';
 
-    // Send email based on type with example data
-    let result;
+        let result;
 
     switch (emailType) {
       case 'welcome':
@@ -144,9 +134,7 @@ export async function POST(request: NextRequest) {
         });
         break;
 
-      // MODERATION EMAILS REMOVED - Users are never notified of moderation status
-      // Moderators handle all communication manually on case-by-case basis
-
+            
       case 'moderator_invite':
         result = await emailService.sendModeratorInviteEmail({
           userEmail: recipientEmail,
@@ -178,8 +166,7 @@ export async function POST(request: NextRequest) {
   } catch (error: any) {
     console.error('Error sending test email:', error);
 
-    // Check if it's a Resend API error
-    if (error.message?.includes('RESEND_API_KEY')) {
+        if (error.message?.includes('RESEND_API_KEY')) {
       return NextResponse.json(
         { error: 'Email service not configured. Please set RESEND_API_KEY environment variable.' },
         { status: 500 }

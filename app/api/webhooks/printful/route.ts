@@ -1,5 +1,3 @@
-// app/api/webhooks/printful/route.ts
-// Printful Webhook Handler for Order Status Updates
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
@@ -9,10 +7,6 @@ import { sendOrderShippedEmail } from '@/lib/email';
 
 export const dynamic = 'force-dynamic';
 
-/**
- * Printful Webhook Events
- * Docs: https://developers.printful.com/docs/#section/Webhooks
- */
 type PrintfulWebhookEvent =
   | 'package_shipped'
   | 'package_returned'
@@ -49,12 +43,10 @@ interface PrintfulWebhookPayload {
 
 export async function POST(request: NextRequest) {
   try {
-    // Get raw body for signature verification
-    const body = await request.text();
+        const body = await request.text();
     const signature = request.headers.get('x-pf-signature');
 
-    // Verify webhook signature
-    if (!signature || !verifyPrintfulWebhook(body, signature)) {
+        if (!signature || !verifyPrintfulWebhook(body, signature)) {
       console.error('Invalid Printful webhook signature');
       return NextResponse.json(
         { error: 'Invalid signature' },
@@ -62,8 +54,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Parse payload
-    const payload: PrintfulWebhookPayload = JSON.parse(body);
+        const payload: PrintfulWebhookPayload = JSON.parse(body);
 
     console.log('Printful webhook received:', {
       type: payload.type,
@@ -71,12 +62,10 @@ export async function POST(request: NextRequest) {
       externalId: payload.data.order?.external_id,
     });
 
-    // Initialize Supabase client
-    const cookieStore = cookies();
+        const cookieStore = cookies();
     const supabase = createServerSupabaseClient(cookieStore);
 
-    // Handle different webhook events
-    switch (payload.type) {
+        switch (payload.type) {
       case 'package_shipped':
         await handlePackageShipped(supabase, payload);
         break;
@@ -102,22 +91,17 @@ export async function POST(request: NextRequest) {
         console.log('Unhandled Printful webhook type:', payload.type);
     }
 
-    // Always return 200 to acknowledge receipt
-    return NextResponse.json({ success: true });
+        return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error processing Printful webhook:', error);
 
-    // Still return 200 to prevent retries for parsing errors
-    return NextResponse.json(
+        return NextResponse.json(
       { success: false, error: 'Processing error' },
       { status: 200 }
     );
   }
 }
 
-/**
- * Handle package shipped event
- */
 async function handlePackageShipped(
   supabase: any,
   payload: PrintfulWebhookPayload
@@ -130,8 +114,7 @@ async function handlePackageShipped(
   }
 
   try {
-    // Find order in database by Printful order ID
-    const { data: stickerOrder, error: findError } = await supabase
+        const { data: stickerOrder, error: findError } = await supabase
       .from('sticker_orders')
       .select('*')
       .eq('printful_order_id', order.id)
@@ -142,8 +125,7 @@ async function handlePackageShipped(
       return;
     }
 
-    // Update order with shipping info
-    const { error: updateError } = await supabase
+        const { error: updateError } = await supabase
       .from('sticker_orders')
       .update({
         status: 'shipped',
@@ -160,12 +142,10 @@ async function handlePackageShipped(
       return;
     }
 
-    // Get customer email from order
-    const customerEmail = stickerOrder.customer_email;
+        const customerEmail = stickerOrder.customer_email;
     const customerName = stickerOrder.customer_name || 'LightSaver';
 
-    // Send shipping notification email
-    if (customerEmail) {
+        if (customerEmail) {
       await sendOrderShippedEmail({
         orderId: stickerOrder.id,
         customerEmail,
@@ -188,9 +168,6 @@ async function handlePackageShipped(
   }
 }
 
-/**
- * Handle package returned event
- */
 async function handlePackageReturned(
   supabase: any,
   payload: PrintfulWebhookPayload
@@ -203,8 +180,7 @@ async function handlePackageReturned(
   }
 
   try {
-    // Update order status
-    const { error } = await supabase
+        const { error } = await supabase
       .from('sticker_orders')
       .update({
         status: 'returned',
@@ -217,18 +193,13 @@ async function handlePackageReturned(
       return;
     }
 
-    // TODO: Send customer notification email
-    // TODO: Process refund if applicable
-
+        
     console.log('Order marked as returned:', order.id);
   } catch (error) {
     console.error('Error handling package_returned:', error);
   }
 }
 
-/**
- * Handle order failed event
- */
 async function handleOrderFailed(
   supabase: any,
   payload: PrintfulWebhookPayload
@@ -241,8 +212,7 @@ async function handleOrderFailed(
   }
 
   try {
-    // Update order status
-    const { error } = await supabase
+        const { error } = await supabase
       .from('sticker_orders')
       .update({
         status: 'failed',
@@ -256,19 +226,13 @@ async function handleOrderFailed(
       return;
     }
 
-    // TODO: Send customer notification email
-    // TODO: Process refund
-    // TODO: Alert admin
-
+            
     console.error('Order failed:', { orderId: order.id, reason });
   } catch (error) {
     console.error('Error handling order_failed:', error);
   }
 }
 
-/**
- * Handle order canceled event
- */
 async function handleOrderCanceled(
   supabase: any,
   payload: PrintfulWebhookPayload
@@ -281,8 +245,7 @@ async function handleOrderCanceled(
   }
 
   try {
-    // Update order status
-    const { error } = await supabase
+        const { error } = await supabase
       .from('sticker_orders')
       .update({
         status: 'canceled',
@@ -296,18 +259,13 @@ async function handleOrderCanceled(
       return;
     }
 
-    // TODO: Process refund if payment was captured
-    // TODO: Send customer notification email
-
+        
     console.log('Order canceled:', { orderId: order.id, reason });
   } catch (error) {
     console.error('Error handling order_canceled:', error);
   }
 }
 
-/**
- * Handle order hold status changes
- */
 async function handleOrderHoldStatus(
   supabase: any,
   payload: PrintfulWebhookPayload
@@ -322,8 +280,7 @@ async function handleOrderHoldStatus(
   const isOnHold = payload.type === 'order_put_hold';
 
   try {
-    // Update order with hold status
-    const { error } = await supabase
+        const { error } = await supabase
       .from('sticker_orders')
       .update({
         on_hold: isOnHold,
@@ -346,13 +303,8 @@ async function handleOrderHoldStatus(
   }
 }
 
-/**
- * Manual sync endpoint (for testing/debugging)
- * GET /api/webhooks/printful?orderId=123
- */
 export async function GET(request: NextRequest) {
-  // Only allow in development or with admin auth
-  if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'production') {
     return NextResponse.json({ error: 'Not available in production' }, { status: 403 });
   }
 

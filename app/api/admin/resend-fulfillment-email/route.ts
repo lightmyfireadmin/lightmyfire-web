@@ -3,17 +3,12 @@ import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { cookies } from 'next/headers';
 import { Resend } from 'resend';
 
-/**
- * Admin endpoint to manually resend fulfillment email with sticker files
- * POST /api/admin/resend-fulfillment-email
- */
 export async function POST(request: NextRequest) {
   try {
     const cookieStore = cookies();
     const supabase = createServerSupabaseClient(cookieStore);
 
-    // Check authentication
-    const {
+        const {
       data: { session },
     } = await supabase.auth.getSession();
 
@@ -24,8 +19,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if user is admin
-    const { data: profile, error: profileError } = await supabase
+        const { data: profile, error: profileError } = await supabase
       .from('profiles')
       .select('role')
       .eq('id', session.user.id)
@@ -38,8 +32,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Parse request body
-    const body = await request.json();
+        const body = await request.json();
     const { orderId } = body;
 
     if (!orderId) {
@@ -49,8 +42,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Fetch order details
-    const { data: order, error: orderError } = await supabase
+        const { data: order, error: orderError } = await supabase
       .from('sticker_orders')
       .select('*')
       .eq('id', orderId)
@@ -63,8 +55,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Fetch lighter data for this order
-    const { data: lighters, error: lightersError } = await supabase
+        const { data: lighters, error: lightersError } = await supabase
       .from('lighters')
       .select('lighter_name, pin_code, background_color')
       .eq('payment_intent_id', order.payment_intent_id);
@@ -76,8 +67,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Generate sticker file
-    const generateResponse = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/generate-printful-stickers`, {
+        const generateResponse = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/generate-printful-stickers`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -85,8 +75,7 @@ export async function POST(request: NextRequest) {
           name: l.lighter_name,
           pinCode: l.pin_code,
           backgroundColor: l.background_color,
-          language: 'en' // Default to English for existing orders
-        }))
+          language: 'en'         }))
       }),
     });
 
@@ -97,8 +86,7 @@ export async function POST(request: NextRequest) {
     const fileBuffer = await generateResponse.arrayBuffer();
     const fileExtension = lighters.length > 10 ? 'zip' : 'png';
 
-    // Send fulfillment email
-    const resend = new Resend(process.env.RESEND_API_KEY);
+        const resend = new Resend(process.env.RESEND_API_KEY);
     const fulfillmentEmail = process.env.FULFILLMENT_EMAIL || 'editionsrevel@gmail.com';
 
     await resend.emails.send({

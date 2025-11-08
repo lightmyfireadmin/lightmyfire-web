@@ -142,7 +142,6 @@ export default {
   'home.stats.environmental_impact': 'Wkład ekologiczny',
   'home.stats.join_movement': 'Dołącz do tysięcy LightSavers robiących różnicę, po jednej zapalniczce na raz.',
 
-
   'save_lighter.helper.background_url': "Optional. This image URL will be the background for your lighter's page. Try an Imgur or Unsplash link.",
 
   'save_success.next_steps.title': 'Next Steps:',
@@ -196,9 +195,7 @@ export default {
   'legal.faq.title': 'Często zadawane pytania',
   'legal.about.title': 'O LightMyFire',
 
-  // --- Sticker Order Flow ---
-  // Pack Selection
-  'order.pack_selection.title': 'Wybierz swój pakiet',
+      'order.pack_selection.title': 'Wybierz swój pakiet',
   'order.pack_selection.subtitle': 'Wybierz, ile spersonalizowanych naklejek chcesz zamówić',
   'order.pack.starting_lightsaver': 'Początkujący LightSaver',
   'order.pack.committed_lightsaver': 'Zaangażowany LightSaver',
@@ -213,14 +210,12 @@ export default {
   'order.pack.price_calculated': 'Cena obliczana przy kasie',
   'order.pack.select_button': 'Wybierz',
 
-  // Custom Branding
-  'order.custom_branding.title': 'Niestandardowy branding dla wydarzeń i marek',
+    'order.custom_branding.title': 'Niestandardowy branding dla wydarzeń i marek',
   'order.custom_branding.description': 'Planujesz wydarzenie lub chcesz niestandardowy branding na swoich arkuszach naklejek? Możemy spersonalizować obszar brandingu dla twojej organizacji, marki lub specjalnego wydarzenia!',
   'order.custom_branding.button': 'Skontaktuj się z nami w sprawie niestandardowego brandingu',
   'order.custom_branding.email': 'editionsrevel@gmail.com',
 
-  // Lighter Customization
-  'order.customization.title': 'Personalizuj swoje naklejki',
+    'order.customization.title': 'Personalizuj swoje naklejki',
   'order.customization.subtitle': 'Personalizuj każdą zapalniczkę',
   'order.customization.apply_to_all': 'Zastosuj do wszystkich',
   'order.customization.lighter_number': 'Zapalniczka #{number}',
@@ -240,21 +235,18 @@ export default {
   'order.customization.validation_warning_multiple': 'Proszę wypełnić wszystkie nazwy zapalniczek (po 3-16 znaków każda) przed kontynuowaniem.',
   'order.customization.save_button': 'Zapisz personalizacje',
 
-  // Order Summary
-  'order.summary.title': 'Podsumowanie zamówienia',
+    'order.summary.title': 'Podsumowanie zamówienia',
   'order.summary.pack': 'Pakiet:',
   'order.summary.language': 'Język:',
   'order.summary.stickers': 'Naklejki:',
   'order.summary.customized': '✓ Spersonalizowane',
   'order.summary.total': 'Suma:',
 
-  // Sticker Preview
-  'order.preview.title': 'Twój projekt naklejki',
+    'order.preview.title': 'Twój projekt naklejki',
   'order.preview.description': 'Podgląd twoich spersonalizowanych naklejek. Pliki naklejek zostaną wygenerowane po płatności.',
   'order.preview.more_stickers': '+{count} więcej',
 
-  // Shipping Address
-  'order.shipping.title': 'Informacje o wysyłce',
+    'order.shipping.title': 'Informacje o wysyłce',
   'order.shipping.description': 'Proszę podać adres do wysyłki naklejek',
   'order.shipping.name_label': 'Imię i nazwisko *',
   'order.shipping.name_placeholder': 'Jan Kowalski',
@@ -276,8 +268,7 @@ export default {
   'order.shipping.error_country': 'Kraj jest wymagany',
   'order.shipping.continue_button': 'Przejdź do płatności',
 
-  // Payment
-  'order.payment.title': 'Szczegóły płatności',
+    'order.payment.title': 'Szczegóły płatności',
   'order.payment.order_id': 'ID zamówienia:',
   'order.payment.sticker_pack': 'Pakiet naklejek:',
   'order.payment.stickers_count': '{count} naklejek',
@@ -305,8 +296,7 @@ export default {
   'order.payment.stripe_not_configured': 'Stripe nie jest skonfigurowany. Dodaj NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY do .env.local',
   'order.payment.loading': 'Ładowanie formularza płatności...',
 
-  // Order Success
-  'order.success.title': 'Zamówienie zakończone sukcesem!',
+    'order.success.title': 'Zamówienie zakończone sukcesem!',
   'order.success.subtitle': 'Dziękujemy za zamówienie',
   'order.success.confirmation_sent': 'Wysłano e-mail potwierdzający',
   'order.success.confirmation_description': 'E-mail potwierdzający został wysłany na:',
@@ -328,11 +318,9 @@ export default {
   'order.success.questions': 'Pytania dotyczące zamówienia?',
   'order.success.contact_us': 'Skontaktuj się z nami',
 
-  // Change Pack
-  'order.change_pack': '← Zmień pakiet',
+    'order.change_pack': '← Zmień pakiet',
 
-  // Cookie Consent
-  'cookie.message': 'Używamy plików cookie tylko do podstawowych funkcji—nigdy do śledzenia. Twoja prywatność jest chroniona. Zobacz naszą {privacyLink}, aby uzyskać szczegóły.',
+    'cookie.message': 'Używamy plików cookie tylko do podstawowych funkcji—nigdy do śledzenia. Twoja prywatność jest chroniona. Zobacz naszą {privacyLink}, aby uzyskać szczegóły.',
   'cookie.privacy_link_text': 'Politykę prywatności',
   'cookie.accept': 'Akceptuj',
   'cookie.decline': 'Odrzuć',
@@ -341,8 +329,7 @@ export default {
   'cookie_consent.accept': 'Akceptuj i kontynuuj',
   'cookie_consent.privacy_link': 'Polityka prywatności',
 
-  // FAQ Page - Full Content
-  'faq.subtitle': 'Znajdź odpowiedzi na najczęstsze pytania dotyczące LightMyFire',
+    'faq.subtitle': 'Znajdź odpowiedzi na najczęstsze pytania dotyczące LightMyFire',
   'faq.what_is.question': 'Czym jest LightMyFire?',
   'faq.what_is.answer': 'To projekt mający na celu redukcję odpadów i stworzenie „ludzkiej mozaiki". Sprzedajemy naklejki z kodami QR, które przyklejasz do zapalniczki. Każdy, kto znajdzie tę zapalniczkę, może zeskanować kod, wprowadzić PIN i dodać historię, zdjęcie lub piosenkę do jej cyfrowego dziennika. To unikalny sposób na połączenie ludzi na całym świecie i danie zapalniczkom drugiego życia.',
   'faq.how_add_story.question': 'Jak dodać historię do zapalniczki?',
@@ -376,8 +363,7 @@ export default {
   'faq.contact_footer': 'Nie możesz znaleźć odpowiedzi?',
   'faq.contact_link': 'Skontaktuj się z nami',
 
-  // Account Settings / Update Auth Form
-  'settings.auth.error.passwords_no_match': 'Hasła nie pasują do siebie.',
+    'settings.auth.error.passwords_no_match': 'Hasła nie pasują do siebie.',
   'settings.auth.success_message': 'Aktualizacja pomy śnie! Sprawdź swój e-mail, aby potwierdzić zmiany, jeśli zaktualizowałeś swój adres e-mail.',
   'settings.auth.title': 'Ustawienia konta',
   'settings.auth.oauth_notice': '✓ Jesteś zalogowany przez {provider}. Twoje uwierzytelnienie jest bezpiecznie zarządzane przez dostawcę.',
@@ -396,8 +382,7 @@ export default {
   'settings.auth.update_button': 'Aktualizuj dane uwierzytelnienia',
   'settings.auth.saving': 'Zapisywanie...',
 
-  // Country Names
-  'country.AT': 'Austria',
+    'country.AT': 'Austria',
   'country.BE': 'Belgia',
   'country.CA': 'Kanada',
   'country.CH': 'Szwajcaria',
@@ -418,8 +403,7 @@ export default {
   'country.SE': 'Szwecja',
   'country.US': 'Stany Zjednoczone',
 
-  // Save Lighter Flow - Pack Selection
-  'order.choose_pack_title': 'Wybierz swój pakiet',
+    'order.choose_pack_title': 'Wybierz swój pakiet',
   'order.choose_pack_subtitle': 'Wybierz, ile spersonalizowanych naklejek chcesz zamówić',
   'order.pack_sheets_single': 'arkusz',
   'order.pack_sheets_plural': 'arkuszy',
@@ -444,8 +428,7 @@ export default {
   'language.ko': '한국어',
   'language.zh-CN': '中文',
 
-  // --- Refill Guide Page ---
-  'refill_guide.title': 'Don\'t Throw Me Away',
+    'refill_guide.title': 'Don\'t Throw Me Away',
   'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
   'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
   'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature. A single company like BIC sold over 2.5 billion in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',
