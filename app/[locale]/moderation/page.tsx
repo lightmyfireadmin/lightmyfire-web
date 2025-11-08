@@ -24,7 +24,8 @@ export default async function ModerationPage() {
     .eq('id', session.user.id)
     .single();
 
-  if (profile?.role !== 'moderator') {
+  // Allow both moderators and admins to access moderation panel
+  if (profile?.role !== 'moderator' && profile?.role !== 'admin') {
     redirect(`/${locale}?message=You do not have permission to access this page.`);
   }
 
