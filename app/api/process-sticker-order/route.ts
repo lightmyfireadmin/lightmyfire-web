@@ -6,6 +6,8 @@ import { Resend } from 'resend';
 import Stripe from 'stripe';
 import { PACK_PRICING, VALID_PACK_SIZES } from '@/lib/constants';
 import { rateLimit } from '@/lib/rateLimit';
+import { sendOrderConfirmationEmail } from '@/lib/email';
+import { SupportedEmailLanguage } from '@/lib/email-i18n';
 
 interface LighterData {
   name: string;
@@ -370,98 +372,45 @@ The sticker PNG file is attached. Please fulfill this order.
           }
 
         try {
-      await resend.emails.send({
-        from: 'LightMyFire <onboarding@resend.dev>',
-        to: [shippingAddress.email],
-        subject: `Order Confirmed - ${lighterData.length} LightMyFire Stickers`,
-        html: `
-          <!DOCTYPE html>
-          <html>
-            <head>
-              <style>
-                body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-                .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-                .header { background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%); color: white; padding: 30px 20px; border-radius: 10px 10px 0 0; text-align: center; }
-                .content { background: #ffffff; padding: 30px 20px; border-radius: 0 0 10px 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-                .section { margin: 25px 0; padding: 20px; background: #f9f9f9; border-radius: 8px; }
-                .lighter-list { list-style: none; padding: 0; }
-                .lighter-item { padding: 10px; margin: 5px 0; background: white; border-left: 4px solid #FF6B6B; }
-                .pin-code { font-family: 'Courier New', monospace; font-weight: bold; background: #FFE66D; padding: 2px 6px; border-radius: 3px; }
-                .steps { counter-reset: step; }
-                .step { counter-increment: step; padding-left: 35px; position: relative; margin: 15px 0; }
-                .step:before { content: counter(step); position: absolute; left: 0; background: #FF6B6B; color: white; width: 25px; height: 25px; border-radius: 50%; text-align: center; line-height: 25px; font-weight: bold; }
-                .button { display: inline-block; background: #FF6B6B; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; margin: 20px 0; }
-                .footer { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 2px solid #eee; color: #666; font-size: 14px; }
-              </style>
-            </head>
-            <body>
-              <div class="container">
-                <div class="header">
-                  <h1 style="margin: 0; font-size: 32px;">🔥 Order Confirmed!</h1>
-                  <p style="margin: 10px 0 0 0; opacity: 0.9;">Thank you for your LightMyFire order</p>
-                </div>
-                <div class="content">
-                  <p>Hi <strong>${shippingAddress.name}</strong>,</p>
-                  <p>Great news! Your custom LightMyFire stickers have been confirmed and are being prepared.</p>
+      const emailLanguage = (lighterData[0]?.language || 'en') as SupportedEmailLanguage;
 
-                  <div class="section">
-                    <h3 style="margin-top: 0; color: #FF6B6B;">📦 Order Summary</h3>
-                    <p><strong>Order ID:</strong> ${paymentIntentId}</p>
-                    <p><strong>Quantity:</strong> ${lighterData.length} custom stickers</p>
-                    <p><strong>Shipping to:</strong><br>
-                    ${shippingAddress.address}<br>
-                    ${shippingAddress.city}, ${shippingAddress.postalCode}<br>
-                    ${shippingAddress.country}</p>
-                  </div>
+      const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+      const totalAmount = (paymentIntent.amount / 100).toFixed(2);
+      const currency = paymentIntent.currency;
 
-                  <div class="section">
-                    <h3 style="margin-top: 0; color: #FF6B6B;">🔥 Your Lighters</h3>
-                    <p>Your lighters are already active! Here are your unique PIN codes:</p>
-                    <ul class="lighter-list">
-                      ${createdLighters.map((l: any, i: number) =>
-                        `<li class="lighter-item"><strong>${l.lighter_name}</strong><br>PIN: <span class="pin-code">${l.pin_code}</span></li>`
-                      ).join('')}
-                    </ul>
-                  </div>
-
-                  <div class="section">
-                    <h3 style="margin-top: 0; color: #FF6B6B;">📋 What Happens Next?</h3>
-                    <div class="steps">
-                      <div class="step">Your custom stickers are being prepared with your unique PIN codes</div>
-                      <div class="step">Our team will process your order and prepare it for shipping</div>
-                      <div class="step">Stickers are carefully packaged and shipped within 5-7 business days</div>
-                      <div class="step">You'll receive a tracking number via email once shipped</div>
-                    </div>
-                  </div>
-
-                  <div style="text-align: center;">
-                    <p><strong>Your lighters are already active!</strong></p>
-                    <p>Start adding posts to them right now:</p>
-                    <a href="https://lightmyfire.app/en/my-profile" class="button">Go to My Profile</a>
-                  </div>
-
-                  <div class="footer">
-                    <p>Questions? Reply to this email or contact us at <a href="mailto:editionsrevel@gmail.com">editionsrevel@gmail.com</a></p>
-                    <p>Thank you for being part of the LightMyFire community! 🔥</p>
-                    <p style="font-size: 12px; color: #999;">Order placed: ${new Date().toLocaleString()}</p>
-                  </div>
-                </div>
-              </div>
-            </body>
-          </html>
-        `,
+      const result = await sendOrderConfirmationEmail({
+        userEmail: shippingAddress.email,
+        userName: shippingAddress.name,
+        orderId: paymentIntentId,
+        quantity: lighterData.length,
+        lighterNames: createdLighters.map((l: any) => l.lighter_name),
+        shippingAddress: {
+          name: shippingAddress.name,
+          address: shippingAddress.address,
+          city: shippingAddress.city,
+          postalCode: shippingAddress.postalCode,
+          country: shippingAddress.country,
+        },
+        totalAmount,
+        currency,
+        orderDetailsUrl: `https://lightmyfire.app/${emailLanguage}/my-orders`,
+        language: emailLanguage,
       });
-      customerEmailSent = true;
-      console.log('Customer confirmation email sent successfully via Resend');
 
-            await supabaseAdmin
-        .from('sticker_orders')
-        .update({ customer_email_sent: true })
-        .eq('payment_intent_id', paymentIntentId);
+      if (result.success) {
+        customerEmailSent = true;
+        console.log('Customer confirmation email sent successfully via Resend');
 
+        await supabaseAdmin
+          .from('sticker_orders')
+          .update({ customer_email_sent: true })
+          .eq('payment_intent_id', paymentIntentId);
+      } else {
+        console.error('Failed to send customer email:', result.error);
+      }
     } catch (emailError) {
       console.error('Failed to send customer confirmation email:', emailError);
-          }
+    }
 
         const warnings = [];
     if (!fulfillmentEmailSent) {
