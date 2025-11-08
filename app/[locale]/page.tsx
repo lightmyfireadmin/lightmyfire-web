@@ -80,7 +80,7 @@ export default async function Home() {
 
       {}
       <div className="mx-auto w-full max-w-4xl px-4 py-4 lg:py-6 mb-3 lg:mb-1">
-        <div className="rounded-lg border border-border bg-background/95 p-8 sm:p-10 shadow-md">
+        <div className="rounded-lg border border-border bg-background/90 p-8 sm:p-10 shadow-md">
           <h2 className="mb-4 text-center text-2xl sm:text-3xl font-bold text-foreground">
             {t('home.become_lightsaver.title')}
           </h2>
@@ -117,7 +117,7 @@ export default async function Home() {
         </h2>
         <div className="grid grid-cols-1 gap-1.5 md:gap-2 md:grid-cols-3">
           {}
-          <div className="rounded-lg border border-border bg-background/95 p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+          <div className="rounded-lg border border-border bg-background/90 p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
             <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
               <Image
                 src="/illustrations/personalise.png"
@@ -138,7 +138,7 @@ export default async function Home() {
           </div>
 
           {}
-          <div className="rounded-lg border border-border bg-background/95 p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+          <div className="rounded-lg border border-border bg-background/90 p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
             <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
               <Image
                 src="/illustrations/around_the_world.png"
@@ -159,7 +159,7 @@ export default async function Home() {
           </div>
 
           {}
-          <div className="rounded-lg border border-border bg-background/95 p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+          <div className="rounded-lg border border-border bg-background/90 p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
             <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
               <Image
                 src="/illustrations/telling_stories.png"
