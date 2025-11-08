@@ -81,12 +81,12 @@ export default function LaunchAnnouncementPopup() {
         onClick={handleClose}
       />
 
-      {/* Popup */}
+      {/* Popup - Force light theme for readability across all devices */}
       <div
-        className={`relative w-full max-w-2xl bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden pointer-events-auto transform transition-all duration-300 ${
+        className={`relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden pointer-events-auto transform transition-all duration-300 ${
           isAnimating ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
         }`}
-        style={{ opacity: 0.95 }}
+        style={{ opacity: 0.98, colorScheme: 'light' }}
       >
         {/* Header with gradient background */}
         <div className="relative bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 p-6 pb-8">
@@ -106,10 +106,10 @@ export default function LaunchAnnouncementPopup() {
               onChange={(e) => setSelectedLang(e.target.value as Language)}
               className="px-3 py-1.5 rounded-lg bg-white/20 backdrop-blur-sm text-white border border-white/30 text-sm font-medium cursor-pointer hover:bg-white/30 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white/50"
             >
-              <option value="en" className="text-gray-900">🇬🇧 English</option>
-              <option value="fr" className="text-gray-900">🇫🇷 Français</option>
-              <option value="de" className="text-gray-900">🇩🇪 Deutsch</option>
-              <option value="es" className="text-gray-900">🇪🇸 Español</option>
+              <option value="en" className="text-gray-900 bg-white">🇬🇧 English</option>
+              <option value="fr" className="text-gray-900 bg-white">🇫🇷 Français</option>
+              <option value="de" className="text-gray-900 bg-white">🇩🇪 Deutsch</option>
+              <option value="es" className="text-gray-900 bg-white">🇪🇸 Español</option>
             </select>
           </div>
 
@@ -119,10 +119,10 @@ export default function LaunchAnnouncementPopup() {
           </h2>
         </div>
 
-        {/* Content */}
-        <div className="p-8 bg-white dark:bg-gray-800">
-          <div className="prose prose-lg dark:prose-invert max-w-none">
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-base">
+        {/* Content - Forced light theme */}
+        <div className="p-8 bg-white">
+          <div className="prose prose-lg max-w-none">
+            <p className="text-gray-800 leading-relaxed text-base">
               {renderContent(content.content)}
             </p>
           </div>
