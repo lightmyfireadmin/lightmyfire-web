@@ -56,22 +56,22 @@ export default function OurPhilosophy() {
               {t('philosophy.lead')}
             </p>
 
-            {/* Philosophy Paragraphs */}
-            <div className="space-y-4 text-foreground">
+            {/* Philosophy Paragraphs - Mobile: Very dark grey for readability */}
+            <div className="space-y-4 text-gray-900 md:text-foreground">
               <div
-                className="prose prose-lg max-w-none dark:prose-invert"
+                className="prose prose-lg max-w-none md:dark:prose-invert"
                 dangerouslySetInnerHTML={{ __html: sanitizeHTML(t('philosophy.p1')) }}
               />
               <div
-                className="prose prose-lg max-w-none dark:prose-invert"
+                className="prose prose-lg max-w-none md:dark:prose-invert"
                 dangerouslySetInnerHTML={{ __html: sanitizeHTML(t('philosophy.p2')) }}
               />
               <div
-                className="prose prose-lg max-w-none dark:prose-invert"
+                className="prose prose-lg max-w-none md:dark:prose-invert"
                 dangerouslySetInnerHTML={{ __html: sanitizeHTML(t('philosophy.p3')) }}
               />
               <div
-                className="prose prose-lg max-w-none dark:prose-invert"
+                className="prose prose-lg max-w-none md:dark:prose-invert"
                 dangerouslySetInnerHTML={{ __html: sanitizeHTML(t('philosophy.p4')) }}
               />
             </div>

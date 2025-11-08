@@ -27,20 +27,20 @@ export default function DontThrowMeAwayPage() {
           </p>
 
           {}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="rounded-lg border-2 border-primary/20 bg-primary/5 p-6 text-center">
-              <p className="text-4xl font-bold text-primary mb-2">650M</p>
-              <p className="text-sm font-semibold text-foreground">{t('refill_guide.stats.lighters_sold')}</p>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="rounded-lg border-2 border-primary/20 bg-primary/5 p-6 text-center animate-fadeIn" style={{ animationDelay: '0.1s' }}>
+              <p className="text-3xl md:text-4xl font-bold text-primary mb-2">650M</p>
+              <p className="text-xs md:text-sm font-semibold text-foreground">{t('refill_guide.stats.lighters_sold')}</p>
               <p className="text-xs text-muted-foreground mt-2">{t('refill_guide.stats.lighters_sold_worldwide')}</p>
             </div>
-            <div className="rounded-lg border-2 border-primary/20 bg-primary/5 p-6 text-center">
-              <p className="text-4xl font-bold text-primary mb-2">150+</p>
-              <p className="text-sm font-semibold text-foreground">{t('refill_guide.stats.years_decompose')}</p>
+            <div className="rounded-lg border-2 border-primary/20 bg-primary/5 p-6 text-center animate-fadeIn" style={{ animationDelay: '0.2s' }}>
+              <p className="text-3xl md:text-4xl font-bold text-primary mb-2">150+</p>
+              <p className="text-xs md:text-sm font-semibold text-foreground">{t('refill_guide.stats.years_decompose')}</p>
               <p className="text-xs text-muted-foreground mt-2">{t('refill_guide.stats.years_decompose_location')}</p>
             </div>
-            <div className="rounded-lg border-2 border-primary/20 bg-primary/5 p-6 text-center">
-              <p className="text-4xl font-bold text-primary mb-2">90%</p>
-              <p className="text-sm font-semibold text-foreground">{t('refill_guide.stats.waste_reduction')}</p>
+            <div className="rounded-lg border-2 border-primary/20 bg-primary/5 p-6 text-center col-span-2 md:col-span-1 animate-fadeIn" style={{ animationDelay: '0.3s' }}>
+              <p className="text-3xl md:text-4xl font-bold text-primary mb-2">90%</p>
+              <p className="text-xs md:text-sm font-semibold text-foreground">{t('refill_guide.stats.waste_reduction')}</p>
               <p className="text-xs text-muted-foreground mt-2">{t('refill_guide.stats.waste_reduction_method')}</p>
             </div>
           </div>
@@ -244,9 +244,9 @@ export default function DontThrowMeAwayPage() {
                     </ol>
                   </div>
 
-                  <div className="rounded-lg bg-yellow-100 dark:bg-yellow-900/30 p-4 border-2 border-yellow-400 dark:border-yellow-600">
-                    <p className="text-sm text-yellow-900 dark:text-yellow-100 font-medium">
-                      💡 <strong className="text-yellow-800 dark:text-yellow-200">Pro tip:</strong> {t('refill_guide.pro_tip_butane')}
+                  <div className="rounded-lg bg-amber-50 p-4 border-2 border-amber-700 md:bg-yellow-100 md:dark:bg-yellow-900/30 md:border-yellow-400 md:dark:border-yellow-600">
+                    <p className="text-sm text-amber-900 font-medium md:text-yellow-900 md:dark:text-yellow-100">
+                      💡 <strong className="text-amber-800 md:text-yellow-800 md:dark:text-yellow-200">Pro tip:</strong> {t('refill_guide.pro_tip_butane')}
                     </p>
                   </div>
                 </div>
@@ -304,9 +304,9 @@ export default function DontThrowMeAwayPage() {
                     </ol>
                   </div>
 
-                  <div className="rounded-lg bg-blue-100 dark:bg-blue-900/30 p-4 border-2 border-blue-400 dark:border-blue-600">
-                    <p className="text-sm text-blue-900 dark:text-blue-100 font-medium">
-                      ⚠️ <strong className="text-blue-800 dark:text-blue-200">Important:</strong> {t('refill_guide.important_gasoline')}
+                  <div className="rounded-lg bg-sky-50 p-4 border-2 border-sky-800 md:bg-blue-100 md:dark:bg-blue-900/30 md:border-blue-400 md:dark:border-blue-600">
+                    <p className="text-sm text-sky-900 font-medium md:text-blue-900 md:dark:text-blue-100">
+                      ⚠️ <strong className="text-sky-800 md:text-blue-800 md:dark:text-blue-200">Important:</strong> {t('refill_guide.important_gasoline')}
                     </p>
                   </div>
                 </div>
