@@ -32,6 +32,36 @@ export default function OrdersList({ orders: initialOrders }: OrdersListProps) {
   const [orders, setOrders] = useState(initialOrders);
   const [refundingOrderId, setRefundingOrderId] = useState<string | null>(null);
   const [expandedOrderId, setExpandedOrderId] = useState<string | null>(null);
+  const [resendingOrderId, setResendingOrderId] = useState<string | null>(null);
+
+  const handleResendFulfillment = async (order: Order) => {
+    if (!confirm(`Resend fulfillment email with stickers for order ${order.id.substring(0, 8)}...?`)) {
+      return;
+    }
+
+    setResendingOrderId(order.id);
+
+    try {
+      const response = await fetch('/api/admin/resend-fulfillment-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ orderId: order.id }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to resend fulfillment email');
+      }
+
+      const result = await response.json();
+      alert(`✅ Fulfillment email resent successfully!\n\n${result.lighterCount} sticker(s) sent to fulfillment team.`);
+    } catch (error) {
+      console.error('Resend fulfillment error:', error);
+      alert(`❌ Failed to resend: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    } finally {
+      setResendingOrderId(null);
+    }
+  };
 
   const handleRefund = async (order: Order) => {
     if (!confirm(`Are you sure you want to refund €${(order.amount_cents / 100).toFixed(2)} to ${order.shipping_email}?`)) {
@@ -225,28 +255,47 @@ export default function OrdersList({ orders: initialOrders }: OrdersListProps) {
                       {formatDate(order.created_at)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
-                      {order.status === 'paid' && order.refund_status !== 'refunded' ? (
-                        <button
-                          onClick={() => handleRefund(order)}
-                          disabled={refundingOrderId === order.id}
-                          className="inline-flex items-center px-3 py-1.5 border border-red-300 dark:border-red-700 rounded-md text-xs font-medium text-red-700 dark:text-red-300 bg-white dark:bg-gray-800 hover:bg-red-50 dark:hover:bg-red-950/20 focus:outline-none focus:ring-2 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                          {refundingOrderId === order.id ? (
-                            <>
-                              <LoadingSpinner size="sm" />
-                              <span className="ml-2">Refunding...</span>
-                            </>
-                          ) : (
-                            'Refund'
-                          )}
-                        </button>
-                      ) : order.refund_status === 'refunded' ? (
-                        <span className="text-xs text-muted-foreground">
-                          Refunded {order.refunded_at ? formatDate(order.refunded_at) : ''}
-                        </span>
-                      ) : (
-                        <span className="text-xs text-muted-foreground">N/A</span>
-                      )}
+                      <div className="flex flex-col gap-2">
+                        {/* Resend Fulfillment Button - Available for all paid orders */}
+                        {order.status === 'paid' && (
+                          <button
+                            onClick={() => handleResendFulfillment(order)}
+                            disabled={resendingOrderId === order.id}
+                            className="inline-flex items-center justify-center px-3 py-1.5 border border-primary rounded-md text-xs font-medium text-primary bg-white dark:bg-gray-800 hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            {resendingOrderId === order.id ? (
+                              <>
+                                <LoadingSpinner size="sm" />
+                                <span className="ml-2">Sending...</span>
+                              </>
+                            ) : (
+                              '📧 Send to Fulfillment'
+                            )}
+                          </button>
+                        )}
+
+                        {/* Refund Button */}
+                        {order.status === 'paid' && order.refund_status !== 'refunded' ? (
+                          <button
+                            onClick={() => handleRefund(order)}
+                            disabled={refundingOrderId === order.id}
+                            className="inline-flex items-center justify-center px-3 py-1.5 border border-red-300 dark:border-red-700 rounded-md text-xs font-medium text-red-700 dark:text-red-300 bg-white dark:bg-gray-800 hover:bg-red-50 dark:hover:bg-red-950/20 focus:outline-none focus:ring-2 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            {refundingOrderId === order.id ? (
+                              <>
+                                <LoadingSpinner size="sm" />
+                                <span className="ml-2">Refunding...</span>
+                              </>
+                            ) : (
+                              'Refund'
+                            )}
+                          </button>
+                        ) : order.refund_status === 'refunded' ? (
+                          <span className="text-xs text-muted-foreground">
+                            Refunded {order.refunded_at ? formatDate(order.refunded_at) : ''}
+                          </span>
+                        ) : null}
+                      </div>
                     </td>
                   </tr>
                   {expandedOrderId === order.id && (
