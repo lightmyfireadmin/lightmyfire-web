@@ -100,12 +100,13 @@ export default function LaunchAnnouncementPopup() {
             <select
               value={selectedLang}
               onChange={(e) => setSelectedLang(e.target.value as Language)}
-              className="px-3 py-1.5 rounded-lg bg-white/20 backdrop-blur-sm text-white border border-white/30 text-sm font-medium cursor-pointer hover:bg-white/30 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white/50"
+              className="px-3 py-1.5 rounded-lg bg-gray-800/90 backdrop-blur-sm text-white border border-gray-700 text-sm font-medium cursor-pointer hover:bg-gray-700/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-600"
+              style={{ colorScheme: 'dark' }}
             >
-              <option value="en" className="text-gray-900 bg-white">🇬🇧 English</option>
-              <option value="fr" className="text-gray-900 bg-white">🇫🇷 Français</option>
-              <option value="de" className="text-gray-900 bg-white">🇩🇪 Deutsch</option>
-              <option value="es" className="text-gray-900 bg-white">🇪🇸 Español</option>
+              <option value="en" style={{ backgroundColor: '#1f2937', color: '#ffffff' }}>🇬🇧 English</option>
+              <option value="fr" style={{ backgroundColor: '#1f2937', color: '#ffffff' }}>🇫🇷 Français</option>
+              <option value="de" style={{ backgroundColor: '#1f2937', color: '#ffffff' }}>🇩🇪 Deutsch</option>
+              <option value="es" style={{ backgroundColor: '#1f2937', color: '#ffffff' }}>🇪🇸 Español</option>
             </select>
           </div>
 
@@ -127,7 +128,7 @@ export default function LaunchAnnouncementPopup() {
           <div className="mt-8 flex justify-center">
             <button
               onClick={handleClose}
-              className="px-8 py-3 bg-gradient-to-r from-orange-500 to-pink-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+              className="px-8 py-3 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
             >
               {selectedLang === 'fr' && "C'est compris !"}
               {selectedLang === 'de' && "Verstanden!"}

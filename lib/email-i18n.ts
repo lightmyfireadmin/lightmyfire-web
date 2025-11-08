@@ -20,7 +20,7 @@ export function getEmailTranslation(
   replacements?: Record<string, string | number>
 ): string {
   const locale = locales[lang] || locales.en;
-  let text = (locale[key] as string) || (en[key] as string) || key;
+  let text = ((locale as Record<string, any>)[key] as string) || (en[key] as string) || key;
 
   if (replacements) {
     Object.entries(replacements).forEach(([placeholder, value]) => {

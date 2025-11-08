@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams, useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useI18n } from '@/locales/client';
 import {
   CheckCircleIcon,
@@ -30,6 +30,24 @@ export default function AuthNotification() {
   const [notification, setNotification] = useState<NotificationConfig | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+
+  const handleClose = useCallback(() => {
+    setIsAnimating(false);
+    setTimeout(() => {
+      setIsVisible(false);
+      setNotification(null);
+
+            const url = new URL(window.location.href);
+      url.searchParams.delete('signup_success');
+      url.searchParams.delete('login_success');
+      url.searchParams.delete('logout_success');
+      url.searchParams.delete('password_reset');
+      url.searchParams.delete('password_updated');
+      url.searchParams.delete('error');
+
+            router.replace(url.pathname + url.search, { scroll: false });
+    }, 300);
+  }, [router]);
 
   useEffect(() => {
     let config: NotificationConfig | null = null;
@@ -147,25 +165,7 @@ export default function AuthNotification() {
 
       return () => clearTimeout(timer);
     }
-  }, [searchParams, t]);
-
-  const handleClose = () => {
-    setIsAnimating(false);
-    setTimeout(() => {
-      setIsVisible(false);
-      setNotification(null);
-
-            const url = new URL(window.location.href);
-      url.searchParams.delete('signup_success');
-      url.searchParams.delete('login_success');
-      url.searchParams.delete('logout_success');
-      url.searchParams.delete('password_reset');
-      url.searchParams.delete('password_updated');
-      url.searchParams.delete('error');
-
-            router.replace(url.pathname + url.search, { scroll: false });
-    }, 300);
-  };
+  }, [searchParams, t, handleClose]);
 
   if (!isVisible || !notification) {
     return null;
