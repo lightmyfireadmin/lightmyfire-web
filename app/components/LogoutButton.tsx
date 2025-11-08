@@ -1,8 +1,8 @@
 'use client';
 
-import { supabase } from '@/lib/supabase'; 
+import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
-import { useI18n } from '@/locales/client';
+import { useI18n, useCurrentLocale } from '@/locales/client';
 import { useToast } from '@/lib/context/ToastContext';
 
 interface LogoutButtonProps {
@@ -11,17 +11,28 @@ interface LogoutButtonProps {
 
 export default function LogoutButton({ isMobileMenu = false }: LogoutButtonProps) {
   const router = useRouter();
+  const locale = useCurrentLocale();
   const t = useI18n() as any;
   const { addToast } = useToast();
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    addToast({
-      type: 'success',
-      message: t('notifications.logout_success') || 'See you next time!',
-      duration: 2000,
-    });
-    router.refresh();
+    try {
+      await supabase.auth.signOut();
+      addToast({
+        type: 'success',
+        message: t('notifications.logout_success') || 'See you next time!',
+        duration: 2000,
+      });
+      // Redirect to home page after logout
+      window.location.href = `/${locale}`;
+    } catch (error) {
+      console.error('Logout error:', error);
+      addToast({
+        type: 'error',
+        message: t('notifications.logout_failed') || 'Logout failed. Please try again.',
+        duration: 3000,
+      });
+    }
   };
 
   return (

@@ -172,7 +172,7 @@ export default function AuthNotification() {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center p-4 sm:p-6 md:p-8 pointer-events-none">
+    <div className="fixed top-0 left-0 right-0 z-[9999] flex items-start justify-center px-4 py-4 sm:p-6 md:p-8 pointer-events-none">
       {}
       <div
         className={`
@@ -180,12 +180,13 @@ export default function AuthNotification() {
           rounded-xl shadow-2xl border-2
           ${notification.bgColor} ${notification.borderColor}
           transform transition-all duration-300 ease-out
+          mt-16 sm:mt-20 md:mt-24
           ${isAnimating
             ? 'translate-y-0 opacity-100 scale-100'
             : '-translate-y-4 opacity-0 scale-95'
           }
         `}
-        style={{ marginTop: '80px' }}       >
+      >
         {}
         <div className="p-6">
           <div className="flex items-start gap-4">
@@ -208,18 +209,21 @@ export default function AuthNotification() {
             <button
               onClick={handleClose}
               className={`
-                flex-shrink-0 p-1.5 rounded-lg
-                ${notification.textColor} opacity-60 hover:opacity-100
+                flex-shrink-0 p-2 sm:p-1.5 rounded-lg
+                ${notification.textColor} opacity-60 hover:opacity-100 active:opacity-100
                 hover:bg-black/5 dark:hover:bg-white/5
+                active:bg-black/10 dark:active:bg-white/10
                 transition-all duration-200
                 focus:outline-none focus:ring-2 focus:ring-offset-2
+                min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0
+                flex items-center justify-center
                 ${notification.type === 'success' ? 'focus:ring-green-500' : ''}
                 ${notification.type === 'error' ? 'focus:ring-red-500' : ''}
                 ${notification.type === 'warning' ? 'focus:ring-yellow-500' : ''}
               `}
               aria-label="Close notification"
             >
-              <XMarkIcon className="h-5 w-5" />
+              <XMarkIcon className="h-6 w-6 sm:h-5 sm:w-5" />
             </button>
           </div>
         </div>
