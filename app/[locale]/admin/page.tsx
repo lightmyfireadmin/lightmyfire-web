@@ -4,6 +4,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { getCurrentLocale } from '@/locales/server';
 import OrdersList from './OrdersList';
 import ModeratorsManagement from './ModeratorsManagement';
+import TestStickerGenerator from './TestStickerGenerator';
 
 export const dynamic = 'force-dynamic';
 
@@ -67,6 +68,11 @@ export default async function AdminPanelPage() {
             🧪 Testing Dashboard
           </a>
         </div>
+      </div>
+
+      {/* Test Sticker Generator */}
+      <div className="mb-8">
+        <TestStickerGenerator />
       </div>
 
       {}
