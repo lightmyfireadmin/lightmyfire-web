@@ -14,6 +14,7 @@ import { HeartIcon } from '@heroicons/react/24/outline';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 import CommunityStats from '@/app/components/CommunityStats';
 import OurPhilosophy from '@/app/components/OurPhilosophy';
+import LaunchAnnouncementPopup from '@/components/LaunchAnnouncementPopup';
 
 export const dynamic = 'force-dynamic';
 
@@ -36,6 +37,7 @@ export default async function Home() {
       <Suspense fallback={null}>
         <SignupWelcomeModal />
       </Suspense>
+      {!isLoggedIn && <LaunchAnnouncementPopup />}
 
       {}
       <div className="flex flex-col lg:flex-row items-center justify-center gap-1.5 lg:gap-2 py-4 lg:py-6 px-4 sm:px-6">

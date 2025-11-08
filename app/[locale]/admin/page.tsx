@@ -5,6 +5,7 @@ import { getCurrentLocale } from '@/locales/server';
 import OrdersList from './OrdersList';
 import ModeratorsManagement from './ModeratorsManagement';
 import TestStickerGenerator from './TestStickerGenerator';
+import EmailTester from './EmailTester';
 
 export const dynamic = 'force-dynamic';
 
@@ -70,12 +71,17 @@ export default async function AdminPanelPage() {
         </div>
       </div>
 
+      {/* Email Testing Dashboard */}
+      <div className="mb-8">
+        <EmailTester />
+      </div>
+
       {/* Test Sticker Generator */}
       <div className="mb-8">
         <TestStickerGenerator />
       </div>
 
-      {}
+      {/* Moderators Management */}
       <div className="mb-8">
         {moderatorsError ? (
           <div className="rounded-md bg-red-50 dark:bg-red-950/20 p-4 text-red-800 dark:text-red-200">

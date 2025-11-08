@@ -601,6 +601,135 @@ export async function sendLighterActivityEmail(data: LighterActivityData) {
 }
 
 // ============================================================================
+// ACCOUNT & ONBOARDING EMAILS
+// ============================================================================
+
+interface WelcomeEmailData {
+  userEmail: string;
+  userName: string;
+  profileUrl: string;
+  saveLighterUrl: string;
+}
+
+/**
+ * Welcome email for new signups
+ */
+export async function sendWelcomeEmail(data: WelcomeEmailData) {
+  const content = `
+    <p>Hi <strong>${data.userName}</strong>! 👋</p>
+    <p>Welcome to the LightSavers' community! We're thrilled to have you here.</p>
+
+    <div class="section">
+      <h3>🔥 What is LightMyFire?</h3>
+      <p>LightMyFire is a global movement giving lighters a second life through storytelling. Every lighter gets a digital identity, a unique sticker, and travels the world collecting stories from everyone who finds it.</p>
+    </div>
+
+    <div class="section">
+      <h3>🚀 Get Started</h3>
+      <p><strong>Here's what you can do now:</strong></p>
+      <ul>
+        <li><strong>Save your first lighter</strong> - Give it a name and get custom stickers delivered to your home</li>
+        <li><strong>Find a lighter</strong> - Enter a PIN from a sticker you found to see its journey</li>
+        <li><strong>Join the mosaic</strong> - Share posts, thoughts, songs, and locations</li>
+      </ul>
+    </div>
+
+    <div style="text-align: center; margin: 30px 0;">
+      <a href="${data.saveLighterUrl}" class="button">Save Your First Lighter</a>
+    </div>
+
+    <div style="text-align: center; margin: 20px 0; color: ${EMAIL_CONFIG.brandColors.textLight};">
+      <p>Questions? Just reply to this email—we're here to help!</p>
+    </div>
+  `;
+
+  return sendEmail({
+    to: data.userEmail,
+    subject: `Welcome to LightMyFire! 🔥`,
+    html: wrapEmailTemplate(content, `Welcome, ${data.userName}!`, 'Your journey starts here'),
+    from: EMAIL_CONFIG.from.default,
+  });
+}
+
+// ============================================================================
+// ORDER CONFIRMATION & SHIPPING EMAILS
+// ============================================================================
+
+interface OrderConfirmationEmailData {
+  userEmail: string;
+  userName: string;
+  orderId: string;
+  quantity: number;
+  lighterNames: string[];
+  shippingAddress: {
+    name: string;
+    address: string;
+    city: string;
+    postalCode: string;
+    country: string;
+  };
+  totalAmount: string;
+  currency: string;
+  orderDetailsUrl: string;
+}
+
+/**
+ * Order confirmation email sent immediately after payment
+ */
+export async function sendOrderConfirmationEmail(data: OrderConfirmationEmailData) {
+  const content = `
+    <p>Hi <strong>${data.userName}</strong>,</p>
+    <p>Thank you for your order! Your payment has been processed successfully. 🎉</p>
+
+    <div class="section">
+      <h3>📦 Order Summary</h3>
+      <p><strong>Order ID:</strong> ${data.orderId}</p>
+      <p><strong>Stickers:</strong> ${data.quantity} pack${data.quantity > 1 ? 's' : ''}</p>
+      <p><strong>Total Paid:</strong> ${data.totalAmount} ${data.currency.toUpperCase()}</p>
+    </div>
+
+    <div class="section">
+      <h3>🔥 Your Lighters</h3>
+      <ul>
+        ${data.lighterNames.map((name, i) => `<li><strong>${name}</strong></li>`).join('')}
+      </ul>
+      <p style="color: ${EMAIL_CONFIG.brandColors.textLight}; font-size: 14px;">
+        Each lighter now has a unique PIN and is ready to start its journey!
+      </p>
+    </div>
+
+    <div class="section">
+      <h3>📮 Shipping To</h3>
+      <p><strong>${data.shippingAddress.name}</strong></p>
+      <p>${data.shippingAddress.address}<br>
+      ${data.shippingAddress.city}, ${data.shippingAddress.postalCode}<br>
+      ${data.shippingAddress.country}</p>
+    </div>
+
+    <div class="section">
+      <h3>⏰ What's Next?</h3>
+      <p>Your stickers are being prepared for shipment. You'll receive another email with tracking information once they're on their way!</p>
+      <p><strong>Estimated delivery:</strong> 5-10 business days</p>
+    </div>
+
+    <div style="text-align: center; margin: 30px 0;">
+      <a href="${data.orderDetailsUrl}" class="button">View Order Details</a>
+    </div>
+
+    <p style="text-align: center; color: ${EMAIL_CONFIG.brandColors.textLight}; font-size: 14px;">
+      Questions about your order? Reply to this email anytime.
+    </p>
+  `;
+
+  return sendEmail({
+    to: data.userEmail,
+    subject: `Order Confirmed! Your LightMyFire stickers are on the way 📦`,
+    html: wrapEmailTemplate(content, 'Order Confirmed', `Thank you for your order!`),
+    from: EMAIL_CONFIG.from.orders,
+  });
+}
+
+// ============================================================================
 // ADMIN & MODERATION TEAM EMAILS
 // ============================================================================
 
@@ -664,7 +793,11 @@ export async function sendModeratorInviteEmail(data: ModeratorInviteData) {
 // ============================================================================
 
 export const emailService = {
+  // Account & Onboarding
+  sendWelcomeEmail,
+
   // Order emails
+  sendOrderConfirmationEmail,
   sendOrderShippedEmail,
 
   // Moderation emails
