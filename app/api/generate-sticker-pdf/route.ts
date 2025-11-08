@@ -49,7 +49,7 @@ const SHEET_HEIGHT_PX = Math.round(SHEET_HEIGHT_INCHES * DPI); // 4962px
 
 // Background Colors
 const CARD_BG_COLOR = '#FFFFFF';
-const LOGO_BG_COLOR = '#FFFBEB'; // Light cream for logo section
+const LOGO_BG_COLOR = '#FFF4D6'; // Slightly darker cream for logo section (machine detection)
 
 // Sticker dimensions: 5cm high x 2cm wide
 const STICKER_WIDTH_CM = 2;
@@ -556,9 +556,9 @@ async function drawSticker(
     ctx.fill();
 
     // Add legal disclaimer text at top of cream section
-    const disclaimerPadding = 20;
+    const disclaimerPadding = 10; // Reduced by half from 20
     const disclaimerWidth = STICKER_WIDTH_PX - (disclaimerPadding * 2);
-    const disclaimerText = "LightMyFire is a community-driven project aiming at giving value to otherwise often deprecated objects. The website lightmyfire.app has been audited to maintain your safety and anonymity. This sticker and LightMyFire have no affiliation with the legal representation of the object/surface this sticker was found on. LightMyFire cannot be held responsible for the private use of this sticker, i.e. the displayed content and location.";
+    const disclaimerText = "LightMyFire (LMF) is a community-driven project aiming at giving value to otherwise deprecated objects. lightmyfire.app was audited to maintain safety and anonymity. LMF has no affiliation with the legal representation of any object/surface this sticker was found on. LMF cannot be held responsible for the private use of this sticker, i.e. the displayed content and location.";
 
     ctx.fillStyle = '#000000';
     ctx.font = `500 16px Poppins, Arial, sans-serif`; // Small but readable
@@ -634,15 +634,16 @@ async function drawSticker(
     const logoImage = new Image();
     logoImage.src = logoBuffer;
 
-    // Logo sizing - fit to available space
+    // Logo sizing - fit to available space (0.6x scale)
     const logoPadding = 40;
-    const logoTargetWidth = STICKER_WIDTH_PX - (logoPadding * 2);
+    const logoBaseWidth = STICKER_WIDTH_PX - (logoPadding * 2);
+    const logoTargetWidth = Math.round(logoBaseWidth * 0.6); // 60% of available width
     const logoAspectRatio = logoImage.height / logoImage.width;
     const logoTargetHeight = Math.round(logoTargetWidth * logoAspectRatio);
 
     // Center logo vertically between disclaimer bottom and sticker bottom
     const availableSpace = creamBgBottom - disclaimerBottomY;
-    const logoX = x + logoPadding;
+    const logoX = x + (STICKER_WIDTH_PX - logoTargetWidth) / 2; // Center horizontally
     const logoY = disclaimerBottomY + (availableSpace - logoTargetHeight) / 2;
 
     ctx.drawImage(logoImage, logoX, logoY, logoTargetWidth, logoTargetHeight);
