@@ -91,6 +91,18 @@ export default {
     'login.tab.login': 'Connexion',
     'login.tab.signup': 'Inscription',
 
+    'auth.email_label': 'Email',
+    'auth.password_label': 'Mot de passe',
+    'auth.email_placeholder': 'toi@exemple.com',
+    'auth.password_placeholder': 'Ton mot de passe',
+    'auth.sign_in': 'Se connecter',
+    'auth.sign_up': 'S\'inscrire',
+    'auth.signing_in': 'Connexion en cours...',
+    'auth.signing_up': 'Inscription en cours...',
+    'auth.continue_with': 'Continuer avec',
+    'auth.already_have_account': 'Tu as déjà un compte ? Connecte-toi',
+    'auth.dont_have_account': 'Pas encore de compte ? Inscris-toi',
+    'auth.forgot_password': 'Mot de passe oublié ?',
     'auth.login_to_flag': 'Connecte-toi pour signaler des publications',
     'auth.login_to_like': 'Connecte-toi pour aimer des publications',
 
