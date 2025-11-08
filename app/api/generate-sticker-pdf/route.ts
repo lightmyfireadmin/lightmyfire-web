@@ -536,9 +536,9 @@ async function drawSticker(
 
   // Logo section at bottom - cream background with rounded bottom corners matching sticker
   try {
-    // Calculate remaining space to bottom of sticker (no padding, go to edge)
-    const creamBgTop = currentY;
-    const creamBgBottom = y + STICKER_HEIGHT_PX; // Go all the way to bottom of sticker
+    // Move cream section down by 5 pixels to cover any background gap
+    const creamBgTop = currentY + 5;
+    const creamBgBottom = y + STICKER_HEIGHT_PX + 5; // Extend beyond sticker bottom to ensure coverage
     const creamBgHeight = creamBgBottom - creamBgTop;
 
     // Draw cream background with rounded bottom corners to match sticker shape
@@ -558,7 +558,7 @@ async function drawSticker(
     // Add legal disclaimer text at top of cream section
     const disclaimerPadding = 10; // Reduced by half from 20
     const disclaimerWidth = STICKER_WIDTH_PX - (disclaimerPadding * 2);
-    const disclaimerText = "LightMyFire (LMF) is a community-driven project aiming at giving value to otherwise deprecated objects. lightmyfire.app was audited to maintain safety and anonymity. LMF has no affiliation with the legal representation of any object/surface this sticker was found on. LMF cannot be held responsible for the private use of this sticker, i.e. the displayed content and location.";
+    const disclaimerText = "LightMyFire (LMF) is a community-driven project aiming at giving value to often deprecated objects. lightmyfire.app was audited to ensure online safety and anonymity. LMF has no affiliation with any legal representation of the support this sticker was found on. LMF cannot be held responsible for any private use of this sticker, i.e. displayed content and location.";
 
     ctx.fillStyle = '#000000';
     ctx.font = `500 16px Poppins, Arial, sans-serif`; // Small but readable
@@ -634,7 +634,7 @@ async function drawSticker(
     const logoImage = new Image();
     logoImage.src = logoBuffer;
 
-    // Logo sizing - fit to available space (0.6x scale)
+    // Logo sizing - fit to available space (0.6x scale) with high quality rendering
     const logoPadding = 40;
     const logoBaseWidth = STICKER_WIDTH_PX - (logoPadding * 2);
     const logoTargetWidth = Math.round(logoBaseWidth * 0.6); // 60% of available width
@@ -645,6 +645,11 @@ async function drawSticker(
     const availableSpace = creamBgBottom - disclaimerBottomY;
     const logoX = x + (STICKER_WIDTH_PX - logoTargetWidth) / 2; // Center horizontally
     const logoY = disclaimerBottomY + (availableSpace - logoTargetHeight) / 2;
+
+    // Enable high-quality image rendering
+    ctx.imageSmoothingEnabled = true;
+    // @ts-ignore - imageSmoothingQuality is supported in node-canvas but not in types
+    ctx.imageSmoothingQuality = 'high';
 
     ctx.drawImage(logoImage, logoX, logoY, logoTargetWidth, logoTargetHeight);
 
