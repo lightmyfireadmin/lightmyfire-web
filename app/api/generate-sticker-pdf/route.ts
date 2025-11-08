@@ -516,7 +516,7 @@ async function drawSticker(
   ctx.fillText(codeText, x + STICKER_WIDTH_PX / 2, currentY + 46); // Adjusted position
 
   currentY += 76; // Section height - doubled from 38
-  currentY += smallGap;
+  currentY += (smallGap * 3); // TRIPLED gap before PIN code
 
   // PIN code - DOUBLED SIZE
   const pinBgHeight = 104; // Doubled from 52
@@ -532,16 +532,26 @@ async function drawSticker(
   ctx.textBaseline = 'middle';
   ctx.fillText(sticker.pinCode, x + STICKER_WIDTH_PX / 2, currentY + pinBgHeight / 2);
 
-  currentY += pinBgHeight + smallGap;
+  currentY += pinBgHeight + (smallGap * 4); // QUADRUPLED gap before logo
 
-  // Logo section at bottom - cream background extending to bottom of sticker
+  // Logo section at bottom - cream background with rounded bottom corners matching sticker
   try {
-    // Calculate remaining space to bottom of sticker
-    const remainingSpaceFromY = STICKER_HEIGHT_PX - (currentY - y);
+    // Calculate remaining space to bottom of sticker (accounting for bottom padding)
+    const remainingSpaceFromY = STICKER_HEIGHT_PX - (currentY - y) - padding;
 
-    // Draw cream background from current position to bottom
+    // Draw cream background with rounded bottom corners to match sticker shape
     ctx.fillStyle = LOGO_BG_COLOR;
-    ctx.fillRect(x, currentY, STICKER_WIDTH_PX, remainingSpaceFromY);
+    // Use path to create shape with rounded bottom corners only
+    ctx.beginPath();
+    ctx.moveTo(x, currentY); // Top left (no radius)
+    ctx.lineTo(x + STICKER_WIDTH_PX, currentY); // Top right (no radius)
+    ctx.lineTo(x + STICKER_WIDTH_PX, currentY + remainingSpaceFromY - cornerRadius); // Right side
+    ctx.arcTo(x + STICKER_WIDTH_PX, currentY + remainingSpaceFromY, x + STICKER_WIDTH_PX - cornerRadius, currentY + remainingSpaceFromY, cornerRadius); // Bottom right corner
+    ctx.lineTo(x + cornerRadius, currentY + remainingSpaceFromY); // Bottom edge
+    ctx.arcTo(x, currentY + remainingSpaceFromY, x, currentY + remainingSpaceFromY - cornerRadius, cornerRadius); // Bottom left corner
+    ctx.lineTo(x, currentY); // Left side back to top
+    ctx.closePath();
+    ctx.fill();
 
     // Load and draw logo
     const logoPath = path.join(process.cwd(), 'public', 'LOGOLONG.png');
