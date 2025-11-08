@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useI18n } from '@/locales/client';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
-import DOMPurify from 'isomorphic-dompurify';
+import DOMPurify from 'dompurify';
 
 export default function OurPhilosophy() {
   const t = useI18n() as any;

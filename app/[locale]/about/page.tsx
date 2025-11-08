@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useI18n } from '@/locales/client';
-import DOMPurify from 'isomorphic-dompurify';
+import DOMPurify from 'dompurify';
 
 export default function AboutPage() {
   const t = useI18n() as any;
