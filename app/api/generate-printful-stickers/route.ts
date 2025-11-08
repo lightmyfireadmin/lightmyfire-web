@@ -644,7 +644,7 @@ async function drawSticker(
     const logoX = x + (STICKER_WIDTH_PX - logoTargetWidth) / 2;     const logoY = disclaimerBottomY + (availableSpace - logoTargetHeight) / 2;
 
         ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = 'high';
+        (ctx as any).imageSmoothingQuality = 'high';
 
     ctx.drawImage(logoImage, logoX, logoY, logoTargetWidth, logoTargetHeight);
 
