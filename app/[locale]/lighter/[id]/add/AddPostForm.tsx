@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import type { User } from '@supabase/supabase-js';
@@ -97,7 +97,7 @@ export default function AddPostForm({
     }
   };
 
-  const searchYouTube = async (query: string) => {
+  const searchYouTube = useCallback(async (query: string) => {
     if (!query) {
       setYoutubeSearchResults([]);
       setShowYoutubeResults(false);
@@ -129,7 +129,7 @@ export default function AddPostForm({
       setShowYoutubeResults(false);
     }
     setYoutubeSearchLoading(false);
-  };
+  }, [t]);
 
 
   useEffect(() => {
@@ -141,7 +141,7 @@ export default function AddPostForm({
     return () => {
       clearTimeout(handler);
     };
-  }, [youtubeSearchQuery, songInputMode, contentUrl]);
+  }, [youtubeSearchQuery, songInputMode, contentUrl, searchYouTube]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {

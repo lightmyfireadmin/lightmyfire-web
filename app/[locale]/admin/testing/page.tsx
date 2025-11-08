@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { useCurrentLocale, useI18n } from '@/locales/client';
@@ -39,11 +39,7 @@ export default function AdminTestingPage() {
   const [checkedScenarios, setCheckedScenarios] = useState<Record<string, boolean>>({});
   const [isVerifying, setIsVerifying] = useState(false);
 
-  useEffect(() => {
-    checkAuth();
-  }, []);
-
-  async function checkAuth() {
+  const checkAuth = useCallback(async () => {
     try {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
@@ -68,7 +64,11 @@ export default function AdminTestingPage() {
       console.error('Auth error:', error);
       router.push(`/${locale}`);
     }
-  }
+  }, [router, locale]);
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
 
   async function handlePasswordSubmit(e: React.FormEvent) {
     e.preventDefault();

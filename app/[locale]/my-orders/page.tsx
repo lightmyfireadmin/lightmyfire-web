@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useI18n } from '@/locales/client';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
@@ -44,11 +44,7 @@ export default function MyOrdersPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    checkAuthAndFetchOrders();
-  }, []);
-
-  async function checkAuthAndFetchOrders() {
+  const checkAuthAndFetchOrders = useCallback(async () => {
     try {
       // Check authentication
       const { data: { session } } = await supabase.auth.getSession();
@@ -77,7 +73,11 @@ export default function MyOrdersPage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [router]);
+
+  useEffect(() => {
+    checkAuthAndFetchOrders();
+  }, [checkAuthAndFetchOrders]);
 
   function getStatusColor(status: string): string {
     switch (status) {
@@ -181,7 +181,7 @@ export default function MyOrdersPage() {
               No Orders Yet
             </h2>
             <p className="text-muted-foreground mb-6">
-              You haven't placed any sticker orders yet.
+              You haven&apos;t placed any sticker orders yet.
             </p>
             <button
               onClick={() => router.push('/save-lighter')}
