@@ -218,17 +218,23 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Create ZIP file
-    const { Readable } = await import('stream');
+    // Create ZIP file using proper stream handling
     const archive = archiver('zip', { zlib: { level: 9 } });
-    const chunks: Buffer[] = [];
-
-    // Collect ZIP data
-    archive.on('data', (chunk: Buffer) => chunks.push(chunk));
+    const chunks: Uint8Array[] = [];
 
     // Wait for ZIP to finish
     const zipPromise = new Promise<Buffer>((resolve, reject) => {
-      archive.on('end', () => resolve(Buffer.concat(chunks)));
+      archive.on('data', (chunk: Uint8Array) => chunks.push(chunk));
+      archive.on('end', () => {
+        const totalLength = chunks.reduce((acc, chunk) => acc + chunk.length, 0);
+        const result = new Uint8Array(totalLength);
+        let offset = 0;
+        for (const chunk of chunks) {
+          result.set(chunk, offset);
+          offset += chunk.length;
+        }
+        resolve(Buffer.from(result));
+      });
       archive.on('error', reject);
     });
 
@@ -238,7 +244,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Finalize ZIP
-    await archive.finalize();
+    archive.finalize();
     const zipBuffer = await zipPromise;
 
     return new NextResponse(new Uint8Array(zipBuffer), {

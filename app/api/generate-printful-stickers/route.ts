@@ -49,7 +49,7 @@ const SHEET_HEIGHT_PX = Math.round(SHEET_HEIGHT_INCHES * DPI); // 4962px
 
 // Background Colors
 const CARD_BG_COLOR = '#FFFFFF';
-const LOGO_BG_COLOR = '#FFFBEB'; // Light cream for logo section
+const LOGO_BG_COLOR = '#FFF4D6'; // Slightly darker cream for logo section (machine detection)
 
 // Sticker dimensions: 5cm high x 2cm wide
 const STICKER_WIDTH_CM = 2;
@@ -218,17 +218,23 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Create ZIP file
-    const { Readable } = await import('stream');
+    // Create ZIP file using proper stream handling
     const archive = archiver('zip', { zlib: { level: 9 } });
-    const chunks: Buffer[] = [];
-
-    // Collect ZIP data
-    archive.on('data', (chunk: Buffer) => chunks.push(chunk));
+    const chunks: Uint8Array[] = [];
 
     // Wait for ZIP to finish
     const zipPromise = new Promise<Buffer>((resolve, reject) => {
-      archive.on('end', () => resolve(Buffer.concat(chunks)));
+      archive.on('data', (chunk: Uint8Array) => chunks.push(chunk));
+      archive.on('end', () => {
+        const totalLength = chunks.reduce((acc, chunk) => acc + chunk.length, 0);
+        const result = new Uint8Array(totalLength);
+        let offset = 0;
+        for (const chunk of chunks) {
+          result.set(chunk, offset);
+          offset += chunk.length;
+        }
+        resolve(Buffer.from(result));
+      });
       archive.on('error', reject);
     });
 
@@ -238,7 +244,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Finalize ZIP
-    await archive.finalize();
+    archive.finalize();
     const zipBuffer = await zipPromise;
 
     return new NextResponse(new Uint8Array(zipBuffer), {
@@ -424,7 +430,7 @@ async function drawSticker(
   ctx.textBaseline = 'top';
   ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + 42);
 
-  currentY += 80; // Adjusted spacing after invitation section
+  currentY += 100; // Increased spacing after invitation section for breathing room
 
   // QR Code on white card - reduced by 0.7x factor for more color visibility
   const qrCardSize = Math.round(contentWidth * 0.7); // ~148px (70% of 212)
@@ -456,10 +462,10 @@ async function drawSticker(
     console.error('QR code generation error:', error);
   }
 
-  currentY += qrCardSize + smallGap;
+  currentY += qrCardSize + (smallGap * 6); // DOUBLED from tripled gap for more space
 
-  // "or go to lightmyfire.app" section
-  const urlBgHeight = 58; // Fixed size per programmer's spec
+  // "or go to lightmyfire.app" section - DOUBLED SIZE
+  const urlBgHeight = 116; // Doubled from 58
 
   // Draw white background with rounded corners
   ctx.fillStyle = CARD_BG_COLOR;
@@ -467,22 +473,22 @@ async function drawSticker(
   ctx.fill();
 
   ctx.fillStyle = '#000000';
-  ctx.font = `500 16px Poppins, Arial, sans-serif`;
+  ctx.font = `500 32px Poppins, Arial, sans-serif`; // Doubled from 16px
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText('or go to', x + STICKER_WIDTH_PX / 2, currentY + 19);
+  ctx.fillText('or go to', x + STICKER_WIDTH_PX / 2, currentY + 38); // Adjusted position
   // Use Poppins-Bold and all caps for better letter spacing and readability at small scale
-  ctx.font = `bold 18px Poppins, Arial, sans-serif`;
-  ctx.fillText('LIGHTMYFIRE.APP', x + STICKER_WIDTH_PX / 2, currentY + 40);
+  ctx.font = `bold 36px Poppins, Arial, sans-serif`; // Doubled from 18px
+  ctx.fillText('LIGHTMYFIRE.APP', x + STICKER_WIDTH_PX / 2, currentY + 80); // Adjusted position
 
   currentY += urlBgHeight + smallGap;
 
-  // "and type my code"
+  // "and type my code" - DOUBLED SIZE with HEAVY BOLD
   ctx.fillStyle = textColor; // Use contrasting color
-  ctx.font = `500 18px Poppins, Arial, sans-serif`;
+  ctx.font = `800 36px Poppins, Arial, sans-serif`; // Heavy bold (800 weight)
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
-  ctx.fillText('and type my code', x + STICKER_WIDTH_PX / 2, currentY + 2);
+  ctx.fillText('and type my code', x + STICKER_WIDTH_PX / 2, currentY + 4);
 
   // Translation - Complete language support (shorter versions)
   const codeTranslations: { [key: string]: string } = {
@@ -511,15 +517,15 @@ async function drawSticker(
   };
 
   const codeText = codeTranslations[sticker.language] || codeTranslations.fr;
-  ctx.font = `500 14px Poppins, Arial, sans-serif`;
+  ctx.font = `500 28px Poppins, Arial, sans-serif`; // Doubled from 14px
   ctx.textBaseline = 'top';
-  ctx.fillText(codeText, x + STICKER_WIDTH_PX / 2, currentY + 23);
+  ctx.fillText(codeText, x + STICKER_WIDTH_PX / 2, currentY + 46); // Adjusted position
 
-  currentY += 38; // Section height
-  currentY += smallGap;
+  currentY += 76; // Section height - doubled from 38
+  currentY += (smallGap * 3); // TRIPLED gap before PIN code
 
-  // PIN code
-  const pinBgHeight = 52; // Fixed size per programmer's spec
+  // PIN code - DOUBLED SIZE
+  const pinBgHeight = 104; // Doubled from 52
 
   // Draw white background with rounded corners
   ctx.fillStyle = CARD_BG_COLOR;
@@ -527,54 +533,136 @@ async function drawSticker(
   ctx.fill();
 
   ctx.fillStyle = '#000000';
-  ctx.font = `800 32px Poppins, Arial, sans-serif`;
+  ctx.font = `800 64px Poppins, Arial, sans-serif`; // Doubled from 32px
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText(sticker.pinCode, x + STICKER_WIDTH_PX / 2, currentY + pinBgHeight / 2);
 
-  currentY += pinBgHeight + smallGap;
+  currentY += pinBgHeight + (smallGap * 4); // QUADRUPLED gap before logo
 
-  // Logo section at bottom - compact cream background wrapping logo
-  // Load and draw logo first to get dimensions
+  // Logo section at bottom - cream background with rounded bottom corners matching sticker
   try {
-    const { Image } = await import('canvas');
-    const fs = await import('fs');
-    const path = await import('path');
+    // Move cream section down by 5 pixels to cover any background gap
+    const creamBgTop = currentY + 5;
+    const creamBgBottom = y + STICKER_HEIGHT_PX + 5; // Extend beyond sticker bottom to ensure coverage
+    const creamBgHeight = creamBgBottom - creamBgTop;
 
+    // Draw cream background with rounded bottom corners to match sticker shape
+    ctx.fillStyle = LOGO_BG_COLOR;
+    // Use path to create shape with rounded bottom corners only
+    ctx.beginPath();
+    ctx.moveTo(x, creamBgTop); // Top left (no radius)
+    ctx.lineTo(x + STICKER_WIDTH_PX, creamBgTop); // Top right (no radius)
+    ctx.lineTo(x + STICKER_WIDTH_PX, creamBgBottom - cornerRadius); // Right side
+    ctx.arcTo(x + STICKER_WIDTH_PX, creamBgBottom, x + STICKER_WIDTH_PX - cornerRadius, creamBgBottom, cornerRadius); // Bottom right corner
+    ctx.lineTo(x + cornerRadius, creamBgBottom); // Bottom edge
+    ctx.arcTo(x, creamBgBottom, x, creamBgBottom - cornerRadius, cornerRadius); // Bottom left corner
+    ctx.lineTo(x, creamBgTop); // Left side back to top
+    ctx.closePath();
+    ctx.fill();
+
+    // Add legal disclaimer text at top of cream section
+    const disclaimerPadding = 10; // Reduced by half from 20
+    const disclaimerWidth = STICKER_WIDTH_PX - (disclaimerPadding * 2);
+    const disclaimerText = "LightMyFire (LMF) is a community-driven project aiming at giving value to often deprecated objects. lightmyfire.app was audited to ensure online safety and anonymity. LMF has no affiliation with any legal representation of the support this sticker was found on. LMF cannot be held responsible for any private use of this sticker, i.e. displayed content and location.";
+
+    ctx.fillStyle = '#000000';
+    ctx.font = `500 16px Poppins, Arial, sans-serif`; // Small but readable
+    ctx.textAlign = 'left'; // Left align for justified appearance
+    ctx.textBaseline = 'top';
+
+    // Word wrap function for justified text
+    const wrapText = (text: string, maxWidth: number): string[] => {
+      const words = text.split(' ');
+      const lines: string[] = [];
+      let currentLine = '';
+
+      for (const word of words) {
+        const testLine = currentLine ? `${currentLine} ${word}` : word;
+        const metrics = ctx.measureText(testLine);
+
+        if (metrics.width > maxWidth && currentLine) {
+          lines.push(currentLine);
+          currentLine = word;
+        } else {
+          currentLine = testLine;
+        }
+      }
+
+      if (currentLine) {
+        lines.push(currentLine);
+      }
+
+      return lines;
+    };
+
+    const disclaimerLines = wrapText(disclaimerText, disclaimerWidth);
+    const lineHeight = 20;
+    let disclaimerY = creamBgTop + disclaimerPadding;
+
+    // Draw each line with justification (except last line)
+    disclaimerLines.forEach((line, index) => {
+      const isLastLine = index === disclaimerLines.length - 1;
+
+      if (isLastLine) {
+        // Last line: left-aligned, no justification
+        ctx.textAlign = 'left';
+        ctx.fillText(line, x + disclaimerPadding, disclaimerY);
+      } else {
+        // Justify by adding space between words
+        const words = line.split(' ');
+        if (words.length === 1) {
+          ctx.textAlign = 'left';
+          ctx.fillText(line, x + disclaimerPadding, disclaimerY);
+        } else {
+          const lineWidth = ctx.measureText(line).width;
+          const spaceWidth = (disclaimerWidth - lineWidth) / (words.length - 1);
+          let wordX = x + disclaimerPadding;
+
+          words.forEach((word, wordIndex) => {
+            ctx.fillText(word, wordX, disclaimerY);
+            const wordWidth = ctx.measureText(word).width;
+            wordX += wordWidth + ctx.measureText(' ').width + spaceWidth;
+          });
+        }
+      }
+
+      disclaimerY += lineHeight;
+    });
+
+    const disclaimerTotalHeight = disclaimerLines.length * lineHeight;
+    const disclaimerBottomY = creamBgTop + disclaimerPadding + disclaimerTotalHeight;
+
+    // Load and draw logo
     const logoPath = path.join(process.cwd(), 'public', 'LOGOLONG.png');
     const logoBuffer = fs.readFileSync(logoPath);
+    const { Image } = await import('canvas');
     const logoImage = new Image();
     logoImage.src = logoBuffer;
 
-    const logoTargetWidth = 160; // Fixed size per programmer's spec
+    // Logo sizing - fit to available space (0.6x scale) with high quality rendering
+    const logoPadding = 40;
+    const logoBaseWidth = STICKER_WIDTH_PX - (logoPadding * 2);
+    const logoTargetWidth = Math.round(logoBaseWidth * 0.6); // 60% of available width
     const logoAspectRatio = logoImage.height / logoImage.width;
     const logoTargetHeight = Math.round(logoTargetWidth * logoAspectRatio);
 
-    // Create compact cream background wrapping logo with padding
-    const logoPadding = 12; // Small padding around logo
-    const logoBgWidth = logoTargetWidth + (logoPadding * 2);
-    const logoBgHeight = logoTargetHeight + (logoPadding * 2);
+    // Center logo vertically between disclaimer bottom and sticker bottom
+    const availableSpace = creamBgBottom - disclaimerBottomY;
+    const logoX = x + (STICKER_WIDTH_PX - logoTargetWidth) / 2; // Center horizontally
+    const logoY = disclaimerBottomY + (availableSpace - logoTargetHeight) / 2;
 
-    // Position logo (vertically centered in remaining space)
-    const remainingHeight = STICKER_HEIGHT_PX - currentY + y - padding;
-    const logoBgY = currentY + (remainingHeight - logoBgHeight) / 2;
+    // Enable high-quality image rendering
+    ctx.imageSmoothingEnabled = true;
+    // @ts-ignore - imageSmoothingQuality is supported in node-canvas but not in types
+    ctx.imageSmoothingQuality = 'high';
 
-    // Center cream background horizontally
-    const centerX = x + STICKER_WIDTH_PX / 2;
-    const logoBgX = Math.round(centerX - logoBgWidth / 2);
+    ctx.drawImage(logoImage, logoX, logoY, logoTargetWidth, logoTargetHeight);
 
-    // Draw compact cream background
-    ctx.fillStyle = LOGO_BG_COLOR;
-    roundRect(ctx, logoBgX, logoBgY, logoBgWidth, logoBgHeight, cardRadius);
-    ctx.fill();
-
-    // Draw logo centered in cream background
-    const logoX = logoBgX + logoPadding;
-    const logoImageY = logoBgY + logoPadding;
-
-    ctx.drawImage(logoImage, logoX, logoImageY, logoTargetWidth, logoTargetHeight);
+    console.log('Logo drawn successfully at', logoX, logoY, 'size:', logoTargetWidth, 'x', logoTargetHeight);
   } catch (error) {
     console.error('Logo loading error:', error);
+    console.error('Error details:', error);
   }
 }
 
