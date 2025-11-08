@@ -60,8 +60,8 @@ export async function POST(request: NextRequest) {
     const sanitizedSubject = subject || 'LightMyFire Contact Form';
 
         const { data, error } = await resend.emails.send({
-      from: 'LightMyFire <noreply@lightmyfire.app>',
-      to: ['editionsrevel@gmail.com'],
+      from: 'LightMyFire <support@lightmyfire.app>',
+      to: ['support@lightmyfire.app'],
       replyTo: sanitizedEmail,
       subject: `${sanitizedSubject} - From ${sanitizedName}`,
       html: `

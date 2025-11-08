@@ -201,7 +201,7 @@ export default {
     'order.custom_branding.title': 'कार्यक्रमों और ब्रांड्स के लिए कस्टम ब्रांडिंग',
   'order.custom_branding.description': 'किसी कार्यक्रम की योजना बना रहे हैं या अपनी स्टिकर शीट पर कस्टम ब्रांडिंग चाहते हैं? हम आपके संगठन, ब्रांड या विशेष कार्यक्रम के लिए ब्रांडिंग क्षेत्र को व्यक्तिगत कर सकते हैं!',
   'order.custom_branding.button': 'कस्टम ब्रांडिंग के लिए हमसे संपर्क करें',
-  'order.custom_branding.email': 'editionsrevel@gmail.com',
+  'order.custom_branding.email': 'orders@lightmyfire.app',
 
     'order.customization.title': 'अपने स्टिकर को कस्टमाइज़ करें',
   'order.customization.subtitle': 'प्रत्येक लाइटर को व्यक्तिगत बनाएं',

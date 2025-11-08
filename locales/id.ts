@@ -200,7 +200,7 @@ export default {
     'order.custom_branding.title': 'Branding Khusus untuk Acara & Merek',
   'order.custom_branding.description': 'Merencanakan acara atau ingin branding khusus di lembar stiker Anda? Kami dapat mempersonalisasi area branding untuk organisasi, merek, atau acara khusus Anda!',
   'order.custom_branding.button': 'Hubungi Kami untuk Branding Khusus',
-  'order.custom_branding.email': 'editionsrevel@gmail.com',
+  'order.custom_branding.email': 'orders@lightmyfire.app',
 
     'order.customization.title': 'Kustomisasi Stiker Anda',
   'order.customization.subtitle': 'Personalisasi setiap korek api',

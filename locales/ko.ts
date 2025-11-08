@@ -254,7 +254,7 @@ export default {
     'order.custom_branding.title': '이벤트 및 브랜드를 위한 커스텀 브랜딩',
   'order.custom_branding.description': '이벤트를 계획 중이거나 스티커 시트에 커스텀 브랜딩을 원하시나요? 조직, 브랜드 또는 특별한 이벤트를 위해 브랜딩 영역을 개인화할 수 있습니다!',
   'order.custom_branding.button': '커스텀 브랜딩 문의',
-  'order.custom_branding.email': 'editionsrevel@gmail.com',
+  'order.custom_branding.email': 'orders@lightmyfire.app',
 
     'order.customization.title': '스티커 커스터마이징',
   'order.customization.subtitle': '각 라이터를 개인화하세요',

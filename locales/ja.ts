@@ -212,7 +212,7 @@ export default {
     'order.custom_branding.title': 'イベント・ブランド向けカスタムブランディング',
   'order.custom_branding.description': 'イベントを計画していますか、またはステッカーシートにカスタムブランディングが必要ですか？組織、ブランド、または特別なイベント用にブランディングエリアをカスタマイズできます！',
   'order.custom_branding.button': 'カスタムブランディングについてお問い合わせ',
-  'order.custom_branding.email': 'editionsrevel@gmail.com',
+  'order.custom_branding.email': 'orders@lightmyfire.app',
 
     'order.customization.title': 'ステッカーをカスタマイズ',
   'order.customization.subtitle': '各ライターをパーソナライズ',

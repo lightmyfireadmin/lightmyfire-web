@@ -212,7 +212,7 @@ export default {
     'order.custom_branding.title': 'برندسازی سفارشی برای رویدادها و برندها',
   'order.custom_branding.description': 'برای یک رویداد برنامه ریزی می کنید یا می خواهید برندسازی سفارشی روی برگ های برچسب خود داشته باشید؟ ما می توانیم منطقه برندسازی را برای سازمان، برند یا رویداد خاص شما شخصی سازی کنیم!',
   'order.custom_branding.button': 'برای برندسازی سفارشی با ما تماس بگیرید',
-  'order.custom_branding.email': 'editionsrevel@gmail.com',
+  'order.custom_branding.email': 'orders@lightmyfire.app',
 
     'order.customization.title': 'برچسب های خود را سفارشی کنید',
   'order.customization.subtitle': 'هر فندک را شخصی سازی کنید',

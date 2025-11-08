@@ -212,7 +212,7 @@ export default {
     'order.custom_branding.title': 'ఈవెంట్‌ల మరియు బ్రాండ్‌ల కోసం కస్టమ్ బ్రాండింగ్',
   'order.custom_branding.description': 'ఈవెంట్‌ను ప్లాన్ చేస్తున్నారా లేదా మీ స్టిక్కర్ షీట్‌లపై కస్టమ్ బ్రాండింగ్ కావాలా? మేము మీ సంస్థ, ব్రాండ్ లేదా ప్రత్యేక ఈవెంట్ కోసం బ్రాండింగ్ ఎరియాను వ్యక్తిగతీకరించవచ్చు!',
   'order.custom_branding.button': 'కస్టమ్ బ్రాండింగ్ కోసం మమ్మల్ని సంప్రదించండి',
-  'order.custom_branding.email': 'editionsrevel@gmail.com',
+  'order.custom_branding.email': 'orders@lightmyfire.app',
 
     'order.customization.title': 'మీ స్టిక్కర్‌లను కస్టమైజ్ చేయండి',
   'order.customization.subtitle': 'ప్రతి లైటర్‌ను వ్యక్తిగతీకరించండి',

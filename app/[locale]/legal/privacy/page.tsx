@@ -29,9 +29,12 @@ export default function PrivacyPolicy() {
               <br />
               Revel Editions, SASU
               <br />
-              [Your Company&apos;s Full Address in France]
+              145 Rue de Noisy-le-Sec<br />
+              93260 Les Lilas, France
               <br />
-              [Your Contact Email, e.g., legal@lightmyfire.com]
+              <strong>Contact Email:</strong> support@lightmyfire.app
+              <br />
+              <strong>Data Protection Officer:</strong> support@lightmyfire.app
             </p>
   
             <h3>2. Information We Collect</h3>
@@ -153,8 +156,7 @@ export default function PrivacyPolicy() {
               </li>
             </ul>
             <p>
-              To exercise these rights, please contact us at the email
-              address listed above.
+              To exercise these rights, please contact us at <strong>support@lightmyfire.app</strong>.
             </p>
           </div>
         </div>

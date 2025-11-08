@@ -16,10 +16,10 @@ function getResendClient(): Resend {
 
 const EMAIL_CONFIG = {
   from: {
-    default: 'LightMyFire <noreply@lightmyfire.app>',
+    default: 'LightMyFire <support@lightmyfire.app>',
     orders: 'LightMyFire Orders <orders@lightmyfire.app>',
-    notifications: 'LightMyFire <notifications@lightmyfire.app>',
-    moderation: 'LightMyFire Moderation <moderation@lightmyfire.app>',
+    notifications: 'LightMyFire <mitch@lightmyfire.app>',
+    moderation: 'LightMyFire <mitch@lightmyfire.app>',
     support: 'LightMyFire Support <support@lightmyfire.app>',
   },
   brandColors: {

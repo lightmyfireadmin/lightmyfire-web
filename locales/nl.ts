@@ -355,7 +355,7 @@ export default {
     'order.custom_branding.title': 'Aangepaste branding voor evenementen en merken',
   'order.custom_branding.description': 'Plant u een evenement of wilt u aangepaste branding op uw stickervellen? We kunnen het brandinggebied personaliseren voor uw organisatie, merk of speciaal evenement!',
   'order.custom_branding.button': 'Neem contact met ons op voor aangepaste branding',
-  'order.custom_branding.email': 'editionsrevel@gmail.com',
+  'order.custom_branding.email': 'orders@lightmyfire.app',
 
     'order.customization.title': 'Personaliseer uw stickers',
   'order.customization.subtitle': 'Personaliseer elke aansteker',

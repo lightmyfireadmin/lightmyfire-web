@@ -295,7 +295,7 @@ export default {
     'order.custom_branding.title': 'Etkinlikler ve Markalar için Özel Markalama',
   'order.custom_branding.description': 'Bir etkinlik planlıyor veya çıkartma sayfalarında özel markalama mı istiyorsunuz? Kuruluşunuz, markanız veya özel etkinliğiniz için markalama alanını kişiselleştirebiliriz!',
   'order.custom_branding.button': 'Özel Markalama için Bizimle İletişime Geçin',
-  'order.custom_branding.email': 'editionsrevel@gmail.com',
+  'order.custom_branding.email': 'orders@lightmyfire.app',
 
     'order.customization.title': 'Çıkartmalarınızı Özelleştirin',
   'order.customization.subtitle': 'Her çakmağı kişiselleştirin',
