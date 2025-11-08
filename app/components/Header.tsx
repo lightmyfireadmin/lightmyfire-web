@@ -4,7 +4,7 @@ import React, { useState, Fragment, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Dialog, Transition } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon, QuestionMarkCircleIcon, HeartIcon, PlusIcon, GlobeAltIcon, UserIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, XMarkIcon, QuestionMarkCircleIcon, HeartIcon, PlusIcon, GlobeAltIcon, UserIcon, MagnifyingGlassIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
 import LogoutButton from './LogoutButton';
 import { useCurrentLocale, useI18n } from '@/locales/client';
 import Image from 'next/image';
@@ -121,10 +121,16 @@ export default function Header({ session, username }: { session: Session | null;
             </Link>
           ))}
           {isLoggedIn && (
-             <Link href={`/${lang}/my-profile`} className={classNames(pathname === `/${lang}/my-profile` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6 flex items-center')}>
-               <UserIcon className="h-5 w-5 mr-1.5" aria-hidden="true" />
-               {username || t('nav.my_profile')}
-             </Link>
+            <>
+              <Link href={`/${lang}/my-orders`} className={classNames(pathname === `/${lang}/my-orders` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6 flex items-center')}>
+                <ShoppingBagIcon className="h-5 w-5 mr-1.5" aria-hidden="true" />
+                My Orders
+              </Link>
+              <Link href={`/${lang}/my-profile`} className={classNames(pathname === `/${lang}/my-profile` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6 flex items-center')}>
+                <UserIcon className="h-5 w-5 mr-1.5" aria-hidden="true" />
+                {username || t('nav.my_profile')}
+              </Link>
+            </>
           )}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-x-4">
@@ -197,10 +203,16 @@ export default function Header({ session, username }: { session: Session | null;
                     </Link>
                   ))}
                   {isLoggedIn && (
-                    <Link href={`/${lang}/my-profile`} onClick={() => setMobileMenuOpen(false)} className={classNames(pathname === `/${lang}/my-profile` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 flex items-center pl-4 gap-x-4')}>
-                      <UserIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
-                      {username || t('nav.my_profile')}
-                    </Link>
+                    <>
+                      <Link href={`/${lang}/my-orders`} onClick={() => setMobileMenuOpen(false)} className={classNames(pathname === `/${lang}/my-orders` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 flex items-center pl-4 gap-x-4')}>
+                        <ShoppingBagIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
+                        My Orders
+                      </Link>
+                      <Link href={`/${lang}/my-profile`} onClick={() => setMobileMenuOpen(false)} className={classNames(pathname === `/${lang}/my-profile` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 flex items-center pl-4 gap-x-4')}>
+                        <UserIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
+                        {username || t('nav.my_profile')}
+                      </Link>
+                    </>
                   )}
                 </div>
                 <div className="py-6 space-y-3 border-t border-border">

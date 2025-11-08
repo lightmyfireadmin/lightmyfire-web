@@ -142,7 +142,8 @@ export async function POST(request: NextRequest) {
     const isTestEndpoint = request.headers.get('x-internal-test') === 'true';
     const isDevelopment = process.env.NODE_ENV !== 'production';
 
-    if (!isTestEndpoint || !isDevelopment) {
+    // Only skip auth checks when BOTH conditions are true (internal test AND development)
+    if (!(isTestEndpoint && isDevelopment)) {
       const cookieStore = cookies();
       const supabase = createServerSupabaseClient(cookieStore);
       const { data: { session } } = await supabase.auth.getSession();

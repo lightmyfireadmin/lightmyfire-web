@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useI18n } from '@/locales/client';
 import { postcodeValidator } from 'postcode-validator';
 
@@ -49,9 +49,14 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
     address: '',
     city: '',
     postalCode: '',
-    country: 'FR', 
+    country: 'FR',
   });
   const [errors, setErrors] = useState<Partial<Record<keyof ShippingAddress, string>>>({});
+  const [addressSuggestions, setAddressSuggestions] = useState<any[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
+  const addressInputRef = useRef<HTMLInputElement>(null);
+  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const validateForm = (): boolean => {
     const newErrors: Partial<Record<keyof ShippingAddress, string>> = {};
@@ -83,19 +88,95 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
 
   const handleChange = (field: keyof ShippingAddress, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
-    
+
     if (errors[field]) {
       setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
+
+    // Trigger address search when typing in address field
+    if (field === 'address' && value.length > 2) {
+      if (searchTimeoutRef.current) {
+        clearTimeout(searchTimeoutRef.current);
+      }
+      searchTimeoutRef.current = setTimeout(() => {
+        searchAddress(value);
+      }, 500);
+    } else if (field === 'address' && value.length <= 2) {
+      setAddressSuggestions([]);
+      setShowSuggestions(false);
+    }
   };
+
+  // Search address using OpenStreetMap Nominatim
+  const searchAddress = async (query: string) => {
+    if (!query || query.length < 3) return;
+
+    setIsSearching(true);
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&addressdetails=1&limit=5`,
+        {
+          headers: {
+            'User-Agent': 'LightMyFire-App',
+          },
+        }
+      );
+      const data = await response.json();
+      setAddressSuggestions(data);
+      setShowSuggestions(data.length > 0);
+    } catch (error) {
+      console.error('Error searching address:', error);
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  // Handle address selection from suggestions
+  const handleAddressSelect = (suggestion: any) => {
+    const address = suggestion.address;
+
+    // Extract address components
+    const streetNumber = address.house_number || '';
+    const street = address.road || address.street || '';
+    const city = address.city || address.town || address.village || address.municipality || '';
+    const postalCode = address.postcode || '';
+    const countryCode = address.country_code?.toUpperCase() || '';
+
+    // Build full street address
+    const fullAddress = `${streetNumber} ${street}`.trim();
+
+    setFormData((prev) => ({
+      ...prev,
+      address: fullAddress || suggestion.display_name,
+      city: city || prev.city,
+      postalCode: postalCode || prev.postalCode,
+      country: countryCode || prev.country,
+    }));
+
+    setShowSuggestions(false);
+    setAddressSuggestions([]);
+    setErrors({});
+  };
+
+  // Close suggestions when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (addressInputRef.current && !addressInputRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-foreground">{t('order.shipping.title')}</h3>
-        <p className="text-sm text-muted-foreground">
-          {t('order.shipping.description')}
-        </p>
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold text-foreground">{t('order.shipping.title')}</h3>
+          <p className="text-sm text-muted-foreground">
+            {t('order.shipping.description')}
+          </p>
 
         {}
         <div>
@@ -134,20 +215,44 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
         </div>
 
         {}
-        <div>
+        <div className="relative">
           <label htmlFor="address" className="block text-sm font-medium text-foreground mb-2">
             {t('order.shipping.address_label')}
+            <span className="ml-2 text-xs text-muted-foreground">
+              (Start typing for suggestions)
+            </span>
           </label>
           <input
+            ref={addressInputRef}
             id="address"
             type="text"
             value={formData.address}
             onChange={(e) => handleChange('address', e.target.value)}
+            onFocus={() => setShowSuggestions(addressSuggestions.length > 0)}
             className={`w-full px-4 py-2 rounded-md border ${
               errors.address ? 'border-red-500' : 'border-border'
             } bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary`}
             placeholder={t('order.shipping.address_placeholder')}
+            autoComplete="off"
           />
+          {isSearching && (
+            <div className="absolute right-3 top-11 text-muted-foreground">
+              <div className="animate-spin h-4 w-4 border-2 border-primary border-t-transparent rounded-full"></div>
+            </div>
+          )}
+          {showSuggestions && addressSuggestions.length > 0 && (
+            <ul className="absolute z-50 w-full mt-1 bg-background border border-border rounded-md shadow-lg max-h-60 overflow-y-auto">
+              {addressSuggestions.map((suggestion, index) => (
+                <li
+                  key={index}
+                  onClick={() => handleAddressSelect(suggestion)}
+                  className="px-4 py-2 hover:bg-muted cursor-pointer border-b border-border last:border-b-0"
+                >
+                  <div className="text-sm text-foreground">{suggestion.display_name}</div>
+                </li>
+              ))}
+            </ul>
+          )}
           {errors.address && <p className="mt-1 text-sm text-red-500">{errors.address}</p>}
         </div>
 

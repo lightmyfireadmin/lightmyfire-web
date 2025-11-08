@@ -100,7 +100,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
   const handleShippingSave = async (address: ShippingAddress) => {
     setShippingAddress(address);
 
-    // Calculate shipping rates
+    // Calculate shipping rates with full address for accurate Printful pricing
     setLoadingShipping(true);
     try {
       const response = await fetch('/api/calculate-shipping', {
@@ -109,6 +109,9 @@ export default function SaveLighterFlow({ user }: { user: User }) {
         body: JSON.stringify({
           countryCode: address.country,
           packSize: selectedPack,
+          address: address.address,
+          city: address.city,
+          postalCode: address.postalCode,
         }),
       });
 
@@ -118,6 +121,13 @@ export default function SaveLighterFlow({ user }: { user: User }) {
           standard: data.rates.standard.rate,
           express: data.rates.express.rate,
         });
+
+        // Log if fallback rates were used
+        if (data.usedFallback) {
+          console.log('Using fallback shipping rates (Printful API unavailable)');
+        } else {
+          console.log('Using live Printful shipping rates');
+        }
       }
     } catch (error) {
       console.error('Failed to calculate shipping:', error);
@@ -256,7 +266,7 @@ export default function SaveLighterFlow({ user }: { user: User }) {
       {}
       {customizations.length > 0 && shippingAddress && (
         <>
-          {/* Order Summary - moved above payment */}
+          {/* Order Summary - Basic Info Only */}
           <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
             <h2 className="mb-4 text-2xl font-semibold text-foreground">{t('order.summary.title')}</h2>
             <div className="space-y-3 text-muted-foreground">
@@ -323,44 +333,10 @@ export default function SaveLighterFlow({ user }: { user: User }) {
                   </div>
                 </>
               )}
-              <div className="border-t border-border pt-3 mt-3">
-                <div className="flex justify-between mb-2">
-                  <span className="text-foreground">{t('order.summary.subtotal')}</span>
-                  <span className="font-semibold text-foreground">
-                    {getPackPriceDisplay(selectedPack || 10, locale)}
-                  </span>
-                </div>
-                {shippingRates && (
-                  <div className="flex justify-between mb-2">
-                    <span className="text-foreground">{t('order.summary.shipping')}</span>
-                    <span className="font-semibold text-foreground">
-                      {formatCurrency(shippingRates[selectedShipping], 'EUR', locale)}
-                    </span>
-                  </div>
-                )}
-                <div className="flex justify-between pt-2 border-t border-border">
-                  <span className="font-semibold text-foreground text-lg">{t('order.summary.total')} </span>
-                  <span className="font-bold text-primary text-lg">
-                    {shippingRates ? (
-                      formatCurrency(
-                        PACK_PRICING[selectedPack as keyof typeof PACK_PRICING] +
-                        shippingRates[selectedShipping],
-                        'EUR',
-                        locale
-                      )
-                    ) : (
-                      <>
-                        {getPackPriceDisplay(selectedPack || 10, locale)}
-                        <span className="text-sm text-muted-foreground ml-1">{t('order.summary.shipping_calculated')}</span>
-                      </>
-                    )}
-                  </span>
-                </div>
-              </div>
             </div>
           </div>
 
-          {/* Payment Form */}
+          {/* Payment Form with Integrated Pricing */}
           <div className="rounded-lg border border-border bg-background p-6 shadow-sm">
             <h2 className="mb-6 text-xl font-semibold text-foreground">
               {t('save_lighter.payment_details_title')}
@@ -379,6 +355,8 @@ export default function SaveLighterFlow({ user }: { user: User }) {
                 language: c.language || selectedLanguage
               }))}
               shippingAddress={shippingAddress}
+              shippingRates={shippingRates}
+              selectedShipping={selectedShipping}
               onSuccess={(lighterIds) => {
 
                 window.location.href = `/${locale}/save-lighter/order-success?email=${encodeURIComponent(shippingAddress.email)}&count=${lighterIds.length}`;

@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { useI18n } from '@/locales/client';
+import { useI18n, useCurrentLocale } from '@/locales/client';
 import LoadingSpinner from '@/app/components/LoadingSpinner';
+import { PACK_PRICING } from '@/lib/constants';
+import { formatCurrency } from '@/lib/utils';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '');
 
@@ -30,6 +32,8 @@ interface StripePaymentFormProps {
   packSize: number;
   lighterData: LighterData[];
   shippingAddress: ShippingAddress;
+  shippingRates?: { standard: number; express: number } | null;
+  selectedShipping?: 'standard' | 'express';
   onSuccess?: (lighterIds: string[]) => void;
   onError?: (error: string) => void;
 }
@@ -41,10 +45,13 @@ function PaymentFormContent({
   packSize,
   lighterData,
   shippingAddress,
+  shippingRates,
+  selectedShipping,
   onSuccess,
   onError,
 }: StripePaymentFormProps) {
   const t = useI18n();
+  const locale = useCurrentLocale();
   const stripe = useStripe();
   const elements = useElements();
 
@@ -159,6 +166,8 @@ function PaymentFormContent({
   };
 
   const payAmount = (totalAmount / 100).toFixed(2);
+  const subtotal = PACK_PRICING[packSize as keyof typeof PACK_PRICING] || 0;
+  const shippingCost = shippingRates && selectedShipping ? shippingRates[selectedShipping] : 0;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -202,6 +211,30 @@ function PaymentFormContent({
           <p className="text-xs text-muted-foreground mt-2">
             {t('order.payment.email_confirmation_notice')}
           </p>
+        </div>
+      </div>
+
+      {/* Pricing Summary - Right before payment */}
+      <div className="border-t border-border pt-4 space-y-2">
+        <div className="flex justify-between text-muted-foreground">
+          <span>{t('order.summary.subtotal')}</span>
+          <span className="font-semibold text-foreground">
+            {formatCurrency(subtotal, 'EUR', locale)}
+          </span>
+        </div>
+        {shippingRates && selectedShipping && (
+          <div className="flex justify-between text-muted-foreground">
+            <span>{t('order.summary.shipping')}</span>
+            <span className="font-semibold text-foreground">
+              {formatCurrency(shippingCost, 'EUR', locale)}
+            </span>
+          </div>
+        )}
+        <div className="flex justify-between pt-2 border-t border-border">
+          <span className="font-semibold text-foreground text-lg">{t('order.summary.total')}</span>
+          <span className="font-bold text-primary text-lg">
+            {formatCurrency(totalAmount, 'EUR', locale)}
+          </span>
         </div>
       </div>
 
