@@ -59,6 +59,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // CRITICAL: Verify OpenAI API key is configured
+    if (!process.env.OPENAI_API_KEY) {
+      console.error('CRITICAL: OPENAI_API_KEY is not configured in environment variables');
+      return NextResponse.json(
+        { error: 'Content moderation system is not configured. Please contact support.' },
+        { status: 503 }
+      );
+    }
+
     const openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
     });
@@ -79,6 +88,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Use OpenAI's omni-moderation-latest model (free, multimodal)
+    // CRITICAL: This call MUST succeed - any errors will be caught and result in blocking the post
     const moderation = await openai.moderations.create({
       model: 'omni-moderation-latest',
       input: text,

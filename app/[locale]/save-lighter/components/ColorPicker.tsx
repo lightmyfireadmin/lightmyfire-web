@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { cn } from '@/lib/utils';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 // ============================================================================
 // Color Definitions
@@ -107,6 +108,76 @@ const getTextColor = (bgColor: string): string => {
   return whiteContrast > blackContrast ? '#FFFFFF' : '#000000';
 };
 
+/**
+ * Convert RGB to HEX
+ */
+const rgbToHex = (r: number, g: number, b: number): string => {
+  return '#' + [r, g, b].map(x => {
+    const hex = x.toString(16);
+    return hex.length === 1 ? '0' + hex : hex;
+  }).join('').toUpperCase();
+};
+
+/**
+ * Convert HSV to RGB
+ */
+const hsvToRgb = (h: number, s: number, v: number): [number, number, number] => {
+  const c = v * s;
+  const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+  const m = v - c;
+
+  let r = 0, g = 0, b = 0;
+
+  if (h >= 0 && h < 60) {
+    r = c; g = x; b = 0;
+  } else if (h >= 60 && h < 120) {
+    r = x; g = c; b = 0;
+  } else if (h >= 120 && h < 180) {
+    r = 0; g = c; b = x;
+  } else if (h >= 180 && h < 240) {
+    r = 0; g = x; b = c;
+  } else if (h >= 240 && h < 300) {
+    r = x; g = 0; b = c;
+  } else if (h >= 300 && h < 360) {
+    r = c; g = 0; b = x;
+  }
+
+  return [
+    Math.round((r + m) * 255),
+    Math.round((g + m) * 255),
+    Math.round((b + m) * 255)
+  ];
+};
+
+/**
+ * Convert RGB to HSV
+ */
+const rgbToHsv = (r: number, g: number, b: number): [number, number, number] => {
+  r /= 255;
+  g /= 255;
+  b /= 255;
+
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const diff = max - min;
+
+  let h = 0;
+  const s = max === 0 ? 0 : diff / max;
+  const v = max;
+
+  if (diff !== 0) {
+    if (max === r) {
+      h = ((g - b) / diff + (g < b ? 6 : 0)) * 60;
+    } else if (max === g) {
+      h = ((b - r) / diff + 2) * 60;
+    } else {
+      h = ((r - g) / diff + 4) * 60;
+    }
+  }
+
+  return [h, s, v];
+};
+
 // ============================================================================
 // Color History (LocalStorage)
 // ============================================================================
@@ -150,6 +221,210 @@ const useColorHistory = () => {
 };
 
 // ============================================================================
+// Modern Color Picker Modal Component
+// ============================================================================
+
+interface ModernColorPickerModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  initialColor: string;
+  onColorSelect: (color: string) => void;
+}
+
+function ModernColorPickerModal({ isOpen, onClose, initialColor, onColorSelect }: ModernColorPickerModalProps) {
+  const [rgb] = hexToRgb(initialColor);
+  const [hue, setHue] = useState(rgbToHsv(...hexToRgb(initialColor))[0]);
+  const [saturation, setSaturation] = useState(1);
+  const [value, setValue] = useState(1);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const currentColor = rgbToHex(...hsvToRgb(hue, saturation, value));
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const [h, s, v] = rgbToHsv(...hexToRgb(initialColor));
+    setHue(h);
+    setSaturation(s);
+    setValue(v);
+  }, [isOpen, initialColor]);
+
+  // Draw saturation/value gradient
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const width = canvas.width;
+    const height = canvas.height;
+
+    // Draw saturation gradient (left to right)
+    for (let x = 0; x < width; x++) {
+      const s = x / width;
+      const gradient = ctx.createLinearGradient(0, 0, 0, height);
+
+      // Draw value gradient (top to bottom) for this saturation
+      for (let y = 0; y < height; y++) {
+        const v = 1 - (y / height);
+        const [r, g, b] = hsvToRgb(hue, s, v);
+        gradient.addColorStop(y / height, `rgb(${r},${g},${b})`);
+      }
+
+      ctx.fillStyle = gradient;
+      ctx.fillRect(x, 0, 1, height);
+    }
+  }, [hue]);
+
+  const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const newSaturation = Math.max(0, Math.min(1, x / rect.width));
+    const newValue = Math.max(0, Math.min(1, 1 - (y / rect.height)));
+
+    setSaturation(newSaturation);
+    setValue(newValue);
+  };
+
+  const handleCanvasMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    if (!isDragging) return;
+    handleCanvasClick(e);
+  };
+
+  const handleSelect = () => {
+    onColorSelect(currentColor);
+    onClose();
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-4" onClick={onClose}>
+      <div className="bg-background rounded-2xl shadow-2xl p-6 w-full max-w-sm" onClick={(e) => e.stopPropagation()}>
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold text-foreground">Pick a Color</h3>
+          <button
+            onClick={onClose}
+            className="p-1 rounded-lg hover:bg-muted transition-colors"
+            aria-label="Close"
+          >
+            <XMarkIcon className="h-5 w-5 text-muted-foreground" />
+          </button>
+        </div>
+
+        {/* Saturation/Value Canvas */}
+        <div className="mb-4">
+          <canvas
+            ref={canvasRef}
+            width={300}
+            height={200}
+            className="w-full h-48 rounded-lg border-2 border-border cursor-crosshair touch-none"
+            onClick={handleCanvasClick}
+            onMouseDown={() => setIsDragging(true)}
+            onMouseUp={() => setIsDragging(false)}
+            onMouseMove={handleCanvasMove}
+            onMouseLeave={() => setIsDragging(false)}
+            onTouchStart={(e) => {
+              setIsDragging(true);
+              const touch = e.touches[0];
+              const canvas = canvasRef.current;
+              if (!canvas) return;
+              const rect = canvas.getBoundingClientRect();
+              const x = touch.clientX - rect.left;
+              const y = touch.clientY - rect.top;
+              const newSaturation = Math.max(0, Math.min(1, x / rect.width));
+              const newValue = Math.max(0, Math.min(1, 1 - (y / rect.height)));
+              setSaturation(newSaturation);
+              setValue(newValue);
+            }}
+            onTouchMove={(e) => {
+              if (!isDragging) return;
+              const touch = e.touches[0];
+              const canvas = canvasRef.current;
+              if (!canvas) return;
+              const rect = canvas.getBoundingClientRect();
+              const x = touch.clientX - rect.left;
+              const y = touch.clientY - rect.top;
+              const newSaturation = Math.max(0, Math.min(1, x / rect.width));
+              const newValue = Math.max(0, Math.min(1, 1 - (y / rect.height)));
+              setSaturation(newSaturation);
+              setValue(newValue);
+            }}
+            onTouchEnd={() => setIsDragging(false)}
+          />
+          {/* Crosshair indicator */}
+          <div
+            className="relative -mt-48 pointer-events-none"
+            style={{
+              left: `${saturation * 100}%`,
+              top: `${(1 - value) * 100}%`,
+              transform: 'translate(-50%, -50%)'
+            }}
+          >
+            <div className="w-4 h-4 rounded-full border-2 border-white shadow-lg" style={{ backgroundColor: currentColor }} />
+          </div>
+        </div>
+
+        {/* Hue Slider */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-foreground mb-2">Hue</label>
+          <input
+            type="range"
+            min="0"
+            max="360"
+            value={hue}
+            onChange={(e) => setHue(Number(e.target.value))}
+            className="w-full h-8 rounded-lg cursor-pointer"
+            style={{
+              background: 'linear-gradient(to right, #FF0000 0%, #FFFF00 17%, #00FF00 33%, #00FFFF 50%, #0000FF 67%, #FF00FF 83%, #FF0000 100%)',
+              appearance: 'none',
+              WebkitAppearance: 'none'
+            }}
+          />
+        </div>
+
+        {/* Preview and HEX */}
+        <div className="flex items-center gap-3 mb-4">
+          <div
+            className="w-16 h-16 rounded-lg border-2 border-border shadow-inner"
+            style={{ backgroundColor: currentColor }}
+          />
+          <div className="flex-1">
+            <label className="block text-xs font-medium text-muted-foreground mb-1">HEX Code</label>
+            <div className="px-3 py-2 bg-muted rounded-md font-mono text-sm font-semibold text-foreground">
+              {currentColor}
+            </div>
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex gap-2">
+          <button
+            onClick={onClose}
+            className="flex-1 px-4 py-2 border-2 border-border rounded-lg font-medium text-foreground hover:bg-muted transition-colors"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleSelect}
+            className="flex-1 px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
+          >
+            Select
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================================
 // Component Props
 // ============================================================================
 
@@ -174,7 +449,7 @@ export default function ColorPicker({
 }: ColorPickerProps) {
   const [hexInput, setHexInput] = useState(value);
   const [focusedIndex, setFocusedIndex] = useState(0);
-  const colorInputRef = useRef<HTMLInputElement>(null);
+  const [showColorModal, setShowColorModal] = useState(false);
   const { history, addToHistory } = useColorHistory();
 
   // Sync hexInput with value prop
@@ -209,22 +484,9 @@ export default function ColorPicker({
     }
   };
 
-  // Handle native color picker change (live preview, no history)
-  const handleNativePickerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newColor = e.target.value.toUpperCase();
-    handleColorChange(newColor, false); // Don't save to history while dragging
-  };
-
-  // Handle native color picker commit (save to history)
-  const handleNativePickerBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    const newColor = e.target.value.toUpperCase();
-    if (isValidHex(newColor)) {
-      addToHistory(newColor);
-      // Haptic feedback on mobile
-      if ('vibrate' in navigator) {
-        navigator.vibrate(10);
-      }
-    }
+  // Handle modern color picker selection
+  const handleModernPickerSelect = (newColor: string) => {
+    handleColorChange(newColor, true);
   };
 
   // Keyboard navigation for preset colors
@@ -348,37 +610,33 @@ export default function ColorPicker({
             )}
           </div>
 
-          {/* Native Color Picker Button */}
-          <div className="relative">
-            <input
-              ref={colorInputRef}
-              type="color"
-              value={value}
-              onChange={handleNativePickerChange}
-              onBlur={handleNativePickerBlur}
-              disabled={disabled}
-              className="absolute inset-0 opacity-0 cursor-pointer disabled:cursor-not-allowed"
-              aria-label="Visual color picker"
-            />
-            <button
-              type="button"
-              onClick={() => colorInputRef.current?.click()}
-              disabled={disabled}
-              className={cn(
-                'px-4 py-2.5 rounded-lg border-2 border-border bg-background',
-                'hover:bg-accent hover:border-primary/50',
-                'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
-                'transition-all duration-200',
-                'flex items-center gap-2 font-medium text-sm whitespace-nowrap',
-                'disabled:opacity-50 disabled:cursor-not-allowed'
-              )}
-            >
-              <span>🎨</span>
-              <span className="hidden sm:inline">Pick Color</span>
-            </button>
-          </div>
+          {/* Modern Color Picker Button */}
+          <button
+            type="button"
+            onClick={() => setShowColorModal(true)}
+            disabled={disabled}
+            className={cn(
+              'px-4 py-2.5 rounded-lg border-2 border-border bg-background',
+              'hover:bg-accent hover:border-primary/50',
+              'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
+              'transition-all duration-200',
+              'flex items-center gap-2 font-medium text-sm whitespace-nowrap',
+              'disabled:opacity-50 disabled:cursor-not-allowed'
+            )}
+          >
+            <span>🎨</span>
+            <span className="hidden sm:inline">Pick Color</span>
+          </button>
         </div>
       </div>
+
+      {/* Modern Color Picker Modal */}
+      <ModernColorPickerModal
+        isOpen={showColorModal}
+        onClose={() => setShowColorModal(false)}
+        initialColor={value}
+        onColorSelect={handleModernPickerSelect}
+      />
 
       {/* Color History */}
       {history.length > 0 && (

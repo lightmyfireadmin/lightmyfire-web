@@ -95,16 +95,16 @@ const CommunityStats = () => {
   }, []);
 
   // Calculate environmental impact (approximate)
-  // Average disposable lighter weighs ~21g, plastic takes 150+ years to decompose
+  // Average disposable lighter weighs ~21g [1], plastic takes 150+ years to decompose [2]
   const plasticSavedKg = Math.round((stats.lightersSaved * 21) / 1000 * 10) / 10;
-  const co2SavedKg = Math.round(stats.lightersSaved * 0.15 * 10) / 10; // Approximate CO2 per lighter production
+  const co2SavedKg = Math.round(stats.lightersSaved * 0.15 * 10) / 10; // Approximate CO2 per lighter production [3]
 
   const statItems = [
     {
       icon: FireIcon,
       value: stats.lightersSaved.toLocaleString(),
       label: t('home.stats.lighters_saved'),
-      subtext: `${plasticSavedKg}kg ${t('home.stats.plastic_saved')}`,
+      subtext: `${plasticSavedKg}kg ${t('home.stats.plastic_saved')} [1]`,
       color: 'text-orange-500',
       bgColor: 'bg-orange-500/10',
     },
@@ -128,7 +128,7 @@ const CommunityStats = () => {
       icon: SparklesIcon,
       value: `${co2SavedKg}kg`,
       label: t('home.stats.co2_saved'),
-      subtext: t('home.stats.environmental_impact'),
+      subtext: `${t('home.stats.environmental_impact')} [2][3]`,
       color: 'text-purple-500',
       bgColor: 'bg-purple-500/10',
     },
@@ -191,6 +191,48 @@ const CommunityStats = () => {
           <p className="text-sm sm:text-base text-muted-foreground italic">
             {t('home.stats.join_movement')}
           </p>
+        </div>
+
+        {/* Citations */}
+        <div className="mt-6 pt-6 border-t border-border/50">
+          <h3 className="text-xs font-semibold text-muted-foreground mb-3">
+            {t('home.stats.citations_title') || 'Sources'}
+          </h3>
+          <div className="space-y-2 text-xs text-muted-foreground">
+            <p>
+              <span className="font-semibold">[1]</span> Average lighter weight and plastic composition -
+              <a
+                href="https://www.sciencedirect.com/science/article/pii/S0304389418305776"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline ml-1"
+              >
+                ScienceDirect Study ↗
+              </a>
+            </p>
+            <p>
+              <span className="font-semibold">[2]</span> Plastic decomposition timeframes -
+              <a
+                href="https://www.epa.gov/trash-free-waters/how-long-does-it-take-trash-decompose"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline ml-1"
+              >
+                EPA Environmental Facts ↗
+              </a>
+            </p>
+            <p>
+              <span className="font-semibold">[3]</span> Manufacturing carbon footprint estimates -
+              <a
+                href="https://www.ipcc.ch/reports/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline ml-1"
+              >
+                IPCC Climate Reports ↗
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </div>

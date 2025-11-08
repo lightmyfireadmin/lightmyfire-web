@@ -75,7 +75,7 @@ export default function OrderSuccessContent() {
                   <p className="text-sm text-muted-foreground mb-3">
                     {t('order.success.confirmation_description')}
                   </p>
-                  <p className="font-mono text-base font-semibold text-foreground bg-white dark:bg-gray-900 px-4 py-2 rounded border border-border">
+                  <p className="font-mono text-sm md:text-base font-semibold text-gray-900 bg-white px-4 py-3 md:py-2 rounded border border-gray-300 break-all">
                     {email}
                   </p>
                   <p className="text-xs text-muted-foreground mt-3">
@@ -98,7 +98,7 @@ export default function OrderSuccessContent() {
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-muted-foreground">{t('order.success.status')}</span>
-                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200 text-sm font-medium">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-green-100 text-green-800 md:dark:bg-green-900/30 md:dark:text-green-200 text-sm font-medium">
                     {t('order.success.status_processing')}
                   </span>
                 </div>

@@ -178,7 +178,14 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
 
         {}
         {showResults && searchResults.length > 0 && (
-          <div className="absolute top-full left-0 right-0 mt-1 max-h-64 overflow-y-auto rounded-lg border border-border bg-background shadow-lg z-50">
+          <div
+            className="absolute top-full left-0 right-0 mt-1 max-h-64 overflow-y-auto rounded-lg border border-border bg-background shadow-lg z-50"
+            style={{
+              WebkitOverflowScrolling: 'touch',
+              touchAction: 'pan-y',
+              overscrollBehavior: 'contain'
+            }}
+          >
             {searchResults.map((result, index) => {
               const shortName = result.address?.name || result.address?.road || result.display_name.split(',')[0];
               const fullAddress = result.display_name;

@@ -56,7 +56,9 @@ export function useContentModeration(): UseModerationHook {
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Unknown error';
         setError(errorMessage);
-        return { flagged: false };
+        // CRITICAL SECURITY FIX: Re-throw error instead of returning { flagged: false }
+        // This ensures moderation failures are caught by the form's error handler
+        throw new Error(`Text moderation failed: ${errorMessage}`);
       } finally {
         setIsLoading(false);
       }
@@ -112,7 +114,9 @@ export function useContentModeration(): UseModerationHook {
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Unknown error';
         setError(errorMessage);
-        return { flagged: false };
+        // CRITICAL SECURITY FIX: Re-throw error instead of returning { flagged: false }
+        // This ensures moderation failures are caught by the form's error handler
+        throw new Error(`Image moderation failed: ${errorMessage}`);
       } finally {
         setIsLoading(false);
       }

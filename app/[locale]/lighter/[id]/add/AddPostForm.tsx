@@ -215,11 +215,10 @@ export default function AddPostForm({
 
     setLoading(true);
 
-    
-    
-    
+    // SECURITY: Content moderation - CRITICAL for launch
+    // If moderation fails for ANY reason, BLOCK the post to prevent inappropriate content
     try {
-      
+      // Moderate text content
       if (postType === 'text' && contentText.trim()) {
         const textMod = await moderateText(contentText);
         if (textMod.flagged) {
@@ -232,7 +231,7 @@ export default function AddPostForm({
         }
       }
 
-      
+      // Moderate title (all post types)
       if (title.trim()) {
         const titleMod = await moderateText(title);
         if (titleMod.flagged) {
@@ -245,7 +244,7 @@ export default function AddPostForm({
         }
       }
 
-      
+      // Moderate location name
       if (postType === 'location' && locationName.trim()) {
         const locMod = await moderateText(locationName);
         if (locMod.flagged) {
@@ -258,7 +257,7 @@ export default function AddPostForm({
         }
       }
 
-      
+      // Moderate image content
       if ((postType === 'image' || postType === 'refuel') && finalContentUrl) {
         const imageMod = await moderateImage(finalContentUrl);
         if (imageMod.flagged) {
@@ -271,9 +270,22 @@ export default function AddPostForm({
         }
       }
     } catch (modError) {
-      
-      console.error('Moderation error:', modError);
-      
+      // CRITICAL SECURITY FIX: If moderation fails, BLOCK the post
+      // Log detailed error information for debugging
+      console.error('CRITICAL: Moderation system failure:', {
+        error: modError,
+        errorMessage: modError instanceof Error ? modError.message : 'Unknown error',
+        errorStack: modError instanceof Error ? modError.stack : undefined,
+        postType,
+        timestamp: new Date().toISOString(),
+      });
+
+      // BLOCK the post and show error to user
+      setError(
+        'Content moderation system is currently unavailable. For security reasons, we cannot process your post at this time. Please try again in a few moments.'
+      );
+      setLoading(false);
+      return; // CRITICAL: Stop submission completely
     }
 
     
@@ -363,7 +375,14 @@ export default function AddPostForm({
                   </div>
                 )}
                 {showYoutubeResults && (
-                  <div className="max-h-60 overflow-y-auto border border-border rounded-md">
+                  <div
+                    className="max-h-60 overflow-y-auto border border-border rounded-md"
+                    style={{
+                      WebkitOverflowScrolling: 'touch',
+                      touchAction: 'pan-y',
+                      overscrollBehavior: 'contain'
+                    }}
+                  >
                     {youtubeSearchResults.length > 0 ? (
                       youtubeSearchResults.map((video) => (
                         <div

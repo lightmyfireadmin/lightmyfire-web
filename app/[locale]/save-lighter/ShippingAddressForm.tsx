@@ -241,7 +241,14 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
             </div>
           )}
           {showSuggestions && addressSuggestions.length > 0 && (
-            <ul className="absolute z-50 w-full mt-1 bg-background border border-border rounded-md shadow-lg max-h-60 overflow-y-auto">
+            <ul
+              className="absolute z-50 w-full mt-1 bg-background border border-border rounded-md shadow-lg max-h-60 overflow-y-auto"
+              style={{
+                WebkitOverflowScrolling: 'touch',
+                touchAction: 'pan-y',
+                overscrollBehavior: 'contain'
+              }}
+            >
               {addressSuggestions.map((suggestion, index) => (
                 <li
                   key={index}

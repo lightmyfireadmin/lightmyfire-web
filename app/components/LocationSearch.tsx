@@ -81,7 +81,14 @@ const LocationSearch = ({ onLocationSelect }: LocationSearchProps) => {
         />
         {}
         {searchResults.length > 0 && searchQuery && (
-          <ul className="absolute top-full left-0 right-0 z-[9999] border border-border rounded-lg bg-background max-h-60 overflow-y-auto mt-2 shadow-xl">
+          <ul
+            className="absolute top-full left-0 right-0 z-[9999] border border-border rounded-lg bg-background max-h-60 overflow-y-auto mt-2 shadow-xl"
+            style={{
+              WebkitOverflowScrolling: 'touch',
+              touchAction: 'pan-y',
+              overscrollBehavior: 'contain'
+            }}
+          >
             {searchResults.map((result) => (
               <li
                 key={result.display_name}
