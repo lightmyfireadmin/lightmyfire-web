@@ -456,7 +456,7 @@ async function drawSticker(
     console.error('QR code generation error:', error);
   }
 
-  currentY += qrCardSize + smallGap;
+  currentY += qrCardSize + (smallGap * 3); // TRIPLED gap for more space
 
   // "or go to lightmyfire.app" section - DOUBLED SIZE
   const urlBgHeight = 116; // Doubled from 58
@@ -534,47 +534,38 @@ async function drawSticker(
 
   currentY += pinBgHeight + smallGap;
 
-  // Logo section at bottom - compact cream background wrapping logo
-  // Load and draw logo first to get dimensions
+  // Logo section at bottom - cream background extending to bottom of sticker
   try {
-    const { Image } = await import('canvas');
-    const fs = await import('fs');
-    const path = await import('path');
+    // Calculate remaining space to bottom of sticker
+    const remainingSpaceFromY = STICKER_HEIGHT_PX - (currentY - y);
 
+    // Draw cream background from current position to bottom
+    ctx.fillStyle = LOGO_BG_COLOR;
+    ctx.fillRect(x, currentY, STICKER_WIDTH_PX, remainingSpaceFromY);
+
+    // Load and draw logo
     const logoPath = path.join(process.cwd(), 'public', 'LOGOLONG.png');
     const logoBuffer = fs.readFileSync(logoPath);
+    const { Image } = await import('canvas');
     const logoImage = new Image();
     logoImage.src = logoBuffer;
 
-    const logoTargetWidth = 160; // Fixed size per programmer's spec
+    // Logo sizing - fit to sticker width with padding
+    const logoPadding = 40;
+    const logoTargetWidth = STICKER_WIDTH_PX - (logoPadding * 2);
     const logoAspectRatio = logoImage.height / logoImage.width;
     const logoTargetHeight = Math.round(logoTargetWidth * logoAspectRatio);
 
-    // Create compact cream background wrapping logo with padding
-    const logoPadding = 12; // Small padding around logo
-    const logoBgWidth = logoTargetWidth + (logoPadding * 2);
-    const logoBgHeight = logoTargetHeight + (logoPadding * 2);
+    // Center logo in cream section
+    const logoX = x + logoPadding;
+    const logoY = currentY + (remainingSpaceFromY - logoTargetHeight) / 2;
 
-    // Position logo (vertically centered in remaining space)
-    const remainingHeight = STICKER_HEIGHT_PX - currentY + y - padding;
-    const logoBgY = currentY + (remainingHeight - logoBgHeight) / 2;
+    ctx.drawImage(logoImage, logoX, logoY, logoTargetWidth, logoTargetHeight);
 
-    // Center cream background horizontally
-    const centerX = x + STICKER_WIDTH_PX / 2;
-    const logoBgX = Math.round(centerX - logoBgWidth / 2);
-
-    // Draw compact cream background
-    ctx.fillStyle = LOGO_BG_COLOR;
-    roundRect(ctx, logoBgX, logoBgY, logoBgWidth, logoBgHeight, cardRadius);
-    ctx.fill();
-
-    // Draw logo centered in cream background
-    const logoX = logoBgX + logoPadding;
-    const logoImageY = logoBgY + logoPadding;
-
-    ctx.drawImage(logoImage, logoX, logoImageY, logoTargetWidth, logoTargetHeight);
+    console.log('Logo drawn successfully at', logoX, logoY, 'size:', logoTargetWidth, 'x', logoTargetHeight);
   } catch (error) {
     console.error('Logo loading error:', error);
+    console.error('Error details:', error);
   }
 }
 
