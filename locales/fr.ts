@@ -1158,4 +1158,17 @@ Trouve un briquet et ajoute ton premier post.',
   'terms.ul9.li1': 'Défauts de fabrication dans les autocollants',
   'terms.ul9.li2': 'Articles incorrects expédiés',
   'terms.ul9.li3': 'Non-livraison due à notre erreur',
+
+  // Notifications
+  'notifications.success': 'Succès !',
+  'notifications.error': 'Erreur',
+  'notifications.warning': 'Avertissement',
+  'notifications.auth_failed': 'Échec de l\'authentification. Veuillez réessayer.',
+  'notifications.invalid_credentials': 'E-mail ou mot de passe invalide. Veuillez vérifier vos identifiants et réessayer.',
+  'notifications.user_not_found': 'Aucun compte trouvé avec cet e-mail. Veuillez d\'abord vous inscrire !',
+  'notifications.session_expired': 'Votre session a expiré. Veuillez vous reconnecter pour continuer.',
+  'notifications.password_reset_sent': 'E-mail de réinitialisation de mot de passe envoyé ! Vérifiez votre boîte de réception.',
+
+  // Language selector
+  'language.zh-CN': '中文',
 } as const;

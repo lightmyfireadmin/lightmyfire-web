@@ -1081,4 +1081,14 @@ export default {
   'terms.ul9.li1': 'Defectos de fabricación en las etiquetas',
   'terms.ul9.li2': 'Artículos incorrectos enviados',
   'terms.ul9.li3': 'No entrega debido a nuestro error',
+
+  // Notifications
+  'notifications.success': '¡Éxito!',
+  'notifications.error': 'Error',
+  'notifications.warning': 'Advertencia',
+  'notifications.auth_failed': 'Error de autenticación. Por favor, inténtalo de nuevo.',
+  'notifications.invalid_credentials': 'Correo electrónico o contraseña no válidos. Por favor, verifica tus credenciales e inténtalo de nuevo.',
+  'notifications.user_not_found': '¡No se encontró ninguna cuenta con este correo electrónico. Por favor, regístrate primero!',
+  'notifications.session_expired': 'Tu sesión ha expirado. Por favor, inicia sesión de nuevo para continuar.',
+  'notifications.password_reset_sent': '¡Correo electrónico de restablecimiento de contraseña enviado! Revisa tu bandeja de entrada.',
 } as const;
