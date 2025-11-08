@@ -8,6 +8,9 @@ import { useI18n, useCurrentLocale } from '@/locales/client';
 import Link from 'next/link';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 
+const MIN_PASSWORD_LENGTH = 8;
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
 export default function ResetPasswordPage() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -39,8 +42,16 @@ export default function ResetPasswordPage() {
       return;
     }
 
-    if (password.length < 6) {
+    if (password.length < MIN_PASSWORD_LENGTH) {
       addToast({ message: t('auth.password_too_short'), type: 'error' });
+      return;
+    }
+
+    if (!PASSWORD_REGEX.test(password)) {
+      addToast({
+        message: 'Password must contain at least one uppercase letter, one lowercase letter, and one number',
+        type: 'error'
+      });
       return;
     }
 
@@ -132,7 +143,7 @@ export default function ResetPasswordPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder={t('auth.password_placeholder')}
                   required
-                  minLength={6}
+                  minLength={MIN_PASSWORD_LENGTH}
                   disabled={loading}
                   className="w-full rounded-md border border-border bg-background px-3 py-2 pr-10 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed"
                 />
@@ -167,7 +178,7 @@ export default function ResetPasswordPage() {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder={t('auth.confirm_password_placeholder')}
                   required
-                  minLength={6}
+                  minLength={MIN_PASSWORD_LENGTH}
                   disabled={loading}
                   className="w-full rounded-md border border-border bg-background px-3 py-2 pr-10 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed"
                 />
@@ -190,8 +201,17 @@ export default function ResetPasswordPage() {
             <div className="rounded-md bg-muted p-3 text-xs text-muted-foreground">
               <p className="font-medium mb-1">{t('auth.password_requirements')}</p>
               <ul className="list-disc list-inside space-y-0.5">
-                <li className={password.length >= 6 ? 'text-green-600 dark:text-green-400' : ''}>
-                  {t('auth.min_6_characters')}
+                <li className={password.length >= MIN_PASSWORD_LENGTH ? 'text-green-600 dark:text-green-400' : ''}>
+                  At least {MIN_PASSWORD_LENGTH} characters
+                </li>
+                <li className={/[A-Z]/.test(password) ? 'text-green-600 dark:text-green-400' : ''}>
+                  At least one uppercase letter
+                </li>
+                <li className={/[a-z]/.test(password) ? 'text-green-600 dark:text-green-400' : ''}>
+                  At least one lowercase letter
+                </li>
+                <li className={/\d/.test(password) ? 'text-green-600 dark:text-green-400' : ''}>
+                  At least one number
                 </li>
                 <li className={password === confirmPassword && password ? 'text-green-600 dark:text-green-400' : ''}>
                   {t('auth.passwords_match')}
@@ -201,7 +221,7 @@ export default function ResetPasswordPage() {
 
             <button
               type="submit"
-              disabled={loading || password !== confirmPassword || password.length < 6}
+              disabled={loading || password !== confirmPassword || password.length < MIN_PASSWORD_LENGTH || !PASSWORD_REGEX.test(password)}
               className="w-full rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
             >
               {loading ? (

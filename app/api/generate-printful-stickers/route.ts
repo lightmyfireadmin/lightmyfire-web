@@ -360,12 +360,13 @@ export async function POST(request: NextRequest) {
         const archive = archiver('zip', { zlib: { level: 9 } });
     const chunks: Buffer[] = [];
 
-        const zipPromise = new Promise<Buffer>((resolve, reject) => {
-            archive.on('data', (chunk: Buffer) => {
-        chunks.push(chunk);
-      });
+        // Properly consume the readable stream
+    archive.on('data', (chunk: Buffer) => {
+      chunks.push(chunk);
+    });
 
-            archive.on('finish', () => {
+    const zipPromise = new Promise<Buffer>((resolve, reject) => {
+      archive.on('end', () => {
         const zipBuffer = Buffer.concat(chunks);
         resolve(zipBuffer);
       });
@@ -384,11 +385,18 @@ export async function POST(request: NextRequest) {
       });
     });
 
-        for (const sheet of sheets) {
+        // Append all sheets to the archive
+    for (const sheet of sheets) {
+      // Verify PNG signature to ensure buffer is valid
+      const pngSignature = Buffer.from([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]);
+      if (!sheet.buffer.subarray(0, 8).equals(pngSignature)) {
+        throw new Error(`Invalid PNG buffer for ${sheet.filename}`);
+      }
       archive.append(sheet.buffer, { name: sheet.filename });
     }
 
-        await archive.finalize();
+        // Finalize the archive (this triggers 'end' event when complete)
+    await archive.finalize();
 
         const zipBuffer = await zipPromise;
 

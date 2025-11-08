@@ -7,6 +7,10 @@ import { useToast } from '@/lib/context/ToastContext';
 import { useI18n, useCurrentLocale } from '@/locales/client';
 import Link from 'next/link';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
+import { getPasswordResetUrl } from '@/lib/url-helpers';
+
+const MIN_PASSWORD_LENGTH = 8;
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
@@ -16,16 +20,6 @@ export default function ForgotPasswordPage() {
   const router = useRouter();
   const t = useI18n() as any;
   const locale = useCurrentLocale();
-
-  const getRedirectUrl = () => {
-    let url =
-      process.env.NEXT_PUBLIC_VERCEL_URL ??
-      process.env.NEXT_PUBLIC_SITE_URL ??
-      'http://localhost:3000/';
-    url = url.includes('http') ? url : `https://${url}`;
-    url = url.charAt(url.length - 1) === '/' ? url.slice(0, -1) : url;
-    return `${url}/${locale}/reset-password`;
-  };
 
   const handleResetPassword = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,7 +33,7 @@ export default function ForgotPasswordPage() {
 
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: getRedirectUrl(),
+        redirectTo: getPasswordResetUrl(locale),
       });
 
       if (error) throw error;

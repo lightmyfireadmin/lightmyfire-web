@@ -282,7 +282,15 @@ ${createdLighters
 The sticker PNG file is attached. Please fulfill this order.
     `;
 
-        const fulfillmentEmail = process.env.FULFILLMENT_EMAIL || 'editionsrevel@gmail.com';
+        if (!process.env.FULFILLMENT_EMAIL) {
+      console.error('FULFILLMENT_EMAIL environment variable not set');
+      return NextResponse.json({
+        error: 'Email configuration missing',
+        details: 'FULFILLMENT_EMAIL not configured'
+      }, { status: 500 });
+    }
+
+    const fulfillmentEmail = process.env.FULFILLMENT_EMAIL;
     let fulfillmentEmailSent = false;
     let customerEmailSent = false;
 
@@ -371,7 +379,7 @@ The sticker PNG file is attached. Please fulfill this order.
 
         try {
       await resend.emails.send({
-        from: 'LightMyFire <onboarding@resend.dev>',
+        from: 'LightMyFire <orders@lightmyfire.app>',
         to: [shippingAddress.email],
         subject: `Order Confirmed - ${lighterData.length} LightMyFire Stickers`,
         html: `
