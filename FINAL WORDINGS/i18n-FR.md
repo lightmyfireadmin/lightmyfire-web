@@ -1,0 +1,1350 @@
+Voici le fichier `i18n-FR.md` mis à jour conformément à vos directives, en appliquant l'écriture inclusive consensuelle (point milieu) et en respectant la structure du fichier.
+
+# LightMyFire French Keys - Édition Revue v2.0
+
+## Navigation
+
+nav.how\_it\_works="Comment ça marche"
+nav.our\_philosophy="Notre philosophie"
+nav.refill\_guide="Recharge ton briquet \!"
+nav.save\_lighter="Deviens un·e LightSaver"
+nav.my\_profile="Mon profil"
+nav.login\_signup="Connexion / Inscription"
+nav.logout="Déconnexion"
+nav.open\_menu="Ouvrir le menu principal"
+nav.close\_menu="Fermer le menu principal"
+nav.logo\_alt="LightMyFire"
+nav.search\_aria="Rechercher un briquet"
+nav.search\_title="Trouver un briquet"
+
+-----
+
+## Footer
+
+footer.social.instagram="Instagram"
+footer.social.tiktok="TikTok"
+footer.social.facebook="Facebook"
+footer.links.privacy="Politique de confidentialité"
+footer.links.terms="Conditions d'utilisation"
+footer.links.about="À propos"
+footer.links.faq="FAQ"
+footer.copyright="© {year} Revel Editions SASU. Tous droits réservés."
+footer.notice="Nous nous engageons pour une communauté sûre et respectueuse. Si tu vois du contenu inapproprié, signale-le pour que nous puissions l'examiner."
+footer.instagram\_aria="Instagram"
+footer.tiktok\_aria="TikTok"
+footer.facebook\_aria="Facebook"
+footer.disclaimer="Ce projet est une initiative créative indépendante, non affiliée aux fabricants de briquets."
+
+-----
+
+## Home Page
+
+home.hero.title="Trop jeune pour mourir"
+home.hero.subtitle="Des milliards de briquets sont jetés chaque année. Trouvés, aimés, perdus, oubliés... Mais nous avons des histoires à raconter \! Donne-nous une chance."
+home.hero.cta="Deviens un·e LightSaver"
+home.hero.popup\_content="Le PIN est sur l'autocollant. C'est le code unique de ton briquet—son passeport pour un voyage mondial d'histoires."
+home.hero.alt\_image="LightMyFire - Donne une seconde vie aux briquets"
+home.pin\_entry.title="Tu as trouvé un briquet ?"
+home.pin\_entry.subtitle="Entre le PIN de son autocollant pour en savoir plus sur ton·ta nouveau·velle compagnon·gne."
+home.pin\_entry.label="PIN du briquet"
+home.pin\_entry.button="Trouver le briquet"
+home.pin\_entry.loading="Recherche..."
+home.pin\_entry.error.generic="Quelque chose n'a pas fonctionné. Tu réessaies ?"
+home.pin\_entry.error.invalid="Ce PIN ne correspond à aucun briquet que nous connaissons. Vérifie l'autocollant \!"
+home.pin\_entry.image\_alt="Briquet trouvé"
+home.mosaic.title="Histoires de la mosaïque"
+home.mosaic.subtitle="Publications aléatoires de super LightSavers comme toi, qui ont choisi de partager le voyage de leur briquet avec le monde."
+home.mosaic.no\_stories="Pas encore d'histoires publiques. Sois le·la premier·ère à sauver un briquet et partager son voyage \!"
+home.mosaic.loading="Chargement des histoires..."
+home.mosaic.see\_more="Voir plus d'histoires"
+home.mosaic.load\_more="Charger plus"
+home.community.title="Rejoins la communauté"
+home.community.subtitle="Partage des histoires, découvre des voyages et connecte-toi avec des LightSavers du monde entier."
+home.community.alt="Illustration de la communauté"
+home.become\_lightsaver.title="Deviens un·e LightSaver"
+home.become\_lightsaver.subtitle="Rejoins notre mission pour donner une seconde vie aux briquets. Crée de beaux autocollants, partage des histoires et fais partie d'une communauté créative mondiale qui combat le gaspillage."
+home.become\_lightsaver.alt="Illustration de partage"
+home.become\_lightsaver.alt\_arrow="Flèche pointant vers le bouton sauver un briquet"
+home.how\_it\_works.title="Qui voyage plus qu'un briquet ?"
+home.how\_it\_works.step1.title="1. Crée"
+home.how\_it\_works.step1.description="Tout commence en acceptant la propriété instable d'un briquet et la beauté de cela. Donne un nom à ton briquet, créant son carnet de voyage numérique. Personnalise tes autocollants à ton goût et reçois ton pack LightSaver chez toi. Rends ce monde un peu plus amusant et enrichis la valeur d'un autre petit briquet avec des centaines d'histoires à raconter."
+home.how\_it\_works.step1.alt="Sauver un briquet"
+home.how\_it\_works.step2.title="2. Partage"
+home.how\_it\_works.step2.description="Colle l'autocollant et laisse-le partir. Donne-le à un·e ami·e ou « perds-le » quelque part de sympa : son voyage commence. Ne l'utilise pas pour traquer quel·le ami·e t'a volé ton feu. Partage des pensées aléatoires, ton dernier poème, une chanson que tu aimes. Mentionne ton nouveau café préféré en ville. Dis à la communauté où tu as trouvé ce briquet. Fais la pub de ton business de bracelets faits maison. Partage ta troisième photo de coucher de soleil de la soirée. C'est ton choix."
+home.how\_it\_works.step2.alt="Partager le briquet"
+home.how\_it\_works.step3.title="3. Suis"
+home.how\_it\_works.step3.description="Quiconque le trouve scanne le code, entre le PIN et ajoute son histoire. En sauvant un pauvre briquet de la mort en encourageant tes collègues LightSavers à le recharger, tu crées une belle mosaïque de pensées et d'anecdotes. Nous accueillons toute contribution (non nuisible), cet autocollant peint le voyage de son porteur et donne une voix à toutes les mains où il a atterri."
+home.how\_it\_works.step3.alt="Suivre l'histoire"
+home.stats.title="L'impact de notre communauté"
+home.stats.subtitle="Ensemble, nous sauvons des briquets des décharges et construisons un mouvement mondial de narration créative."
+home.stats.lighters\_saved="Briquets sauvés"
+home.stats.plastic\_saved="Déchets plastiques évités"
+home.stats.stories\_created="Histoires créées"
+home.stats.stories\_subtext="Moments capturés & partagés"
+home.stats.countries\_reached="Pays atteints"
+home.stats.global\_community="Un mouvement vraiment mondial"
+home.stats.co2\_saved="Impact CO₂"
+home.stats.environmental\_impact="Contribution environnementale"
+home.stats.join\_movement="Rejoins des milliers de LightSavers qui font la différence, un briquet à la fois."
+
+-----
+
+## Welcome Banner
+
+banner.welcome="Bienvenue"
+banner.user="Utilisateur·rice"
+banner.connect\_cta="Rejoins la communauté des LightSavers \!"
+banner.connect\_link="Connexion ou Inscription"
+banner.close="Fermer la bannière"
+
+-----
+
+## Authentication (Login & Signup)
+
+login.title="LightMyFire"
+login.email\_label="Adresse e-mail"
+login.password\_label="Mot de passe"
+login.forgot\_password="Mot de passe oublié ?"
+login.button.signin="Se connecter"
+login.button.signup="S'inscrire"
+login.social\_divider="ou continuer avec"
+login.tab.login="Connexion"
+login.tab.signup="Inscription"
+auth.login\_to\_flag="Connecte-toi pour signaler des publications"
+auth.login\_to\_like="Connecte-toi pour aimer des publications"
+
+-----
+
+## Notifications, Errors, and Generic UI
+
+notifications.login\_success="Content·e de te revoir, LightSaver \! Tes briquets t'ont manqué. 💫"
+notifications.logout\_success="À bientôt \! ✨"
+notifications.signup\_success="Bienvenue dans la famille LightSaver \! 🌟"
+notifications.post\_success="Histoire ajoutée \! 🎉 Tu viens de rendre le voyage de ce briquet plus lumineux."
+notifications.post\_success\_first="Félicitations \! 🌟 Tu as allumé la première étincelle de l'histoire de ce briquet."
+notifications.post\_success\_public="Histoire partagée avec le monde \! 🌍 Elle fait maintenant partie de notre mosaïque mondiale."
+notifications.profile\_updated="Profil mis à jour \! Tu es superbe, LightSaver. ✨"
+notifications.password\_updated="Mot de passe mis à jour \! Ton compte est sécurisé. 🔒"
+notifications.post\_deleted\_success="Publication supprimée. Comme si elle n'avait jamais existé."
+notifications.action\_success="Succès"
+notifications.action\_error="Erreur"
+notifications.trophy\_earned="🏆 Trophée débloqué : {trophy\_name} \! Tu es en feu \!"
+notifications.lighter\_saved="Succès \! {lighterName} est prêt pour l'aventure \! 🌍"
+notifications.sticker\_downloaded="Autocollants prêts \! C'est l'heure de libérer {lighterName}. 🚀"
+confirm\_modal.cancel="Annuler"
+confirm\_modal.confirm="Confirmer"
+empty\_state.default\_title="Cet espace t'attend ✨"
+empty\_state.default\_message="Rien ici pour l'instant, mais ça va changer \!"
+empty\_state.no\_posts\_title="L'histoire de ce briquet attend d'être écrite \!"
+empty\_state.no\_posts\_message="Sois le·la premier·ère à ajouter une publication et commencer son voyage."
+not\_found.title="404 - Page introuvable"
+not\_found.message="Oups \! La page que tu cherches n'existe pas."
+not\_found.go\_home="Retour à l'accueil"
+error.generic\_title="Oups \! Quelque chose s'est mal passé"
+error.generic\_message="Un petit problème de notre côté. Tu veux réessayer ?"
+error.try\_again="Réessayer"
+error.network="On dirait qu'internet a eu un hoquet. Vérifie ta connexion et réessaie. 🌐"
+error.upload\_too\_large="Cette image est trop lourde \! Choisis-en une de moins de 2 Mo. 📸"
+error.invalid\_pin="Hmm, ce PIN ne correspond à aucun briquet que nous connaissons. Vérifie l'autocollant \!"
+error.rate\_limit="Wow, doucement champion·ne \! 🏃‍♂️\\n\\nTu ajoutes des posts plus vite qu'on ne peut suivre. Prends une pause de 24h pour laisser les autres ajouter à l'histoire de ce briquet, puis reviens \!\\n\\n(Ça garde notre mosaïque diverse et intéressante pour tout le monde.)"
+error.content\_flagged="Attention \! Nos règles de communauté signalent ce contenu comme {reason}. Gardons LightMyFire accueillant pour tous. 🌟"
+
+-----
+
+## Legal Pages
+
+legal.privacy.title="Politique de confidentialité"
+legal.terms.title="Conditions d'utilisation"
+legal.faq.title="Questions fréquentes"
+legal.about.title="À propos de LightMyFire"
+
+-----
+
+## Cookie Consent
+
+cookie.message="Nous utilisons des cookies uniquement pour les fonctionnalités de base—jamais pour le suivi. Ta vie privée compte. Consulte notre {privacyLink} pour plus de détails."
+cookie.privacy\_link\_text="Politique de confidentialité"
+cookie.accept="Accepter"
+cookie.decline="Refuser"
+cookie\_consent.title="Nous respectons ta vie privée"
+cookie\_consent.message="Nous utilisons des cookies pour t'offrir la meilleure expérience sur notre site. En continuant, tu acceptes notre politique de confidentialité et l'utilisation de cookies."
+cookie\_consent.accept="Accepter et continuer"
+cookie\_consent.privacy\_link="Politique de confidentialité"
+
+-----
+
+## Privacy Policy
+
+privacy.last\_updated="Dernière mise à jour : 8 novembre 2025"
+privacy.p1="LightMyFire (« nous », « notre » ou « nos ») est exploité par Revel Editions SASU, une société SASU enregistrée en France (RCS : 849 409 313). Nous nous engageons à protéger ta vie privée et à respecter le Règlement Général sur la Protection des Données (RGPD). Cette Politique de Confidentialité explique comment nous collectons, utilisons, divulguons et protégeons tes informations lorsque tu utilises notre site web et nos services."
+privacy.h3.data\_controller="1. Responsable du traitement des données"
+privacy.p2="Le responsable du traitement de tes données personnelles est :<br><br>\<strong\>Revel Editions SASU\</strong\><br>145 Rue de Noisy-le-Sec<br>93260 Les Lilas, France<br><br>\<strong\>Email de contact :\</strong\> privacy@lightmyfire.app<br>\<strong\>Délégué à la protection des données :\</strong\> dpo@lightmyfire.app"
+privacy.h3.info\_we\_collect="2. Informations que nous collectons"
+privacy.p3="Nous collectons des informations personnelles de plusieurs manières pour fournir et améliorer nos services :"
+privacy.h4.personal\_data="2.1. Données personnelles que tu fournis"
+privacy.ul1.li1="\<strong\>Inscription au compte :\</strong\> Adresse e-mail, nom d'utilisateur et mot de passe haché (nous ne stockons jamais les mots de passe en clair)"
+privacy.ul1.li2="\<strong\>Informations de profil :\</strong\> Nationalité optionnelle et préférences de profil"
+privacy.ul1.li3="\<strong\>Communications :\</strong\> Toute information que tu fournis en nous contactant pour assistance"
+privacy.h4.user\_content="2.2. Contenu généré par l'utilisateur·rice"
+privacy.ul2.li1="\<strong\>Publications :\</strong\> Texte, images, liens vidéo YouTube que tu partages sur les pages de briquets"
+privacy.ul2.li2="\<strong\>Données de localisation :\</strong\> Coordonnées géographiques optionnelles (latitude/longitude) lorsque tu crées des posts de localisation. Nous ne pouvons pas savoir si les coordonnées entrées sont liées à ta position réelle"
+privacy.ul2.li3="\<strong\>Métadonnées :\</strong\> Horodatages des posts, associations de briquets et données d'interaction (j'aime, signalements)"
+privacy.h4.transaction\_data="2.3. Données de transaction"
+privacy.ul3.li1="\<strong\>Informations de paiement :\</strong\> Traitées de manière sécurisée par Stripe (notre processeur de paiement). Nous ne stockons jamais les détails complets de ta carte bancaire"
+privacy.ul3.li2="\<strong\>Informations d'expédition :\</strong\> Nom, adresse, e-mail et numéro de téléphone pour la livraison des autocollants"
+privacy.ul3.li3="\<strong\>Historique des commandes :\</strong\> Détails des packs d'autocollants achetés et préférences de personnalisation"
+privacy.h4.technical\_data="2.4. Données techniques (collectées automatiquement)"
+privacy.ul4.li1="\<strong\>Informations sur l'appareil :\</strong\> Adresse IP, type de navigateur, système d'exploitation"
+privacy.ul4.li2="\<strong\>Données d'utilisation :\</strong\> Pages visitées, fonctionnalités utilisées, temps passé sur la plateforme"
+privacy.ul4.li3="\<strong\>Cookies :\</strong\> Cookies essentiels pour l'authentification et la gestion de session (voir Section 5.1)"
+privacy.h3.how\_we\_use="3. Comment nous utilisons tes informations"
+privacy.p4="Nous traitons tes données personnelles aux fins suivantes :"
+privacy.ul5.li1="\<strong\>Fourniture du service :\</strong\> Créer et gérer ton compte, afficher tes contributions, traiter les commandes"
+privacy.ul5.li2="\<strong\>Communication :\</strong\> Envoyer des confirmations de commande, répondre aux demandes, te notifier de l'activité des briquets (si tu as opté)"
+privacy.ul5.li3="\<strong\>Intégrité de la plateforme :\</strong\> Prévenir le spam, faire respecter les règles de la communauté, modérer le contenu"
+privacy.ul5.li4="\<strong\>Gamification :\</strong\> Suivre les réalisations, attribuer des trophées, calculer les niveaux d'utilisateur·rice"
+privacy.ul5.li5="\<strong\>Conformité légale :\</strong\> Respecter les lois applicables et répondre aux demandes légales"
+privacy.ul5.li6="\<strong\>Amélioration du service :\</strong\> Analyser les modèles d'utilisation pour améliorer l'expérience utilisateur (données anonymisées uniquement)"
+privacy.h3.legal\_basis="4. Base juridique du traitement (RGPD)"
+privacy.p5="En vertu du RGPD, nous traitons tes données personnelles sur la base des fondements juridiques suivants :"
+privacy.ul6.li1="\<strong\>Nécessité contractuelle (Art. 6(1)(b) RGPD) :\</strong\> Traitement nécessaire pour fournir les services que tu as demandés lors de la création d'un compte"
+privacy.ul6.li2="\<strong\>Intérêts légitimes (Art. 6(1)(f) RGPD) :\</strong\> Sécurité de la plateforme, prévention de la fraude, modération de contenu et amélioration du service—équilibrés avec tes droits"
+privacy.ul6.li3="\<strong\>Consentement (Art. 6(1)(a) RGPD) :\</strong\> Fonctionnalités optionnelles comme le partage public de posts, l'affichage de la nationalité et les cookies non essentiels—tu peux retirer ton consentement à tout moment"
+privacy.ul6.li4="\<strong\>Obligation légale (Art. 6(1)(c) RGPD) :\</strong\> Conformité au droit français et européen, y compris les obligations fiscales et les demandes des forces de l'ordre"
+privacy.h3.data\_sharing="5. Partage de données et sous-traitants tiers"
+privacy.p6="Nous ne vendons, ne louons ni n'échangeons tes données personnelles. Nous ne partageons les données qu'avec des prestataires de services de confiance qui nous aident à exploiter la plateforme :"
+privacy.ul7.li1="\<strong\>Supabase (Infrastructure backend) :\</strong\> Héberge notre base de données, système d'authentification et stockage de fichiers. Situé dans des centres de données de l'UE. \<a href='[https://supabase.com/privacy](https://supabase.com/privacy)' target='\_blank'\>Voir la politique de confidentialité de Supabase\</a\>"
+privacy.ul7.li2="\<strong\>Stripe (Traitement des paiements) :\</strong\> Traite toutes les transactions de paiement de manière sécurisée. Nous ne recevons que des confirmations de transaction, pas de détails de carte. \<a href='[https://stripe.com/privacy](https://stripe.com/privacy)' target='\_blank'\>Voir la politique de confidentialité de Stripe\</a\>"
+privacy.ul7.li3="\<strong\>Partenaires d'expédition :\</strong\> Reçoivent nom, adresse et coordonnées uniquement pour la livraison des autocollants"
+privacy.p7="Tous les sous-traitants tiers sont liés par des Accords de Traitement de Données (DPA) garantissant la conformité RGPD et la protection des données."
+privacy.h3.cookies="5.1. Cookies et technologies de suivi"
+privacy.h4.cookie\_types="Types de cookies que nous utilisons"
+privacy.ul8.li1="\<strong\>Cookies essentiels (pas de consentement requis) :\</strong\> Gestion de session, authentification, fonctionnalités de sécurité et fonctionnalité du panier. Ces cookies sont strictement nécessaires au fonctionnement de la plateforme."
+privacy.ul8.li2="\<strong\>Cookies de préférence (pas de consentement requis) :\</strong\> Mémorisent ta sélection de langue, ton choix de consentement aux cookies et tes préférences d'affichage."
+privacy.ul8.li3="\<strong\>Cookies analytiques (consentement requis) :\</strong\> Nous aident à comprendre comment les visiteurs utilisent le site via des données anonymisées. Nous ne les activons qu'avec ton consentement explicite."
+privacy.p8="Tu peux gérer tes préférences de cookies via la bannière de consentement affichée lors de ta première visite. Tu peux modifier ton choix à tout moment dans les paramètres de ton navigateur ou en nous contactant."
+privacy.h3.location\_data="5.2. Divulgation des données de localisation"
+privacy.p9="Lorsque tu crées un post de localisation, tu peux volontairement fournir des coordonnées géographiques (latitude et longitude). \<strong\>Informations importantes :\</strong\>"
+privacy.ul9.li1="Ces données sont \<strong\>visibles publiquement\</strong\> sur la page du briquet et sur la carte"
+privacy.ul9.li2="Quiconque ayant le PIN du briquet peut voir ces informations"
+privacy.ul9.li3="Tu contrôles la précision—tu peux fournir des coordonnées approximatives ou exactes"
+privacy.ul9.li4="Tu es seul·e responsable des implications en matière de confidentialité de toutes les données de localisation que tu partages"
+privacy.ul9.li5="Tu peux supprimer tes posts de localisation à tout moment depuis ton profil"
+privacy.h3.international\_transfers="5.3. Transferts internationaux de données"
+privacy.p10="Tes données sont principalement stockées sur des serveurs Supabase situés au sein de l'Union européenne. Cependant, certains sous-traitants peuvent être situés en dehors de l'UE/EEE. Lorsque les données sont transférées à l'international, nous assurons une protection adéquate via :"
+privacy.ul10.li1="\<strong\>Clauses Contractuelles Types (CCT) :\</strong\> Mécanismes de transfert de données approuvés par l'UE"
+privacy.ul10.li2="\<strong\>Décisions d'adéquation :\</strong\> Transferts uniquement vers des pays reconnus par la Commission européenne comme offrant une protection adéquate"
+privacy.ul10.li3="\<strong\>Garanties des sous-traitants :\</strong\> Tous les sous-traitants s'engagent à respecter des normes de protection des données équivalentes au RGPD"
+privacy.h3.data\_retention="5.4. Périodes de conservation des données"
+privacy.p11="Nous ne conservons les données personnelles que le temps nécessaire aux fins décrites dans cette politique :"
+privacy.ul11.li1="\<strong\>Données de compte :\</strong\> Conservées tant que ton compte est actif, plus 30 jours après suppression (pour permettre la réactivation)"
+privacy.ul11.li2="\<strong\>Publications d'utilisateur·rice :\</strong\> Conservées tant que ton compte existe. Lorsque tu supprimes un post, il est définitivement supprimé sous 24 heures"
+privacy.ul11.li3="\<strong\>Données de commande :\</strong\> 7 ans à compter de la date d'achat (exigence de la loi fiscale française)"
+privacy.ul11.li4="\<strong\>Journaux techniques :\</strong\> Adresses IP et journaux de sécurité conservés maximum 12 mois"
+privacy.ul11.li5="\<strong\>Analyses anonymisées :\</strong\> Conservées indéfiniment pour l'amélioration du service (ne peuvent pas être liées à toi)"
+privacy.p12="Après expiration des périodes de conservation, les données sont supprimées de manière sécurisée de tous les systèmes, y compris les sauvegardes."
+privacy.h3.data\_security="5.5. Mesures de sécurité"
+privacy.p13="Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger tes données :"
+privacy.ul12.li1="\<strong\>Chiffrement :\</strong\> Toutes les données transmises utilisent le chiffrement TLS/SSL. Mots de passe stockés avec hachage standard de l'industrie"
+privacy.ul12.li2="\<strong\>Contrôles d'accès :\</strong\> Accès basé sur les rôles, accès limité des employés, authentification multifacteur pour les comptes admin"
+privacy.ul12.li3="\<strong\>Audits réguliers :\</strong\> Évaluations de sécurité, scan de vulnérabilités et revues de code"
+privacy.ul12.li4="\<strong\>Réponse aux incidents :\</strong\> Procédures documentées de notification de violation (voir Section 5.6)"
+privacy.h3.data\_breaches="5.6. Notification de violation de données"
+privacy.p14="Dans le cas improbable d'une violation de données personnelles, nous allons :"
+privacy.ul13.li1="\<strong\>Notifier l'autorité de contrôle :\</strong\> Dans les 72 heures suivant la prise de conscience de la violation (CNIL en France)"
+privacy.ul13.li2="\<strong\>Notifier les utilisateur·rice·s concerné·e·s :\</strong\> Sans délai indu si la violation présente un risque élevé pour tes droits et libertés"
+privacy.ul13.li3="\<strong\>Fournir des informations :\</strong\> Nature de la violation, conséquences probables, mesures prises et actions recommandées"
+privacy.h3.your\_rights="6. Tes droits en vertu du RGPD"
+privacy.p15="Tu disposes des droits suivants concernant tes données personnelles. Pour exercer l'un de ces droits, contacte-nous à \<strong\>privacy@lightmyfire.app\</strong\>."
+privacy.h4.right\_access="6.1. Droit d'accès (Art. 15 RGPD)"
+privacy.p16="Tu peux demander une copie de toutes les données personnelles que nous détenons sur toi. Nous te la fournirons dans un format structuré, couramment utilisé dans les 30 jours."
+privacy.h4.right\_rectification="6.2. Droit de rectification (Art. 16 RGPD)"
+privacy.p17="Tu peux corriger des données inexactes ou incomplètes. Mets à jour la plupart des informations directement dans les paramètres de ton profil, ou contacte-nous pour assistance."
+privacy.h4.right\_erasure="6.3. Droit à l'effacement - « Droit à l'oubli » (Art. 17 RGPD)"
+privacy.p18="Tu peux demander la suppression de tes données personnelles. Tu peux supprimer des posts individuels à tout moment depuis « Mon Profil ». Pour supprimer l'intégralité de ton compte et toutes les données associées, contacte-nous à privacy@lightmyfire.app. Note : Nous pouvons conserver certaines données si cela est légalement requis (par ex., historique des commandes pour des raisons fiscales)."
+privacy.h4.right\_restriction="6.4. Droit à la limitation du traitement (Art. 18 RGPD)"
+privacy.p19="Tu peux demander que nous limitions la façon dont nous utilisons tes données pendant que tu contestes leur exactitude ou la licéité du traitement."
+privacy.h4.right\_portability="6.5. Droit à la portabilité des données (Art. 20 RGPD)"
+privacy.p20="Tu peux recevoir tes données dans un format lisible par machine (JSON/CSV) pour les transférer vers un autre service."
+privacy.h4.right\_object="6.6. Droit d'opposition (Art. 21 RGPD)"
+privacy.p21="Tu peux t'opposer au traitement basé sur des intérêts légitimes. Nous cesserons le traitement sauf si nous démontrons des motifs légitimes impérieux."
+privacy.h4.right\_withdraw="6.7. Droit de retirer le consentement"
+privacy.p22="Pour le traitement basé sur le consentement, tu peux le retirer à tout moment. Cela n'affecte pas la licéité du traitement avant le retrait."
+privacy.h4.right\_complain="6.8. Droit de déposer une plainte"
+privacy.p23="Si tu estimes que nous ne respectons pas le RGPD, tu as le droit de déposer une plainte auprès d'une autorité de contrôle :"
+privacy.p24="\<strong\>France (notre juridiction principale) :\</strong\><br>Commission Nationale de l'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, France<br>Site web : \<a href='[https://www.cnil.fr](https://www.cnil.fr)' target='\_blank'\>www.cnil.fr\</a\>"
+privacy.p25="Tu peux également contacter l'autorité de protection des données de ton pays de résidence."
+privacy.h3.automated\_decisions="7. Décisions automatisées"
+privacy.p26="Nous utilisons un traitement automatisé limité pour :"
+privacy.ul14.li1="\<strong\>Modération de contenu :\</strong\> Présélection automatisée des posts pour détecter le contenu interdit (discours de haine, images explicites). Le contenu signalé est examiné par des modérateur·rice·s humain·e·s avant toute action"
+privacy.ul14.li2="\<strong\>Prévention du spam :\</strong\> Détection automatisée de modèles d'activité suspects (par ex., soumissions rapides de posts)"
+privacy.ul14.li3="\<strong\>Gamification :\</strong\> Calcul automatisé des niveaux d'utilisateur·rice et de l'éligibilité aux trophées basé sur des métriques de contribution"
+privacy.p27="Ces processus automatisés ne produisent pas d'effets juridiques ni ne t'affectent de manière significative. Tu peux toujours nous contacter pour contester une décision ou demander un examen humain."
+privacy.h3.children="8. Confidentialité des enfants"
+privacy.p28="Notre service ne s'adresse pas aux enfants de moins de 16 ans (ou l'âge minimum requis dans ta juridiction pour consentir au traitement de données). Nous ne collectons pas sciemment de données personnelles d'enfants. Si tu crois que nous avons par inadvertance collecté des données d'un enfant, contacte-nous immédiatement à privacy@lightmyfire.app et nous les supprimerons rapidement."
+privacy.h3.changes="9. Modifications de cette politique de confidentialité"
+privacy.p29="Nous pouvons mettre à jour cette politique de confidentialité pour refléter les changements dans nos pratiques ou les exigences légales. Nous allons :"
+privacy.ul15.li1="Te notifier par e-mail des changements importants (si tu as un compte)"
+privacy.ul15.li2="Afficher un avis bien visible sur le site web"
+privacy.ul15.li3="Mettre à jour la date « Dernière mise à jour » en haut de cette politique"
+privacy.p30="L'utilisation continue de nos services après les modifications constitue l'acceptation de la politique mise à jour."
+privacy.h3.contact="10. Nous contacter"
+privacy.p31="Pour toute question sur cette politique de confidentialité ou pour exercer tes droits, contacte-nous :"
+privacy.ul16.li1="\<strong\>Email :\</strong\> privacy@lightmyfire.app"
+privacy.ul16.li2="\<strong\>Délégué à la protection des données :\</strong\> dpo@lightmyfire.app"
+privacy.ul16.li3="\<strong\>Adresse postale :\</strong\> Revel Editions SASU, 145 Rue de Noisy-le-Sec, 93260 Les Lilas, France"
+privacy.p32="Nous visons à répondre à toutes les demandes dans les 30 jours. Si ta demande est complexe, nous pouvons prolonger ce délai de 60 jours supplémentaires et t'en informerons."
+
+-----
+
+## Terms of Service
+
+terms.last\_updated="Dernière mise à jour : 28 octobre 2025"
+terms.p1="Ces Conditions d'Utilisation (« Conditions ») régissent ton accès et ton utilisation de LightMyFire (le « Service »), exploité par Revel Editions SASU, une société enregistrée en France. En créant un compte ou en utilisant notre Service, tu conclus un accord juridiquement contraignant avec nous."
+terms.h3.acceptance="1. Acceptation des conditions"
+terms.p2="En accédant ou en utilisant LightMyFire, tu acceptes d'être lié par ces Conditions, notre Politique de Confidentialité et toutes les lois applicables. Si tu n'acceptes pas une partie de ces Conditions, tu ne dois pas utiliser le Service. Ton utilisation continue constitue l'acceptation de toute modification que nous apportons à ces Conditions."
+terms.h3.eligibility="2. Éligibilité et exigences de compte"
+terms.h4.age="2.1. Condition d'âge"
+terms.p3="Tu dois avoir au moins 16 ans (ou l'âge minimum requis dans ton pays pour fournir un consentement au traitement de données en vertu des lois applicables sur la protection de la vie privée) pour créer un compte et utiliser ce Service. En créant un compte, tu déclares et garantis que tu réponds à cette exigence d'âge."
+terms.h4.account\_security="2.2. Sécurité du compte"
+terms.p4="Tu es responsable de :"
+terms.ul1.li1="Maintenir la confidentialité de tes identifiants de compte"
+terms.ul1.li2="Toutes les activités qui se produisent sous ton compte"
+terms.ul1.li3="Nous notifier immédiatement de toute utilisation non autorisée à : support@lightmyfire.app"
+terms.p5="Tu ne peux pas partager ton compte avec d'autres ni utiliser le compte d'une autre personne sans autorisation."
+terms.h4.account\_accuracy="2.3. Informations de compte"
+terms.p6="Tu acceptes de fournir des informations exactes, actuelles et complètes lors de l'inscription et de les mettre à jour si nécessaire pour maintenir leur exactitude."
+terms.h3.license="3. Licence et propriété intellectuelle"
+terms.h4.our\_license="3.1. Licence d'utilisation du Service"
+terms.p7="Sous réserve de ces Conditions, nous t'accordons une licence limitée, non exclusive, non transférable et révocable pour accéder et utiliser LightMyFire à des fins personnelles et non commerciales."
+terms.h4.our\_ip="3.2. Propriété intellectuelle de LightMyFire"
+terms.p8="Tout le contenu, les fonctionnalités et la fonctionnalité du Service—y compris, mais sans s'y limiter, le texte, les graphiques, les logos, les icônes, les images, les clips audio, les compilations de données, les logiciels et l'« apparence » du site web—sont la propriété exclusive de Revel Editions SASU et sont protégés par les lois internationales sur le droit d'auteur, les marques et autres propriétés intellectuelles."
+terms.p9="« LightMyFire », « LightSaver » et les logos associés sont des marques de Revel Editions SASU. Tu ne peux pas utiliser ces marques sans notre autorisation écrite préalable."
+terms.h4.user\_license="3.3. Licence pour ton contenu généré par l'utilisateur·rice"
+terms.p10="En publiant du Contenu Généré par l'Utilisateur·rice (« CGU ») sur le Service, tu accordes à Revel Editions SASU une licence mondiale, non exclusive, libre de redevances, perpétuelle, transférable pour :"
+terms.ul2.li1="Utiliser, reproduire, distribuer, modifier, adapter, exécuter publiquement et afficher publiquement ton CGU"
+terms.ul2.li2="Incorporer ton CGU dans d'autres œuvres dans n'importe quel format ou support"
+terms.ul2.li3="Sous-licencier ces droits à des tiers uniquement pour l'exploitation et la promotion de LightMyFire"
+terms.p11="\<strong\>Important :\</strong\> Cette licence est limitée à l'exploitation et à la promotion du Service. Nous n'utiliserons pas ton contenu à des fins commerciales non liées. Tu conserves la propriété de ton CGU et peux révoquer cette licence pour des posts spécifiques en les supprimant de ton profil. Cependant, des copies peuvent persister dans les sauvegardes pendant jusqu'à 30 jours."
+terms.h3.ugc="4. Contenu généré par l'utilisateur·rice et conduite"
+terms.h4.ugc\_responsibility="4.1. Ta responsabilité"
+terms.p12="Tu es seul·e responsable de tout le contenu que tu publies sur LightMyFire, y compris le texte, les images, les liens vers des chansons (URL YouTube) et les données de localisation. Tu déclares et garantis que :"
+terms.ul3.li1="Tu possèdes ou as les droits nécessaires pour publier le contenu"
+terms.ul3.li2="Ton contenu ne viole aucun droit de propriété intellectuelle, de confidentialité ou autre droit d'un tiers"
+terms.ul3.li3="Ton contenu est conforme à ces Conditions et aux lois applicables"
+terms.h4.prohibited\_content="4.2. Contenu interdit"
+terms.p13="Tu ne dois pas publier de contenu qui :"
+terms.ul4.li1="\<strong\>Illégal :\</strong\> Viole toute loi locale, nationale ou internationale"
+terms.ul4.li2="\<strong\>Nuisible aux mineurs :\</strong\> Exploite, sexualise ou met en danger les enfants de quelque manière que ce soit"
+terms.ul4.li3="\<strong\>Haineux :\</strong\> Promeut la haine, la discrimination ou la violence contre des individus ou des groupes sur la base de la race, de l'ethnicité, de la religion, du sexe, de l'orientation sexuelle, du handicap ou d'autres caractéristiques protégées"
+terms.ul4.li4="\<strong\>Violent ou menaçant :\</strong\> Dépeint, encourage ou menace de violence, d'automutilation ou de préjudice à autrui"
+terms.ul4.li5="\<strong\>Harcelant :\</strong\> Intimide, harcèle, traque ou intimide les autres"
+terms.ul4.li6="\<strong\>Sexuellement explicite :\</strong\> Contient de la pornographie ou du matériel sexuellement explicite"
+terms.ul4.li7="\<strong\>Trompeur :\</strong\> Contient des informations fausses, trompeuses ou frauduleuses"
+terms.ul4.li8="\<strong\>Spam :\</strong\> Consiste en publicité non sollicitée, matériel promotionnel ou contenu répétitif"
+terms.ul4.li9="\<strong\>Contrefaisant :\</strong\> Viole les droits d'auteur, les marques, les brevets ou autres droits de propriété intellectuelle"
+terms.ul4.li10="\<strong\>Malveillant :\</strong\> Contient des virus, des logiciels malveillants ou d'autres codes nuisibles"
+terms.ul4.li11="\<strong\>Informations privées :\</strong\> Partage les informations personnelles d'autrui sans consentement (doxxing)"
+terms.h4.prohibited\_conduct="4.3. Conduite interdite"
+terms.p14="Tu ne dois pas :"
+terms.ul5.li1="Usurper l'identité de toute personne ou entité"
+terms.ul5.li2="Manipuler le Service pour gonfler artificiellement les métriques (j'aime, vues, etc.)"
+terms.ul5.li3="Interférer avec ou perturber le Service ou les serveurs"
+terms.ul5.li4="Tenter d'obtenir un accès non autorisé à toute partie du Service"
+terms.ul5.li5="Utiliser des outils automatisés (bots, scrapers) sans autorisation écrite"
+terms.ul5.li6="Contourner tout filtrage de contenu ou mesures de sécurité"
+terms.ul5.li7="Utiliser le Service à des fins commerciales sans notre consentement"
+terms.h3.moderation="5. Modération de contenu et application"
+terms.h4.mod\_rights="5.1. Nos droits"
+terms.p15="Nous nous réservons le droit (mais n'avons aucune obligation) de :"
+terms.ul6.li1="Examiner, filtrer, éditer ou supprimer tout CGU à tout moment pour toute raison"
+terms.ul6.li2="Surveiller l'activité des utilisateurs pour violations de ces Conditions"
+terms.ul6.li3="Enquêter sur les plaintes et le contenu signalé"
+terms.p16="Cependant, nous ne sommes pas responsables de la surveillance de tout le contenu et ne garantissons pas que le contenu interdit n'apparaîtra pas sur le Service."
+terms.h4.community\_flagging="5.2. Signalement communautaire"
+terms.p17="Nous utilisons un système de signalement communautaire. Les utilisateur·rice·s peuvent signaler du contenu qu'ils croient viole ces Conditions. Le contenu signalé est examiné par notre équipe de modération, qui peut inclure un pré-filtrage automatisé suivi d'un examen humain."
+terms.h4.enforcement="5.3. Mesures d'application"
+terms.p18="Les violations de ces Conditions peuvent entraîner :"
+terms.ul7.li1="\<strong\>Suppression de contenu :\</strong\> Suppression de posts en violation sans préavis"
+terms.ul7.li2="\<strong\>Avertissement :\</strong\> Un avertissement formel pour les violations de première fois ou mineures"
+terms.ul7.li3="\<strong\>Suspension temporaire :\</strong\> Suspension temporaire du compte (durée déterminée par la gravité)"
+terms.ul7.li4="\<strong\>Résiliation permanente :\</strong\> Résiliation permanente du compte pour violations graves ou répétées"
+terms.ul7.li5="\<strong\>Action en justice :\</strong\> Signalement aux forces de l'ordre pour activité illégale"
+terms.p19="Nous pouvons résilier des comptes sans préavis si nous déterminons qu'il y a une violation grave qui menace la sécurité des utilisateurs ou l'intégrité de la plateforme."
+terms.h4.appeals="5.4. Processus d'appel"
+terms.p20="Si tu crois que du contenu a été supprimé ou que ton compte a été suspendu par erreur, tu peux faire appel en contactant appeals@lightmyfire.app dans les 30 jours de l'action. Inclus :"
+terms.ul8.li1="Ton nom d'utilisateur et e-mail de compte"
+terms.ul8.li2="Description du contenu ou de l'action en question"
+terms.ul8.li3="Explication de pourquoi tu crois que la décision était incorrecte"
+terms.p21="Nous examinerons les appels et répondrons dans les 14 jours ouvrables. Notre décision sur les appels est finale."
+terms.h3.stickers="6. Ventes d'autocollants et commandes"
+terms.h4.sales\_final="6.1. Politique de vente"
+terms.p22="Toutes les ventes d'autocollants sont finales. Nous n'offrons pas de remboursement sauf dans les cas de :"
+terms.ul9.li1="Défauts de fabrication dans les autocollants"
+terms.ul9.li2="Articles incorrects expédiés"
+terms.ul9.li3="Non-livraison due à notre erreur"
+terms.p23="Pour demander un remboursement pour ces raisons, contacte support@lightmyfire.app dans les 30 jours de la livraison avec preuve photographique."
+terms.h4.shipping="6.2. Expédition et livraison"
+terms.p24="Les délais et coûts d'expédition sont spécifiés lors du paiement. Nous ne sommes pas responsables des retards causés par les transporteurs, les douanes ou des événements hors de notre contrôle (force majeure). Le risque de perte passe à toi lors de la livraison au transporteur."
+terms.h4.custom="6.3. Personnalisation"
+terms.p25="Les commandes d'autocollants personnalisés ne peuvent pas être annulées une fois le traitement commencé (généralement dans les 24 heures suivant le placement de la commande). Vérifie attentivement tes personnalisations avant de finaliser ta commande."
+terms.h3.liability="7. Exclusions de responsabilité et limitation de responsabilité"
+terms.h4.as\_is="7.1. Service « Tel Quel »"
+terms.p26="LE SERVICE EST FOURNI « TEL QUEL » ET « TEL QUE DISPONIBLE » SANS GARANTIES D'AUCUNE SORTE, EXPRESSES OU IMPLICITES, Y COMPRIS MAIS SANS S'Y LIMITER LES GARANTIES DE QUALITÉ MARCHANDE, D'ADÉQUATION À UN USAGE PARTICULIER, DE TITRE, DE NON-CONTREFAÇON OU DE SERVICE ININTERROMPU OU SANS ERREUR. NOUS NE GARANTISSONS PAS QUE :"
+terms.ul10.li1="Le Service répondra à tes exigences"
+terms.ul10.li2="Le Service sera ininterrompu, opportun, sécurisé ou sans erreur"
+terms.ul10.li3="Les résultats obtenus de l'utilisation du Service seront exacts ou fiables"
+terms.ul10.li4="Toute erreur dans le Service sera corrigée"
+terms.h4.limitation="7.2. Limitation de responsabilité"
+terms.p27="DANS LA MESURE MAXIMALE PERMISE PAR LA LOI APPLICABLE, REVEL EDITIONS SASU ET SES DIRECTEURS, EMPLOYÉS, AGENTS ET AFFILIÉS NE SERONT PAS RESPONSABLES DE TOUT DOMMAGE INDIRECT, ACCESSOIRE, SPÉCIAL, CONSÉCUTIF OU PUNITIF, Y COMPRIS MAIS SANS S'Y LIMITER :"
+terms.ul11.li1="Perte de profits, de données, d'utilisation, de clientèle ou d'autres pertes intangibles"
+terms.ul11.li2="Accès non autorisé ou modification de ton contenu"
+terms.ul11.li3="Conduite ou contenu de tiers sur le Service"
+terms.ul11.li4="Toute question au-delà de notre contrôle raisonnable"
+terms.p28="NOTRE RESPONSABILITÉ TOTALE ENVERS TOI POUR TOUTES LES RÉCLAMATIONS DÉCOULANT DE OU LIÉES AU SERVICE NE DÉPASSERA PAS LE MONTANT LE PLUS ÉLEVÉ ENTRE (A) 100 € OU (B) LE MONTANT QUE TU NOUS AS PAYÉ AU COURS DES 12 MOIS PRÉCÉDANT LA RÉCLAMATION."
+terms.h4.jurisdiction\_limits="7.3. Limitations juridictionnelles"
+terms.p29="Certaines juridictions n'autorisent pas l'exclusion de certaines garanties ou la limitation de responsabilité pour les dommages consécutifs. Dans ces juridictions, notre responsabilité est limitée dans la mesure maximale permise par la loi."
+terms.h3.indemnification="8. Indemnisation"
+terms.p30="Tu acceptes de défendre, indemniser et dégager de toute responsabilité Revel Editions SASU, ses directeurs, dirigeants, employés et agents de toute réclamation, dommage, perte, responsabilité et dépense (y compris les frais d'avocat raisonnables) découlant de :"
+terms.ul12.li1="Ton utilisation ou mauvaise utilisation du Service"
+terms.ul12.li2="Ta violation de ces Conditions"
+terms.ul12.li3="Ta violation de tout droit d'une autre partie"
+terms.ul12.li4="Ton Contenu Généré par l'Utilisateur·rice"
+terms.h3.dispute\_resolution="9. Résolution des litiges et loi applicable"
+terms.h4.governing\_law="9.1. Loi applicable"
+terms.p31="Ces Conditions sont régies et interprétées conformément aux lois de France, sans égard à ses principes de conflits de lois. La Convention des Nations Unies sur les contrats de vente internationale de marchandises ne s'applique pas."
+terms.h4.jurisdiction="9.2. Juridiction"
+terms.p32="Tout litige découlant de ces Conditions ou de ton utilisation du Service sera soumis à la juridiction exclusive des tribunaux de Paris, France. Cependant, nous pouvons demander une mesure injonctive dans tout tribunal de juridiction compétente."
+terms.h4.informal\_resolution="9.3. Résolution informelle des litiges"
+terms.p33="Avant de déposer toute réclamation formelle, tu acceptes de nous contacter à legal@lightmyfire.app pour tenter de résoudre le litige de manière informelle. Nous nous engageons à travailler avec toi de bonne foi pour parvenir à une résolution dans les 60 jours."
+terms.h3.termination="10. Résiliation"
+terms.h4.by\_you="10.1. Résiliation par toi"
+terms.p34="Tu peux résilier ton compte à tout moment en contactant support@lightmyfire.app. Lors de la résiliation :"
+terms.ul13.li1="Ton compte sera désactivé"
+terms.ul13.li2="Tu perds l'accès à toutes les fonctionnalités du compte"
+terms.ul13.li3="Tes posts restent visibles sur les pages de briquets (ils font partie de l'histoire de ces briquets)"
+terms.ul13.li4="Pour supprimer tes posts avant la résiliation du compte, fais-le manuellement depuis ton profil"
+terms.h4.by\_us="10.2. Résiliation par nous"
+terms.p35="Nous pouvons suspendre ou résilier ton compte immédiatement, sans préavis, pour :"
+terms.ul14.li1="Violation de ces Conditions"
+terms.ul14.li2="Activité frauduleuse, abusive ou illégale"
+terms.ul14.li3="Inactivité prolongée (comptes inactifs depuis 3+ ans)"
+terms.ul14.li4="À notre seule discrétion si nécessaire pour protéger le Service ou d'autres utilisateurs"
+terms.h4.effect="10.3. Effet de la résiliation"
+terms.p36="Lors de la résiliation pour quelque raison que ce soit :"
+terms.ul15.li1="Ton droit d'utiliser le Service cesse immédiatement"
+terms.ul15.li2="Les sections qui, par leur nature, devraient survivre à la résiliation restent en vigueur (y compris Propriété Intellectuelle, Exclusions de Responsabilité, Limitation de Responsabilité, Indemnisation, Résolution des Litiges)"
+terms.ul15.li3="Nous pouvons conserver certaines données comme requis par la loi ou pour des fins commerciales légitimes"
+terms.h3.general="11. Dispositions générales"
+terms.h4.entire\_agreement="11.1. Accord complet"
+terms.p37="Ces Conditions, ainsi que notre Politique de Confidentialité, constituent l'accord complet entre toi et Revel Editions SASU concernant le Service et remplacent tous les accords antérieurs."
+terms.h4.modifications="11.2. Modifications des Conditions"
+terms.p38="Nous nous réservons le droit de modifier ces Conditions à tout moment. Lorsque nous apportons des modifications :"
+terms.ul16.li1="Nous mettrons à jour la date « Dernière mise à jour »"
+terms.ul16.li2="Pour les changements importants, nous te notifierons par e-mail ou par avis bien visible sur le Service"
+terms.ul16.li3="Ton utilisation continue après les modifications constitue l'acceptation"
+terms.p39="Si tu n'acceptes pas les Conditions modifiées, tu dois cesser d'utiliser le Service."
+terms.h4.severability="11.3. Divisibilité"
+terms.p40="Si une disposition de ces Conditions est jugée invalide ou inapplicable, cette disposition sera appliquée dans la mesure maximale possible, et les dispositions restantes resteront pleinement en vigueur."
+terms.h4.waiver="11.4. Pas de renonciation"
+terms.p41="Notre défaut d'exercer tout droit ou disposition de ces Conditions ne constitue pas une renonciation à ce droit ou à cette disposition."
+terms.h4.assignment="11.5. Cession"
+terms.p42="Tu ne peux pas céder ou transférer ces Conditions ou ton compte sans notre consentement écrit. Nous pouvons céder nos droits et obligations sans restriction."
+terms.h4.third\_party="11.6. Pas de bénéficiaires tiers"
+terms.p43="Ces Conditions ne créent aucun droit pour des bénéficiaires tiers sauf indication expresse."
+terms.h3.contact\_terms="12. Informations de contact"
+terms.p44="Pour des questions sur ces Conditions, contacte-nous :"
+terms.ul17.li1="\<strong\>Email :\</strong\> legal@lightmyfire.app"
+terms.ul17.li2="\<strong\>Support :\</strong\> support@lightmyfire.app"
+terms.ul17.li3="\<strong\>Adresse :\</strong\> Revel Editions SASU, Cs 20008 145 Rue de Noisy-le-Sec 93260 Les Lilas, France"
+
+-----
+
+## How It Works / FAQ
+
+how\_it\_works\_details.title="Comment ça marche : De l'étincelle à l'histoire mondiale"
+how\_it\_works\_details.step1.title="1. Sauve"
+how\_it\_works\_details.step1.desc="Donne un nom à ton briquet, créant son carnet de voyage numérique. Télécharge ton autocollant PIN/QR unique."
+how\_it\_works\_details.step2.title="2. Partage"
+how\_it\_works\_details.step2.desc="Colle-le et laisse-le partir—donne-le ou « perds-le ». Son voyage commence."
+how\_it\_works\_details.step3.title="3. Ajoute ta première histoire"
+how\_it\_works\_details.step3.desc="Visite sa page web permanente. Ajoute le premier post—une photo, vidéo, chanson ou histoire. C'est l'acte de naissance de ton briquet."
+how\_it\_works\_details.step4.title="4. Regarde l'histoire grandir"
+how\_it\_works\_details.step4.desc="Chaque nouvelle personne qui le trouve peut scanner et ajouter son propre post. Tu ne partages pas qu'une flamme—tu co-écris une chronique mondiale."
+how\_it\_works\_details.step5.title="5. Sois un·e bon·ne membre de la communauté"
+how\_it\_works\_details.step5.desc="Notre communauté prospère sur le respect et la créativité. Si tu vois un post qui viole nos \<strong\>règles\</strong\> (spam, contenu haineux, etc.), utilise le bouton Signaler. Notre équipe de modération garde la plateforme sûre."
+how\_it\_works\_details.step6.title="6. Collectionne tes trophées"
+how\_it\_works\_details.step6.desc="Débloque des réalisations en participant \! Ajoute ton premier post pour le trophée « Première étincelle ». Regarde ton briquet voyager vers un nouveau pays pour le trophée « Globe-trotter ». Consulte ton profil pour voir ta \<strong\>collection de trophées\</strong\> \!"
+
+-----
+
+## FAQ Page
+
+faq.subtitle="Trouve des réponses aux questions fréquentes sur LightMyFire"
+faq.q1.title="Qu'est-ce que LightMyFire ?"
+faq.q1.desc="Un projet pour réduire les déchets et créer une mosaïque humaine mondiale. Nous créons des autocollants QR code pour briquets. Quiconque trouve ce briquet peut scanner le code, entrer son PIN et ajouter une histoire, photo ou chanson à son voyage numérique."
+faq.q2.title="Comment ajouter une histoire ?"
+faq.q2.desc="Trouve un briquet avec un autocollant LightMyFire. Scanne le QR code (ou visite notre site) et entre le PIN de l'autocollant. Tu auras besoin d'un compte gratuit pour contribuer."
+faq.q3.title="Pourquoi ne puis-je pas poster deux fois de suite ?"
+faq.q3.desc="Pour garder la mosaïque diverse, il y a un délai de 24 heures par briquet. Ça encourage à le passer pour que quelqu'un d'autre puisse ajouter son histoire."
+faq.q4.title="Mon post est-il public ?"
+faq.q4.desc="Tu choisis \! Tous les posts apparaissent sur la page du briquet (nécessite le PIN pour y accéder). Lors de la publication, coche une case pour le rendre « public »—mis en avant sur la mosaïque de la page d'accueil."
+faq.q5.title="Comment supprimer un post que j'ai fait ?"
+faq.q5.desc="Connecte-toi, va dans Mon Profil, et tu verras tous tes posts avec des boutons supprimer. Tu as le contrôle complet."
+faq.q6.title="Que se passe-t-il si je perds le briquet que j'ai sauvé ?"
+faq.q6.desc="Ça fait partie de l'aventure \! En tant que LightSaver (personne qui a acheté l'autocollant), tu peux toujours voir la page de ton briquet depuis Mon Profil. Regarde son voyage longtemps après qu'il ait quitté tes mains."
+faq.q7.title="Comment fonctionne la carte ?"
+faq.q7.desc="Chaque page de briquet a une carte montrant son voyage. Chaque post de localisation ajoute des coordonnées à la carte, traçant le chemin du briquet à travers le globe."
+faq.what\_is.question="Qu'est-ce que LightMyFire ?"
+faq.what\_is.answer="Un projet pour réduire les déchets et créer une mosaïque humaine mondiale. Nous vendons des autocollants QR code pour briquets. Quiconque trouve ce briquet peut scanner le code, entrer le PIN et ajouter une histoire, photo ou chanson à son voyage numérique—connectant les gens mondialement et donnant aux briquets une seconde vie."
+faq.how\_add\_story.question="Comment ajouter une histoire à un briquet ?"
+faq.how\_add\_story.answer="Trouve un briquet avec un autocollant LightMyFire. Scanne le QR code ou visite notre site et entre le PIN. Tu auras besoin d'un compte gratuit pour contribuer. Une fois connecté, ajoute du texte, télécharge des images, partage des chansons ou enregistre où tu l'as trouvé."
+faq.save\_lighter.question="Comment sauver et personnaliser mon propre briquet ?"
+faq.save\_lighter.answer="Visite Sauver un Briquet. Donne-lui un nom et choisis un design d'autocollant (couleur, langue, etc.), puis commande tes autocollants personnalisés. Cela crée une identité numérique unique que tu peux suivre et partager."
+faq.post\_twice.question="Pourquoi ne puis-je pas poster deux fois de suite ?"
+faq.post\_twice.answer="Pour garder la mosaïque diverse et encourager à passer le briquet, il y a un délai de 24 heures par briquet. Cela garantit que plusieurs personnes contribuent plutôt qu'une personne ne domine. Il s'agit de créer une mosaïque diverse et mondiale."
+faq.public\_post.question="Mon post est-il public ?"
+faq.public\_post.answer="Tu contrôles ça \! Tous les posts apparaissent sur la page privée du briquet (nécessite le PIN). Lors de la publication, coche une case pour le rendre « public »—mis en avant sur la mosaïque de la page d'accueil pour que tout le monde le voie."
+faq.delete\_post.question="Comment supprimer un post que j'ai fait ?"
+faq.delete\_post.answer="Connecte-toi et va dans Mon Profil. Tu verras tous tes posts avec des boutons supprimer. Supprime n'importe quel post à tout moment—tu as le contrôle complet."
+faq.lose\_lighter.question="Que se passe-t-il si je perds le briquet que j'ai sauvé ?"
+faq.lose\_lighter.answer="Ça fait partie de l'aventure \! En tant que LightSaver, tu peux toujours voir la page de ton briquet depuis Mon Profil. Regarde où il va, qui le trouve et quelles histoires il collecte longtemps après qu'il ait quitté tes mains."
+faq.map\_works.question="Comment fonctionne la fonction carte ?"
+faq.map\_works.answer="Chaque page de briquet a une carte montrant son voyage. Chaque post de localisation ajoute des coordonnées, traçant le chemin à travers le globe—une représentation visuelle de jusqu'où ton briquet voyage \!"
+faq.trophies.question="Que sont les trophées et comment les gagner ?"
+faq.trophies.answer="Les trophées sont des réalisations reconnaissant tes contributions. Gagne-les en sauvant des briquets, ajoutant des histoires, créant du contenu original, voyageant vers de nouveaux endroits, et plus encore. Consulte ton profil pour voir lesquels tu as débloqués et ce qu'il reste à accomplir \!"
+faq.harmful\_content.question="Que se passe-t-il si je poste du contenu nuisible ?"
+faq.harmful\_content.answer="Nous avons une modération de contenu pour garder la communauté sûre et respectueuse. Les posts avec discours de haine, harcèlement, violence ou contenu nuisible sont examinés. Selon la gravité, le contenu peut être supprimé, tu peux recevoir un avertissement ou ton compte peut être suspendu."
+faq.buy\_stickers.question="Comment acheter des packs d'autocollants ?"
+faq.buy\_stickers.answer="Après avoir conçu ton briquet et personnalisé ton autocollant, achète des packs directement via notre plateforme. Nous proposons des packs de 10, 20 ou 50 autocollants. Finalise ton achat via paiement Stripe sécurisé. Les autocollants sont imprimés professionnellement et expédiés avec suivi."
+faq.sticker\_design.question="Puis-je personnaliser le design de mon autocollant ?"
+faq.sticker\_design.answer="Absolument \! Lors de la sauvegarde de ton briquet, personnalise entièrement tes autocollants. Choisis la couleur de fond, sélectionne la langue pour le texte d'invitation, et personnalise le nom et le PIN de ton briquet. Vois un aperçu en direct avant de commander."
+faq.environment.question="En quoi LightMyFire est-il écologique ?"
+faq.environment.answer="Nous sommes dédiés à réduire les déchets de briquets. Au lieu de jeter les vieux briquets (150+ ans pour se décomposer), nous leur donnons une seconde vie à travers la narration. Chaque briquet sauvé et transmis empêche un objet d'aller aux décharges. De plus, nous encourageons le rechargement—consulte notre Guide de Recharge \!"
+faq.languages.question="Quelles langues LightMyFire supporte-t-il ?"
+faq.languages.answer="LightMyFire supporte 27 langues dont l'anglais, le français, l'espagnol, l'allemand, l'italien, le portugais, le néerlandais, le russe, le polonais, le japonais, le coréen, le chinois, le thaï, le vietnamien, l'hindi, l'arabe, le farsi, l'ourdou, le marathi, le télougou, l'indonésien, l'ukrainien et le turc. Change de langue à tout moment en utilisant le sélecteur dans l'en-tête."
+faq.levels.question="Qu'est-ce que le système de niveaux ?"
+faq.levels.answer="Le système de niveaux gamifie tes contributions. Gagne des points en sauvant des briquets, ajoutant des posts, gagnant des j'aime et créant du contenu original. À mesure que les points s'accumulent, le niveau de ton profil augmente de 1 à 100. Les niveaux plus élevés montrent ton dévouement \!"
+faq.contact\_footer="Tu ne trouves pas ta réponse ?"
+faq.contact\_link="Contacte-nous"
+
+-----
+
+## Philosophy Page
+
+philosophy.title="Notre philosophie"
+philosophy.lead="Nous croyons que même le plus petit objet jetable peut porter une grande histoire."
+philosophy.p1="\<strong\>LightMyFire\</strong\> est né d'une idée simple : et si nous arrêtions de traiter les briquets comme des objets jetables ? \<strong\>Avec des milliards d'entre eux jetés chaque année,\</strong\> et si nous les voyions comme des compagnons—de petits vaisseaux pour nos souvenirs, idées et créativité ?"
+philosophy.p2="Le briquet quotidien est \<strong\>un puissant catalyseur social.\</strong\> Il n'appartient à personne en particulier ; il appartient à tout le monde. Passant de main en main, d'ami à étranger, lors de fêtes, concerts, rencontres tranquilles. Il entend nos secrets et éclaire notre chemin. \<strong\>C'est le témoin silencieux de grandes conversations, l'étincelle de nouvelles amitiés. Mais son histoire est éphémère, perdue dès qu'il est transmis.\</strong\>"
+philosophy.p3="En donnant à un briquet une histoire numérique permanente, nous lui donnons une valeur sentimentale. \<strong\>Ton briquet devient un artefact vivant, un message dans une bouteille.\</strong\> Et quand quelque chose a de la valeur, nous sommes moins susceptibles de le jeter."
+philosophy.p4="Notre objectif est simple : créer une mosaïque mondiale de créativité humaine, un briquet à la fois, tout en réduisant les déchets. \<strong\>C'est notre position contre la culture du jetable. Une expérience d'art collaboratif. Une façon de prouver que si tu donnes une histoire à un objet, tu lui donnes une âme.\</strong\>"
+philosophy.image\_alt="Mosaïque mondiale de créativité"
+philosophy.button.hide="Masquer"
+philosophy.button.learn\_more="En savoir plus"
+philosophy.cta="Rejoins-nous pour donner une seconde vie aux briquets, une histoire à la fois."
+
+-----
+
+## Refill Guide Page
+
+refill\_guide.title="Ne me jette pas"
+refill\_guide.subtitle="Chaque briquet que tu sauves est une petite victoire contre le gaspillage et un pas vers un avenir durable."
+refill\_guide.hero\_title="Ne me jette pas : Le guide LightMyFire pour une longue vie"
+refill\_guide.hero\_intro="Chaque année, \<strong\>des milliards\</strong\> de briquets jetables finissent dans les décharges ou dans la nature\<sup class="citation"\>[1]\</sup\>. Les principaux fabricants ont vendu plus de 2,5 milliards d'unités en 2023. Ces objets—faits de plastiques et métaux non recyclables—mettent des siècles à se décomposer et risquent de contaminer le sol et l'eau."
+refill\_guide.hero\_social="Le briquet n'est pas qu'un outil ; c'est un objet social. En choisissant le rechargeable, tu ne réduis pas seulement les déchets—tu crées un compagnon durable pour tes histoires."
+refill\_guide.section1\_title="Comment reconnaître un briquet rechargeable (en 5 secondes)"
+refill\_guide.section1\_intro="C'est simple \! Le secret est presque toujours en dessous."
+refill\_guide.section1\_type1\_title="Briquets à butane (les plus courants)"
+refill\_guide.section1\_type1.desc="Retourne-le. Tu vois une petite valve métallique ronde au centre, comme une valve de pneu ? \<strong\>C'est un port de recharge \!\</strong\> Félicitations, ton briquet est rechargeable."
+refill\_guide.section1\_type1\_alt="Gros plan d'une valve de recharge de briquet à butane"
+refill\_guide.section1\_type2\_title="Briquets à essence (style métal rechargeable)"
+refill\_guide.section1\_type2\_desc="Généralement des briquets métalliques iconiques. Si tu peux retirer tout le bloc interne (cheminée) du boîtier, il est rechargeable. Tu trouveras du coton à l'intérieur pour absorber l'essence."
+refill\_guide.section1\_type2\_alt="Intérieur d'un briquet métal rechargeable montrant le coton"
+refill\_guide.section1\_type3\_title="Briquets jetables"
+refill\_guide.section1\_type3\_desc="Retourne-le. Le fond est-il juste du plastique plat et scellé ? C'est à usage unique."
+refill\_guide.section1\_type3\_alt="Fond d'un briquet jetable"
+refill\_guide.section2\_title="Comment recharger ton briquet"
+refill\_guide.section2\_type1\_title="Type 1 : Briquets à butane (avec valve)"
+refill\_guide.section2\_type1\_step1\_title="Ce dont tu as besoin :"
+refill\_guide.section2\_type1\_step1\_desc="Une cartouche de gaz butane pour briquets"
+refill\_guide.section2\_type1\_step2\_title="Où le trouver (en Europe) :"
+refill\_guide.section2\_type1\_step2\_desc="Facile \! Presque tous les \<strong\>bureaux de tabac\</strong\> en vendent. Aussi disponible dans la plupart des supermarchés, épiceries ou quincailleries."
+refill\_guide.section2\_type1\_step3\_title="La méthode :"
+refill\_guide.section2\_type1\_step3\_li1="Tiens le briquet \<strong\>à l'envers\</strong\> (valve vers le haut)"
+refill\_guide.section2\_type1\_step3\_li2="Appuie fermement l'embout de la cartouche de gaz sur la valve"
+refill\_guide.section2\_type1\_step3\_li3="Maintiens pendant 3-5 secondes—tu entendras un sifflement"
+refill\_guide.section2\_type1\_step3\_li4="Répète en 2-3 courtes pressions jusqu'à ce qu'il soit plein"
+refill\_guide.section2\_type1\_step3\_li5="Attends une minute ou deux avant d'allumer"
+refill\_guide.section2\_type1\_alt="Une personne recharge un briquet à butane avec une cartouche de gaz"
+refill\_guide.section2\_type2\_title="Type 2 : Briquets à essence (avec coton)"
+refill\_guide.section2\_type2\_step1\_title="Ce dont tu as besoin :"
+refill\_guide.section2\_type2\_step1\_desc="Une bouteille d'essence à briquet (essence à base de naphta pour briquets métal)"
+refill\_guide.section2\_type2\_step2\_title="Où le trouver :"
+refill\_guide.section2\_type2\_step2\_desc="Tous les \<strong\>bureaux de tabac\</strong\> et la plupart des supermarchés"
+refill\_guide.section2\_type2\_step3\_title="La méthode :"
+refill\_guide.section2\_type2\_step3\_li1="Retire l'insert métallique du boîtier"
+refill\_guide.section2\_type2\_step3\_li2="Soulève le petit coussinet de feutre au fond"
+refill\_guide.section2\_type2\_step3\_li3="Verse lentement l'essence sur le coton en dessous"
+refill\_guide.section2\_type2\_step3\_li4="Arrête quand le coton semble saturé (ne remplis pas trop)"
+refill\_guide.section2\_type2\_step3\_li5="Remets l'insert dans le boîtier et attends quelques secondes"
+refill\_guide.section2\_type2\_alt="Une personne verse de l'essence à briquet sur le coton"
+refill\_guide.pro\_tip\_butane="Porte toujours des lunettes de sécurité lors du rechargement. Si tu sens de la résistance, ne force pas—attends quelques secondes et réessaie."
+refill\_guide.important\_gasoline="Ne remplis jamais trop les briquets à essence. Laisse le briquet sécher 24 heures après le rechargement avant utilisation."
+refill\_guide.stats.lighters\_sold="Briquets jetables vendus par an"
+refill\_guide.stats.lighters\_sold\_worldwide="Dans le monde"
+refill\_guide.stats.years\_decompose="Années pour se décomposer"
+refill\_guide.stats.years\_decompose\_location="Dans les décharges"
+refill\_guide.stats.waste\_reduction="Réduction des déchets"
+refill\_guide.stats.waste\_reduction\_method="Avec des briquets rechargeables"
+refill\_guide.key\_indicators="Indicateurs clés :"
+refill\_guide.type1.indicator1="Petite valve métallique ronde sur le fond"
+refill\_guide.type1.indicator2="Similaire à une valve de pneu"
+refill\_guide.type1.indicator3="Type le plus courant"
+refill\_guide.type2.indicator1="Briquet métal (souvent design iconique)"
+refill\_guide.type2.indicator2="Le bloc interne se retire"
+refill\_guide.type2.indicator3="Coton visible à l'intérieur"
+refill\_guide.type3.indicator1="Fond en plastique plat et scellé"
+refill\_guide.type3.indicator2="Pas de valve ou de pièces amovibles"
+refill\_guide.type3.indicator3="Usage unique seulement"
+refill\_guide.why\_it\_matters.title="Pourquoi c'est important"
+refill\_guide.why\_it\_matters.environmental.title="Impact environnemental"
+refill\_guide.why\_it\_matters.environmental.description="Un briquet rechargeable remplace 50+ jetables au cours de sa vie. C'est 50+ briquets en moins dans les décharges par personne."
+refill\_guide.why\_it\_matters.cost.title="Économies"
+refill\_guide.why\_it\_matters.cost.description="Un briquet rechargeable de qualité coûte 5-20 € mais dure des années. Les jetables coûtent 1-2 € chacun. Les rechargeables se rentabilisent en quelques mois."
+refill\_guide.why\_it\_matters.reliability.title="Fiabilité"
+refill\_guide.why\_it\_matters.reliability.description="Les briquets rechargeables durent des décennies. Ils sont plus fiables par temps froid et conditions difficiles que les jetables bon marché."
+refill\_guide.why\_it\_matters.mission.title="Notre mission"
+refill\_guide.why\_it\_matters.mission.description="Chaque briquet que tu sauves avec LightMyFire obtient une histoire. Donne-lui un nom—il devient plus qu'un objet, il devient un compagnon."
+refill\_guide.cta.title="Prêt à sauver ton premier briquet ?"
+refill\_guide.cta.description="Choisis un briquet rechargeable, donne-lui un nom et commence son voyage avec LightMyFire."
+refill\_guide.citations.title="Sources & Références"
+refill\_guide.citations.1.text="Données sur la production mondiale de briquets et l'impact environnemental"
+refill\_guide.citations.1.source="Forum Économique Mondial - Statistiques sur les déchets plastiques (2023)"
+refill\_guide.citations.1.url="[https://www.weforum.org/agenda/2023/plastic-waste/](https://www.weforum.org/agenda/2023/plastic-waste/)"
+
+-----
+
+## Save Lighter Flow
+
+save\_lighter.title="Deviens un·e LightSaver"
+save\_lighter.introduction="Achète des packs d'autocollants pour sauver des briquets et partager leurs histoires avec le monde. Chaque autocollant a un PIN unique lié au voyage d'un briquet."
+save\_lighter.pack\_5.title="5 autocollants"
+save\_lighter.pack\_5.price="4,99 €"
+save\_lighter.pack\_5.description="Parfait pour commencer ton voyage de LightSaver"
+save\_lighter.pack\_10.title="10 autocollants"
+save\_lighter.pack\_10.price="8,99 €"
+save\_lighter.pack\_10.description="Double ton impact et sauve plus de briquets"
+save\_lighter.pack\_50.title="50 autocollants"
+save\_lighter.pack\_50.price="39,99 €"
+save\_lighter.pack\_50.description="Deviens un Super LightSaver \! Fais une énorme différence"
+save\_lighter.buy\_button="Acheter maintenant"
+save\_lighter.payment\_details\_title="Détails de paiement"
+save\_lighter.payment\_details\_placeholder="L'intégration Stripe ira ici."
+save\_lighter.form\_title="Sauver un briquet"
+save\_lighter.form\_subtitle="Tu es un·e LightSaver \! Donne un nom à ton briquet pour commencer son voyage."
+save\_lighter.lighter\_name\_label="Nom du briquet (requis)"
+save\_lighter.lighter\_name\_placeholder="ex : Le Voyageur"
+save\_lighter.background\_url\_label="URL de fond personnalisée (optionnel)"
+save\_lighter.background\_url\_placeholder="https://.../mon-image.png"
+save\_lighter.helper.background\_url="Optionnel. Cette URL d'image devient le fond de la page de ton briquet. Essaie un lien Imgur ou Unsplash."
+save\_lighter.show\_username\_label="Afficher mon nom d'utilisateur comme « LightSaver »"
+save\_lighter.error.rpc\_error="Erreur : {message}"
+save\_lighter.error.failed\_to\_create="Échec de création du briquet. Réessaie."
+save\_lighter.error.failed\_to\_save="Échec de sauvegarde du briquet : {message}"
+save\_lighter.button.saving="Sauvegarde..."
+save\_lighter.button.save\_lighter="Sauver le briquet"
+save\_lighter.pack\_count="Pack de {count} autocollants"
+save\_lighter.pack\_total="Total : {price}"
+save\_lighter.payment\_mock="Simuler le paiement"
+save\_lighter.why\_it\_matters="Pourquoi c'est important"
+save\_lighter.creative\_journey="Voyage créatif"
+save\_lighter.creative\_journey\_desc="Fais partie d'un mouvement mondial. Donne une seconde vie aux briquets avec de beaux autocollants artisanaux."
+save\_lighter.human\_mosaic="Mosaïque humaine"
+save\_lighter.human\_mosaic\_desc="Rejoins des milliers de LightSavers créant une mosaïque d'histoires et de créativité tout en combattant le gaspillage."
+save\_lighter.sustainable\_impact="Impact durable"
+save\_lighter.sustainable\_impact\_desc="Nos autocollants sont fabriqués de manière durable. Aide à garder ce projet vivant."
+save\_lighter.your\_design="Le design de ton autocollant"
+save\_lighter.design\_preview="Aperçu de tes autocollants personnalisés. Fichiers générés après paiement."
+save\_lighter.more\_stickers="+{count} de plus"
+save\_lighter.sticker\_singular="Autocollant"
+save\_lighter.sticker\_plural="Autocollants"
+save\_lighter.change\_pack="← Changer de pack"
+
+-----
+
+## Stripe Payment Keys
+
+stripe.card\_info="Informations de carte"
+stripe.pay\_button="Payer {amount}"
+stripe.error.generic="Le paiement a échoué. Vérifie tes détails et réessaie."
+
+-----
+
+## Lighter Personalization
+
+lighter\_personalization.title="Personnalise tes autocollants"
+lighter\_personalization.subtitle="Personnalise chaque briquet"
+lighter\_personalization.apply\_all="Appliquer à tous"
+lighter\_personalization.lighter\_count="Briquet \#{index}"
+lighter\_personalization.preview="Aperçu"
+lighter\_personalization.name\_label="Nom (3-16 caractères)"
+lighter\_personalization.name\_placeholder="Nom du briquet..."
+lighter\_personalization.min\_3\_chars="(min 3)"
+lighter\_personalization.color\_label="Choisis la couleur de fond"
+lighter\_personalization.language\_label="Seconde langue sur l'autocollant (+ anglais)"
+lighter\_personalization.summary.design="{count} design"
+lighter\_personalization.summary.designs="{count} designs"
+lighter\_personalization.summary.plus\_english=" + anglais"
+lighter\_personalization.summary.identical="Tous les {count} identiques"
+lighter\_personalization.button.save\_continue="Sauvegarder et continuer"
+lighter\_personalization.helper.background\_picker="Choisis une image ou couleur pour le fond de l'autocollant."
+lighter\_personalization.color.white="Blanc"
+lighter\_personalization.color.black="Noir"
+lighter\_personalization.color.red="Rouge"
+lighter\_personalization.color.blue="Bleu"
+lighter\_personalization.language.select\_placeholder="Sélectionne une langue..."
+lighter\_personalization.english\_included="Anglais toujours inclus sur tes autocollants"
+lighter\_personalization.enter\_name\_preview="Entre un nom (min 3 caractères) pour voir l'aperçu"
+lighter\_personalization.warning\_fill\_names="Remplis tous les noms de briquets (3-16 caractères) avant de continuer."
+lighter\_personalization.warning\_fill\_name="Remplis le nom du briquet (3-16 caractères) avant de continuer."
+lighter\_personalization.button\_save\_customizations="Sauvegarder les personnalisations d'autocollants"
+
+-----
+
+## Save Lighter Success
+
+save\_success.loading="Chargement des détails de ton briquet..."
+save\_success.lighter\_not\_found="Impossible de trouver le briquet."
+save\_success.title="Succès \!"
+save\_success.message="Tu as sauvé {lighterName} \!"
+save\_success.pin\_intro="Le PIN unique de ton briquet est :"
+save\_success.next\_steps.title="Prochaines étapes :"
+save\_success.next\_steps.download\_label="Télécharge"
+save\_success.next\_steps.stick\_label="Colle"
+save\_success.next\_steps.share\_label="Partage"
+save\_success.next\_steps.step1="Imprime : Télécharge le PDF et imprime—idéalement sur papier autocollant."
+save\_success.next\_steps.step2="Colle : Découpe l'autocollant et applique-le sur ton briquet."
+save\_success.next\_steps.step3="Partage : Laisse-le voyager \! Le prochain qui le trouve scanne le code, entre le PIN et ajoute son histoire."
+save\_success.button.generating="Génération..."
+save\_success.button.download\_pdf="Télécharger le PDF de l'autocollant"
+save\_success.button.go\_to\_lighter="Aller à la page de ton briquet"
+save\_success.generating\_sticker="Génération de l'autocollant..."
+save\_success.error\_fetching="Une erreur s'est produite lors de la récupération des détails du briquet."
+
+-----
+
+## Lighter Page
+
+lighter.saved\_by="Sauvé par"
+lighter.saved\_by\_label="Briquet sauvé par"
+lighter.level="Niveau"
+lighter.on="le"
+lighter.add\_to\_story="Ajouter à l'histoire"
+lighter.no\_posts="Ce briquet n'a pas encore d'histoires. Sois le·la premier·ère à en ajouter une \!"
+lighter.map.title="Le voyage jusqu'ici"
+lighter.map.no\_locations="Pas encore de localisation. Ajoutes-en une pour commencer la carte \!"
+lighter.post\_single="Post"
+lighter.post\_plural="Posts"
+lighter.map.markers="{count} localisations"
+lighter.map.center\_coords="Centre : Lat {lat}, Lng {lng}"
+
+-----
+
+## Empty Lighter State
+
+empty\_lighter.title="L'histoire commence..."
+empty\_lighter.description="Le voyage de ce briquet vient juste de commencer. Sois le·la premier·ère à ajouter un chapitre et inspirer les autres \!"
+empty\_lighter.action="Ajouter le premier post"
+
+-----
+
+## Post Card Fallbacks
+
+post.default\_location="Un lieu"
+post.user\_upload\_alt="Upload utilisateur"
+post.youtube\_player\_title="Lecteur vidéo YouTube"
+
+-----
+
+## Add Post Form
+
+add\_post.title="Ajouter à l'histoire"
+add\_post.subtitle="Tu ajoutes un post à {lighterName}"
+add\_post.select\_post\_type="Sélectionne le type de post"
+add\_post.options="Options"
+add\_post.post\_type.text="Texte"
+add\_post.post\_type.song="Chanson"
+add\_post.post\_type.image="Photo"
+add\_post.post\_type.location="Lieu"
+add\_post.post\_type.refuel="Recharge"
+add\_post.subtitle.text="Histoire, pensée, poème... n'oublie pas d'ajouter les crédits si ce n'est pas le tien"
+add\_post.subtitle.song="Une chanson que tu aimes en ce moment, ou encore mieux, ton dernier couplet de rap"
+add\_post.subtitle.image="Ta peinture préférée ou une photo sans vergogne de la soirée où tu m'as trouvé"
+add\_post.subtitle.location="Le nouveau restaurant en ville, l'endroit où nous nous sommes rencontrés, tes vacances de rêve"
+add\_post.subtitle.refuel="Fais-nous savoir que mon histoire continue - tu viens de recharger mon ventre \!"
+add\_post.placeholder.title="Titre (optionnel)"
+add\_post.placeholder.text="Partage tes pensées..."
+add\_post.prompt\_v1="Quel souvenir ce briquet contient-il ? Raconte son histoire..."
+add\_post.prompt\_v2="Où l'as-tu trouvé ? Que s'est-il passé ensuite ?"
+add\_post.prompt\_v3="Une pensée, un poème, un moment—partage ce qui te passe par la tête..."
+add\_post.prompt\_v4="Quelle chanson joue ? Décris l'ambiance..."
+add\_post.prompt\_v5="Si ce briquet pouvait parler, que dirait-il ?"
+add\_post.song\_input\_mode.url="URL"
+add\_post.song\_input\_mode.search="Rechercher"
+add\_post.placeholder.youtube\_url="URL de chanson YouTube"
+add\_post.placeholder.youtube\_search="Rechercher une chanson sur YouTube..."
+add\_post.youtube\_search.searching="Recherche..."
+add\_post.youtube\_search.no\_results="Aucun résultat trouvé."
+add\_post.youtube\_search.video\_preview="Aperçu vidéo :"
+add\_post.youtube\_search.selected\_video="Vidéo sélectionnée :"
+add\_post.image\_upload\_mode.url="URL"
+add\_post.image\_upload\_mode.upload="Upload"
+add\_post.placeholder.image\_url="URL d'image (ex : Imgur)"
+add\_post.placeholder.location\_name="Nom d'un lieu (ex : 'Café Central')"
+add\_post.placeholder.location\_lat="Latitude (ex : 48.8566)"
+add\_post.placeholder.location\_lng="Longitude (ex : 2.3522)"
+add\_post.refuel\_message="Tu es un·e héros·ïne \! Cliquer sur « Poster » ajoute une entrée « Rechargé » à l'histoire de ce briquet."
+add\_post.checkbox.is\_find\_location="C'est là que j'ai trouvé ce briquet"
+add\_post.checkbox.is\_creation="C'est quelque chose que j'ai créé"
+add\_post.checkbox.is\_anonymous="Poster anonymement"
+add\_post.checkbox.is\_public="Autoriser ce post dans les flux publics (ex : page d'accueil)"
+add\_post.helper.find\_location="Aide à tracer le voyage du briquet sur la carte \!"
+add\_post.helper.is\_public="Si décoché, ton post apparaît uniquement sur la page de ce briquet."
+add\_post.button.uploading="Upload..."
+add\_post.button.posting="Publication..."
+add\_post.button.checking\_content="Vérification du contenu..."
+add\_post.button.add\_to\_story="Ajouter à l'histoire"
+add\_post.button.loading\_alt="Chargement..."
+add\_post.button.checking\_alt="Vérification..."
+add\_post.button.search="Rechercher"
+add\_post.button.select="Sélectionner"
+add\_post.moderation.content\_review="⚠️ Examen du contenu"
+add\_post.moderation.tip="💡 Astuce : Envisage de réviser pour être plus respectueux de la communauté."
+add\_post.error.file\_too\_large="Fichier trop volumineux. Sélectionnes-en un de moins de 2 Mo."
+add\_post.error.youtube\_api\_error="Erreur API YouTube : {message}"
+add\_post.error.no\_file\_selected="Sélectionne un fichier à uploader."
+add\_post.error.upload\_failed="Échec d'upload de l'image. Réessaie."
+add\_post.error.no\_song\_selected="Sélectionne une chanson dans les résultats de recherche."
+add\_post.error.invalid\_url="Entre une URL valide."
+add\_post.error.no\_location\_selected="Entre une latitude et longitude valides."
+add\_post.error.rpc\_error="Erreur : {message}"
+add\_post.error.unexpected="Une erreur inattendue s'est produite. Réessaie."
+add\_post.error.youtube\_search\_failed="Échec de recherche YouTube. Réessaie."
+
+-----
+
+## Loading States
+
+loading.posting\_v1="Ajout de ton histoire à la chronologie..."
+loading.posting\_v2="Tissage de ton moment dans la mosaïque..."
+loading.posting\_v3="Illumination du voyage de ce briquet..."
+loading.posting\_v4="Rendre l'histoire de ce briquet plus lumineuse..."
+loading.searching="Suivi de la piste... 🔍"
+loading.generating\_stickers="Création du passeport de ton briquet... ✨"
+
+-----
+
+## Location Search / Location Picker
+
+location.search\_placeholder="Rechercher un lieu (ville, adresse, point de repère)..."
+location.selected\_location="Lieu sélectionné"
+location.no\_location\_selected="Aucun lieu sélectionné"
+location.map\_title="Carte de localisation"
+location.view\_larger\_map="Voir une carte plus grande"
+location.map\_preview\_title="Aperçu de carte disponible"
+location.map\_consent\_description="Cette carte utilise OpenStreetMap sans cookies de suivi. Nous stockons uniquement ta préférence localement."
+location.show\_map\_button="Afficher la carte"
+location.no\_results="Aucun lieu trouvé. Essaie une recherche différente."
+location.edit\_coordinates="Modifier les coordonnées manuellement"
+location.latitude\_placeholder="Latitude"
+location.longitude\_placeholder="Longitude"
+
+-----
+
+## Post Card
+
+post.anonymous="Anonyme"
+post.post\_type.text="a écrit une histoire"
+post.post\_type.image="a partagé une image"
+post.post\_type.song="a partagé une chanson"
+post.post\_type.location="s'est enregistré"
+post.post\_type.refuel="a rechargé ce briquet"
+post.refuel\_message="Rechargé \! Le voyage de ce briquet continue."
+post.youtube\_load\_error="Impossible de charger la vidéo YouTube (URL invalide ?)"
+post.location\_at="à"
+post.like\_button="J'aime"
+flag.flagged="Signalé"
+flag.flag="Signaler"
+flag.confirm\_title="Signaler ce post ?"
+flag.confirm\_message="Es-tu sûr de vouloir signaler ce post pour examen ? Cela ne peut pas être annulé."
+flag.error\_flagging="Impossible de signaler le post. Réessaie."
+
+-----
+
+## My Profile
+
+my\_profile.title="Mon profil"
+my\_profile.tabs.my\_lighters="Mes briquets"
+my\_profile.tabs.my\_posts="Mes posts"
+my\_profile.tabs.my\_trophies="Mes trophées"
+my\_profile.tabs.settings="Paramètres"
+my\_profile.stats.contributions="Contributions"
+my\_profile.stats.lighters\_saved="Briquets sauvés"
+my\_profile.stats.stories\_joined="Histoires rejointes"
+my\_profile.stats.likes\_received="J'aime reçus"
+my\_profile.saved\_lighters="Briquets sauvés"
+my\_profile.edit\_profile="Modifier le profil"
+my\_profile.security="Sécurité"
+my\_profile.no\_lighters\_saved="Prêt·e à donner une seconde vie à un briquet ? 🔥\\nSauve ton premier briquet et commence à collectionner des histoires du monde entier \!"
+my\_profile.save\_first\_lighter="Sauver ton premier briquet"
+my\_profile.no\_posts="Ta collection d'histoires attend de commencer \! 📖\\nTrouve un briquet et ajoute ton premier post."
+my\_profile.find\_lighter\_to\_post="Trouver un briquet"
+my\_profile.trophies.coming\_soon="Vitrine de trophées bientôt disponible \!"
+my\_profile.trophies.subtitle="Collecte des réalisations en sauvant et partageant des histoires."
+my\_profile.trophies.unlocked="Débloqué \!"
+my\_profile.settings.account\_title="Compte"
+my\_profile.settings.username\_label="Nom d'utilisateur"
+my\_profile.settings.email\_label="Email"
+my\_profile.settings.update\_profile\_button="Mettre à jour le profil"
+my\_profile.settings.password\_title="Changer le mot de passe"
+my\_profile.settings.new\_password\_label="Nouveau mot de passe"
+my\_profile.settings.confirm\_password\_label="Confirmer le nouveau mot de passe"
+my\_profile.settings.updating="Mise à jour..."
+my\_profile.settings.password\_mismatch="Les mots de passe ne correspondent pas."
+my\_profile.settings.error.generic="Une erreur s'est produite. Réessaie."
+my\_profile.settings.error.rpc\_error="Erreur : {message}"
+my\_profile.settings.error.username\_exists="Nom d'utilisateur déjà pris."
+my\_profile.settings.error.email\_exists="Email déjà utilisé."
+my\_profile.settings.placeholder.username="Entre un nouveau nom d'utilisateur"
+my\_profile.settings.placeholder.email="Entre un nouvel email"
+my\_profile.settings.placeholder.password="••••••••"
+my\_profile.settings.placeholder.password\_confirm="Re-saisis le nouveau mot de passe"
+
+-----
+
+## Account Settings / Update Auth Form
+
+settings.auth.error.passwords\_no\_match="Les mots de passe ne correspondent pas."
+settings.auth.success\_message="Mise à jour réussie \! Vérifie ton email pour confirmer les modifications si tu as mis à jour ton adresse email."
+settings.auth.title="Paramètres du compte"
+settings.auth.oauth\_notice="✓ Tu es connecté via {provider}. Ton authentification est gérée de manière sécurisée par ton fournisseur."
+settings.auth.current\_email="Email actuel"
+settings.auth.email\_managed\_by="Ton email est géré par ton compte {provider}."
+settings.auth.change\_via\_provider="Pour changer d'email ou d'authentification, visite les paramètres de ton {providerLink}."
+settings.auth.provider\_link\_google="Compte Google"
+settings.auth.provider\_link\_generic="compte fournisseur"
+settings.auth.update\_title="Mettre à jour l'email / mot de passe"
+settings.auth.new\_email\_label="Nouvel email"
+settings.auth.new\_email\_placeholder="Entre un nouvel email"
+settings.auth.new\_password\_label="Nouveau mot de passe"
+settings.auth.new\_password\_placeholder="Laisse vide pour garder le mot de passe actuel"
+settings.auth.confirm\_password\_label="Confirmer le nouveau mot de passe"
+settings.auth.confirm\_password\_placeholder="Confirme le nouveau mot de passe"
+settings.auth.update\_button="Mettre à jour les détails d'authentification"
+settings.auth.saving="Sauvegarde..."
+settings.profile.nationality\_label="Nationalité"
+settings.profile.nationality\_optional="(optionnel)"
+settings.profile.nationality\_placeholder="Sélectionne un pays"
+settings.profile.show\_nationality\_label="Afficher ma nationalité sur mes posts"
+settings.profile.save\_button="Sauvegarder le profil"
+settings.profile.saving="Sauvegarde..."
+settings.profile.username\_label="Nom d'utilisateur"
+
+-----
+
+## My Posts List
+
+my\_posts.post\_type\_default="Un post de type {type}"
+my\_posts.on="le"
+my\_posts.a\_lighter="un briquet"
+my\_posts.the="le"
+my\_posts.delete\_post\_aria="Supprimer le post"
+my\_posts.delete="Supprimer"
+my\_posts.confirm\_delete\_title="Supprimer ce post ?"
+my\_posts.confirm\_delete\_message="Es-tu sûr ? Cette action est permanente."
+my\_posts.error\_deleting="Erreur lors de la suppression du post : {message}"
+my\_posts.no\_posts\_title="Pas encore d'histoires"
+my\_posts.no\_posts\_description="Commence à partager tes histoires avec la communauté. Visite un briquet pour ajouter ton premier post \!"
+my\_posts.no\_posts\_action="Trouver un briquet"
+
+-----
+
+## Moderation
+
+moderation.title="File de modération"
+moderation.no\_posts="Aucun post actuellement signalé pour modération."
+moderation.approve="Approuver"
+moderation.delete="Supprimer"
+moderation.approve\_confirm\_title="Approuver le post ?"
+moderation.approve\_confirm\_message="Es-tu sûr de vouloir approuver ce post ? Il deviendra public."
+moderation.delete\_confirm\_title="Supprimer le post ?"
+moderation.delete\_confirm\_message="Es-tu sûr de vouloir supprimer définitivement ce post ?"
+moderation.approve\_success="Post approuvé et publié."
+moderation.delete\_success="Post supprimé avec succès."
+moderation.no\_posts\_in\_queue="La file de modération est vide. Tout est paisible."
+moderation.error="Une erreur s'est produite : {message}"
+moderation.error.rpc\_error="Erreur : {message}"
+moderation.post\_on="Post le"
+moderation.flagged\_by="Signalé par {count} utilisateur·rice·s"
+moderation.table.post\_id="ID du post"
+moderation.table.lighter="Briquet"
+moderation.table.flag\_count="Signalements"
+moderation.button.delete\_user="Supprimer l'utilisateur·rice"
+moderation.button.delete\_post="Supprimer le post"
+moderation.delete\_user\_confirm="Es-tu sûr de vouloir supprimer cet·te utilisateur·rice et tout son contenu ?"
+moderation.action\_confirm="Confirmer l'action"
+moderation.post\_by="Post par"
+moderation.lighter\_name="Briquet"
+moderation.content\_type="Type"
+moderation.view\_post="Voir le post"
+
+-----
+
+## Other Components
+
+badge.moderator\_tooltip="Cet·te utilisateur·rice fait partie de la modération"
+empty\_posts.title="L'histoire de ce briquet attend d'être écrite \! ✨"
+empty\_posts.message="Sois le·la premier·ère à ajouter une histoire, photo ou chanson à son voyage \!"
+empty\_posts.action="Ajouter le premier post"
+signup\_welcome.title="Bienvenue sur LightMyFire \!"
+signup\_welcome.subtitle="Merci de nous rejoindre \! Voici quelques choses que tu peux faire :"
+signup\_welcome.quick\_actions="Démarrage rapide :"
+signup\_welcome.action\_lighter="Sauve un briquet et commence à collectionner des histoires"
+signup\_welcome.action\_find="Trouve un briquet et ajoute à son voyage"
+signup\_welcome.action\_community="Connecte-toi avec d'autres LightSavers du monde entier"
+signup\_welcome.cta\_lighter="Sauver ton premier briquet"
+signup\_welcome.cta\_explore="Explorer la communauté"
+signup\_welcome.close="Fermer"
+
+-----
+
+## Sticker Order Flow - Pack Selection
+
+order.pack\_selection.title="Choisis ton pack"
+order.pack\_selection.subtitle="Sélectionne combien d'autocollants personnalisés tu veux commander"
+order.pack.starting\_lightsaver="LightSaver débutant·e"
+order.pack.committed\_lightsaver="LightSaver engagé·e"
+order.pack.community\_lightsaver="LightSaver communautaire"
+order.pack.starting\_description="Assez d'autocollants pour tous les briquets que tu perdras cette année (et ceux de tes amis aussi)"
+order.pack.committed\_description="Assez d'autocollants pour laisser des traces de toi dans le monde"
+order.pack.community\_description="Pour les événements ou les individus vraiment distrait·e·s"
+order.pack.stickers\_count="{count} autocollants"
+order.pack.sticker\_singular="{count} autocollant"
+order.pack.sheets\_count="({count} feuilles)"
+order.pack.sheet\_singular="({count} feuille)"
+order.pack.price\_calculated="Prix calculé au paiement"
+order.pack.select\_button="Sélectionner"
+
+-----
+
+## Custom Branding
+
+order.custom\_branding.title="Branding personnalisé pour événements & marques"
+order.custom\_branding.description="Tu planifies un événement ou tu veux un branding personnalisé sur tes feuilles d'autocollants ? Nous pouvons personnaliser la zone de branding pour ton organisation, ta marque ou ton événement spécial \!"
+order.custom\_branding.button="Contacte-nous pour le branding personnalisé"
+order.custom\_branding.email="editionsrevel@gmail.com"
+
+-----
+
+## Save Lighter Flow - Pack Selection
+
+order.choose\_pack\_title="Choisis ton pack"
+order.choose\_pack\_subtitle="Sélectionne combien d'autocollants personnalisés tu veux commander"
+order.pack\_sheets\_single="feuille"
+order.pack\_sheets\_plural="feuilles"
+order.price\_at\_checkout="Prix calculé au paiement"
+order.pack\_select\_button="Sélectionner"
+
+-----
+
+## Lighter Customization
+
+order.customization.title="Personnalise tes autocollants"
+order.customization.subtitle="Personnalise chaque briquet"
+order.customization.apply\_to\_all="Appliquer à tous"
+order.customization.lighter\_number="Briquet \#{number}"
+order.customization.language\_label="Seconde langue sur l'autocollant (+ anglais)"
+order.customization.language\_helper="Anglais toujours inclus sur tes autocollants"
+order.customization.name\_label="Nom (3-16 caractères)"
+order.customization.name\_placeholder="Nom du briquet..."
+order.customization.name\_length="{current}/16"
+order.customization.name\_min\_required="{current}/16 (min 3)"
+order.customization.color\_label="Choisis la couleur de fond"
+order.customization.preview\_enter\_name="Entre un nom (min 3 caractères) pour voir l'aperçu"
+order.customization.summary\_design\_singular="{count} design"
+order.customization.summary\_design\_plural="{count} designs"
+order.customization.summary\_language="{language} + anglais"
+order.customization.summary\_identical="Tous les {count} identiques"
+order.customization.validation\_warning\_single="Remplis le nom du briquet (3-16 caractères) avant de continuer."
+order.customization.validation\_warning\_multiple="Remplis tous les noms de briquets (3-16 caractères) avant de continuer."
+order.customization.save\_button="Sauvegarder les personnalisations d'autocollants"
+
+-----
+
+## Sticker Quality
+
+order.quality.title="Autocollants de qualité premium"
+order.quality.glossy\_finish="Finition brillante"
+order.quality.fast\_application="Application rapide et facile"
+order.quality.durability="Durabilité de 2 à 3 ans"
+
+-----
+
+## Application Guidelines
+
+order.guidelines.title="Consignes d'application"
+order.guidelines.step1="Applique sur une surface propre, sans poussière, sans huile et sans humidité."
+order.guidelines.step2="Après application, appuie avec un chiffon propre pour maximiser l'adhésion et éviter les bulles d'air."
+order.guidelines.step3="Applique correctement du premier coup. Chaque nouvelle application diminue la capacité de l'autocollant à adhérer."
+
+-----
+
+## Order Summary
+
+order.summary.title="Récapitulatif de commande"
+order.summary.pack="Pack :"
+order.summary.language="Langue :"
+order.summary.stickers="Autocollants :"
+order.summary.customized="✓ Personnalisé"
+order.summary.shipping\_method="Méthode d'expédition :"
+order.summary.shipping\_standard="Expédition standard"
+order.summary.shipping\_standard\_time="7-14 jours ouvrables"
+order.summary.shipping\_express="Expédition express"
+order.summary.shipping\_express\_time="3-5 jours ouvrables"
+order.summary.subtotal="Sous-total :"
+order.summary.shipping="Expédition :"
+order.summary.total="Total :"
+order.summary.shipping\_calculated="+ expédition"
+
+-----
+
+## Sticker Preview
+
+order.preview.title="Le design de ton autocollant"
+order.preview.description="Aperçu de tes autocollants personnalisés. Fichiers générés après paiement."
+order.preview.more\_stickers="+{count} de plus"
+
+-----
+
+## Shipping Address
+
+order.shipping.title="Informations d'expédition"
+order.shipping.description="Fournis ton adresse d'expédition pour la livraison des autocollants"
+order.shipping.name\_label="Nom complet \*"
+order.shipping.name\_placeholder="Jean Dupont"
+order.shipping.email\_label="Adresse email \*"
+order.shipping.email\_placeholder="jean@exemple.com"
+order.shipping.address\_label="Adresse postale \*"
+order.shipping.address\_placeholder="123 Rue Principale, Apt 4B"
+order.shipping.city\_label="Ville \*"
+order.shipping.city\_placeholder="Paris"
+order.shipping.postal\_code\_label="Code postal \*"
+order.shipping.postal\_code\_placeholder="75001"
+order.shipping.country\_label="Pays \*"
+order.shipping.error\_name="Le nom complet est requis"
+order.shipping.error\_email\_required="L'email est requis"
+order.shipping.error\_email\_invalid="Adresse email invalide"
+order.shipping.error\_address="L'adresse postale est requise"
+order.shipping.error\_city="La ville est requise"
+order.shipping.error\_postal="Le code postal est requis"
+order.shipping.error\_postal\_invalid="Code postal invalide pour le pays sélectionné"
+order.shipping.error\_country="Le pays est requis"
+order.shipping.continue\_button="Continuer vers le paiement"
+
+-----
+
+## Country Names
+
+country.AT="Autriche"
+country.BE="Belgique"
+country.CA="Canada"
+country.CH="Suisse"
+country.CZ="République tchèque"
+country.DE="Allemagne"
+country.DK="Danemark"
+country.ES="Espagne"
+country.FI="Finlande"
+country.FR="France"
+country.GB="Royaume-Uni"
+country.IE="Irlande"
+country.IT="Italie"
+country.LU="Luxembourg"
+country.NL="Pays-Bas"
+country.NO="Norvège"
+country.PL="Pologne"
+country.PT="Portugal"
+country.SE="Suède"
+country.US="États-Unis"
+
+-----
+
+## Payment
+
+order.payment.title="Détails de paiement"
+order.payment.order\_id="ID de commande :"
+order.payment.sticker\_pack="Pack d'autocollants :"
+order.payment.stickers\_count="{count} autocollants"
+order.payment.total\_amount="Montant total :"
+order.payment.cardholder\_info="Informations du·de la titulaire"
+order.payment.full\_name="Nom complet sur la carte \*"
+order.payment.full\_name\_placeholder="Jean Dupont"
+order.payment.email="Adresse email \*"
+order.payment.email\_placeholder="jean@exemple.com"
+order.payment.email\_confirmation\_notice="La confirmation de commande et les détails seront envoyés à cet email."
+order.payment.card\_info="Informations de carte"
+order.payment.security\_message="Ton paiement est crypté et sécurisé par Stripe."
+order.payment.pay\_button="Payer {amount} €"
+order.payment.processing="Traitement..."
+order.payment.terms\_agreement="En finalisant cet achat, tu acceptes nos {terms} et notre {privacy}."
+order.payment.terms\_link="Conditions d'utilisation"
+order.payment.privacy\_link="Politique de confidentialité"
+order.payment.error\_stripe\_not\_loaded="Stripe ne s'est pas chargé. Rafraîchis et réessaie."
+order.payment.error\_name\_required="Entre ton nom complet"
+order.payment.error\_email\_invalid="Entre une adresse email valide"
+order.payment.error\_create\_intent="Échec de création de l'intention de paiement"
+order.payment.error\_payment\_failed="Le paiement a échoué"
+order.payment.error\_requires\_action="Ta carte nécessite une vérification supplémentaire."
+order.payment.error\_unexpected\_status="Statut de paiement inattendu : {status}"
+order.payment.error\_process\_order="Échec du traitement de la commande"
+order.payment.stripe\_not\_configured="Stripe non configuré. Ajoute NEXT\_PUBLIC\_STRIPE\_PUBLISHABLE\_KEY à .env.local"
+order.payment.loading="Chargement du formulaire de paiement..."
+
+-----
+
+## Order Success
+
+order.success.title="Commande réussie \!"
+order.success.subtitle="Merci pour ta commande"
+order.success.confirmation\_sent="Email de confirmation envoyé"
+order.success.confirmation\_description="Un email de confirmation a été envoyé à :"
+order.success.check\_spam="Vérifie ta boîte de réception (et ton dossier spam) pour les détails de commande et le suivi."
+order.success.your\_lighters="Tes briquets"
+order.success.lighters\_created="Briquets créés :"
+order.success.status="Statut :"
+order.success.status\_processing="✓ En traitement"
+order.success.what\_happens\_next="Que se passe-t-il ensuite ?"
+order.success.step1="Tes autocollants personnalisés sont préparés avec des codes PIN uniques"
+order.success.step2="Notre équipe traite ta commande et la prépare pour l'expédition"
+order.success.step3="Les autocollants sont soigneusement emballés et expédiés sous 5-7 jours ouvrables"
+order.success.step4="Tu recevras un numéro de suivi par email une fois expédié"
+order.success.lighters\_ready="Tes briquets sont prêts \!"
+order.success.lighters\_ready\_description="Tes {count} briquets ont été créés avec des codes PIN uniques. Tu peux commencer à ajouter des posts dès maintenant \!"
+order.success.view\_lighters="Voir mes briquets"
+order.success.back\_home="Retour à l'accueil"
+order.success.view\_profile="Voir mon profil"
+order.success.questions="Questions sur ta commande ?"
+order.success.contact\_us="Contacte-nous"
+
+-----
+
+## Change Pack
+
+order.change\_pack="← Changer de pack"
+
+-----
+
+## Contact Form
+
+contact.modal\_title="Contacte-nous"
+contact.name\_label="Nom"
+contact.name\_placeholder="Ton nom"
+contact.email\_label="Email"
+contact.email\_placeholder="ton.email@exemple.com"
+contact.phone\_label="Téléphone"
+contact.phone\_placeholder="+33 6 12 34 56 78"
+contact.optional="Optionnel"
+contact.message\_label="Message"
+contact.message\_placeholder="Comment pouvons-nous t'aider ?"
+contact.cancel="Annuler"
+contact.send="Envoyer le message"
+contact.sending="Envoi..."
+contact.success\_message="Message envoyé avec succès \!"
+contact.success\_subtitle="Nous te répondrons bientôt."
+contact.button="Contacte-nous"
+
+-----
+
+## How It Works Page
+
+how\_it\_works.title="Comment ça marche"
+how\_it\_works.subtitle="Sauve des briquets, partage des histoires, propage la flamme"
+how\_it\_works.step1.title="Trouve ton briquet"
+how\_it\_works.step1.desc="Découvre un briquet avec un ID unique ou sauve le tien"
+how\_it\_works.step2.title="Ajoute à l'histoire"
+how\_it\_works.step2.desc="Partage des souvenirs, photos, vidéos ou poèmes"
+how\_it\_works.step3.title="Passe-le"
+how\_it\_works.step3.desc="Laisse le briquet continuer son voyage avec d'autres"
+how\_it\_works.cant\_find\_answer="Tu ne trouves pas ta réponse ?"
+how\_it\_works.contact\_us="Contacte-nous"
+
+-----
+
+## Language Names for Order Summary
+
+language.en="Anglais"
+language.fr="Français"
+language.es="Espagnol"
+language.de="Allemand"
+language.it="Italien"
+language.pt="Portugais"
+language.nl="Néerlandais"
+language.ru="Russe"
+language.pl="Polonais"
+language.ja="Japonais"
+language.ko="Coréen"
+language.zh-CN="Chinois"
+language.th="Thaï"
+language.vi="Vietnamien"
+language.hi="Hindi"
+language.ar="Arabe"
+language.fa="Persan"
+language.ur="Ourdou"
+language.mr="Marathi"
+language.te="Télougou"
+language.id="Indonésien"
+language.uk="Ukrainien"
+language.tr="Turc"
+
+-----
+
+## Email Subject Lines
+
+email.order\_shipped\_subject="Ton kit LightSaver est en route \! 🚀✨"
+email.first\_post\_subject="Tu as allumé la première étincelle \! 🔥 Bienvenue dans la famille LightSaver"
+email.trophy\_earned\_subject="🏆 Réalisation débloquée : {trophy\_name} \!"
+email.lighter\_activity\_subject="Ton briquet se fait de nouveaux amis \! 🌍"
+email.moderation\_approved\_subject="Bonne nouvelle \! Ton histoire est maintenant en ligne. 🎉"
+email.moderation\_rejected\_subject="À propos de ton post récent... discutons-en"
+
+-----
+
+## Notes & Metadata
+
+**Informations sur le document :**
+
+  - Version : 2.0 (Édition Revue)
+  - Dernière mise à jour : Novembre 2025
+  - Clés totales : 988
+  - Langues supportées : 27
+
+**Principales améliorations de la v2.0 :**
+
+  - Terminologie standardisée : « Lightees » (briquets personnifiés), « LightSavers » (utilisateurs)
+  - Pages légales considérablement améliorées avec les meilleures pratiques RGPD (conformité 2025)
+  - Politique de confidentialité enrichie avec mesures détaillées de protection des données, notification de violation, droits des utilisateurs, divulgations de prise de décision automatisée
+  - Conditions d'utilisation améliorées avec procédures d'application claires, processus d'appel, liste complète de contenu interdit, résolution de litiges
+  - Cohérence tonale améliorée dans toutes les sections
+  - Balises HTML correctement maintenues où nécessaire
+  - Grammaire et orthographe vérifiées et validées
+  - Voix de marque maintenue : ludiquement intentionnel, chaleureusement inclusif, poétiquement pratique, célébratoire
+
+**Notes de traduction :**
+
+  - Préserver les balises HTML : `<strong>`, `<br>`, `<sup>`, `<a href>` où présentes
+  - Maintenir la syntaxe des variables : `{variable}`, `{count}`, `{message}`, etc.
+  - Garder le placement et la fréquence des emojis comme spécifié
+  - Adapter le ton selon le contexte : célébratoire pour les succès, sérieux (pas d'emojis) pour les pages légales, utile pour les erreurs
+  - Maintenir une longueur comparable pour la compatibilité UI/graphique
+  - Les termes de marque (LightSaver, Lightees, mosaïque, voyage, PIN) doivent rester reconnaissables dans toutes les langues
+
+-----
