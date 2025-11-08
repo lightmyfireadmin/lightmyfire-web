@@ -424,7 +424,7 @@ async function drawSticker(
   ctx.textBaseline = 'top';
   ctx.fillText(translationText, x + STICKER_WIDTH_PX / 2, currentY + 42);
 
-  currentY += 80; // Adjusted spacing after invitation section
+  currentY += 100; // Increased spacing after invitation section for breathing room
 
   // QR Code on white card - reduced by 0.7x factor for more color visibility
   const qrCardSize = Math.round(contentWidth * 0.7); // ~148px (70% of 212)
@@ -458,8 +458,8 @@ async function drawSticker(
 
   currentY += qrCardSize + smallGap;
 
-  // "or go to lightmyfire.app" section
-  const urlBgHeight = 58; // Fixed size per programmer's spec
+  // "or go to lightmyfire.app" section - DOUBLED SIZE
+  const urlBgHeight = 116; // Doubled from 58
 
   // Draw white background with rounded corners
   ctx.fillStyle = CARD_BG_COLOR;
@@ -467,22 +467,22 @@ async function drawSticker(
   ctx.fill();
 
   ctx.fillStyle = '#000000';
-  ctx.font = `500 16px Poppins, Arial, sans-serif`;
+  ctx.font = `500 32px Poppins, Arial, sans-serif`; // Doubled from 16px
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText('or go to', x + STICKER_WIDTH_PX / 2, currentY + 19);
+  ctx.fillText('or go to', x + STICKER_WIDTH_PX / 2, currentY + 38); // Adjusted position
   // Use Poppins-Bold and all caps for better letter spacing and readability at small scale
-  ctx.font = `bold 18px Poppins, Arial, sans-serif`;
-  ctx.fillText('LIGHTMYFIRE.APP', x + STICKER_WIDTH_PX / 2, currentY + 40);
+  ctx.font = `bold 36px Poppins, Arial, sans-serif`; // Doubled from 18px
+  ctx.fillText('LIGHTMYFIRE.APP', x + STICKER_WIDTH_PX / 2, currentY + 80); // Adjusted position
 
   currentY += urlBgHeight + smallGap;
 
-  // "and type my code"
+  // "and type my code" - DOUBLED SIZE
   ctx.fillStyle = textColor; // Use contrasting color
-  ctx.font = `500 18px Poppins, Arial, sans-serif`;
+  ctx.font = `500 36px Poppins, Arial, sans-serif`; // Doubled from 18px
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
-  ctx.fillText('and type my code', x + STICKER_WIDTH_PX / 2, currentY + 2);
+  ctx.fillText('and type my code', x + STICKER_WIDTH_PX / 2, currentY + 4);
 
   // Translation - Complete language support (shorter versions)
   const codeTranslations: { [key: string]: string } = {
@@ -511,15 +511,15 @@ async function drawSticker(
   };
 
   const codeText = codeTranslations[sticker.language] || codeTranslations.fr;
-  ctx.font = `500 14px Poppins, Arial, sans-serif`;
+  ctx.font = `500 28px Poppins, Arial, sans-serif`; // Doubled from 14px
   ctx.textBaseline = 'top';
-  ctx.fillText(codeText, x + STICKER_WIDTH_PX / 2, currentY + 23);
+  ctx.fillText(codeText, x + STICKER_WIDTH_PX / 2, currentY + 46); // Adjusted position
 
-  currentY += 38; // Section height
+  currentY += 76; // Section height - doubled from 38
   currentY += smallGap;
 
-  // PIN code
-  const pinBgHeight = 52; // Fixed size per programmer's spec
+  // PIN code - DOUBLED SIZE
+  const pinBgHeight = 104; // Doubled from 52
 
   // Draw white background with rounded corners
   ctx.fillStyle = CARD_BG_COLOR;
@@ -527,7 +527,7 @@ async function drawSticker(
   ctx.fill();
 
   ctx.fillStyle = '#000000';
-  ctx.font = `800 32px Poppins, Arial, sans-serif`;
+  ctx.font = `800 64px Poppins, Arial, sans-serif`; // Doubled from 32px
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText(sticker.pinCode, x + STICKER_WIDTH_PX / 2, currentY + pinBgHeight / 2);
