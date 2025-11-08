@@ -213,7 +213,7 @@ export default {
     'order.custom_branding.title': 'Niestandardowy branding dla wydarzeń i marek',
   'order.custom_branding.description': 'Planujesz wydarzenie lub chcesz niestandardowy branding na swoich arkuszach naklejek? Możemy spersonalizować obszar brandingu dla twojej organizacji, marki lub specjalnego wydarzenia!',
   'order.custom_branding.button': 'Skontaktuj się z nami w sprawie niestandardowego brandingu',
-  'order.custom_branding.email': 'editionsrevel@gmail.com',
+  'order.custom_branding.email': 'orders@lightmyfire.app',
 
     'order.customization.title': 'Personalizuj swoje naklejki',
   'order.customization.subtitle': 'Personalizuj każdą zapalniczkę',

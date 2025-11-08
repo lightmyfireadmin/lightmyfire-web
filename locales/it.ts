@@ -213,7 +213,7 @@ export default {
     'order.custom_branding.title': 'Branding personalizzato per eventi e marchi',
   'order.custom_branding.description': 'Stai pianificando un evento o desideri un branding personalizzato sui tuoi fogli di adesivi? Possiamo personalizzare l\'area di branding per la tua organizzazione, marchio o evento speciale!',
   'order.custom_branding.button': 'Contattaci per il branding personalizzato',
-  'order.custom_branding.email': 'editionsrevel@gmail.com',
+  'order.custom_branding.email': 'orders@lightmyfire.app',
 
     'order.customization.title': 'Personalizza i tuoi adesivi',
   'order.customization.subtitle': 'Personalizza ogni accendino',

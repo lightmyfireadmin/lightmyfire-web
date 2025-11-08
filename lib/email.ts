@@ -1,6 +1,5 @@
-
-
 import { Resend } from 'resend';
+import { t, SupportedEmailLanguage } from './email-i18n';
 
 let resendClient: Resend | null = null;
 
@@ -17,10 +16,10 @@ function getResendClient(): Resend {
 
 const EMAIL_CONFIG = {
   from: {
-    default: 'LightMyFire <noreply@lightmyfire.app>',
+    default: 'LightMyFire <support@lightmyfire.app>',
     orders: 'LightMyFire Orders <orders@lightmyfire.app>',
-    notifications: 'LightMyFire <notifications@lightmyfire.app>',
-    moderation: 'LightMyFire Moderation <moderation@lightmyfire.app>',
+    notifications: 'LightMyFire <mitch@lightmyfire.app>',
+    moderation: 'LightMyFire <mitch@lightmyfire.app>',
     support: 'LightMyFire Support <support@lightmyfire.app>',
   },
   brandColors: {
@@ -131,6 +130,12 @@ const EMAIL_STYLES = `
     border-left: 4px solid ${EMAIL_CONFIG.brandColors.primary};
     border-radius: 4px;
   }
+  ul {
+    padding-left: 20px;
+  }
+  li {
+    margin: 8px 0;
+  }
 `;
 
 interface SendEmailOptions {
@@ -173,10 +178,13 @@ async function sendEmail(options: SendEmailOptions): Promise<{ success: boolean;
   }
 }
 
-function wrapEmailTemplate(content: string, title: string, subtitle?: string): string {
+function wrapEmailTemplate(content: string, title: string, subtitle: string | undefined, lang: SupportedEmailLanguage = 'en'): string {
+  const translate = t(lang);
+  const supportEmail = 'support@lightmyfire.app';
+
   return `
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="${lang}">
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -191,12 +199,12 @@ function wrapEmailTemplate(content: string, title: string, subtitle?: string): s
           <div class="content">
             ${content}
             <div class="footer">
-              <p><strong>LightMyFire</strong> – Give Your Lighter a Second Life</p>
+              <p><strong>${translate('email.common.footer_tagline')}</strong></p>
               <p style="font-size: 12px; color: #999999;">
-                Questions? Email us at <a href="mailto:support@lightmyfire.app" style="color: ${EMAIL_CONFIG.brandColors.primary};">support@lightmyfire.app</a>
+                ${translate('email.common.footer_questions')} <a href="mailto:${supportEmail}" style="color: ${EMAIL_CONFIG.brandColors.primary};">${supportEmail}</a>
               </p>
               <p style="font-size: 11px; color: #AAAAAA; margin-top: 15px;">
-                © ${new Date().getFullYear()} LightMyFire. All rights reserved.
+                ${translate('email.common.footer_copyright', { year: new Date().getFullYear() })}
               </p>
             </div>
           </div>
@@ -216,43 +224,47 @@ interface OrderShippedData {
   quantity: number;
   lighterNames: string[];
   estimatedDelivery?: string;
+  language?: SupportedEmailLanguage;
 }
 
 export async function sendOrderShippedEmail(data: OrderShippedData) {
+  const lang = data.language || 'en';
+  const translate = t(lang);
+
   const content = `
-    <p>Great news, <strong>${data.customerName}</strong>! 📦</p>
-    <p>Your custom LightMyFire stickers have been shipped and are on their way to you.</p>
+    <p>${translate('email.order_shipped.greeting', { name: data.customerName })}</p>
+    <p>${translate('email.order_shipped.intro')}</p>
 
     <div class="section">
-      <h3>📋 Shipping Details</h3>
-      <p><strong>Order ID:</strong> ${data.orderId}</p>
-      <p><strong>Carrier:</strong> ${data.carrier}</p>
-      <p><strong>Tracking Number:</strong> <span class="pin-code">${data.trackingNumber}</span></p>
-      ${data.estimatedDelivery ? `<p><strong>Estimated Delivery:</strong> ${data.estimatedDelivery}</p>` : ''}
+      <h3>${translate('email.order_shipped.details_title')}</h3>
+      <p><strong>${translate('email.order_shipped.order_id')}</strong> ${data.orderId}</p>
+      <p><strong>${translate('email.order_shipped.carrier')}</strong> ${data.carrier}</p>
+      <p><strong>${translate('email.order_shipped.tracking')}</strong> <span class="pin-code">${data.trackingNumber}</span></p>
+      ${data.estimatedDelivery ? `<p><strong>${translate('email.order_shipped.estimated_delivery')}</strong> ${data.estimatedDelivery}</p>` : ''}
     </div>
 
     <div style="text-align: center; margin: 30px 0;">
-      <a href="${data.trackingUrl}" class="button">Track Your Package</a>
+      <a href="${data.trackingUrl}" class="button">${translate('email.common.button.track_package')}</a>
     </div>
 
     <div class="section">
-      <h3>🔥 Your Lighters</h3>
-      <p>You ordered ${data.quantity} custom stickers for:</p>
+      <h3>${translate('email.order_shipped.lighters_title')}</h3>
+      <p>${translate('email.order_shipped.lighters_intro', { quantity: data.quantity })}</p>
       <ul>
         ${data.lighterNames.map(name => `<li><strong>${name}</strong></li>`).join('')}
       </ul>
     </div>
 
     <div class="highlight-box">
-      <p><strong>💡 Pro Tip:</strong> Your lighters are already active! Start adding posts now while you wait for your stickers to arrive.</p>
-      <p style="margin-bottom: 0;"><a href="https://lightmyfire.app/en/my-profile" style="color: ${EMAIL_CONFIG.brandColors.primary};">View My Lighters →</a></p>
+      <p><strong>${translate('email.order_shipped.pro_tip')}</strong> ${translate('email.order_shipped.pro_tip_content')}</p>
+      <p style="margin-bottom: 0;"><a href="https://lightmyfire.app/${lang}/my-profile" style="color: ${EMAIL_CONFIG.brandColors.primary};">${translate('email.order_shipped.pro_tip_link')}</a></p>
     </div>
   `;
 
   return sendEmail({
     to: data.customerEmail,
-    subject: `Your LightMyFire Stickers Have Shipped! 📦`,
-    html: wrapEmailTemplate(content, 'Package Shipped', 'Your stickers are on the way'),
+    subject: translate('email.order_shipped_subject'),
+    html: wrapEmailTemplate(content, translate('email.order_shipped_subject'), undefined, lang),
     from: EMAIL_CONFIG.from.orders,
   });
 }
@@ -264,49 +276,53 @@ interface FirstPostData {
   lighterPin: string;
   postType: string;
   lighterUrl: string;
+  language?: SupportedEmailLanguage;
 }
 
 export async function sendFirstPostCelebrationEmail(data: FirstPostData) {
+  const lang = data.language || 'en';
+  const translate = t(lang);
+
   const content = `
-    <p>Congratulations, ${data.userName || 'LightSaver'}! 🎉</p>
-    <p>You just added your very first post to your LightMyFire lighter "<strong>${data.lighterName}</strong>"!</p>
+    <p>${translate('email.first_post.greeting', { name: data.userName || 'LightSaver' })}</p>
+    <p>${translate('email.first_post.intro', { lighter: data.lighterName })}</p>
 
     <div style="text-align: center; margin: 30px 0;">
       <div style="font-size: 64px;">🔥</div>
-      <h2 style="color: ${EMAIL_CONFIG.brandColors.primary}; margin: 10px 0;">Welcome to the Movement!</h2>
+      <h2 style="color: ${EMAIL_CONFIG.brandColors.primary}; margin: 10px 0;">${translate('email.first_post.welcome_title')}</h2>
     </div>
 
     <div class="section">
-      <h3>🎯 What You've Started</h3>
-      <p>Your lighter is now part of something special. Every time someone finds it and adds their story, you'll be able to see where it's been and the connections it's made.</p>
-      <p><strong>Lighter:</strong> ${data.lighterName}</p>
-      <p><strong>PIN:</strong> <span class="pin-code">${data.lighterPin}</span></p>
-      <p><strong>First Post Type:</strong> <span class="badge badge-success">${data.postType}</span></p>
+      <h3>${translate('email.first_post.what_started_title')}</h3>
+      <p>${translate('email.first_post.what_started_content')}</p>
+      <p><strong>${translate('email.first_post.lighter')}</strong> ${data.lighterName}</p>
+      <p><strong>${translate('email.first_post.pin')}</strong> <span class="pin-code">${data.lighterPin}</span></p>
+      <p><strong>${translate('email.first_post.type')}</strong> <span class="badge badge-success">${data.postType}</span></p>
     </div>
 
     <div style="text-align: center; margin: 30px 0;">
-      <a href="${data.lighterUrl}" class="button">View Your Lighter</a>
+      <a href="${data.lighterUrl}" class="button">${translate('email.common.button.view_lighter')}</a>
     </div>
 
     <div class="section">
-      <h3>💡 Next Steps</h3>
+      <h3>${translate('email.first_post.next_steps_title')}</h3>
       <ul>
-        <li><strong>Share it:</strong> Pass your lighter to a friend or leave it somewhere interesting</li>
-        <li><strong>Get stickers:</strong> Order custom stickers to help others find your lighter's story</li>
-        <li><strong>Watch it grow:</strong> Check back to see new posts as your lighter travels</li>
+        <li><strong>${translate('email.first_post.next_step1')}</strong></li>
+        <li><strong>${translate('email.first_post.next_step2')}</strong></li>
+        <li><strong>${translate('email.first_post.next_step3')}</strong></li>
       </ul>
     </div>
 
     <div class="highlight-box">
-      <p><strong>🏆 Achievement Unlocked:</strong> First Spark</p>
-      <p style="margin-bottom: 0;">You've lit your first flame in the LightMyFire community!</p>
+      <p><strong>${translate('email.first_post.achievement')}</strong></p>
+      <p style="margin-bottom: 0;">${translate('email.first_post.achievement_content')}</p>
     </div>
   `;
 
   return sendEmail({
     to: data.userEmail,
-    subject: `🎉 You Posted Your First Story!`,
-    html: wrapEmailTemplate(content, 'First Post!', 'Your LightMyFire journey begins'),
+    subject: translate('email.first_post_subject'),
+    html: wrapEmailTemplate(content, translate('email.first_post_subject'), undefined, lang),
     from: EMAIL_CONFIG.from.notifications,
   });
 }
@@ -319,12 +335,16 @@ interface TrophyEarnedData {
   trophyDescription: string;
   achievementDetails: string;
   profileUrl: string;
+  language?: SupportedEmailLanguage;
 }
 
 export async function sendTrophyEarnedEmail(data: TrophyEarnedData) {
+  const lang = data.language || 'en';
+  const translate = t(lang);
+
   const content = `
-    <p>Awesome work, ${data.userName || 'LightSaver'}! 🏆</p>
-    <p>You've earned a new trophy on LightMyFire!</p>
+    <p>${translate('email.trophy.greeting', { name: data.userName || 'LightSaver' })}</p>
+    <p>${translate('email.trophy.intro')}</p>
 
     <div style="text-align: center; margin: 40px 0;">
       <div style="font-size: 96px; margin-bottom: 20px;">${data.trophyIcon}</div>
@@ -333,23 +353,23 @@ export async function sendTrophyEarnedEmail(data: TrophyEarnedData) {
     </div>
 
     <div class="section">
-      <h3>🎯 What You Did</h3>
+      <h3>${translate('email.trophy.what_you_did')}</h3>
       <p>${data.achievementDetails}</p>
     </div>
 
     <div style="text-align: center; margin: 30px 0;">
-      <a href="${data.profileUrl}" class="button">View My Trophies</a>
+      <a href="${data.profileUrl}" class="button">${translate('email.common.button.view_trophies')}</a>
     </div>
 
     <div class="highlight-box">
-      <p style="margin: 0;"><strong>💡 Keep Going!</strong> There are more trophies waiting to be unlocked. Can you collect them all?</p>
+      <p style="margin: 0;"><strong>${translate('email.trophy.keep_going')}</strong> ${translate('email.trophy.keep_going_content')}</p>
     </div>
   `;
 
   return sendEmail({
     to: data.userEmail,
-    subject: `🏆 New Trophy Earned: ${data.trophyName}!`,
-    html: wrapEmailTemplate(content, 'Trophy Unlocked!', `You earned: ${data.trophyName}`),
+    subject: translate('email.trophy_earned_subject', { trophy_name: data.trophyName }),
+    html: wrapEmailTemplate(content, data.trophyName, translate('email.trophy.intro'), lang),
     from: EMAIL_CONFIG.from.notifications,
   });
 }
@@ -363,15 +383,12 @@ interface LighterActivityData {
   activityDetails: string;
   contributorName?: string;
   lighterUrl: string;
+  language?: SupportedEmailLanguage;
 }
 
 export async function sendLighterActivityEmail(data: LighterActivityData) {
-  const activityTitles = {
-    new_post: 'New Story Added',
-    new_like: 'Someone Liked Your Post',
-    refuel: 'Lighter Refueled',
-    milestone: 'Milestone Reached',
-  };
+  const lang = data.language || 'en';
+  const translate = t(lang);
 
   const activityEmojis = {
     new_post: '📖',
@@ -380,31 +397,33 @@ export async function sendLighterActivityEmail(data: LighterActivityData) {
     milestone: '🎯',
   };
 
+  const activityTitle = translate(`email.activity.type.${data.activityType}` as any);
+
   const content = `
-    <p>Hi ${data.userName || 'there'},</p>
-    <p>There's new activity on your lighter "<strong>${data.lighterName}</strong>"!</p>
+    <p>${translate('email.activity.greeting', { name: data.userName || '' })}</p>
+    <p>${translate('email.activity.intro', { lighter: data.lighterName })}</p>
 
     <div class="section">
       <div style="text-align: center; margin-bottom: 20px;">
         <div style="font-size: 48px;">${activityEmojis[data.activityType]}</div>
       </div>
-      <h3>${activityTitles[data.activityType]}</h3>
+      <h3>${activityTitle}</h3>
       <p>${data.activityDetails}</p>
-      ${data.contributorName ? `<p><strong>By:</strong> ${data.contributorName}</p>` : ''}
-      <p><strong>Lighter:</strong> ${data.lighterName} (PIN: <span class="pin-code">${data.lighterPin}</span>)</p>
+      ${data.contributorName ? `<p><strong>${translate('email.activity.by')}</strong> ${data.contributorName}</p>` : ''}
+      <p><strong>${translate('email.activity.lighter')}</strong> ${data.lighterName} (${translate('email.activity.pin')} <span class="pin-code">${data.lighterPin}</span>)</p>
     </div>
 
     <div style="text-align: center; margin: 30px 0;">
-      <a href="${data.lighterUrl}" class="button">View Lighter</a>
+      <a href="${data.lighterUrl}" class="button">${translate('email.common.button.view_lighter')}</a>
     </div>
 
-    <p>Your lighter's journey continues! See where it's been and who's found it.</p>
+    <p>${translate('email.activity.outro')}</p>
   `;
 
   return sendEmail({
     to: data.userEmail,
-    subject: `${activityEmojis[data.activityType]} ${activityTitles[data.activityType]}: ${data.lighterName}`,
-    html: wrapEmailTemplate(content, activityTitles[data.activityType], `Activity on ${data.lighterName}`),
+    subject: `${activityEmojis[data.activityType]} ${activityTitle}: ${data.lighterName}`,
+    html: wrapEmailTemplate(content, activityTitle, `${data.lighterName}`, lang),
     from: EMAIL_CONFIG.from.notifications,
   });
 }
@@ -414,41 +433,45 @@ interface WelcomeEmailData {
   userName: string;
   profileUrl: string;
   saveLighterUrl: string;
+  language?: SupportedEmailLanguage;
 }
 
 export async function sendWelcomeEmail(data: WelcomeEmailData) {
+  const lang = data.language || 'en';
+  const translate = t(lang);
+
   const content = `
-    <p>Hi <strong>${data.userName}</strong>! 👋</p>
-    <p>Welcome to the LightSavers' community! We're thrilled to have you here.</p>
+    <p>${translate('email.welcome.greeting', { name: data.userName })}</p>
+    <p>${translate('email.welcome.intro')}</p>
 
     <div class="section">
-      <h3>🔥 What is LightMyFire?</h3>
-      <p>LightMyFire is a global movement giving lighters a second life through storytelling. Every lighter gets a digital identity, a unique sticker, and travels the world collecting stories from everyone who finds it.</p>
+      <h3>${translate('email.welcome.what_is_title')}</h3>
+      <p>${translate('email.welcome.what_is_content')}</p>
     </div>
 
     <div class="section">
-      <h3>🚀 Get Started</h3>
-      <p><strong>Here's what you can do now:</strong></p>
+      <h3>${translate('email.welcome.get_started_title')}</h3>
+      <p><strong>${translate('email.welcome.get_started_intro')}</strong></p>
       <ul>
-        <li><strong>Save your first lighter</strong> - Give it a name and get custom stickers delivered to your home</li>
-        <li><strong>Find a lighter</strong> - Enter a PIN from a sticker you found to see its journey</li>
-        <li><strong>Join the mosaic</strong> - Share posts, thoughts, songs, and locations</li>
+        <li><strong>${translate('email.welcome.step1')}</strong></li>
+        <li><strong>${translate('email.welcome.step2')}</strong></li>
+        <li><strong>${translate('email.welcome.step3')}</strong></li>
       </ul>
     </div>
 
     <div style="text-align: center; margin: 30px 0;">
-      <a href="${data.saveLighterUrl}" class="button">Save Your First Lighter</a>
+      <a href="${data.saveLighterUrl}" class="button">${translate('email.common.button.save_lighter')}</a>
     </div>
 
     <div style="text-align: center; margin: 20px 0; color: ${EMAIL_CONFIG.brandColors.textLight};">
-      <p>Questions? Just reply to this email—we're here to help!</p>
+      <p>${translate('email.welcome.questions')}</p>
     </div>
   `;
 
   return sendEmail({
     to: data.userEmail,
-    subject: `Welcome to LightMyFire! 🔥`,
-    html: wrapEmailTemplate(content, `Welcome, ${data.userName}!`, 'Your journey starts here'),
+    subject: translate('email.welcome_subject'),
+    html: wrapEmailTemplate(content, translate('email.welcome_subject'), undefined, lang),
     from: EMAIL_CONFIG.from.default,
   });
 }
@@ -469,32 +492,36 @@ interface OrderConfirmationEmailData {
   totalAmount: string;
   currency: string;
   orderDetailsUrl: string;
+  language?: SupportedEmailLanguage;
 }
 
 export async function sendOrderConfirmationEmail(data: OrderConfirmationEmailData) {
+  const lang = data.language || 'en';
+  const translate = t(lang);
+
   const content = `
-    <p>Hi <strong>${data.userName}</strong>,</p>
-    <p>Thank you for your order! Your payment has been processed successfully. 🎉</p>
+    <p>${translate('email.order_confirmation.greeting', { name: data.userName })}</p>
+    <p>${translate('email.order_confirmation.intro')}</p>
 
     <div class="section">
-      <h3>📦 Order Summary</h3>
-      <p><strong>Order ID:</strong> ${data.orderId}</p>
-      <p><strong>Stickers:</strong> ${data.quantity} pack${data.quantity > 1 ? 's' : ''}</p>
-      <p><strong>Total Paid:</strong> ${data.totalAmount} ${data.currency.toUpperCase()}</p>
+      <h3>${translate('email.order_confirmation.summary_title')}</h3>
+      <p><strong>${translate('email.order_confirmation.order_id')}</strong> ${data.orderId}</p>
+      <p><strong>${translate('email.order_confirmation.stickers')}</strong> ${translate('email.order_confirmation.stickers_packs', { quantity: data.quantity, plural: data.quantity > 1 ? 's' : '' })}</p>
+      <p><strong>${translate('email.order_confirmation.total_paid')}</strong> ${data.totalAmount} ${data.currency.toUpperCase()}</p>
     </div>
 
     <div class="section">
-      <h3>🔥 Your Lighters</h3>
+      <h3>${translate('email.order_confirmation.lighters_title')}</h3>
       <ul>
         ${data.lighterNames.map((name, i) => `<li><strong>${name}</strong></li>`).join('')}
       </ul>
       <p style="color: ${EMAIL_CONFIG.brandColors.textLight}; font-size: 14px;">
-        Each lighter now has a unique PIN and is ready to start its journey!
+        ${translate('email.order_confirmation.lighters_ready')}
       </p>
     </div>
 
     <div class="section">
-      <h3>📮 Shipping To</h3>
+      <h3>${translate('email.order_confirmation.shipping_title')}</h3>
       <p><strong>${data.shippingAddress.name}</strong></p>
       <p>${data.shippingAddress.address}<br>
       ${data.shippingAddress.city}, ${data.shippingAddress.postalCode}<br>
@@ -502,24 +529,24 @@ export async function sendOrderConfirmationEmail(data: OrderConfirmationEmailDat
     </div>
 
     <div class="section">
-      <h3>⏰ What's Next?</h3>
-      <p>Your stickers are being prepared for shipment. You'll receive another email with tracking information once they're on their way!</p>
-      <p><strong>Estimated delivery:</strong> 5-10 business days</p>
+      <h3>${translate('email.order_confirmation.whats_next_title')}</h3>
+      <p>${translate('email.order_confirmation.whats_next_content')}</p>
+      <p><strong>${translate('email.order_confirmation.estimated_delivery')}</strong></p>
     </div>
 
     <div style="text-align: center; margin: 30px 0;">
-      <a href="${data.orderDetailsUrl}" class="button">View Order Details</a>
+      <a href="${data.orderDetailsUrl}" class="button">${translate('email.common.button.view_order')}</a>
     </div>
 
     <p style="text-align: center; color: ${EMAIL_CONFIG.brandColors.textLight}; font-size: 14px;">
-      Questions about your order? Reply to this email anytime.
+      ${translate('email.order_confirmation.questions')}
     </p>
   `;
 
   return sendEmail({
     to: data.userEmail,
-    subject: `Order Confirmed! Your LightMyFire stickers are on the way 📦`,
-    html: wrapEmailTemplate(content, 'Order Confirmed', `Thank you for your order!`),
+    subject: translate('email.order_confirmation_subject'),
+    html: wrapEmailTemplate(content, translate('email.order_confirmation_subject'), undefined, lang),
     from: EMAIL_CONFIG.from.orders,
   });
 }
@@ -530,70 +557,67 @@ interface ModeratorInviteData {
   inviterName: string;
   acceptUrl: string;
   moderatorResponsibilities: string[];
+  language?: SupportedEmailLanguage;
 }
 
 export async function sendModeratorInviteEmail(data: ModeratorInviteData) {
+  const lang = data.language || 'en';
+  const translate = t(lang);
+
   const content = `
-    <p>Hi <strong>${data.userName}</strong>,</p>
-    <p><strong>${data.inviterName}</strong> has invited you to join the LightMyFire moderation team!</p>
+    <p>${translate('email.moderator.greeting', { name: data.userName })}</p>
+    <p>${translate('email.moderator.intro', { inviter: data.inviterName })}</p>
 
     <div class="section">
-      <h3>👮 What is a Moderator?</h3>
-      <p>Moderators help keep the LightMyFire community safe, positive, and welcoming by reviewing flagged content and ensuring our community guidelines are upheld.</p>
+      <h3>${translate('email.moderator.what_is_title')}</h3>
+      <p>${translate('email.moderator.what_is_content')}</p>
     </div>
 
     <div class="section">
-      <h3>📋 Your Responsibilities</h3>
+      <h3>${translate('email.moderator.responsibilities_title')}</h3>
       <ul>
         ${data.moderatorResponsibilities.map(resp => `<li>${resp}</li>`).join('')}
       </ul>
     </div>
 
     <div class="section">
-      <h3>🎁 Moderator Benefits</h3>
+      <h3>${translate('email.moderator.benefits_title')}</h3>
       <ul>
-        <li>Early access to new features</li>
-        <li>Special moderator badge on your profile</li>
-        <li>Direct communication with the LightMyFire team</li>
-        <li>Help shape the future of the community</li>
+        <li>${translate('email.moderator.benefit1')}</li>
+        <li>${translate('email.moderator.benefit2')}</li>
+        <li>${translate('email.moderator.benefit3')}</li>
+        <li>${translate('email.moderator.benefit4')}</li>
       </ul>
     </div>
 
     <div style="text-align: center; margin: 30px 0;">
-      <a href="${data.acceptUrl}" class="button">Accept Invitation</a>
+      <a href="${data.acceptUrl}" class="button">${translate('email.common.button.accept_invite')}</a>
     </div>
 
     <p style="text-align: center; color: ${EMAIL_CONFIG.brandColors.textLight};">
-      Not interested? You can ignore this email.
+      ${translate('email.moderator.not_interested')}
     </p>
   `;
 
   return sendEmail({
     to: data.userEmail,
-    subject: `You've Been Invited to Join the Moderation Team`,
-    html: wrapEmailTemplate(content, 'Moderator Invitation', 'Help us build a better community'),
+    subject: translate('email.moderator_invite_subject'),
+    html: wrapEmailTemplate(content, translate('email.moderator_invite_subject'), undefined, lang),
     from: EMAIL_CONFIG.from.moderation,
   });
 }
 
 export const emailService = {
-    sendWelcomeEmail,
-
-    sendOrderConfirmationEmail,
+  sendWelcomeEmail,
+  sendOrderConfirmationEmail,
   sendOrderShippedEmail,
-
-  
-    sendFirstPostCelebrationEmail,
+  sendFirstPostCelebrationEmail,
   sendTrophyEarnedEmail,
   sendLighterActivityEmail,
-
-    sendModeratorInviteEmail,
-
-    sendCustomEmail: sendEmail,
-
-    wrapTemplate: wrapEmailTemplate,
-
-    config: EMAIL_CONFIG,
+  sendModeratorInviteEmail,
+  sendCustomEmail: sendEmail,
+  wrapTemplate: wrapEmailTemplate,
+  config: EMAIL_CONFIG,
 };
 
 export default emailService;

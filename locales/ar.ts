@@ -212,7 +212,7 @@ export default {
     'order.custom_branding.title': 'العلامة التجارية المخصصة للفعاليات والعلامات التجارية',
   'order.custom_branding.description': 'هل تخطط لحدث أو تريد علامة تجارية مخصصة على ملاءات الملصقات الخاصة بك؟ يمكننا تخصيص منطقة العلامة التجارية لمنظمتك أو علامتك التجارية أو حدثك الخاص!',
   'order.custom_branding.button': 'اتصل بنا للعلامة التجارية المخصصة',
-  'order.custom_branding.email': 'editionsrevel@gmail.com',
+  'order.custom_branding.email': 'orders@lightmyfire.app',
 
     'order.customization.title': 'خصص الملصقات الخاصة بك',
   'order.customization.subtitle': 'شخصية كل ولاعة',

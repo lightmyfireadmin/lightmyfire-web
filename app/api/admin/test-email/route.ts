@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     }
 
         const body = await request.json();
-    const { emailType, recipientEmail } = body;
+    const { emailType, recipientEmail, language = 'en' } = body;
 
     if (!emailType || !recipientEmail) {
       return NextResponse.json(
@@ -41,6 +41,9 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    const supportedLanguages = ['en', 'es', 'fr', 'de'];
+    const emailLanguage = supportedLanguages.includes(language) ? language : 'en';
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(recipientEmail)) {
@@ -59,8 +62,9 @@ export async function POST(request: NextRequest) {
         result = await emailService.sendWelcomeEmail({
           userEmail: recipientEmail,
           userName: 'Test User',
-          profileUrl: `${baseUrl}/en/my-profile`,
-          saveLighterUrl: `${baseUrl}/en/save-lighter`,
+          profileUrl: `${baseUrl}/${emailLanguage}/my-profile`,
+          saveLighterUrl: `${baseUrl}/${emailLanguage}/save-lighter`,
+          language: emailLanguage as any,
         });
         break;
 
@@ -80,7 +84,8 @@ export async function POST(request: NextRequest) {
           },
           totalAmount: '8.99',
           currency: 'EUR',
-          orderDetailsUrl: `${baseUrl}/en/my-orders`,
+          orderDetailsUrl: `${baseUrl}/${emailLanguage}/my-orders`,
+          language: emailLanguage as any,
         });
         break;
 
@@ -95,6 +100,7 @@ export async function POST(request: NextRequest) {
           quantity: 10,
           lighterNames: ['The Wanderer', 'Spark of Joy'],
           estimatedDelivery: '3-5 business days',
+          language: emailLanguage as any,
         });
         break;
 
@@ -105,7 +111,8 @@ export async function POST(request: NextRequest) {
           lighterName: 'The Wanderer',
           lighterPin: 'ABCD1234',
           postType: 'text',
-          lighterUrl: `${baseUrl}/en/lighter/test-lighter-id`,
+          lighterUrl: `${baseUrl}/${emailLanguage}/lighter/test-lighter-id`,
+          language: emailLanguage as any,
         });
         break;
 
@@ -117,7 +124,8 @@ export async function POST(request: NextRequest) {
           trophyIcon: '🏆',
           trophyDescription: 'You created your first lighter and started its journey!',
           achievementDetails: 'You saved your first lighter and gave it a name. It\'s now ready to travel the world and collect stories!',
-          profileUrl: `${baseUrl}/en/my-profile`,
+          profileUrl: `${baseUrl}/${emailLanguage}/my-profile`,
+          language: emailLanguage as any,
         });
         break;
 
@@ -130,23 +138,24 @@ export async function POST(request: NextRequest) {
           activityType: 'new_post',
           activityDetails: 'Someone added a new story to your lighter from Paris, France!',
           contributorName: 'Adventure Seeker',
-          lighterUrl: `${baseUrl}/en/lighter/test-lighter-id`,
+          lighterUrl: `${baseUrl}/${emailLanguage}/lighter/test-lighter-id`,
+          language: emailLanguage as any,
         });
         break;
 
-            
       case 'moderator_invite':
         result = await emailService.sendModeratorInviteEmail({
           userEmail: recipientEmail,
           userName: 'Test User',
           inviterName: 'Admin Team',
-          acceptUrl: `${baseUrl}/en/become-moderator`,
+          acceptUrl: `${baseUrl}/${emailLanguage}/become-moderator`,
           moderatorResponsibilities: [
             'Review flagged content within 24 hours',
             'Enforce community guidelines fairly',
             'Respond to user appeals professionally',
             'Report serious violations to admins',
           ],
+          language: emailLanguage as any,
         });
         break;
 

@@ -212,7 +212,7 @@ export default {
     'order.custom_branding.title': 'ایونٹس اور برانڈز کے لیے کسٹم برانڈنگ',
   'order.custom_branding.description': 'کیا آپ کسی ایونٹ کی منصوبہ بندی کر رہے ہیں یا اپنی اسٹکر شیٹوں پر کسٹم برانڈنگ چاہتے ہیں؟ ہم آپ کی تنظیم، برانڈ یا خصوصی ایونٹ کے لیے برانڈنگ ایریا کو نیا روپ دے سکتے ہیں!',
   'order.custom_branding.button': 'کسٹم برانڈنگ کے لیے ہم سے رابطہ کریں',
-  'order.custom_branding.email': 'editionsrevel@gmail.com',
+  'order.custom_branding.email': 'orders@lightmyfire.app',
 
     'order.customization.title': 'اپنے اسٹکرز کو کسٹمائز کریں',
   'order.customization.subtitle': 'ہر لائٹر کو ذاتی نوعیت دیں',

@@ -200,7 +200,7 @@ export default {
     'order.custom_branding.title': 'แบรนดิ้งที่กำหนดเองสำหรับอีเวนต์และแบรนด์',
   'order.custom_branding.description': 'วางแผนสำหรับอีเวนต์หรือต้องการแบรนดิ้งที่กำหนดเองบนแผ่นสติกเกอร์ของคุณ? เราสามารถจัดเตรียมพื้นที่แบรนดิ้งสำหรับองค์กร แบรนด์ หรืออีเวนต์พิเศษของคุณได้!',
   'order.custom_branding.button': 'ติดต่อเราสำหรับแบรนดิ้งที่กำหนดเอง',
-  'order.custom_branding.email': 'editionsrevel@gmail.com',
+  'order.custom_branding.email': 'orders@lightmyfire.app',
 
     'order.customization.title': 'ปรับแต่งสติกเกอร์ของคุณ',
   'order.customization.subtitle': 'ปรับแต่งไฟแช็กแต่ละอัน',

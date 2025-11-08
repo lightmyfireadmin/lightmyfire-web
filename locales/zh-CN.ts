@@ -202,7 +202,7 @@ export default {
     'order.custom_branding.title': '为活动和品牌定制品牌',
   'order.custom_branding.description': '计划举办活动或想在贴纸上定制品牌？我们可以为您的组织、品牌或特殊活动个性化品牌区域！',
   'order.custom_branding.button': '联系我们了解定制品牌',
-  'order.custom_branding.email': 'editionsrevel@gmail.com',
+  'order.custom_branding.email': 'orders@lightmyfire.app',
 
     'order.customization.title': '定制您的贴纸',
   'order.customization.subtitle': '个性化每个打火机',

@@ -155,7 +155,7 @@ export default function EmailTester() {
           </h3>
           <div className="space-y-1 text-xs text-blue-800 dark:text-blue-200">
             <p><strong>API Provider:</strong> Resend</p>
-            <p><strong>From Domains:</strong> noreply@lightmyfire.app, orders@lightmyfire.app, notifications@lightmyfire.app</p>
+            <p><strong>From Domains:</strong> support@lightmyfire.app, orders@lightmyfire.app, mitch@lightmyfire.app</p>
             <p><strong>Environment Variable:</strong> RESEND_API_KEY</p>
             <p className="mt-2 pt-2 border-t border-blue-200 dark:border-blue-800">
               🔐 All emails use example/test data. Real user data is never used in test sends.

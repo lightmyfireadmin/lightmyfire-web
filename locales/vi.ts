@@ -200,7 +200,7 @@ export default {
     'order.custom_branding.title': 'Thương Hiệu Tùy Chỉnh Cho Sự Kiện & Thương Hiệu',
   'order.custom_branding.description': 'Đang lên kế hoạch cho một sự kiện hoặc muốn thương hiệu tùy chỉnh trên tờ nhãn dán của bạn? Chúng tôi có thể cá nhân hóa khu vực thương hiệu cho tổ chức, thương hiệu hoặc sự kiện đặc biệt của bạn!',
   'order.custom_branding.button': 'Liên Hệ Chúng Tôi Để Thương Hiệu Tùy Chỉnh',
-  'order.custom_branding.email': 'editionsrevel@gmail.com',
+  'order.custom_branding.email': 'orders@lightmyfire.app',
 
     'order.customization.title': 'Tùy Chỉnh Nhãn Dán Của Bạn',
   'order.customization.subtitle': 'Cá nhân hóa từng chiếc bật lửa',

@@ -295,7 +295,7 @@ export default {
     'order.custom_branding.title': 'Спеціальне брендування для заходів та брендів',
   'order.custom_branding.description': 'Плануєте захід або хочете спеціального брендування на листах наклейок? Ми можемо персоналізувати область брендування для вашої організації, бренду чи спеціального заходу!',
   'order.custom_branding.button': 'Зв\'яжіться з нами для спеціального брендування',
-  'order.custom_branding.email': 'editionsrevel@gmail.com',
+  'order.custom_branding.email': 'orders@lightmyfire.app',
 
     'order.customization.title': 'Налаштуйте свої наклейки',
   'order.customization.subtitle': 'Персоналізуйте кожну запальничку',

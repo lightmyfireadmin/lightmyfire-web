@@ -309,7 +309,7 @@ export default {
     'order.custom_branding.title': 'Personalização para eventos e marcas',
   'order.custom_branding.description': 'Está planejando um evento ou quer uma identidade visual personalizada nas suas folhas de adesivos? Podemos personalizar a área de marca para sua organização, marca ou evento especial!',
   'order.custom_branding.button': 'Entre em contato para personalização',
-  'order.custom_branding.email': 'editionsrevel@gmail.com',
+  'order.custom_branding.email': 'orders@lightmyfire.app',
 
     'order.customization.title': 'Personalize seus adesivos',
   'order.customization.subtitle': 'Personalize cada isqueiro',

@@ -212,7 +212,7 @@ export default {
     'order.custom_branding.title': 'इव्हेंट्स आणि ब्र्याण्ड्ससाठी कस्टम ब्र्याण्डिंग',
   'order.custom_branding.description': 'एखादी कार्यक्रमाचे नियोजन करत आहात किंवा आपल्या स्टिकर शीटवर कस्टम ब्र्याण्डिंग हवी आहे? आम्ही आपल्या संस्थेसाठी, ब्र्याण्डसाठी किंवा विशेष कार्यक्रमासाठी ब्र्याण्डिंग क्षेत्र सांगितले शकतो!',
   'order.custom_branding.button': 'कस्टम ब्र्याण्डिंगसाठी आमच्याशी संपर्क साधा',
-  'order.custom_branding.email': 'editionsrevel@gmail.com',
+  'order.custom_branding.email': 'orders@lightmyfire.app',
 
     'order.customization.title': 'आपल्या स्टिकर्स कस्टमाइज करा',
   'order.customization.subtitle': 'प्रत्येक लाइटर व्यक्तिगत करा',
