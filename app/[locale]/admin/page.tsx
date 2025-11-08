@@ -51,6 +51,19 @@ export default async function AdminPanelPage() {
         <p className="text-muted-foreground">Manage sticker orders, process refunds, and manage moderators</p>
       </div>
 
+      {/* Quick Links */}
+      <div className="mb-8 bg-card border border-border rounded-lg p-6">
+        <h2 className="text-xl font-semibold text-foreground mb-4">Quick Links</h2>
+        <div className="flex flex-wrap gap-3">
+          <a
+            href={`/${locale}/admin/testing`}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/90"
+          >
+            🧪 Testing Dashboard
+          </a>
+        </div>
+      </div>
+
       {}
       <div className="mb-8">
         {moderatorsError ? (
