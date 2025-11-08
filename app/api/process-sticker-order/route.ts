@@ -278,6 +278,8 @@ export async function POST(request: NextRequest) {
         sticker_file_url: stickerFileUrl,
         sticker_file_size: fileBuffer.byteLength,
         lighter_ids: createdLighters.map((l: any) => l.lighter_id),
+        lighter_names: createdLighters.map((l: any) => l.lighter_name),
+        paid_at: new Date().toISOString(),
       });
 
     if (orderError) {

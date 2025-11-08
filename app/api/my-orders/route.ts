@@ -39,13 +39,13 @@ export async function GET(request: NextRequest) {
     // Transform orders for frontend
     const transformedOrders = orders?.map((order) => ({
       id: order.id,
-      orderId: order.order_id || `LMF-${order.id}`,
-      status: order.status,
+      orderId: order.payment_intent_id || `LMF-${order.id}`,
+      status: order.status || 'pending',
       quantity: order.quantity,
-      amount: order.amount,
+      amount: order.amount_paid,
       currency: order.currency || 'EUR',
-      customerName: order.customer_name,
-      customerEmail: order.customer_email,
+      customerName: order.shipping_name,
+      customerEmail: order.shipping_email,
       shippingAddress: {
         address: order.shipping_address,
         city: order.shipping_city,
@@ -57,7 +57,7 @@ export async function GET(request: NextRequest) {
       carrier: order.carrier,
       lighterNames: order.lighter_names || [],
       printfulOrderId: order.printful_order_id,
-      onHold: order.on_hold,
+      onHold: order.on_hold || false,
       holdReason: order.hold_reason,
       failureReason: order.failure_reason,
       cancellationReason: order.cancellation_reason,
