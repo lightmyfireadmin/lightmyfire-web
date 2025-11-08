@@ -15,23 +15,21 @@ interface ModerationPostCardProps {
 export default function ModerationPostCard({ post, onAction }: ModerationPostCardProps) {
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [action, setAction] = useState<'reinstate' | 'delete' | null>(null);
+  const [action, setAction] = useState<'approve' | 'reject' | 'delete' | null>(null);
   const { addToast } = useToast();
 
-  const handleReinstate = async () => {
+  const handleApprove = async () => {
     setLoading(true);
     try {
-      const { error } = await supabase
-        .from('posts')
-        .update({ is_flagged: false })
-        .eq('id', post.id);
+      // Use approve_post RPC function to set requires_review=false
+      const { error } = await supabase.rpc('approve_post', { post_id: post.id });
 
       if (error) throw error;
 
       addToast({
         type: 'success',
-        title: 'Post Reinstated',
-        message: `Post #${post.id} has been reinstated.`,
+        title: 'Post Approved',
+        message: `Post #${post.id} has been approved and is now visible to users.`,
         duration: 5000,
       });
 
@@ -40,11 +38,41 @@ export default function ModerationPostCard({ post, onAction }: ModerationPostCar
       addToast({
         type: 'error',
         title: 'Error',
-        message: error instanceof Error ? error.message : 'Failed to reinstate post',
+        message: error instanceof Error ? error.message : 'Failed to approve post',
         duration: 5000,
       });
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleReject = async () => {
+    setLoading(true);
+    try {
+      // Use reject_post RPC function to keep requires_review=true (hidden)
+      const { error } = await supabase.rpc('reject_post', { post_id: post.id });
+
+      if (error) throw error;
+
+      addToast({
+        type: 'success',
+        title: 'Post Rejected',
+        message: `Post #${post.id} will remain hidden from public view.`,
+        duration: 5000,
+      });
+
+      onAction(post.id);
+    } catch (error) {
+      addToast({
+        type: 'error',
+        title: 'Error',
+        message: error instanceof Error ? error.message : 'Failed to reject post',
+        duration: 5000,
+      });
+    } finally {
+      setLoading(false);
+      setIsModalOpen(false);
+      setAction(null);
     }
   };
 
@@ -81,10 +109,12 @@ export default function ModerationPostCard({ post, onAction }: ModerationPostCar
   };
 
   const handleConfirmAction = () => {
-    if (action === 'delete') {
+    if (action === 'approve') {
+      handleApprove();
+    } else if (action === 'reject') {
+      handleReject();
+    } else if (action === 'delete') {
       handleDelete();
-    } else if (action === 'reinstate') {
-      handleReinstate();
     }
     setIsModalOpen(false);
   };
@@ -124,18 +154,35 @@ export default function ModerationPostCard({ post, onAction }: ModerationPostCar
         <div className="flex gap-2 flex-wrap">
           <button
             onClick={() => {
-              setAction('reinstate');
+              setAction('approve');
               setIsModalOpen(true);
             }}
             disabled={loading}
             className="btn-primary flex items-center gap-2 text-sm py-2 px-3 hover:shadow-md transition-shadow"
           >
-            {loading && action === 'reinstate' ? (
+            {loading && action === 'approve' ? (
               <LoadingSpinner size="sm" color="foreground" />
             ) : (
               <>
                 <span>✓</span>
-                <span>Reinstate</span>
+                <span>Approve</span>
+              </>
+            )}
+          </button>
+          <button
+            onClick={() => {
+              setAction('reject');
+              setIsModalOpen(true);
+            }}
+            disabled={loading}
+            className="btn-secondary flex items-center gap-2 text-sm py-2 px-3 hover:shadow-md transition-shadow text-orange-600 border-orange-200 hover:bg-orange-50"
+          >
+            {loading && action === 'reject' ? (
+              <LoadingSpinner size="sm" color="foreground" />
+            ) : (
+              <>
+                <span>⊘</span>
+                <span>Reject</span>
               </>
             )}
           </button>
@@ -166,11 +213,19 @@ export default function ModerationPostCard({ post, onAction }: ModerationPostCar
           setAction(null);
         }}
         onConfirm={handleConfirmAction}
-        title={action === 'delete' ? 'Delete Post?' : 'Reinstate Post?'}
+        title={
+          action === 'approve'
+            ? 'Approve Post?'
+            : action === 'reject'
+            ? 'Reject Post?'
+            : 'Delete Post?'
+        }
         message={
-          action === 'delete'
-            ? 'This action cannot be undone. The post will be permanently deleted.'
-            : 'Are you sure you want to reinstate this post?'
+          action === 'approve'
+            ? 'This post will become visible to all users.'
+            : action === 'reject'
+            ? 'This post will remain hidden from public view. The poster will NOT be notified.'
+            : 'This action cannot be undone. The post will be permanently deleted from the database.'
         }
       />
     </>

@@ -215,8 +215,13 @@ export default function AddPostForm({
 
     setLoading(true);
 
+    // Track if moderation failed or content was flagged by API
+    let moderationFailed = false;
+    let contentFlaggedByApi = false;
+
     // SECURITY: Content moderation - CRITICAL for launch
-    // If moderation fails for ANY reason, BLOCK the post to prevent inappropriate content
+    // If moderation API flags content, user sees error and post is blocked
+    // If moderation API fails, post goes to review queue silently
     try {
       // Moderate text content
       if (postType === 'text' && contentText.trim()) {
@@ -270,9 +275,9 @@ export default function AddPostForm({
         }
       }
     } catch (modError) {
-      // CRITICAL SECURITY FIX: If moderation fails, BLOCK the post
-      // Log detailed error information for debugging
-      console.error('CRITICAL: Moderation system failure:', {
+      // MODERATION FAILURE HANDLING: If moderation API fails, send post to review queue
+      // This prevents website blockage while maintaining safety
+      console.error('Moderation system failure - post will require manual review:', {
         error: modError,
         errorMessage: modError instanceof Error ? modError.message : 'Unknown error',
         errorStack: modError instanceof Error ? modError.stack : undefined,
@@ -280,12 +285,9 @@ export default function AddPostForm({
         timestamp: new Date().toISOString(),
       });
 
-      // BLOCK the post and show error to user
-      setError(
-        'Content moderation system is currently unavailable. For security reasons, we cannot process your post at this time. Please try again in a few moments.'
-      );
-      setLoading(false);
-      return; // CRITICAL: Stop submission completely
+      // Set flag to send this post to moderation queue (handled in RPC)
+      moderationFailed = true;
+      // Continue with post submission - it will be hidden until manual review
     }
 
     
@@ -305,12 +307,26 @@ export default function AddPostForm({
         p_is_creation: isCreation,
         p_is_anonymous: isAnonymous,
         p_is_public: isPublic,
+        p_requires_review: moderationFailed, // Send to review queue if moderation API failed
       });
 
-    if (rpcError) { setError(t('add_post.error.rpc_error', { message: rpcError.message })); setLoading(false); }
-    else if (data && !data.success) { setError(data.message); setLoading(false); }
-    else if (data && data.success) { router.push(`/lighter/${lighterId}`); router.refresh(); }
-    else { setError(t('add_post.error.unexpected')); setLoading(false); }
+    if (rpcError) {
+      setError(t('add_post.error.rpc_error', { message: rpcError.message }));
+      setLoading(false);
+    }
+    else if (data && !data.success) {
+      setError(data.message);
+      setLoading(false);
+    }
+    else if (data && data.success) {
+      // Show success message - user doesn't know if post is under review
+      router.push(`/lighter/${lighterId}`);
+      router.refresh();
+    }
+    else {
+      setError(t('add_post.error.unexpected'));
+      setLoading(false);
+    }
   };
 
   const renderFormInputs = () => {
