@@ -7,11 +7,18 @@ export const dynamic = 'force-dynamic';
 export async function POST(request: NextRequest) {
   try {
     if (!process.env.STRIPE_SECRET_KEY) {
+      console.error('STRIPE_SECRET_KEY not configured');
       return NextResponse.json({ error: 'Stripe not configured' }, { status: 500 });
     }
 
     if (!process.env.STRIPE_WEBHOOK_SECRET) {
+      console.error('STRIPE_WEBHOOK_SECRET not configured');
       return NextResponse.json({ error: 'Webhook secret not configured' }, { status: 500 });
+    }
+
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      console.error('Supabase configuration missing');
+      return NextResponse.json({ error: 'Database not configured' }, { status: 500 });
     }
 
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
@@ -81,31 +88,54 @@ export async function POST(request: NextRequest) {
     switch (event.type) {
       case 'payment_intent.succeeded': {
         const paymentIntent = event.data.object as Stripe.PaymentIntent;
+        console.log(`Processing payment_intent.succeeded: ${paymentIntent.id}`);
 
         const { data, error } = await supabase.rpc('update_order_payment_succeeded', {
           p_payment_intent_id: paymentIntent.id,
         });
 
         if (error) {
-          console.error('Failed to update order:', error);
+          console.error('Failed to update order via RPC:', {
+            paymentIntentId: paymentIntent.id,
+            error: error.message,
+            details: error.details,
+            hint: error.hint,
+          });
           return NextResponse.json({ error: 'Database update failed' }, { status: 500 });
         }
 
-        console.log(`Payment succeeded for order: ${paymentIntent.metadata.orderId}`);
+        console.log(`Payment succeeded and order updated:`, {
+          paymentIntentId: paymentIntent.id,
+          orderId: paymentIntent.metadata.orderId,
+          amount: paymentIntent.amount,
+          currency: paymentIntent.currency,
+        });
         break;
       }
 
       case 'payment_intent.payment_failed': {
         const paymentIntent = event.data.object as Stripe.PaymentIntent;
+        const lastError = paymentIntent.last_payment_error;
 
-        console.error(`Payment failed for order: ${paymentIntent.metadata.orderId}`);
+        console.error(`Payment failed:`, {
+          paymentIntentId: paymentIntent.id,
+          orderId: paymentIntent.metadata.orderId,
+          errorCode: lastError?.code,
+          errorMessage: lastError?.message,
+          errorType: lastError?.type,
+        });
         break;
       }
 
       case 'charge.refunded': {
         const charge = event.data.object as Stripe.Charge;
 
-        console.log(`Charge refunded: ${charge.id}`);
+        console.log(`Charge refunded:`, {
+          chargeId: charge.id,
+          amount: charge.amount_refunded,
+          currency: charge.currency,
+          paymentIntentId: charge.payment_intent,
+        });
         break;
       }
 

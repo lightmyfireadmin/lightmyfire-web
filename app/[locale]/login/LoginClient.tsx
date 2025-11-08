@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState, useRef } from 'react';
 import { useI18n, useCurrentLocale } from '@/locales/client';
 import Link from 'next/link';
+import { getAuthCallbackUrl } from '@/lib/url-helpers';
 
 export default function LoginClient() {
   const router = useRouter();
@@ -14,16 +15,6 @@ export default function LoginClient() {
   const locale = useCurrentLocale();
   const [isRedirecting, setIsRedirecting] = useState(false);
   const hasRedirectedRef = useRef(false);
-
-  const getRedirectUrl = () => {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL ||
-      process.env.NEXT_PUBLIC_VERCEL_URL ||
-      process.env.NEXT_PUBLIC_SITE_URL ||
-      'http://localhost:3000';
-    const url = baseUrl.includes('http') ? baseUrl : `https://${baseUrl}`;
-    const cleanUrl = url.charAt(url.length - 1) === '/' ? url.slice(0, -1) : url;
-    return `${cleanUrl}/${locale}/auth/callback`;
-  };
 
   useEffect(() => {
         const {
@@ -105,7 +96,7 @@ export default function LoginClient() {
             }}
             theme="light"
             providers={['google']}
-            redirectTo={getRedirectUrl()}
+            redirectTo={getAuthCallbackUrl(locale)}
             localization={{
               variables: {
                 sign_in: {

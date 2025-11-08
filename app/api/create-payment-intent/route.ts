@@ -3,10 +3,20 @@ import Stripe from 'stripe';
 import { cookies } from 'next/headers';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { rateLimit } from '@/lib/rateLimit';
+import { validatePaymentEnvironment } from '@/lib/env';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
+  const envValidation = validatePaymentEnvironment();
+  if (!envValidation.valid) {
+    console.error('Payment environment validation failed:', envValidation.errors);
+    return NextResponse.json(
+      { error: 'Payment system not properly configured. Please contact support.' },
+      { status: 500 }
+    );
+  }
+
   const cookieStore = cookies();
   const supabase = createServerSupabaseClient(cookieStore);
 
@@ -94,12 +104,27 @@ export async function POST(request: NextRequest) {
     console.error('Payment intent creation error:', error);
 
     if (error instanceof Stripe.errors.StripeError) {
+      const statusCode = error.statusCode || 400;
+
+      let userMessage = 'Payment processing failed. Please try again.';
+      if (error.type === 'StripeCardError') {
+        userMessage = error.message;
+      } else if (error.type === 'StripeInvalidRequestError') {
+        userMessage = 'Invalid payment request. Please check your information.';
+      } else if (error.type === 'StripeAPIError') {
+        userMessage = 'Payment service temporarily unavailable. Please try again shortly.';
+      } else if (error.type === 'StripeAuthenticationError') {
+        userMessage = 'Payment authentication failed. Please contact support.';
+        console.error('CRITICAL: Stripe authentication error - check API keys');
+      }
+
       return NextResponse.json(
-        { 
-          error: error.message,
+        {
+          error: userMessage,
           code: error.code,
+          type: error.type,
         },
-        { status: 400 }
+        { status: statusCode }
       );
     }
 

@@ -284,7 +284,7 @@ ${createdLighters
 The sticker PNG file is attached. Please fulfill this order.
     `;
 
-        const fulfillmentEmail = process.env.FULFILLMENT_EMAIL || 'orders@lightmyfire.app';
+    const fulfillmentEmail = process.env.FULFILLMENT_EMAIL || 'orders@lightmyfire.app';
     let fulfillmentEmailSent = false;
     let customerEmailSent = false;
 
