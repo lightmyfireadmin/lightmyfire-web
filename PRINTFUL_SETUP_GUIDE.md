@@ -72,6 +72,59 @@ Common errors:
 - **404 Not Found**: Variant ID might be incorrect
 - **Network error**: Check internet connection
 
+### Debugging on Vercel Production
+
+If the API key is set on Vercel but still not working:
+
+**Step 1: Check Vercel Function Logs**
+
+1. Go to https://vercel.com/dashboard
+2. Select your project
+3. Go to **Deployments** → Click on latest deployment
+4. Click **Functions** tab
+5. Find `/api/calculate-shipping` function
+6. Check the logs for error details
+
+**Step 2: Look for These Error Details**
+
+With the updated logging, you should see:
+```json
+{
+  "error": "Printful API error: Unauthorized",
+  "apiKeyPresent": true,
+  "apiKeyLength": 45,
+  "variantId": 9413
+}
+```
+
+**Step 3: Common Vercel-Specific Issues**
+
+1. **Extra spaces in env var**: Edit the env var on Vercel and re-save without extra whitespace
+2. **Quotes in env var**: Remove any quotes around the API key (use raw key only)
+3. **Need to redeploy**: After changing env vars, you MUST trigger a new deployment
+4. **Wrong environment**: Make sure env var is set for "Production" not just "Preview"
+5. **API key expired**: Generate a new API key from Printful dashboard
+
+**Step 4: Test API Key Directly**
+
+To verify your API key works, test it with curl:
+```bash
+curl -X GET "https://api.printful.com/store" \
+  -H "Authorization: Bearer YOUR_API_KEY_HERE"
+```
+
+If you get a 200 response with store info, the key is valid.
+
+**Step 5: Verify Variant ID**
+
+Test if variant 9413 exists:
+```bash
+curl -X GET "https://api.printful.com/products/variant/9413" \
+  -H "Authorization: Bearer YOUR_API_KEY_HERE"
+```
+
+If you get 404, the variant ID is incorrect and needs updating.
+
 ## Current Configuration:
 
 - **Sticker Product**: Kiss Cut Sticker Sheet - 8.5" x 11"

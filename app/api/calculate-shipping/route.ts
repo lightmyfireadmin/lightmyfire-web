@@ -97,7 +97,13 @@ export async function POST(request: NextRequest) {
         printfulRates = await printful.calculateShipping(shippingRequest);
         console.log('Printful rates received:', printfulRates);
       } catch (error) {
-        console.error('Failed to fetch Printful shipping rates:', error);
+        console.error('Failed to fetch Printful shipping rates:', {
+          error: error instanceof Error ? error.message : error,
+          stack: error instanceof Error ? error.stack : undefined,
+          apiKeyPresent: !!process.env.PRINTFUL_API_KEY,
+          apiKeyLength: process.env.PRINTFUL_API_KEY?.length,
+          variantId: LIGHTMYFIRE_PRINTFUL_CONFIG.STICKER_SHEET_VARIANT_ID,
+        });
         usedFallback = true;
       }
     } else {
