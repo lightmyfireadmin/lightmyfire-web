@@ -11,7 +11,7 @@ import { useI18n } from '@/locales/client';
 export default function LoginPage() {
   const router = useRouter();
   const { addToast } = useToast();
-  const t = useI18n();
+  const t = useI18n() as any;
 
   const getRedirectUrl = () => {
     let url =

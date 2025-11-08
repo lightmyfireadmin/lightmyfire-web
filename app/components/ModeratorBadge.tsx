@@ -8,7 +8,7 @@ interface ModeratorBadgeProps {
 }
 
 export default function ModeratorBadge({ isSmall = false, role }: ModeratorBadgeProps) {
-  const t = useI18n();
+  const t = useI18n() as any;
 
   if (role !== 'moderator') return null;
 

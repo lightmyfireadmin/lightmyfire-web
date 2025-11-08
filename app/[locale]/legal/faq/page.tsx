@@ -14,7 +14,7 @@ interface FAQItem {
 }
 
 export default function FAQ() {
-  const t = useI18n();
+  const t = useI18n() as any;
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [showContactModal, setShowContactModal] = useState(false);
 

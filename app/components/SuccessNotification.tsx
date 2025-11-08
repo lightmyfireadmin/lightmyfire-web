@@ -9,7 +9,7 @@ import { useToast } from '@/lib/context/ToastContext';
 type SuccessMessageKey = 'notifications.login_success' | 'notifications.logout_success' | 'notifications.signup_success' | 'notifications.post_success';
 
 export default function SuccessNotification() {
-  const t = useI18n();
+  const t = useI18n() as any;
   const searchParams = useSearchParams();
   const { addToast } = useToast();
   const [message, setMessage] = useState<string | null>(null);

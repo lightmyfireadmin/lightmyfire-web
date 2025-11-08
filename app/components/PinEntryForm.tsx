@@ -9,7 +9,7 @@ import LoadingSpinner from '@/app/components/LoadingSpinner';
 import InfoPopup from '@/app/components/InfoPopup';
 
 export default function PinEntryForm() {
-  const t = useI18n();
+  const t = useI18n() as any;
   const searchParams = useSearchParams();
   const [pin, setPin] = useState('');
   const [error, setError] = useState('');

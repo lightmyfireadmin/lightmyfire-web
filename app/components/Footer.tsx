@@ -5,7 +5,7 @@ import { FaInstagram, FaTiktok, FaFacebook } from 'react-icons/fa';
 import { useI18n } from '@/locales/client';
 
 export default function Footer({ lang }: { lang: string }) {
-  const t = useI18n();
+  const t = useI18n() as any;
   const currentYear = new Date().getFullYear();
 
   return (

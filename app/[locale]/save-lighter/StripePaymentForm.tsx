@@ -50,7 +50,7 @@ function PaymentFormContent({
   onSuccess,
   onError,
 }: StripePaymentFormProps) {
-  const t = useI18n();
+  const t = useI18n() as any;
   const locale = useCurrentLocale();
   const stripe = useStripe();
   const elements = useElements();
@@ -290,7 +290,7 @@ function PaymentFormContent({
 }
 
 export default function StripePaymentForm(props: StripePaymentFormProps) {
-  const t = useI18n();
+  const t = useI18n() as any;
   const [isStripeLoaded, setIsStripeLoaded] = useState(false);
   const [stripeError, setStripeError] = useState<string | null>(null);
 

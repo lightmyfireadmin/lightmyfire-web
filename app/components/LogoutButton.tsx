@@ -11,7 +11,7 @@ interface LogoutButtonProps {
 
 export default function LogoutButton({ isMobileMenu = false }: LogoutButtonProps) {
   const router = useRouter();
-  const t = useI18n();
+  const t = useI18n() as any;
   const { addToast } = useToast();
 
   const handleLogout = async () => {

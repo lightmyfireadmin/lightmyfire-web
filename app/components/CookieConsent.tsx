@@ -8,7 +8,7 @@ import { useI18n, useCurrentLocale } from '@/locales/client';
 const COOKIE_CONSENT_KEY = 'cookie_consent';
 
 const CookieConsent = () => {
-  const t = useI18n();
+  const t = useI18n() as any;
   const locale = useCurrentLocale();
   const [showBanner, setShowBanner] = useState(false);
 

@@ -7,7 +7,7 @@ import Image from 'next/image';
 import DOMPurify from 'isomorphic-dompurify';
 
 export default function OurPhilosophy() {
-  const t = useI18n();
+  const t = useI18n() as any;
   const [isExpanded, setIsExpanded] = useState(false);
 
   const sanitizeHTML = (html: string) => {

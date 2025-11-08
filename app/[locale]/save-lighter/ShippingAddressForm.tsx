@@ -19,7 +19,7 @@ interface ShippingAddressFormProps {
 }
 
 export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddressFormProps) {
-  const t = useI18n();
+  const t = useI18n() as any;
 
   const COUNTRIES = [
     { code: 'AT', name: t('country.AT') },

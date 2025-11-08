@@ -8,7 +8,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server';
 export const dynamic = 'force-dynamic';
 
 export default async function SaveLighterPage({ params }: { params: { locale: string } }) {
-  const t = await getI18n();
+  const t = await getI18n() as any;
   const cookieStore = cookies();
   const supabase = createServerSupabaseClient(cookieStore);
 

@@ -80,7 +80,7 @@ const getPackOptions = (t: any) => [
 ];
 
 export default function SaveLighterFlow({ user }: { user: User }) {
-  const t = useI18n();
+  const t = useI18n() as any;
   const locale = useCurrentLocale();
   const [selectedPack, setSelectedPack] = useState<number | null>(null);
   const [customizations, setCustomizations] = useState<LighterCustomization[]>([]);

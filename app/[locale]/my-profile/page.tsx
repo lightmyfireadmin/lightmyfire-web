@@ -78,7 +78,7 @@ function calculatePoints(stats: {
 }
 
 export default async function MyProfilePage() {
-  const t = await getI18n();
+  const t = await getI18n() as any;
   const locale = await getCurrentLocale();
 
   const cookieStore = cookies();

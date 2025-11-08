@@ -38,7 +38,7 @@ interface Order {
 }
 
 export default function MyOrdersPage() {
-  const t = useI18n();
+  const t = useI18n() as any;
   const router = useRouter();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);

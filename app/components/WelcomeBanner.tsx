@@ -15,7 +15,7 @@ export default function WelcomeBanner({ isLoggedIn, username }: WelcomeBannerPro
   const [isVisible, setIsVisible] = useState(false);
   const pathname = usePathname();
   const lang = useCurrentLocale();
-  const t = useI18n();
+  const t = useI18n() as any;
 
   
   const shouldHideBanner = pathname.includes('/my-profile') ||

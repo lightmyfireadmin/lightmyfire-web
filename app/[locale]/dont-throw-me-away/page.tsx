@@ -5,12 +5,12 @@ import { useI18n } from '@/locales/client';
 import DOMPurify from 'isomorphic-dompurify';
 
 export default function DontThrowMeAwayPage() {
-  const t = useI18n();
+  const t = useI18n() as any;
 
   const sanitizeHTML = (html: string) => {
     return DOMPurify.sanitize(html, {
-      ALLOWED_TAGS: ['p', 'strong', 'em', 'u', 'br', 'a', 'li', 'ol', 'ul'],
-      ALLOWED_ATTR: ['href', 'target', 'rel'],
+      ALLOWED_TAGS: ['p', 'strong', 'em', 'u', 'br', 'a', 'li', 'ol', 'ul', 'sup'],
+      ALLOWED_ATTR: ['href', 'target', 'rel', 'class'],
     });
   };
 
@@ -367,6 +367,30 @@ export default function DontThrowMeAwayPage() {
             >
               {t('my_profile.save_first_lighter')}
             </a>
+          </div>
+
+          {/* Citations and Sources */}
+          <div className="rounded-lg border border-border bg-muted/50 p-6">
+            <h2 className="text-xl font-semibold text-foreground mb-4 flex items-center gap-2">
+              <span className="text-2xl">📚</span> {t('refill_guide.citations.title')}
+            </h2>
+            <div className="space-y-3">
+              <div className="text-sm text-muted-foreground">
+                <span className="font-semibold text-foreground">[1]</span> {t('refill_guide.citations.1.text')} - {t('refill_guide.citations.1.source')}
+                {' '}
+                <a
+                  href={t('refill_guide.citations.1.url')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  ↗
+                </a>
+              </div>
+            </div>
+            <p className="text-xs text-muted-foreground mt-4 pt-4 border-t border-border">
+              <strong>Disclaimer:</strong> Brand names mentioned on this page (if any) are used for descriptive purposes only under fair use. They are trademarks of their respective owners. LightMyFire is not affiliated with, endorsed by, or sponsored by any lighter manufacturer.
+            </p>
           </div>
         </div>
       </div>

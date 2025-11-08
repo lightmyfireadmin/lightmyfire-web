@@ -25,7 +25,7 @@ interface LocationPickerProps {
 }
 
 export default function LocationPicker({ value, onChange }: LocationPickerProps) {
-  const t = useI18n();
+  const t = useI18n() as any;
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<LocationSearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);

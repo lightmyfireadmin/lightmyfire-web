@@ -8,7 +8,7 @@ import { CheckCircleIcon, EnvelopeIcon, FireIcon } from '@heroicons/react/24/out
 import ContactFormModal from '@/app/components/ContactFormModal';
 
 export default function OrderSuccessContent() {
-  const t = useI18n();
+  const t = useI18n() as any;
   const locale = useCurrentLocale();
   const router = useRouter();
   const searchParams = useSearchParams();

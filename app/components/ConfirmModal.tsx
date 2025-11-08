@@ -19,7 +19,7 @@ export default function ConfirmModal({
   title,
   message,
 }: ConfirmModalProps) {
-  const t = useI18n();
+  const t = useI18n() as any;
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={onClose}>

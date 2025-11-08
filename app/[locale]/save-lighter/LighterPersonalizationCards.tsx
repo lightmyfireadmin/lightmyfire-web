@@ -21,7 +21,7 @@ export default function LighterPersonalizationCards({
   stickerCount: number;
   onSave: (customizations: LighterCustomization[], language: string) => void;
 }) {
-  const t = useI18n();
+  const t = useI18n() as any;
   const currentLocale = useCurrentLocale();
   // Default colors for initial lighter customizations (matches ColorPicker presets)
   const DEFAULT_COLORS = [

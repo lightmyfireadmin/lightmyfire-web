@@ -57,7 +57,7 @@ export default function Header({ session, username }: { session: Session | null;
   const pathname = usePathname();
   const isLoggedIn = session !== null;
   const lang = useCurrentLocale();
-  const t = useI18n();
+  const t = useI18n() as any;
   const focusTrapRef = useFocusTrap(mobileMenuOpen);
 
   

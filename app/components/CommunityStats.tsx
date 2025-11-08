@@ -18,7 +18,7 @@ interface CommunityStatsData {
 }
 
 const CommunityStats = () => {
-  const t = useI18n();
+  const t = useI18n() as any;
   const [stats, setStats] = useState<CommunityStatsData>({
     lightersSaved: 0,
     storiesCreated: 0,

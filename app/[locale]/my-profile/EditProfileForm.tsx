@@ -14,7 +14,7 @@ interface Profile {
 }
 
 export default function EditProfileForm({ user, profile }: { user: User; profile: Profile }) {
-  const t = useI18n();
+  const t = useI18n() as any;
   const [username, setUsername] = useState(profile.username);
   const [nationality, setNationality] = useState(profile.nationality || '');
   const [showNationality, setShowNationality] = useState(profile.show_nationality);

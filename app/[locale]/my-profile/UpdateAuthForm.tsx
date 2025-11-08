@@ -8,7 +8,7 @@ import type { User } from '@supabase/supabase-js';
 import { useI18n } from '@/locales/client';
 
 export default function UpdateAuthForm() {
-  const t = useI18n();
+  const t = useI18n() as any;
   const [user, setUser] = useState<User | null>(null);
   const [newEmail, setNewEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');

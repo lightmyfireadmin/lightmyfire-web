@@ -4,7 +4,7 @@
 import { useI18n } from '@/locales/client';
 
 export default function TermsOfService() {
-  const t = useI18n();
+  const t = useI18n() as any;
 
   return (
     <div className="mx-auto max-w-3xl p-4 py-12 sm:p-6 lg:p-8">

@@ -12,7 +12,7 @@ interface SaveLighterFormProps {
 
 export default function SaveLighterForm({ user, onSuccess }: SaveLighterFormProps) {
   const router = useRouter();
-  const t = useI18n();
+  const t = useI18n() as any;
   const [lighterName, setLighterName] = useState('');
   const [backgroundUrl, setBackgroundUrl] = useState('');
   const [showUsername, setShowUsername] = useState(false);

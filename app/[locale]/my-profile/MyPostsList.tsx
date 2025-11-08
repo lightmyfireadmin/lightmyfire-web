@@ -22,7 +22,7 @@ export default function MyPostsList({
   const [postToDelete, setPostToDelete] = useState<number | null>(null);
   const router = useRouter();
   const locale = useCurrentLocale();
-  const t = useI18n();
+  const t = useI18n() as any;
 
   const handleDeleteClick = (postId: number) => {
     setPostToDelete(postId);

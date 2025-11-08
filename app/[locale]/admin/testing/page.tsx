@@ -30,16 +30,14 @@ interface TestScenario {
 export default function AdminTestingPage() {
   const router = useRouter();
   const locale = useCurrentLocale();
-  const t = useI18n();
+  const t = useI18n() as any;
   const [loading, setLoading] = useState(true);
   const [authenticated, setAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [stats, setStats] = useState<DatabaseStats | null>(null);
   const [checkedScenarios, setCheckedScenarios] = useState<Record<string, boolean>>({});
-
-  // Password protection
-  const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_TESTING_PASSWORD || 'lightmyfire2025';
+  const [isVerifying, setIsVerifying] = useState(false);
 
   useEffect(() => {
     checkAuth();
@@ -74,12 +72,31 @@ export default function AdminTestingPage() {
 
   async function handlePasswordSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
-      setAuthenticated(true);
-      setPasswordError('');
-      fetchStats();
-    } else {
-      setPasswordError('Incorrect password');
+    setIsVerifying(true);
+    setPasswordError('');
+
+    try {
+      const response = await fetch('/api/admin/verify-testing-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.authenticated) {
+        setAuthenticated(true);
+        fetchStats();
+      } else {
+        setPasswordError(data.error || 'Incorrect password');
+      }
+    } catch (error) {
+      console.error('Password verification error:', error);
+      setPasswordError('Failed to verify password. Please try again.');
+    } finally {
+      setIsVerifying(false);
     }
   }
 
@@ -287,9 +304,10 @@ export default function AdminTestingPage() {
             )}
             <button
               type="submit"
-              className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-md font-semibold hover:bg-primary/90"
+              disabled={isVerifying}
+              className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-md font-semibold hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Unlock Dashboard
+              {isVerifying ? 'Verifying...' : 'Unlock Dashboard'}
             </button>
           </form>
         </div>

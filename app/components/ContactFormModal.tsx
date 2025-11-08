@@ -18,7 +18,7 @@ export default function ContactFormModal({
   subject,
   context = 'general'
 }: ContactFormModalProps) {
-  const t = useI18n();
+  const t = useI18n() as any;
   const [formData, setFormData] = useState({
     name: '',
     email: '',

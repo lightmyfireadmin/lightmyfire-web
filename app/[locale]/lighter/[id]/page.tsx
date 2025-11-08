@@ -62,7 +62,7 @@ export default async function LighterPage({
 }: {
   params: { id: string; locale: string };
 }) {
-  const t = await getI18n();
+  const t = await getI18n() as any;
   const cookieStore = cookies();
   const supabase = createServerSupabaseClient(cookieStore);
 

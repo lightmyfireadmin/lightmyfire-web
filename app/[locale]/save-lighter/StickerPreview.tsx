@@ -26,7 +26,7 @@ export default function StickerPreview({
   onDownloadStart,
   onDownloadComplete,
 }: StickerPreviewProps) {
-  const t = useI18n();
+  const t = useI18n() as any;
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedFormat, setSelectedFormat] = useState<'stickiply' | 'printful'>('printful');

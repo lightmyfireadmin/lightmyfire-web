@@ -12,7 +12,7 @@ type LighterInfo = {
 };
 
 export default function ClientSaveSuccess({ id, locale }: { id: string; locale: string }) {
-  const t = useI18n();
+  const t = useI18n() as any;
   const lighterId = id;
   const [lighter, setLighter] = useState<LighterInfo | null>(null);
   const [loading, setLoading] = useState(true);

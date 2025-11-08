@@ -50,7 +50,7 @@ function PostCard({
   isLoggedIn: boolean;
   isMini?: boolean;
 }) {
-  const t = useI18n();
+  const t = useI18n() as any;
   
 
   let embedId: string | null = null;

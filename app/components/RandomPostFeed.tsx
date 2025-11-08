@@ -9,7 +9,7 @@ import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { MosaicSkeleton } from './Skeleton';
 
 const RandomPostFeed = () => {
-  const t = useI18n();
+  const t = useI18n() as any;
   const [posts, setPosts] = useState<DetailedPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);

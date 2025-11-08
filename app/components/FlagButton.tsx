@@ -15,7 +15,7 @@ export default function FlagButton({
   isLoggedIn: boolean;
 }) {
   const router = useRouter();
-  const t = useI18n();
+  const t = useI18n() as any;
   const [isFlagged, setIsFlagged] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);

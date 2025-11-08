@@ -7,7 +7,7 @@ import EmptyState from './EmptyState';
 
 function EmptyLighterPosts({ lighterId }: { lighterId: string }) {
   const locale = useCurrentLocale();
-  const t = useI18n();
+  const t = useI18n() as any;
 
   return (
     <EmptyState

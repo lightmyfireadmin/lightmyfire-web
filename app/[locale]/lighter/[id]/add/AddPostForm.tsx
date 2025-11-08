@@ -58,7 +58,7 @@ export default function AddPostForm({
   lighterName: string;
 }) {
   const router = useRouter();
-  const t = useI18n();
+  const t = useI18n() as any;
   // SECURITY: Hook no longer needs userId - API gets it from session
   const { moderateText, moderateImage, isLoading: isModerating } = useContentModeration();
 

@@ -18,7 +18,7 @@ import OurPhilosophy from '@/app/components/OurPhilosophy';
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  const t = await getI18n();
+  const t = await getI18n() as any;
   const cookieStore = cookies();
   const locale = await getCurrentLocale();
   const supabase = createServerSupabaseClient(cookieStore);
