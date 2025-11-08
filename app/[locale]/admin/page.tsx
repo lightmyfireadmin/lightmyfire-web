@@ -20,10 +20,15 @@ export default async function AdminPanelPage() {
     redirect(`/${locale}/login?message=You must be logged in to access the admin panel.`);
   }
 
-  
-  const { data: userRole, error: roleError } = await supabase.rpc('get_my_role');
+  // Check if user is admin by querying the profiles table directly
+  const { data: profile, error: profileError } = await supabase
+    .from('profiles')
+    .select('role')
+    .eq('id', session.user.id)
+    .single();
 
-  if (roleError || userRole !== 'admin') {
+  if (profileError || profile?.role !== 'admin') {
+    console.error('Admin access check failed:', { profileError, role: profile?.role });
     redirect(`/${locale}?message=Access denied. Admin privileges required.`);
   }
 
