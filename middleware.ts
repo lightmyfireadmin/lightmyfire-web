@@ -19,7 +19,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-
-    '/((?!api|_next/static|_next/image|assets|flags|illustrations|favicon.ico|.*\\..*).*)',
+    // Match all routes except: api, _next, static files, and auth callback
+    '/((?!api|_next/static|_next/image|assets|flags|illustrations|favicon.ico|auth/callback|.*\\..*).*)',
   ],
 };
