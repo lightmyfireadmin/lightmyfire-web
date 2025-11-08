@@ -50,11 +50,11 @@ export default function AdminTestingPage() {
       // Check if user is admin
       const { data: profile } = await supabase
         .from('profiles')
-        .select('is_admin')
+        .select('role')
         .eq('id', session.user.id)
         .single();
 
-      if (!profile?.is_admin) {
+      if (profile?.role !== 'admin') {
         router.push(`/${locale}`);
         return;
       }
