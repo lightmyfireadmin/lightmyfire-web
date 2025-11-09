@@ -1,12 +1,12 @@
 # Subsequent Actions Log
 
 **Last Updated**: 2025-11-09
-**Current Progress**: 26/61 tasks completed (42.6%)
-**Latest Commit**: `ca41926`
+**Current Progress**: 30/61 tasks completed (49.2%)
+**Latest Commit**: `efd7adf`
 
 ---
 
-## ✅ Latest Session Completed (Commits 4-9)
+## ✅ Latest Session Completed (Commits 4-11)
 
 ### Commit 4: Enhanced Webhook & Authentication Security (`2297d0a`)
 1. ✅ **Printful Webhook Timestamp Validation**
@@ -94,20 +94,48 @@
    - Rejects invalid pack sizes with clear error messages
    - Prevents manipulation of order quantities
 
+### Commit 10: Stripe Webhook Improvements (`475d265`)
+12. ✅ **Payment Failure Handling** (payment_intent.payment_failed)
+   - Update database with payment_failed=true
+   - Store error details: error_code, error_message, error_type
+   - Log decline_code for debugging
+   - Graceful error handling without breaking webhook
+
+13. ✅ **Refund Handling** (charge.refunded)
+   - Update database with refunded=true
+   - Store refund_amount and refund_reason
+   - Track refund status for order management
+   - Proper error logging
+
+14. ✅ **Webhook Security** (Confirmed Already Implemented)
+   - Stripe signature verification using constructEvent()
+   - Idempotency protection via webhook_events table
+   - Comprehensive error logging
+   - Returns 200 to prevent unnecessary retries
+
+### Commit 11: Duplicate Order Prevention (`efd7adf`)
+15. ✅ **Payment Intent Duplication Prevention**
+   - Idempotency key from userId + orderId
+   - Stripe auto-returns same intent if key is reused
+   - Duplicate detection checks existing pending intents
+   - Reuses existing payment intent when found
+   - Added userId to metadata for better tracking
+   - Prevents accidental double charges from button clicks
+
 ---
 
 ## 📊 Current Statistics
 
 - **Total Tasks**: 61
-- **Completed**: 26 (42.6%)
+- **Completed**: 30 (49.2%)
 - **In Progress**: 0
-- **Pending**: 35
+- **Pending**: 31
   - High Priority: 7
-  - Medium Priority: 20
+  - Medium Priority: 16
   - Low Priority: 8
 
-- **Commits This Session**: 9
-- **Files Modified**: 19+
+- **Commits This Session**: 11
+- **Files Modified**: 21+
 - **New Files Created**: 4
 
 ---
@@ -342,6 +370,10 @@ These need SQL migrations on Supabase:
 14. ✅ **Pack Size Validation** (prevents order manipulation)
 15. ✅ **Location Coordinates Validation** (prevents invalid GPS data)
 16. ✅ **Post Text Length Validation** (prevents abuse, 500 char limit)
+17. ✅ **Stripe Webhook Signature Verification** (prevents webhook spoofing)
+18. ✅ **Payment Intent Idempotency** (prevents duplicate charges)
+19. ✅ **Payment Failure Tracking** (stores error details for debugging)
+20. ✅ **Refund Tracking** (maintains order status integrity)
 
 ---
 
@@ -404,5 +436,7 @@ All quick wins have been completed! ✅
 ---
 
 **End of Subsequent Actions Log**
-Last Commit: `ca41926` - Shipping address validation and pack size verification
+Last Commit: `efd7adf` - Duplicate order prevention with idempotency
 Branch: `claude/review-email-scheduling-011CUwFqqxSb1vAvHujowbBy`
+
+**Session Summary**: 30/61 tasks completed (49.2%) - Nearly halfway through the audit!
