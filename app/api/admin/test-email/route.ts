@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://lightmyfire.app';
+        const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://lightmyfire.app';
 
         let result;
 

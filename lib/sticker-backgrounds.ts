@@ -385,7 +385,7 @@ export function getPrintfulTemplateConfig(
   return {
     variant_id: 9413,     files: [
       {
-        type: 'back',         url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/sticker-backgrounds/${theme}/${size}`,
+        type: 'back',         url: `${process.env.NEXT_PUBLIC_SITE_URL}/api/sticker-backgrounds/${theme}/${size}`,
       },
     ],
     options: [
