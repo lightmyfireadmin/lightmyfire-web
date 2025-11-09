@@ -99,17 +99,58 @@ export async function POST(request: NextRequest) {
       );
     }
 
-        const paymentIntent = await stripe.paymentIntents.create({
-      amount: amountInCents,
-      currency: currency.toLowerCase(),
-      metadata: {
-        orderId,
-        customerEmail: cardholderEmail,
-        packSize: packSize || 'unknown',
-      },
-      receipt_email: cardholderEmail,
-      description: `LightMyFire Sticker Pack - Order ${orderId}`,
+    // Generate idempotency key to prevent duplicate payment intents
+    // This ensures that if the user clicks "pay" multiple times, we don't create multiple charges
+    const idempotencyKey = `payment_intent_${session.user.id}_${orderId}`;
+
+    // Check for existing pending payment intents for this user and order
+    // This provides additional protection against duplicates
+    const existingIntents = await stripe.paymentIntents.list({
+      limit: 5,
     });
+
+    const duplicateIntent = existingIntents.data.find(
+      intent =>
+        intent.metadata.orderId === orderId &&
+        intent.metadata.userId === session.user.id &&
+        (intent.status === 'requires_payment_method' ||
+         intent.status === 'requires_confirmation' ||
+         intent.status === 'requires_action')
+    );
+
+    if (duplicateIntent) {
+      console.log(`Reusing existing payment intent for order ${orderId}:`, duplicateIntent.id);
+      return NextResponse.json(
+        {
+          success: true,
+          clientSecret: duplicateIntent.client_secret,
+          paymentIntentId: duplicateIntent.id,
+          amount: duplicateIntent.amount,
+          currency: duplicateIntent.currency,
+          reused: true,
+        },
+        { status: 200 }
+      );
+    }
+
+        const paymentIntent = await stripe.paymentIntents.create(
+      {
+        amount: amountInCents,
+        currency: currency.toLowerCase(),
+        metadata: {
+          orderId,
+          customerEmail: cardholderEmail,
+          packSize: packSize || 'unknown',
+          userId: session.user.id,
+        },
+        receipt_email: cardholderEmail,
+        description: `LightMyFire Sticker Pack - Order ${orderId}`,
+      },
+      {
+        // Idempotency key prevents duplicate charges if user clicks multiple times
+        idempotencyKey,
+      }
+    );
 
         return NextResponse.json(
       {
