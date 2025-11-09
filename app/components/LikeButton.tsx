@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { supabase } from '@/lib/supabase'; 
+import { useState, useRef } from 'react';
+import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 
 export default function LikeButton({
@@ -16,12 +16,26 @@ export default function LikeButton({
   const [isLiked, setIsLiked] = useState(post.user_has_liked || false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Debounce mechanism using ref to prevent double-clicks
+  const isProcessingRef = useRef(false);
+  const lastClickTimeRef = useRef(0);
+
   const handleLike = async () => {
     if (!isLoggedIn) {
       router.push('/login?message=You must be logged in to like a post');
       return;
     }
 
+    // Prevent double-clicks: require 500ms between clicks
+    const now = Date.now();
+    const timeSinceLastClick = now - lastClickTimeRef.current;
+
+    if (isProcessingRef.current || timeSinceLastClick < 500) {
+      return; // Silently ignore rapid clicks
+    }
+
+    lastClickTimeRef.current = now;
+    isProcessingRef.current = true;
     setIsLoading(true);
 
     
@@ -41,12 +55,13 @@ export default function LikeButton({
 
     if (error) {
       console.error(error);
-      
+      // Rollback optimistic update on error
       setLikes(originalLikes);
       setIsLiked(originalIsLiked);
     }
 
     setIsLoading(false);
+    isProcessingRef.current = false;
   };
 
   return (

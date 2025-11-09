@@ -64,10 +64,75 @@ export function validateFileSize(file: File): string | null {
   return null;
 }
 
-export async function validateFile(
-  file: File
+/**
+ * Validates image dimensions
+ * @param file - Image file to validate
+ * @param maxWidth - Maximum width in pixels (default: 4096)
+ * @param maxHeight - Maximum height in pixels (default: 4096)
+ * @param minWidth - Minimum width in pixels (default: 100)
+ * @param minHeight - Minimum height in pixels (default: 100)
+ * @returns Promise with validation result
+ */
+export async function validateImageDimensions(
+  file: File,
+  maxWidth: number = 4096,
+  maxHeight: number = 4096,
+  minWidth: number = 100,
+  minHeight: number = 100
 ): Promise<FileValidationResult> {
-    const sizeError = validateFileSize(file);
+  return new Promise((resolve) => {
+    try {
+      const img = new Image();
+      const objectUrl = URL.createObjectURL(file);
+
+      img.onload = () => {
+        URL.revokeObjectURL(objectUrl);
+
+        if (img.width > maxWidth || img.height > maxHeight) {
+          resolve({
+            valid: false,
+            error: `Image dimensions too large. Maximum ${maxWidth}x${maxHeight} pixels.`,
+          });
+          return;
+        }
+
+        if (img.width < minWidth || img.height < minHeight) {
+          resolve({
+            valid: false,
+            error: `Image dimensions too small. Minimum ${minWidth}x${minHeight} pixels.`,
+          });
+          return;
+        }
+
+        resolve({
+          valid: true,
+        });
+      };
+
+      img.onerror = () => {
+        URL.revokeObjectURL(objectUrl);
+        resolve({
+          valid: false,
+          error: 'Failed to load image. File may be corrupted.',
+        });
+      };
+
+      img.src = objectUrl;
+    } catch (error) {
+      resolve({
+        valid: false,
+        error: 'Failed to validate image dimensions.',
+      });
+    }
+  });
+}
+
+export async function validateFile(
+  file: File,
+  validateDimensions: boolean = true
+): Promise<FileValidationResult> {
+  // Validate file size
+  const sizeError = validateFileSize(file);
   if (sizeError) {
     return {
       valid: false,
@@ -75,12 +140,26 @@ export async function validateFile(
     };
   }
 
-    if (!FILE_UPLOAD.ACCEPTED_TYPES.includes(file.type as 'image/png' | 'image/jpeg' | 'image/gif')) {
-          }
+  // Validate MIME type
+  if (!FILE_UPLOAD.ACCEPTED_TYPES.includes(file.type as 'image/png' | 'image/jpeg' | 'image/gif')) {
+    return {
+      valid: false,
+      error: 'Invalid file type. Only PNG, JPEG, and GIF images are allowed.',
+    };
+  }
 
-    const signatureResult = await validateFileSignature(file);
+  // Validate file signature (prevents file extension spoofing)
+  const signatureResult = await validateFileSignature(file);
   if (!signatureResult.valid) {
     return signatureResult;
+  }
+
+  // Validate image dimensions (optional, enabled by default)
+  if (validateDimensions) {
+    const dimensionsResult = await validateImageDimensions(file);
+    if (!dimensionsResult.valid) {
+      return dimensionsResult;
+    }
   }
 
   return {
@@ -109,6 +188,7 @@ const fileValidationUtils = {
   validateFile,
   validateFileSize,
   validateFileSignature,
+  validateImageDimensions,
   sanitizeFilename,
   generateSafeFilename,
 };
