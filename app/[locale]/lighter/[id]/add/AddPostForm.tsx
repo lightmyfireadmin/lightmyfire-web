@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import type { User } from '@supabase/supabase-js';
@@ -68,8 +68,8 @@ export default function AddPostForm({
   const [contentText, setContentText] = useState('');
   const [contentUrl, setContentUrl] = useState('');
   const [locationName, setLocationName] = useState('');
-  const [locationLat, setLocationLat] = useState<number | ''>(''); 
-  const [locationLng, setLocationLng] = useState<number | ''>(''); 
+  const [locationLat, setLocationLat] = useState<number | ''>('');
+  const [locationLng, setLocationLng] = useState<number | ''>('');
   const [isFindLocation, setIsFindLocation] = useState(false);
   const [isCreation, setIsCreation] = useState(false);
   const [isAnonymous, setIsAnonymous] = useState(false);
@@ -81,6 +81,10 @@ export default function AddPostForm({
   const [error, setError] = useState('');
   const [moderationError, setModerationError] = useState<{ severity: 'low' | 'medium' | 'high'; reason: string } | null>(null);
   const [showModerationWarning, setShowModerationWarning] = useState(false);
+
+  // Track upload abort controller to prevent race conditions
+  const uploadAbortControllerRef = useRef<AbortController | null>(null);
+  const isMountedRef = useRef(true);
 
   
   const [songInputMode, setSongInputMode] = useState<'url' | 'search'>('search');
@@ -143,6 +147,17 @@ export default function AddPostForm({
     };
   }, [youtubeSearchQuery, songInputMode, contentUrl, searchYouTube]);
 
+  // Cleanup on unmount - cancel pending uploads and mark component as unmounted
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+      if (uploadAbortControllerRef.current) {
+        uploadAbortControllerRef.current.abort();
+        uploadAbortControllerRef.current = null;
+      }
+    };
+  }, []);
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
@@ -172,29 +187,64 @@ export default function AddPostForm({
         return;
       }
 
-      setLoading(true);
-      setUploading(true);
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${user.id}-${Date.now()}.${fileExt}`;
-      const filePath = `${fileName}`;
-
-      const { error: uploadError } = await supabase.storage
-        .from('post-images')
-        .upload(filePath, file);
-
-      if (uploadError) {
-        setError(t('add_post.error.upload_failed'));
-        setLoading(false);
-        setUploading(false);
+      // Prevent concurrent uploads - check if upload is already in progress
+      if (uploading || uploadAbortControllerRef.current) {
+        console.warn('Upload already in progress, ignoring duplicate request');
         return;
       }
 
-      const { data: urlData } = supabase.storage
-        .from('post-images')
-        .getPublicUrl(filePath);
+      setLoading(true);
+      setUploading(true);
 
-      finalContentUrl = urlData.publicUrl;
-      setUploading(false);
+      // Create AbortController for this upload to enable cancellation
+      const abortController = new AbortController();
+      uploadAbortControllerRef.current = abortController;
+
+      try {
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${user.id}-${Date.now()}.${fileExt}`;
+        const filePath = `${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from('post-images')
+          .upload(filePath, file, {
+            upsert: false,
+          });
+
+        // Check if upload was cancelled during the operation
+        if (abortController.signal.aborted || !isMountedRef.current) {
+          console.log('Upload cancelled');
+          return;
+        }
+
+        if (uploadError) {
+          setError(t('add_post.error.upload_failed'));
+          setLoading(false);
+          setUploading(false);
+          uploadAbortControllerRef.current = null;
+          return;
+        }
+
+        const { data: urlData } = supabase.storage
+          .from('post-images')
+          .getPublicUrl(filePath);
+
+        finalContentUrl = urlData.publicUrl;
+        setUploading(false);
+        uploadAbortControllerRef.current = null;
+      } catch (err) {
+        // Handle upload cancellation or errors
+        if (abortController.signal.aborted || !isMountedRef.current) {
+          console.log('Upload cancelled or component unmounted');
+          return;
+        }
+        console.error('Upload error:', err);
+        setError(t('add_post.error.upload_failed'));
+        setLoading(false);
+        setUploading(false);
+        uploadAbortControllerRef.current = null;
+        return;
+      }
     }
 
     if (postType === 'song' && songInputMode === 'search') {
