@@ -37,12 +37,36 @@ export async function POST(request: NextRequest) {
     let event: Stripe.Event;
 
     try {
+      // Verify webhook signature and timestamp (timing-safe comparison built into Stripe SDK)
+      // Stripe's constructEvent includes:
+      // 1. HMAC-based signature verification using timing-safe comparison
+      // 2. Timestamp validation to prevent replay attacks (default tolerance: 5 minutes)
       event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Unknown error';
       console.error('Webhook signature verification failed:', errorMessage);
+
+      // Log additional details for debugging (without exposing sensitive data)
+      if (err instanceof Error && err.message.includes('timestamp')) {
+        console.error('Webhook timestamp validation failed - possible replay attack or clock skew');
+      }
+
       return NextResponse.json(
         { error: `Webhook Error: ${errorMessage}` },
+        { status: 400 }
+      );
+    }
+
+    // Additional timestamp validation: Reject events older than 5 minutes
+    const eventTimestamp = event.created;
+    const currentTimestamp = Math.floor(Date.now() / 1000);
+    const timeDifference = currentTimestamp - eventTimestamp;
+    const MAX_WEBHOOK_AGE = 300; // 5 minutes in seconds
+
+    if (timeDifference > MAX_WEBHOOK_AGE) {
+      console.error(`Webhook event too old: ${timeDifference}s old (max ${MAX_WEBHOOK_AGE}s)`);
+      return NextResponse.json(
+        { error: 'Webhook event too old' },
         { status: 400 }
       );
     }

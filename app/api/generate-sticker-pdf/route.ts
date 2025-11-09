@@ -332,7 +332,7 @@ async function drawSticker(
   ctx.fill();
 
   try {
-            const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://lightmyfire.app';
+            const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://lightmyfire.app';
     const qrUrl = `${baseUrl}/?pin=${sticker.pinCode}`;
 
     const qrDataUrl = await QRCode.toDataURL(qrUrl, {

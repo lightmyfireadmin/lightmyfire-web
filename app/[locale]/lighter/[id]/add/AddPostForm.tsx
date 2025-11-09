@@ -316,59 +316,56 @@ export default function AddPostForm({
       }
     }
 
-        let moderationFailed = false;
+        // OpenAI Moderation Workflow:
+    // - API returns no harmful content = published (requires_review = false)
+    // - API returns potentially harmful = non-visible, requires_review = true, sent to moderation queue, user NOT informed
+    // - API not working/error = non-visible, requires_review = true, sent to moderation queue, user NOT informed
+    let moderationFailed = false;
     let contentFlaggedByApi = false;
 
-                try {
-            if (postType === 'text' && contentText.trim()) {
+    try {
+      // Moderate text content
+      if (postType === 'text' && contentText.trim()) {
         const textMod = await moderateText(contentText);
         if (textMod.flagged) {
-          setModerationError({
-            severity: textMod.severityLevel || 'medium',
-            reason: textMod.reason || 'Content violates our community guidelines.',
-          });
-          setLoading(false);
-          return;
+          contentFlaggedByApi = true;
+          moderationFailed = true;
+          // DO NOT inform user - post will be created with requires_review = true
         }
       }
 
-            if (title.trim()) {
+      // Moderate title
+      if (title.trim()) {
         const titleMod = await moderateText(title);
         if (titleMod.flagged) {
-          setModerationError({
-            severity: titleMod.severityLevel || 'medium',
-            reason: `Title ${titleMod.reason?.toLowerCase() || 'violates our community guidelines.'}`,
-          });
-          setLoading(false);
-          return;
+          contentFlaggedByApi = true;
+          moderationFailed = true;
+          // DO NOT inform user - post will be created with requires_review = true
         }
       }
 
-            if (postType === 'location' && locationName.trim()) {
+      // Moderate location name
+      if (postType === 'location' && locationName.trim()) {
         const locMod = await moderateText(locationName);
         if (locMod.flagged) {
-          setModerationError({
-            severity: locMod.severityLevel || 'medium',
-            reason: `Location name ${locMod.reason?.toLowerCase() || 'violates our community guidelines.'}`,
-          });
-          setLoading(false);
-          return;
+          contentFlaggedByApi = true;
+          moderationFailed = true;
+          // DO NOT inform user - post will be created with requires_review = true
         }
       }
 
-            if ((postType === 'image' || postType === 'refuel') && finalContentUrl) {
+      // Moderate images
+      if ((postType === 'image' || postType === 'refuel') && finalContentUrl) {
         const imageMod = await moderateImage(finalContentUrl);
         if (imageMod.flagged) {
-          setModerationError({
-            severity: imageMod.severityLevel || 'medium',
-            reason: imageMod.reason || 'Image violates our community guidelines.',
-          });
-          setLoading(false);
-          return;
+          contentFlaggedByApi = true;
+          moderationFailed = true;
+          // DO NOT inform user - post will be created with requires_review = true
         }
       }
     } catch (modError) {
-                  console.error('Moderation system failure - post will require manual review:', {
+      // Moderation API failed - post will require manual review
+      console.error('Moderation system failure - post will require manual review:', {
         error: modError,
         errorMessage: modError instanceof Error ? modError.message : 'Unknown error',
         errorStack: modError instanceof Error ? modError.stack : undefined,
@@ -376,8 +373,9 @@ export default function AddPostForm({
         timestamp: new Date().toISOString(),
       });
 
-            moderationFailed = true;
-          }
+      // DO NOT inform user - post will be created with requires_review = true
+      moderationFailed = true;
+    }
 
     
     

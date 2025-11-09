@@ -440,7 +440,7 @@ export const LIGHTMYFIRE_PRINTFUL_CONFIG = {
     DEFAULT_SHIPPING: 'STANDARD',
 
     PACKING_SLIP: {
-    logo_url: `${process.env.NEXT_PUBLIC_BASE_URL}/logo-printful.png`,
+    logo_url: `${process.env.NEXT_PUBLIC_SITE_URL}/logo-printful.png`,
     message: `Thank you for being a LightSaver!
 
 Your custom stickers are ready to start their journey. Here's how to use them:
