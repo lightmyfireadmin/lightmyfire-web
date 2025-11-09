@@ -1,12 +1,12 @@
 # Subsequent Actions Log
 
 **Last Updated**: 2025-11-09
-**Current Progress**: 40/61 tasks completed (65.6%)
-**Latest Commit**: `aafdee1`
+**Current Progress**: 42/61 tasks completed (68.9%)
+**Latest Commit**: `28c8107`
 
 ---
 
-## ✅ Latest Session Completed (Commits 16-18)
+## ✅ Latest Session Completed (Commits 16-20)
 
 ### Commit 16: Image Upload Race Condition Fix (`e183882`)
 23. ✅ **AddPostForm Image Upload Race Condition Handling**
@@ -51,6 +51,33 @@
    - Success logging with email ID for tracking
    - Retry attempt logging for debugging
    - Graceful degradation on permanent failures
+
+### Commit 19: Documentation Update (`32f9637`)
+28. ✅ **Progress Documentation Updated**
+   - Updated SUBSEQUENT_ACTIONS.md with commits 16-18
+   - Statistics updated: 40/61 tasks (65.6%)
+   - Files modified documented
+
+### Commit 20: Printful Webhook Enhancements (`28c8107`)
+29. ✅ **Webhook Idempotency Protection**
+   - Generate unique webhook ID from payload (type + order + timestamp + retries)
+   - Check webhook_events table before processing
+   - Prevent duplicate processing if webhook is resent
+   - Log all webhook events for audit trail
+   - Return 200 immediately if already processed
+
+30. ✅ **Admin Email Notifications**
+   - Failed orders: Alert with failure reason and customer details
+   - Canceled orders: Notify to contact customer and process refund
+   - Orders on hold: Alert to check Printful dashboard
+   - All emails include order details, customer info, action required
+   - Uses retry-enabled sendCustomEmail from lib/email
+
+31. ✅ **Enhanced Order Status Tracking**
+   - Added support for 'order_updated' webhook event
+   - Fetches complete order status from Printful API
+   - Updates printful_status field in database
+   - Provides real-time order status synchronization
 
 ---
 
@@ -227,18 +254,19 @@
 ## 📊 Current Statistics
 
 - **Total Tasks**: 61
-- **Completed**: 40 (65.6%)
-- **In Progress**: 0
-- **Pending**: 21
+- **Completed**: 42 (68.9%)
+- **In Progress**: 1 (Implement proper loading states)
+- **Pending**: 18
   - High Priority: 7 (Database migrations required)
-  - Medium Priority: 9 (Code-only improvements)
-  - Low Priority: 5 (Optimizations)
+  - Medium Priority: 7 (Code-only improvements)
+  - Low Priority: 4 (Optimizations)
 
-- **Commits This Session**: 3 (Total: 18)
-- **Files Modified This Session**: 3
-  - `app/[locale]/lighter/[id]/add/AddPostForm.tsx`
-  - `lib/printful.ts`
-  - `lib/email.ts`
+- **Commits This Session**: 5 (Total: 20)
+- **Files Modified This Session**: 4
+  - `app/[locale]/lighter/[id]/add/AddPostForm.tsx` (race condition fixes)
+  - `lib/printful.ts` (retry mechanism + error handling)
+  - `lib/email.ts` (retry mechanism)
+  - `app/api/webhooks/printful/route.ts` (idempotency + admin notifications)
 
 ---
 
