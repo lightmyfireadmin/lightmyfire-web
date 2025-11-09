@@ -123,7 +123,31 @@ export async function POST(request: NextRequest) {
           errorCode: lastError?.code,
           errorMessage: lastError?.message,
           errorType: lastError?.type,
+          declineCode: lastError?.decline_code,
         });
+
+        // Update order in database to reflect payment failure
+        const { error: updateError } = await supabase
+          .from('sticker_orders')
+          .update({
+            payment_failed: true,
+            payment_error_code: lastError?.code || null,
+            payment_error_message: lastError?.message || null,
+            payment_error_type: lastError?.type || null,
+            updated_at: new Date().toISOString(),
+          })
+          .eq('payment_intent_id', paymentIntent.id);
+
+        if (updateError) {
+          console.error('Failed to update order payment failure:', {
+            paymentIntentId: paymentIntent.id,
+            error: updateError.message,
+            details: updateError.details,
+          });
+          // Don't return error - webhook should still return 200 to prevent retries
+        } else {
+          console.log(`Order marked as payment failed: ${paymentIntent.id}`);
+        }
         break;
       }
 
@@ -135,7 +159,32 @@ export async function POST(request: NextRequest) {
           amount: charge.amount_refunded,
           currency: charge.currency,
           paymentIntentId: charge.payment_intent,
+          refunded: charge.refunded,
         });
+
+        // Update order in database to reflect refund
+        if (typeof charge.payment_intent === 'string') {
+          const { error: refundError } = await supabase
+            .from('sticker_orders')
+            .update({
+              refunded: true,
+              refund_amount: charge.amount_refunded,
+              refund_reason: charge.refund?.reason || null,
+              updated_at: new Date().toISOString(),
+            })
+            .eq('payment_intent_id', charge.payment_intent);
+
+          if (refundError) {
+            console.error('Failed to update order refund status:', {
+              paymentIntentId: charge.payment_intent,
+              error: refundError.message,
+              details: refundError.details,
+            });
+            // Don't return error - webhook should still return 200 to prevent retries
+          } else {
+            console.log(`Order marked as refunded: ${charge.payment_intent}`);
+          }
+        }
         break;
       }
 
