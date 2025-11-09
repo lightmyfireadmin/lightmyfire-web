@@ -536,7 +536,16 @@ export function verifyPrintfulWebhook(
     .update(payload)
     .digest('hex');
 
-  return hmac === signature;
+  // Use timing-safe comparison to prevent timing attacks
+  try {
+    return crypto.timingSafeEqual(
+      Buffer.from(hmac, 'hex'),
+      Buffer.from(signature, 'hex')
+    );
+  } catch (error) {
+    // Signature is invalid format (different length)
+    return false;
+  }
 }
 
 export const printful = new PrintfulClient();

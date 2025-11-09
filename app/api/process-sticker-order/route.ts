@@ -79,8 +79,10 @@ export async function POST(request: NextRequest) {
       apiVersion: '2025-10-29.clover',
     });
 
+    // Retrieve and validate payment intent once, reuse throughout function
+    let paymentIntent;
     try {
-      const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+      paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
 
       if (paymentIntent.status !== 'succeeded') {
         console.error('Payment not successful:', paymentIntent.status);
@@ -237,7 +239,7 @@ export async function POST(request: NextRequest) {
         user_id: session.user.id,
         payment_intent_id: paymentIntentId,
         quantity: lighterData.length,
-        amount_paid: await stripe.paymentIntents.retrieve(paymentIntentId).then(pi => pi.amount),
+        amount_paid: paymentIntent.amount,
         shipping_name: shippingAddress.name,
         shipping_email: shippingAddress.email,
         shipping_address: shippingAddress.address,
@@ -373,7 +375,7 @@ The sticker PNG file is attached. Please fulfill this order.
         try {
       const emailLanguage = (lighterData[0]?.language || 'en') as SupportedEmailLanguage;
 
-      const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+      // Reuse already-retrieved paymentIntent instead of fetching again
       const totalAmount = (paymentIntent.amount / 100).toFixed(2);
       const currency = paymentIntent.currency;
 
