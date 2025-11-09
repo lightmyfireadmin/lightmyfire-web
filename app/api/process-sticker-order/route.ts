@@ -186,8 +186,21 @@ export async function POST(request: NextRequest) {
           error: 'Payment amount verification failed'
         }, { status: 400 });
       }
-    } catch (stripeError) {
+    } catch (stripeError: any) {
       console.error('Stripe verification error:', stripeError);
+
+      // Check for test/live mode mismatch
+      if (stripeError.message?.includes('test mode') || stripeError.message?.includes('live mode')) {
+        console.error('Test/Live mode mismatch detected:', {
+          paymentIntentId,
+          error: stripeError.message
+        });
+        return NextResponse.json({
+          error: 'This payment was created in test mode. Please create a new order with live payment.',
+          details: 'Test mode payment intents cannot be used in production. Please start a new order.'
+        }, { status: 400 });
+      }
+
       return NextResponse.json({
         error: 'Payment verification failed',
         details: stripeError instanceof Error ? stripeError.message : 'Unknown error'
