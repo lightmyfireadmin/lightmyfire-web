@@ -1,12 +1,60 @@
 # Subsequent Actions Log
 
 **Last Updated**: 2025-11-09
-**Current Progress**: 35/61 tasks completed (57.4%)
-**Latest Commit**: `20130d3`
+**Current Progress**: 40/61 tasks completed (65.6%)
+**Latest Commit**: `aafdee1`
 
 ---
 
-## ✅ Latest Session Completed (Commits 4-14)
+## ✅ Latest Session Completed (Commits 16-18)
+
+### Commit 16: Image Upload Race Condition Fix (`e183882`)
+23. ✅ **AddPostForm Image Upload Race Condition Handling**
+   - AbortController tracking for pending uploads
+   - Concurrent upload prevention (checks if upload already in progress)
+   - Component unmount cleanup (cancels pending uploads)
+   - State update prevention on unmounted components
+   - isMountedRef lifecycle tracking
+   - Graceful cancellation handling
+   - Memory leak prevention from orphaned uploads
+   - Prevents DoS from rapid submission attempts
+
+### Commit 17: Printful Retry Mechanism & Error Handling (`269db39`)
+24. ✅ **Printful API Retry Mechanism**
+   - Exponential backoff: 1s, 2s, 4s delays (max 10s)
+   - Up to 3 retry attempts for transient failures
+   - Smart error detection: retryable vs permanent errors
+   - Retry on: 429 (rate limit), 408 (timeout), 500-599 (server errors)
+   - No retry on: 400 (bad request), 401/403 (auth), 404 (not found)
+   - Applied to: createStickerOrder, getPrintfulOrderStatus, cancelPrintfulOrder
+
+25. ✅ **Enhanced Printful Error Messages**
+   - User-friendly messages for each error type
+   - Technical details for debugging
+   - Error categorization by HTTP status code
+   - Context logging with order ID and parameters
+   - Specific guidance for common failures
+   - Order-specific error tracking
+
+### Commit 18: Email Retry Mechanism (`aafdee1`)
+26. ✅ **Email Sending Retry Logic**
+   - Exponential backoff: 1s, 2s, 4s delays (max 10s)
+   - Up to 3 retry attempts for transient failures
+   - Smart error classification (retryable vs permanent)
+   - Retryable: rate limits, timeouts, server errors, network issues
+   - Not retryable: invalid email, auth failures, validation errors
+   - Applied to all email types: welcome, order confirmations, notifications
+
+27. ✅ **Enhanced Email Error Handling**
+   - User-friendly error messages for each failure type
+   - Detailed logging with recipient, subject, attempt number
+   - Success logging with email ID for tracking
+   - Retry attempt logging for debugging
+   - Graceful degradation on permanent failures
+
+---
+
+## 📋 Previous Session Summary (Commits 4-15)
 
 ### Commit 4: Enhanced Webhook & Authentication Security (`2297d0a`)
 1. ✅ **Printful Webhook Timestamp Validation**
@@ -179,16 +227,18 @@
 ## 📊 Current Statistics
 
 - **Total Tasks**: 61
-- **Completed**: 35 (57.4%)
+- **Completed**: 40 (65.6%)
 - **In Progress**: 0
-- **Pending**: 26
-  - High Priority: 7
-  - Medium Priority: 13
-  - Low Priority: 6
+- **Pending**: 21
+  - High Priority: 7 (Database migrations required)
+  - Medium Priority: 9 (Code-only improvements)
+  - Low Priority: 5 (Optimizations)
 
-- **Commits This Session**: 14
-- **Files Modified**: 23+
-- **New Files Created**: 7
+- **Commits This Session**: 3 (Total: 18)
+- **Files Modified This Session**: 3
+  - `app/[locale]/lighter/[id]/add/AddPostForm.tsx`
+  - `lib/printful.ts`
+  - `lib/email.ts`
 
 ---
 
