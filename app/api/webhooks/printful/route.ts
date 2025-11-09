@@ -56,6 +56,34 @@ export async function POST(request: NextRequest) {
 
         const payload: PrintfulWebhookPayload = JSON.parse(body);
 
+    // Validate webhook timestamp (reject webhooks older than 5 minutes to prevent replay attacks)
+    const webhookAge = Date.now() / 1000 - payload.created;
+    const MAX_WEBHOOK_AGE = 300; // 5 minutes in seconds
+
+    if (webhookAge > MAX_WEBHOOK_AGE) {
+      console.error('Webhook timestamp too old:', {
+        created: payload.created,
+        age: webhookAge,
+        maxAge: MAX_WEBHOOK_AGE
+      });
+      return NextResponse.json(
+        { error: 'Webhook timestamp expired' },
+        { status: 401 }
+      );
+    }
+
+    if (webhookAge < -60) {
+      // Webhook timestamp is more than 1 minute in the future
+      console.error('Webhook timestamp in the future:', {
+        created: payload.created,
+        age: webhookAge
+      });
+      return NextResponse.json(
+        { error: 'Invalid webhook timestamp' },
+        { status: 401 }
+      );
+    }
+
     console.log('Printful webhook received:', {
       type: payload.type,
       orderId: payload.data.order?.id,
