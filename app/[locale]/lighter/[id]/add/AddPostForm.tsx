@@ -11,6 +11,8 @@ import LocationPicker from './LocationPicker';
 
 type PostType = 'text' | 'song' | 'image' | 'location' | 'refuel';
 
+const MAX_TEXT_LENGTH = 500;
+
 interface YouTubeVideo {
   id: { videoId: string };
   snippet: { title: string; thumbnails: { default: { url: string } } };
@@ -206,9 +208,31 @@ export default function AddPostForm({
       return;
     }
 
+    // Validate text length
+    if (postType === 'text' && contentText.length > MAX_TEXT_LENGTH) {
+      setError(t('add_post.error.text_too_long', { max: MAX_TEXT_LENGTH }));
+      return;
+    }
+
     if (postType === 'location' && (locationLat === '' || locationLng === '')) {
       setError(t('add_post.error.no_location_selected'));
       return;
+    }
+
+    // Validate location coordinates range
+    if (postType === 'location') {
+      const lat = typeof locationLat === 'number' ? locationLat : parseFloat(String(locationLat));
+      const lng = typeof locationLng === 'number' ? locationLng : parseFloat(String(locationLng));
+
+      if (lat < -90 || lat > 90) {
+        setError(t('add_post.error.invalid_latitude'));
+        return;
+      }
+
+      if (lng < -180 || lng > 180) {
+        setError(t('add_post.error.invalid_longitude'));
+        return;
+      }
     }
 
     setLoading(true);
@@ -347,7 +371,21 @@ export default function AddPostForm({
     const textareaClass = `${inputClass} h-32`;
 
     switch (postType) {
-      case 'text': return <textarea value={contentText} onChange={(e) => setContentText(e.target.value)} className={textareaClass} placeholder={t('add_post.placeholder.text')} required />;
+      case 'text': return (
+        <div className="space-y-2">
+          <textarea
+            value={contentText}
+            onChange={(e) => setContentText(e.target.value)}
+            className={textareaClass}
+            placeholder={t('add_post.placeholder.text')}
+            maxLength={MAX_TEXT_LENGTH}
+            required
+          />
+          <div className={`text-sm text-right ${contentText.length > MAX_TEXT_LENGTH * 0.9 ? 'text-orange-600 dark:text-orange-400' : 'text-muted-foreground'}`}>
+            {t('add_post.char_counter', { remaining: MAX_TEXT_LENGTH - contentText.length })}
+          </div>
+        </div>
+      );
       case 'song':
         return (
           <div>

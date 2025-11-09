@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { DetailedPost } from '@/lib/types';
 import { useToast } from '@/lib/context/ToastContext';
+import { useI18n } from '@/locales/client';
 import LoadingSpinner from '@/app/components/LoadingSpinner';
 import ConfirmModal from '@/app/components/ConfirmModal';
 
@@ -16,7 +17,9 @@ export default function ModerationPostCard({ post, onAction }: ModerationPostCar
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [action, setAction] = useState<'approve' | 'reject' | 'delete' | null>(null);
+  const [showFullContent, setShowFullContent] = useState(false);
   const { addToast } = useToast();
+  const t = useI18n() as any;
 
   const handleApprove = async () => {
     setLoading(true);
@@ -139,13 +142,25 @@ export default function ModerationPostCard({ post, onAction }: ModerationPostCar
             </p>
           )}
           {(post.content_text || post.content_url || post.location_name) && (
-            <p className="text-sm text-muted-foreground">
+            <div className="text-sm text-muted-foreground">
               <strong>Content:</strong>{' '}
-              {post.content_text?.substring(0, 100) ||
-                post.content_url?.substring(0, 50) ||
-                post.location_name}
-              {(post.content_text?.length || 0) > 100 ? '...' : ''}
-            </p>
+              <span>
+                {showFullContent
+                  ? (post.content_text || post.content_url || post.location_name)
+                  : (post.content_text?.substring(0, 100) ||
+                      post.content_url?.substring(0, 50) ||
+                      post.location_name)}
+                {!showFullContent && (post.content_text?.length || 0) > 100 ? '...' : ''}
+              </span>
+              {((post.content_text?.length || 0) > 100 || (post.content_url?.length || 0) > 50) && (
+                <button
+                  onClick={() => setShowFullContent(!showFullContent)}
+                  className="ml-2 text-primary hover:underline text-xs font-medium"
+                >
+                  {showFullContent ? t('moderation.show_less') : t('moderation.view_full')}
+                </button>
+              )}
+            </div>
           )}
         </div>
 
