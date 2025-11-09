@@ -45,18 +45,18 @@ export default async function Home() {
         <div className="w-full lg:w-auto text-center lg:text-left max-w-md">
           {}
           <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-6">
-            <div className="h-[131px] lg:h-[197px] mx-auto lg:mx-0 flex-shrink-0">
+            <div className="h-[160px] lg:h-[220px] mx-auto lg:mx-0 flex-shrink-0">
               <Image
                 src="/illustrations/thumbs_up.png"
                 alt="LightMyFire - Give lighters a second life"
-                width={80}
-                height={131}
+                width={100}
+                height={160}
                 priority
                 className="h-full w-auto object-contain"
               />
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
-              {t('home.hero.title')}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium lg:font-bold tracking-tight text-foreground" style={{ hyphens: 'none', wordBreak: 'keep-all', whiteSpace: 'normal' }}>
+              <span className="inline-block">{t('home.hero.title')}</span>
             </h1>
           </div>
 
@@ -118,12 +118,12 @@ export default async function Home() {
         <div className="grid grid-cols-1 gap-1.5 md:gap-2 md:grid-cols-3">
           {}
           <div className="rounded-lg border border-border bg-background/90 p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
-            <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
+            <div className="h-40 sm:h-44 flex items-center justify-center overflow-hidden mb-4">
               <Image
                 src="/illustrations/personalise.png"
                 alt="Save a lighter"
-                width={120}
-                height={128}
+                width={150}
+                height={160}
                 className="h-full w-auto object-contain"
                 loading="lazy"
                 quality={80}
@@ -139,12 +139,12 @@ export default async function Home() {
 
           {}
           <div className="rounded-lg border border-border bg-background/90 p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
-            <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
+            <div className="h-40 sm:h-44 flex items-center justify-center overflow-hidden mb-4">
               <Image
                 src="/illustrations/around_the_world.png"
                 alt="Share the lighter"
-                width={120}
-                height={128}
+                width={150}
+                height={160}
                 className="h-full w-auto object-contain"
                 loading="lazy"
                 quality={80}
@@ -160,12 +160,12 @@ export default async function Home() {
 
           {}
           <div className="rounded-lg border border-border bg-background/90 p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
-            <div className="h-32 flex items-center justify-center overflow-hidden mb-4">
+            <div className="h-40 sm:h-44 flex items-center justify-center overflow-hidden mb-4">
               <Image
                 src="/illustrations/telling_stories.png"
                 alt="Follow the story"
-                width={120}
-                height={128}
+                width={150}
+                height={160}
                 className="h-full w-auto object-contain"
                 loading="lazy"
                 quality={80}
