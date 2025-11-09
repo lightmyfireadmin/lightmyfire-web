@@ -766,7 +766,6 @@ export default {
   'post.youtube_load_error': 'YouTube-Video konnte nicht geladen werden (ungültige URL?)',
   'post.location_at': 'bei',
   'post.like_button': 'Gefällt mir',
-  'post.anonymous': 'Anonym',
   'post.deleted_user': 'Gelöschter Benutzer',
   'post.default_location': 'Unbekannter Ort',
   'flag.flagged': 'Gemeldet',
