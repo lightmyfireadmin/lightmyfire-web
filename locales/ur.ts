@@ -35,6 +35,14 @@ export default {
   'nav.open_menu': 'Open main menu',
   'nav.close_menu': 'Close main menu',
   'auth.login_to_flag': 'You must be logged in to flag a post',
+
+  // My Orders
+  'my_orders.title': 'میرے آرڈرز',
+  'my_orders.subtitle': 'اپنے LightMyFire سٹیکر آرڈرز کو ٹریک کریں',
+  'my_orders.no_orders': 'ابھی کوئی آرڈر نہیں',
+  'my_orders.no_orders_text': 'آپ نے ابھی تک کوئی سٹیکر آرڈر نہیں کیا۔',
+  'my_orders.order_stickers': 'سٹیکر آرڈر کریں',
+
   'flag.flagged': 'Flagged',
   'flag.flag': 'Flag',
   'flag.confirm_title': 'Flag this post?',

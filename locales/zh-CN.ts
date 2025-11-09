@@ -35,6 +35,14 @@ export default {
   'nav.open_menu': '打开主菜单',
   'nav.close_menu': '关闭主菜单',
   'auth.login_to_flag': '您必须登录才能举报帖子',
+
+  // My Orders
+  'my_orders.title': '我的订单',
+  'my_orders.subtitle': '追踪您的LightMyFire贴纸订单',
+  'my_orders.no_orders': '暂无订单',
+  'my_orders.no_orders_text': '您还没有下过任何贴纸订单。',
+  'my_orders.order_stickers': '订购贴纸',
+
   'flag.flagged': '已举报',
   'flag.flag': '举报',
   'flag.confirm_title': '要举报此帖子吗？',

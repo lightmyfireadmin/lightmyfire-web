@@ -35,6 +35,14 @@ export default {
   'nav.open_menu': 'Open main menu',
   'nav.close_menu': 'Close main menu',
   'auth.login_to_flag': 'You must be logged in to flag a post',
+
+  // My Orders
+  'my_orders.title': 'माझे ऑर्डर',
+  'my_orders.subtitle': 'तुमचे LightMyFire स्टिकर ऑर्डर ट्रॅक करा',
+  'my_orders.no_orders': 'अद्याप ऑर्डर नाहीत',
+  'my_orders.no_orders_text': 'तुम्ही अद्याप कोणतेही स्टिकर ऑर्डर दिलेले नाहीत.',
+  'my_orders.order_stickers': 'स्टिकर ऑर्डर करा',
+
   'flag.flagged': 'Flagged',
   'flag.flag': 'Flag',
   'flag.confirm_title': 'Flag this post?',

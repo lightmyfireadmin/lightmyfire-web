@@ -322,19 +322,8 @@ export async function POST(request: NextRequest) {
 
         const numSheets = Math.ceil(stickers.length / TOTAL_STICKERS);
 
-        if (numSheets === 1) {
-      const buffer = await generateSingleSheet(stickers);
-      return new NextResponse(new Uint8Array(buffer), {
-        status: 200,
-        headers: {
-          'Content-Type': 'image/png',
-          'Content-Disposition': `attachment; filename="lightmyfire-stickers-printful.png"`,
-          'Content-Length': buffer.length.toString(),
-        },
-      });
-    }
-
-        const sheets: { filename: string; buffer: Buffer }[] = [];
+        // Generate all sheets
+    const sheets: { filename: string; buffer: Buffer }[] = [];
 
     for (let i = 0; i < numSheets; i++) {
       const startIdx = i * TOTAL_STICKERS;
@@ -342,64 +331,30 @@ export async function POST(request: NextRequest) {
       const sheetStickers = stickers.slice(startIdx, endIdx);
 
       const buffer = await generateSingleSheet(sheetStickers);
+
+      // Verify PNG signature to ensure buffer is valid
+      const pngSignature = Buffer.from([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]);
+      if (!buffer.subarray(0, 8).equals(pngSignature)) {
+        throw new Error(`Invalid PNG buffer for sheet ${i + 1}`);
+      }
+
       sheets.push({
         filename: `lightmyfire-stickers-sheet-${i + 1}.png`,
         buffer
       });
     }
 
-        const archive = archiver('zip', { zlib: { level: 9 } });
-    const chunks: Buffer[] = [];
+    console.log(`Generated ${sheets.length} sheet(s) successfully`);
 
-        // Properly consume the readable stream
-    archive.on('data', (chunk: Buffer) => {
-      chunks.push(chunk);
-    });
-
-    const zipPromise = new Promise<Buffer>((resolve, reject) => {
-      // archiver emits 'finish' not 'end' when finalization is complete
-      archive.on('finish', () => {
-        const zipBuffer = Buffer.concat(chunks);
-        console.log(`ZIP created successfully: ${zipBuffer.length} bytes`);
-        resolve(zipBuffer);
-      });
-
-      archive.on('error', (err) => {
-        console.error('Archiver error:', err);
-        reject(err);
-      });
-
-      archive.on('warning', (err) => {
-        if (err.code === 'ENOENT') {
-          console.warn('Archiver warning:', err);
-        } else {
-          reject(err);
-        }
-      });
-    });
-
-        // Append all sheets to the archive
-    for (const sheet of sheets) {
-      // Verify PNG signature to ensure buffer is valid
-      const pngSignature = Buffer.from([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]);
-      if (!sheet.buffer.subarray(0, 8).equals(pngSignature)) {
-        throw new Error(`Invalid PNG buffer for ${sheet.filename}`);
-      }
-      archive.append(sheet.buffer, { name: sheet.filename });
-    }
-
-        // Finalize the archive (this triggers 'end' event when complete)
-    await archive.finalize();
-
-        const zipBuffer = await zipPromise;
-
-    return new NextResponse(new Uint8Array(zipBuffer), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/zip',
-        'Content-Disposition': `attachment; filename="lightmyfire-stickers-printful.zip"`,
-        'Content-Length': zipBuffer.length.toString(),
-      },
+    // Return JSON response with all sheets as base64
+    return NextResponse.json({
+      success: true,
+      numSheets: sheets.length,
+      sheets: sheets.map(sheet => ({
+        filename: sheet.filename,
+        data: sheet.buffer.toString('base64'),
+        size: sheet.buffer.length
+      }))
     });
   } catch (error) {
     console.error('Error generating Printful sticker sheet:', error);

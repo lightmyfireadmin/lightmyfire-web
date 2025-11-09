@@ -6,6 +6,7 @@ export default {
   'nav.my_profile': 'Mi perfil',
   'nav.login_signup': 'Iniciar sesión / Registrarse',
   'nav.logout': 'Cerrar sesión',
+  'nav.logging_out': 'Cerrando sesión...',
   'nav.open_menu': 'Abrir menú principal',
   'nav.close_menu': 'Cerrar menú principal',
   'nav.logo_alt': 'LightMyFire',
@@ -101,6 +102,14 @@ export default {
   'auth.forgot_password': '¿Olvidaste tu contraseña?',
   'auth.login_to_flag': 'Inicia sesión para reportar publicaciones',
   'auth.login_to_like': 'Inicia sesión para dar me gusta a publicaciones',
+
+  // My Orders
+  'my_orders.title': 'Mis Pedidos',
+  'my_orders.subtitle': 'Rastrea tus pedidos de calcomanías LightMyFire',
+  'my_orders.no_orders': 'Sin Pedidos Aún',
+  'my_orders.no_orders_text': 'Aún no has realizado ningún pedido de calcomanías.',
+  'my_orders.order_stickers': 'Pedir Calcomanías',
+
   'notifications.login_success': '¡Qué bueno verte de nuevo, LightSaver! Tus encendedores te extrañaron. 💫',
   'notifications.logout_success': '¡Hasta pronto! ✨',
   'notifications.signup_success': '¡Te damos la bienvenida a la familia LightSaver! 🌟',
@@ -839,6 +848,7 @@ export default {
   'my_posts.the': 'el',
   'my_posts.delete_post_aria': 'Eliminar publicación',
   'my_posts.delete': 'Eliminar',
+  'my_posts.deleting': 'Eliminando...',
   'my_posts.confirm_delete_title': '¿Eliminar esta publicación?',
   'my_posts.confirm_delete_message': '¿Estás segure? Esta acción es permanente.',
   'my_posts.error_deleting': 'Error al eliminar publicación: {message}',

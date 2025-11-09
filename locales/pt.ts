@@ -35,6 +35,14 @@ export default {
     'nav.open_menu': 'Abrir menu principal',
     'nav.close_menu': 'Fechar menu principal',
     'auth.login_to_flag': 'Você deve estar logado para denunciar um post',
+
+    // My Orders
+    'my_orders.title': 'Meus Pedidos',
+    'my_orders.subtitle': 'Acompanhe seus pedidos de adesivos LightMyFire',
+    'my_orders.no_orders': 'Nenhum Pedido',
+    'my_orders.no_orders_text': 'Você ainda não fez nenhum pedido de adesivos.',
+    'my_orders.order_stickers': 'Pedir Adesivos',
+
     'flag.flagged': 'Denunciado',
     'flag.flag': 'Denunciar',
     'flag.confirm_title': 'Denunciar este post?',

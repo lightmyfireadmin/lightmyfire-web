@@ -304,9 +304,9 @@ export default function DontThrowMeAwayPage() {
                     </ol>
                   </div>
 
-                  <div className="rounded-lg bg-sky-50 p-4 border-2 border-sky-800 md:bg-blue-100 md:dark:bg-blue-900/30 md:border-blue-400 md:dark:border-blue-600">
-                    <p className="text-sm text-sky-900 font-medium md:text-blue-900 md:dark:text-blue-100">
-                      ⚠️ <strong className="text-sky-800 md:text-blue-800 md:dark:text-blue-200">Important:</strong> {t('refill_guide.important_gasoline')}
+                  <div className="rounded-lg bg-sky-50 p-4 border-2 border-sky-800 md:bg-blue-100 md:dark:bg-blue-900/40 md:border-blue-400 md:dark:border-blue-600">
+                    <p className="text-sm text-sky-900 font-medium md:text-blue-900 md:dark:text-blue-50">
+                      ⚠️ <strong className="text-sky-800 md:text-blue-800 md:dark:text-blue-100">Important:</strong> {t('refill_guide.important_gasoline')}
                     </p>
                   </div>
                 </div>

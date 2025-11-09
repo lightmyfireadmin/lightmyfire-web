@@ -188,16 +188,16 @@ export default function MyOrdersPage() {
           <div className="bg-card border border-border rounded-lg p-12 text-center">
             <div className="text-6xl mb-4">📦</div>
             <h2 className="text-2xl font-semibold text-foreground mb-2">
-              {t('my_orders.empty.title')}
+              {t('my_orders.no_orders')}
             </h2>
             <p className="text-muted-foreground mb-6">
-              {t('my_orders.empty.description')}
+              {t('my_orders.no_orders_text')}
             </p>
             <button
               onClick={() => router.push('/save-lighter')}
               className="px-6 py-3 bg-primary text-primary-foreground rounded-md font-semibold hover:bg-primary/90"
             >
-              {t('my_orders.empty.cta')}
+              {t('my_orders.order_stickers')}
             </button>
           </div>
         ) : (

@@ -35,6 +35,14 @@ export default {
     'nav.open_menu': 'मुख्य मेनू खोलें',
     'nav.close_menu': 'मुख्य मेनू बंद करें',
     'auth.login_to_flag': 'पोस्ट को फ़्लैग करने के लिए आपको लॉग इन होना चाहिए',
+
+    // My Orders
+    'my_orders.title': 'मेरे ऑर्डर',
+    'my_orders.subtitle': 'अपने LightMyFire स्टिकर ऑर्डर ट्रैक करें',
+    'my_orders.no_orders': 'अभी तक कोई ऑर्डर नहीं',
+    'my_orders.no_orders_text': 'आपने अभी तक कोई स्टिकर ऑर्डर नहीं दिया है।',
+    'my_orders.order_stickers': 'स्टिकर ऑर्डर करें',
+
     'flag.flagged': 'फ़्लैग किया गया',
     'flag.flag': 'फ़्लैग',
     'flag.confirm_title': 'इस पोस्ट को फ़्लैग करें?',

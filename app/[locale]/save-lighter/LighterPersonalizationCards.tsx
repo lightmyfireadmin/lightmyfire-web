@@ -286,22 +286,22 @@ export default function LighterPersonalizationCards({
       </div>
 
       {}
-      <div className="rounded-lg border border-gray-300 md:border-blue-200 bg-gray-100 md:bg-blue-50 md:dark:bg-blue-950/20 p-3">
-        <h4 className="text-sm font-semibold text-gray-900 md:text-blue-900 md:dark:text-blue-100 mb-2 flex items-center gap-2">
+      <div className="rounded-lg border border-gray-300 md:border-blue-200 dark:md:border-blue-700 bg-gray-100 md:bg-blue-50 md:dark:bg-blue-950/30 p-3" style={{ backgroundColor: 'var(--bg-color, undefined)' }}>
+        <h4 className="text-sm font-semibold text-gray-900 md:text-blue-900 md:dark:text-blue-200 mb-2 flex items-center gap-2">
           <span>💡</span>
           <span>{t('order.guidelines.title')}</span>
         </h4>
-        <ul className="space-y-1.5 text-xs text-gray-900 md:text-blue-800 md:dark:text-blue-200">
+        <ul className="space-y-1.5 text-xs text-gray-900 md:text-blue-900 md:dark:text-blue-100">
           <li className="flex items-start gap-2">
-            <span className="text-gray-700 md:text-blue-600 md:dark:text-blue-400 mt-0.5">1.</span>
+            <span className="text-gray-700 md:text-blue-700 md:dark:text-blue-300 mt-0.5">1.</span>
             <span>{t('order.guidelines.step1')}</span>
           </li>
           <li className="flex items-start gap-2">
-            <span className="text-gray-700 md:text-blue-600 md:dark:text-blue-400 mt-0.5">2.</span>
+            <span className="text-gray-700 md:text-blue-700 md:dark:text-blue-300 mt-0.5">2.</span>
             <span>{t('order.guidelines.step2')}</span>
           </li>
           <li className="flex items-start gap-2">
-            <span className="text-gray-700 md:text-blue-600 md:dark:text-blue-400 mt-0.5">3.</span>
+            <span className="text-gray-700 md:text-blue-700 md:dark:text-blue-300 mt-0.5">3.</span>
             <span>{t('order.guidelines.step3')}</span>
           </li>
         </ul>

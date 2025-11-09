@@ -35,6 +35,14 @@ export default {
   'nav.open_menu': 'Open main menu',
   'nav.close_menu': 'Close main menu',
   'auth.login_to_flag': 'You must be logged in to flag a post',
+
+  // My Orders
+  'my_orders.title': 'Pesanan Saya',
+  'my_orders.subtitle': 'Lacak pesanan stiker LightMyFire Anda',
+  'my_orders.no_orders': 'Belum Ada Pesanan',
+  'my_orders.no_orders_text': 'Anda belum melakukan pesanan stiker.',
+  'my_orders.order_stickers': 'Pesan Stiker',
+
   'flag.flagged': 'Flagged',
   'flag.flag': 'Flag',
   'flag.confirm_title': 'Flag this post?',

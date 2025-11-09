@@ -6,6 +6,7 @@ export default {
   'nav.my_profile': 'Mein Profil',
   'nav.login_signup': 'Anmelden / Registrieren',
   'nav.logout': 'Abmelden',
+  'nav.logging_out': 'Wird abgemeldet...',
   'nav.open_menu': 'Hauptmenü öffnen',
   'nav.close_menu': 'Hauptmenü schließen',
   'nav.logo_alt': 'LightMyFire',
@@ -101,6 +102,14 @@ export default {
   'auth.forgot_password': 'Passwort vergessen?',
   'auth.login_to_flag': 'Melde dich an, um Beiträge zu melden',
   'auth.login_to_like': 'Melde dich an, um Beiträge zu liken',
+
+  // My Orders
+  'my_orders.title': 'Meine Bestellungen',
+  'my_orders.subtitle': 'Verfolgen Sie Ihre LightMyFire Aufkleber-Bestellungen',
+  'my_orders.no_orders': 'Noch keine Bestellungen',
+  'my_orders.no_orders_text': 'Sie haben noch keine Aufkleber-Bestellungen aufgegeben.',
+  'my_orders.order_stickers': 'Aufkleber bestellen',
+
   'notifications.login_success': 'Schön, dich wiederzusehen, LightSaver*in! Deine Feuerzeuge haben dich vermisst. 💫',
   'notifications.logout_success': 'Bis bald! ✨',
   'notifications.signup_success': 'Willkommen in der LightSaver-Familie! 🌟',
@@ -839,6 +848,7 @@ export default {
   'my_posts.the': 'das',
   'my_posts.delete_post_aria': 'Beitrag löschen',
   'my_posts.delete': 'Löschen',
+  'my_posts.deleting': 'Wird gelöscht...',
   'my_posts.confirm_delete_title': 'Diesen Beitrag löschen?',
   'my_posts.confirm_delete_message': 'Bist du sicher? Diese Aktion ist dauerhaft.',
   'my_posts.error_deleting': 'Fehler beim Löschen des Beitrags: {message}',
