@@ -62,6 +62,12 @@ export default async function AdminPanelPage() {
         <h2 className="text-xl font-semibold text-foreground mb-4">Quick Links</h2>
         <div className="flex flex-wrap gap-3">
           <a
+            href={`/${locale}/admin/email-tool`}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/90"
+          >
+            📧 Email Management Tool
+          </a>
+          <a
             href={`/${locale}/admin/testing`}
             className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/90"
           >
