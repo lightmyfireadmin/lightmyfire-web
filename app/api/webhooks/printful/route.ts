@@ -14,7 +14,8 @@ type PrintfulWebhookEvent =
   | 'order_canceled'
   | 'product_synced'
   | 'order_put_hold'
-  | 'order_remove_hold';
+  | 'order_remove_hold'
+  | 'order_updated';
 
 interface PrintfulWebhookPayload {
   type: PrintfulWebhookEvent;
@@ -84,14 +85,53 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const cookieStore = cookies();
+    const supabase = createServerSupabaseClient(cookieStore);
+
+    // Idempotency check: Generate unique webhook ID from payload
+    const webhookId = `printful_${payload.type}_${payload.data.order?.id}_${payload.created}_${payload.retries}`;
+
+    // Check if we've already processed this webhook
+    const { data: existingWebhook } = await supabase
+      .from('webhook_events')
+      .select('id')
+      .eq('webhook_id', webhookId)
+      .eq('source', 'printful')
+      .single();
+
+    if (existingWebhook) {
+      console.log('Webhook already processed (idempotency check):', {
+        webhookId,
+        type: payload.type,
+        orderId: payload.data.order?.id,
+      });
+      // Return 200 to prevent Printful from retrying
+      return NextResponse.json({ success: true, already_processed: true });
+    }
+
+    // Log webhook receipt
     console.log('Printful webhook received:', {
       type: payload.type,
       orderId: payload.data.order?.id,
       externalId: payload.data.order?.external_id,
+      retries: payload.retries,
     });
 
-        const cookieStore = cookies();
-    const supabase = createServerSupabaseClient(cookieStore);
+    // Record webhook event for idempotency
+    const { error: webhookLogError } = await supabase
+      .from('webhook_events')
+      .insert({
+        webhook_id: webhookId,
+        source: 'printful',
+        event_type: payload.type,
+        payload: payload,
+        processed_at: new Date().toISOString(),
+      });
+
+    if (webhookLogError) {
+      console.error('Failed to log webhook event (continuing anyway):', webhookLogError);
+      // Continue processing even if logging fails
+    }
 
         switch (payload.type) {
       case 'package_shipped':
@@ -113,6 +153,10 @@ export async function POST(request: NextRequest) {
       case 'order_put_hold':
       case 'order_remove_hold':
         await handleOrderHoldStatus(supabase, payload);
+        break;
+
+      case 'order_updated':
+        await handleOrderUpdated(supabase, payload);
         break;
 
       default:
@@ -240,7 +284,14 @@ async function handleOrderFailed(
   }
 
   try {
-        const { error } = await supabase
+    // Get order details for notification
+    const { data: stickerOrder } = await supabase
+      .from('sticker_orders')
+      .select('*')
+      .eq('printful_order_id', order.id)
+      .single();
+
+    const { error } = await supabase
       .from('sticker_orders')
       .update({
         status: 'failed',
@@ -254,8 +305,33 @@ async function handleOrderFailed(
       return;
     }
 
-            
     console.error('Order failed:', { orderId: order.id, reason });
+
+    // Send admin notification about failed order
+    if (stickerOrder) {
+      const adminEmail = process.env.FULFILLMENT_EMAIL || 'mitch@lightmyfire.app';
+
+      // Import dynamically to avoid circular dependencies
+      const { sendCustomEmail } = await import('@/lib/email');
+
+      await sendCustomEmail({
+        to: adminEmail,
+        subject: `⚠️ Printful Order Failed - ${order.id}`,
+        html: `
+          <h2 style="color: #dc2626;">Order Failed in Printful</h2>
+          <p><strong>Printful Order ID:</strong> ${order.id}</p>
+          <p><strong>External Order ID:</strong> ${order.external_id}</p>
+          <p><strong>Reason:</strong> ${reason || 'Unknown error'}</p>
+          <p><strong>Customer:</strong> ${stickerOrder.shipping_name} (${stickerOrder.shipping_email})</p>
+          <p><strong>Quantity:</strong> ${stickerOrder.quantity} stickers</p>
+          <p><strong>Payment Intent:</strong> ${stickerOrder.payment_intent_id}</p>
+          <hr>
+          <p><strong>Action Required:</strong> Please review this failed order and contact the customer if needed.</p>
+        `,
+      }).catch((emailError) => {
+        console.error('Failed to send admin notification for failed order:', emailError);
+      });
+    }
   } catch (error) {
     console.error('Error handling order_failed:', error);
   }
@@ -273,7 +349,14 @@ async function handleOrderCanceled(
   }
 
   try {
-        const { error } = await supabase
+    // Get order details for notification
+    const { data: stickerOrder } = await supabase
+      .from('sticker_orders')
+      .select('*')
+      .eq('printful_order_id', order.id)
+      .single();
+
+    const { error } = await supabase
       .from('sticker_orders')
       .update({
         status: 'canceled',
@@ -287,8 +370,33 @@ async function handleOrderCanceled(
       return;
     }
 
-        
     console.log('Order canceled:', { orderId: order.id, reason });
+
+    // Send admin notification about canceled order
+    if (stickerOrder) {
+      const adminEmail = process.env.FULFILLMENT_EMAIL || 'mitch@lightmyfire.app';
+
+      // Import dynamically to avoid circular dependencies
+      const { sendCustomEmail } = await import('@/lib/email');
+
+      await sendCustomEmail({
+        to: adminEmail,
+        subject: `🚫 Printful Order Canceled - ${order.id}`,
+        html: `
+          <h2 style="color: #ea580c;">Order Canceled in Printful</h2>
+          <p><strong>Printful Order ID:</strong> ${order.id}</p>
+          <p><strong>External Order ID:</strong> ${order.external_id}</p>
+          <p><strong>Reason:</strong> ${reason || 'Canceled by Printful'}</p>
+          <p><strong>Customer:</strong> ${stickerOrder.shipping_name} (${stickerOrder.shipping_email})</p>
+          <p><strong>Quantity:</strong> ${stickerOrder.quantity} stickers</p>
+          <p><strong>Payment Intent:</strong> ${stickerOrder.payment_intent_id}</p>
+          <hr>
+          <p><strong>Action Required:</strong> Please review this cancellation and contact the customer to explain and offer a refund if necessary.</p>
+        `,
+      }).catch((emailError) => {
+        console.error('Failed to send admin notification for canceled order:', emailError);
+      });
+    }
   } catch (error) {
     console.error('Error handling order_canceled:', error);
   }
@@ -308,7 +416,14 @@ async function handleOrderHoldStatus(
   const isOnHold = payload.type === 'order_put_hold';
 
   try {
-        const { error } = await supabase
+    // Get order details for notification
+    const { data: stickerOrder } = await supabase
+      .from('sticker_orders')
+      .select('*')
+      .eq('printful_order_id', order.id)
+      .single();
+
+    const { error } = await supabase
       .from('sticker_orders')
       .update({
         on_hold: isOnHold,
@@ -326,8 +441,77 @@ async function handleOrderHoldStatus(
       orderId: order.id,
       reason,
     });
+
+    // Send admin notification when order is put on hold
+    if (isOnHold && stickerOrder) {
+      const adminEmail = process.env.FULFILLMENT_EMAIL || 'mitch@lightmyfire.app';
+
+      // Import dynamically to avoid circular dependencies
+      const { sendCustomEmail } = await import('@/lib/email');
+
+      await sendCustomEmail({
+        to: adminEmail,
+        subject: `⏸️ Printful Order On Hold - ${order.id}`,
+        html: `
+          <h2 style="color: #f59e0b;">Order Put On Hold in Printful</h2>
+          <p><strong>Printful Order ID:</strong> ${order.id}</p>
+          <p><strong>External Order ID:</strong> ${order.external_id}</p>
+          <p><strong>Hold Reason:</strong> ${reason || 'No reason provided'}</p>
+          <p><strong>Customer:</strong> ${stickerOrder.shipping_name} (${stickerOrder.shipping_email})</p>
+          <p><strong>Quantity:</strong> ${stickerOrder.quantity} stickers</p>
+          <p><strong>Payment Intent:</strong> ${stickerOrder.payment_intent_id}</p>
+          <hr>
+          <p><strong>Action Required:</strong> Please check the Printful dashboard to resolve the hold and resume fulfillment.</p>
+        `,
+      }).catch((emailError) => {
+        console.error('Failed to send admin notification for hold status:', emailError);
+      });
+    }
   } catch (error) {
     console.error('Error handling order hold status:', error);
+  }
+}
+
+async function handleOrderUpdated(
+  supabase: any,
+  payload: PrintfulWebhookPayload
+) {
+  const { order } = payload.data;
+
+  if (!order) {
+    console.error('Missing order data in order_updated event');
+    return;
+  }
+
+  try {
+    // Fetch the latest order status from Printful API for complete data
+    const orderStatus = await getPrintfulOrderStatus(order.id);
+
+    if (!orderStatus) {
+      console.error('Failed to fetch order status from Printful:', order.id);
+      return;
+    }
+
+    // Update order in database with latest status
+    const { error } = await supabase
+      .from('sticker_orders')
+      .update({
+        printful_status: orderStatus.status,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('printful_order_id', order.id);
+
+    if (error) {
+      console.error('Failed to update order status:', error);
+      return;
+    }
+
+    console.log('Order status updated:', {
+      orderId: order.id,
+      status: orderStatus.status,
+    });
+  } catch (error) {
+    console.error('Error handling order_updated:', error);
   }
 }
 
