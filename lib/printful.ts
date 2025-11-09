@@ -12,6 +12,86 @@ if (!PRINTFUL_STORE_ID && process.env.NODE_ENV === 'production') {
   console.warn('⚠️  PRINTFUL_STORE_ID not configured. Some API endpoints may fail.');
 }
 
+/**
+ * Retry configuration for Printful API calls
+ */
+const RETRY_CONFIG = {
+  maxRetries: 3,
+  initialDelay: 1000, // 1 second
+  maxDelay: 10000, // 10 seconds
+  backoffMultiplier: 2,
+};
+
+/**
+ * Determines if an error is retryable (transient/network issues vs permanent errors)
+ */
+function isRetryableError(statusCode?: number): boolean {
+  if (!statusCode) return true; // Network errors are retryable
+
+  // 429 Too Many Requests - rate limiting, should retry
+  // 500-599 Server errors - transient issues, should retry
+  // 408 Request Timeout - should retry
+  return statusCode === 429 || statusCode === 408 || (statusCode >= 500 && statusCode < 600);
+}
+
+/**
+ * Sleep for specified milliseconds
+ */
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/**
+ * Retry a function with exponential backoff
+ */
+async function retryWithBackoff<T>(
+  fn: () => Promise<T>,
+  context: string,
+  maxRetries: number = RETRY_CONFIG.maxRetries
+): Promise<T> {
+  let lastError: Error | undefined;
+
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      return await fn();
+    } catch (error) {
+      lastError = error as Error;
+
+      // Check if error is retryable
+      const statusCode = error instanceof PrintfulError ? error.statusCode : undefined;
+      const isRetryable = isRetryableError(statusCode);
+
+      // If not retryable or last attempt, throw immediately
+      if (!isRetryable || attempt === maxRetries) {
+        console.error(`${context} failed after ${attempt + 1} attempts (not retryable or max retries reached)`, {
+          error: error instanceof Error ? error.message : 'Unknown error',
+          statusCode,
+          attempt: attempt + 1,
+          maxRetries: maxRetries + 1,
+        });
+        throw error;
+      }
+
+      // Calculate delay with exponential backoff
+      const delay = Math.min(
+        RETRY_CONFIG.initialDelay * Math.pow(RETRY_CONFIG.backoffMultiplier, attempt),
+        RETRY_CONFIG.maxDelay
+      );
+
+      console.warn(`${context} attempt ${attempt + 1} failed, retrying in ${delay}ms...`, {
+        error: error instanceof Error ? error.message : 'Unknown error',
+        statusCode,
+        attemptsRemaining: maxRetries - attempt,
+      });
+
+      await sleep(delay);
+    }
+  }
+
+  // Should never reach here due to throw in loop, but TypeScript needs this
+  throw lastError || new Error(`${context} failed after retries`);
+}
+
 class PrintfulClient {
   private apiKey: string;
   private baseUrl: string;
@@ -444,9 +524,27 @@ export async function createStickerOrder(params: {
   };
 
   try {
-        const order = await client.createOrder(orderRequest);
+    // Create draft order with retry logic for transient failures
+    const order = await retryWithBackoff(
+      () => client.createOrder(orderRequest),
+      'Printful createOrder'
+    );
 
-        const confirmedOrder = await client.confirmOrder(order.id);
+    console.log('Printful draft order created successfully:', {
+      orderId: order.id,
+      status: order.status,
+    });
+
+    // Confirm order with retry logic (confirming triggers fulfillment)
+    const confirmedOrder = await retryWithBackoff(
+      () => client.confirmOrder(order.id),
+      'Printful confirmOrder'
+    );
+
+    console.log('Printful order confirmed successfully:', {
+      orderId: confirmedOrder.id,
+      status: confirmedOrder.status,
+    });
 
     return {
       success: true,
@@ -454,24 +552,80 @@ export async function createStickerOrder(params: {
       status: confirmedOrder.status,
       tracking: confirmedOrder.shipments[0]?.tracking_number || null,
       estimatedDelivery: {
-        min: 5,         max: 10,       },
+        min: 5,
+        max: 10,
+      },
     };
   } catch (error) {
     if (error instanceof PrintfulError) {
-      console.error('Printful order creation failed:', {
+      // Provide detailed error messages based on status code
+      let userFriendlyMessage = error.message;
+      let technicalDetails = '';
+
+      switch (error.statusCode) {
+        case 400:
+          userFriendlyMessage = 'Invalid order data. Please check the sticker file and shipping address.';
+          technicalDetails = 'Bad Request - verify PDF file format, dimensions, and shipping address format';
+          break;
+        case 401:
+          userFriendlyMessage = 'Printful authentication failed. Please contact support.';
+          technicalDetails = 'Unauthorized - check PRINTFUL_API_KEY configuration';
+          break;
+        case 403:
+          userFriendlyMessage = 'Access denied to Printful API. Please contact support.';
+          technicalDetails = 'Forbidden - API key may lack required permissions';
+          break;
+        case 404:
+          userFriendlyMessage = 'Printful resource not found. Please contact support.';
+          technicalDetails = 'Not Found - product variant or store ID may be invalid';
+          break;
+        case 429:
+          userFriendlyMessage = 'Too many requests to Printful. Please try again in a few minutes.';
+          technicalDetails = 'Rate Limited - retry logic failed, temporary backoff required';
+          break;
+        case 500:
+        case 502:
+        case 503:
+        case 504:
+          userFriendlyMessage = 'Printful service temporarily unavailable. Your order has been saved and will be retried automatically.';
+          technicalDetails = `Printful server error (${error.statusCode}) - order should be retried from queue`;
+          break;
+        default:
+          userFriendlyMessage = 'Failed to create Printful order. Please contact support.';
+          technicalDetails = `Unexpected error code: ${error.statusCode}`;
+      }
+
+      console.error('Printful order creation failed after retries:', {
         message: error.message,
+        userFriendlyMessage,
+        technicalDetails,
         statusCode: error.statusCode,
         details: error.details,
+        orderId: params.orderId,
+        packSize: params.packSize,
       });
 
       return {
         success: false,
-        error: error.message,
+        error: userFriendlyMessage,
         statusCode: error.statusCode,
+        technicalDetails,
       };
     }
 
-    throw error;
+    // Network or other unexpected errors
+    console.error('Unexpected error during Printful order creation:', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      orderId: params.orderId,
+      packSize: params.packSize,
+    });
+
+    return {
+      success: false,
+      error: 'An unexpected error occurred while processing your order. Please contact support.',
+      technicalDetails: error instanceof Error ? error.message : 'Unknown error',
+    };
   }
 }
 
@@ -479,7 +633,16 @@ export async function getPrintfulOrderStatus(printfulOrderId: number) {
   const client = new PrintfulClient();
 
   try {
-    const order = await client.getOrder(printfulOrderId);
+    // Retry order status fetching for transient failures
+    const order = await retryWithBackoff(
+      () => client.getOrder(printfulOrderId),
+      `Printful getOrder(${printfulOrderId})`
+    );
+
+    console.log('Printful order status retrieved successfully:', {
+      orderId: printfulOrderId,
+      status: order.status,
+    });
 
     return {
       status: order.status,
@@ -497,9 +660,18 @@ export async function getPrintfulOrderStatus(printfulOrderId: number) {
     };
   } catch (error) {
     if (error instanceof PrintfulError) {
-      console.error('Failed to get Printful order status:', error.message);
+      console.error('Failed to get Printful order status after retries:', {
+        orderId: printfulOrderId,
+        error: error.message,
+        statusCode: error.statusCode,
+      });
       return null;
     }
+
+    console.error('Unexpected error fetching Printful order status:', {
+      orderId: printfulOrderId,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    });
     throw error;
   }
 }
@@ -508,14 +680,50 @@ export async function cancelPrintfulOrder(printfulOrderId: number) {
   const client = new PrintfulClient();
 
   try {
-    await client.cancelOrder(printfulOrderId);
+    // Retry cancel operation for transient failures
+    await retryWithBackoff(
+      () => client.cancelOrder(printfulOrderId),
+      `Printful cancelOrder(${printfulOrderId})`
+    );
+
+    console.log('Printful order cancelled successfully:', { orderId: printfulOrderId });
     return { success: true };
   } catch (error) {
     if (error instanceof PrintfulError) {
-      console.error('Failed to cancel Printful order:', error.message);
-      return { success: false, error: error.message };
+      let errorMessage = error.message;
+
+      // Provide better error messages for common cancellation failures
+      switch (error.statusCode) {
+        case 404:
+          errorMessage = 'Order not found or already cancelled';
+          break;
+        case 409:
+          errorMessage = 'Order cannot be cancelled - it may already be in production or fulfilled';
+          break;
+        case 403:
+          errorMessage = 'Access denied - order may belong to a different store';
+          break;
+      }
+
+      console.error('Failed to cancel Printful order after retries:', {
+        orderId: printfulOrderId,
+        error: error.message,
+        userFriendlyMessage: errorMessage,
+        statusCode: error.statusCode,
+      });
+
+      return { success: false, error: errorMessage, statusCode: error.statusCode };
     }
-    throw error;
+
+    console.error('Unexpected error cancelling Printful order:', {
+      orderId: printfulOrderId,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    });
+
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    };
   }
 }
 
