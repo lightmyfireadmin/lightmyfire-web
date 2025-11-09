@@ -207,6 +207,33 @@ export async function POST(request: NextRequest) {
       }, { status: 500 });
     }
 
+        // CRITICAL: Save order to database FIRST with "processing" status
+    // This ensures the order is recorded even if subsequent steps fail
+    const { error: initialOrderError } = await supabaseAdmin
+      .from('sticker_orders')
+      .insert({
+        user_id: session.user.id,
+        stripe_payment_intent_id: paymentIntentId,
+        quantity: lighterData.length,
+        amount_paid: paymentIntent.amount,
+        user_email: shippingAddress.email,
+        shipping_name: shippingAddress.name,
+        shipping_email: shippingAddress.email,
+        shipping_address: shippingAddress.address,
+        shipping_city: shippingAddress.city,
+        shipping_postal_code: shippingAddress.postalCode,
+        shipping_country: shippingAddress.country,
+        fulfillment_status: 'processing',
+        paid_at: new Date().toISOString(),
+      });
+
+    if (initialOrderError) {
+      console.error('CRITICAL: Failed to save order to database:', initialOrderError);
+      // Still continue - we'll try to process the order anyway
+    } else {
+      console.log('Order saved to database with processing status');
+    }
+
         console.log('Creating lighters for user:', session.user.id);
     console.log('Lighter data to create:', JSON.stringify(lighterData, null, 2));
 
@@ -223,18 +250,44 @@ export async function POST(request: NextRequest) {
         hint: dbError.hint,
         code: dbError.code
       });
+
+      // Update order status to failed
+      await supabaseAdmin
+        .from('sticker_orders')
+        .update({
+          fulfillment_status: 'failed',
+          failure_reason: `Failed to create lighters: ${dbError.message}`,
+        })
+        .eq('stripe_payment_intent_id', paymentIntentId);
+
+      // Return success but with empty lighterIds so user gets redirected
       return NextResponse.json({
-        error: 'Failed to create lighters',
-        details: dbError.message,
-        hint: dbError.hint
-      }, { status: 500 });
+        success: true,
+        lighterIds: [],
+        message: 'Payment received but order processing failed. Our team will contact you shortly.',
+        error: 'Order processing failed - check My Orders for details'
+      }, { status: 200 });
     }
 
     if (!createdLighters || createdLighters.length === 0) {
       console.error('No lighters were created - function returned empty result');
+
+      // Update order status to failed
+      await supabaseAdmin
+        .from('sticker_orders')
+        .update({
+          fulfillment_status: 'failed',
+          failure_reason: 'No lighters were created - database function returned empty result',
+        })
+        .eq('stripe_payment_intent_id', paymentIntentId);
+
+      // Return success but with empty lighterIds so user gets redirected
       return NextResponse.json({
-        error: 'Failed to create lighters - no data returned from database'
-      }, { status: 500 });
+        success: true,
+        lighterIds: [],
+        message: 'Payment received but order processing failed. Our team will contact you shortly.',
+        error: 'Order processing failed - check My Orders for details'
+      }, { status: 200 });
     }
 
     console.log('Successfully created lighters:', createdLighters);
@@ -273,10 +326,25 @@ export async function POST(request: NextRequest) {
         statusText: generateResponse.statusText,
         error: errorText
       });
+
+      // Update order status to failed
+      await supabaseAdmin
+        .from('sticker_orders')
+        .update({
+          fulfillment_status: 'failed',
+          failure_reason: `Sticker generation failed: ${errorText}`,
+          lighter_ids: createdLighters.map((l: any) => l.lighter_id),
+          lighter_names: createdLighters.map((l: any) => l.lighter_name),
+        })
+        .eq('stripe_payment_intent_id', paymentIntentId);
+
+      // Return success so user gets redirected, but with error message
       return NextResponse.json({
-        error: 'Failed to generate stickers',
-        details: errorText
-      }, { status: 500 });
+        success: true,
+        lighterIds: createdLighters.map((l: any) => l.lighter_id),
+        message: 'Payment received but sticker generation failed. Our team will contact you shortly.',
+        error: 'Sticker generation failed - check My Orders for details'
+      }, { status: 200 });
     }
 
     const fileBuffer = await generateResponse.arrayBuffer();
@@ -305,33 +373,30 @@ export async function POST(request: NextRequest) {
       console.log('Sticker uploaded to storage:', stickerFileUrl);
     }
 
-        const { error: orderError } = await supabaseAdmin
+        // Update order with all details and change status to pending
+    const { error: orderError } = await supabaseAdmin
       .from('sticker_orders')
-      .insert({
-        user_id: session.user.id,
-        payment_intent_id: paymentIntentId,
-        quantity: lighterData.length,
-        amount_paid: paymentIntent.amount,
-        shipping_name: shippingAddress.name,
-        shipping_email: shippingAddress.email,
-        shipping_address: shippingAddress.address,
-        shipping_city: shippingAddress.city,
-        shipping_postal_code: shippingAddress.postalCode,
-        shipping_country: shippingAddress.country,
+      .update({
+        fulfillment_status: 'pending',
         sticker_file_url: stickerFileUrl,
         sticker_file_size: fileBuffer.byteLength,
         lighter_ids: createdLighters.map((l: any) => l.lighter_id),
         lighter_names: createdLighters.map((l: any) => l.lighter_name),
-        paid_at: new Date().toISOString(),
-      });
+      })
+      .eq('stripe_payment_intent_id', paymentIntentId);
 
     if (orderError) {
-      console.error('Failed to save order to database:', orderError);
+      console.error('Failed to update order in database:', orderError);
           } else {
-      console.log('Order saved to database successfully');
+      console.log('Order updated to pending status successfully');
     }
 
-        const resend = new Resend(process.env.RESEND_API_KEY);
+        // Check if Resend API key is configured
+    if (!process.env.RESEND_API_KEY) {
+      console.error('CRITICAL: RESEND_API_KEY is not configured - emails will not be sent!');
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     const orderDetails = `
 New Sticker Order - ${paymentIntentId}
@@ -441,7 +506,12 @@ The sticker PNG file is attached. Please fulfill this order.
         .eq('payment_intent_id', paymentIntentId);
 
     } catch (emailError) {
-      console.error('Failed to send fulfillment email:', emailError);
+      console.error('Failed to send fulfillment email:', {
+        error: emailError,
+        message: emailError instanceof Error ? emailError.message : 'Unknown error',
+        recipient: fulfillmentEmail,
+        apiKeyConfigured: !!process.env.RESEND_API_KEY
+      });
           }
 
         try {
@@ -479,10 +549,19 @@ The sticker PNG file is attached. Please fulfill this order.
           .update({ customer_email_sent: true })
           .eq('payment_intent_id', paymentIntentId);
       } else {
-        console.error('Failed to send customer email:', result.error);
+        console.error('Failed to send customer email:', {
+          error: result.error,
+          recipient: shippingAddress.email,
+          apiKeyConfigured: !!process.env.RESEND_API_KEY
+        });
       }
     } catch (emailError) {
-      console.error('Failed to send customer confirmation email:', emailError);
+      console.error('Failed to send customer confirmation email:', {
+        error: emailError,
+        message: emailError instanceof Error ? emailError.message : 'Unknown error',
+        recipient: shippingAddress.email,
+        apiKeyConfigured: !!process.env.RESEND_API_KEY
+      });
     }
 
         const warnings = [];

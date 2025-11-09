@@ -60,14 +60,20 @@ export default function MyOrdersPage() {
           router.push('/');
           return;
         }
-        throw new Error('Failed to fetch orders');
+        // Parse error from response if available
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || 'Failed to fetch orders');
       }
 
       const data = await response.json();
+      // Set orders even if empty array - this will trigger the empty state UI
       setOrders(data.orders || []);
+      setError(null); // Clear any previous errors
     } catch (err) {
       console.error('Error fetching orders:', err);
       setError(err instanceof Error ? err.message : 'Failed to load orders');
+      // Set empty orders array on error so user can still see the page
+      setOrders([]);
     } finally {
       setLoading(false);
     }
@@ -141,51 +147,57 @@ export default function MyOrdersPage() {
     );
   }
 
-  if (error) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <div className="bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200 p-6 rounded-lg max-w-md">
-          <h2 className="text-xl font-semibold mb-2">Error Loading Orders</h2>
-          <p>{error}</p>
-          <button
-            onClick={() => router.push('/')}
-            className="mt-4 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
-          >
-            Go Home
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
         {}
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-            My Orders
+            {t('my_orders.title')}
           </h1>
           <p className="text-muted-foreground">
-            Track your LightMyFire sticker orders
+            {t('my_orders.subtitle')}
           </p>
         </div>
+
+        {}
+        {error && (
+          <div className="mb-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
+            <div className="flex items-start gap-3">
+              <span className="text-yellow-600 dark:text-yellow-400">⚠️</span>
+              <div className="flex-1">
+                <h3 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-1">
+                  {t('my_orders.error.title')}
+                </h3>
+                <p className="text-sm text-yellow-700 dark:text-yellow-300">
+                  {t('my_orders.error.description', { error })}
+                </p>
+                <button
+                  onClick={checkAuthAndFetchOrders}
+                  className="mt-2 text-sm text-yellow-800 dark:text-yellow-200 underline hover:no-underline"
+                >
+                  {t('my_orders.error.try_again')}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {}
         {orders.length === 0 ? (
           <div className="bg-card border border-border rounded-lg p-12 text-center">
             <div className="text-6xl mb-4">📦</div>
             <h2 className="text-2xl font-semibold text-foreground mb-2">
-              No Orders Yet
+              {t('my_orders.empty.title')}
             </h2>
             <p className="text-muted-foreground mb-6">
-              You haven&apos;t placed any sticker orders yet.
+              {t('my_orders.empty.description')}
             </p>
             <button
               onClick={() => router.push('/save-lighter')}
               className="px-6 py-3 bg-primary text-primary-foreground rounded-md font-semibold hover:bg-primary/90"
             >
-              Order Stickers
+              {t('my_orders.empty.cta')}
             </button>
           </div>
         ) : (
@@ -200,18 +212,18 @@ export default function MyOrdersPage() {
                   <div>
                     <div className="flex items-center gap-3 mb-2">
                       <h3 className="text-xl font-semibold text-foreground">
-                        Order #{order.orderId}
+                        {t('my_orders.order_id', { orderId: order.orderId })}
                       </h3>
                       <span
                         className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(
                           order.status
                         )}`}
                       >
-                        {getStatusIcon(order.status)} {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                        {getStatusIcon(order.status)} {t(`my_orders.status.${order.status}`)}
                       </span>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      Placed on {formatDate(order.createdAt)}
+                      {t('my_orders.placed_on', { date: formatDate(order.createdAt) })}
                     </p>
                   </div>
                   <div className="mt-4 md:mt-0 text-right">
@@ -219,7 +231,10 @@ export default function MyOrdersPage() {
                       {formatCurrency(order.amount, order.currency)}
                     </p>
                     <p className="text-sm text-muted-foreground">
-                      {order.quantity} sticker{order.quantity !== 1 ? 's' : ''}
+                      {order.quantity === 1
+                        ? t('my_orders.sticker_count', { count: order.quantity })
+                        : t('my_orders.stickers_count', { count: order.quantity })
+                      }
                     </p>
                   </div>
                 </div>
@@ -229,7 +244,7 @@ export default function MyOrdersPage() {
                   {}
                   <div>
                     <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                      📍 Shipping Address
+                      📍 {t('my_orders.shipping.title')}
                     </h4>
                     <div className="text-sm text-muted-foreground space-y-1">
                       <p>{order.customerName}</p>
@@ -245,7 +260,7 @@ export default function MyOrdersPage() {
                   {order.lighterNames && order.lighterNames.length > 0 && (
                     <div>
                       <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
-                        🏷️ Lighter Names
+                        🏷️ {t('my_orders.lighters.title')}
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {order.lighterNames.map((name, idx) => (
@@ -265,12 +280,12 @@ export default function MyOrdersPage() {
                 {order.trackingNumber && (
                   <div className="bg-muted/50 rounded-lg p-4 mb-4">
                     <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                      🚚 Tracking Information
+                      🚚 {t('my_orders.tracking.title')}
                     </h4>
                     <div className="space-y-2">
                       <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                         <span className="text-sm font-medium text-muted-foreground">
-                          Carrier:
+                          {t('my_orders.tracking.carrier')}
                         </span>
                         <span className="text-sm text-foreground font-semibold">
                           {order.carrier}
@@ -278,7 +293,7 @@ export default function MyOrdersPage() {
                       </div>
                       <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                         <span className="text-sm font-medium text-muted-foreground">
-                          Tracking Number:
+                          {t('my_orders.tracking.number')}
                         </span>
                         <span className="text-sm font-mono text-foreground">
                           {order.trackingNumber}
@@ -287,7 +302,7 @@ export default function MyOrdersPage() {
                       {order.shippedAt && (
                         <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                           <span className="text-sm font-medium text-muted-foreground">
-                            Shipped:
+                            {t('my_orders.tracking.shipped')}
                           </span>
                           <span className="text-sm text-foreground">
                             {formatDate(order.shippedAt)}
@@ -301,7 +316,7 @@ export default function MyOrdersPage() {
                           rel="noopener noreferrer"
                           className="inline-block mt-2 px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/90 transition-colors"
                         >
-                          Track Package →
+                          {t('my_orders.tracking.track_button')}
                         </a>
                       )}
                     </div>
@@ -312,7 +327,7 @@ export default function MyOrdersPage() {
                 {order.onHold && order.holdReason && (
                   <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mb-4">
                     <h4 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
-                      ⚠️ Order On Hold
+                      ⚠️ {t('my_orders.hold.title')}
                     </h4>
                     <p className="text-sm text-yellow-700 dark:text-yellow-300">
                       {order.holdReason}
@@ -323,13 +338,13 @@ export default function MyOrdersPage() {
                 {order.failureReason && (
                   <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-4">
                     <h4 className="font-semibold text-red-800 dark:text-red-200 mb-2">
-                      ❌ Order Failed
+                      ❌ {t('my_orders.failed.title')}
                     </h4>
                     <p className="text-sm text-red-700 dark:text-red-300">
                       {order.failureReason}
                     </p>
                     <p className="text-sm text-red-600 dark:text-red-400 mt-2">
-                      Please contact support at{' '}
+                      {t('my_orders.failed.contact')}{' '}
                       <a
                         href="mailto:support@lightmyfire.app"
                         className="underline font-medium"
@@ -343,7 +358,7 @@ export default function MyOrdersPage() {
                 {order.cancellationReason && (
                   <div className="bg-gray-50 dark:bg-gray-900/20 border border-gray-200 dark:border-gray-800 rounded-lg p-4 mb-4">
                     <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">
-                      🚫 Order Canceled
+                      🚫 {t('my_orders.canceled.title')}
                     </h4>
                     <p className="text-sm text-gray-700 dark:text-gray-300">
                       {order.cancellationReason}
@@ -354,12 +369,12 @@ export default function MyOrdersPage() {
                 {}
                 <div className="pt-4 border-t border-border">
                   <p className="text-sm text-muted-foreground">
-                    Need help?{' '}
+                    {t('my_orders.help.label')}{' '}
                     <a
                       href={`mailto:support@lightmyfire.app?subject=Order ${order.orderId}`}
                       className="text-primary hover:underline font-medium"
                     >
-                      Contact Support
+                      {t('my_orders.help.contact')}
                     </a>
                   </p>
                 </div>
