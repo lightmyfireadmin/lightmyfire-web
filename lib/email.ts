@@ -14,6 +14,113 @@ function getResendClient(): Resend {
   return resendClient;
 }
 
+/**
+ * Retry configuration for email sending
+ */
+const EMAIL_RETRY_CONFIG = {
+  maxRetries: 3,
+  initialDelay: 1000, // 1 second
+  maxDelay: 10000, // 10 seconds
+  backoffMultiplier: 2,
+};
+
+/**
+ * Sleep for specified milliseconds
+ */
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/**
+ * Determines if an email error is retryable
+ * Retryable: network issues, rate limits, temporary server errors
+ * Not retryable: invalid email, auth failures, validation errors
+ */
+function isEmailErrorRetryable(error: any): boolean {
+  // Network/timeout errors are retryable
+  if (!error.message) return true;
+
+  const message = error.message.toLowerCase();
+
+  // Permanent errors - don't retry
+  if (
+    message.includes('invalid email') ||
+    message.includes('invalid recipient') ||
+    message.includes('unauthorized') ||
+    message.includes('forbidden') ||
+    message.includes('invalid api key') ||
+    message.includes('not found') ||
+    message.includes('validation error')
+  ) {
+    return false;
+  }
+
+  // Transient errors - retry
+  if (
+    message.includes('rate limit') ||
+    message.includes('too many requests') ||
+    message.includes('timeout') ||
+    message.includes('server error') ||
+    message.includes('service unavailable') ||
+    message.includes('network') ||
+    message.includes('connection')
+  ) {
+    return true;
+  }
+
+  // Default to retryable for unknown errors
+  return true;
+}
+
+/**
+ * Retry email sending with exponential backoff
+ */
+async function retryEmailSend<T>(
+  fn: () => Promise<T>,
+  context: string,
+  maxRetries: number = EMAIL_RETRY_CONFIG.maxRetries
+): Promise<T> {
+  let lastError: Error | undefined;
+
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      return await fn();
+    } catch (error) {
+      lastError = error as Error;
+
+      // Check if error is retryable
+      const isRetryable = isEmailErrorRetryable(error);
+
+      // If not retryable or last attempt, throw immediately
+      if (!isRetryable || attempt === maxRetries) {
+        console.error(`${context} failed after ${attempt + 1} attempts (not retryable or max retries reached)`, {
+          error: error instanceof Error ? error.message : 'Unknown error',
+          attempt: attempt + 1,
+          maxRetries: maxRetries + 1,
+          isRetryable,
+        });
+        throw error;
+      }
+
+      // Calculate delay with exponential backoff
+      const delay = Math.min(
+        EMAIL_RETRY_CONFIG.initialDelay * Math.pow(EMAIL_RETRY_CONFIG.backoffMultiplier, attempt),
+        EMAIL_RETRY_CONFIG.maxDelay
+      );
+
+      console.warn(`${context} attempt ${attempt + 1} failed, retrying in ${delay}ms...`, {
+        error: error instanceof Error ? error.message : 'Unknown error',
+        attemptsRemaining: maxRetries - attempt,
+      });
+
+      await sleep(delay);
+    }
+  }
+
+  // Should never reach here due to throw in loop, but TypeScript needs this
+  throw lastError || new Error(`${context} failed after retries`);
+}
+
 const EMAIL_CONFIG = {
   from: {
     default: 'LightMyFire <support@lightmyfire.app>',
@@ -151,29 +258,74 @@ interface SendEmailOptions {
 }
 
 async function sendEmail(options: SendEmailOptions): Promise<{ success: boolean; error?: string; id?: string }> {
-  try {
-    const resend = getResendClient();
+  const emailContext = `Email to ${Array.isArray(options.to) ? options.to.join(', ') : options.to}`;
 
-    const { data, error } = await resend.emails.send({
-      from: options.from || EMAIL_CONFIG.from.default,
-      to: Array.isArray(options.to) ? options.to : [options.to],
+  try {
+    // Retry email sending with exponential backoff
+    const result = await retryEmailSend(async () => {
+      const resend = getResendClient();
+
+      const { data, error } = await resend.emails.send({
+        from: options.from || EMAIL_CONFIG.from.default,
+        to: Array.isArray(options.to) ? options.to : [options.to],
+        subject: options.subject,
+        html: options.html,
+        replyTo: options.replyTo,
+        attachments: options.attachments,
+      });
+
+      if (error) {
+        console.error('Resend API error:', {
+          error: error.message || error,
+          recipient: options.to,
+          subject: options.subject,
+        });
+        throw new Error(error.message || 'Failed to send email');
+      }
+
+      if (!data?.id) {
+        throw new Error('Email sent but no ID returned');
+      }
+
+      console.log('Email sent successfully:', {
+        id: data.id,
+        recipient: options.to,
+        subject: options.subject,
+      });
+
+      return data;
+    }, emailContext);
+
+    return { success: true, id: result.id };
+  } catch (error) {
+    // Log final failure after all retries exhausted
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+
+    console.error('Email sending failed after retries:', {
+      error: errorMessage,
+      recipient: options.to,
       subject: options.subject,
-      html: options.html,
-      replyTo: options.replyTo,
-      attachments: options.attachments,
+      isRetryable: isEmailErrorRetryable(error),
     });
 
-    if (error) {
-      console.error('Resend error:', error);
-      return { success: false, error: error.message || 'Failed to send email' };
+    // Provide user-friendly error messages
+    let userFriendlyMessage = errorMessage;
+
+    if (errorMessage.toLowerCase().includes('invalid email') || errorMessage.toLowerCase().includes('invalid recipient')) {
+      userFriendlyMessage = 'Invalid email address. Please check the recipient email.';
+    } else if (errorMessage.toLowerCase().includes('rate limit') || errorMessage.toLowerCase().includes('too many requests')) {
+      userFriendlyMessage = 'Email service rate limit reached. Please try again later.';
+    } else if (errorMessage.toLowerCase().includes('unauthorized') || errorMessage.toLowerCase().includes('invalid api key')) {
+      userFriendlyMessage = 'Email service authentication failed. Please contact support.';
+    } else if (errorMessage.toLowerCase().includes('timeout') || errorMessage.toLowerCase().includes('network')) {
+      userFriendlyMessage = 'Network error while sending email. The email system will retry automatically.';
+    } else if (!errorMessage) {
+      userFriendlyMessage = 'Failed to send email. Please try again or contact support.';
     }
 
-    return { success: true, id: data?.id };
-  } catch (error) {
-    console.error('Email sending error:', error);
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Unknown error'
+      error: userFriendlyMessage,
     };
   }
 }

@@ -11,8 +11,30 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    
-    
+    // Log error to console in development
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error boundary caught:', error);
+      console.error('Error stack:', error.stack);
+    }
+
+    // In production, you could send this to an error tracking service
+    // Example: Sentry, LogRocket, or custom error logging endpoint
+    if (process.env.NODE_ENV === 'production') {
+      // Log to server-side error tracking
+      fetch('/api/log-error', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: error.message,
+          digest: error.digest,
+          stack: error.stack,
+          timestamp: new Date().toISOString(),
+        }),
+      }).catch((err) => {
+        // Fail silently to not disrupt user experience
+        console.error('Failed to log error:', err);
+      });
+    }
   }, [error]);
 
   return (

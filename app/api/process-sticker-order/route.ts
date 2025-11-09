@@ -8,6 +8,7 @@ import { PACK_PRICING, VALID_PACK_SIZES } from '@/lib/constants';
 import { rateLimit } from '@/lib/rateLimit';
 import { sendOrderConfirmationEmail } from '@/lib/email';
 import { SupportedEmailLanguage } from '@/lib/email-i18n';
+import { generateInternalAuthToken } from '@/lib/internal-auth';
 
 interface LighterData {
   name: string;
@@ -69,6 +70,65 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid request data' }, { status: 400 });
     }
 
+    // Validate shipping address
+    if (!shippingAddress || typeof shippingAddress !== 'object') {
+      return NextResponse.json({ error: 'Shipping address is required' }, { status: 400 });
+    }
+
+    const { name, email, address, city, postalCode, country } = shippingAddress;
+
+    // Validate required fields presence and types
+    if (!name || typeof name !== 'string' || name.trim().length === 0) {
+      return NextResponse.json({ error: 'Shipping name is required' }, { status: 400 });
+    }
+    if (!email || typeof email !== 'string' || email.trim().length === 0) {
+      return NextResponse.json({ error: 'Shipping email is required' }, { status: 400 });
+    }
+    if (!address || typeof address !== 'string' || address.trim().length === 0) {
+      return NextResponse.json({ error: 'Shipping address is required' }, { status: 400 });
+    }
+    if (!city || typeof city !== 'string' || city.trim().length === 0) {
+      return NextResponse.json({ error: 'Shipping city is required' }, { status: 400 });
+    }
+    if (!postalCode || typeof postalCode !== 'string' || postalCode.trim().length === 0) {
+      return NextResponse.json({ error: 'Shipping postal code is required' }, { status: 400 });
+    }
+    if (!country || typeof country !== 'string' || country.trim().length === 0) {
+      return NextResponse.json({ error: 'Shipping country is required' }, { status: 400 });
+    }
+
+    // Validate field lengths (prevent abuse and database overflow)
+    if (name.length > 100) {
+      return NextResponse.json({ error: 'Shipping name too long (max 100 characters)' }, { status: 400 });
+    }
+    if (email.length > 255) {
+      return NextResponse.json({ error: 'Shipping email too long (max 255 characters)' }, { status: 400 });
+    }
+    if (address.length > 200) {
+      return NextResponse.json({ error: 'Shipping address too long (max 200 characters)' }, { status: 400 });
+    }
+    if (city.length > 100) {
+      return NextResponse.json({ error: 'Shipping city too long (max 100 characters)' }, { status: 400 });
+    }
+    if (postalCode.length > 20) {
+      return NextResponse.json({ error: 'Shipping postal code too long (max 20 characters)' }, { status: 400 });
+    }
+    if (country.length > 2) {
+      return NextResponse.json({ error: 'Shipping country code too long (must be 2-letter ISO code)' }, { status: 400 });
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json({ error: 'Invalid shipping email format' }, { status: 400 });
+    }
+
+    // Validate country code format (2-letter ISO code)
+    const countryRegex = /^[A-Z]{2}$/i;
+    if (!countryRegex.test(country)) {
+      return NextResponse.json({ error: 'Invalid country code format (must be 2-letter ISO code like US, FR, DE)' }, { status: 400 });
+    }
+
         if (!process.env.STRIPE_SECRET_KEY) {
       console.error('STRIPE_SECRET_KEY not configured');
       return NextResponse.json({ error: 'Payment system not configured' }, { status: 500 });
@@ -78,8 +138,10 @@ export async function POST(request: NextRequest) {
       apiVersion: '2025-10-29.clover',
     });
 
+    // Retrieve and validate payment intent once, reuse throughout function
+    let paymentIntent;
     try {
-      const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+      paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
 
       if (paymentIntent.status !== 'succeeded') {
         console.error('Payment not successful:', paymentIntent.status);
@@ -176,9 +238,7 @@ export async function POST(request: NextRequest) {
 
         console.log('Generating sticker PNG...');
 
-            const internalAuthToken = Buffer.from(
-      `${session.user.id}:${Date.now()}:${process.env.SUPABASE_SERVICE_ROLE_KEY}`
-    ).toString('base64');
+        const internalAuthToken = generateInternalAuthToken(session.user.id);
 
     const generateResponse = await fetch(`${request.nextUrl.origin}/api/generate-printful-stickers`, {
       method: 'POST',
@@ -238,7 +298,7 @@ export async function POST(request: NextRequest) {
         user_id: session.user.id,
         payment_intent_id: paymentIntentId,
         quantity: lighterData.length,
-        amount_paid: await stripe.paymentIntents.retrieve(paymentIntentId).then(pi => pi.amount),
+        amount_paid: paymentIntent.amount,
         shipping_name: shippingAddress.name,
         shipping_email: shippingAddress.email,
         shipping_address: shippingAddress.address,
@@ -284,7 +344,7 @@ ${createdLighters
 The sticker PNG file is attached. Please fulfill this order.
     `;
 
-    const fulfillmentEmail = process.env.FULFILLMENT_EMAIL || 'orders@lightmyfire.app';
+    const fulfillmentEmail = process.env.FULFILLMENT_EMAIL || 'mitch@lightmyfire.app';
     let fulfillmentEmailSent = false;
     let customerEmailSent = false;
 
@@ -374,7 +434,7 @@ The sticker PNG file is attached. Please fulfill this order.
         try {
       const emailLanguage = (lighterData[0]?.language || 'en') as SupportedEmailLanguage;
 
-      const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+      // Reuse already-retrieved paymentIntent instead of fetching again
       const totalAmount = (paymentIntent.amount / 100).toFixed(2);
       const currency = paymentIntent.currency;
 

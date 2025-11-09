@@ -51,7 +51,24 @@ function PostCard({
   isMini?: boolean;
 }) {
   const t = useI18n() as any;
-  
+
+  // Determine display name based on user status
+  const getDisplayName = () => {
+    // If post was marked anonymous by user choice, show "Anonymous"
+    if (post.is_anonymous) {
+      return t('post.anonymous') || 'Anonymous';
+    }
+
+    // If username is null, empty, or appears deleted, show "Deleted User"
+    if (!post.username || post.username.trim() === '' || post.username === 'null') {
+      return t('post.deleted_user') || 'Deleted User';
+    }
+
+    // Otherwise show the actual username
+    return post.username;
+  };
+
+  const displayName = getDisplayName();
 
   let embedId: string | null = null;
   if (post.post_type === 'song' && post.content_url) {
@@ -91,8 +108,13 @@ function PostCard({
              aria-hidden="true"
            />
            <div className="flex items-center gap-1">
-             <span className="font-semibold text-foreground">{post.username}</span>
-             {post.show_nationality && post.nationality && (
+             <span className={`font-semibold ${
+               post.is_anonymous || !post.username ? 'text-muted-foreground italic' : 'text-foreground'
+             }`}>
+               {displayName}
+             </span>
+             {/* Only show nationality for non-anonymous and non-deleted users */}
+             {!post.is_anonymous && post.username && post.show_nationality && post.nationality && (
                <span
                  title={getCountryName(post.nationality)}
                  className="cursor-help text-lg"
@@ -100,7 +122,10 @@ function PostCard({
                  {countryCodeToFlag(post.nationality)}
                </span>
              )}
-             <ModeratorBadge isSmall={isMini} role={post.role ?? undefined} />
+             {/* Only show moderator badge for non-anonymous and non-deleted users */}
+             {!post.is_anonymous && post.username && (
+               <ModeratorBadge isSmall={isMini} role={post.role ?? undefined} />
+             )}
            </div>
         </div>
         <span

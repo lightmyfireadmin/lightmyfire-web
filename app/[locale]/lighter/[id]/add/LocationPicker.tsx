@@ -182,7 +182,8 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
             style={{
               WebkitOverflowScrolling: 'touch',
               touchAction: 'pan-y',
-              overscrollBehavior: 'contain'
+              overscrollBehavior: 'contain',
+              overflowY: 'scroll'
             }}
           >
             {searchResults.map((result, index) => {
@@ -192,11 +193,21 @@ export default function LocationPicker({ value, onChange }: LocationPickerProps)
                 <button
                   key={index}
                   type="button"
-                  onClick={() => handleSelectLocation(result)}
-                  className="w-full text-left px-4 py-3 hover:bg-muted border-b border-border/50 last:border-b-0 transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleSelectLocation(result);
+                  }}
+                  onTouchEnd={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleSelectLocation(result);
+                  }}
+                  className="w-full text-left px-4 py-3 hover:bg-muted active:bg-muted/70 border-b border-border/50 last:border-b-0 transition-colors cursor-pointer touch-manipulation"
+                  style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
-                  <div className="font-medium text-foreground">{shortName}</div>
-                  <div className="text-xs text-muted-foreground mt-1">{fullAddress}</div>
+                  <div className="font-medium text-foreground pointer-events-none">{shortName}</div>
+                  <div className="text-xs text-muted-foreground mt-1 pointer-events-none">{fullAddress}</div>
                 </button>
               );
             })}

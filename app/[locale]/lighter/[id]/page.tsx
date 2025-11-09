@@ -2,8 +2,8 @@ import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
-import PostCard from '@/app/components/PostCard';
 import EmptyLighterPosts from '@/app/components/EmptyLighterPosts';
+import PaginatedPosts from './PaginatedPosts';
 import { DetailedPost } from '@/lib/types'; 
 import type { Metadata } from 'next';
 import MapComponent from './MapComponent'; 
@@ -220,15 +220,11 @@ export default async function LighterPage({
         </div>
 
         {}
-        <div className="space-y-6">
-          {posts && posts.length > 0 ? (
-            posts.map((post: DetailedPost) => (
-              <PostCard key={post.id} post={post} isLoggedIn={isLoggedIn} />
-            ))
-          ) : (
-            <EmptyLighterPosts lighterId={lighter.id} />
-          )}
-        </div>
+        {posts && posts.length > 0 ? (
+          <PaginatedPosts posts={posts} isLoggedIn={isLoggedIn} />
+        ) : (
+          <EmptyLighterPosts lighterId={lighter.id} />
+        )}
       </div>
     </div>
   );

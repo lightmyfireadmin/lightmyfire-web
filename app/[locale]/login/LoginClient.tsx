@@ -17,28 +17,35 @@ export default function LoginClient() {
   const hasRedirectedRef = useRef(false);
 
   useEffect(() => {
-        const {
+    const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
       console.log('[LoginClient] Auth event:', event);
 
-            if (event === 'SIGNED_IN' && session && !hasRedirectedRef.current) {
+      if (event === 'SIGNED_IN' && session && !hasRedirectedRef.current) {
         console.log('[LoginClient] User signed in, initiating redirect');
         hasRedirectedRef.current = true;
         setIsRedirecting(true);
 
-                setTimeout(() => {
+        // Use a more reliable redirect mechanism
+        try {
+          // Ensure session is properly set before redirecting
+          await new Promise(resolve => setTimeout(resolve, 500));
           window.location.href = `/${locale}?login_success=true`;
-        }, 300);
+        } catch (error) {
+          console.error('[LoginClient] Redirect error:', error);
+          hasRedirectedRef.current = false;
+          setIsRedirecting(false);
+        }
       }
 
-            if (event === 'SIGNED_OUT') {
+      if (event === 'SIGNED_OUT') {
         hasRedirectedRef.current = false;
         setIsRedirecting(false);
       }
     });
 
-        return () => {
+    return () => {
       subscription?.unsubscribe();
     };
   }, [locale]);

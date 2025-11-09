@@ -10,6 +10,8 @@ interface ConfirmModalProps {
   onConfirm: () => void;
   title: string;
   message: string;
+  confirmButtonText?: string;
+  confirmButtonDisabled?: boolean;
 }
 
 export default function ConfirmModal({
@@ -18,6 +20,8 @@ export default function ConfirmModal({
   onConfirm,
   title,
   message,
+  confirmButtonText,
+  confirmButtonDisabled = false,
 }: ConfirmModalProps) {
   const t = useI18n() as any;
   return (
@@ -64,19 +68,22 @@ export default function ConfirmModal({
                     type="button"
                     className="btn-secondary"
                     onClick={onClose}
+                    disabled={confirmButtonDisabled}
                   >
                     {t('confirm_modal.cancel')}
                   </button>
                   <button
                     type="button"
-                    
-                    className="btn-primary bg-red-600 hover:bg-red-700 focus:ring-red-500"
+                    disabled={confirmButtonDisabled}
+                    className={`btn-primary bg-red-600 hover:bg-red-700 focus:ring-red-500 ${
+                      confirmButtonDisabled ? 'opacity-50 cursor-not-allowed' : ''
+                    }`}
                     onClick={() => {
                       onConfirm();
                       onClose();
                     }}
                   >
-                    {t('confirm_modal.confirm')}
+                    {confirmButtonText || t('confirm_modal.confirm')}
                   </button>
                 </div>
               </Dialog.Panel>

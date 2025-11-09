@@ -6,6 +6,7 @@ import fs from 'fs';
 import archiver from 'archiver';
 import { cookies } from 'next/headers';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
+import { verifyInternalAuthToken } from '@/lib/internal-auth';
 
 try {
   const poppinsExtraBold = path.join(process.cwd(), 'public', 'fonts', 'Poppins-ExtraBold.ttf');
@@ -293,18 +294,8 @@ export async function POST(request: NextRequest) {
     const isDevelopment = process.env.NODE_ENV !== 'production';
 
         let isInternalAuth = false;
-    if (internalAuth && userId && process.env.SUPABASE_SERVICE_ROLE_KEY) {
-      try {
-        const decoded = Buffer.from(internalAuth, 'base64').toString('utf-8');
-        const [authUserId, timestamp, serviceKey] = decoded.split(':');
-
-                const isValidUser = authUserId === userId;
-        const isValidKey = serviceKey === process.env.SUPABASE_SERVICE_ROLE_KEY;
-        const isRecent = Date.now() - parseInt(timestamp) < 60000; 
-        isInternalAuth = isValidUser && isValidKey && isRecent;
-      } catch (e) {
-        console.error('Internal auth validation failed:', e);
-      }
+    if (internalAuth && userId) {
+      isInternalAuth = verifyInternalAuthToken(internalAuth, userId);
     }
 
         if (!isInternalAuth && !(isTestEndpoint && isDevelopment)) {
@@ -366,8 +357,10 @@ export async function POST(request: NextRequest) {
     });
 
     const zipPromise = new Promise<Buffer>((resolve, reject) => {
-      archive.on('end', () => {
+      // archiver emits 'finish' not 'end' when finalization is complete
+      archive.on('finish', () => {
         const zipBuffer = Buffer.concat(chunks);
+        console.log(`ZIP created successfully: ${zipBuffer.length} bytes`);
         resolve(zipBuffer);
       });
 
@@ -519,7 +512,7 @@ async function drawSticker(
   ctx.fill();
 
   try {
-            const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://lightmyfire.app';
+            const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://lightmyfire.app';
     const qrUrl = `${baseUrl}/?pin=${sticker.pinCode}`;
 
     const qrDataUrl = await QRCode.toDataURL(qrUrl, {

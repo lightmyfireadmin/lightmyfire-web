@@ -3,8 +3,15 @@ import OpenAI from 'openai';
 import { rateLimit } from '@/lib/rateLimit';
 import { cookies } from 'next/headers';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
+import crypto from 'crypto';
 
 export const dynamic = 'force-dynamic';
+
+// Startup validation: Check OpenAI API key at module load time
+if (!process.env.OPENAI_API_KEY) {
+  console.error('⚠️  CRITICAL: OPENAI_API_KEY not configured. Content moderation will fail!');
+  console.error('⚠️  Please set OPENAI_API_KEY environment variable to enable content moderation.');
+}
 
 interface ModerationRequest {
   text: string;
@@ -201,13 +208,40 @@ async function logModerationResult(data: {
   timestamp: string;
 }): Promise<void> {
   try {
-            console.log('Moderation check completed:', {
+    // Create content hash for audit trail (don't store actual content for privacy)
+    const contentHash = crypto.createHash('sha256').update(data.text).digest('hex');
+
+    const flaggedCategories = Object.entries(data.categories)
+      .filter(([, flagged]) => flagged)
+      .map(([category]) => category);
+
+    // Comprehensive logging for audit trail
+    console.log('Text moderation result:', {
+      timestamp: data.timestamp,
       userId: data.userId,
       contentType: data.contentType,
+      contentHash,
+      contentLength: data.text.length,
+      contentPreview: data.text.substring(0, 100),
       flagged: data.flagged,
       severity: data.severity,
+      flaggedCategories,
+      categoryScores: data.scores,
+      decision: data.flagged ? 'BLOCKED' : 'APPROVED',
     });
+
+    // TODO: Store in moderation_logs table when it's created
+    // await supabase.from('moderation_logs').insert({
+    //   user_id: data.userId,
+    //   content_type: data.contentType,
+    //   content_hash: contentHash,
+    //   flagged: data.flagged,
+    //   categories: data.categories,
+    //   category_scores: data.scores,
+    //   severity: data.severity,
+    //   created_at: data.timestamp
+    // });
   } catch (err) {
     console.error('Failed to log moderation:', err);
-      }
+  }
 }

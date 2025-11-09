@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import type { User } from '@supabase/supabase-js';
@@ -10,6 +10,8 @@ import { useI18n } from '@/locales/client';
 import LocationPicker from './LocationPicker';
 
 type PostType = 'text' | 'song' | 'image' | 'location' | 'refuel';
+
+const MAX_TEXT_LENGTH = 500;
 
 interface YouTubeVideo {
   id: { videoId: string };
@@ -38,7 +40,7 @@ function PostTypeButton({
       className={`p-3 rounded-lg border-2 transition-all duration-200 text-center ${
         selected
           ? `${colorClass} shadow-md scale-105 font-semibold`
-          : 'border-border text-muted-foreground hover:text-foreground hover:border-border'
+          : 'border-border text-muted-foreground hover:text-foreground hover:border-border active:bg-muted/50 md:active:bg-transparent'
       }`}
     >
       <div className="text-2xl mb-1">{icon}</div>
@@ -66,8 +68,8 @@ export default function AddPostForm({
   const [contentText, setContentText] = useState('');
   const [contentUrl, setContentUrl] = useState('');
   const [locationName, setLocationName] = useState('');
-  const [locationLat, setLocationLat] = useState<number | ''>(''); 
-  const [locationLng, setLocationLng] = useState<number | ''>(''); 
+  const [locationLat, setLocationLat] = useState<number | ''>('');
+  const [locationLng, setLocationLng] = useState<number | ''>('');
   const [isFindLocation, setIsFindLocation] = useState(false);
   const [isCreation, setIsCreation] = useState(false);
   const [isAnonymous, setIsAnonymous] = useState(false);
@@ -79,6 +81,10 @@ export default function AddPostForm({
   const [error, setError] = useState('');
   const [moderationError, setModerationError] = useState<{ severity: 'low' | 'medium' | 'high'; reason: string } | null>(null);
   const [showModerationWarning, setShowModerationWarning] = useState(false);
+
+  // Track upload abort controller to prevent race conditions
+  const uploadAbortControllerRef = useRef<AbortController | null>(null);
+  const isMountedRef = useRef(true);
 
   
   const [songInputMode, setSongInputMode] = useState<'url' | 'search'>('search');
@@ -141,6 +147,17 @@ export default function AddPostForm({
     };
   }, [youtubeSearchQuery, songInputMode, contentUrl, searchYouTube]);
 
+  // Cleanup on unmount - cancel pending uploads and mark component as unmounted
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+      if (uploadAbortControllerRef.current) {
+        uploadAbortControllerRef.current.abort();
+        uploadAbortControllerRef.current = null;
+      }
+    };
+  }, []);
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
@@ -170,29 +187,64 @@ export default function AddPostForm({
         return;
       }
 
-      setLoading(true);
-      setUploading(true);
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${user.id}-${Date.now()}.${fileExt}`;
-      const filePath = `${fileName}`;
-
-      const { error: uploadError } = await supabase.storage
-        .from('post-images')
-        .upload(filePath, file);
-
-      if (uploadError) {
-        setError(t('add_post.error.upload_failed'));
-        setLoading(false);
-        setUploading(false);
+      // Prevent concurrent uploads - check if upload is already in progress
+      if (uploading || uploadAbortControllerRef.current) {
+        console.warn('Upload already in progress, ignoring duplicate request');
         return;
       }
 
-      const { data: urlData } = supabase.storage
-        .from('post-images')
-        .getPublicUrl(filePath);
+      setLoading(true);
+      setUploading(true);
 
-      finalContentUrl = urlData.publicUrl;
-      setUploading(false);
+      // Create AbortController for this upload to enable cancellation
+      const abortController = new AbortController();
+      uploadAbortControllerRef.current = abortController;
+
+      try {
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${user.id}-${Date.now()}.${fileExt}`;
+        const filePath = `${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from('post-images')
+          .upload(filePath, file, {
+            upsert: false,
+          });
+
+        // Check if upload was cancelled during the operation
+        if (abortController.signal.aborted || !isMountedRef.current) {
+          console.log('Upload cancelled');
+          return;
+        }
+
+        if (uploadError) {
+          setError(t('add_post.error.upload_failed'));
+          setLoading(false);
+          setUploading(false);
+          uploadAbortControllerRef.current = null;
+          return;
+        }
+
+        const { data: urlData } = supabase.storage
+          .from('post-images')
+          .getPublicUrl(filePath);
+
+        finalContentUrl = urlData.publicUrl;
+        setUploading(false);
+        uploadAbortControllerRef.current = null;
+      } catch (err) {
+        // Handle upload cancellation or errors
+        if (abortController.signal.aborted || !isMountedRef.current) {
+          console.log('Upload cancelled or component unmounted');
+          return;
+        }
+        console.error('Upload error:', err);
+        setError(t('add_post.error.upload_failed'));
+        setLoading(false);
+        setUploading(false);
+        uploadAbortControllerRef.current = null;
+        return;
+      }
     }
 
     if (postType === 'song' && songInputMode === 'search') {
@@ -206,12 +258,63 @@ export default function AddPostForm({
       return;
     }
 
+    // Validate text length
+    if (postType === 'text' && contentText.length > MAX_TEXT_LENGTH) {
+      setError(t('add_post.error.text_too_long', { max: MAX_TEXT_LENGTH }));
+      return;
+    }
+
     if (postType === 'location' && (locationLat === '' || locationLng === '')) {
       setError(t('add_post.error.no_location_selected'));
       return;
     }
 
+    // Validate location coordinates range
+    if (postType === 'location') {
+      const lat = typeof locationLat === 'number' ? locationLat : parseFloat(String(locationLat));
+      const lng = typeof locationLng === 'number' ? locationLng : parseFloat(String(locationLng));
+
+      if (lat < -90 || lat > 90) {
+        setError(t('add_post.error.invalid_latitude'));
+        return;
+      }
+
+      if (lng < -180 || lng > 180) {
+        setError(t('add_post.error.invalid_longitude'));
+        return;
+      }
+    }
+
     setLoading(true);
+
+        // Check 24-hour post cooldown per lighter per user
+    const { data: recentPosts, error: cooldownError } = await supabase
+      .from('posts')
+      .select('created_at')
+      .eq('lighter_id', lighterId)
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+      .limit(1);
+
+    if (cooldownError) {
+      console.error('Error checking post cooldown:', cooldownError);
+      setError(t('add_post.error.cooldown_check_failed'));
+      setLoading(false);
+      return;
+    }
+
+    if (recentPosts && recentPosts.length > 0) {
+      const lastPostTime = new Date(recentPosts[0].created_at).getTime();
+      const now = Date.now();
+      const hoursSinceLastPost = (now - lastPostTime) / (1000 * 60 * 60);
+
+      if (hoursSinceLastPost < 24) {
+        const hoursRemaining = Math.ceil(24 - hoursSinceLastPost);
+        setError(t('add_post.error.cooldown_active', { hours: hoursRemaining }));
+        setLoading(false);
+        return;
+      }
+    }
 
         let moderationFailed = false;
     let contentFlaggedByApi = false;
@@ -318,7 +421,21 @@ export default function AddPostForm({
     const textareaClass = `${inputClass} h-32`;
 
     switch (postType) {
-      case 'text': return <textarea value={contentText} onChange={(e) => setContentText(e.target.value)} className={textareaClass} placeholder={t('add_post.placeholder.text')} required />;
+      case 'text': return (
+        <div className="space-y-2">
+          <textarea
+            value={contentText}
+            onChange={(e) => setContentText(e.target.value)}
+            className={textareaClass}
+            placeholder={t('add_post.placeholder.text')}
+            maxLength={MAX_TEXT_LENGTH}
+            required
+          />
+          <div className={`text-sm text-right ${contentText.length > MAX_TEXT_LENGTH * 0.9 ? 'text-orange-600 dark:text-orange-400' : 'text-muted-foreground'}`}>
+            {t('add_post.char_counter', { remaining: MAX_TEXT_LENGTH - contentText.length })}
+          </div>
+        </div>
+      );
       case 'song':
         return (
           <div>

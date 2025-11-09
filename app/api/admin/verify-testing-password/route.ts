@@ -33,7 +33,14 @@ export async function POST(request: NextRequest) {
 
         const { password } = await request.json();
 
-        const ADMIN_TESTING_PASSWORD = process.env.ADMIN_TESTING_PASSWORD || 'lightmyfire2025';
+        const ADMIN_TESTING_PASSWORD = process.env.ADMIN_TESTING_PASSWORD;
+
+    if (!ADMIN_TESTING_PASSWORD) {
+      return NextResponse.json(
+        { error: 'Admin testing mode is not configured on this server' },
+        { status: 503 }
+      );
+    }
 
         if (password === ADMIN_TESTING_PASSWORD) {
       return NextResponse.json({

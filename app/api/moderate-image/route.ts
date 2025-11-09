@@ -3,8 +3,15 @@ import OpenAI from 'openai';
 import { rateLimit } from '@/lib/rateLimit';
 import { cookies } from 'next/headers';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
+import crypto from 'crypto';
 
 export const dynamic = 'force-dynamic';
+
+// Startup validation: Check OpenAI API key at module load time
+if (!process.env.OPENAI_API_KEY) {
+  console.error('⚠️  CRITICAL: OPENAI_API_KEY not configured. Image moderation will fail!');
+  console.error('⚠️  Please set OPENAI_API_KEY environment variable to enable content moderation.');
+}
 
 interface ModerationRequest {
   imageUrl: string;
@@ -236,13 +243,39 @@ async function logModerationResult(data: {
   timestamp: string;
 }): Promise<void> {
   try {
-            console.log('Image moderation check completed:', {
+    // Create URL hash for audit trail
+    const urlHash = crypto.createHash('sha256').update(data.imageUrl).digest('hex');
+
+    const flaggedCategories = Object.entries(data.categories)
+      .filter(([, flagged]) => flagged)
+      .map(([category]) => category);
+
+    // Comprehensive logging for audit trail
+    console.log('Image moderation result:', {
+      timestamp: data.timestamp,
       userId: data.userId,
       contentType: data.contentType,
+      imageUrlHash: urlHash,
+      imageUrl: data.imageUrl.startsWith('data:') ? 'base64-image' : data.imageUrl,
       flagged: data.flagged,
       severity: data.severity,
+      flaggedCategories,
+      categoryScores: data.scores,
+      decision: data.flagged ? 'BLOCKED' : 'APPROVED',
     });
+
+    // TODO: Store in moderation_logs table when it's created
+    // await supabase.from('moderation_logs').insert({
+    //   user_id: data.userId,
+    //   content_type: data.contentType,
+    //   content_hash: urlHash,
+    //   flagged: data.flagged,
+    //   categories: data.categories,
+    //   category_scores: data.scores,
+    //   severity: data.severity,
+    //   created_at: data.timestamp
+    // });
   } catch (err) {
     console.error('Failed to log image moderation:', err);
-      }
+  }
 }

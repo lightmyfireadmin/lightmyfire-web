@@ -20,7 +20,27 @@ export async function GET(request: NextRequest) {
 
         const { data: orders, error } = await supabase
       .from('sticker_orders')
-      .select('*')
+      .select(`
+        id,
+        created_at,
+        quantity,
+        amount_paid,
+        currency,
+        shipping_name,
+        shipping_address,
+        shipping_city,
+        shipping_postal_code,
+        shipping_country,
+        fulfillment_status,
+        tracking_number,
+        tracking_url,
+        carrier,
+        lighter_names,
+        on_hold,
+        paid_at,
+        shipped_at,
+        delivered_at
+      `)
       .eq('user_id', session.user.id)
       .order('created_at', { ascending: false });
 
@@ -32,16 +52,17 @@ export async function GET(request: NextRequest) {
       );
     }
 
-        const transformedOrders = orders?.map((order) => ({
+        // Transform orders to include only customer-facing data
+    // DO NOT expose: payment_intent_id, printful_order_id, sticker_file_url, lighter_ids, internal reasons
+    const transformedOrders = orders?.map((order) => ({
       id: order.id,
-      orderId: order.payment_intent_id || `LMF-${order.id}`,
-      status: order.status || 'pending',
+      orderId: `LMF-${order.id}`,
+      status: order.fulfillment_status || 'pending',
       quantity: order.quantity,
       amount: order.amount_paid,
       currency: order.currency || 'EUR',
-      customerName: order.shipping_name,
-      customerEmail: order.shipping_email,
       shippingAddress: {
+        name: order.shipping_name,
         address: order.shipping_address,
         city: order.shipping_city,
         postalCode: order.shipping_postal_code,
@@ -51,16 +72,11 @@ export async function GET(request: NextRequest) {
       trackingUrl: order.tracking_url,
       carrier: order.carrier,
       lighterNames: order.lighter_names || [],
-      printfulOrderId: order.printful_order_id,
       onHold: order.on_hold || false,
-      holdReason: order.hold_reason,
-      failureReason: order.failure_reason,
-      cancellationReason: order.cancellation_reason,
       createdAt: order.created_at,
       paidAt: order.paid_at,
       shippedAt: order.shipped_at,
       deliveredAt: order.delivered_at,
-      updatedAt: order.updated_at,
     })) || [];
 
     return NextResponse.json({

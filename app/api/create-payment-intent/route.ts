@@ -4,6 +4,7 @@ import { cookies } from 'next/headers';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { rateLimit } from '@/lib/rateLimit';
 import { validatePaymentEnvironment } from '@/lib/env';
+import { PACK_PRICING, VALID_PACK_SIZES } from '@/lib/constants';
 
 export const dynamic = 'force-dynamic';
 
@@ -49,15 +50,15 @@ export async function POST(request: NextRequest) {
 
     const {
       orderId,
-      amount,
       currency = 'eur',
       cardholderEmail,
       packSize,
+      shippingRate,
     } = body;
 
-    if (!orderId || !amount || !cardholderEmail) {
+    if (!orderId || !cardholderEmail || !packSize) {
       return NextResponse.json(
-        { error: 'Missing required fields: orderId, amount, cardholderEmail' },
+        { error: 'Missing required fields: orderId, cardholderEmail, packSize' },
         { status: 400 }
       );
     }
@@ -69,7 +70,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
-            const amountInCents = Math.round(amount);
+        // Validate pack size
+    if (!VALID_PACK_SIZES.includes(packSize as any)) {
+      return NextResponse.json(
+        { error: 'Invalid pack size. Must be 10, 20, or 50 stickers.' },
+        { status: 400 }
+      );
+    }
+
+    // Calculate amount server-side to prevent manipulation
+    const basePrice = PACK_PRICING[packSize as keyof typeof PACK_PRICING];
+    const shipping = parseInt(shippingRate) || 0;
+
+    // Validate shipping is reasonable (0 to 5000 cents = €0 to €50)
+    if (shipping < 0 || shipping > 5000) {
+      return NextResponse.json(
+        { error: 'Invalid shipping rate' },
+        { status: 400 }
+      );
+    }
+
+    const amountInCents = basePrice + shipping;
 
     if (amountInCents < 50) {
       return NextResponse.json(
@@ -78,17 +99,58 @@ export async function POST(request: NextRequest) {
       );
     }
 
-        const paymentIntent = await stripe.paymentIntents.create({
-      amount: amountInCents,
-      currency: currency.toLowerCase(),
-      metadata: {
-        orderId,
-        customerEmail: cardholderEmail,
-        packSize: packSize || 'unknown',
-      },
-      receipt_email: cardholderEmail,
-      description: `LightMyFire Sticker Pack - Order ${orderId}`,
+    // Generate idempotency key to prevent duplicate payment intents
+    // This ensures that if the user clicks "pay" multiple times, we don't create multiple charges
+    const idempotencyKey = `payment_intent_${session.user.id}_${orderId}`;
+
+    // Check for existing pending payment intents for this user and order
+    // This provides additional protection against duplicates
+    const existingIntents = await stripe.paymentIntents.list({
+      limit: 5,
     });
+
+    const duplicateIntent = existingIntents.data.find(
+      intent =>
+        intent.metadata.orderId === orderId &&
+        intent.metadata.userId === session.user.id &&
+        (intent.status === 'requires_payment_method' ||
+         intent.status === 'requires_confirmation' ||
+         intent.status === 'requires_action')
+    );
+
+    if (duplicateIntent) {
+      console.log(`Reusing existing payment intent for order ${orderId}:`, duplicateIntent.id);
+      return NextResponse.json(
+        {
+          success: true,
+          clientSecret: duplicateIntent.client_secret,
+          paymentIntentId: duplicateIntent.id,
+          amount: duplicateIntent.amount,
+          currency: duplicateIntent.currency,
+          reused: true,
+        },
+        { status: 200 }
+      );
+    }
+
+        const paymentIntent = await stripe.paymentIntents.create(
+      {
+        amount: amountInCents,
+        currency: currency.toLowerCase(),
+        metadata: {
+          orderId,
+          customerEmail: cardholderEmail,
+          packSize: packSize || 'unknown',
+          userId: session.user.id,
+        },
+        receipt_email: cardholderEmail,
+        description: `LightMyFire Sticker Pack - Order ${orderId}`,
+      },
+      {
+        // Idempotency key prevents duplicate charges if user clicks multiple times
+        idempotencyKey,
+      }
+    );
 
         return NextResponse.json(
       {

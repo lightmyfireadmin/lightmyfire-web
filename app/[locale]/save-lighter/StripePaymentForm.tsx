@@ -88,15 +88,20 @@ function PaymentFormContent({
     setError(null);
 
     try {
+      // Calculate shipping rate based on selected option
+      const shippingRate = shippingRates && selectedShipping
+        ? Math.round(shippingRates[selectedShipping])
+        : 0;
+
       const createIntentResponse = await fetch('/api/create-payment-intent', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           orderId,
-          amount: Math.round(totalAmount),
+          packSize,
+          shippingRate,
           currency: 'eur',
           cardholderEmail,
-          packSize,
         }),
       });
 
