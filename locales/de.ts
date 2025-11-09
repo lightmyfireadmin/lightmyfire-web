@@ -667,7 +667,6 @@ export default {
   'empty_lighter.title': 'Die Geschichte beginnt...',
   'empty_lighter.description': 'Die Reise dieses Feuerzeugs hat gerade erst begonnen. Sei die erste Person, die ein Kapitel hinzufügt und andere inspiriert!',
   'empty_lighter.action': 'Ersten Beitrag hinzufügen',
-  'post.default_location': 'Ein Ort',
   'post.user_upload_alt': 'Benutzer*in-Upload',
   'post.youtube_player_title': 'YouTube-Videoplayer',
   'add_post.title': 'Zur Geschichte hinzufügen',

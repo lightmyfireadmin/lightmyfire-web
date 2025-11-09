@@ -691,8 +691,6 @@ export default {
     'empty_lighter.title': 'The Story Begins...',
   'empty_lighter.description': 'This lighter\'s journey has just started. Be the first to add a chapter to its story and inspire others!',
   'empty_lighter.action': 'Add the First Post',
-
-    'post.default_location': 'A location',
   'post.user_upload_alt': 'User upload',
   'post.youtube_player_title': 'YouTube video player',
 
@@ -784,8 +782,6 @@ export default {
   'location.edit_coordinates': 'Edit coordinates manually',
   'location.latitude_placeholder': 'Latitude',
   'location.longitude_placeholder': 'Longitude',
-
-    'post.anonymous': 'Anonymous',
   'post.post_type.text': 'wrote a story',
   'post.post_type.image': 'shared an image',
   'post.post_type.song': 'shared a song',

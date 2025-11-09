@@ -691,8 +691,6 @@ export default {
     'empty_lighter.title': 'L\'histoire commence...',
     'empty_lighter.description': 'Le voyage de ce briquet vient juste de commencer. Sois le·la premier·ère à ajouter un chapitre et inspirer les autres !',
     'empty_lighter.action': 'Ajouter le premier post',
-
-    'post.default_location': 'Un lieu',
     'post.user_upload_alt': 'Upload utilisateur',
     'post.youtube_player_title': 'Lecteur vidéo YouTube',
 
@@ -785,8 +783,6 @@ export default {
     'location.edit_coordinates': 'Modifier les coordonnées manuellement',
     'location.latitude_placeholder': 'Latitude',
     'location.longitude_placeholder': 'Longitude',
-
-    'post.anonymous': 'Anonyme',
     'post.post_type.text': 'a écrit une histoire',
     'post.post_type.image': 'a partagé une image',
     'post.post_type.song': 'a partagé une chanson',
