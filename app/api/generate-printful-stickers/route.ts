@@ -357,8 +357,10 @@ export async function POST(request: NextRequest) {
     });
 
     const zipPromise = new Promise<Buffer>((resolve, reject) => {
-      archive.on('end', () => {
+      // archiver emits 'finish' not 'end' when finalization is complete
+      archive.on('finish', () => {
         const zipBuffer = Buffer.concat(chunks);
+        console.log(`ZIP created successfully: ${zipBuffer.length} bytes`);
         resolve(zipBuffer);
       });
 
