@@ -761,6 +761,8 @@ export default {
   'add_post.error.rpc_error': 'Error: {message}',
   'add_post.error.unexpected': 'An unexpected error occurred. Please try again.',
   'add_post.error.youtube_search_failed': 'Failed to search YouTube. Try again.',
+  'add_post.error.cooldown_check_failed': 'Unable to verify posting eligibility. Please try again.',
+  'add_post.error.cooldown_active': 'You can post to this lighter again in {hours} hours. Please wait before posting again.',
 
     'location.search_placeholder': 'Search for a location (city, address, landmark)...',
   'location.selected_location': 'Selected Location',

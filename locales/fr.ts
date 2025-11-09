@@ -763,6 +763,8 @@ export default {
     'add_post.error.rpc_error': 'Erreur : {message}',
     'add_post.error.unexpected': 'Une erreur inattendue s\'est produite. Réessaie.',
     'add_post.error.youtube_search_failed': 'Échec de recherche YouTube. Réessaie.',
+    'add_post.error.cooldown_check_failed': 'Impossible de vérifier l\'éligibilité de publication. Réessaie.',
+    'add_post.error.cooldown_active': 'Tu pourras republier sur ce briquet dans {hours} heures. Attends avant de republier.',
 
     'location.search_placeholder': 'Rechercher un lieu (ville, adresse, point de repère)...',
     'location.selected_location': 'Lieu sélectionné',

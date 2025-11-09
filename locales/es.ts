@@ -735,6 +735,8 @@ export default {
   'add_post.error.rpc_error': 'Error: {message}',
   'add_post.error.unexpected': 'Ocurrió un error inesperado. Por favor intenta de nuevo.',
   'add_post.error.youtube_search_failed': 'Error en búsqueda de YouTube. Intenta de nuevo.',
+  'add_post.error.cooldown_check_failed': 'No se pudo verificar la elegibilidad de publicación. Por favor intenta de nuevo.',
+  'add_post.error.cooldown_active': 'Podrás publicar en este encendedor nuevamente en {hours} horas. Por favor espera antes de publicar de nuevo.',
   'location.search_placeholder': 'Buscar una ubicación (ciudad, dirección, punto de referencia)...',
   'location.selected_location': 'Ubicación seleccionada',
   'location.no_location_selected': 'No hay ubicación seleccionada',

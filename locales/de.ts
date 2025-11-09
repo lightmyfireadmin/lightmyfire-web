@@ -735,6 +735,8 @@ export default {
   'add_post.error.rpc_error': 'Fehler: {message}',
   'add_post.error.unexpected': 'Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es erneut.',
   'add_post.error.youtube_search_failed': 'YouTube-Suche fehlgeschlagen. Versuche es erneut.',
+  'add_post.error.cooldown_check_failed': 'Die Berechtigung zum Posten konnte nicht überprüft werden. Bitte versuche es erneut.',
+  'add_post.error.cooldown_active': 'Du kannst in {hours} Stunden wieder auf dieses Feuerzeug posten. Bitte warte, bevor du erneut postest.',
   'location.search_placeholder': 'Nach einem Ort suchen (Stadt, Adresse, Sehenswürdigkeit)...',
   'location.selected_location': 'Ausgewählter Ort',
   'location.no_location_selected': 'Kein Ort ausgewählt',

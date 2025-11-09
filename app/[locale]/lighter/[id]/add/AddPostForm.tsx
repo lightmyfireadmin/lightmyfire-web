@@ -213,6 +213,35 @@ export default function AddPostForm({
 
     setLoading(true);
 
+        // Check 24-hour post cooldown per lighter per user
+    const { data: recentPosts, error: cooldownError } = await supabase
+      .from('posts')
+      .select('created_at')
+      .eq('lighter_id', lighterId)
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+      .limit(1);
+
+    if (cooldownError) {
+      console.error('Error checking post cooldown:', cooldownError);
+      setError(t('add_post.error.cooldown_check_failed'));
+      setLoading(false);
+      return;
+    }
+
+    if (recentPosts && recentPosts.length > 0) {
+      const lastPostTime = new Date(recentPosts[0].created_at).getTime();
+      const now = Date.now();
+      const hoursSinceLastPost = (now - lastPostTime) / (1000 * 60 * 60);
+
+      if (hoursSinceLastPost < 24) {
+        const hoursRemaining = Math.ceil(24 - hoursSinceLastPost);
+        setError(t('add_post.error.cooldown_active', { hours: hoursRemaining }));
+        setLoading(false);
+        return;
+      }
+    }
+
         let moderationFailed = false;
     let contentFlaggedByApi = false;
 
