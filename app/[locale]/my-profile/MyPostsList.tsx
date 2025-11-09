@@ -20,6 +20,7 @@ export default function MyPostsList({
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [postToDelete, setPostToDelete] = useState<number | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
   const router = useRouter();
   const locale = useCurrentLocale();
   const t = useI18n() as any;
@@ -30,8 +31,9 @@ export default function MyPostsList({
   };
 
   const handleConfirmDelete = async () => {
-    if (postToDelete === null) return;
+    if (postToDelete === null || isDeleting) return;
 
+    setIsDeleting(true);
     setError('');
 
     const { error: deleteError } = await supabase
@@ -41,8 +43,10 @@ export default function MyPostsList({
 
     if (deleteError) {
       setError(t('my_posts.error_deleting', { message: 'Failed to delete post' }));
+      setIsDeleting(false);
     } else {
       setPosts(posts.filter((post) => post.id !== postToDelete));
+      setIsDeleting(false);
     }
 
     setPostToDelete(null);
@@ -103,10 +107,16 @@ export default function MyPostsList({
 
       <ConfirmModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => {
+          if (!isDeleting) {
+            setIsModalOpen(false);
+          }
+        }}
         onConfirm={handleConfirmDelete}
         title={t('my_posts.confirm_delete_title')}
         message={t('my_posts.confirm_delete_message')}
+        confirmButtonText={isDeleting ? (t('my_posts.deleting') || 'Deleting...') : undefined}
+        confirmButtonDisabled={isDeleting}
       />
     </div>
   );
