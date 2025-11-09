@@ -796,6 +796,9 @@ export default {
     'post.youtube_load_error': 'Impossible de charger la vidéo YouTube (URL invalide ?)',
     'post.location_at': 'à',
     'post.like_button': 'J\'aime',
+    'post.anonymous': 'Anonyme',
+    'post.deleted_user': 'Utilisateur supprimé',
+    'post.default_location': 'Lieu inconnu',
 
     'flag.flagged': 'Signalé',
     'flag.flag': 'Signaler',
