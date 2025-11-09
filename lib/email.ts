@@ -759,6 +759,9 @@ export async function sendModeratorInviteEmail(data: ModeratorInviteData) {
   });
 }
 
+// Export sendEmail as sendCustomEmail for use in webhooks and admin notifications
+export { sendEmail as sendCustomEmail };
+
 export const emailService = {
   sendWelcomeEmail,
   sendOrderConfirmationEmail,
