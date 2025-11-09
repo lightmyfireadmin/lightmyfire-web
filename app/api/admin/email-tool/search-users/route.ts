@@ -41,36 +41,63 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ users: [] });
     }
 
-    // Search users by email in sticker_orders table
-    // Get unique user emails from orders
-    const { data: orders, error: searchError } = await supabase
+    // Search ALL users via RPC function (includes users without orders)
+    const { data: allUsers, error: rpcError } = await supabase
+      .rpc('admin_search_users_by_email', { search_query: query });
+
+    if (rpcError) {
+      console.error('Error searching all users:', rpcError);
+      // If RPC fails, fall back to order search only
+      console.warn('Falling back to order-based search only');
+    }
+
+    // Also search in sticker_orders for additional context (shipping names)
+    const { data: orders } = await supabase
       .from('sticker_orders')
       .select('user_id, user_email, shipping_name')
       .ilike('user_email', `%${query}%`)
       .not('user_email', 'is', null)
       .limit(20);
 
-    if (searchError) {
-      console.error('Error searching users:', searchError);
-      return NextResponse.json(
-        { error: 'Failed to search users' },
-        { status: 500 }
-      );
-    }
-
-    // Deduplicate by email and get profile info
+    // Merge results - prioritize all users, but use shipping name from orders if available
     const emailMap = new Map();
-    for (const order of orders || []) {
-      if (order.user_email && !emailMap.has(order.user_email)) {
-        emailMap.set(order.user_email, {
-          id: order.user_id,
-          email: order.user_email,
-          username: order.shipping_name || null,
-        });
+
+    // First, add all users from RPC (these are guaranteed to have valid emails)
+    if (allUsers && Array.isArray(allUsers)) {
+      for (const user of allUsers) {
+        if (user.email) {
+          emailMap.set(user.email.toLowerCase(), {
+            id: user.id,
+            email: user.email,
+            username: user.username || null,
+          });
+        }
       }
     }
 
-    const users = Array.from(emailMap.values()).slice(0, 10);
+    // Then, overlay order data to get better shipping names
+    if (orders && Array.isArray(orders)) {
+      for (const order of orders) {
+        if (order.user_email) {
+          const existing = emailMap.get(order.user_email.toLowerCase());
+          if (existing) {
+            // Update username with shipping name if it's better
+            if (order.shipping_name && (!existing.username || existing.username === 'Unknown')) {
+              existing.username = order.shipping_name;
+            }
+          } else {
+            // Add order-based user if not found in all users
+            emailMap.set(order.user_email.toLowerCase(), {
+              id: order.user_id,
+              email: order.user_email,
+              username: order.shipping_name || null,
+            });
+          }
+        }
+      }
+    }
+
+    const users = Array.from(emailMap.values()).slice(0, 20);
 
     return NextResponse.json({ users });
   } catch (error: any) {
