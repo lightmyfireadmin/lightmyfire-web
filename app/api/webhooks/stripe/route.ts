@@ -188,12 +188,15 @@ export async function POST(request: NextRequest) {
 
         // Update order in database to reflect refund
         if (typeof charge.payment_intent === 'string') {
+          // Get refund reason from the latest refund if available
+          const latestRefund = charge.refunds?.data?.[0];
+
           const { error: refundError } = await supabase
             .from('sticker_orders')
             .update({
               refunded: true,
               refund_amount: charge.amount_refunded,
-              refund_reason: charge.refund?.reason || null,
+              refund_reason: latestRefund?.reason || null,
               updated_at: new Date().toISOString(),
             })
             .eq('payment_intent_id', charge.payment_intent);
