@@ -82,14 +82,15 @@ export default function LaunchAnnouncementPopup() {
         className={`relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden pointer-events-auto transform transition-all duration-300 ${
           isAnimating ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
         }`}
-        style={{ opacity: 0.98, colorScheme: 'light' }}
+        style={{ opacity: 1, colorScheme: 'light', backgroundColor: '#ffffff' }}
       >
         {}
-        <div className="relative bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 p-6 pb-8">
+        <div className="relative bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 p-6 pb-8" style={{ background: 'linear-gradient(to right, #f97316, #ec4899, #a855f7)' }}>
           {}
           <button
             onClick={handleClose}
-            className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors duration-200"
+            className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors duration-200"
+            style={{ color: '#ffffff' }}
             aria-label="Close announcement"
           >
             <X className="w-5 h-5" />
@@ -101,7 +102,7 @@ export default function LaunchAnnouncementPopup() {
               value={selectedLang}
               onChange={(e) => setSelectedLang(e.target.value as Language)}
               className="px-3 py-1.5 rounded-lg bg-gray-800/90 backdrop-blur-sm text-white border border-gray-700 text-sm font-medium cursor-pointer hover:bg-gray-700/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-600"
-              style={{ colorScheme: 'dark' }}
+              style={{ colorScheme: 'dark', backgroundColor: 'rgba(31, 41, 55, 0.9)', color: '#ffffff' }}
             >
               <option value="en" style={{ backgroundColor: '#1f2937', color: '#ffffff' }}>🇬🇧 English</option>
               <option value="fr" style={{ backgroundColor: '#1f2937', color: '#ffffff' }}>🇫🇷 Français</option>
@@ -111,15 +112,15 @@ export default function LaunchAnnouncementPopup() {
           </div>
 
           {}
-          <h2 className="text-3xl font-bold text-white text-center mt-8">
+          <h2 className="text-3xl font-bold text-center mt-8" style={{ color: '#ffffff !important', textShadow: '0 2px 4px rgba(0,0,0,0.2)' }}>
             {content.title}
           </h2>
         </div>
 
         {}
-        <div className="p-8 bg-white">
+        <div className="p-8" style={{ backgroundColor: '#ffffff' }}>
           <div className="prose prose-lg max-w-none">
-            <p className="text-gray-800 leading-relaxed text-base">
+            <p className="leading-relaxed text-base" style={{ color: '#1f2937' }}>
               {renderContent(content.content)}
             </p>
           </div>
@@ -128,7 +129,10 @@ export default function LaunchAnnouncementPopup() {
           <div className="mt-8 flex justify-center">
             <button
               onClick={handleClose}
-              className="px-8 py-3 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+              className="px-8 py-3 font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+              style={{ backgroundColor: '#1f2937', color: '#ffffff' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#374151'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1f2937'}
             >
               {selectedLang === 'fr' && "C'est compris !"}
               {selectedLang === 'de' && "Verstanden!"}

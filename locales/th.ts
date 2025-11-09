@@ -35,6 +35,14 @@ export default {
   'nav.open_menu': 'Open main menu',
   'nav.close_menu': 'Close main menu',
   'auth.login_to_flag': 'You must be logged in to flag a post',
+
+  // My Orders
+  'my_orders.title': 'คำสั่งซื้อของฉัน',
+  'my_orders.subtitle': 'ติดตามคำสั่งซื้อสติ๊กเกอร์ LightMyFire ของคุณ',
+  'my_orders.no_orders': 'ยังไม่มีคำสั่งซื้อ',
+  'my_orders.no_orders_text': 'คุณยังไม่ได้สั่งซื้อสติ๊กเกอร์',
+  'my_orders.order_stickers': 'สั่งซื้อสติ๊กเกอร์',
+
   'flag.flagged': 'Flagged',
   'flag.flag': 'Flag',
   'flag.confirm_title': 'Flag this post?',

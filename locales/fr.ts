@@ -6,6 +6,7 @@ export default {
     'nav.my_profile': 'Mon profil',
     'nav.login_signup': 'Connexion / Inscription',
     'nav.logout': 'Déconnexion',
+    'nav.logging_out': 'Déconnexion...',
     'nav.open_menu': 'Ouvrir le menu principal',
     'nav.close_menu': 'Fermer le menu principal',
     'nav.logo_alt': 'LightMyFire',
@@ -105,6 +106,13 @@ export default {
     'auth.forgot_password': 'Mot de passe oublié ?',
     'auth.login_to_flag': 'Connecte-toi pour signaler des publications',
     'auth.login_to_like': 'Connecte-toi pour aimer des publications',
+
+    // My Orders
+    'my_orders.title': 'Mes Commandes',
+    'my_orders.subtitle': 'Suivez vos commandes d\'autocollants LightMyFire',
+    'my_orders.no_orders': 'Aucune Commande',
+    'my_orders.no_orders_text': 'Vous n\'avez pas encore passé de commande d\'autocollants.',
+    'my_orders.order_stickers': 'Commander des Autocollants',
 
     'notifications.login_success': 'Content·e de te revoir, LightSaver ! Tu as manqué à tes briquets. 💫',
     'notifications.logout_success': 'À bientôt ! ✨',
@@ -871,6 +879,7 @@ export default {
     'my_posts.the': 'le',
     'my_posts.delete_post_aria': 'Supprimer le post',
     'my_posts.delete': 'Supprimer',
+    'my_posts.deleting': 'Suppression...',
     'my_posts.confirm_delete_title': 'Supprimer ce post ?',
     'my_posts.confirm_delete_message': 'Es-tu sûr ? Cette action est permanente.',
     'my_posts.error_deleting': 'Erreur lors de la suppression du post : {message}',

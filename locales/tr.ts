@@ -35,6 +35,14 @@ export default {
   'nav.open_menu': 'Open main menu',
   'nav.close_menu': 'Close main menu',
   'auth.login_to_flag': 'You must be logged in to flag a post',
+
+  // My Orders
+  'my_orders.title': 'Siparişlerim',
+  'my_orders.subtitle': 'LightMyFire çıkartma siparişlerinizi takip edin',
+  'my_orders.no_orders': 'Henüz Sipariş Yok',
+  'my_orders.no_orders_text': 'Henüz hiç çıkartma siparişi vermediniz.',
+  'my_orders.order_stickers': 'Çıkartma Sipariş Et',
+
   'flag.flagged': 'Flagged',
   'flag.flag': 'Flag',
   'flag.confirm_title': 'Flag this post?',

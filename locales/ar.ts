@@ -35,6 +35,14 @@ export default {
   'nav.open_menu': 'افتح القائمة الرئيسية',
   'nav.close_menu': 'أغلق القائمة الرئيسية',
   'auth.login_to_flag': 'يجب عليك تسجيل الدخول للإبلاغ عن مشاركة',
+
+  // My Orders
+  'my_orders.title': 'طلباتي',
+  'my_orders.subtitle': 'تتبع طلبات ملصقات LightMyFire الخاصة بك',
+  'my_orders.no_orders': 'لا توجد طلبات',
+  'my_orders.no_orders_text': 'لم تقم بأي طلبات للملصقات بعد.',
+  'my_orders.order_stickers': 'اطلب الملصقات',
+
   'flag.flagged': 'تم الإبلاغ',
   'flag.flag': 'إبلاغ',
   'flag.confirm_title': 'هل تريد الإبلاغ عن هذه المشاركة؟',

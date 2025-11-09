@@ -35,6 +35,14 @@ export default {
   'nav.open_menu': 'Apri menu principale',
   'nav.close_menu': 'Chiudi menu principale',
   'auth.login_to_flag': 'Devi essere loggato per segnalare un post',
+
+  // My Orders
+  'my_orders.title': 'I Miei Ordini',
+  'my_orders.subtitle': 'Traccia i tuoi ordini di adesivi LightMyFire',
+  'my_orders.no_orders': 'Nessun Ordine',
+  'my_orders.no_orders_text': 'Non hai ancora effettuato ordini di adesivi.',
+  'my_orders.order_stickers': 'Ordina Adesivi',
+
   'flag.flagged': 'Segnalato',
   'flag.flag': 'Segnala',
   'flag.confirm_title': 'Segnalare questo post?',

@@ -35,6 +35,14 @@ export default {
   'nav.open_menu': 'Open main menu',
   'nav.close_menu': 'Close main menu',
   'auth.login_to_flag': 'You must be logged in to flag a post',
+
+  // My Orders
+  'my_orders.title': 'سفارش‌های من',
+  'my_orders.subtitle': 'پیگیری سفارش‌های برچسب LightMyFire شما',
+  'my_orders.no_orders': 'هنوز سفارشی ندارید',
+  'my_orders.no_orders_text': 'شما هنوز هیچ سفارش برچسبی ثبت نکرده‌اید.',
+  'my_orders.order_stickers': 'سفارش برچسب',
+
   'flag.flagged': 'Flagged',
   'flag.flag': 'Flag',
   'flag.confirm_title': 'Flag this post?',

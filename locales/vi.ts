@@ -35,6 +35,14 @@ export default {
   'nav.open_menu': 'Open main menu',
   'nav.close_menu': 'Close main menu',
   'auth.login_to_flag': 'You must be logged in to flag a post',
+
+  // My Orders
+  'my_orders.title': 'Đơn Hàng Của Tôi',
+  'my_orders.subtitle': 'Theo dõi đơn hàng nhãn dán LightMyFire của bạn',
+  'my_orders.no_orders': 'Chưa Có Đơn Hàng',
+  'my_orders.no_orders_text': 'Bạn chưa đặt đơn hàng nhãn dán nào.',
+  'my_orders.order_stickers': 'Đặt Nhãn Dán',
+
   'flag.flagged': 'Flagged',
   'flag.flag': 'Flag',
   'flag.confirm_title': 'Flag this post?',

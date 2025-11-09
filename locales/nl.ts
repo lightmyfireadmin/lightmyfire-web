@@ -35,6 +35,14 @@ export default {
   'nav.open_menu': 'Hoofdmenu openen',
   'nav.close_menu': 'Hoofdmenu sluiten',
   'auth.login_to_flag': 'U moet ingelogd zijn om een bericht te markeren',
+
+  // My Orders
+  'my_orders.title': 'Mijn Bestellingen',
+  'my_orders.subtitle': 'Volg uw LightMyFire sticker bestellingen',
+  'my_orders.no_orders': 'Nog geen bestellingen',
+  'my_orders.no_orders_text': 'U heeft nog geen sticker bestellingen geplaatst.',
+  'my_orders.order_stickers': 'Stickers bestellen',
+
   'flag.flagged': 'Gemarkeerd',
   'flag.flag': 'Markeer',
   'flag.confirm_title': 'Dit bericht markeren？',
