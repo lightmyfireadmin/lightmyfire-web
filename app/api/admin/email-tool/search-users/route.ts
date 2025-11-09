@@ -41,12 +41,14 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ users: [] });
     }
 
-    // Search users by email
-    const { data: users, error: searchError } = await supabase
-      .from('profiles')
-      .select('id, email, username')
-      .ilike('email', `%${query}%`)
-      .limit(10);
+    // Search users by email in sticker_orders table
+    // Get unique user emails from orders
+    const { data: orders, error: searchError } = await supabase
+      .from('sticker_orders')
+      .select('user_id, user_email, shipping_name')
+      .ilike('user_email', `%${query}%`)
+      .not('user_email', 'is', null)
+      .limit(20);
 
     if (searchError) {
       console.error('Error searching users:', searchError);
@@ -56,7 +58,21 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    return NextResponse.json({ users: users || [] });
+    // Deduplicate by email and get profile info
+    const emailMap = new Map();
+    for (const order of orders || []) {
+      if (order.user_email && !emailMap.has(order.user_email)) {
+        emailMap.set(order.user_email, {
+          id: order.user_id,
+          email: order.user_email,
+          username: order.shipping_name || null,
+        });
+      }
+    }
+
+    const users = Array.from(emailMap.values()).slice(0, 10);
+
+    return NextResponse.json({ users });
   } catch (error: any) {
     console.error('Error in search-users endpoint:', error);
     return NextResponse.json(

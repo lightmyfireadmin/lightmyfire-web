@@ -64,6 +64,7 @@ const LANGUAGES = [
 export default function EmailComposer({ onPreviewChange }: EmailComposerProps) {
   const [fromAddress, setFromAddress] = useState(FROM_ADDRESSES[0].value);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [manualEmail, setManualEmail] = useState('');
   const [selectedTemplate, setSelectedTemplate] = useState('custom');
   const [selectedLanguage, setSelectedLanguage] = useState('en');
   const [subject, setSubject] = useState('');
@@ -75,11 +76,14 @@ export default function EmailComposer({ onPreviewChange }: EmailComposerProps) {
   const [sendResult, setSendResult] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
+  // Get the recipient email (from selected user or manual input)
+  const recipientEmail = selectedUser?.email || manualEmail;
+
   // Update preview whenever any field changes
   useEffect(() => {
     const wrappedHtml = wrapEmailTemplate(emailBody, subject, selectedLanguage);
-    onPreviewChange(fromAddress, selectedUser?.email || '', subject, wrappedHtml);
-  }, [fromAddress, selectedUser, subject, emailBody, selectedLanguage, onPreviewChange]);
+    onPreviewChange(fromAddress, recipientEmail, subject, wrappedHtml);
+  }, [fromAddress, recipientEmail, subject, emailBody, selectedLanguage, onPreviewChange]);
 
   // Update template content when template or language changes
   useEffect(() => {
@@ -137,8 +141,14 @@ export default function EmailComposer({ onPreviewChange }: EmailComposerProps) {
     setSendResult(null);
 
     // Validation
-    if (!selectedUser) {
-      setSendResult({ type: 'error', message: 'Please select a recipient' });
+    if (!recipientEmail || !recipientEmail.trim()) {
+      setSendResult({ type: 'error', message: 'Please enter or select a recipient email' });
+      return;
+    }
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(recipientEmail)) {
+      setSendResult({ type: 'error', message: 'Please enter a valid email address' });
       return;
     }
     if (!subject.trim()) {
@@ -168,7 +178,7 @@ export default function EmailComposer({ onPreviewChange }: EmailComposerProps) {
         },
         body: JSON.stringify({
           from: fromAddress,
-          to: selectedUser!.email,
+          to: recipientEmail,
           subject,
           html: wrappedHtml,
         }),
@@ -182,7 +192,7 @@ export default function EmailComposer({ onPreviewChange }: EmailComposerProps) {
 
       setSendResult({
         type: 'success',
-        message: `Email sent successfully to ${selectedUser!.email}!`,
+        message: `Email sent successfully to ${recipientEmail}!`,
       });
 
       // Optional: Clear form or keep it for sending another email
@@ -196,7 +206,7 @@ export default function EmailComposer({ onPreviewChange }: EmailComposerProps) {
     }
   };
 
-  const isFormValid = selectedUser && subject.trim() && emailBody.trim();
+  const isFormValid = recipientEmail && recipientEmail.trim() && subject.trim() && emailBody.trim();
 
   return (
     <div className="h-full flex flex-col">
@@ -230,6 +240,8 @@ export default function EmailComposer({ onPreviewChange }: EmailComposerProps) {
         <RecipientSearch
           onSelectUser={setSelectedUser}
           selectedUser={selectedUser}
+          onManualEmailChange={setManualEmail}
+          manualEmail={manualEmail}
         />
 
         {/* Template Selection */}
@@ -397,7 +409,7 @@ export default function EmailComposer({ onPreviewChange }: EmailComposerProps) {
               </div>
               <div className="flex">
                 <span className="font-medium text-foreground w-20">To:</span>
-                <span className="text-muted-foreground flex-1 break-all">{selectedUser?.email}</span>
+                <span className="text-muted-foreground flex-1 break-all">{recipientEmail}</span>
               </div>
               <div className="flex">
                 <span className="font-medium text-foreground w-20">Subject:</span>

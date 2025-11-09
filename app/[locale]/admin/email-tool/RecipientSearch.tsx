@@ -9,15 +9,18 @@ interface User {
 }
 
 interface RecipientSearchProps {
-  onSelectUser: (user: User) => void;
+  onSelectUser: (user: User | null) => void;
   selectedUser: User | null;
+  onManualEmailChange: (email: string) => void;
+  manualEmail: string;
 }
 
-export default function RecipientSearch({ onSelectUser, selectedUser }: RecipientSearchProps) {
+export default function RecipientSearch({ onSelectUser, selectedUser, onManualEmailChange, manualEmail }: RecipientSearchProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [users, setUsers] = useState<User[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isManualMode, setIsManualMode] = useState(false);
   const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -35,6 +38,8 @@ export default function RecipientSearch({ onSelectUser, selectedUser }: Recipien
 
   // Search users with debounce
   useEffect(() => {
+    if (isManualMode) return; // Don't search in manual mode
+
     if (searchTimeoutRef.current) {
       clearTimeout(searchTimeoutRef.current);
     }
@@ -71,31 +76,67 @@ export default function RecipientSearch({ onSelectUser, selectedUser }: Recipien
         clearTimeout(searchTimeoutRef.current);
       }
     };
-  }, [searchQuery]);
+  }, [searchQuery, isManualMode]);
 
   const handleSelectUser = (user: User) => {
     onSelectUser(user);
+    onManualEmailChange(user.email); // Also update manual email
     setSearchQuery('');
     setShowDropdown(false);
   };
 
   const handleClearSelection = () => {
-    onSelectUser(null as any);
+    onSelectUser(null);
+    onManualEmailChange('');
     setSearchQuery('');
+  };
+
+  const toggleMode = () => {
+    setIsManualMode(!isManualMode);
+    setSearchQuery('');
+    setShowDropdown(false);
+    if (!isManualMode) {
+      // Switching to manual mode
+      onSelectUser(null);
+    }
   };
 
   return (
     <div className="space-y-2">
-      <label className="block text-sm font-medium text-foreground">
-        Recipient Email *
-      </label>
+      <div className="flex items-center justify-between">
+        <label className="block text-sm font-medium text-foreground">
+          Recipient Email *
+        </label>
+        <button
+          type="button"
+          onClick={toggleMode}
+          className="text-xs text-primary hover:text-primary/80 font-medium"
+        >
+          {isManualMode ? '🔍 Search Users' : '✍️ Manual Input'}
+        </button>
+      </div>
 
-      {selectedUser ? (
+      {isManualMode ? (
+        // Manual input mode
+        <div>
+          <input
+            type="email"
+            value={manualEmail}
+            onChange={(e) => onManualEmailChange(e.target.value)}
+            placeholder="Enter email address manually..."
+            className="w-full px-4 py-2.5 bg-background border border-input rounded-md text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-primary focus:border-transparent"
+          />
+          <p className="text-xs text-yellow-600 dark:text-yellow-400 mt-1">
+            ⚠️ Manual mode: User data (orders, lighters, posts) won't be available
+          </p>
+        </div>
+      ) : selectedUser ? (
+        // User selected
         <div className="flex items-center gap-2 p-3 bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-900 rounded-md">
           <div className="flex-1">
             <div className="font-medium text-foreground">{selectedUser.email}</div>
             {selectedUser.username && (
-              <div className="text-sm text-muted-foreground">@{selectedUser.username}</div>
+              <div className="text-sm text-muted-foreground">{selectedUser.username}</div>
             )}
           </div>
           <button
@@ -107,6 +148,7 @@ export default function RecipientSearch({ onSelectUser, selectedUser }: Recipien
           </button>
         </div>
       ) : (
+        // Search mode
         <div className="relative" ref={dropdownRef}>
           <input
             type="text"
@@ -136,7 +178,7 @@ export default function RecipientSearch({ onSelectUser, selectedUser }: Recipien
                 >
                   <div className="font-medium text-foreground">{user.email}</div>
                   {user.username && (
-                    <div className="text-sm text-muted-foreground">@{user.username}</div>
+                    <div className="text-sm text-muted-foreground">{user.username}</div>
                   )}
                 </button>
               ))}
@@ -144,16 +186,27 @@ export default function RecipientSearch({ onSelectUser, selectedUser }: Recipien
           )}
 
           {showDropdown && searchQuery.length >= 2 && users.length === 0 && !isSearching && (
-            <div className="absolute z-10 w-full mt-1 bg-background border border-border rounded-md shadow-lg p-4 text-sm text-muted-foreground">
-              No users found matching "{searchQuery}"
+            <div className="absolute z-10 w-full mt-1 bg-background border border-border rounded-md shadow-lg p-4">
+              <p className="text-sm text-muted-foreground mb-2">
+                No users found matching "{searchQuery}"
+              </p>
+              <button
+                type="button"
+                onClick={toggleMode}
+                className="text-sm text-primary hover:text-primary/80 font-medium"
+              >
+                Switch to manual input →
+              </button>
             </div>
           )}
         </div>
       )}
 
-      <p className="text-xs text-muted-foreground">
-        Search for a user by their email address
-      </p>
+      {!isManualMode && !selectedUser && (
+        <p className="text-xs text-muted-foreground">
+          Search for a user by their email (searches order history)
+        </p>
+      )}
     </div>
   );
 }

@@ -24,17 +24,17 @@ export default function EmailToolPage() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <div className="bg-card border-b border-border">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
+        <div className="max-w-[1800px] mx-auto px-4 py-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-foreground">Email Management Tool</h1>
-              <p className="text-muted-foreground mt-1">
+              <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Email Management Tool</h1>
+              <p className="text-sm sm:text-base text-muted-foreground mt-1">
                 Compose and send custom emails to users with full control
               </p>
             </div>
             <button
               onClick={() => router.push(`/${locale}/admin`)}
-              className="px-4 py-2 bg-muted text-foreground rounded-md hover:bg-muted/80 transition-colors"
+              className="px-4 py-2 bg-muted text-foreground rounded-md hover:bg-muted/80 transition-colors whitespace-nowrap"
             >
               ← Back to Admin
             </button>
@@ -43,15 +43,15 @@ export default function EmailToolPage() {
       </div>
 
       {/* Main Content - Split Screen */}
-      <div className="container mx-auto px-4 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 h-[calc(100vh-200px)]">
+      <div className="max-w-[1800px] mx-auto px-4 py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-[calc(100vh-200px)]">
           {/* Left Panel - Email Composer (40%) */}
-          <div className="lg:col-span-2 bg-card border border-border rounded-lg shadow-sm overflow-hidden">
+          <div className="lg:col-span-5 bg-card border border-border rounded-lg shadow-sm overflow-hidden order-1">
             <EmailComposer onPreviewChange={handlePreviewChange} />
           </div>
 
           {/* Right Panel - Email Preview (60%) */}
-          <div className="lg:col-span-3 bg-card border border-border rounded-lg shadow-sm overflow-hidden">
+          <div className="lg:col-span-7 bg-card border border-border rounded-lg shadow-sm overflow-hidden order-2">
             <EmailPreview
               from={previewData.from}
               to={previewData.to}
@@ -79,7 +79,7 @@ export default function EmailToolPage() {
 
             <div>
               <h4 className="font-semibold mb-2">2. Find Recipient</h4>
-              <p>Search for a user by email. Once selected, you'll be able to attach their orders, lighters, and posts to the email.</p>
+              <p>Search for a user by email or use manual input mode. Once selected, you'll be able to attach their orders, lighters, and posts to the email.</p>
             </div>
 
             <div>
