@@ -35,6 +35,14 @@ export default {
   'nav.open_menu': 'メインメニューを開く',
   'nav.close_menu': 'メインメニューを閉じる',
   'auth.login_to_flag': '投稿を報告するにはログインする必要があります',
+
+  // My Orders
+  'my_orders.title': 'マイ注文',
+  'my_orders.subtitle': 'LightMyFireステッカーの注文を追跡',
+  'my_orders.no_orders': '注文なし',
+  'my_orders.no_orders_text': 'まだステッカーの注文はありません。',
+  'my_orders.order_stickers': 'ステッカーを注文',
+
   'flag.flagged': '報告済み',
   'flag.flag': '報告',
   'flag.confirm_title': 'この投稿を報告しますか？',

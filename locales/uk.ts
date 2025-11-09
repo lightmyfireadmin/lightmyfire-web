@@ -35,6 +35,14 @@ export default {
   'nav.open_menu': 'Open main menu',
   'nav.close_menu': 'Close main menu',
   'auth.login_to_flag': 'You must be logged in to flag a post',
+
+  // My Orders
+  'my_orders.title': 'Мої Замовлення',
+  'my_orders.subtitle': 'Відстежуйте свої замовлення наліпок LightMyFire',
+  'my_orders.no_orders': 'Ще немає замовлень',
+  'my_orders.no_orders_text': 'Ви ще не зробили жодного замовлення наліпок.',
+  'my_orders.order_stickers': 'Замовити Наліпки',
+
   'flag.flagged': 'Flagged',
   'flag.flag': 'Flag',
   'flag.confirm_title': 'Flag this post?',

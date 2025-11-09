@@ -35,6 +35,14 @@ export default {
   'nav.open_menu': 'Открыть главное меню',
   'nav.close_menu': 'Закрыть главное меню',
   'auth.login_to_flag': 'Вы должны войти в систему, чтобы пожаловаться на пост',
+
+  // My Orders
+  'my_orders.title': 'Мои Заказы',
+  'my_orders.subtitle': 'Отслеживайте ваши заказы наклеек LightMyFire',
+  'my_orders.no_orders': 'Нет Заказов',
+  'my_orders.no_orders_text': 'Вы еще не сделали ни одного заказа наклеек.',
+  'my_orders.order_stickers': 'Заказать Наклейки',
+
   'flag.flagged': 'Жалоба отправлена',
   'flag.flag': 'Пожаловаться',
   'flag.confirm_title': 'Пожаловаться на этот пост？',

@@ -236,7 +236,7 @@ export async function POST(request: NextRequest) {
 
     console.log('Sticker data for generation:', stickerData);
 
-        console.log('Generating sticker PNG...');
+        console.log('Generating sticker PNGs...');
 
         const internalAuthToken = generateInternalAuthToken(session.user.id);
 
@@ -266,31 +266,47 @@ export async function POST(request: NextRequest) {
       }, { status: 500 });
     }
 
-    const fileBuffer = await generateResponse.arrayBuffer();
-    const contentType = generateResponse.headers.get('Content-Type') || 'image/png';
-    const fileExtension = contentType === 'application/zip' ? 'zip' : 'png';
-    console.log(`Sticker file generated successfully (${contentType}), size: ${fileBuffer.byteLength} bytes`);
+    const generateResult = await generateResponse.json();
+    console.log(`Sticker generation successful: ${generateResult.numSheets} sheet(s) generated`);
 
-        const fileName = `${session.user.id}/${paymentIntentId}.${fileExtension}`;
-    const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
-      .from('sticker-orders')
-      .upload(fileName, fileBuffer, {
-        contentType,
-        upsert: false,
+        // Upload all sheets to storage and collect URLs
+    const stickerFileUrls: string[] = [];
+    const stickerFiles: { filename: string; buffer: Buffer }[] = [];
+
+    for (let i = 0; i < generateResult.sheets.length; i++) {
+      const sheet = generateResult.sheets[i];
+      const fileBuffer = Buffer.from(sheet.data, 'base64');
+      const fileName = `${session.user.id}/${paymentIntentId}-sheet-${i + 1}.png`;
+
+      // Store buffer for email attachment
+      stickerFiles.push({
+        filename: sheet.filename,
+        buffer: fileBuffer
       });
 
-    if (uploadError) {
-      console.error('Failed to upload sticker to storage:', uploadError);
-          }
-
-        let stickerFileUrl = null;
-    if (uploadData) {
-      const { data: urlData } = await supabaseAdmin.storage
+      // Upload to storage
+      const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
         .from('sticker-orders')
-        .createSignedUrl(fileName, 604800); 
-      stickerFileUrl = urlData?.signedUrl || null;
-      console.log('Sticker uploaded to storage:', stickerFileUrl);
+        .upload(fileName, fileBuffer, {
+          contentType: 'image/png',
+          upsert: false,
+        });
+
+      if (uploadError) {
+        console.error(`Failed to upload sheet ${i + 1} to storage:`, uploadError);
+      } else {
+        const { data: urlData } = await supabaseAdmin.storage
+          .from('sticker-orders')
+          .createSignedUrl(fileName, 604800);
+        if (urlData?.signedUrl) {
+          stickerFileUrls.push(urlData.signedUrl);
+          console.log(`Sheet ${i + 1} uploaded to storage:`, urlData.signedUrl);
+        }
+      }
     }
+
+    const stickerFileUrl = stickerFileUrls.length > 0 ? stickerFileUrls[0] : null;
+    const totalFileSize = stickerFiles.reduce((sum, f) => sum + f.buffer.length, 0);
 
         const { error: orderError } = await supabaseAdmin
       .from('sticker_orders')
@@ -306,7 +322,7 @@ export async function POST(request: NextRequest) {
         shipping_postal_code: shippingAddress.postalCode,
         shipping_country: shippingAddress.country,
         sticker_file_url: stickerFileUrl,
-        sticker_file_size: fileBuffer.byteLength,
+        sticker_file_size: totalFileSize,
         lighter_ids: createdLighters.map((l: any) => l.lighter_id),
         lighter_names: createdLighters.map((l: any) => l.lighter_name),
         paid_at: new Date().toISOString(),
@@ -397,10 +413,12 @@ The sticker PNG file is attached. Please fulfill this order.
                     ).join('')}
                   </div>
 
-                  ${stickerFileUrl ? `
-                    <h3>Download Sticker File</h3>
-                    <a href="${stickerFileUrl}" class="download-button">Download Stickers PNG</a>
-                    <p><small>Link valid for 7 days</small></p>
+                  ${stickerFileUrls.length > 0 ? `
+                    <h3>Download Sticker Files</h3>
+                    ${stickerFileUrls.map((url, i) =>
+                      `<a href="${url}" class="download-button">Download Sheet ${i + 1}</a><br/>`
+                    ).join('')}
+                    <p><small>Links valid for 7 days</small></p>
                   ` : ''}
 
                   <p style="margin-top: 20px; color: #666; font-size: 12px;">
@@ -412,12 +430,10 @@ The sticker PNG file is attached. Please fulfill this order.
             </body>
           </html>
         `,
-        attachments: [
-          {
-            filename: `stickers-${paymentIntentId}.${fileExtension}`,
-            content: Buffer.from(fileBuffer),
-          },
-        ],
+        attachments: stickerFiles.map((file, i) => ({
+          filename: file.filename,
+          content: file.buffer,
+        })),
       });
       fulfillmentEmailSent = true;
       console.log('Fulfillment email sent successfully via Resend');

@@ -1,6 +1,8 @@
 import { cookies } from 'next/headers';
 import { type NextRequest, NextResponse } from 'next/server';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
+import { sendWelcomeEmail } from '@/lib/email';
+import { SupportedEmailLanguage } from '@/lib/email-i18n';
 
 export const dynamic = 'force-dynamic';
 
@@ -110,13 +112,39 @@ export async function GET(request: NextRequest, { params }: { params: { locale: 
             }
           }
 
-          
-          
+
+
           try {
             await supabase.rpc('grant_unlocked_trophies', { p_user_id: session.user.id });
           } catch (trophyError) {
-            
+
             console.warn('Trophy check failed on login:', trophyError);
+          }
+
+          // Send welcome email for new users
+          if (isNewUser && session.user.email) {
+            try {
+              const userName =
+                session.user.user_metadata?.full_name ||
+                session.user.user_metadata?.name ||
+                profile?.username ||
+                session.user.email.split('@')[0];
+
+              const emailLang = (locale || 'en') as SupportedEmailLanguage;
+
+              await sendWelcomeEmail({
+                userEmail: session.user.email,
+                userName,
+                profileUrl: `${requestUrl.origin}/${locale}/my-profile`,
+                saveLighterUrl: `${requestUrl.origin}/${locale}/save-lighter`,
+                language: emailLang,
+              });
+
+              console.log('Welcome email sent successfully to:', session.user.email);
+            } catch (emailError) {
+              // Don't block the signup flow if email fails
+              console.error('Failed to send welcome email:', emailError);
+            }
           }
         }
       }

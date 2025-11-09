@@ -106,6 +106,13 @@ export default {
     'auth.login_to_flag': 'Connecte-toi pour signaler des publications',
     'auth.login_to_like': 'Connecte-toi pour aimer des publications',
 
+    // My Orders
+    'my_orders.title': 'Mes Commandes',
+    'my_orders.subtitle': 'Suivez vos commandes d\'autocollants LightMyFire',
+    'my_orders.no_orders': 'Aucune Commande',
+    'my_orders.no_orders_text': 'Vous n\'avez pas encore passé de commande d\'autocollants.',
+    'my_orders.order_stickers': 'Commander des Autocollants',
+
     'notifications.login_success': 'Content·e de te revoir, LightSaver ! Tu as manqué à tes briquets. 💫',
     'notifications.logout_success': 'À bientôt ! ✨',
     'notifications.signup_success': 'Bienvenue dans la famille LightSaver ! 🌟',

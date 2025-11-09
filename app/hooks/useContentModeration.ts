@@ -49,7 +49,9 @@ export function useContentModeration(): UseModerationHook {
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Unknown error';
         setError(errorMessage);
-                        throw new Error(`Text moderation failed: ${errorMessage}`);
+                // Log error but DON'T throw - allow post creation to continue with requires_review = true
+        console.error('Text moderation failed, flagging for manual review:', errorMessage);
+        return { flagged: true, reason: 'Moderation API unavailable - requires manual review', severityLevel: 'medium' };
       } finally {
         setIsLoading(false);
       }
@@ -104,7 +106,9 @@ export function useContentModeration(): UseModerationHook {
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Unknown error';
         setError(errorMessage);
-                        throw new Error(`Image moderation failed: ${errorMessage}`);
+                // Log error but DON'T throw - allow post creation to continue with requires_review = true
+        console.error('Image moderation failed, flagging for manual review:', errorMessage);
+        return { flagged: true, reason: 'Moderation API unavailable - requires manual review', severityLevel: 'medium' };
       } finally {
         setIsLoading(false);
       }

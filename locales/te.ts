@@ -35,6 +35,14 @@ export default {
   'nav.open_menu': 'Open main menu',
   'nav.close_menu': 'Close main menu',
   'auth.login_to_flag': 'You must be logged in to flag a post',
+
+  // My Orders
+  'my_orders.title': 'నా ఆర్డర్లు',
+  'my_orders.subtitle': 'మీ LightMyFire స్టిక్కర్ ఆర్డర్లను ట్రాక్ చేయండి',
+  'my_orders.no_orders': 'ఇంకా ఆర్డర్లు లేవు',
+  'my_orders.no_orders_text': 'మీరు ఇంకా స్టిక్కర్ ఆర్డర్లు చేయలేదు.',
+  'my_orders.order_stickers': 'స్టిక్కర్లను ఆర్డర్ చేయండి',
+
   'flag.flagged': 'Flagged',
   'flag.flag': 'Flag',
   'flag.confirm_title': 'Flag this post?',

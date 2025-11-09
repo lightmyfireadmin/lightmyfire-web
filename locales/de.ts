@@ -101,6 +101,14 @@ export default {
   'auth.forgot_password': 'Passwort vergessen?',
   'auth.login_to_flag': 'Melde dich an, um Beiträge zu melden',
   'auth.login_to_like': 'Melde dich an, um Beiträge zu liken',
+
+  // My Orders
+  'my_orders.title': 'Meine Bestellungen',
+  'my_orders.subtitle': 'Verfolgen Sie Ihre LightMyFire Aufkleber-Bestellungen',
+  'my_orders.no_orders': 'Noch keine Bestellungen',
+  'my_orders.no_orders_text': 'Sie haben noch keine Aufkleber-Bestellungen aufgegeben.',
+  'my_orders.order_stickers': 'Aufkleber bestellen',
+
   'notifications.login_success': 'Schön, dich wiederzusehen, LightSaver*in! Deine Feuerzeuge haben dich vermisst. 💫',
   'notifications.logout_success': 'Bis bald! ✨',
   'notifications.signup_success': 'Willkommen in der LightSaver-Familie! 🌟',

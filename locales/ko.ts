@@ -35,6 +35,14 @@ export default {
   'nav.open_menu': '메인 메뉴 열기',
   'nav.close_menu': '메인 메뉴 닫기',
   'auth.login_to_flag': '게시물을 신고하려면 로그인해야 합니다',
+
+  // My Orders
+  'my_orders.title': '내 주문',
+  'my_orders.subtitle': 'LightMyFire 스티커 주문 추적',
+  'my_orders.no_orders': '주문 없음',
+  'my_orders.no_orders_text': '아직 스티커 주문을 하지 않았습니다.',
+  'my_orders.order_stickers': '스티커 주문하기',
+
   'flag.flagged': '신고됨',
   'flag.flag': '신고',
   'flag.confirm_title': '이 게시물을 신고하시겠습니까？',

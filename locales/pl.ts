@@ -35,6 +35,14 @@ export default {
   'nav.open_menu': 'Otwórz menu główne',
   'nav.close_menu': 'Zamknij menu główne',
   'auth.login_to_flag': 'Musisz być zalogowany, aby oflagować post',
+
+  // My Orders
+  'my_orders.title': 'Moje Zamówienia',
+  'my_orders.subtitle': 'Śledź swoje zamówienia naklejek LightMyFire',
+  'my_orders.no_orders': 'Brak Zamówień',
+  'my_orders.no_orders_text': 'Nie złożyłeś jeszcze żadnych zamówień na naklejki.',
+  'my_orders.order_stickers': 'Zamów Naklejki',
+
   'flag.flagged': 'Oflagowany',
   'flag.flag': 'Oflaguj',
   'flag.confirm_title': 'Oflagować ten post？',

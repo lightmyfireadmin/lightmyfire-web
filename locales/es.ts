@@ -101,6 +101,14 @@ export default {
   'auth.forgot_password': '¿Olvidaste tu contraseña?',
   'auth.login_to_flag': 'Inicia sesión para reportar publicaciones',
   'auth.login_to_like': 'Inicia sesión para dar me gusta a publicaciones',
+
+  // My Orders
+  'my_orders.title': 'Mis Pedidos',
+  'my_orders.subtitle': 'Rastrea tus pedidos de calcomanías LightMyFire',
+  'my_orders.no_orders': 'Sin Pedidos Aún',
+  'my_orders.no_orders_text': 'Aún no has realizado ningún pedido de calcomanías.',
+  'my_orders.order_stickers': 'Pedir Calcomanías',
+
   'notifications.login_success': '¡Qué bueno verte de nuevo, LightSaver! Tus encendedores te extrañaron. 💫',
   'notifications.logout_success': '¡Hasta pronto! ✨',
   'notifications.signup_success': '¡Te damos la bienvenida a la familia LightSaver! 🌟',
