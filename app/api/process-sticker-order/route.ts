@@ -8,6 +8,7 @@ import { PACK_PRICING, VALID_PACK_SIZES } from '@/lib/constants';
 import { rateLimit } from '@/lib/rateLimit';
 import { sendOrderConfirmationEmail } from '@/lib/email';
 import { SupportedEmailLanguage } from '@/lib/email-i18n';
+import { generateInternalAuthToken } from '@/lib/internal-auth';
 
 interface LighterData {
   name: string;
@@ -176,9 +177,7 @@ export async function POST(request: NextRequest) {
 
         console.log('Generating sticker PNG...');
 
-            const internalAuthToken = Buffer.from(
-      `${session.user.id}:${Date.now()}:${process.env.SUPABASE_SERVICE_ROLE_KEY}`
-    ).toString('base64');
+        const internalAuthToken = generateInternalAuthToken(session.user.id);
 
     const generateResponse = await fetch(`${request.nextUrl.origin}/api/generate-printful-stickers`, {
       method: 'POST',

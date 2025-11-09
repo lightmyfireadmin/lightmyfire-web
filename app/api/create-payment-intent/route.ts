@@ -4,6 +4,7 @@ import { cookies } from 'next/headers';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { rateLimit } from '@/lib/rateLimit';
 import { validatePaymentEnvironment } from '@/lib/env';
+import { PACK_PRICING, VALID_PACK_SIZES } from '@/lib/constants';
 
 export const dynamic = 'force-dynamic';
 
@@ -49,15 +50,15 @@ export async function POST(request: NextRequest) {
 
     const {
       orderId,
-      amount,
       currency = 'eur',
       cardholderEmail,
       packSize,
+      shippingRate,
     } = body;
 
-    if (!orderId || !amount || !cardholderEmail) {
+    if (!orderId || !cardholderEmail || !packSize) {
       return NextResponse.json(
-        { error: 'Missing required fields: orderId, amount, cardholderEmail' },
+        { error: 'Missing required fields: orderId, cardholderEmail, packSize' },
         { status: 400 }
       );
     }
@@ -69,7 +70,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
-            const amountInCents = Math.round(amount);
+        // Validate pack size
+    if (!VALID_PACK_SIZES.includes(packSize as any)) {
+      return NextResponse.json(
+        { error: 'Invalid pack size. Must be 10, 20, or 50 stickers.' },
+        { status: 400 }
+      );
+    }
+
+    // Calculate amount server-side to prevent manipulation
+    const basePrice = PACK_PRICING[packSize as keyof typeof PACK_PRICING];
+    const shipping = parseInt(shippingRate) || 0;
+
+    // Validate shipping is reasonable (0 to 5000 cents = €0 to €50)
+    if (shipping < 0 || shipping > 5000) {
+      return NextResponse.json(
+        { error: 'Invalid shipping rate' },
+        { status: 400 }
+      );
+    }
+
+    const amountInCents = basePrice + shipping;
 
     if (amountInCents < 50) {
       return NextResponse.json(

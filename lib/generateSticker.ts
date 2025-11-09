@@ -10,7 +10,8 @@ export async function generateStickerPDF(name: string, pin: string) {
     const page = pdfDoc.addPage([pageWidth, pageHeight]);
     const { width, height } = page.getSize();
 
-                const qrCodeUrl = 'http://localhost:3000/find';
+                const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://lightmyfire.app';
+    const qrCodeUrl = `${baseUrl}/find?pin=${pin}`;
     const qrCodeDataUrl = await QRCode.toDataURL(qrCodeUrl, {
       width: 60,
       margin: 1,

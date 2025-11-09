@@ -18,6 +18,11 @@ export default function LogoutButton({ isMobileMenu = false }: LogoutButtonProps
   const handleLogout = async () => {
     try {
       await supabase.auth.signOut();
+
+      // Clear all stored data to prevent session leakage
+      localStorage.clear();
+      sessionStorage.clear();
+
       addToast({
         type: 'success',
         message: t('notifications.logout_success') || 'See you next time!',

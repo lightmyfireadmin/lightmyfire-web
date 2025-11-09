@@ -29,9 +29,11 @@ export type DetailedPost = {
 export type MyPostWithLighter = {
   id: number;
   title: string | null;
-  post_type: string;   created_at: string;
+  post_type: string;
+  created_at: string;
   lighter_id: string;
-  lighters: {     name: string;
+  lighters: {
+    name: string;
   } | null;
 };
 

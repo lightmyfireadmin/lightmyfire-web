@@ -142,8 +142,8 @@ async function handlePackageShipped(
       return;
     }
 
-        const customerEmail = stickerOrder.customer_email;
-    const customerName = stickerOrder.customer_name || 'LightSaver';
+        const customerEmail = stickerOrder.shipping_email;
+    const customerName = stickerOrder.shipping_name || 'LightSaver';
 
         if (customerEmail) {
       await sendOrderShippedEmail({
