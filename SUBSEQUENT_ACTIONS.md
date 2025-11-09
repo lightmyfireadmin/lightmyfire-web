@@ -1,12 +1,12 @@
 # Subsequent Actions Log
 
 **Last Updated**: 2025-11-09
-**Current Progress**: 24/61 tasks completed (39.3%)
-**Latest Commit**: `7d3e346`
+**Current Progress**: 26/61 tasks completed (42.6%)
+**Latest Commit**: `ca41926`
 
 ---
 
-## ✅ Latest Session Completed (Commits 4-8)
+## ✅ Latest Session Completed (Commits 4-9)
 
 ### Commit 4: Enhanced Webhook & Authentication Security (`2297d0a`)
 1. ✅ **Printful Webhook Timestamp Validation**
@@ -72,20 +72,42 @@
    - NEW: PaginatedPosts component created
    - Full i18n support (EN, FR, DE, ES)
 
+### Commit 9: Shipping Address Validation (`ca41926`)
+10. ✅ **Comprehensive Shipping Address Validation**
+   - Validates all required fields: name, email, address, city, postalCode, country
+   - Type checking for all fields to prevent injection attacks
+   - Length validation to prevent database overflow:
+     - Name: max 100 characters
+     - Email: max 255 characters
+     - Address: max 200 characters
+     - City: max 100 characters
+     - Postal code: max 20 characters
+     - Country: exactly 2 characters (ISO code)
+   - Email format validation using regex
+   - Country code format validation (2-letter ISO standard)
+   - Prevents empty/whitespace-only submissions
+   - Server-side validation for security
+
+11. ✅ **Pack Size Validation** (Confirmed Already Implemented)
+   - Validates pack_size must be 10, 20, or 50 stickers
+   - Server-side validation in both create-payment-intent and process-sticker-order
+   - Rejects invalid pack sizes with clear error messages
+   - Prevents manipulation of order quantities
+
 ---
 
 ## 📊 Current Statistics
 
 - **Total Tasks**: 61
-- **Completed**: 24 (39.3%)
+- **Completed**: 26 (42.6%)
 - **In Progress**: 0
-- **Pending**: 37
+- **Pending**: 35
   - High Priority: 7
-  - Medium Priority: 22
+  - Medium Priority: 20
   - Low Priority: 8
 
-- **Commits This Session**: 8
-- **Files Modified**: 18+
+- **Commits This Session**: 9
+- **Files Modified**: 19+
 - **New Files Created**: 4
 
 ---
@@ -124,13 +146,9 @@ All these should already be configured in Vercel:
 ## 🔜 Next High-Priority Actions
 
 ### Immediate Code-Only Fixes (No DB Required)
-These can be implemented immediately:
+All code-only quick wins have been completed! ✅
 
-1. **Add Pagination to Lighter Posts** ⏭️ NEXT
-   - File: `app/[locale]/lighter/[id]/page.tsx`
-   - Implement client-side pagination (20 posts per page)
-   - Add "Load More" button with loading state
-   - Full i18n support
+Remaining tasks require database migrations or are medium/low priority.
 
 ### Database Migrations Required
 These need SQL migrations on Supabase:
@@ -179,6 +197,12 @@ These need SQL migrations on Supabase:
 - [x] No hardcoded credentials
 - [x] Session leakage fixed
 - [x] Full i18n support (EN, FR, DE, ES)
+- [x] Shipping address validation for orders
+- [x] Pack size validation (10, 20, 50 stickers)
+- [x] Location coordinates validation (-90 to 90 lat, -180 to 180 lng)
+- [x] Post text length validation (500 char max with counter)
+- [x] Moderation queue View Full Content button
+- [x] Client-side pagination for lighter posts
 
 ### ⏳ Pending Before Launch
 - [ ] Generate and add `INTERNAL_AUTH_SECRET` to Vercel
@@ -193,8 +217,8 @@ These need SQL migrations on Supabase:
 - [ ] Performance test with database indexes
 
 ### 🎯 Recommended (Not Blocking)
-- [ ] Add pagination to posts (improves UX)
-- [ ] Add View Full Content for moderators
+- [x] Add pagination to posts (improves UX) ✅
+- [x] Add View Full Content for moderators ✅
 - [ ] Implement CSP headers for XSS protection
 - [ ] Add security headers to Next.js config
 - [ ] Document .env.example with all variables
@@ -285,7 +309,6 @@ These need SQL migrations on Supabase:
 - No pagination yet (will be slow with many posts)
 - No bulk actions
 - No appeal mechanism
-- View Full Content button not yet added
 
 ### Performance Optimizations Pending
 - No database indexes yet (queries may be slow at scale)
@@ -315,6 +338,10 @@ These need SQL migrations on Supabase:
 10. ✅ **No Hardcoded Credentials** (requires env vars)
 11. ✅ **Limited Data Exposure** (my-orders API minimal fields)
 12. ✅ **Moderation Logging** (SHA-256 content hashing)
+13. ✅ **Shipping Address Validation** (prevents injection and overflow)
+14. ✅ **Pack Size Validation** (prevents order manipulation)
+15. ✅ **Location Coordinates Validation** (prevents invalid GPS data)
+16. ✅ **Post Text Length Validation** (prevents abuse, 500 char limit)
 
 ---
 
@@ -348,10 +375,12 @@ These need SQL migrations on Supabase:
 4. Verify QR codes in production
 
 ### Quick Wins (High Value, Low Effort)
-1. Add View Full Content button for moderators (15 min)
-2. Add location coordinate validation (10 min)
-3. Add post text length validation with counter (15 min)
-4. Add pagination to posts (30 min)
+All quick wins have been completed! ✅
+1. ✅ Add View Full Content button for moderators (15 min)
+2. ✅ Add location coordinate validation (10 min)
+3. ✅ Add post text length validation with counter (15 min)
+4. ✅ Add pagination to posts (30 min)
+5. ✅ Add shipping address validation (20 min)
 
 ### Medium Priority
 1. Implement email verification requirement (DB + code, 1 hour)
@@ -375,5 +404,5 @@ These need SQL migrations on Supabase:
 ---
 
 **End of Subsequent Actions Log**
-Last Commit: `5bf45d2` - File validation and debouncing improvements
+Last Commit: `ca41926` - Shipping address validation and pack size verification
 Branch: `claude/review-email-scheduling-011CUwFqqxSb1vAvHujowbBy`
