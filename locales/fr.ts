@@ -684,6 +684,9 @@ export default {
     'lighter.post_plural': 'Posts',
     'lighter.map.markers': '{count} localisations',
     'lighter.map.center_coords': 'Centre : Lat {lat}, Lng {lng}',
+    'lighter.load_more': 'Charger plus de posts',
+    'lighter.loading': 'Chargement...',
+    'lighter.all_loaded': 'Tous les posts sont chargés',
 
     'empty_lighter.title': 'L\'histoire commence...',
     'empty_lighter.description': 'Le voyage de ce briquet vient juste de commencer. Sois le·la premier·ère à ajouter un chapitre et inspirer les autres !',

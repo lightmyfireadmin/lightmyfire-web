@@ -683,6 +683,9 @@ export default {
   'lighter.post_plural': 'Posts',
   'lighter.map.markers': '{count} locations',
   'lighter.map.center_coords': 'Center: Lat {lat}, Lng {lng}',
+  'lighter.load_more': 'Load More Posts',
+  'lighter.loading': 'Loading...',
+  'lighter.all_loaded': 'All posts loaded',
 
     'empty_lighter.title': 'The Story Begins...',
   'empty_lighter.description': 'This lighter\'s journey has just started. Be the first to add a chapter to its story and inspire others!',
