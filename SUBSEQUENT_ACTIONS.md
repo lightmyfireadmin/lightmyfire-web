@@ -1,12 +1,12 @@
 # Subsequent Actions Log
 
 **Last Updated**: 2025-11-09
-**Current Progress**: 42/61 tasks completed (68.9%)
-**Latest Commit**: `28c8107`
+**Current Progress**: 43/61 tasks completed (70.5%)
+**Latest Commit**: `1739917`
 
 ---
 
-## ✅ Latest Session Completed (Commits 16-20)
+## ✅ Latest Session Completed (Commits 16-21)
 
 ### Commit 16: Image Upload Race Condition Fix (`e183882`)
 23. ✅ **AddPostForm Image Upload Race Condition Handling**
@@ -78,6 +78,47 @@
    - Fetches complete order status from Printful API
    - Updates printful_status field in database
    - Provides real-time order status synchronization
+
+### Commit 21: Loading States for Async Operations (`1739917`)
+32. ✅ **LogoutButton Loading State**
+   - Added isLoading state with animated spinner
+   - Double-click prevention with guard check
+   - Disabled state during async logout operation
+   - Shows "Logging out..." message with visual feedback
+   - Prevents race conditions from rapid clicking
+   - Loading persists until redirect completes
+
+33. ✅ **MyPostsList Delete Loading State**
+   - Added isDeleting state for post deletion
+   - Prevents concurrent deletions with guard
+   - Modal stays open during deletion (can't dismiss)
+   - Shows "Deleting..." text on confirm button
+   - Disables both modal buttons during operation
+   - Proper cleanup on success or error
+
+34. ✅ **LocationSearch Loading Indicator**
+   - Added isSearching state for Nominatim API calls
+   - Animated spinner displayed in search input
+   - Try-catch-finally pattern for proper cleanup
+   - Hides results dropdown during loading
+   - Handles network errors gracefully
+   - 500ms debounce prevents excessive API calls
+
+35. ✅ **ConfirmModal Enhancement**
+   - Added optional confirmButtonText prop
+   - Added optional confirmButtonDisabled prop
+   - Supports custom button text during loading
+   - Disables both Cancel and Confirm buttons when loading
+   - Backward compatible with existing usage
+   - Improves reusability across components
+
+**Benefits**:
+- Comprehensive visual feedback for all async operations
+- Prevents race conditions from double-clicking
+- Consistent loading patterns across application
+- Accessibility improvements with disabled states
+- Better UX with clear operation status
+- Prevents user confusion during operations
 
 ---
 
@@ -254,19 +295,23 @@
 ## 📊 Current Statistics
 
 - **Total Tasks**: 61
-- **Completed**: 42 (68.9%)
-- **In Progress**: 1 (Implement proper loading states)
+- **Completed**: 43 (70.5%)
+- **In Progress**: 0
 - **Pending**: 18
   - High Priority: 7 (Database migrations required)
   - Medium Priority: 7 (Code-only improvements)
   - Low Priority: 4 (Optimizations)
 
-- **Commits This Session**: 5 (Total: 20)
-- **Files Modified This Session**: 4
+- **Commits This Session**: 6 (Total: 21)
+- **Files Modified This Session**: 8
   - `app/[locale]/lighter/[id]/add/AddPostForm.tsx` (race condition fixes)
   - `lib/printful.ts` (retry mechanism + error handling)
   - `lib/email.ts` (retry mechanism)
   - `app/api/webhooks/printful/route.ts` (idempotency + admin notifications)
+  - `app/components/LogoutButton.tsx` (loading state)
+  - `app/[locale]/my-profile/MyPostsList.tsx` (delete loading state)
+  - `app/components/LocationSearch.tsx` (search loading indicator)
+  - `app/components/ConfirmModal.tsx` (loading state support)
 
 ---
 
@@ -573,8 +618,8 @@ All quick wins have been completed! ✅
 ---
 
 **End of Subsequent Actions Log**
-Last Commit: `20130d3` - Environment variables documentation
+Last Commit: `1739917` - Loading states for async operations
 Branch: `claude/review-email-scheduling-011CUwFqqxSb1vAvHujowbBy`
 
-**Session Summary**: 35/61 tasks completed (57.4%) - Over halfway through! 🎯
-**Latest Achievement**: Comprehensive error handling, security headers, and full environment documentation
+**Session Summary**: 43/61 tasks completed (70.5%) - Over 70% complete! 🎯
+**Latest Achievement**: Comprehensive loading states, retry mechanisms, webhook enhancements, and error handling
