@@ -394,20 +394,20 @@ SELECT json_build_object(
     SELECT COALESCE(json_agg(stat_data ORDER BY total_bytes DESC), '[]'::json)
     FROM (
       SELECT
-        pg_total_relation_size(schemaname||'.'||tablename) AS total_bytes,
+        pg_total_relation_size(t.schemaname||'.'||t.tablename) AS total_bytes,
         json_build_object(
-          'schema', schemaname,
-          'table', tablename,
-          'total_size', pg_size_pretty(pg_total_relation_size(schemaname||'.'||tablename)),
-          'table_size', pg_size_pretty(pg_relation_size(schemaname||'.'||tablename)),
-          'indexes_size', pg_size_pretty(pg_total_relation_size(schemaname||'.'||tablename) - pg_relation_size(schemaname||'.'||tablename)),
-          'estimated_rows', n_live_tup,
-          'dead_rows', n_dead_tup,
-          'last_vacuum', last_vacuum,
-          'last_autovacuum', last_autovacuum,
-          'last_analyze', last_analyze
+          'schema', t.schemaname,
+          'table', t.tablename,
+          'total_size', pg_size_pretty(pg_total_relation_size(t.schemaname||'.'||t.tablename)),
+          'table_size', pg_size_pretty(pg_relation_size(t.schemaname||'.'||t.tablename)),
+          'indexes_size', pg_size_pretty(pg_total_relation_size(t.schemaname||'.'||t.tablename) - pg_relation_size(t.schemaname||'.'||t.tablename)),
+          'estimated_rows', t.n_live_tup,
+          'dead_rows', t.n_dead_tup,
+          'last_vacuum', t.last_vacuum,
+          'last_autovacuum', t.last_autovacuum,
+          'last_analyze', t.last_analyze
         ) AS stat_data
-      FROM pg_stat_user_tables
+      FROM pg_stat_user_tables t
     ) stats
   ),
 

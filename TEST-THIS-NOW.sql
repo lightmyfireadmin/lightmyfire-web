@@ -46,15 +46,14 @@ SELECT json_build_object(
     SELECT COALESCE(json_agg(stat_data ORDER BY total_bytes DESC), '[]'::json)
     FROM (
       SELECT
-        tablename,
-        pg_total_relation_size('public.'||tablename) AS total_bytes,
+        pg_total_relation_size('public.'||t.tablename) AS total_bytes,
         json_build_object(
-          'table', tablename,
-          'size', pg_size_pretty(pg_total_relation_size('public.'||tablename)),
-          'rows', n_live_tup
+          'table', t.tablename,
+          'size', pg_size_pretty(pg_total_relation_size('public.'||t.tablename)),
+          'rows', t.n_live_tup
         ) AS stat_data
-      FROM pg_stat_user_tables
-      WHERE schemaname = 'public'
+      FROM pg_stat_user_tables t
+      WHERE t.schemaname = 'public'
       LIMIT 5
     ) stats
   ),
