@@ -1,8 +1,9 @@
 -- ============================================================================
--- COMPREHENSIVE SUPABASE DATABASE AUDIT - JSON OUTPUT
+-- COMPREHENSIVE SUPABASE DATABASE AUDIT - JSON OUTPUT (FIXED)
 -- ============================================================================
 -- This returns a single JSON result with all database schema information
 -- Run this in Supabase SQL Editor for easy copy/paste
+-- Works in both Supabase UI and psql
 -- ============================================================================
 
 SELECT json_build_object(
@@ -33,7 +34,7 @@ SELECT json_build_object(
           WHERE c.table_schema = t.table_schema
             AND c.table_name = t.table_name
         )
-      )
+      ) ORDER BY t.table_schema, t.table_name
     )
     FROM information_schema.tables t
     WHERE t.table_schema NOT IN ('pg_catalog', 'information_schema', 'pg_toast')
@@ -53,7 +54,7 @@ SELECT json_build_object(
           WHERE kcu.constraint_schema = tc.constraint_schema
             AND kcu.constraint_name = tc.constraint_name
         )
-      )
+      ) ORDER BY tc.table_schema, tc.table_name
     )
     FROM information_schema.table_constraints tc
     WHERE tc.table_schema NOT IN ('pg_catalog', 'information_schema')
@@ -73,7 +74,7 @@ SELECT json_build_object(
         'constraint_name', tc.constraint_name,
         'update_rule', rc.update_rule,
         'delete_rule', rc.delete_rule
-      )
+      ) ORDER BY tc.table_schema, tc.table_name, tc.constraint_name
     )
     FROM information_schema.table_constraints tc
     JOIN information_schema.key_column_usage kcu
@@ -97,7 +98,7 @@ SELECT json_build_object(
         'table', tablename,
         'name', indexname,
         'definition', indexdef
-      )
+      ) ORDER BY schemaname, tablename, indexname
     )
     FROM pg_indexes
     WHERE schemaname NOT IN ('pg_catalog', 'information_schema', 'pg_toast')
@@ -115,7 +116,7 @@ SELECT json_build_object(
         'command', cmd,
         'using', qual,
         'with_check', with_check
-      )
+      ) ORDER BY schemaname, tablename, policyname
     )
     FROM pg_policies
     WHERE schemaname NOT IN ('pg_catalog', 'information_schema')
@@ -129,7 +130,7 @@ SELECT json_build_object(
         'table', c.relname,
         'enabled', c.relrowsecurity,
         'forced', c.relforcerowsecurity
-      )
+      ) ORDER BY n.nspname, c.relname
     )
     FROM pg_class c
     JOIN pg_namespace n ON n.oid = c.relnamespace
@@ -137,7 +138,7 @@ SELECT json_build_object(
       AND n.nspname NOT IN ('pg_catalog', 'information_schema', 'pg_toast')
   ),
 
-  -- FUNCTIONS (RPCs)
+  -- FUNCTIONS (RPCs) - Fixed to avoid nested aggregates
   'functions', (
     SELECT json_agg(
       json_build_object(
@@ -155,7 +156,7 @@ SELECT json_build_object(
           WHEN true THEN 'SECURITY DEFINER'
           ELSE 'SECURITY INVOKER'
         END
-      )
+      ) ORDER BY n.nspname, p.proname
     )
     FROM pg_proc p
     JOIN pg_namespace n ON n.oid = p.pronamespace
@@ -176,27 +177,31 @@ SELECT json_build_object(
         'timing', action_timing,
         'orientation', action_orientation,
         'statement', action_statement
-      )
+      ) ORDER BY event_object_schema, event_object_table, trigger_name
     )
     FROM information_schema.triggers
     WHERE trigger_schema NOT IN ('pg_catalog', 'information_schema')
   ),
 
-  -- ENUMS
+  -- ENUMS - Fixed to avoid nested aggregates
   'enums', (
-    SELECT json_agg(
-      json_build_object(
-        'schema', n.nspname,
-        'name', t.typname,
-        'values', array_agg(e.enumlabel ORDER BY e.enumsortorder)
-      )
-    )
-    FROM pg_type t
-    JOIN pg_namespace n ON n.oid = t.typnamespace
-    JOIN pg_enum e ON t.oid = e.enumtypid
-    WHERE n.nspname NOT IN ('pg_catalog', 'information_schema')
-      AND t.typtype = 'e'
-    GROUP BY n.nspname, t.typname
+    SELECT json_agg(enum_data ORDER BY schema_name, type_name)
+    FROM (
+      SELECT
+        n.nspname AS schema_name,
+        t.typname AS type_name,
+        json_build_object(
+          'schema', n.nspname,
+          'name', t.typname,
+          'values', array_agg(e.enumlabel ORDER BY e.enumsortorder)
+        ) AS enum_data
+      FROM pg_type t
+      JOIN pg_namespace n ON n.oid = t.typnamespace
+      JOIN pg_enum e ON t.oid = e.enumtypid
+      WHERE n.nspname NOT IN ('pg_catalog', 'information_schema')
+        AND t.typtype = 'e'
+      GROUP BY n.nspname, t.typname
+    ) AS enums
   ),
 
   -- VIEWS
@@ -206,7 +211,7 @@ SELECT json_build_object(
         'schema', table_schema,
         'name', table_name,
         'definition', view_definition
-      )
+      ) ORDER BY table_schema, table_name
     )
     FROM information_schema.views
     WHERE table_schema NOT IN ('pg_catalog', 'information_schema')
@@ -221,8 +226,10 @@ SELECT json_build_object(
         'owner', owner,
         'public', public,
         'file_size_limit', file_size_limit,
-        'allowed_mime_types', allowed_mime_types
-      )
+        'allowed_mime_types', allowed_mime_types,
+        'created_at', created_at,
+        'updated_at', updated_at
+      ) ORDER BY name
     )
     FROM storage.buckets
   ),
@@ -235,7 +242,7 @@ SELECT json_build_object(
         'table', tc.table_name,
         'name', tc.constraint_name,
         'check_clause', cc.check_clause
-      )
+      ) ORDER BY tc.table_schema, tc.table_name, tc.constraint_name
     )
     FROM information_schema.table_constraints tc
     JOIN information_schema.check_constraints cc
@@ -253,8 +260,11 @@ SELECT json_build_object(
         'name', sequence_name,
         'data_type', data_type,
         'start_value', start_value,
-        'increment', increment
-      )
+        'increment', increment,
+        'minimum_value', minimum_value,
+        'maximum_value', maximum_value,
+        'cycle_option', cycle_option
+      ) ORDER BY sequence_schema, sequence_name
     )
     FROM information_schema.sequences
     WHERE sequence_schema NOT IN ('pg_catalog', 'information_schema')
@@ -266,8 +276,9 @@ SELECT json_build_object(
       json_build_object(
         'name', extname,
         'version', extversion,
-        'schema', nspname
-      )
+        'schema', nspname,
+        'relocatable', extrelocatable
+      ) ORDER BY extname
     )
     FROM pg_extension
     JOIN pg_namespace ON pg_namespace.oid = pg_extension.extnamespace
@@ -283,7 +294,7 @@ SELECT json_build_object(
         'update', pubupdate,
         'delete', pubdelete,
         'truncate', pubtruncate
-      )
+      ) ORDER BY pubname
     )
     FROM pg_publication
   ),
@@ -295,7 +306,7 @@ SELECT json_build_object(
         'publication', pub.pubname,
         'schema', n.nspname,
         'table', c.relname
-      )
+      ) ORDER BY pub.pubname, n.nspname, c.relname
     )
     FROM pg_publication pub
     JOIN pg_publication_rel pr ON pr.prpubid = pub.oid
@@ -303,7 +314,26 @@ SELECT json_build_object(
     JOIN pg_namespace n ON n.oid = c.relnamespace
   ),
 
-  -- SUMMARY
+  -- TABLE SIZES AND STATISTICS
+  'table_statistics', (
+    SELECT json_agg(
+      json_build_object(
+        'schema', schemaname,
+        'table', tablename,
+        'total_size', pg_size_pretty(pg_total_relation_size(schemaname||'.'||tablename)),
+        'table_size', pg_size_pretty(pg_relation_size(schemaname||'.'||tablename)),
+        'indexes_size', pg_size_pretty(pg_total_relation_size(schemaname||'.'||tablename) - pg_relation_size(schemaname||'.'||tablename)),
+        'estimated_rows', n_live_tup,
+        'dead_rows', n_dead_tup,
+        'last_vacuum', last_vacuum,
+        'last_autovacuum', last_autovacuum,
+        'last_analyze', last_analyze
+      ) ORDER BY pg_total_relation_size(schemaname||'.'||tablename) DESC
+    )
+    FROM pg_stat_user_tables
+  ),
+
+  -- SUMMARY STATISTICS
   'summary', json_build_object(
     'total_tables', (
       SELECT COUNT(*)
@@ -353,7 +383,7 @@ SELECT json_build_object(
       SELECT COUNT(*) FROM storage.buckets
     ),
     'total_enums', (
-      SELECT COUNT(*)
+      SELECT COUNT(DISTINCT t.typname)
       FROM pg_type t
       JOIN pg_namespace n ON n.oid = t.typnamespace
       WHERE n.nspname NOT IN ('pg_catalog', 'information_schema')
