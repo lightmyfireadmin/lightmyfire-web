@@ -160,7 +160,7 @@ export async function POST(request: NextRequest) {
             payment_error_type: lastError?.type || null,
             updated_at: new Date().toISOString(),
           })
-          .eq('payment_intent_id', paymentIntent.id);
+          .eq('stripe_payment_intent_id', paymentIntent.id);
 
         if (updateError) {
           console.error('Failed to update order payment failure:', {
@@ -199,7 +199,7 @@ export async function POST(request: NextRequest) {
               refund_reason: latestRefund?.reason || null,
               updated_at: new Date().toISOString(),
             })
-            .eq('payment_intent_id', charge.payment_intent);
+            .eq('stripe_payment_intent_id', charge.payment_intent);
 
           if (refundError) {
             console.error('Failed to update order refund status:', {

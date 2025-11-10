@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
         const { data: lighters, error: lightersError } = await supabase
       .from('lighters')
       .select('lighter_name, pin_code, background_color')
-      .eq('payment_intent_id', order.payment_intent_id);
+      .in('id', order.lighter_ids || []);
 
     if (lightersError || !lighters || lighters.length === 0) {
       return NextResponse.json(
@@ -87,7 +87,7 @@ export async function POST(request: NextRequest) {
     const fileExtension = lighters.length > 10 ? 'zip' : 'png';
 
         const resend = new Resend(process.env.RESEND_API_KEY);
-    const fulfillmentEmail = process.env.FULFILLMENT_EMAIL || 'editionsrevel@gmail.com';
+    const fulfillmentEmail = process.env.FULFILLMENT_EMAIL || 'mitch@lightmyfire.app';
 
     await resend.emails.send({
       from: 'LightMyFire Orders <orders@lightmyfire.app>',

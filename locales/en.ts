@@ -1305,4 +1305,111 @@ export default {
   'email.moderator.benefit4': 'Help shape the future of the community',
   'email.moderator.not_interested': 'Not interested? You can ignore this email.',
 
+  // Error Pages
+  'error.not_found.title': 'It\'s all burnt up',
+  'error.not_found.description': 'Sorry, we couldn\'t find the page you\'re looking for.',
+  'error.not_found.go_home': 'Go back home',
+  'error.generic.title': 'Oops! Something went wrong',
+  'error.generic.description': 'An unexpected error occurred. Our team has been notified.',
+  'error.generic.error_id': 'Error ID:',
+  'error.generic.try_again': 'Try Again',
+  'error.generic.go_home': 'Go Home',
+  'error.generic.details_title': 'Error Details (Development Only)',
+  'error.critical.title': 'Application Error',
+  'error.critical.description': 'A critical error occurred. Please try refreshing the page.',
+
+  // Loading States
+  'common.loading': 'Loading...',
+  'common.loading_alt': 'Loading...',
+
+  // Form Validation
+  'validation.username_required': 'Username cannot be empty.',
+  'validation.username_length': 'Username must be between {min} and {max} characters.',
+  'validation.password_too_short': 'Password must be at least {min} characters.',
+  'validation.password_requirements': 'Password must contain at least one uppercase letter, one lowercase letter, and one number',
+  'validation.password_requirement.min_length': 'At least {count} characters',
+  'validation.password_requirement.uppercase': 'At least one uppercase letter',
+  'validation.password_requirement.lowercase': 'At least one lowercase letter',
+  'validation.password_requirement.number': 'At least one number',
+  'validation.email_required': 'Email is required.',
+  'validation.email_invalid': 'Please enter a valid email address.',
+  'validation.field_required': 'This field is required.',
+
+  // Profile Messages
+  'profile.update_success': 'Profile updated successfully!',
+  'profile.update_error': 'Error: {error}',
+
+  // Moderation Queue
+  'moderation.queue.empty.title': 'Queue is Empty',
+  'moderation.queue.empty.description': 'All flagged posts have been reviewed and handled. Great moderation work!',
+  'moderation.queue.empty.back_home': 'Back to Home',
+  'moderation.queue.count': '{count} post awaiting moderation',
+  'moderation.queue.count_plural': '{count} posts awaiting moderation',
+
+  // Admin - Orders
+  'admin.orders.no_orders': 'No orders found.',
+  'admin.orders.total_orders': 'Total Orders',
+  'admin.orders.total_revenue': 'Total Revenue',
+  'admin.orders.refunded': 'Refunded',
+  'admin.orders.pending_refunds': 'Pending Refunds',
+  'admin.orders.table.order_id': 'Order ID',
+  'admin.orders.table.customer': 'Customer',
+  'admin.orders.table.pack_size': 'Pack Size',
+  'admin.orders.table.amount': 'Amount',
+  'admin.orders.table.status': 'Status',
+  'admin.orders.table.date': 'Date',
+  'admin.orders.table.actions': 'Actions',
+  'admin.orders.action.send_fulfillment': '📧 Send to Fulfillment',
+  'admin.orders.action.sending': 'Sending...',
+  'admin.orders.action.refund': 'Refund',
+  'admin.orders.action.refunding': 'Refunding...',
+  'admin.orders.action.refunded': 'Refunded',
+  'admin.orders.details.title': 'Order Details',
+  'admin.orders.details.full_order_id': 'Full Order ID',
+  'admin.orders.details.payment_intent_id': 'Payment Intent ID',
+  'admin.orders.details.user_email': 'User Email',
+  'admin.orders.details.shipping_address': 'Shipping Address',
+  'admin.orders.details.refund_info': 'Refund Information',
+  'admin.orders.details.na': 'N/A',
+  'admin.orders.confirm_resend': 'Resend fulfillment email with stickers for order {orderId}...?',
+  'admin.orders.resend_failed': 'Failed to resend fulfillment email',
+  'admin.orders.resend_success': '✅ Fulfillment email resent successfully!\n\n{count} sticker(s) sent to fulfillment team.',
+  'admin.orders.resend_error': '❌ Failed to resend: {error}',
+  'admin.orders.refund_confirm': 'Are you sure you want to refund €{amount} to {email}?',
+  'admin.orders.refund_failed': 'Refund failed',
+  'admin.orders.refund_success': 'Refund successful! Amount: €{amount}',
+  'admin.orders.refund_error': 'Refund failed: {error}',
+  'admin.orders.pack_size_count': '{count} stickers',
+
+  // Shipping & Order Forms
+  'shipping.address_suggestions': '(Start typing for suggestions)',
+
+  // Payment
+  'payment.card_not_found': 'Card element not found',
+  'payment.stripe_load_failed': 'Failed to load Stripe. Please check your configuration.',
+
+  // Personalization
+  'personalization.second_language': 'Second Language on Sticker (+ English)',
+  'personalization.english_included': 'English will always be included on your stickers',
+  'personalization.customize_stickers': 'Customize Your Stickers',
+  'personalization.personalize_each': 'Personalize each lighter',
+
+  // Order Success
+  'order_success.email_subject': 'Question about my sticker order',
+
+  // Lighter Metadata
+  'lighter.not_found.title': 'Lighter Not Found | LightMyFire',
+  'lighter.not_found.description': 'A human creativity mosaic.',
+  'lighter.meta.description': 'See the story of a lighter named "{name}". Add your own chapter to its journey!',
+  'lighter.meta.og_description': 'See its story on LightMyFire',
+  'lighter.meta.twitter_description': 'See its story on LightMyFire',
+
+  // My Orders empty state (if not already present)
+  'my_orders.no_orders': 'No Orders Yet',
+  'my_orders.no_orders_text': 'You haven\'t placed any sticker orders yet.',
+  'my_orders.order_stickers': 'Order Stickers',
+
+  // Authentication redirects
+  'auth.login_required': 'You must be logged in to save a lighter',
+
 } as const;

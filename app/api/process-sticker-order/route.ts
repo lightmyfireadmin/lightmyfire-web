@@ -555,7 +555,7 @@ ${createdLighters
             await supabaseAdmin
         .from('sticker_orders')
         .update({ fulfillment_email_sent: true })
-        .eq('payment_intent_id', paymentIntentId);
+        .eq('stripe_payment_intent_id', paymentIntentId);
 
     } catch (emailError) {
       console.error('Failed to send fulfillment email:', {
@@ -599,7 +599,7 @@ ${createdLighters
         await supabaseAdmin
           .from('sticker_orders')
           .update({ customer_email_sent: true })
-          .eq('payment_intent_id', paymentIntentId);
+          .eq('stripe_payment_intent_id', paymentIntentId);
       } else {
         console.error('Failed to send customer email:', {
           error: result.error,
