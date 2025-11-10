@@ -394,8 +394,6 @@ SELECT json_build_object(
     SELECT COALESCE(json_agg(stat_data ORDER BY total_bytes DESC), '[]'::json)
     FROM (
       SELECT
-        schemaname,
-        tablename,
         pg_total_relation_size(schemaname||'.'||tablename) AS total_bytes,
         json_build_object(
           'schema', schemaname,
