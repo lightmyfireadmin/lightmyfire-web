@@ -762,6 +762,130 @@ export async function sendModeratorInviteEmail(data: ModeratorInviteData) {
 // Export sendEmail as sendCustomEmail for use in webhooks and admin notifications
 export { sendEmail as sendCustomEmail };
 
+/**
+ * Send fulfillment email to admin with order details and sticker files
+ */
+interface FulfillmentEmailData {
+  orderId: string;
+  paymentIntentId: string;
+  quantity: number;
+  userId: string;
+  customerName: string;
+  customerEmail: string;
+  shippingAddress: {
+    name: string;
+    email: string;
+    address: string;
+    city: string;
+    postalCode: string;
+    country: string;
+  };
+  lighters: Array<{
+    lighter_name: string;
+    pin_code: string;
+    background_color: string;
+  }>;
+  stickerFiles: Array<{
+    filename: string;
+    buffer: Buffer;
+  }>;
+  downloadUrls?: string[];
+}
+
+export async function sendFulfillmentEmail(data: FulfillmentEmailData) {
+  const fulfillmentEmail = process.env.FULFILLMENT_EMAIL || 'mitch@lightmyfire.app';
+
+  const lighterList = data.lighters
+    .map((l, i) => `<p><strong>${i + 1}.</strong> ${l.lighter_name} (PIN: <code>${l.pin_code}</code>) - ${l.background_color}</p>`)
+    .join('');
+
+  const fileList = data.stickerFiles
+    .map((file, i) => `<li><code>${file.filename}</code> - ${(file.buffer.length / 1024).toFixed(2)} KB</li>`)
+    .join('');
+
+  const downloadLinks = data.downloadUrls && data.downloadUrls.length > 0
+    ? `
+      <h3>🔗 Download Links (Backup)</h3>
+      <div style="background: #f0f0f0; padding: 15px; margin: 15px 0; border-radius: 8px;">
+        ${data.downloadUrls.map((url, i) =>
+          `<a href="${url}" style="display: inline-block; background: #FF6B6B; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; margin: 5px;">Download Sheet ${i + 1}</a><br/>`
+        ).join('')}
+        <p style="font-size: 12px; color: #666; margin-top: 10px;">Links valid for 7 days</p>
+      </div>
+    `
+    : '';
+
+  const html = `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <style>
+          body { font-family: Arial, sans-serif; line-height: 1.6; }
+          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+          .header { background: #FF6B6B; color: white; padding: 20px; border-radius: 5px 5px 0 0; }
+          .content { background: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; }
+          .lighter-list { background: white; padding: 15px; margin: 15px 0; border-left: 4px solid #FF6B6B; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h2>🔥 New Sticker Order</h2>
+          </div>
+          <div class="content">
+            <h3>Order Details</h3>
+            <p><strong>Order ID:</strong> ${data.paymentIntentId}</p>
+            <p><strong>Quantity:</strong> ${data.quantity} stickers across <strong>${data.stickerFiles.length} sheet(s)</strong></p>
+            <p><strong>User ID:</strong> ${data.userId}</p>
+            <p><strong>Sheets to Print:</strong> ${data.stickerFiles.length} PNG file(s) attached (each contains up to 10 stickers)</p>
+
+            <h3>Shipping Information</h3>
+            <p><strong>Name:</strong> ${data.shippingAddress.name}</p>
+            <p><strong>Email:</strong> ${data.shippingAddress.email}</p>
+            <p><strong>Address:</strong> ${data.shippingAddress.address}, ${data.shippingAddress.city}, ${data.shippingAddress.postalCode}, ${data.shippingAddress.country}</p>
+
+            <h3>Lighter Details</h3>
+            <div class="lighter-list">
+              ${lighterList}
+            </div>
+
+            <h3>📎 Attached Files</h3>
+            <div style="background: #fff; padding: 15px; margin: 15px 0; border: 2px solid #4CAF50; border-radius: 8px;">
+              <p style="margin: 0 0 10px 0; font-weight: bold; color: #4CAF50;">
+                ✅ ${data.stickerFiles.length} PNG file(s) attached to this email:
+              </p>
+              <ul style="margin: 0; padding-left: 20px;">
+                ${fileList}
+              </ul>
+              <p style="margin: 10px 0 0 0; font-size: 12px; color: #666;">
+                Each sheet is print-ready at 600 DPI for Printful.
+              </p>
+            </div>
+
+            ${downloadLinks}
+
+            <p style="margin-top: 20px; color: #666; font-size: 12px;">
+              Sent from LightMyFire Order System<br>
+              ${new Date().toLocaleString()}
+            </p>
+          </div>
+        </div>
+      </body>
+    </html>
+  `;
+
+  return sendEmail({
+    to: fulfillmentEmail,
+    from: EMAIL_CONFIG.from.orders,
+    subject: `New Sticker Order - ${data.quantity} stickers - ${data.paymentIntentId}`,
+    html,
+    attachments: data.stickerFiles.map((file) => ({
+      filename: file.filename,
+      content: file.buffer,
+    })),
+  });
+}
+
 export const emailService = {
   sendWelcomeEmail,
   sendOrderConfirmationEmail,
@@ -770,6 +894,7 @@ export const emailService = {
   sendTrophyEarnedEmail,
   sendLighterActivityEmail,
   sendModeratorInviteEmail,
+  sendFulfillmentEmail,
   sendCustomEmail: sendEmail,
   wrapTemplate: wrapEmailTemplate,
   config: EMAIL_CONFIG,

@@ -2,11 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
-import { Resend } from 'resend';
 import Stripe from 'stripe';
 import { PACK_PRICING, VALID_PACK_SIZES } from '@/lib/constants';
 import { rateLimit } from '@/lib/rateLimit';
-import { sendOrderConfirmationEmail } from '@/lib/email';
+import { sendOrderConfirmationEmail, sendFulfillmentEmail } from '@/lib/email';
 import { SupportedEmailLanguage } from '@/lib/email-i18n';
 import { generateInternalAuthToken } from '@/lib/internal-auth';
 
@@ -421,147 +420,47 @@ export async function POST(request: NextRequest) {
         // Check if Resend API key is configured
     if (!process.env.RESEND_API_KEY) {
       console.error('CRITICAL: RESEND_API_KEY is not configured - emails will not be sent!');
+      // Don't throw error, allow order processing to complete
     }
 
-    const resend = new Resend(process.env.RESEND_API_KEY);
-
-    const orderDetails = `
-New Sticker Order - ${paymentIntentId}
-
-Customer Information:
-- Name: ${shippingAddress.name}
-- Email: ${shippingAddress.email}
-- Address: ${shippingAddress.address}, ${shippingAddress.city}, ${shippingAddress.postalCode}, ${shippingAddress.country}
-
-Order Details:
-- Quantity: ${lighterData.length} stickers
-- Payment ID: ${paymentIntentId}
-- User ID: ${session.user.id}
-
-Lighter Details:
-${createdLighters
-  .map(
-    (l: any, i: number) =>
-      `${i + 1}. ${l.lighter_name} (PIN: ${l.pin_code}) - Color: ${l.background_color}`
-  )
-  .join('\n')}
-
-✅ ${stickerFiles.length} sticker sheet PNG file(s) are attached to this email.
-📊 Each sheet contains up to 10 stickers arranged for optimal Printful printing.
-🖨️  Please print all ${stickerFiles.length} sheet(s) to fulfill this ${lighterData.length}-sticker order.
-    `;
-
-    const fulfillmentEmail = process.env.FULFILLMENT_EMAIL || 'mitch@lightmyfire.app';
     let fulfillmentEmailSent = false;
     let customerEmailSent = false;
 
+    // Send fulfillment email using centralized email service with retry logic
     try {
-      await resend.emails.send({
-        from: 'LightMyFire Orders <orders@lightmyfire.app>',
-        to: [fulfillmentEmail],
-        subject: `New Sticker Order - ${lighterData.length} stickers - ${paymentIntentId}`,
-        html: `
-          <!DOCTYPE html>
-          <html>
-            <head>
-              <style>
-                body { font-family: Arial, sans-serif; line-height: 1.6; }
-                .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-                .header { background: #FF6B6B; color: white; padding: 20px; border-radius: 5px 5px 0 0; }
-                .content { background: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; }
-                .lighter-list { background: white; padding: 15px; margin: 15px 0; border-left: 4px solid #FF6B6B; }
-                .download-button {
-                  display: inline-block;
-                  background: #FF6B6B;
-                  color: white;
-                  padding: 12px 24px;
-                  text-decoration: none;
-                  border-radius: 5px;
-                  margin: 15px 0;
-                }
-              </style>
-            </head>
-            <body>
-              <div class="container">
-                <div class="header">
-                  <h2>🔥 New Sticker Order</h2>
-                </div>
-                <div class="content">
-                  <h3>Order Details</h3>
-                  <p><strong>Order ID:</strong> ${paymentIntentId}</p>
-                  <p><strong>Quantity:</strong> ${lighterData.length} stickers across <strong>${stickerFiles.length} sheet(s)</strong></p>
-                  <p><strong>User ID:</strong> ${session.user.id}</p>
-                  <p><strong>Sheets to Print:</strong> ${stickerFiles.length} PNG file(s) attached (each contains up to 10 stickers)</p>
-
-                  <h3>Shipping Information</h3>
-                  <p><strong>Name:</strong> ${shippingAddress.name}</p>
-                  <p><strong>Email:</strong> ${shippingAddress.email}</p>
-                  <p><strong>Address:</strong> ${shippingAddress.address}, ${shippingAddress.city}, ${shippingAddress.postalCode}, ${shippingAddress.country}</p>
-
-                  <h3>Lighter Details</h3>
-                  <div class="lighter-list">
-                    ${createdLighters.map((l: any, i: number) =>
-                      `<p><strong>${i + 1}.</strong> ${l.lighter_name} (PIN: <code>${l.pin_code}</code>) - ${l.background_color}</p>`
-                    ).join('')}
-                  </div>
-
-                  <h3>📎 Attached Files</h3>
-                  <div style="background: #fff; padding: 15px; margin: 15px 0; border: 2px solid #4CAF50; border-radius: 8px;">
-                    <p style="margin: 0 0 10px 0; font-weight: bold; color: #4CAF50;">
-                      ✅ ${stickerFiles.length} PNG file(s) attached to this email:
-                    </p>
-                    <ul style="margin: 0; padding-left: 20px;">
-                      ${stickerFiles.map((file, i) =>
-                        `<li><code>${file.filename}</code> - ${(file.buffer.length / 1024).toFixed(2)} KB</li>`
-                      ).join('')}
-                    </ul>
-                    <p style="margin: 10px 0 0 0; font-size: 12px; color: #666;">
-                      Each sheet is print-ready at 600 DPI for Printful.
-                    </p>
-                  </div>
-
-                  ${stickerFileUrls.length > 0 ? `
-                    <h3>🔗 Download Links (Backup)</h3>
-                    <div style="background: #f0f0f0; padding: 15px; margin: 15px 0; border-radius: 8px;">
-                      ${stickerFileUrls.map((url, i) =>
-                        `<a href="${url}" class="download-button">Download Sheet ${i + 1}</a><br/>`
-                      ).join('')}
-                      <p style="font-size: 12px; color: #666; margin-top: 10px;">Links valid for 7 days</p>
-                    </div>
-                  ` : ''}
-
-                  <p style="margin-top: 20px; color: #666; font-size: 12px;">
-                    Sent from LightMyFire Order System<br>
-                    ${new Date().toLocaleString()}
-                  </p>
-                </div>
-              </div>
-            </body>
-          </html>
-        `,
-        attachments: stickerFiles.map((file, i) => ({
-          filename: file.filename,
-          content: file.buffer,
-        })),
-      });
-      fulfillmentEmailSent = true;
-      console.log('✅ Fulfillment email sent successfully via Resend');
-      console.log(`📧 Email sent to: ${fulfillmentEmail}`);
-      console.log(`📎 Attachments included: ${stickerFiles.length} file(s):`);
-      stickerFiles.forEach((file, i) => {
-        console.log(`   ${i + 1}. ${file.filename} - ${(file.buffer.length / 1024).toFixed(2)} KB`);
+      const result = await sendFulfillmentEmail({
+        orderId: paymentIntentId,
+        paymentIntentId,
+        quantity: lighterData.length,
+        userId: session.user.id,
+        customerName: shippingAddress.name,
+        customerEmail: shippingAddress.email,
+        shippingAddress,
+        lighters: createdLighters,
+        stickerFiles,
+        downloadUrls: stickerFileUrls,
       });
 
-            await supabaseAdmin
-        .from('sticker_orders')
-        .update({ fulfillment_email_sent: true })
-        .eq('stripe_payment_intent_id', paymentIntentId);
+      if (result.success) {
+        fulfillmentEmailSent = true;
+        console.log('✅ Fulfillment email sent successfully via Resend');
+        console.log(`📧 Email ID: ${result.id}`);
+        console.log(`📎 Attachments included: ${stickerFiles.length} file(s):`);
+        stickerFiles.forEach((file, i) => {
+          console.log(`   ${i + 1}. ${file.filename} - ${(file.buffer.length / 1024).toFixed(2)} KB`);
+        });
 
+        await supabaseAdmin
+          .from('sticker_orders')
+          .update({ fulfillment_email_sent: true })
+          .eq('stripe_payment_intent_id', paymentIntentId);
+      } else {
+        console.error('Failed to send fulfillment email:', result.error);
+      }
     } catch (emailError) {
       console.error('Failed to send fulfillment email:', {
         error: emailError,
         message: emailError instanceof Error ? emailError.message : 'Unknown error',
-        recipient: fulfillmentEmail,
         apiKeyConfigured: !!process.env.RESEND_API_KEY
       });
           }
