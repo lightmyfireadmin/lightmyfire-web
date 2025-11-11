@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rateLimit';
 import { createSuccessResponse, createErrorResponse, ErrorCodes } from '@/lib/api-response';
+import { withCache, generateCacheKey, CacheTTL } from '@/lib/cache';
 
 interface YouTubeVideo {
   id: {
@@ -60,33 +61,36 @@ export async function POST(request: NextRequest) {
       );
     }
 
-        const response = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&maxResults=5&key=${apiKey}`
-    );
+    // Generate cache key based on search query
+    const cacheKey = generateCacheKey('youtube', query.toLowerCase().trim());
 
-    const data = await response.json();
+    // Cache search results for 30 minutes
+    const items = await withCache(
+      cacheKey,
+      async () => {
+        const response = await fetch(
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&maxResults=5&key=${apiKey}`
+        );
+
+        const data = await response.json();
 
         if (data.error) {
-      console.error('YouTube API Error:', data.error);
-      return NextResponse.json(
-        createErrorResponse(
-          ErrorCodes.EXTERNAL_SERVICE_ERROR,
-          'YouTube search failed',
-          { apiError: data.error.message }
-        ),
-        { status: 400 }
-      );
-    }
-
-        const items = (data.items as YouTubeVideo[] || []).map((video) => ({
-      id: { videoId: video.id.videoId },
-      snippet: {
-        title: video.snippet.title,
-        thumbnails: {
-          default: { url: video.snippet.thumbnails.default.url }
+          console.error('YouTube API Error:', data.error);
+          throw new Error(data.error.message || 'YouTube API error');
         }
-      }
-    }));
+
+        return (data.items as YouTubeVideo[] || []).map((video) => ({
+          id: { videoId: video.id.videoId },
+          snippet: {
+            title: video.snippet.title,
+            thumbnails: {
+              default: { url: video.snippet.thumbnails.default.url }
+            }
+          }
+        }));
+      },
+      CacheTTL.LONG // 30 minutes cache
+    );
 
     return NextResponse.json(
       createSuccessResponse(items, `Found ${items.length} results`)

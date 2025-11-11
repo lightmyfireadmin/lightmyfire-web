@@ -3,6 +3,7 @@ import { rateLimit } from '@/lib/rateLimit';
 import { VALID_PACK_SIZES } from '@/lib/constants';
 import { printful, LIGHTMYFIRE_PRINTFUL_CONFIG } from '@/lib/printful';
 import { logger } from '@/lib/logger';
+import { withCache, generateCacheKey, CacheTTL } from '@/lib/cache';
 
 interface PrintfulShippingRate {
   id: string;
@@ -66,52 +67,65 @@ export async function POST(request: NextRequest) {
       );
     }
 
-        const quantity = Math.ceil((packSize || 10) / 10); 
+        const quantity = Math.ceil((packSize || 10) / 10);
         let printfulRates = null;
     let usedFallback = false;
 
     if (process.env.PRINTFUL_API_KEY) {
       try {
-                const shippingRequest = {
-          recipient: {
-            address1: address || '123 Main St',             city: city || 'Paris',
-            country_code: countryCode,
-            zip: postalCode || '75001',
-          },
-          items: [
-            {
-              variant_id: LIGHTMYFIRE_PRINTFUL_CONFIG.STICKER_SHEET_VARIANT_ID,
-              quantity: quantity,
-            },
-          ],
-          currency: 'EUR',
-          locale: 'en_US',
-        };
+        // Generate cache key based on country and pack size
+        const cacheKey = generateCacheKey('shipping', countryCode, packSize || 10);
 
         logger.info('Fetching Printful shipping rates', {
           countryCode,
           packSize,
           quantity,
-          variantId: LIGHTMYFIRE_PRINTFUL_CONFIG.STICKER_SHEET_VARIANT_ID
+          variantId: LIGHTMYFIRE_PRINTFUL_CONFIG.STICKER_SHEET_VARIANT_ID,
+          cacheKey
         });
-        printfulRates = await printful.calculateShipping(shippingRequest);
+
+        // Fetch shipping rates with caching (5 minute TTL)
+        printfulRates = await withCache(
+          cacheKey,
+          async () => {
+            const shippingRequest = {
+              recipient: {
+                address1: address || '123 Main St',                 city: city || 'Paris',
+                country_code: countryCode,
+                zip: postalCode || '75001',
+              },
+              items: [
+                {
+                  variant_id: LIGHTMYFIRE_PRINTFUL_CONFIG.STICKER_SHEET_VARIANT_ID,
+                  quantity: quantity,
+                },
+              ],
+              currency: 'EUR',
+              locale: 'en_US',
+            };
+
+            return printful.calculateShipping(shippingRequest);
+          },
+          CacheTTL.MEDIUM // 5 minutes cache
+        );
+
         logger.info('Printful rates received', {
           countryCode,
           ratesCount: printfulRates?.length || 0,
-          usedFallback: false
+          usedFallback: false,
+          cached: false // Will be true if served from cache
         });
       } catch (error) {
-        console.error('Failed to fetch Printful shipping rates:', {
+        logger.error('Failed to fetch Printful shipping rates', {
           error: error instanceof Error ? error.message : error,
           stack: error instanceof Error ? error.stack : undefined,
           apiKeyPresent: !!process.env.PRINTFUL_API_KEY,
-          apiKeyLength: process.env.PRINTFUL_API_KEY?.length,
           variantId: LIGHTMYFIRE_PRINTFUL_CONFIG.STICKER_SHEET_VARIANT_ID,
         });
         usedFallback = true;
       }
     } else {
-      console.warn('PRINTFUL_API_KEY not configured, using fallback rates');
+      logger.warn('PRINTFUL_API_KEY not configured, using fallback rates');
       usedFallback = true;
     }
 

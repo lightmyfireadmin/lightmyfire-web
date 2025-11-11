@@ -2,6 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { cookies } from 'next/headers';
+import { createPaginatedResponse, ErrorCodes, createErrorResponse } from '@/lib/api-response';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,10 +14,22 @@ export async function GET(request: NextRequest) {
 
     if (!session) {
       return NextResponse.json(
-        { error: 'Unauthorized. Please sign in to view orders.' },
+        createErrorResponse(ErrorCodes.UNAUTHORIZED, 'Unauthorized. Please sign in to view orders.'),
         { status: 401 }
       );
     }
+
+    // Get pagination parameters from query string
+    const searchParams = request.nextUrl.searchParams;
+    const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10));
+    const limit = Math.min(50, Math.max(1, parseInt(searchParams.get('limit') || '10', 10)));
+    const offset = (page - 1) * limit;
+
+    // Get total count for pagination metadata
+    const { count: totalCount } = await supabase
+      .from('sticker_orders')
+      .select('*', { count: 'exact', head: true })
+      .eq('user_id', session.user.id);
 
         const { data: orders, error } = await supabase
       .from('sticker_orders')
@@ -46,12 +59,13 @@ export async function GET(request: NextRequest) {
         delivered_at
       `)
       .eq('user_id', session.user.id)
-      .order('created_at', { ascending: false });
+      .order('created_at', { ascending: false })
+      .range(offset, offset + limit - 1);
 
     if (error) {
       console.error('Error fetching orders:', error);
       return NextResponse.json(
-        { error: 'Failed to fetch orders' },
+        createErrorResponse(ErrorCodes.DATABASE_ERROR, 'Failed to fetch orders'),
         { status: 500 }
       );
     }
@@ -87,14 +101,18 @@ export async function GET(request: NextRequest) {
       deliveredAt: order.delivered_at,
     })) || [];
 
-    return NextResponse.json({
-      success: true,
-      orders: transformedOrders,
-    });
+    return NextResponse.json(
+      createPaginatedResponse(
+        transformedOrders,
+        page,
+        limit,
+        totalCount || 0
+      )
+    );
   } catch (error) {
     console.error('Error in /api/my-orders:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      createErrorResponse(ErrorCodes.INTERNAL_SERVER_ERROR, 'Internal server error'),
       { status: 500 }
     );
   }
