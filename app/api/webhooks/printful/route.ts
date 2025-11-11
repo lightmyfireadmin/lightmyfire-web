@@ -1,6 +1,6 @@
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createServerSupabaseClient } from '@/lib/supabase-server';
+import { createServerSupabaseClient, type TypedSupabaseClient } from '@/lib/supabase-server';
 import { cookies } from 'next/headers';
 import { verifyPrintfulWebhook, getPrintfulOrderStatus } from '@/lib/printful';
 import { sendOrderShippedEmail } from '@/lib/email';
@@ -179,7 +179,7 @@ export async function POST(request: NextRequest) {
 }
 
 async function handlePackageShipped(
-  supabase: any,
+  supabase: TypedSupabaseClient,
   payload: PrintfulWebhookPayload
 ) {
   const { order, shipment } = payload.data;
@@ -247,7 +247,7 @@ async function handlePackageShipped(
 }
 
 async function handlePackageReturned(
-  supabase: any,
+  supabase: TypedSupabaseClient,
   payload: PrintfulWebhookPayload
 ) {
   const { order } = payload.data;
@@ -282,7 +282,7 @@ async function handlePackageReturned(
 }
 
 async function handleOrderFailed(
-  supabase: any,
+  supabase: TypedSupabaseClient,
   payload: PrintfulWebhookPayload
 ) {
   const { order, reason } = payload.data;
@@ -351,7 +351,7 @@ async function handleOrderFailed(
 }
 
 async function handleOrderCanceled(
-  supabase: any,
+  supabase: TypedSupabaseClient,
   payload: PrintfulWebhookPayload
 ) {
   const { order, reason } = payload.data;
@@ -420,7 +420,7 @@ async function handleOrderCanceled(
 }
 
 async function handleOrderHoldStatus(
-  supabase: any,
+  supabase: TypedSupabaseClient,
   payload: PrintfulWebhookPayload
 ) {
   const { order, reason } = payload.data;
@@ -491,7 +491,7 @@ async function handleOrderHoldStatus(
 }
 
 async function handleOrderUpdated(
-  supabase: any,
+  supabase: TypedSupabaseClient,
   payload: PrintfulWebhookPayload
 ) {
   const { order } = payload.data;
