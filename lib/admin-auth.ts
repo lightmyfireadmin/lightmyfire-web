@@ -37,7 +37,7 @@ export async function verifyAdminAuth(): Promise<AdminAuthResult> {
     .from('profiles')
     .select('role')
     .eq('id', session.user.id)
-    .single();
+    .single<{ role: 'admin' | 'moderator' | 'user' | null }>();
 
   if (profileError || !profile || profile.role !== 'admin') {
     return {
@@ -84,7 +84,7 @@ export async function verifyModeratorAuth(): Promise<AdminAuthResult> {
     .from('profiles')
     .select('role')
     .eq('id', session.user.id)
-    .single();
+    .single<{ role: 'admin' | 'moderator' | 'user' | null }>();
 
   if (
     profileError ||

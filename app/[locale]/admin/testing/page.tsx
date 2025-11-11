@@ -49,7 +49,7 @@ export default function AdminTestingPage() {
         .from('profiles')
         .select('role')
         .eq('id', session.user.id)
-        .single();
+        .single<{ role: 'admin' | 'moderator' | 'user' | null }>();
 
       if (profile?.role !== 'admin') {
         router.push(`/${locale}`);

@@ -22,7 +22,7 @@ export default async function ModerationPage() {
     .from('profiles')
     .select('role')
     .eq('id', session.user.id)
-    .single();
+    .single<{ role: 'admin' | 'moderator' | 'user' | null }>();
 
     if (profile?.role !== 'moderator' && profile?.role !== 'admin') {
     redirect(`/${locale}?message=You do not have permission to access this page.`);
