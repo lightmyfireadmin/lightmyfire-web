@@ -2,11 +2,36 @@
 
 ## Session Summary
 
-This document contains the complete list of SQL scripts to execute in Supabase, generated during our comprehensive database audit and optimization session.
+This document contains **ALL** SQL scripts created during the session that should be executed in Supabase.
 
 **Date:** 2025-11-11
 **Branch:** `claude/fix-orders-email-i18n-011CV12ZA5NrjAkrSLhgLMV9`
 **Status:** Production Ready
+
+---
+
+## ⚠️ IMPORTANT: About the SQL Files
+
+During our epic database audit journey (7 iterations!), we created **16 SQL files** total.
+**ONLY 4 of these should be executed** - they are listed below.
+
+**Files to EXECUTE (Listed in this document):**
+- ✅ `TEST-FINAL-WIN.sql` - Pre-execution verification
+- ✅ `database-audit-FINAL.sql` - Complete audit (uppercase FINAL)
+- ✅ `DATABASE_FIXES.sql` - Performance optimizations
+- ✅ `TEST_DATABASE_FIXES.sql` - Post-execution verification
+
+**Files to IGNORE (Iterations with errors - kept for history):**
+- ❌ `database-audit-supabase.sql` - Iteration 1 (nested aggregate error)
+- ❌ `database-audit-json.sql` - Iteration 2 (psql command error)
+- ❌ `database-audit-perfect.sql` - Iteration 3 (column scope error)
+- ❌ `database-audit-final.sql` - Iteration 4 (lowercase final, tablename error)
+- ❌ `database-audit-ultimate.sql` - Iteration 5 (tablename error)
+- ❌ `database-audit-lightmyfire.sql` - Iteration 6 (tablename error)
+- ❌ `database-audit-perfect-v2.sql` - Iteration 7 (tablename error)
+- ❌ `TEST-FINAL.sql`, `TEST-THIS-NOW.sql`, etc. - Old test versions
+
+**The 4 files listed below are the ONLY ones you need. They are perfect and error-free.** ✅
 
 ---
 
