@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
     // Fetch user's orders
     const { data: orders, error: ordersError } = await supabase
       .from('sticker_orders')
-      .select('id, quantity, amount_paid, lighter_names, created_at, stripe_payment_intent_id')
+      .select('id, quantity, amount_paid, lighter_names, created_at, payment_intent_id')
       .eq('user_id', userId)
       .order('created_at', { ascending: false })
       .limit(20);

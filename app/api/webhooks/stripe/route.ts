@@ -166,7 +166,7 @@ export async function POST(request: NextRequest) {
             payment_error_type: lastError?.type || null,
             updated_at: new Date().toISOString(),
           })
-          .eq('stripe_payment_intent_id', paymentIntent.id);
+          .eq('payment_intent_id', paymentIntent.id);
 
         if (updateError) {
           console.error('Failed to update order payment failure:', {
@@ -192,31 +192,21 @@ export async function POST(request: NextRequest) {
           refunded: charge.refunded,
         });
 
-        // Update order in database to reflect refund
+        // TODO: Add refund columns to sticker_orders table (refunded, refund_amount, refund_reason)
+        // For now, just log the refund event
         if (typeof charge.payment_intent === 'string') {
-          // Get refund reason from the latest refund if available
           const latestRefund = charge.refunds?.data?.[0];
 
-          const { error: refundError } = await supabase
-            .from('sticker_orders')
-            .update({
-              refunded: true,
-              refund_amount: charge.amount_refunded,
-              refund_reason: latestRefund?.reason || null,
-              updated_at: new Date().toISOString(),
-            })
-            .eq('stripe_payment_intent_id', charge.payment_intent);
+          logger.event('order_refunded', {
+            paymentIntentId: charge.payment_intent,
+            amount: charge.amount_refunded,
+            reason: latestRefund?.reason || 'unknown',
+          });
 
-          if (refundError) {
-            console.error('Failed to update order refund status:', {
-              paymentIntentId: charge.payment_intent,
-              error: refundError.message,
-              details: refundError.details,
-            });
-            // Don't return error - webhook should still return 200 to prevent retries
-          } else {
-            logger.event('order_refunded', { paymentIntentId: charge.payment_intent });
-          }
+          logger.warn('Refund received but not saved to database - refund columns do not exist in sticker_orders table', {
+            paymentIntentId: charge.payment_intent,
+            amount: charge.amount_refunded,
+          });
         }
         break;
       }

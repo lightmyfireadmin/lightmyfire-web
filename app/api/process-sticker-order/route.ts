@@ -221,7 +221,7 @@ export async function POST(request: NextRequest) {
       .from('sticker_orders')
       .insert({
         user_id: session.user.id,
-        stripe_payment_intent_id: paymentIntentId,
+        payment_intent_id: paymentIntentId,
         quantity: lighterData.length,
         amount_paid: paymentIntent.amount,
         user_email: shippingAddress.email,
@@ -231,7 +231,7 @@ export async function POST(request: NextRequest) {
         shipping_city: shippingAddress.city,
         shipping_postal_code: shippingAddress.postalCode,
         shipping_country: shippingAddress.country,
-        fulfillment_status: 'processing',
+        status: 'processing',
         paid_at: new Date().toISOString(),
       });
 
@@ -258,10 +258,10 @@ export async function POST(request: NextRequest) {
       await supabaseAdmin
         .from('sticker_orders')
         .update({
-          fulfillment_status: 'failed',
+          status: 'failed',
           failure_reason: `Failed to create lighters: ${dbError.message}`,
         })
-        .eq('stripe_payment_intent_id', paymentIntentId);
+        .eq('payment_intent_id', paymentIntentId);
 
       // Return success but with empty lighterIds so user gets redirected
       return NextResponse.json({
@@ -279,10 +279,10 @@ export async function POST(request: NextRequest) {
       await supabaseAdmin
         .from('sticker_orders')
         .update({
-          fulfillment_status: 'failed',
+          status: 'failed',
           failure_reason: 'No lighters were created - database function returned empty result',
         })
-        .eq('stripe_payment_intent_id', paymentIntentId);
+        .eq('payment_intent_id', paymentIntentId);
 
       // Return success but with empty lighterIds so user gets redirected
       return NextResponse.json({
@@ -328,12 +328,12 @@ export async function POST(request: NextRequest) {
       await supabaseAdmin
         .from('sticker_orders')
         .update({
-          fulfillment_status: 'failed',
+          status: 'failed',
           failure_reason: `Sticker generation failed: ${errorText}`,
           lighter_ids: (createdLighters as CreatedLighter[]).map((l) => l.lighter_id),
           lighter_names: (createdLighters as CreatedLighter[]).map((l) => l.lighter_name),
         })
-        .eq('stripe_payment_intent_id', paymentIntentId);
+        .eq('payment_intent_id', paymentIntentId);
 
       // Return success so user gets redirected, but with error message
       return NextResponse.json({
@@ -394,13 +394,13 @@ export async function POST(request: NextRequest) {
     const { error: orderError } = await supabaseAdmin
       .from('sticker_orders')
       .update({
-        fulfillment_status: 'pending',
+        status: 'pending',
         sticker_file_url: stickerFileUrl,
         sticker_file_size: totalFileSize,
         lighter_ids: (createdLighters as CreatedLighter[]).map((l) => l.lighter_id),
         lighter_names: (createdLighters as CreatedLighter[]).map((l) => l.lighter_name),
       })
-      .eq('stripe_payment_intent_id', paymentIntentId);
+      .eq('payment_intent_id', paymentIntentId);
 
     if (orderError) {
       console.error('Failed to update order in database:', orderError);
@@ -436,7 +436,7 @@ export async function POST(request: NextRequest) {
         await supabaseAdmin
           .from('sticker_orders')
           .update({ fulfillment_email_sent: true })
-          .eq('stripe_payment_intent_id', paymentIntentId);
+          .eq('payment_intent_id', paymentIntentId);
       } else {
         console.error('Failed to send fulfillment email:', result.error);
       }
@@ -480,7 +480,7 @@ export async function POST(request: NextRequest) {
         await supabaseAdmin
           .from('sticker_orders')
           .update({ customer_email_sent: true })
-          .eq('stripe_payment_intent_id', paymentIntentId);
+          .eq('payment_intent_id', paymentIntentId);
       } else {
         console.error('Failed to send customer email:', {
           error: result.error,

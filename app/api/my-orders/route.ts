@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { cookies } from 'next/headers';
 import { createPaginatedResponse, ErrorCodes, createErrorResponse } from '@/lib/api-response';
+import { logger } from '@/lib/logger';
 
 export const dynamic = 'force-dynamic';
 
@@ -45,7 +46,7 @@ export async function GET(request: NextRequest) {
         shipping_city,
         shipping_postal_code,
         shipping_country,
-        fulfillment_status,
+        status,
         tracking_number,
         tracking_url,
         carrier,
@@ -63,7 +64,10 @@ export async function GET(request: NextRequest) {
       .range(offset, offset + limit - 1);
 
     if (error) {
-      console.error('Error fetching orders:', error);
+      logger.error('Error fetching orders', {
+        error: error.message,
+        userId: session.user.id,
+      });
       return NextResponse.json(
         createErrorResponse(ErrorCodes.DATABASE_ERROR, 'Failed to fetch orders'),
         { status: 500 }
@@ -75,7 +79,7 @@ export async function GET(request: NextRequest) {
     const transformedOrders = orders?.map((order) => ({
       id: order.id,
       orderId: `LMF-${order.id}`,
-      status: order.fulfillment_status || 'pending',
+      status: order.status || 'pending',
       quantity: order.quantity,
       amount: order.amount_paid,
       currency: order.currency || 'EUR',
@@ -110,7 +114,9 @@ export async function GET(request: NextRequest) {
       )
     );
   } catch (error) {
-    console.error('Error in /api/my-orders:', error);
+    logger.error('Error in /api/my-orders', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+    });
     return NextResponse.json(
       createErrorResponse(ErrorCodes.INTERNAL_SERVER_ERROR, 'Internal server error'),
       { status: 500 }

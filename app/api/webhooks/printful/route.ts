@@ -511,10 +511,10 @@ async function handleOrderUpdated(
     }
 
     // Update order in database with latest status
+    // Note: Using 'status' column (printful_status column does not exist)
     const { error } = await supabase
       .from('sticker_orders')
       .update({
-        printful_status: orderStatus.status,
         updated_at: new Date().toISOString(),
       })
       .eq('printful_order_id', order.id);
