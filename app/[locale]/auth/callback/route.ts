@@ -61,8 +61,7 @@ async function createFallbackProfile(supabase: TypedSupabaseClient, session: Ses
     .insert({
       id: session.user.id,
       username: defaultUsername,
-      created_at: new Date().toISOString(),
-    } as Database['public']['Tables']['profiles']['Insert'])
+    })
     .select('created_at, username')
     .single<{ created_at: string; username: string | null }>();
 

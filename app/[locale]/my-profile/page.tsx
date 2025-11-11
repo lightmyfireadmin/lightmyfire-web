@@ -141,8 +141,7 @@ export default async function MyProfilePage() {
       .insert({
         id: session.user.id,
         username: defaultUsername,
-        created_at: new Date().toISOString(),
-      } as Database['public']['Tables']['profiles']['Insert'])
+      })
       .select('username, level, points, nationality, show_nationality, role')
       .single<{ username: string | null; level: number; points: number; nationality: string | null; show_nationality: boolean; role: 'admin' | 'moderator' | 'user' | null }>();
 
