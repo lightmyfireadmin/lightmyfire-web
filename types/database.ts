@@ -15,10 +15,10 @@ export interface Database {
       profiles: {
         Row: {
           id: string
-          username: string | null
+          username: string
           level: number
           points: number
-          role: 'admin' | 'moderator' | 'user' | null
+          role: string | null
           nationality: string | null
           show_nationality: boolean
           created_at: string
@@ -28,17 +28,17 @@ export interface Database {
           username: string
           level?: number
           points?: number
-          role?: 'admin' | 'moderator' | 'user' | null
+          role?: string | null
           nationality?: string | null
           show_nationality?: boolean
           created_at?: string
         }
         Update: {
           id?: string
-          username?: string | null
+          username?: string
           level?: number
           points?: number
-          role?: 'admin' | 'moderator' | 'user' | null
+          role?: string | null
           nationality?: string | null
           show_nationality?: boolean
           created_at?: string
