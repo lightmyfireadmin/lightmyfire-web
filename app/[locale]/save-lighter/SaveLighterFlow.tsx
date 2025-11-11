@@ -10,6 +10,7 @@ import ShippingAddressForm, { type ShippingAddress } from './ShippingAddressForm
 import ContactFormModal from '@/app/components/ContactFormModal';
 import { PACK_PRICING } from '@/lib/constants';
 import { formatCurrency } from '@/lib/utils';
+import { logger } from '@/lib/logger';
 
 const getLanguageName = (code: string): string => {
   const languageMap: { [key: string]: string } = {
@@ -53,7 +54,9 @@ interface LighterCustomization {
   language?: string;
 }
 
-const getPackOptions = (t: any) => [
+type I18nTranslateFunction = (key: string, ...args: unknown[]) => string;
+
+const getPackOptions = (t: I18nTranslateFunction) => [
   {
     count: 10,
     sheets: 1,
@@ -78,7 +81,7 @@ const getPackOptions = (t: any) => [
 ];
 
 export default function SaveLighterFlow({ user }: { user: User }) {
-  const t = useI18n() as any;
+  const t = useI18n() as I18nTranslateFunction;
   const locale = useCurrentLocale();
   const [selectedPack, setSelectedPack] = useState<number | null>(null);
   const [customizations, setCustomizations] = useState<LighterCustomization[]>([]);
@@ -120,9 +123,12 @@ export default function SaveLighterFlow({ user }: { user: User }) {
         });
 
                 if (data.usedFallback) {
-          console.log('Using fallback shipping rates (Printful API unavailable)');
+          logger.info('Using fallback shipping rates', { reason: 'Printful API unavailable' });
         } else {
-          console.log('Using live Printful shipping rates');
+          logger.info('Using live Printful shipping rates', {
+            standard: data.rates.standard.rate,
+            express: data.rates.express.rate
+          });
         }
       }
     } catch (error) {
@@ -143,8 +149,11 @@ export default function SaveLighterFlow({ user }: { user: User }) {
     }));
     setCustomizations(customizationsWithLanguage);
     setSelectedLanguage(language);
-    
-    console.log('Customizations saved:', { customizations: customizationsWithLanguage, language });
+
+    logger.log('Customizations saved', {
+      count: customizationsWithLanguage.length,
+      language
+    });
   };
 
   return (

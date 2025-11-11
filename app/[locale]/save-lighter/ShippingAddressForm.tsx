@@ -13,13 +13,30 @@ export interface ShippingAddress {
   country: string;
 }
 
+interface NominatimAddressSuggestion {
+  display_name: string;
+  address: {
+    house_number?: string;
+    road?: string;
+    street?: string;
+    city?: string;
+    town?: string;
+    village?: string;
+    municipality?: string;
+    postcode?: string;
+    country_code?: string;
+  };
+}
+
+type I18nTranslateFunction = (key: string, ...args: unknown[]) => string;
+
 interface ShippingAddressFormProps {
   onSave: (address: ShippingAddress) => void;
   userEmail?: string;
 }
 
 export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddressFormProps) {
-  const t = useI18n() as any;
+  const t = useI18n() as I18nTranslateFunction;
 
   const COUNTRIES = [
     { code: 'AT', name: t('country.AT') },
@@ -52,7 +69,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
     country: 'FR',
   });
   const [errors, setErrors] = useState<Partial<Record<keyof ShippingAddress, string>>>({});
-  const [addressSuggestions, setAddressSuggestions] = useState<any[]>([]);
+  const [addressSuggestions, setAddressSuggestions] = useState<NominatimAddressSuggestion[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const addressInputRef = useRef<HTMLInputElement>(null);
@@ -129,7 +146,7 @@ export default function ShippingAddressForm({ onSave, userEmail }: ShippingAddre
     }
   };
 
-    const handleAddressSelect = (suggestion: any) => {
+    const handleAddressSelect = (suggestion: NominatimAddressSuggestion) => {
     const address = suggestion.address;
 
         const streetNumber = address.house_number || '';

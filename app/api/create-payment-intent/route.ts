@@ -5,6 +5,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { rateLimit } from '@/lib/rateLimit';
 import { validatePaymentEnvironment } from '@/lib/env';
 import { PACK_PRICING, VALID_PACK_SIZES } from '@/lib/constants';
+import { logger } from '@/lib/logger';
 
 export const dynamic = 'force-dynamic';
 
@@ -119,7 +120,13 @@ export async function POST(request: NextRequest) {
     );
 
     if (duplicateIntent) {
-      console.log(`Reusing existing payment intent for order ${orderId}:`, duplicateIntent.id);
+      logger.info('Reusing existing payment intent', {
+        orderId,
+        paymentIntentId: duplicateIntent.id,
+        amount: duplicateIntent.amount,
+        currency: duplicateIntent.currency,
+        status: duplicateIntent.status
+      });
       return NextResponse.json(
         {
           success: true,

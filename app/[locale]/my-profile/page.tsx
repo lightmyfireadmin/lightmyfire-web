@@ -9,9 +9,19 @@ import UpdateAuthForm from './UpdateAuthForm';
 import ProfileHeader from './ProfileHeader';
 
 import type { MyPostWithLighter, Trophy } from '@/lib/types';
-import Image from 'next/image'; 
+import Image from 'next/image';
 import { getI18n, getCurrentLocale } from '@/locales/server';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
+
+interface SavedLighter {
+  id: string;
+  name: string;
+  pin_code: string;
+}
+
+interface UserTrophyRecord {
+  trophies: Trophy;
+}
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 60; 
@@ -181,7 +191,7 @@ export default async function MyProfilePage() {
 
   
   const myTrophies: Trophy[] =
-    (trophiesRes.data?.map((t: any) => t.trophies).filter(Boolean) as unknown as Trophy[]) || [];
+    ((trophiesRes.data as UserTrophyRecord[] | null)?.map((t) => t.trophies).filter(Boolean) as Trophy[]) || [];
 
   return (
     <div className="mx-auto max-w-4xl p-4 sm:p-6 lg:p-8">
@@ -221,7 +231,7 @@ export default async function MyProfilePage() {
           <h2 className="mb-4 text-xl font-semibold text-foreground">{t('my_profile.saved_lighters')}</h2>
           {savedLightersRes.data && savedLightersRes.data.length > 0 ? (
             <ul className="space-y-2">
-              {savedLightersRes.data.map((lighter: any) => (
+              {(savedLightersRes.data as SavedLighter[]).map((lighter) => (
                 <li key={lighter.id}>
                   <Link
                     href={`/${locale}/lighter/${lighter.id}`}

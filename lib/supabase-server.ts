@@ -1,8 +1,12 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr';
-import type { NextRequest } from 'next/server';
+import type { NextRequest, NextResponse } from 'next/server';
+import type { SupabaseClient } from '@supabase/supabase-js';
+import type { Database } from '@/types/database';
 
-export function createServerSupabaseClient(cookieStore: any) {
-  return createServerClient(
+type TypedSupabaseClient = SupabaseClient<Database>;
+
+export function createServerSupabaseClient(cookieStore: ReturnType<typeof import('next/headers').cookies>): TypedSupabaseClient {
+  return createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
@@ -23,8 +27,9 @@ export function createServerSupabaseClient(cookieStore: any) {
 
 export function createServerSupabaseClientForMiddleware(
   request: NextRequest,
-  response: any ) {
-  return createServerClient(
+  response: NextResponse
+): TypedSupabaseClient {
+  return createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
@@ -50,3 +55,5 @@ export function createServerSupabaseClientForMiddleware(
     }
   );
 }
+
+export type { TypedSupabaseClient };

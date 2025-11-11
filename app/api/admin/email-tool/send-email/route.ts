@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { cookies } from 'next/headers';
 import { sendCustomEmail } from '@/lib/email';
+import { logger } from '@/lib/logger';
 
 export async function POST(request: NextRequest) {
   try {
@@ -85,15 +86,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Log the sent email (optional: you could save this to a database table)
-    console.log('Admin sent custom email:', {
+    // Log the sent email for audit trail
+    logger.event('admin_custom_email_sent', {
       adminId: session.user.id,
       adminEmail: session.user.email,
       from,
       to,
       subject,
       emailId: result.id,
-      timestamp: new Date().toISOString(),
     });
 
     return NextResponse.json({

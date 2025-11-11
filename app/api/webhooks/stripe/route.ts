@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
+import { logger } from '@/lib/logger';
 
 export const dynamic = 'force-dynamic';
 
@@ -89,7 +90,7 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (existingEvent) {
-      console.log(`Webhook event ${event.id} already processed, skipping`);
+      logger.info('Webhook event already processed', { eventId: event.id, type: event.type });
       return NextResponse.json({ received: true, status: 'already_processed' }, { status: 200 });
     }
 
@@ -98,11 +99,12 @@ export async function POST(request: NextRequest) {
       .insert({
         id: event.id,
         event_type: event.type,
-        payload: event as any,
+        payload: event as unknown as Record<string, unknown>,
       });
 
     if (insertError) {
-            if (insertError.code === '23505') {         console.log(`Webhook event ${event.id} was processed by another instance`);
+            if (insertError.code === '23505') {
+        logger.info('Webhook event processed by another instance', { eventId: event.id });
         return NextResponse.json({ received: true, status: 'already_processed' }, { status: 200 });
       }
       console.error('Failed to insert webhook event:', insertError);
@@ -112,7 +114,11 @@ export async function POST(request: NextRequest) {
     switch (event.type) {
       case 'payment_intent.succeeded': {
         const paymentIntent = event.data.object as Stripe.PaymentIntent;
-        console.log(`Processing payment_intent.succeeded: ${paymentIntent.id}`);
+        logger.event('stripe_payment_succeeded', {
+          paymentIntentId: paymentIntent.id,
+          amount: paymentIntent.amount,
+          currency: paymentIntent.currency
+        });
 
         const { data, error } = await supabase.rpc('update_order_payment_succeeded', {
           p_payment_intent_id: paymentIntent.id,
@@ -128,7 +134,7 @@ export async function POST(request: NextRequest) {
           return NextResponse.json({ error: 'Database update failed' }, { status: 500 });
         }
 
-        console.log(`Payment succeeded and order updated:`, {
+        logger.info('Order updated after payment success', {
           paymentIntentId: paymentIntent.id,
           orderId: paymentIntent.metadata.orderId,
           amount: paymentIntent.amount,
@@ -170,7 +176,7 @@ export async function POST(request: NextRequest) {
           });
           // Don't return error - webhook should still return 200 to prevent retries
         } else {
-          console.log(`Order marked as payment failed: ${paymentIntent.id}`);
+          logger.event('order_payment_failed', { paymentIntentId: paymentIntent.id });
         }
         break;
       }
@@ -178,7 +184,7 @@ export async function POST(request: NextRequest) {
       case 'charge.refunded': {
         const charge = event.data.object as Stripe.Charge;
 
-        console.log(`Charge refunded:`, {
+        logger.event('stripe_charge_refunded', {
           chargeId: charge.id,
           amount: charge.amount_refunded,
           currency: charge.currency,
@@ -186,37 +192,27 @@ export async function POST(request: NextRequest) {
           refunded: charge.refunded,
         });
 
-        // Update order in database to reflect refund
+        // TODO: Add refund columns to sticker_orders table (refunded, refund_amount, refund_reason)
+        // For now, just log the refund event
         if (typeof charge.payment_intent === 'string') {
-          // Get refund reason from the latest refund if available
           const latestRefund = charge.refunds?.data?.[0];
 
-          const { error: refundError } = await supabase
-            .from('sticker_orders')
-            .update({
-              refunded: true,
-              refund_amount: charge.amount_refunded,
-              refund_reason: latestRefund?.reason || null,
-              updated_at: new Date().toISOString(),
-            })
-            .eq('payment_intent_id', charge.payment_intent);
+          logger.event('order_refunded', {
+            paymentIntentId: charge.payment_intent,
+            amount: charge.amount_refunded,
+            reason: latestRefund?.reason || 'unknown',
+          });
 
-          if (refundError) {
-            console.error('Failed to update order refund status:', {
-              paymentIntentId: charge.payment_intent,
-              error: refundError.message,
-              details: refundError.details,
-            });
-            // Don't return error - webhook should still return 200 to prevent retries
-          } else {
-            console.log(`Order marked as refunded: ${charge.payment_intent}`);
-          }
+          logger.warn('Refund received but not saved to database - refund columns do not exist in sticker_orders table', {
+            paymentIntentId: charge.payment_intent,
+            amount: charge.amount_refunded,
+          });
         }
         break;
       }
 
       default:
-        console.log(`Unhandled event type: ${event.type}`);
+        logger.info('Unhandled webhook event type', { eventType: event.type });
     }
 
     return NextResponse.json({ received: true }, { status: 200 });

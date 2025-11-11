@@ -7,6 +7,7 @@ import archiver from 'archiver';
 import { cookies } from 'next/headers';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { verifyInternalAuthToken } from '@/lib/internal-auth';
+import { logger } from '@/lib/logger';
 
 try {
   const poppinsExtraBold = path.join(process.cwd(), 'public', 'fonts', 'Poppins-ExtraBold.ttf');
@@ -15,21 +16,21 @@ try {
 
     if (fs.existsSync(poppinsExtraBold)) {
     registerFont(poppinsExtraBold, { family: 'Poppins', weight: '800' });
-    console.log('Registered Poppins ExtraBold');
+    logger.log('Registered Poppins ExtraBold');
   } else {
     console.error('Poppins-ExtraBold.ttf not found at:', poppinsExtraBold);
   }
 
     if (fs.existsSync(poppinsBold)) {
     registerFont(poppinsBold, { family: 'Poppins', weight: 'bold' });
-    console.log('Registered Poppins Bold');
+    logger.log('Registered Poppins Bold');
   } else {
     console.error('Poppins-Bold.ttf not found at:', poppinsBold);
   }
 
     if (fs.existsSync(poppinsMedium)) {
     registerFont(poppinsMedium, { family: 'Poppins', weight: '500' });
-    console.log('Registered Poppins Medium');
+    logger.log('Registered Poppins Medium');
   } else {
     console.error('Poppins-Medium.ttf not found at:', poppinsMedium);
   }
@@ -344,7 +345,7 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    console.log(`Generated ${sheets.length} sheet(s) successfully`);
+    logger.info('Generated sticker sheets', { numSheets: sheets.length });
 
     // Return JSON response with all sheets as base64
     return NextResponse.json({
@@ -604,7 +605,7 @@ async function drawSticker(
 
     ctx.drawImage(logoImage, logoX, logoY, logoTargetWidth, logoTargetHeight);
 
-    console.log('Logo drawn successfully at', logoX, logoY, 'size:', logoTargetWidth, 'x', logoTargetHeight);
+    logger.log('Logo drawn successfully', { x: logoX, y: logoY, width: logoTargetWidth, height: logoTargetHeight });
   } catch (error) {
     console.error('Logo loading error:', error);
     console.error('Error details:', error);

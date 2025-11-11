@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { useContentModeration } from '@/app/hooks/useContentModeration';
 import { useI18n } from '@/locales/client';
 import LocationPicker from './LocationPicker';
+import { logger } from '@/lib/logger';
 
 type PostType = 'text' | 'song' | 'image' | 'location' | 'refuel';
 
@@ -213,7 +214,7 @@ export default function AddPostForm({
 
         // Check if upload was cancelled during the operation
         if (abortController.signal.aborted || !isMountedRef.current) {
-          console.log('Upload cancelled');
+          logger.log('Upload cancelled');
           return;
         }
 
@@ -235,7 +236,7 @@ export default function AddPostForm({
       } catch (err) {
         // Handle upload cancellation or errors
         if (abortController.signal.aborted || !isMountedRef.current) {
-          console.log('Upload cancelled or component unmounted');
+          logger.log('Upload cancelled or component unmounted');
           return;
         }
         console.error('Upload error:', err);

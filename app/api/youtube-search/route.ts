@@ -1,5 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rateLimit';
+import { createSuccessResponse, createErrorResponse, ErrorCodes } from '@/lib/api-response';
+import { withCache, generateCacheKey, CacheTTL } from '@/lib/cache';
+import { logger } from '@/lib/logger';
+
+interface YouTubeVideo {
+  id: {
+    videoId: string;
+  };
+  snippet: {
+    title: string;
+    thumbnails: {
+      default: {
+        url: string;
+      };
+    };
+  };
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -10,10 +27,11 @@ export async function POST(request: NextRequest) {
     const rateLimitResult = rateLimit(request, 'youtube', ip);
     if (!rateLimitResult.success) {
       return NextResponse.json(
-        {
-          error: 'Too many search requests. Please try again later.',
-          resetTime: rateLimitResult.resetTime
-        },
+        createErrorResponse(
+          ErrorCodes.RATE_LIMIT_EXCEEDED,
+          'Too many search requests. Please try again later.',
+          { resetTime: rateLimitResult.resetTime }
+        ),
         { status: 429 }
       );
     }
@@ -22,14 +40,14 @@ export async function POST(request: NextRequest) {
 
         if (!query || typeof query !== 'string') {
       return NextResponse.json(
-        { error: 'Invalid query parameter' },
+        createErrorResponse(ErrorCodes.INVALID_INPUT, 'Invalid query parameter'),
         { status: 400 }
       );
     }
 
     if (query.length > 100) {
       return NextResponse.json(
-        { error: 'Query too long' },
+        createErrorResponse(ErrorCodes.VALIDATION_ERROR, 'Query too long', { maxLength: 100 }),
         { status: 400 }
       );
     }
@@ -37,46 +55,54 @@ export async function POST(request: NextRequest) {
         const apiKey = process.env.YOUTUBE_API_KEY;
 
     if (!apiKey) {
-      console.error('YOUTUBE_API_KEY is not set');
+      logger.error('YOUTUBE_API_KEY is not set');
       return NextResponse.json(
-        { error: 'YouTube API is not configured' },
+        createErrorResponse(ErrorCodes.SERVICE_UNAVAILABLE, 'YouTube API is not configured'),
         { status: 500 }
       );
     }
 
-        const response = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&maxResults=5&key=${apiKey}`
-    );
+    // Generate cache key based on search query
+    const cacheKey = generateCacheKey('youtube', query.toLowerCase().trim());
 
-    const data = await response.json();
+    // Cache search results for 30 minutes
+    const items = await withCache(
+      cacheKey,
+      async () => {
+        const response = await fetch(
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&maxResults=5&key=${apiKey}`
+        );
+
+        const data = await response.json();
 
         if (data.error) {
-      console.error('YouTube API Error:', data.error);
-      return NextResponse.json(
-        {
-          error: 'YouTube search failed',
-          details: data.error.message
-        },
-        { status: 400 }
-      );
-    }
-
-        const items = (data.items || []).map((video: any) => ({
-      id: { videoId: video.id.videoId },
-      snippet: {
-        title: video.snippet.title,
-        thumbnails: {
-          default: { url: video.snippet.thumbnails.default.url }
+          logger.error('YouTube API Error', { error: data.error });
+          throw new Error(data.error.message || 'YouTube API error');
         }
-      }
-    }));
 
-    return NextResponse.json({ items });
+        return (data.items as YouTubeVideo[] || []).map((video) => ({
+          id: { videoId: video.id.videoId },
+          snippet: {
+            title: video.snippet.title,
+            thumbnails: {
+              default: { url: video.snippet.thumbnails.default.url }
+            }
+          }
+        }));
+      },
+      CacheTTL.LONG // 30 minutes cache
+    );
+
+    return NextResponse.json(
+      createSuccessResponse(items, `Found ${items.length} results`)
+    );
 
   } catch (error) {
-    console.error('YouTube Search Route Error:', error);
+    logger.error('YouTube Search Route Error', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+    });
     return NextResponse.json(
-      { error: 'Failed to search YouTube' },
+      createErrorResponse(ErrorCodes.INTERNAL_SERVER_ERROR, 'Failed to search YouTube'),
       { status: 500 }
     );
   }

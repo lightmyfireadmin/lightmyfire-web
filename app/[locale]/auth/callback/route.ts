@@ -1,17 +1,26 @@
 import { cookies } from 'next/headers';
 import { type NextRequest, NextResponse } from 'next/server';
-import { createServerSupabaseClient } from '@/lib/supabase-server';
+import { createServerSupabaseClient, type TypedSupabaseClient } from '@/lib/supabase-server';
 import { sendWelcomeEmail } from '@/lib/email';
 import { SupportedEmailLanguage } from '@/lib/email-i18n';
+import { logger } from '@/lib/logger';
+import type { Session } from '@supabase/supabase-js';
 
 export const dynamic = 'force-dynamic';
 
+interface ProfileData {
+  created_at: string;
+  username: string | null;
+  level?: number;
+  points?: number;
+}
+
 async function waitForProfile(
-  supabase: any,
+  supabase: TypedSupabaseClient,
   userId: string,
   maxAttempts = 10,
   delayMs = 500
-): Promise<{ profile: any; isNewUser: boolean }> {
+): Promise<{ profile: ProfileData | null; isNewUser: boolean }> {
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     const { data: profile, error } = await supabase
       .from('profiles')
@@ -39,7 +48,7 @@ async function waitForProfile(
   return { profile: null, isNewUser: true };
 }
 
-async function createFallbackProfile(supabase: any, session: any): Promise<any> {
+async function createFallbackProfile(supabase: TypedSupabaseClient, session: Session): Promise<ProfileData | null> {
   const defaultUsername =
     session.user.user_metadata?.full_name ||
     session.user.user_metadata?.name ||
@@ -140,7 +149,11 @@ export async function GET(request: NextRequest, { params }: { params: { locale: 
                 language: emailLang,
               });
 
-              console.log('Welcome email sent successfully to:', session.user.email);
+              logger.event('welcome_email_sent', {
+                email: session.user.email,
+                userId: session.user.id,
+                language: emailLang
+              });
             } catch (emailError) {
               // Don't block the signup flow if email fails
               console.error('Failed to send welcome email:', emailError);

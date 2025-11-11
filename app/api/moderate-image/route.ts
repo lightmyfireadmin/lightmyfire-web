@@ -16,7 +16,15 @@ if (!process.env.OPENAI_API_KEY) {
 interface ModerationRequest {
   imageUrl: string;
   imageBase64?: string;
-  contentType?: string; }
+  contentType?: string;
+}
+
+interface ModerationImageInput {
+  type: 'image_url';
+  image_url: {
+    url: string;
+  };
+}
 
 interface CategoryScore {
   [category: string]: number;
@@ -114,8 +122,8 @@ export async function POST(request: NextRequest) {
           image_url: {
             url: imageInput,
           },
-        } as any,
-      ] as any,
+        } as ModerationImageInput,
+      ] as ModerationImageInput[],
     });
 
     const result = moderation.results[0];
@@ -250,31 +258,18 @@ async function logModerationResult(data: {
       .filter(([, flagged]) => flagged)
       .map(([category]) => category);
 
-    // Comprehensive logging for audit trail
-    console.log('Image moderation result:', {
-      timestamp: data.timestamp,
-      userId: data.userId,
-      contentType: data.contentType,
-      imageUrlHash: urlHash,
-      imageUrl: data.imageUrl.startsWith('data:') ? 'base64-image' : data.imageUrl,
+    // Store in moderation_logs table for audit trail
+    await supabase.from('moderation_logs').insert({
+      user_id: data.userId,
+      content_type: data.contentType,
+      content_hash: urlHash,
+      content_length: null, // Images don't have content length
       flagged: data.flagged,
+      categories: data.categories || {},
+      category_scores: data.scores || {},
       severity: data.severity,
-      flaggedCategories,
-      categoryScores: data.scores,
       decision: data.flagged ? 'BLOCKED' : 'APPROVED',
     });
-
-    // TODO: Store in moderation_logs table when it's created
-    // await supabase.from('moderation_logs').insert({
-    //   user_id: data.userId,
-    //   content_type: data.contentType,
-    //   content_hash: urlHash,
-    //   flagged: data.flagged,
-    //   categories: data.categories,
-    //   category_scores: data.scores,
-    //   severity: data.severity,
-    //   created_at: data.timestamp
-    // });
   } catch (err) {
     console.error('Failed to log image moderation:', err);
   }

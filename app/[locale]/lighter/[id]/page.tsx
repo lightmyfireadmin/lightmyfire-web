@@ -4,15 +4,29 @@ import Link from 'next/link';
 
 import EmptyLighterPosts from '@/app/components/EmptyLighterPosts';
 import PaginatedPosts from './PaginatedPosts';
-import { DetailedPost } from '@/lib/types'; 
+import { DetailedPost } from '@/lib/types';
 import type { Metadata } from 'next';
-import MapComponent from './MapComponent'; 
+import MapComponent from './MapComponent';
 import { Suspense } from 'react';
 import SuccessNotification from '@/app/components/SuccessNotification';
 import Image from 'next/image';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { getI18n } from '@/locales/server';
+
+type I18nTranslateFunction = (key: string, ...args: unknown[]) => string;
+
+interface LighterWithProfiles {
+  id: string;
+  name: string;
+  pin_code: string;
+  custom_background_url: string | null;
+  saver_id: string;
+  profiles: {
+    username: string | null;
+    level: number;
+  } | null;
+}
 
 export async function generateMetadata({
   params,
@@ -62,7 +76,7 @@ export default async function LighterPage({
 }: {
   params: { id: string; locale: string };
 }) {
-  const t = await getI18n() as any;
+  const t = await getI18n() as I18nTranslateFunction;
   const cookieStore = cookies();
   const supabase = createServerSupabaseClient(cookieStore);
 
@@ -81,8 +95,9 @@ export default async function LighterPage({
     notFound();
   }
 
-  const saverUsername = (lighter.profiles as any)?.username || 'Anonymous';
-  const saverLevel = (lighter.profiles as any)?.level || 1;
+  const typedLighter = lighter as unknown as LighterWithProfiles;
+  const saverUsername = typedLighter.profiles?.username || 'Anonymous';
+  const saverLevel = typedLighter.profiles?.level || 1;
 
   
   let postsResponse = await supabase
