@@ -128,6 +128,7 @@ export interface Database {
         Row: {
           id: string
           user_id: string
+          payment_intent_id: string
           stripe_payment_intent_id: string
           printful_order_id: number | null
           quantity: number
@@ -141,13 +142,26 @@ export interface Database {
           shipping_country: string
           shipping_method: 'standard' | 'express'
           amount: number
+          amount_paid: number
+          currency: string
           status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'failed' | 'refunded' | 'returned' | 'on_hold' | 'canceled'
+          tracking_number: string | null
+          tracking_url: string | null
+          carrier: string | null
+          on_hold: boolean
+          hold_reason: string | null
+          failure_reason: string | null
+          cancellation_reason: string | null
           created_at: string
           updated_at: string
+          paid_at: string | null
+          shipped_at: string | null
+          delivered_at: string | null
         }
         Insert: {
           id?: string
           user_id: string
+          payment_intent_id?: string
           stripe_payment_intent_id: string
           printful_order_id?: number | null
           quantity: number
@@ -161,13 +175,26 @@ export interface Database {
           shipping_country: string
           shipping_method: 'standard' | 'express'
           amount: number
+          amount_paid?: number
+          currency?: string
           status?: 'pending' | 'processing' | 'shipped' | 'delivered' | 'failed' | 'refunded' | 'returned' | 'on_hold' | 'canceled'
+          tracking_number?: string | null
+          tracking_url?: string | null
+          carrier?: string | null
+          on_hold?: boolean
+          hold_reason?: string | null
+          failure_reason?: string | null
+          cancellation_reason?: string | null
           created_at?: string
           updated_at?: string
+          paid_at?: string | null
+          shipped_at?: string | null
+          delivered_at?: string | null
         }
         Update: {
           id?: string
           user_id?: string
+          payment_intent_id?: string
           stripe_payment_intent_id?: string
           printful_order_id?: number | null
           quantity?: number
@@ -181,9 +208,21 @@ export interface Database {
           shipping_country?: string
           shipping_method?: 'standard' | 'express'
           amount?: number
+          amount_paid?: number
+          currency?: string
           status?: 'pending' | 'processing' | 'shipped' | 'delivered' | 'failed' | 'refunded' | 'returned' | 'on_hold' | 'canceled'
+          tracking_number?: string | null
+          tracking_url?: string | null
+          carrier?: string | null
+          on_hold?: boolean
+          hold_reason?: string | null
+          failure_reason?: string | null
+          cancellation_reason?: string | null
           created_at?: string
           updated_at?: string
+          paid_at?: string | null
+          shipped_at?: string | null
+          delivered_at?: string | null
         }
       }
       webhook_events: {
