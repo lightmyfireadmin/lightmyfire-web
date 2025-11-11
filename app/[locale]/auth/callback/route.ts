@@ -5,6 +5,7 @@ import { sendWelcomeEmail } from '@/lib/email';
 import { SupportedEmailLanguage } from '@/lib/email-i18n';
 import { logger } from '@/lib/logger';
 import type { Session } from '@supabase/supabase-js';
+import type { Database } from '@/types/database';
 
 export const dynamic = 'force-dynamic';
 
@@ -61,7 +62,7 @@ async function createFallbackProfile(supabase: TypedSupabaseClient, session: Ses
       id: session.user.id,
       username: defaultUsername,
       created_at: new Date().toISOString(),
-    })
+    } as Database['public']['Tables']['profiles']['Insert'])
     .select('created_at, username')
     .single<{ created_at: string; username: string | null }>();
 

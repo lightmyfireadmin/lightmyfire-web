@@ -12,6 +12,7 @@ import type { MyPostWithLighter, Trophy } from '@/lib/types';
 import Image from 'next/image';
 import { getI18n, getCurrentLocale } from '@/locales/server';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
+import type { Database } from '@/types/database';
 
 interface SavedLighter {
   id: string;
@@ -141,7 +142,7 @@ export default async function MyProfilePage() {
         id: session.user.id,
         username: defaultUsername,
         created_at: new Date().toISOString(),
-      })
+      } as Database['public']['Tables']['profiles']['Insert'])
       .select('username, level, points, nationality, show_nationality, role')
       .single<{ username: string | null; level: number; points: number; nationality: string | null; show_nationality: boolean; role: 'admin' | 'moderator' | 'user' | null }>();
 
