@@ -1,37 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createServerSupabaseClient } from '@/lib/supabase-server';
-import { cookies } from 'next/headers';
+import { verifyAdminAuth } from '@/lib/admin-auth';
 
 export async function GET(request: NextRequest) {
   try {
-    const cookieStore = cookies();
-    const supabase = createServerSupabaseClient(cookieStore);
-
-    // Check authentication
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-
-    if (!session) {
-      return NextResponse.json(
-        { error: 'Unauthorized - Please log in' },
-        { status: 401 }
-      );
+    // Verify admin authentication and authorization
+    const auth = await verifyAdminAuth();
+    if (!auth.authorized) {
+      return auth.errorResponse!;
     }
 
-    // Check admin role
-    const { data: profile, error: profileError } = await supabase
-      .from('profiles')
-      .select('role')
-      .eq('id', session.user.id)
-      .single();
-
-    if (profileError || !profile || profile.role !== 'admin') {
-      return NextResponse.json(
-        { error: 'Forbidden - Admin access required' },
-        { status: 403 }
-      );
-    }
+    const { supabase } = auth;
 
     // Get search query from URL params
     const searchParams = request.nextUrl.searchParams;
@@ -52,10 +30,12 @@ export async function GET(request: NextRequest) {
     }
 
     // Also search in sticker_orders for additional context (shipping names)
+    // Escape LIKE wildcards to prevent SQL injection
+    const escapedQuery = query.replace(/[%_]/g, '\\$&');
     const { data: orders } = await supabase
       .from('sticker_orders')
       .select('user_id, user_email, shipping_name')
-      .ilike('user_email', `%${query}%`)
+      .ilike('user_email', `%${escapedQuery}%`)
       .not('user_email', 'is', null)
       .limit(20);
 

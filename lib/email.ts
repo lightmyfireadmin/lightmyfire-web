@@ -287,12 +287,6 @@ async function sendEmail(options: SendEmailOptions): Promise<{ success: boolean;
         throw new Error('Email sent but no ID returned');
       }
 
-      console.log('Email sent successfully:', {
-        id: data.id,
-        recipient: options.to,
-        subject: options.subject,
-      });
-
       return data;
     }, emailContext);
 

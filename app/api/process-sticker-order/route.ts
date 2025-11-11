@@ -229,12 +229,7 @@ export async function POST(request: NextRequest) {
     if (initialOrderError) {
       console.error('CRITICAL: Failed to save order to database:', initialOrderError);
       // Still continue - we'll try to process the order anyway
-    } else {
-      console.log('Order saved to database with processing status');
     }
-
-        console.log('Creating lighters for user:', session.user.id);
-    console.log('Lighter data to create:', JSON.stringify(lighterData, null, 2));
 
     const { data: createdLighters, error: dbError } = await supabaseAdmin.rpc('create_bulk_lighters', {
       p_user_id: session.user.id,
@@ -289,19 +284,13 @@ export async function POST(request: NextRequest) {
       }, { status: 200 });
     }
 
-    console.log('Successfully created lighters:', createdLighters);
-
-            const stickerData = createdLighters.map((lighter: any) => ({
+    const stickerData = createdLighters.map((lighter: any) => ({
       id: lighter.lighter_id,
       name: lighter.lighter_name,
       pinCode: lighter.pin_code,
       backgroundColor: lighter.background_color,
       language: lighter.sticker_language || 'en',
     }));
-
-    console.log('Sticker data for generation:', stickerData);
-
-        console.log('Generating sticker PNGs...');
 
         const internalAuthToken = generateInternalAuthToken(session.user.id);
 
@@ -347,11 +336,6 @@ export async function POST(request: NextRequest) {
     }
 
     const generateResult = await generateResponse.json();
-    console.log(`✅ Sticker generation successful: ${generateResult.numSheets} sheet(s) generated`);
-    console.log(`📊 Sheet details:`, generateResult.sheets.map((s: any) => ({
-      filename: s.filename,
-      size: `${(s.size / 1024).toFixed(2)} KB`
-    })));
 
         // Upload all sheets to storage and collect URLs
     const stickerFileUrls: string[] = [];
@@ -368,7 +352,6 @@ export async function POST(request: NextRequest) {
         console.error(`❌ Invalid PNG signature for sheet ${i + 1}`);
         throw new Error(`Sheet ${i + 1} is not a valid PNG file`);
       }
-      console.log(`✅ Sheet ${i + 1} verified as valid PNG (${(fileBuffer.length / 1024).toFixed(2)} KB)`);
 
       // Store buffer for email attachment
       stickerFiles.push({
@@ -392,7 +375,6 @@ export async function POST(request: NextRequest) {
           .createSignedUrl(fileName, 604800);
         if (urlData?.signedUrl) {
           stickerFileUrls.push(urlData.signedUrl);
-          console.log(`Sheet ${i + 1} uploaded to storage:`, urlData.signedUrl);
         }
       }
     }
@@ -400,7 +382,7 @@ export async function POST(request: NextRequest) {
     const stickerFileUrl = stickerFileUrls.length > 0 ? stickerFileUrls[0] : null;
     const totalFileSize = stickerFiles.reduce((sum, f) => sum + f.buffer.length, 0);
 
-        const { error: orderError } = await supabaseAdmin
+    const { error: orderError } = await supabaseAdmin
       .from('sticker_orders')
       .update({
         fulfillment_status: 'pending',
@@ -413,8 +395,6 @@ export async function POST(request: NextRequest) {
 
     if (orderError) {
       console.error('Failed to update order in database:', orderError);
-          } else {
-      console.log('Order updated to pending status successfully');
     }
 
         // Check if Resend API key is configured
@@ -443,12 +423,6 @@ export async function POST(request: NextRequest) {
 
       if (result.success) {
         fulfillmentEmailSent = true;
-        console.log('✅ Fulfillment email sent successfully via Resend');
-        console.log(`📧 Email ID: ${result.id}`);
-        console.log(`📎 Attachments included: ${stickerFiles.length} file(s):`);
-        stickerFiles.forEach((file, i) => {
-          console.log(`   ${i + 1}. ${file.filename} - ${(file.buffer.length / 1024).toFixed(2)} KB`);
-        });
 
         await supabaseAdmin
           .from('sticker_orders')
@@ -493,7 +467,6 @@ export async function POST(request: NextRequest) {
 
       if (result.success) {
         customerEmailSent = true;
-        console.log('Customer confirmation email sent successfully via Resend');
 
         await supabaseAdmin
           .from('sticker_orders')

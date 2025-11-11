@@ -215,32 +215,18 @@ async function logModerationResult(data: {
       .filter(([, flagged]) => flagged)
       .map(([category]) => category);
 
-    // Comprehensive logging for audit trail
-    console.log('Text moderation result:', {
-      timestamp: data.timestamp,
-      userId: data.userId,
-      contentType: data.contentType,
-      contentHash,
-      contentLength: data.text.length,
-      contentPreview: data.text.substring(0, 100),
+    // Store in moderation_logs table for audit trail
+    await supabase.from('moderation_logs').insert({
+      user_id: data.userId,
+      content_type: data.contentType,
+      content_hash: contentHash,
+      content_length: data.text.length,
       flagged: data.flagged,
+      categories: data.categories || {},
+      category_scores: data.scores || {},
       severity: data.severity,
-      flaggedCategories,
-      categoryScores: data.scores,
       decision: data.flagged ? 'BLOCKED' : 'APPROVED',
     });
-
-    // TODO: Store in moderation_logs table when it's created
-    // await supabase.from('moderation_logs').insert({
-    //   user_id: data.userId,
-    //   content_type: data.contentType,
-    //   content_hash: contentHash,
-    //   flagged: data.flagged,
-    //   categories: data.categories,
-    //   category_scores: data.scores,
-    //   severity: data.severity,
-    //   created_at: data.timestamp
-    // });
   } catch (err) {
     console.error('Failed to log moderation:', err);
   }
