@@ -22,18 +22,16 @@ export interface Database {
           nationality: string | null
           show_nationality: boolean
           created_at: string
-          updated_at: string
         }
         Insert: {
           id: string
-          username?: string | null
+          username: string
           level?: number
           points?: number
           role?: 'admin' | 'moderator' | 'user' | null
           nationality?: string | null
           show_nationality?: boolean
           created_at?: string
-          updated_at?: string
         }
         Update: {
           id?: string
@@ -44,7 +42,6 @@ export interface Database {
           nationality?: string | null
           show_nationality?: boolean
           created_at?: string
-          updated_at?: string
         }
       }
       lighters: {
