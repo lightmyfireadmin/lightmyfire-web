@@ -4,6 +4,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { cookies } from 'next/headers';
 import { verifyPrintfulWebhook, getPrintfulOrderStatus } from '@/lib/printful';
 import { sendOrderShippedEmail } from '@/lib/email';
+import { logger } from '@/lib/logger';
 
 export const dynamic = 'force-dynamic';
 
@@ -100,7 +101,7 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (existingWebhook) {
-      console.log('Webhook already processed (idempotency check):', {
+      logger.info('Webhook already processed (idempotency check)', {
         webhookId,
         type: payload.type,
         orderId: payload.data.order?.id,
@@ -110,7 +111,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Log webhook receipt
-    console.log('Printful webhook received:', {
+    logger.event('printful_webhook_received', {
       type: payload.type,
       orderId: payload.data.order?.id,
       externalId: payload.data.order?.external_id,
@@ -160,7 +161,10 @@ export async function POST(request: NextRequest) {
         break;
 
       default:
-        console.log('Unhandled Printful webhook type:', payload.type);
+        logger.info('Unhandled Printful webhook type', {
+          type: payload.type,
+          orderId: payload.data.order?.id
+        });
     }
 
         return NextResponse.json({ success: true });
@@ -230,9 +234,11 @@ async function handlePackageShipped(
         estimatedDelivery: '5-10 business days',
       });
 
-      console.log('Shipping notification sent:', {
+      logger.event('order_shipped_email_sent', {
         orderId: stickerOrder.id,
         email: customerEmail,
+        trackingNumber: shipment.tracking_number,
+        carrier: shipment.carrier,
       });
     }
   } catch (error) {
@@ -265,8 +271,11 @@ async function handlePackageReturned(
       return;
     }
 
-        
-    console.log('Order marked as returned:', order.id);
+
+    logger.event('order_marked_as_returned', {
+      orderId: order.id,
+      printfulOrderId: order.id
+    });
   } catch (error) {
     console.error('Error handling package_returned:', error);
   }
@@ -305,7 +314,11 @@ async function handleOrderFailed(
       return;
     }
 
-    console.error('Order failed:', { orderId: order.id, reason });
+    logger.event('order_failed', {
+      orderId: order.id,
+      printfulOrderId: order.id,
+      reason: reason || 'Unknown error'
+    });
 
     // Send admin notification about failed order
     if (stickerOrder) {
@@ -370,7 +383,11 @@ async function handleOrderCanceled(
       return;
     }
 
-    console.log('Order canceled:', { orderId: order.id, reason });
+    logger.event('order_canceled', {
+      orderId: order.id,
+      printfulOrderId: order.id,
+      reason: reason || 'Canceled by Printful'
+    });
 
     // Send admin notification about canceled order
     if (stickerOrder) {
@@ -437,9 +454,10 @@ async function handleOrderHoldStatus(
       return;
     }
 
-    console.log(`Order ${isOnHold ? 'put on' : 'removed from'} hold:`, {
+    logger.event(`order_${isOnHold ? 'put_on' : 'removed_from'}_hold`, {
       orderId: order.id,
-      reason,
+      printfulOrderId: order.id,
+      reason: reason || 'No reason provided',
     });
 
     // Send admin notification when order is put on hold
@@ -506,8 +524,9 @@ async function handleOrderUpdated(
       return;
     }
 
-    console.log('Order status updated:', {
+    logger.event('order_status_updated', {
       orderId: order.id,
+      printfulOrderId: order.id,
       status: orderStatus.status,
     });
   } catch (error) {

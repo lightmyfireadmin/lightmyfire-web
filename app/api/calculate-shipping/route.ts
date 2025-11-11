@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rateLimit';
 import { VALID_PACK_SIZES } from '@/lib/constants';
 import { printful, LIGHTMYFIRE_PRINTFUL_CONFIG } from '@/lib/printful';
+import { logger } from '@/lib/logger';
 
 const FALLBACK_SHIPPING_RATES = {
     FR: { standard: 299, express: 599 },   DE: { standard: 299, express: 599 },
@@ -78,9 +79,18 @@ export async function POST(request: NextRequest) {
           locale: 'en_US',
         };
 
-        console.log('Fetching Printful shipping rates:', shippingRequest);
+        logger.info('Fetching Printful shipping rates', {
+          countryCode,
+          packSize,
+          quantity,
+          variantId: LIGHTMYFIRE_PRINTFUL_CONFIG.STICKER_SHEET_VARIANT_ID
+        });
         printfulRates = await printful.calculateShipping(shippingRequest);
-        console.log('Printful rates received:', printfulRates);
+        logger.info('Printful rates received', {
+          countryCode,
+          ratesCount: printfulRates?.length || 0,
+          usedFallback: false
+        });
       } catch (error) {
         console.error('Failed to fetch Printful shipping rates:', {
           error: error instanceof Error ? error.message : error,
