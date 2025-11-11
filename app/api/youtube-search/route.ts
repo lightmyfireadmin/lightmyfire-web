@@ -1,6 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rateLimit';
 
+interface YouTubeVideo {
+  id: {
+    videoId: string;
+  };
+  snippet: {
+    title: string;
+    thumbnails: {
+      default: {
+        url: string;
+      };
+    };
+  };
+}
+
 export async function POST(request: NextRequest) {
   try {
             const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ||
@@ -61,7 +75,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-        const items = (data.items || []).map((video: any) => ({
+        const items = (data.items as YouTubeVideo[] || []).map((video) => ({
       id: { videoId: video.id.videoId },
       snippet: {
         title: video.snippet.title,

@@ -16,7 +16,15 @@ if (!process.env.OPENAI_API_KEY) {
 interface ModerationRequest {
   imageUrl: string;
   imageBase64?: string;
-  contentType?: string; }
+  contentType?: string;
+}
+
+interface ModerationImageInput {
+  type: 'image_url';
+  image_url: {
+    url: string;
+  };
+}
 
 interface CategoryScore {
   [category: string]: number;
@@ -114,8 +122,8 @@ export async function POST(request: NextRequest) {
           image_url: {
             url: imageInput,
           },
-        } as any,
-      ] as any,
+        } as ModerationImageInput,
+      ] as ModerationImageInput[],
     });
 
     const result = moderation.results[0];
