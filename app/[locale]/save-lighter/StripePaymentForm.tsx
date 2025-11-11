@@ -7,6 +7,7 @@ import { useI18n, useCurrentLocale } from '@/locales/client';
 import LoadingSpinner from '@/app/components/LoadingSpinner';
 import { PACK_PRICING } from '@/lib/constants';
 import { formatCurrency } from '@/lib/utils';
+import { logger } from '@/lib/logger';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '');
 
@@ -299,13 +300,15 @@ export default function StripePaymentForm(props: StripePaymentFormProps) {
   const [stripeError, setStripeError] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log('StripePaymentForm mounted');
-    console.log('Stripe key available:', !!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
-    console.log('Stripe key prefix:', process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY?.substring(0, 10));
+    logger.log('StripePaymentForm mounted');
+    logger.log('Stripe configuration', {
+      keyAvailable: !!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+      keyPrefix: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY?.substring(0, 10)
+    });
 
     stripePromise
       .then((stripe) => {
-        console.log('Stripe loaded successfully:', !!stripe);
+        logger.log('Stripe loaded successfully', { loaded: !!stripe });
         setIsStripeLoaded(true);
       })
       .catch((error) => {

@@ -3,6 +3,7 @@ import { type NextRequest, NextResponse } from 'next/server';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { sendWelcomeEmail } from '@/lib/email';
 import { SupportedEmailLanguage } from '@/lib/email-i18n';
+import { logger } from '@/lib/logger';
 
 export const dynamic = 'force-dynamic';
 
@@ -140,7 +141,11 @@ export async function GET(request: NextRequest, { params }: { params: { locale: 
                 language: emailLang,
               });
 
-              console.log('Welcome email sent successfully to:', session.user.email);
+              logger.event('welcome_email_sent', {
+                email: session.user.email,
+                userId: session.user.id,
+                language: emailLang
+              });
             } catch (emailError) {
               // Don't block the signup flow if email fails
               console.error('Failed to send welcome email:', emailError);

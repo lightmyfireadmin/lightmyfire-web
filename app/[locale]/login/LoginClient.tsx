@@ -8,6 +8,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useI18n, useCurrentLocale } from '@/locales/client';
 import Link from 'next/link';
 import { getAuthCallbackUrl } from '@/lib/url-helpers';
+import { logger } from '@/lib/logger';
 
 export default function LoginClient() {
   const router = useRouter();
@@ -20,10 +21,10 @@ export default function LoginClient() {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log('[LoginClient] Auth event:', event);
+      logger.log('[LoginClient] Auth event:', event);
 
       if (event === 'SIGNED_IN' && session && !hasRedirectedRef.current) {
-        console.log('[LoginClient] User signed in, initiating redirect');
+        logger.event('user_signed_in', { userId: session.user.id, email: session.user.email });
         hasRedirectedRef.current = true;
         setIsRedirecting(true);
 
