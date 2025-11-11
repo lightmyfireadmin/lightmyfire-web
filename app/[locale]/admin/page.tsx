@@ -26,7 +26,7 @@ export default async function AdminPanelPage() {
     .from('profiles')
     .select('role')
     .eq('id', session.user.id)
-    .single();
+    .single<{ role: 'admin' | 'moderator' | 'user' | null }>();
 
   if (profileError || profile?.role !== 'admin') {
     console.error('Admin access check failed:', { profileError, role: profile?.role });
