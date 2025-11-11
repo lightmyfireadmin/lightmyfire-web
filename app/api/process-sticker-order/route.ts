@@ -28,6 +28,14 @@ interface OrderRequest {
   };
 }
 
+interface CreatedLighter {
+  lighter_id: string;
+  lighter_name: string;
+  pin_code: string;
+  background_color: string;
+  sticker_language: string;
+}
+
 export async function POST(request: NextRequest) {
   try {
         const supabaseAdmin = createClient(
@@ -152,7 +160,7 @@ export async function POST(request: NextRequest) {
 
             const packSize = lighterData.length;
 
-            if (!VALID_PACK_SIZES.includes(packSize as any)) {
+            if (!VALID_PACK_SIZES.includes(packSize as 10 | 20 | 50)) {
         console.error('Invalid pack size:', packSize);
         return NextResponse.json({
           error: 'Invalid pack size. Must be 10, 20, or 50 stickers.'
@@ -185,11 +193,12 @@ export async function POST(request: NextRequest) {
           error: 'Payment amount verification failed'
         }, { status: 400 });
       }
-    } catch (stripeError: any) {
-      console.error('Stripe verification error:', stripeError);
+    } catch (stripeError) {
+      const error = stripeError as Stripe.StripeError;
+      console.error('Stripe verification error:', error);
 
       // Check for test/live mode mismatch
-      if (stripeError.message?.includes('test mode') || stripeError.message?.includes('live mode')) {
+      if (error.message?.includes('test mode') || error.message?.includes('live mode')) {
         console.error('Test/Live mode mismatch detected:', {
           paymentIntentId,
           error: stripeError.message
@@ -284,7 +293,7 @@ export async function POST(request: NextRequest) {
       }, { status: 200 });
     }
 
-    const stickerData = createdLighters.map((lighter: any) => ({
+    const stickerData = (createdLighters as CreatedLighter[]).map((lighter) => ({
       id: lighter.lighter_id,
       name: lighter.lighter_name,
       pinCode: lighter.pin_code,
@@ -321,15 +330,15 @@ export async function POST(request: NextRequest) {
         .update({
           fulfillment_status: 'failed',
           failure_reason: `Sticker generation failed: ${errorText}`,
-          lighter_ids: createdLighters.map((l: any) => l.lighter_id),
-          lighter_names: createdLighters.map((l: any) => l.lighter_name),
+          lighter_ids: (createdLighters as CreatedLighter[]).map((l) => l.lighter_id),
+          lighter_names: (createdLighters as CreatedLighter[]).map((l) => l.lighter_name),
         })
         .eq('stripe_payment_intent_id', paymentIntentId);
 
       // Return success so user gets redirected, but with error message
       return NextResponse.json({
         success: true,
-        lighterIds: createdLighters.map((l: any) => l.lighter_id),
+        lighterIds: (createdLighters as CreatedLighter[]).map((l) => l.lighter_id),
         message: 'Payment received but sticker generation failed. Our team will contact you shortly.',
         error: 'Sticker generation failed - check My Orders for details'
       }, { status: 200 });
@@ -388,8 +397,8 @@ export async function POST(request: NextRequest) {
         fulfillment_status: 'pending',
         sticker_file_url: stickerFileUrl,
         sticker_file_size: totalFileSize,
-        lighter_ids: createdLighters.map((l: any) => l.lighter_id),
-        lighter_names: createdLighters.map((l: any) => l.lighter_name),
+        lighter_ids: (createdLighters as CreatedLighter[]).map((l) => l.lighter_id),
+        lighter_names: (createdLighters as CreatedLighter[]).map((l) => l.lighter_name),
       })
       .eq('stripe_payment_intent_id', paymentIntentId);
 
