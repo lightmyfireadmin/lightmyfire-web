@@ -5,6 +5,8 @@ import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useI18n } from '@/locales/client';
 
+type I18nTranslateFunction = (key: string, ...args: unknown[]) => string;
+
 interface ContactFormModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -18,7 +20,7 @@ export default function ContactFormModal({
   subject,
   context = 'general'
 }: ContactFormModalProps) {
-  const t = useI18n() as any;
+  const t = useI18n() as I18nTranslateFunction;
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -78,8 +80,9 @@ export default function ContactFormModal({
         setFormData({ name: '', email: '', phone: '', message: '' });
       }, 2000);
 
-    } catch (err: any) {
-      setError(err.message || 'An error occurred. Please try again.');
+    } catch (err) {
+      const error = err as Error;
+      setError(error.message || 'An error occurred. Please try again.');
     } finally {
       setLoading(false);
     }
