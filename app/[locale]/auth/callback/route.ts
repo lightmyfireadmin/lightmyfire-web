@@ -11,7 +11,7 @@ export const dynamic = 'force-dynamic';
 
 interface ProfileData {
   created_at: string;
-  username: string | null;
+  username: string;
   level?: number;
   points?: number;
 }
@@ -27,7 +27,7 @@ async function waitForProfile(
       .from('profiles')
       .select('created_at, username')
       .eq('id', userId)
-      .single<{ created_at: string; username: string | null }>();
+      .single<{ created_at: string; username: string }>();
 
     if (profile) {
       
@@ -50,7 +50,7 @@ async function waitForProfile(
 }
 
 async function createFallbackProfile(supabase: TypedSupabaseClient, session: Session): Promise<ProfileData | null> {
-  const defaultUsername =
+  const defaultUsername: string =
     session.user.user_metadata?.full_name ||
     session.user.user_metadata?.name ||
     session.user.email?.split('@')[0] ||
@@ -63,7 +63,7 @@ async function createFallbackProfile(supabase: TypedSupabaseClient, session: Ses
       username: defaultUsername,
     })
     .select('created_at, username')
-    .single<{ created_at: string; username: string | null }>();
+    .single<{ created_at: string; username: string }>();
 
   if (error) {
     console.error('Failed to create fallback profile:', error);

@@ -114,7 +114,7 @@ export default async function MyProfilePage() {
     myPostsRes,
     trophiesRes,
   ] = await Promise.all([
-    supabase.from('profiles').select('username, level, points, nationality, show_nationality, role').eq('id', userId).single<{ username: string | null; level: number; points: number; nationality: string | null; show_nationality: boolean; role: 'admin' | 'moderator' | 'user' | null }>(),
+    supabase.from('profiles').select('username, level, points, nationality, show_nationality, role').eq('id', userId).single<{ username: string; level: number; points: number; nationality: string | null; show_nationality: boolean; role: string | null }>(),
     supabase.rpc('get_my_stats'),
     supabase.from('lighters').select('id, name, pin_code').eq('saver_id', userId),
     supabase
@@ -143,7 +143,7 @@ export default async function MyProfilePage() {
         username: defaultUsername,
       })
       .select('username, level, points, nationality, show_nationality, role')
-      .single<{ username: string | null; level: number; points: number; nationality: string | null; show_nationality: boolean; role: 'admin' | 'moderator' | 'user' | null }>();
+      .single<{ username: string; level: number; points: number; nationality: string | null; show_nationality: boolean; role: string | null }>();
 
     if (!createError && newProfile) {
       profile = newProfile;
