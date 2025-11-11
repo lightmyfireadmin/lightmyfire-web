@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/rateLimit';
 import { createSuccessResponse, createErrorResponse, ErrorCodes } from '@/lib/api-response';
 import { withCache, generateCacheKey, CacheTTL } from '@/lib/cache';
+import { logger } from '@/lib/logger';
 
 interface YouTubeVideo {
   id: {
@@ -54,7 +55,7 @@ export async function POST(request: NextRequest) {
         const apiKey = process.env.YOUTUBE_API_KEY;
 
     if (!apiKey) {
-      console.error('YOUTUBE_API_KEY is not set');
+      logger.error('YOUTUBE_API_KEY is not set');
       return NextResponse.json(
         createErrorResponse(ErrorCodes.SERVICE_UNAVAILABLE, 'YouTube API is not configured'),
         { status: 500 }
@@ -75,7 +76,7 @@ export async function POST(request: NextRequest) {
         const data = await response.json();
 
         if (data.error) {
-          console.error('YouTube API Error:', data.error);
+          logger.error('YouTube API Error', { error: data.error });
           throw new Error(data.error.message || 'YouTube API error');
         }
 
@@ -97,7 +98,9 @@ export async function POST(request: NextRequest) {
     );
 
   } catch (error) {
-    console.error('YouTube Search Route Error:', error);
+    logger.error('YouTube Search Route Error', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+    });
     return NextResponse.json(
       createErrorResponse(ErrorCodes.INTERNAL_SERVER_ERROR, 'Failed to search YouTube'),
       { status: 500 }

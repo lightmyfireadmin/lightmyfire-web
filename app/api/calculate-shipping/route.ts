@@ -4,6 +4,7 @@ import { VALID_PACK_SIZES } from '@/lib/constants';
 import { printful, LIGHTMYFIRE_PRINTFUL_CONFIG } from '@/lib/printful';
 import { logger } from '@/lib/logger';
 import { withCache, generateCacheKey, CacheTTL } from '@/lib/cache';
+import { createSuccessResponse, createErrorResponse, ErrorCodes } from '@/lib/api-response';
 
 interface PrintfulShippingRate {
   id: string;
@@ -42,10 +43,11 @@ export async function POST(request: NextRequest) {
     const rateLimitResult = rateLimit(request, 'shipping', ip);
     if (!rateLimitResult.success) {
       return NextResponse.json(
-        {
-          error: 'Too many requests. Please try again later.',
-          resetTime: rateLimitResult.resetTime
-        },
+        createErrorResponse(
+          ErrorCodes.RATE_LIMIT_EXCEEDED,
+          'Too many requests. Please try again later.',
+          { resetTime: rateLimitResult.resetTime }
+        ),
         { status: 429 }
       );
     }
@@ -55,14 +57,18 @@ export async function POST(request: NextRequest) {
 
     if (!countryCode) {
       return NextResponse.json(
-        { error: 'Country code is required' },
+        createErrorResponse(ErrorCodes.VALIDATION_ERROR, 'Country code is required'),
         { status: 400 }
       );
     }
 
         if (packSize !== undefined && !VALID_PACK_SIZES.includes(packSize)) {
       return NextResponse.json(
-        { error: 'Invalid pack size. Must be 10, 20, or 50.' },
+        createErrorResponse(
+          ErrorCodes.VALIDATION_ERROR,
+          'Invalid pack size. Must be 10, 20, or 50.',
+          { validSizes: VALID_PACK_SIZES }
+        ),
         { status: 400 }
       );
     }
@@ -180,27 +186,34 @@ export async function POST(request: NextRequest) {
       expressDays = expressDays || '3-5';
     }
 
-    return NextResponse.json({
-      success: true,
-      rates: {
-        standard: {
-          name: 'Standard Shipping',
-          rate: standardRate,
-          currency: 'EUR',
-          estimatedDays: standardDays,
-        },
-        express: {
-          name: 'Express Shipping',
-          rate: expressRate,
-          currency: 'EUR',
-          estimatedDays: expressDays,
-        },
-      },
-      usedFallback,     });
-  } catch (error) {
-    console.error('Shipping calculation error:', error);
     return NextResponse.json(
-      { error: 'Failed to calculate shipping' },
+      createSuccessResponse(
+        {
+          rates: {
+            standard: {
+              name: 'Standard Shipping',
+              rate: standardRate,
+              currency: 'EUR',
+              estimatedDays: standardDays,
+            },
+            express: {
+              name: 'Express Shipping',
+              rate: expressRate,
+              currency: 'EUR',
+              estimatedDays: expressDays,
+            },
+          },
+          usedFallback,
+        },
+        'Shipping rates calculated successfully'
+      )
+    );
+  } catch (error) {
+    logger.error('Shipping calculation error', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+    });
+    return NextResponse.json(
+      createErrorResponse(ErrorCodes.INTERNAL_SERVER_ERROR, 'Failed to calculate shipping'),
       { status: 500 }
     );
   }
