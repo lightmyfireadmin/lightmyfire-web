@@ -1,4 +1,4 @@
-
+import { logger } from './logger';
 
 const PRINTFUL_API_BASE = 'https://api.printful.com';
 const PRINTFUL_API_KEY = process.env.PRINTFUL_API_KEY;
@@ -530,7 +530,7 @@ export async function createStickerOrder(params: {
       'Printful createOrder'
     );
 
-    console.log('Printful draft order created successfully:', {
+    logger.info('Printful draft order created successfully', {
       orderId: order.id,
       status: order.status,
     });
@@ -541,7 +541,7 @@ export async function createStickerOrder(params: {
       'Printful confirmOrder'
     );
 
-    console.log('Printful order confirmed successfully:', {
+    logger.info('Printful order confirmed successfully', {
       orderId: confirmedOrder.id,
       status: confirmedOrder.status,
     });
@@ -639,7 +639,7 @@ export async function getPrintfulOrderStatus(printfulOrderId: number) {
       `Printful getOrder(${printfulOrderId})`
     );
 
-    console.log('Printful order status retrieved successfully:', {
+    logger.info('Printful order status retrieved successfully', {
       orderId: printfulOrderId,
       status: order.status,
     });
@@ -686,7 +686,7 @@ export async function cancelPrintfulOrder(printfulOrderId: number) {
       `Printful cancelOrder(${printfulOrderId})`
     );
 
-    console.log('Printful order cancelled successfully:', { orderId: printfulOrderId });
+    logger.info('Printful order cancelled successfully', { orderId: printfulOrderId });
     return { success: true };
   } catch (error) {
     if (error instanceof PrintfulError) {
