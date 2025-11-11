@@ -3,9 +3,12 @@ import { NextRequest } from 'next/server';
 import { POST } from '@/app/api/create-payment-intent/route';
 import { createMockSupabaseClient, createMockStripe, createMockNextRequest } from '../mocks';
 
+// Create mock instance at module level
+const mockSupabaseClient = createMockSupabaseClient();
+
 // Mock modules
 vi.mock('@/lib/supabase-server', () => ({
-  createServerSupabaseClient: () => createMockSupabaseClient(),
+  createServerSupabaseClient: vi.fn(() => mockSupabaseClient),
 }));
 
 vi.mock('stripe', () => ({
@@ -13,27 +16,30 @@ vi.mock('stripe', () => ({
 }));
 
 vi.mock('next/headers', () => ({
-  cookies: () => ({ get: vi.fn(), set: vi.fn() }),
+  cookies: vi.fn(() => ({ get: vi.fn(), set: vi.fn() })),
+}));
+
+vi.mock('@/lib/rateLimit', () => ({
+  rateLimit: vi.fn(() => ({ success: true })),
 }));
 
 describe('/api/create-payment-intent', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    // Set required environment variables
+    process.env.RESEND_API_KEY = 'test_resend_key';
+    process.env.FULFILLMENT_EMAIL = 'test@fulfillment.com';
+    process.env.STRIPE_SECRET_KEY = 'sk_test_mock';
   });
 
   it('should create a payment intent successfully', async () => {
     const request = createMockNextRequest({
       body: {
-        lighterData: Array(10).fill({ name: 'Test', backgroundColor: '#FF0000', language: 'en' }),
-        shippingAddress: {
-          name: 'Test User',
-          email: 'test@example.com',
-          address: '123 Test St',
-          city: 'Paris',
-          postalCode: '75001',
-          country: 'FR',
-        },
-        shippingMethod: 'standard',
+        orderId: 'test-order-123',
+        cardholderEmail: 'test@example.com',
+        packSize: 10,
+        shippingRate: 299,
+        currency: 'eur',
       },
     }) as unknown as NextRequest;
 
@@ -49,16 +55,11 @@ describe('/api/create-payment-intent', () => {
   it('should reject invalid pack sizes', async () => {
     const request = createMockNextRequest({
       body: {
-        lighterData: Array(7).fill({ name: 'Test', backgroundColor: '#FF0000', language: 'en' }), // Invalid: not 10, 20, or 50
-        shippingAddress: {
-          name: 'Test User',
-          email: 'test@example.com',
-          address: '123 Test St',
-          city: 'Paris',
-          postalCode: '75001',
-          country: 'FR',
-        },
-        shippingMethod: 'standard',
+        orderId: 'test-order-123',
+        cardholderEmail: 'test@example.com',
+        packSize: 7, // Invalid: not 10, 20, or 50
+        shippingRate: 299,
+        currency: 'eur',
       },
     }) as unknown as NextRequest;
 
@@ -68,33 +69,34 @@ describe('/api/create-payment-intent', () => {
   });
 
   it('should require authentication', async () => {
-    const mockClient = createMockSupabaseClient();
-    mockClient.auth.getSession = vi.fn().mockResolvedValue({
+    // Override the session to return null (unauthenticated)
+    mockSupabaseClient.auth.getSession = vi.fn().mockResolvedValue({
       data: { session: null },
       error: null,
     });
 
-    vi.mock('@/lib/supabase-server', () => ({
-      createServerSupabaseClient: () => mockClient,
-    }));
-
     const request = createMockNextRequest({
       body: {
-        lighterData: Array(10).fill({ name: 'Test', backgroundColor: '#FF0000', language: 'en' }),
-        shippingAddress: {
-          name: 'Test User',
-          email: 'test@example.com',
-          address: '123 Test St',
-          city: 'Paris',
-          postalCode: '75001',
-          country: 'FR',
-        },
-        shippingMethod: 'standard',
+        orderId: 'test-order-123',
+        cardholderEmail: 'test@example.com',
+        packSize: 10,
+        shippingRate: 299,
+        currency: 'eur',
       },
     }) as unknown as NextRequest;
 
     const response = await POST(request);
 
     expect(response.status).toBe(401);
+
+    // Restore the default session for other tests
+    mockSupabaseClient.auth.getSession = vi.fn().mockResolvedValue({
+      data: {
+        session: {
+          user: { id: 'test-user-id', email: 'test@example.com' },
+        },
+      },
+      error: null,
+    });
   });
 });

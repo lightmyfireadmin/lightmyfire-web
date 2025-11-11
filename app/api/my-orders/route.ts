@@ -105,12 +105,19 @@ export async function GET(request: NextRequest) {
       deliveredAt: order.delivered_at,
     })) || [];
 
+    const totalPages = Math.ceil((totalCount || 0) / limit);
+
     return NextResponse.json(
       createPaginatedResponse(
         transformedOrders,
-        page,
-        limit,
-        totalCount || 0
+        {
+          page,
+          pageSize: limit,
+          totalItems: totalCount || 0,
+          totalPages,
+          hasNextPage: page < totalPages,
+          hasPrevPage: page > 1,
+        }
       )
     );
   } catch (error) {
