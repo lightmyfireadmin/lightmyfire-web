@@ -26,7 +26,7 @@ async function waitForProfile(
       .from('profiles')
       .select('created_at, username')
       .eq('id', userId)
-      .single();
+      .single<{ created_at: string; username: string | null }>();
 
     if (profile) {
       
@@ -63,7 +63,7 @@ async function createFallbackProfile(supabase: TypedSupabaseClient, session: Ses
       created_at: new Date().toISOString(),
     })
     .select('created_at, username')
-    .single();
+    .single<{ created_at: string; username: string | null }>();
 
   if (error) {
     console.error('Failed to create fallback profile:', error);

@@ -31,7 +31,7 @@ export default async function LangLayout({
       .from('profiles')
       .select('username')
       .eq('id', session.user.id)
-      .single();
+      .single<{ username: string | null }>();
     username = profileData?.username || null;
   }
 
