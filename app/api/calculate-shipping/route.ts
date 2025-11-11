@@ -4,6 +4,15 @@ import { VALID_PACK_SIZES } from '@/lib/constants';
 import { printful, LIGHTMYFIRE_PRINTFUL_CONFIG } from '@/lib/printful';
 import { logger } from '@/lib/logger';
 
+interface PrintfulShippingRate {
+  id: string;
+  name: string;
+  rate: string;
+  minDeliveryDays: number;
+  maxDeliveryDays: number;
+  currency: string;
+}
+
 const FALLBACK_SHIPPING_RATES = {
     FR: { standard: 299, express: 599 },   DE: { standard: 299, express: 599 },
   ES: { standard: 349, express: 649 },
@@ -109,11 +118,11 @@ export async function POST(request: NextRequest) {
         let standardRate, expressRate, standardDays, expressDays;
 
     if (printfulRates && Array.isArray(printfulRates)) {
-                  const standardOption = printfulRates.find((rate: any) =>
+                  const standardOption = (printfulRates as PrintfulShippingRate[]).find((rate) =>
         rate.name?.toLowerCase().includes('standard') ||
         rate.id?.toLowerCase().includes('standard')
       );
-      const expressOption = printfulRates.find((rate: any) =>
+      const expressOption = (printfulRates as PrintfulShippingRate[]).find((rate) =>
         rate.name?.toLowerCase().includes('express') ||
         rate.id?.toLowerCase().includes('express') ||
         rate.minDeliveryDays <= 5
@@ -128,7 +137,7 @@ export async function POST(request: NextRequest) {
       }
 
             if (!standardRate && printfulRates.length > 0) {
-        const slowest = printfulRates.reduce((prev: any, curr: any) =>
+        const slowest = (printfulRates as PrintfulShippingRate[]).reduce((prev, curr) =>
           curr.maxDeliveryDays > prev.maxDeliveryDays ? curr : prev
         );
         standardRate = Math.round(parseFloat(slowest.rate) * 100);
@@ -136,7 +145,7 @@ export async function POST(request: NextRequest) {
       }
 
       if (!expressRate && printfulRates.length > 1) {
-        const fastest = printfulRates.reduce((prev: any, curr: any) =>
+        const fastest = (printfulRates as PrintfulShippingRate[]).reduce((prev, curr) =>
           curr.minDeliveryDays < prev.minDeliveryDays ? curr : prev
         );
         expressRate = Math.round(parseFloat(fastest.rate) * 100);
