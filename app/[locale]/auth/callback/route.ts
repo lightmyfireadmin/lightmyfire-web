@@ -124,7 +124,7 @@ export async function GET(request: NextRequest, { params }: { params: { locale: 
 
 
           try {
-            await supabase.rpc('grant_unlocked_trophies', { p_user_id: session.user.id });
+            await supabase.rpc('auto_grant_trophies', { user_id_param: session.user.id });
           } catch (trophyError) {
 
             console.warn('Trophy check failed on login:', trophyError);

@@ -16,8 +16,8 @@ export type DetailedPost = {
   is_anonymous: boolean;
   is_pinned: boolean;
   username: string;
-  like_count: number;
-  user_has_liked: boolean;
+  like_count?: number;
+  user_has_liked?: boolean;
   nationality: string | null;
   show_nationality: boolean;
   role?: 'user' | 'moderator' | 'admin' | null;

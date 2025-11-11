@@ -150,11 +150,12 @@ export default async function MyProfilePage() {
     }
   }
 
+  const statsData = statsRes.data as any;
   const stats = {
-      total_contributions: statsRes.data?.total_contributions ?? 0,
-      lighters_saved: statsRes.data?.lighters_saved ?? 0,
-      lighters_contributed_to: statsRes.data?.lighters_contributed_to ?? 0,
-      likes_received: statsRes.data?.likes_received ?? 0,
+      total_contributions: statsData?.total_contributions ?? 0,
+      lighters_saved: statsData?.lighters_saved ?? 0,
+      lighters_contributed_to: statsData?.lighters_contributed_to ?? 0,
+      likes_received: statsData?.likes_received ?? 0,
   };
 
   const calculatedPoints = calculatePoints(stats);

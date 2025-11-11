@@ -45,7 +45,7 @@ export default async function ModerationPage() {
       </p>
 
       {flaggedPosts && flaggedPosts.length > 0 ? (
-        <ModerationQueue initialPosts={flaggedPosts} />
+        <ModerationQueue initialPosts={flaggedPosts as any} />
       ) : (
         <div className="text-center py-12">
           <p className="text-lg text-muted-foreground mb-2">✓ No posts in queue</p>

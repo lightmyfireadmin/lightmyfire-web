@@ -268,7 +268,7 @@ export interface PrintfulShippingRequest {
   locale?: string;
 }
 
-export interface PrintfulShippingRates {
+export interface PrintfulShippingRate {
   id: string;
   name: string;
   rate: string;
@@ -276,6 +276,8 @@ export interface PrintfulShippingRates {
   minDeliveryDays: number;
   maxDeliveryDays: number;
 }
+
+export type PrintfulShippingRates = PrintfulShippingRate[];
 
 export interface PrintfulOrderRequest {
   recipient: {

@@ -119,7 +119,7 @@ export async function POST(request: NextRequest) {
     }
 
         try {
-      await logModerationResult({
+      await logModerationResult(supabase, {
         userId,
         contentType,
         text,
@@ -197,16 +197,19 @@ function formatCategoryNames(categories: string[]): string[] {
   return categories.map((cat) => nameMap[cat] || cat);
 }
 
-async function logModerationResult(data: {
-  userId: string;
-  contentType: string;
-  text: string;
-  flagged: boolean;
-  categories: { [key: string]: boolean };
-  scores: CategoryScore;
-  severity: 'low' | 'medium' | 'high';
-  timestamp: string;
-}): Promise<void> {
+async function logModerationResult(
+  supabase: ReturnType<typeof createServerSupabaseClient>,
+  data: {
+    userId: string;
+    contentType: string;
+    text: string;
+    flagged: boolean;
+    categories: { [key: string]: boolean };
+    scores: CategoryScore;
+    severity: 'low' | 'medium' | 'high';
+    timestamp: string;
+  }
+): Promise<void> {
   try {
     // Create content hash for audit trail (don't store actual content for privacy)
     const contentHash = crypto.createHash('sha256').update(data.text).digest('hex');

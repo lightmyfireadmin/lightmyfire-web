@@ -107,14 +107,7 @@ export default {
   'auth.login_to_flag': 'Log in to flag posts',
   'auth.login_to_like': 'Log in to like posts',
 
-  // My Orders
-  'my_orders.title': 'My Orders',
-  'my_orders.subtitle': 'Track your LightMyFire sticker orders',
-  'my_orders.no_orders': 'No Orders Yet',
-  'my_orders.no_orders_text': 'You haven\'t placed any sticker orders yet.',
-  'my_orders.order_stickers': 'Order Stickers',
-
-    'notifications.login_success': 'Welcome back, LightSaver! Your lighters missed you. 💫',
+  'notifications.login_success': 'Welcome back, LightSaver! Your lighters missed you. 💫',
   'notifications.logout_success': 'See you next time! ✨',
   'notifications.signup_success': 'Welcome to the LightSaver family! 🌟',
   'notifications.post_success': 'Story added! 🎉 You just made this lighter\'s journey brighter.',

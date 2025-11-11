@@ -122,10 +122,9 @@ export async function POST(request: NextRequest) {
     const { error: webhookLogError } = await supabase
       .from('webhook_events')
       .insert({
-        webhook_id: webhookId,
-        source: 'printful',
+        id: webhookId,
         event_type: payload.type,
-        payload: payload,
+        payload: JSON.parse(JSON.stringify(payload)),
         processed_at: new Date().toISOString(),
       });
 

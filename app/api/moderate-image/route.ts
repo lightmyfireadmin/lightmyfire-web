@@ -157,7 +157,7 @@ export async function POST(request: NextRequest) {
     }
 
         try {
-      await logModerationResult({
+      await logModerationResult(supabase, {
         userId,
         contentType,
         imageUrl: imageUrl || 'base64-provided',
@@ -240,16 +240,19 @@ function formatCategoryNames(categories: string[]): string[] {
   return categories.map((cat) => nameMap[cat] || cat);
 }
 
-async function logModerationResult(data: {
-  userId: string;
-  contentType: string;
-  imageUrl: string;
-  flagged: boolean;
-  categories: { [key: string]: boolean };
-  scores: CategoryScore;
-  severity: 'low' | 'medium' | 'high';
-  timestamp: string;
-}): Promise<void> {
+async function logModerationResult(
+  supabase: ReturnType<typeof createServerSupabaseClient>,
+  data: {
+    userId: string;
+    contentType: string;
+    imageUrl: string;
+    flagged: boolean;
+    categories: { [key: string]: boolean };
+    scores: CategoryScore;
+    severity: 'low' | 'medium' | 'high';
+    timestamp: string;
+  }
+): Promise<void> {
   try {
     // Create URL hash for audit trail
     const urlHash = crypto.createHash('sha256').update(data.imageUrl).digest('hex');

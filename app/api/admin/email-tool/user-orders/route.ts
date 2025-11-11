@@ -77,7 +77,14 @@ export async function GET(request: NextRequest) {
     }
 
     return NextResponse.json(
-      createPaginatedResponse(orders || [], page, limit, totalCount || 0)
+      createPaginatedResponse(orders || [], {
+        page,
+        pageSize: limit,
+        totalItems: totalCount || 0,
+        totalPages: Math.ceil((totalCount || 0) / limit),
+        hasNextPage: page < Math.ceil((totalCount || 0) / limit),
+        hasPrevPage: page > 1
+      })
     );
   } catch (error: any) {
     logger.error('Error in user-orders endpoint', {

@@ -194,14 +194,15 @@ export async function POST(request: NextRequest) {
         }, { status: 400 });
       }
     } catch (stripeError) {
-      const error = stripeError as Stripe.StripeError;
-      console.error('Stripe verification error:', error);
+      console.error('Stripe verification error:', stripeError);
+
+      const errorMessage = stripeError instanceof Error ? stripeError.message : 'Unknown error';
 
       // Check for test/live mode mismatch
-      if (error.message?.includes('test mode') || error.message?.includes('live mode')) {
+      if (errorMessage.includes('test mode') || errorMessage.includes('live mode')) {
         console.error('Test/Live mode mismatch detected:', {
           paymentIntentId,
-          error: stripeError.message
+          error: errorMessage
         });
         return NextResponse.json({
           error: 'This payment was created in test mode. Please create a new order with live payment.',
@@ -211,7 +212,7 @@ export async function POST(request: NextRequest) {
 
       return NextResponse.json({
         error: 'Payment verification failed',
-        details: stripeError instanceof Error ? stripeError.message : 'Unknown error'
+        details: errorMessage
       }, { status: 500 });
     }
 

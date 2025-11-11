@@ -6,8 +6,8 @@ import { supabase } from '@/lib/supabase';
 interface Moderator {
   user_id: string;
   email: string;
-  username: string | null;
-  role: 'admin' | 'moderator';
+  username: string;
+  role: string;
   created_at: string;
 }
 

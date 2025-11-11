@@ -8,7 +8,7 @@ export default function LikeButton({
   post,
   isLoggedIn,
 }: {
-  post: { id: number; like_count: number; user_has_liked: boolean };
+  post: { id: number; like_count?: number; user_has_liked?: boolean };
   isLoggedIn: boolean;
 }) {
   const router = useRouter();

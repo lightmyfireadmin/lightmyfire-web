@@ -76,14 +76,14 @@ export function createErrorResponse(
     error: {
       code,
       message,
-      ...(details && { details }),
+      ...(details !== undefined ? { details } : {}),
     },
-    ...(meta && {
+    ...(meta ? {
       meta: {
         timestamp: new Date().toISOString(),
         ...meta,
       },
-    }),
+    } : {}),
   };
 }
 

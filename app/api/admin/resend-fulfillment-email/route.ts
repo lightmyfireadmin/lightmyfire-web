@@ -120,8 +120,7 @@ export async function POST(request: NextRequest) {
                 <h3>Order Details</h3>
                 <p><strong>Order ID:</strong> ${order.id}</p>
                 <p><strong>Payment Intent ID:</strong> ${order.payment_intent_id}</p>
-                <p><strong>Quantity:</strong> ${lighters.length} stickers</p>
-                <p><strong>Pack Size:</strong> ${order.pack_size}</p>
+                <p><strong>Quantity:</strong> ${order.quantity} stickers</p>
 
                 <h3>Shipping Information</h3>
                 <p><strong>Name:</strong> ${order.shipping_name}</p>
@@ -141,7 +140,7 @@ export async function POST(request: NextRequest) {
 
                 <p style="margin-top: 20px; color: #666; font-size: 12px;">
                   Manually resent from LightMyFire Admin Panel<br>
-                  Original order date: ${new Date(order.created_at).toLocaleString()}<br>
+                  Original order date: ${order.created_at ? new Date(order.created_at).toLocaleString() : 'N/A'}<br>
                   Resent: ${new Date().toLocaleString()}
                 </p>
               </div>

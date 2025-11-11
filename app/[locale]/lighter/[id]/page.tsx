@@ -99,16 +99,16 @@ export default async function LighterPage({
   const saverUsername = typedLighter.profiles?.username || 'Anonymous';
   const saverLevel = typedLighter.profiles?.level || 1;
 
-  
+
   let postsResponse = await supabase
     .from('detailed_posts')
     .select('*')
     .eq('lighter_id', params.id)
     .order('created_at', { ascending: false });
 
-  
+
   if (postsResponse.error || !postsResponse.data) {
-    postsResponse = await supabase
+    postsResponse = (await supabase
       .from('posts')
       .select(`
         id,
@@ -133,7 +133,7 @@ export default async function LighterPage({
         lighters:lighter_id (name)
       `)
       .eq('lighter_id', params.id)
-      .order('created_at', { ascending: false });
+      .order('created_at', { ascending: false })) as any;
   }
 
   const { data: posts } = postsResponse;
@@ -236,7 +236,7 @@ export default async function LighterPage({
 
         {}
         {posts && posts.length > 0 ? (
-          <PaginatedPosts posts={posts} isLoggedIn={isLoggedIn} />
+          <PaginatedPosts posts={posts as any} isLoggedIn={isLoggedIn} />
         ) : (
           <EmptyLighterPosts lighterId={lighter.id} />
         )}
