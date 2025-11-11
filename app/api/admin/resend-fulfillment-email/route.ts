@@ -3,6 +3,8 @@ import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { cookies } from 'next/headers';
 import { Resend } from 'resend';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const cookieStore = cookies();

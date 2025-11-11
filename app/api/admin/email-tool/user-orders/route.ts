@@ -4,6 +4,8 @@ import { cookies } from 'next/headers';
 import { logger } from '@/lib/logger';
 import { createSuccessResponse, createErrorResponse, ErrorCodes, createPaginatedResponse } from '@/lib/api-response';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     const cookieStore = cookies();

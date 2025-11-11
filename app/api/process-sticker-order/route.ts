@@ -9,6 +9,8 @@ import { sendOrderConfirmationEmail, sendFulfillmentEmail } from '@/lib/email';
 import { SupportedEmailLanguage } from '@/lib/email-i18n';
 import { generateInternalAuthToken } from '@/lib/internal-auth';
 
+export const dynamic = 'force-dynamic';
+
 interface LighterData {
   name: string;
   backgroundColor: string;

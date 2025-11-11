@@ -9,6 +9,8 @@ import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { verifyInternalAuthToken } from '@/lib/internal-auth';
 import { logger } from '@/lib/logger';
 
+export const dynamic = 'force-dynamic';
+
 try {
   const poppinsExtraBold = path.join(process.cwd(), 'public', 'fonts', 'Poppins-ExtraBold.ttf');
   const poppinsBold = path.join(process.cwd(), 'public', 'fonts', 'Poppins-Bold.ttf');

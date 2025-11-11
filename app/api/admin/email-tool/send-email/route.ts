@@ -4,6 +4,8 @@ import { cookies } from 'next/headers';
 import { sendCustomEmail } from '@/lib/email';
 import { logger } from '@/lib/logger';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const cookieStore = cookies();
