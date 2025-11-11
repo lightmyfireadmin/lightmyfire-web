@@ -54,7 +54,9 @@ interface LighterCustomization {
   language?: string;
 }
 
-const getPackOptions = (t: any) => [
+type I18nTranslateFunction = (key: string, ...args: unknown[]) => string;
+
+const getPackOptions = (t: I18nTranslateFunction) => [
   {
     count: 10,
     sheets: 1,
@@ -79,7 +81,7 @@ const getPackOptions = (t: any) => [
 ];
 
 export default function SaveLighterFlow({ user }: { user: User }) {
-  const t = useI18n() as any;
+  const t = useI18n() as I18nTranslateFunction;
   const locale = useCurrentLocale();
   const [selectedPack, setSelectedPack] = useState<number | null>(null);
   const [customizations, setCustomizations] = useState<LighterCustomization[]>([]);
