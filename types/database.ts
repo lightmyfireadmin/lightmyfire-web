@@ -18,6 +18,9 @@ export interface Database {
           username: string | null
           level: number
           points: number
+          role: 'admin' | 'moderator' | 'user' | null
+          nationality: string | null
+          show_nationality: boolean
           created_at: string
           updated_at: string
         }
@@ -26,6 +29,9 @@ export interface Database {
           username?: string | null
           level?: number
           points?: number
+          role?: 'admin' | 'moderator' | 'user' | null
+          nationality?: string | null
+          show_nationality?: boolean
           created_at?: string
           updated_at?: string
         }
@@ -34,6 +40,9 @@ export interface Database {
           username?: string | null
           level?: number
           points?: number
+          role?: 'admin' | 'moderator' | 'user' | null
+          nationality?: string | null
+          show_nationality?: boolean
           created_at?: string
           updated_at?: string
         }
