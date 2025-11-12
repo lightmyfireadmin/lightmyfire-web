@@ -1370,4 +1370,52 @@ export default {
   'validation.password_too_short': 'Şifre en az {min} karakter olmalı.',
   'validation.username_length': 'Kullanıcı adı {min} ile {max} karakter arasında olmalı.',
   'validation.username_required': 'Kullanıcı adı boş bırakılamaz.',
-  } as const;
+  
+  'contact.modal_title': 'Bize Ulaş',
+
+  'email.order_shipped_subject': 'LightSaver kitin yolda! 🚀✨',
+
+  'empty_lighter.title': 'Hikaye Başlıyor...',
+
+  'footer.social.instagram': 'Instagram',
+
+  'how_it_works.title': 'Nasıl Çalışır',
+
+  'how_it_works_details.title': 'Nasıl Çalışır: Kıvılcımdan Küresel Hikayeye',
+
+  'language.en': 'İngilizce',
+
+  'lighter.saved_by': 'Kurtaran',
+
+  'lighter_personalization.title': 'Stickerlarını Özelleştir',
+
+  'loading.posting_v1': 'Hikayeni zaman çizelgesine ekliyoruz...',
+
+  'location.search_placeholder': 'Konum ara (şehir, adres, yer)...',
+
+  'login.title': 'LightMyFire',
+
+  'moderation.title': 'Moderasyon Kuyruğu',
+
+  'order.choose_pack_title': 'Paketini Seç',
+
+  'order.guidelines.title': 'Uygulama Rehberi',
+
+  'order.quality.title': 'Premium Kalite Stickerlar',
+
+  'philosophy.title': 'Felsefemiz',
+
+  'privacy.last_updated': 'Son güncelleme: 8 Kasım 2025',
+
+  'refill_guide.citations.title': 'Kaynaklar & Referanslar',
+
+  'refill_guide.key_indicators': 'Önemli göstergeler:',
+
+  'refill_guide.stats.lighters_sold': 'Yıllık satılan tek kullanımlık çakmaklar',
+
+  'save_lighter.why_it_matters': 'Neden Önemli',
+
+  'stripe.card_info': 'Kart Bilgileri',
+
+  'terms.last_updated': 'Son güncelleme: 28 Ekim 2025',
+} as const;
