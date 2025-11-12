@@ -630,4 +630,1654 @@ export default {
   'auth.signup.error.passwords_no_match': 'パスワードが一致しません',
   'my_profile.tabs.my_orders': 'マイ注文',
 
-  } as const;
+
+  'add_post.button.checking_alt': '確認中...',
+  'add_post.button.checking_content': 'コンテンツ確認中...',
+  'add_post.button.loading_alt': '読み込み中...',
+  'add_post.button.search': '検索',
+  'add_post.button.select': '選択',
+  'add_post.char_counter': '残り{remaining}文字',
+  'add_post.error.cooldown_active': 'このライターには{hours}時間後に再度投稿できます。しばらくお待ちください。',
+  'add_post.error.cooldown_check_failed': '投稿資格を確認できませんでした。もう一度お試しください。',
+  'add_post.error.file_too_large': 'ファイルが大きすぎます。2MB以下のファイルを選択してください。',
+  'add_post.error.invalid_latitude': '緯度は-90から90の範囲で入力してください。',
+  'add_post.error.invalid_longitude': '経度は-180から180の範囲で入力してください。',
+  'add_post.error.text_too_long': 'テキストが長すぎます。最大{max}文字までです。',
+  'add_post.error.youtube_api_error': 'YouTube APIエラー: {message}',
+  'add_post.moderation.content_review': '⚠️ コンテンツ審査',
+  'add_post.moderation.tip': '💡 ヒント: よりコミュニティに優しい内容への修正をご検討ください。',
+  'add_post.options': 'オプション',
+  'add_post.placeholder.location_lat': '緯度 (例: 48.8566)',
+  'add_post.placeholder.location_lng': '経度 (例: 2.3522)',
+  'add_post.placeholder.location_name': '場所の名前 (例: \'カフェ・セントラル\')',
+  'add_post.prompt_v1': 'このライターにはどんな思い出がありますか？ストーリーを教えてください...',
+  'add_post.prompt_v2': 'どこで見つけましたか？その後何が起きましたか？',
+  'add_post.prompt_v3': '思い、詩、瞬間—あなたの心にあることをシェアしてください...',
+  'add_post.prompt_v4': '今どんな曲が流れていますか？雰囲気を教えてください...',
+  'add_post.prompt_v5': 'もしこのライターが話せたら、何と言うでしょうか？',
+  'add_post.select_post_type': '投稿タイプを選択',
+  'add_post.youtube_search.selected_video': '選択された動画:',
+  'add_post.youtube_search.video_preview': '動画プレビュー:',
+
+  'admin.orders.action.refund': '返金',
+  'admin.orders.action.refunded': '返金済み',
+  'admin.orders.action.refunding': '返金処理中...',
+  'admin.orders.action.send_fulfillment': '📧 配送チームに送信',
+  'admin.orders.action.sending': '送信中...',
+  'admin.orders.confirm_resend': '注文{orderId}のステッカー付き配送メールを再送信しますか...?',
+  'admin.orders.details.full_order_id': '注文ID（完全版）',
+  'admin.orders.details.na': 'なし',
+  'admin.orders.details.payment_intent_id': '決済インテントID',
+  'admin.orders.details.refund_info': '返金情報',
+  'admin.orders.details.shipping_address': '配送先住所',
+  'admin.orders.details.title': '注文詳細',
+  'admin.orders.details.user_email': 'ユーザーメールアドレス',
+  'admin.orders.no_orders': '注文が見つかりませんでした。',
+  'admin.orders.pack_size_count': 'ステッカー{count}枚',
+  'admin.orders.pending_refunds': '返金処理待ち',
+  'admin.orders.refund_confirm': '{email}に€{amount}を返金してよろしいですか？',
+  'admin.orders.refund_error': '返金に失敗しました: {error}',
+  'admin.orders.refund_failed': '返金に失敗しました',
+  'admin.orders.refund_success': '返金が完了しました！金額: €{amount}',
+  'admin.orders.refunded': '返金済み',
+  'admin.orders.resend_error': '❌ 再送信に失敗しました: {error}',
+  'admin.orders.resend_failed': '配送メールの再送信に失敗しました',
+  'admin.orders.resend_success': '✅ 配送メールの再送信が完了しました！\n\nステッカー{count}枚を配送チームに送信しました。',
+  'admin.orders.table.actions': 'アクション',
+  'admin.orders.table.amount': '金額',
+  'admin.orders.table.customer': 'お客様',
+  'admin.orders.table.date': '日付',
+  'admin.orders.table.order_id': '注文ID',
+  'admin.orders.table.pack_size': 'パックサイズ',
+  'admin.orders.table.status': 'ステータス',
+  'admin.orders.total_orders': '合計注文数',
+  'admin.orders.total_revenue': '合計売上',
+  'alt.arrow_save_lighter': 'ライター保存ボタンを指す矢印',
+  'alt.butane_lighter': 'ブタンガス式詰め替えライター',
+  'alt.butane_refill_process': 'ブタンガスライター詰め替え手順',
+  'alt.community': 'コミュニティ',
+  'alt.creative': 'クリエイティブ',
+  'alt.gasoline_lighter': 'ガソリン式詰め替えライター',
+  'alt.gasoline_refill_process': 'ガソリンライター詰め替え手順',
+  'alt.lighter_illustration': 'ライターのイラスト',
+  'alt.lightmyfire_logo': 'ライトマイファイア',
+  'alt.lightmyfire_tagline': 'ライトマイファイア - ライターに第二の人生を',
+  'alt.non_refillable_lighter': '使い捨てライター',
+  'alt.personalise': 'カスタマイズ',
+  'alt.qr_code': 'QRコード',
+  'alt.sustainable': 'サステナブル',
+  'aria.close_notification': '通知を閉じる',
+  'aria.global': 'グローバル',
+
+  'aria.hex_color': 'HEXカラーコード',
+  'aria.learn_levels': 'レベルの獲得方法を学ぶ',
+  'aria.popular_colors': '人気のカラーパレット',
+  'aria.search_location': '場所を検索',
+  'auth.already_have_account': 'アカウントをお持ちですか？ログイン',
+  'auth.continue_with': '続行する',
+  'auth.dont_have_account': 'アカウントをお持ちでないですか？登録',
+  'auth.email_label': 'メールアドレス',
+  'auth.email_placeholder': 'you@example.com',
+  'auth.forgot_password': 'パスワードをお忘れですか？',
+  'auth.login_required': 'ライターを保存するにはログインが必要です',
+  'auth.login_to_like': '投稿にいいねするにはログインしてください',
+  'auth.password_label': 'パスワード',
+  'auth.password_placeholder': 'パスワードを入力',
+  'auth.sign_in': 'ログイン',
+  'auth.sign_up': '登録',
+  'auth.signing_in': 'ログイン中...',
+  'auth.signing_up': '登録中...',
+  'color.blue_violet': 'ブルーバイオレット',
+  'color.bright_yellow': 'ブライトイエロー',
+  'color.coral_red': 'コーラルレッド',
+  'color.deep_pink': 'ディープピンク',
+  'color.forest_green': 'フォレストグリーン',
+  'color.golden_yellow': 'ゴールデンイエロー',
+  'color.light_gray': 'ライトグレー',
+  'color.light_green': 'ライトグリーン',
+  'color.light_pink': 'ライトピンク',
+  'color.royal_blue': 'ロイヤルブルー',
+  'color.sky_blue': 'スカイブルー',
+  'color.sunset_orange': 'サンセットオレンジ',
+  'color.turquoise': 'ターコイズ',
+  'color.warm_orange': 'ウォームオレンジ',
+  'common.loading_alt': '読み込み中...',
+  'contact.button': 'お問い合わせ',
+  'contact.cancel': 'キャンセル',
+  'contact.email_label': 'メールアドレス',
+  'contact.email_placeholder': 'your.email@example.com',
+  'contact.message_label': 'メッセージ',
+  'contact.message_placeholder': 'どのようなご用件でしょうか？',
+  'contact.modal_title': 'お問い合わせ',
+  'contact.name_label': '名前',
+  'contact.name_placeholder': 'お名前',
+  'contact.optional': '任意',
+  'contact.phone_label': '電話番号',
+  'contact.phone_placeholder': '+81 90 1234 5678',
+  'contact.sending': '送信中...',
+  'contact.subject.custom_branding': 'カスタムブランディングについて',
+  'contact.subject.general': '一般的なお問い合わせ',
+  'contact.subject.question': 'ライトマイファイアに関する質問',
+  'contact.success_message': 'メッセージを送信しました！',
+  'contact.success_subtitle': '近日中にご返信いたします。',
+  'email.activity.by': '投稿者:',
+  'email.activity.greeting': 'こんにちは {name}さん、',
+  'email.activity.intro': 'あなたのライターに新しいアクティビティがあります ',
+  'email.activity.lighter': 'ライター:',
+  'email.activity.outro': 'あなたのライターの旅は続いています！どこに行って誰が見つけたか確認してみましょう。',
+  'email.activity.pin': 'PIN:',
+  'email.activity.type.milestone': 'マイルストーン達成',
+  'email.activity.type.new_like': '誰かがあなたの投稿にいいねしました',
+  'email.activity.type.new_post': '新しいストーリーが追加されました',
+  'email.activity.type.refuel': 'ライターが詰め替えられました',
+  'email.common.button.accept_invite': '招待を受け入れる',
+  'email.common.button.save_lighter': '最初のライターを保存する',
+  'email.common.button.track_package': '荷物を追跡する',
+  'email.common.button.view_lighter': 'ライターを見る',
+  'email.common.button.view_order': '注文詳細を見る',
+
+  'email.common.button.view_profile': 'プロフィールを見る',
+  'email.common.button.view_trophies': 'トロフィーを見る',
+  'email.common.footer_copyright': '© {year} ライトマイファイア All rights reserved.',
+  'email.common.footer_questions': 'ご質問がございますか？メールでお問い合わせください',
+  'email.common.footer_tagline': 'ライトマイファイア – ライターに第二の人生を',
+  'email.first_post.achievement': '🏆 達成: 最初の火花',
+  'email.first_post.achievement_content': 'ライトマイファイアコミュニティで最初の火を灯しました！',
+  'email.first_post.greeting': 'おめでとうございます、{name}さん！ 🎉',
+  'email.first_post.intro': 'ライトマイファイアのライターに初めての投稿を追加しました ',
+  'email.first_post.lighter': 'ライター:',
+  'email.first_post.next_step1': 'シェアする: ライターを友達に渡すか、面白い場所に置いてみましょう',
+  'email.first_post.next_step2': 'ステッカーを入手: カスタムステッカーを注文して、他の人がライターのストーリーを見つけやすくしましょう',
+  'email.first_post.next_step3': '成長を見守る: ライターが旅をする中で新しい投稿を確認しましょう',
+  'email.first_post.next_steps_title': '💡 次のステップ',
+  'email.first_post.pin': 'PIN:',
+  'email.first_post.type': '最初の投稿タイプ:',
+  'email.first_post.welcome_title': 'ムーブメントへようこそ！',
+  'email.first_post.what_started_content': 'あなたのライターは今、特別なものの一部になりました。誰かがライターを見つけてストーリーを追加するたびに、どこに行ったか、どんなつながりができたかを見ることができます。',
+  'email.first_post.what_started_title': '🎯 あなたが始めたこと',
+  'email.first_post_subject': '最初の火花を灯しました！ 🔥 ライトセーバーファミリーへようこそ',
+  'email.lighter_activity_subject': 'あなたのライターが新しい友達を作っています！ 🌍',
+  'email.moderation_approved_subject': '良いニュースです！あなたのストーリーが公開されました。 🎉',
+  'email.moderation_rejected_subject': '最近の投稿について...お話ししましょう',
+  'email.moderator.benefit1': '新機能への早期アクセス',
+  'email.moderator.benefit2': 'プロフィールに特別なモデレーターバッジ',
+  'email.moderator.benefit3': 'ライトマイファイアチームとの直接コミュニケーション',
+  'email.moderator.benefit4': 'コミュニティの未来を形作るお手伝い',
+  'email.moderator.benefits_title': '🎁 モデレーター特典',
+  'email.moderator.greeting': 'こんにちは {name}さん、',
+  'email.moderator.intro': '{inviter}さんがあなたをライトマイファイアのモデレーションチームに招待しました！',
+  'email.moderator.not_interested': '興味がない場合は、このメールを無視してください。',
+  'email.moderator.responsibilities_title': '📋 あなたの責任',
+  'email.moderator.what_is_content': 'モデレーターは、フラグが立てられたコンテンツを確認し、コミュニティガイドラインが守られていることを確認することで、ライトマイファイアコミュニティを安全でポジティブで温かい場所に保ちます。',
+  'email.moderator.what_is_title': '👮 モデレーターとは？',
+  'email.moderator_invite_subject': 'モデレーションチームへの招待',
+
+  'email.order_confirmation.estimated_delivery': '配送予定日: 営業日5〜10日',
+  'email.order_confirmation.greeting': 'こんにちは {name}さん、',
+  'email.order_confirmation.intro': 'ご注文ありがとうございます！お支払いは正常に処理されました。🎉',
+  'email.order_confirmation.lighters_ready': '各ライターにはユニークなPINが付与され、旅を始める準備が整いました！',
+  'email.order_confirmation.lighters_title': '🔥 あなたのライター',
+  'email.order_confirmation.order_id': '注文ID:',
+  'email.order_confirmation.questions': 'ご注文に関するご質問はありますか？いつでもこのメールにご返信ください。',
+  'email.order_confirmation.shipping_title': '📮 配送先',
+  'email.order_confirmation.stickers': 'ステッカー:',
+  'email.order_confirmation.stickers_packs': '{quantity}パック',
+  'email.order_confirmation.summary_title': '📦 注文概要',
+  'email.order_confirmation.total_paid': 'お支払い合計:',
+  'email.order_confirmation.whats_next_content': 'ステッカーは発送準備中です。発送されましたら追跡情報を記載したメールをお送りします！',
+  'email.order_confirmation.whats_next_title': '⏰ 次は？',
+  'email.order_confirmation_subject': '注文が確定しました！ライトマイファイアのステッカーが配送されます 📦',
+  'email.order_shipped.carrier': '配送業者:',
+  'email.order_shipped.details_title': '📋 配送詳細',
+  'email.order_shipped.estimated_delivery': '配送予定日:',
+  'email.order_shipped.greeting': '良いニュースです、{name}さん！ 📦',
+  'email.order_shipped.intro': 'カスタムライトマイファイアステッカーが発送され、お届けに向かっています。',
+  'email.order_shipped.lighters_intro': '{quantity}枚のカスタムステッカーをご注文いただきました:',
+  'email.order_shipped.lighters_title': '🔥 あなたのライター',
+  'email.order_shipped.order_id': '注文ID:',
+  'email.order_shipped.pro_tip': '💡 プロのヒント:',
+  'email.order_shipped.pro_tip_content': 'ライターはすでに有効です！ステッカーが届くのを待っている間に投稿を始めましょう。',
+  'email.order_shipped.pro_tip_link': 'マイライターを見る →',
+  'email.order_shipped.tracking': '追跡番号:',
+  'email.order_shipped_subject': 'ライター救済キットが配送中です！ 🚀✨',
+  'email.trophy.greeting': '素晴らしい仕事です、{name}さん！ 🏆',
+  'email.trophy.intro': 'ライトマイファイアで新しいトロフィーを獲得しました！',
+  'email.trophy.keep_going': '💡 頑張り続けましょう！',
+  'email.trophy.keep_going_content': 'まだアンロック待ちのトロフィーがあります。すべて集められますか？',
+  'email.trophy.what_you_did': '🎯 あなたが成し遂げたこと',
+  'email.trophy_earned_subject': '🏆 達成アンロック: {trophy_name}！',
+  'email.welcome.get_started_intro': '今できることは以下の通りです:',
+  'email.welcome.get_started_title': '🚀 始めましょう',
+  'email.welcome.greeting': 'こんにちは {name}さん！ 👋',
+  'email.welcome.intro': 'ライトセーバーのコミュニティへようこそ！あなたを迎えられて嬉しいです。',
+  'email.welcome.questions': 'ご質問がありますか？このメールにご返信ください—私たちがお手伝いします！',
+  'email.welcome.step1': '最初のライターを保存 - 名前を付けて、カスタムステッカーをご自宅に配送',
+  'email.welcome.step2': 'ライターを見つける - 見つけたステッカーのPINを入力して旅を確認',
+  'email.welcome.step3': 'モザイクに参加 - 投稿、思い、曲、場所をシェア',
+  'email.welcome.what_is_content': 'ライトマイファイアは、ストーリーテリングを通じてライターに第二の人生を与えるグローバルムーブメントです。すべてのライターはデジタルアイデンティティとユニークなステッカーを取得し、世界中を旅しながら見つけた人全員のストーリーを集めます。',
+  'email.welcome.what_is_title': '🔥 ライトマイファイアとは？',
+  'email.welcome_subject': 'ライトマイファイアへようこそ！ 🔥',
+  'empty_lighter.action': '最初の投稿を追加',
+  'empty_lighter.description': 'このライターの旅が始まったばかりです。ストーリーの最初の章を追加して、他の人にインスピレーションを与えましょう！',
+
+  'empty_lighter.title': 'ストーリーが始まる...',
+  'empty_posts.action': '最初の投稿を追加',
+  'empty_posts.message': 'このライターの旅にストーリー、写真、または曲を最初に追加しましょう！',
+  'empty_posts.title': 'このライターのストーリーが書かれるのを待っています！ ✨',
+  'empty_state.default_message': 'まだ何もありませんが、それはすぐに変わります！',
+  'empty_state.default_title': 'このスペースがあなたを待っています ✨',
+  'empty_state.no_posts_message': '最初の投稿を追加して旅を始めましょう。',
+  'empty_state.no_posts_title': 'このライターのストーリーが書かれるのを待っています！',
+  'error.content_flagged': '注意！コミュニティガイドラインにより、このコンテンツは{reason}としてフラグされています。ライトマイファイアを皆にとって歓迎される場所に保ちましょう。 🌟',
+  'error.critical.description': '重大なエラーが発生しました。ページを更新してください。',
+  'error.critical.title': 'アプリケーションエラー',
+  'error.generic.description': '予期しないエラーが発生しました。チームに通知されました。',
+  'error.generic.details_title': 'エラー詳細（開発環境のみ）',
+  'error.generic.error_id': 'エラーID:',
+  'error.generic.go_home': 'ホームに戻る',
+  'error.generic.title': 'あれ！何か問題が発生しました',
+  'error.generic.try_again': '再試行',
+  'error.generic_message': '申し訳ございません、こちら側で小さな問題が発生しました。問題が解決しない場合は、サポートにお問い合わせください: support@lightmyfire.app',
+  'error.generic_title': 'あれ！何か問題が発生しました',
+  'error.invalid_pin': 'うーん、そのPINは該当するライターが見つかりません。ステッカーをもう一度確認してください！',
+  'error.not_found.description': '申し訳ございません、お探しのページが見つかりませんでした。',
+  'error.not_found.go_home': 'ホームに戻る',
+  'error.not_found.title': 'すべて燃え尽きました',
+  'error.rate_limit': 'ちょっと待って！ 🏃‍♂️\n\n投稿が速すぎて追いつけません。このライターのストーリーに他の人が追加できるよう、24時間の休憩を取ってから戻ってきてください！\n\n（これにより、モザイクが多様で面白いものになります。）',
+  'error.try_again': '再試行',
+  'error.upload_too_large': 'その画像は大きすぎます！2MB以下のものを選択してください。 📸',
+  'faq.q1.desc': '無駄を減らし、',
+  'faq.q1.title': 'ライトマイファイアとは何ですか？',
+  'faq.q2.desc': 'ライトマイファイアのステッカーが貼られたライターを見つける必要があります。QRコードをスキャン（またはサイトにアクセス）して、ステッカーのユニークなPINを入力します。投稿するには無料アカウントの作成が必要です。',
+  'faq.q2.title': 'ストーリーを追加するにはどうすればいいですか？',
+  'faq.q3.desc': 'モザイクを多様に保つため、*ライターごとに*24時間のクールダウン期間があります。これにより、他の人がストーリーを追加できるようライターを渡すことが奨励されます。',
+  'faq.q3.title': 'なぜ連続して投稿できないのですか？',
+  'faq.q4.desc': '2つの選択肢があります。すべての投稿はライターのページ（PINでアクセス）に表示されます。投稿時にチェックボックスにチェックを入れることで、',
+  'faq.q4.title': '私の投稿は公開されますか？',
+  'faq.q5.desc': 'ログインして',
+  'faq.q5.title': '投稿を削除するにはどうすればいいですか？',
+  'faq.q6.desc': 'それが楽しみの一部です！',
+  'faq.q6.title': '保存したライターを失くしたらどうなりますか？',
+  'faq.q7.desc': '各ライターのページには、そのライターの旅を示すマップがあります。誰かが',
+  'faq.q7.title': 'マップはどのように機能しますか？',
+
+  'home.become_lightsaver.alt': 'シェアのイラスト',
+  'home.become_lightsaver.alt_arrow': 'ライター保存ボタンを指す矢印',
+  'home.community.alt': 'コミュニティのイラスト',
+  'home.hero.alt_image': 'ライトマイファイア - ライターに第二の人生を',
+  'home.how_it_works.step1.alt': 'ライターを保存',
+  'home.how_it_works.step2.alt': 'ライターをシェア',
+  'home.how_it_works.step3.alt': 'ストーリーをフォロー',
+  'home.pin_entry.image_alt': 'ライターを見つけた',
+  'home.stats.citations_title': '出典',
+  'how_it_works.cant_find_answer': '答えが見つかりませんか？',
+  'how_it_works.contact_us': 'お問い合わせ',
+  'how_it_works.step1.desc': 'ユニークなIDを持つライターを発見するか、自分のライターを保存',
+  'how_it_works.step1.title': 'ライターを見つける',
+  'how_it_works.step2.desc': '思い出、写真、動画、または詩をシェア',
+  'how_it_works.step2.title': 'ストーリーに追加',
+  'how_it_works.step3.desc': 'ライターが他の人と旅を続けるようにする',
+  'how_it_works.step3.title': '次の人に渡す',
+  'how_it_works.subtitle': 'ライターを保存し、ストーリーをシェアし、炎を広げる',
+  'how_it_works.title': '使い方',
+  'how_it_works_details.step1.desc': 'ライターに名前を付けてデジタルログブックを作成し、ユニークなPIN/QRステッカーをダウンロードします。',
+  'how_it_works_details.step1.title': '1. 保存',
+  'how_it_works_details.step2.desc': 'ライターに貼り付けて、譲るか',
+  'how_it_works_details.step2.title': '2. シェア',
+  'how_it_works_details.step3.desc': '保存すると、その永続的なウェブページに移動します。最初の投稿を追加してください: 写真、動画、曲のリンク、またはあなたがいる場所からのストーリー。これがライターの「誕生」です。',
+  'how_it_works_details.step3.title': '3. 最初のストーリーを追加',
+  'how_it_works_details.step4.desc': 'ライターを渡すことで、見つけた新しい人がそれをスキャンし、タイムラインに自分の投稿を追加できます。あなたはもはや単に炎をシェアしているのではなく、グローバルな記録を共同で書いているのです。',
+  'how_it_works_details.step4.title': '4. ストーリーの成長を見守る',
+  'how_it_works_details.step5.desc': '私たちのコミュニティは尊重と創造性に基づいています。<strong>ガイドライン</strong>に違反する投稿（スパム、ヘイトコンテンツなど）を見つけたら、',
+  'how_it_works_details.step5.title': '5. 良いコミュニティメンバーになる',
+  'how_it_works_details.step6.desc': '参加することで、あなたとあなたのライターは達成をアンロックします。最初の投稿を追加して',
+  'how_it_works_details.step6.title': '6. トロフィーを集めよう！',
+  'how_it_works_details.title': '使い方: 火花からグローバルストーリーへ',
+  'lighter.add_to_story': 'ストーリーに追加',
+  'lighter.all_loaded': 'すべての投稿を読み込みました',
+  'lighter.level': 'レベル',
+  'lighter.load_more': 'さらに投稿を読み込む',
+  'lighter.loading': '読み込み中...',
+  'lighter.map.center_coords': '中心: 緯度 {lat}, 経度 {lng}',
+  'lighter.map.markers': '{count}か所',
+  'lighter.map.no_locations': 'まだ場所が投稿されていません。マップを始めるために追加しましょう！',
+  'lighter.map.title': 'これまでの旅',
+  'lighter.meta.description': 'というライターのストーリーを見る ',
+  'lighter.meta.og_description': 'ライトマイファイアでストーリーを見る',
+  'lighter.meta.twitter_description': 'ライトマイファイアでストーリーを見る',
+  'lighter.no_posts': 'このライターにはまだストーリーがありません。最初の投稿を追加しましょう！',
+  'lighter.not_found.description': '人間の創造性モザイク。',
+  'lighter.not_found.title': 'ライターが見つかりません | ライトマイファイア',
+  'lighter.on': '〜で',
+  'lighter.post_plural': '投稿',
+  'lighter.post_single': '投稿',
+  'lighter.saved_by': '保存者',
+  'lighter.saved_by_label': 'ライター保存者',
+  'lighter_personalization.apply_all': 'すべてに適用',
+  'lighter_personalization.button.save_continue': '保存して続ける',
+  'lighter_personalization.button_save_customizations': 'ステッカーカスタマイズを保存',
+  'lighter_personalization.color.black': '黒',
+  'lighter_personalization.color.blue': '青',
+  'lighter_personalization.color.red': '赤',
+  'lighter_personalization.color.white': '白',
+
+  'lighter_personalization.color_label': '背景色を選択',
+  'lighter_personalization.english_included': 'ステッカーには常に英語が含まれます',
+  'lighter_personalization.enter_name_preview': 'プレビューを表示するには名前を入力してください（最低3文字）',
+  'lighter_personalization.helper.background_picker': 'ステッカーの背景に使用する画像または色を選択してください。',
+  'lighter_personalization.language.select_placeholder': '言語を選択...',
+  'lighter_personalization.language_label': 'ステッカーの第二言語（+英語）',
+  'lighter_personalization.lighter_count': 'ライター #{index}',
+  'lighter_personalization.min_3_chars': '（最低3文字）',
+  'lighter_personalization.name_label': '名前（3〜16文字）',
+  'lighter_personalization.name_placeholder': 'ライター名...',
+  'lighter_personalization.preview': 'プレビュー',
+  'lighter_personalization.subtitle': '各ライターをカスタマイズ',
+  'lighter_personalization.summary.design': 'デザイン{count}種類',
+  'lighter_personalization.summary.designs': 'デザイン{count}種類',
+  'lighter_personalization.summary.identical': 'すべて{count}個同一',
+  'lighter_personalization.summary.plus_english': ' + 英語',
+  'lighter_personalization.title': 'ステッカーをカスタマイズ',
+  'lighter_personalization.warning_fill_name': '続行する前にライター名（3〜16文字）を入力してください。',
+  'lighter_personalization.warning_fill_names': '続行する前にすべてのライター名（各3〜16文字）を入力してください。',
+  'loading.generating_stickers': 'ライターのパスポートを作成中... ✨',
+  'loading.posting_v1': 'タイムラインにストーリーを追加中...',
+  'loading.posting_v2': 'モザイクに瞬間を織り込み中...',
+  'loading.posting_v3': 'このライターの旅を照らし中...',
+  'loading.posting_v4': 'このライターのストーリーをより明るく中...',
+  'loading.searching': '痕跡を追跡中... 🔍',
+
+  'location.edit_coordinates': '座標を手動で編集',
+  'location.latitude_placeholder': '緯度',
+  'location.longitude_placeholder': '経度',
+  'location.map_consent_description': 'このマップはトラッキングCookieのないOpenStreetMapを使用しています。お客様の設定のみローカルに保存されます。',
+  'location.map_preview_title': 'マッププレビュー利用可能',
+  'location.map_title': '場所のマップ',
+  'location.no_location_selected': '場所が選択されていません',
+  'location.no_results': '場所が見つかりませんでした。別の検索をお試しください。',
+  'location.search_placeholder': '場所を検索（都市、住所、ランドマーク）...',
+  'location.selected_location': '選択された場所',
+  'location.show_map_button': 'マップを表示',
+  'location.view_larger_map': '大きいマップを見る',
+  'login.button.signin': 'ログイン',
+  'login.button.signup': '登録',
+  'login.email_label': 'メールアドレス',
+  'login.forgot_password': 'パスワードをお忘れですか？',
+  'login.password_label': 'パスワード',
+  'login.social_divider': 'または続行する',
+  'login.tab.login': 'ログイン',
+  'login.tab.signup': '登録',
+  'login.title': 'ライトマイファイア',
+
+  'moderation.action_confirm': 'アクションを確認',
+  'moderation.approve_confirm_message': 'この投稿を承認してよろしいですか？公開されます。',
+  'moderation.approve_confirm_title': '投稿を承認しますか？',
+  'moderation.approve_success': '投稿が承認され公開されました。',
+  'moderation.button.delete_post': '投稿を削除',
+  'moderation.button.delete_user': 'ユーザーを削除',
+  'moderation.content_type': 'タイプ',
+  'moderation.delete': '削除',
+  'moderation.delete_confirm_message': 'この投稿を完全に削除してよろしいですか？',
+  'moderation.delete_confirm_title': '投稿を削除しますか？',
+  'moderation.delete_success': '投稿を正常に削除しました。',
+  'moderation.delete_user_confirm': 'このユーザーとすべてのコンテンツを削除してよろしいですか？',
+  'moderation.error': 'エラーが発生しました: {message}',
+  'moderation.error.rpc_error': 'エラー: {message}',
+  'moderation.flagged_by': '{count}人のユーザーによってフラグされています',
+  'moderation.lighter_name': 'ライター',
+  'moderation.no_posts': '現在モデレーション用にフラグされた投稿はありません。',
+  'moderation.no_posts_in_queue': 'モデレーションキューは空です。すべて平和です。',
+  'moderation.post_by': '投稿者',
+  'moderation.post_on': '投稿日',
+  'moderation.queue.count': 'モデレーション待ち投稿{count}件',
+  'moderation.queue.count_plural': 'モデレーション待ち投稿{count}件',
+  'moderation.queue.empty.back_home': 'ホームに戻る',
+  'moderation.queue.empty.description': 'フラグされたすべての投稿がレビューされ処理されました。素晴らしいモデレーション作業です！',
+  'moderation.queue.empty.title': 'キューは空です',
+  'moderation.show_less': '閉じる',
+  'moderation.table.flag_count': 'フラグ',
+  'moderation.table.lighter': 'ライター',
+  'moderation.table.post_id': '投稿ID',
+  'moderation.view_full': '全体を見る',
+  'moderation.view_post': '投稿を見る',
+
+  'my_orders.canceled.title': '注文キャンセル',
+  'my_orders.empty.cta': 'ステッカーを注文',
+  'my_orders.empty.description': 'まだステッカーの注文がありません。',
+  'my_orders.empty.title': 'まだ注文がありません',
+  'my_orders.error.description': '{error}。ここに表示されていない注文がある可能性があります。',
+  'my_orders.error.title': '注文を読み込めませんでした',
+  'my_orders.error.try_again': '再試行',
+  'my_orders.failed.contact': 'サポートにお問い合わせください',
+  'my_orders.failed.title': '注文失敗',
+  'my_orders.go_home': 'ホームに戻る',
+  'my_orders.help.contact': 'サポートに連絡',
+  'my_orders.help.label': 'お困りですか？',
+  'my_orders.hold.title': '注文保留中',
+  'my_orders.lighters.title': 'ライター名',
+  'my_orders.loading': '注文を読み込み中...',
+  'my_orders.order_id': '注文 #{orderId}',
+  'my_orders.placed_on': '{date}に注文',
+  'my_orders.shipping.title': '配送先住所',
+  'my_orders.status.canceled': 'キャンセル',
+  'my_orders.status.delivered': '配達済み',
+  'my_orders.status.failed': '失敗',
+  'my_orders.status.pending': '保留中',
+  'my_orders.status.processing': '処理中',
+  'my_orders.status.returned': '返送済み',
+  'my_orders.status.shipped': '発送済み',
+  'my_orders.sticker_count': 'ステッカー{count}枚',
+  'my_orders.stickers_count': 'ステッカー{count}枚',
+  'my_orders.tracking.carrier': '配送業者:',
+  'my_orders.tracking.number': '追跡番号:',
+  'my_orders.tracking.shipped': '発送日:',
+  'my_orders.tracking.title': '追跡情報',
+  'my_orders.tracking.track_button': '荷物を追跡 →',
+  'my_posts.deleting': '削除中...',
+  'my_profile.find_lighter_to_post': 'ライターを見つける',
+  'my_profile.no_posts': 'ストーリーコレクションが始まるのを待っています！ 📖\nライターを見つけて最初の投稿を追加しましょう。',
+  'my_profile.save_first_lighter': '最初のライターを保存',
+  'my_profile.settings.account_title': 'アカウント',
+  'my_profile.settings.confirm_password_label': '新しいパスワードを確認',
+  'my_profile.settings.email_label': 'メールアドレス',
+  'my_profile.settings.error.email_exists': 'メールアドレスはすでに使用されています。',
+  'my_profile.settings.error.generic': 'エラーが発生しました。もう一度お試しください。',
+  'my_profile.settings.error.rpc_error': 'エラー: {message}',
+  'my_profile.settings.error.username_exists': 'ユーザー名はすでに使用されています。',
+  'my_profile.settings.new_password_label': '新しいパスワード',
+  'my_profile.settings.password_mismatch': 'パスワードが一致しません。',
+  'my_profile.settings.password_title': 'パスワードを変更',
+  'my_profile.settings.placeholder.email': '新しいメールアドレスを入力',
+  'my_profile.settings.placeholder.password': '••••••••',
+  'my_profile.settings.placeholder.password_confirm': '新しいパスワードを再入力',
+  'my_profile.settings.placeholder.username': '新しいユーザー名を入力',
+  'my_profile.settings.update_profile_button': 'プロフィールを更新',
+  'my_profile.settings.updating': '更新中...',
+  'my_profile.settings.username_label': 'ユーザー名',
+  'my_profile.trophies.coming_soon': 'トロフィーケース近日公開！',
+  'my_profile.trophies.subtitle': 'ストーリーを保存してシェアすることで達成を集めましょう。',
+
+  'my_profile.trophies.unlocked': 'アンロック！',
+  'notifications.action_error': 'エラー',
+  'notifications.action_success': '成功',
+  'notifications.auth_failed': '認証に失敗しました。もう一度お試しください。',
+  'notifications.error': 'エラー',
+  'notifications.invalid_credentials': 'メールアドレスまたはパスワードが無効です。認証情報を確認してもう一度お試しください。',
+  'notifications.lighter_saved': '成功！{lighterName}は冒険の準備ができました！ 🌍',
+  'notifications.password_reset_sent': 'パスワードリセットメールを送信しました！受信トレイを確認してください。',
+  'notifications.password_updated': 'パスワードを更新しました！アカウントは安全です。 🔒',
+  'notifications.post_deleted_success': '投稿を削除しました。まるでなかったかのように。',
+  'notifications.post_success_first': 'おめでとうございます！ 🌟 このライターのストーリーに最初の火花を灯しました。',
+  'notifications.post_success_public': 'ストーリーを世界とシェアしました！ 🌍 グローバルモザイクの一部になりました。',
+  'notifications.profile_updated': 'プロフィールを更新しました！素敵ですね、ライトセーバー。 ✨',
+  'notifications.session_expired': 'セッションの有効期限が切れました。続行するには再度ログインしてください。',
+  'notifications.sticker_downloaded': 'ステッカー準備完了！{lighterName}を自由にする時間です。 🚀',
+  'notifications.success': '成功！',
+  'notifications.trophy_earned': '🏆 トロフィーアンロック: {trophy_name}！すごいですね！',
+  'notifications.user_not_found': 'このメールアドレスのアカウントが見つかりません。まず登録してください！',
+  'notifications.warning': '警告',
+
+  // TODO: Translate from English
+  'order.guidelines.step1': 'Apply the sticker to a clean, dust-free, oil-free, and moisture-free surface.',
+
+  // TODO: Translate from English
+  'order.guidelines.step2': 'After application, press the sticker down with a clean cloth to maximize adhesion and avoid air bubbles.',
+
+  // TODO: Translate from English
+  'order.guidelines.step3': 'Make sure the sticker is applied correctly the first time. With every reapplication, the sticker\\'s ability to stick will decrease.',
+
+  // TODO: Translate from English
+  'order.guidelines.title': 'Application Guidelines',
+
+  // TODO: Translate from English
+  'order.payment.error_email_invalid': 'Please enter a valid email address',
+
+  // TODO: Translate from English
+  'order.quality.durability': '2–3 year durability',
+
+  // TODO: Translate from English
+  'order.quality.fast_application': 'Fast and easy application',
+
+  // TODO: Translate from English
+  'order.quality.glossy_finish': 'Glossy finish',
+
+  // TODO: Translate from English
+  'order.quality.title': 'Premium Quality Stickers',
+
+  // TODO: Translate from English
+  'order.shipping.error_postal_invalid': 'Invalid postal code for selected country',
+
+  // TODO: Translate from English
+  'order.summary.shipping': 'Shipping:',
+
+  // TODO: Translate from English
+  'order.summary.shipping_calculated': '+ shipping',
+
+  // TODO: Translate from English
+  'order.summary.shipping_express': 'Express Shipping',
+
+  // TODO: Translate from English
+  'order.summary.shipping_express_time': '3-5 business days',
+
+  // TODO: Translate from English
+  'order.summary.shipping_method': 'Shipping Method:',
+
+  // TODO: Translate from English
+  'order.summary.shipping_standard': 'Standard Shipping',
+
+  // TODO: Translate from English
+  'order.summary.shipping_standard_time': '7-14 business days',
+
+  // TODO: Translate from English
+  'order.summary.subtotal': 'Subtotal:',
+
+  // TODO: Translate from English
+  'order_success.email_subject': 'Question about my sticker order',
+
+  // TODO: Translate from English
+  'payment.card_not_found': 'Card element not found',
+
+  // TODO: Translate from English
+  'payment.stripe_load_failed': 'Failed to load Stripe. Please check your configuration.',
+
+  // TODO: Translate from English
+  'personalization.customize_stickers': 'Customize Your Stickers',
+
+  // TODO: Translate from English
+  'personalization.english_included': 'English will always be included on your stickers',
+
+  // TODO: Translate from English
+  'personalization.personalize_each': 'Personalize each lighter',
+
+  // TODO: Translate from English
+  'personalization.second_language': 'Second Language on Sticker (+ English)',
+
+  // TODO: Translate from English
+  'philosophy.button.hide': 'Hide',
+
+  // TODO: Translate from English
+  'philosophy.button.learn_more': 'Learn More',
+
+  // TODO: Translate from English
+  'philosophy.cta': 'Join us in giving lighters a second life, one story at a time.',
+
+  // TODO: Translate from English
+  'philosophy.image_alt': 'Global Creativity Mosaic',
+
+  // TODO: Translate from English
+  'philosophy.lead': 'We believe that even the smallest, most disposable object can carry a great story.',
+
+  // TODO: Translate from English
+  'philosophy.p1': '<strong>LightMyFire</strong> was born from a simple idea: what if we stopped treating lighters as throwaway items? <strong>In a world of mass consumption where billions of these items are discarded every year,</strong> what if we saw them as companions, as tiny vessels for our memories, ideas, and creativity?',
+
+  // TODO: Translate from English
+  'philosophy.p2': 'The everyday lighter is <strong>a powerful social catalyst.</strong> It\\'s no personal possession; it belongs to everyone. It passes from hand to hand, from friend to stranger, at parties, concerts, and quiet meetups. It hears our secrets and lights our way. <strong>It\\'s the silent witness to a great conversation, the spark for a new friendship. But its story is ephemeral, lost as soon as it\\'s passed on.</strong>',
+
+  // TODO: Translate from English
+  'philosophy.p3': 'By giving a lighter a permanent, digital story, we give it sentimental value. <strong>Your lighter becomes a living artifact, a message in a bottle.</strong> And when something has value, we\\'re less likely to throw it away.',
+
+  // TODO: Translate from English
+  'philosophy.p4': 'Our goal is simple: to create a global, human creativity mosaic, one lighter at a time, and reduce waste in the process. <strong>This is our stand against a throwaway culture. It\\'s an experiment in collaborative art. It\\'s a way to prove that if you give an object a story, you give it a soul.</strong>',
+
+  // TODO: Translate from English
+  'philosophy.title': 'Our Philosophy',
+
+  // TODO: Translate from English
+  'placeholder.hex_color': '#FF6B6B',
+
+  // TODO: Translate from English
+  'placeholder.lighter_name': 'Lighter name...',
+
+  // TODO: Translate from English
+  'placeholder.location_search': 'Search for a location...',
+
+  // TODO: Translate from English
+  'placeholder.pin_entry': 'ABC-123',
+
+  // TODO: Translate from English
+  'post.default_location': 'Unknown Location',
+
+  // TODO: Translate from English
+  'post.deleted_user': 'Deleted User',
+
+  // TODO: Translate from English
+  'post.like_button': 'Like',
+
+  // TODO: Translate from English
+  'post.location_at': 'at',
+
+  // TODO: Translate from English
+  'post.post_type.image': 'shared an image',
+
+  // TODO: Translate from English
+  'post.post_type.location': 'checked in',
+
+  // TODO: Translate from English
+  'post.post_type.refuel': 'refueled this lighter',
+
+  // TODO: Translate from English
+  'post.post_type.song': 'shared a song',
+
+  // TODO: Translate from English
+  'post.post_type.text': 'wrote a story',
+
+  // TODO: Translate from English
+  'post.user_upload_alt': 'User upload',
+
+  // TODO: Translate from English
+  'post.youtube_player_title': 'YouTube video player',
+
+  // TODO: Translate from English
+  'privacy.h3.automated_decisions': '7. Automated Decision-Making',
+
+  // TODO: Translate from English
+  'privacy.h3.changes': '9. Changes to This Privacy Policy',
+
+  // TODO: Translate from English
+  'privacy.h3.children': '8. Children\\'s Privacy',
+
+  // TODO: Translate from English
+  'privacy.h3.contact': '10. Contact Us',
+
+  // TODO: Translate from English
+  'privacy.h3.cookies': '5.1. Cookies',
+
+  // TODO: Translate from English
+  'privacy.h3.data_breaches': '5.6. Data Breach Notification',
+
+  // TODO: Translate from English
+  'privacy.h3.data_controller': '1. Data Controller',
+
+  // TODO: Translate from English
+  'privacy.h3.data_retention': '5.4. Data Retention Periods',
+
+  // TODO: Translate from English
+  'privacy.h3.data_security': '5.5. Security Measures',
+
+  // TODO: Translate from English
+  'privacy.h3.data_sharing': '5. Data Sharing and Processors',
+
+  // TODO: Translate from English
+  'privacy.h3.how_we_use': '3. How We Use Your Information',
+
+  // TODO: Translate from English
+  'privacy.h3.info_we_collect': '2. Information We Collect',
+
+  // TODO: Translate from English
+  'privacy.h3.international_transfers': '5.3. International Data Transfers',
+
+  // TODO: Translate from English
+  'privacy.h3.legal_basis': '4. Legal Basis for Processing (GDPR)',
+
+  // TODO: Translate from English
+  'privacy.h3.location_data': '5.2. Location Data',
+
+  // TODO: Translate from English
+  'privacy.h3.your_rights': '6. Your Rights Under GDPR',
+
+  // TODO: Translate from English
+  'privacy.h4.cookie_types': 'Types of Cookies We Use',
+
+  // TODO: Translate from English
+  'privacy.h4.personal_data': '2.1. Personal Data You Provide',
+
+  // TODO: Translate from English
+  'privacy.h4.right_access': '6.1. Right of Access (Art. 15 GDPR)',
+
+  // TODO: Translate from English
+  'privacy.h4.right_complain': '6.8. Right to Lodge a Complaint',
+
+  // TODO: Translate from English
+  'privacy.h4.right_erasure': '6.3. Right to Erasure - ',
+
+  // TODO: Translate from English
+  'privacy.h4.right_object': '6.6. Right to Object (Art. 21 GDPR)',
+
+  // TODO: Translate from English
+  'privacy.h4.right_portability': '6.5. Right to Data Portability (Art. 20 GDPR)',
+
+  // TODO: Translate from English
+  'privacy.h4.right_rectification': '6.2. Right to Rectification (Art. 16 GDPR)',
+
+  // TODO: Translate from English
+  'privacy.h4.right_restriction': '6.4. Right to Restriction of Processing (Art. 18 GDPR)',
+
+  // TODO: Translate from English
+  'privacy.h4.right_withdraw': '6.7. Right to Withdraw Consent',
+
+  // TODO: Translate from English
+  'privacy.h4.technical_data': '2.4. Technical Data (Automatically Collected)',
+
+  // TODO: Translate from English
+  'privacy.h4.transaction_data': '2.3. Transaction Data',
+
+  // TODO: Translate from English
+  'privacy.h4.user_content': '2.2. User-Generated Content',
+
+  // TODO: Translate from English
+  'privacy.last_updated': 'Last updated: November 8, 2025',
+
+  // TODO: Translate from English
+  'privacy.p1': 'LightMyFire (',
+
+  // TODO: Translate from English
+  'privacy.p10': 'Your data is primarily stored on Supabase servers located within the European Union. However, some sub-processors may be located outside the EU/EEA. When data is transferred internationally, we ensure adequate protection through:',
+
+  // TODO: Translate from English
+  'privacy.p11': 'We retain personal data only as long as necessary for the purposes outlined in this policy:',
+
+  // TODO: Translate from English
+  'privacy.p12': 'After retention periods expire, data is securely deleted from all systems, including backups.',
+
+  // TODO: Translate from English
+  'privacy.p13': 'We implement appropriate technical and organizational measures to protect your data:',
+
+  // TODO: Translate from English
+  'privacy.p14': 'In the unlikely event of a personal data breach, we will:',
+
+  // TODO: Translate from English
+  'privacy.p15': 'You have the following rights regarding your personal data. To exercise any of these rights, contact us at <strong>support@lightmyfire.app</strong>.',
+
+  // TODO: Translate from English
+  'privacy.p16': 'You can request a copy of all personal data we hold about you. We\\'ll provide this in a structured, commonly used format within 30 days.',
+
+  // TODO: Translate from English
+  'privacy.p17': 'You can correct inaccurate or incomplete data. Update most information directly in your profile settings, or contact us for assistance.',
+
+  // TODO: Translate from English
+  'privacy.p18': 'You can request deletion of your personal data. You can delete individual posts anytime from ',
+
+  // TODO: Translate from English
+  'privacy.p19': 'You can request we limit how we use your data while you contest its accuracy or lawfulness of processing.',
+
+  // TODO: Translate from English
+  'privacy.p2': 'The data controller for your personal information is:<br><br><strong>Revel Editions SASU</strong><br>145 Rue de Noisy-le-Sec<br>93260 Les Lilas, France<br><br><strong>Contact Email:</strong> support@lightmyfire.app<br><strong>Data Protection Officer:</strong> support@lightmyfire.app',
+
+  // TODO: Translate from English
+  'privacy.p20': 'You can receive your data in a machine-readable format (JSON/CSV) to transfer to another service.',
+
+  // TODO: Translate from English
+  'privacy.p21': 'You can object to processing based on legitimate interests. We\\'ll stop processing unless we demonstrate compelling legitimate grounds.',
+
+  // TODO: Translate from English
+  'privacy.p22': 'For processing based on consent, you can withdraw it anytime. This doesn\\'t affect the lawfulness of processing before withdrawal.',
+
+  // TODO: Translate from English
+  'privacy.p23': 'If you believe we\\'re not complying with GDPR, you have the right to lodge a complaint with a supervisory authority:',
+
+  // TODO: Translate from English
+  'privacy.p24': '<strong>France (Our Primary Jurisdiction):</strong><br>Commission Nationale de l\\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, France<br>Website: <a href=\\'https://www.cnil.fr\\' target=\\'_blank\\'>www.cnil.fr</a>',
+
+  // TODO: Translate from English
+  'privacy.p25': 'You can also contact the data protection authority in your country of residence.',
+
+  // TODO: Translate from English
+  'privacy.p26': 'We use limited automated processing for:',
+
+  // TODO: Translate from English
+  'privacy.p27': 'These automated processes do not produce legal effects or significantly affect you. You can always contact us to contest a decision or request human review.',
+
+  // TODO: Translate from English
+  'privacy.p28': 'Our service is not directed to children under 16 years of age (or the minimum age required in your jurisdiction to consent to data processing). We do not knowingly collect personal data from children. If you believe we\\'ve inadvertently collected data from a child, contact us immediately at support@lightmyfire.app and we\\'ll delete it promptly.',
+
+  // TODO: Translate from English
+  'privacy.p29': 'We may update this Privacy Policy to reflect changes in our practices or legal requirements. We will:',
+
+  // TODO: Translate from English
+  'privacy.p3': 'We collect personal information in several ways to provide and improve our services:',
+
+  // TODO: Translate from English
+  'privacy.p30': 'Continued use of our services after changes constitutes acceptance of the updated policy.',
+
+  // TODO: Translate from English
+  'privacy.p31': 'For any questions about this Privacy Policy or to exercise your rights, contact us:',
+
+  // TODO: Translate from English
+  'privacy.p32': 'We aim to respond to all requests within 30 days. If your request is complex, we may extend this by an additional 60 days and will inform you.',
+
+  // TODO: Translate from English
+  'privacy.p4': 'We use the information we collect to:',
+
+  // TODO: Translate from English
+  'privacy.p5': 'Under GDPR, we process your personal data based on the following legal grounds:',
+
+  // TODO: Translate from English
+  'privacy.p6': 'We do not sell, rent, or trade your personal data. We share data only with trusted service providers who help us operate the platform:',
+
+  // TODO: Translate from English
+  'privacy.p7': 'All third-party processors are bound by Data Processing Agreements (DPAs) ensuring GDPR compliance and data protection.',
+
+  // TODO: Translate from English
+  'privacy.p8': 'You can manage cookie preferences through the consent banner displayed on your first visit. You can change your choice anytime in your browser settings or by contacting us.',
+
+  // TODO: Translate from English
+  'privacy.p9': 'When you create a location post, you may voluntarily provide geographic coordinates (latitude and longitude). <strong>Important disclosures:</strong>',
+
+  // TODO: Translate from English
+  'privacy.ul1.li1': '<strong>Account Registration:</strong> Email address, username, and hashed password (we never store passwords in plain text)',
+
+  // TODO: Translate from English
+  'privacy.ul1.li2': '<strong>Profile Information:</strong> Optional nationality information and profile preferences',
+
+  // TODO: Translate from English
+  'privacy.ul1.li3': '<strong>Communications:</strong> Any information you provide when contacting us for support',
+
+  // TODO: Translate from English
+  'privacy.ul10.li1': '<strong>Standard Contractual Clauses (SCCs):</strong> EU-approved data transfer mechanisms',
+
+  // TODO: Translate from English
+  'privacy.ul10.li2': '<strong>Adequacy Decisions:</strong> Transfers only to countries recognized by the EU Commission as providing adequate protection',
+
+  // TODO: Translate from English
+  'privacy.ul10.li3': '<strong>Processor Guarantees:</strong> All processors commit to GDPR-equivalent data protection standards',
+
+  // TODO: Translate from English
+  'privacy.ul11.li1': '<strong>Account Data:</strong> Retained while your account is active, plus 30 days after deletion (to allow reactivation)',
+
+  // TODO: Translate from English
+  'privacy.ul11.li2': '<strong>User Posts:</strong> Retained while your account exists. When you delete a post, it\\'s permanently removed within 24 hours',
+
+  // TODO: Translate from English
+  'privacy.ul11.li3': '<strong>Order Data:</strong> 7 years from date of purchase (French tax law requirement)',
+
+  // TODO: Translate from English
+  'privacy.ul11.li4': '<strong>Technical Logs:</strong> IP addresses and security logs retained for 12 months maximum',
+
+  // TODO: Translate from English
+  'privacy.ul11.li5': '<strong>Anonymized Analytics:</strong> Retained indefinitely for service improvement (cannot be linked back to you)',
+
+  // TODO: Translate from English
+  'privacy.ul12.li1': '<strong>Encryption:</strong> All data transmitted using TLS/SSL encryption. Passwords stored using industry-standard hashing',
+
+  // TODO: Translate from English
+  'privacy.ul12.li2': '<strong>Access Controls:</strong> Role-based access, limited employee access, multi-factor authentication for admin accounts',
+
+  // TODO: Translate from English
+  'privacy.ul12.li3': '<strong>Regular Audits:</strong> Security assessments, vulnerability scanning, and code reviews',
+
+  // TODO: Translate from English
+  'privacy.ul12.li4': '<strong>Incident Response:</strong> Documented breach notification procedures (see Section 5.6)',
+
+  // TODO: Translate from English
+  'privacy.ul13.li1': '<strong>Notify Supervisory Authority:</strong> Within 72 hours of becoming aware of the breach (CNIL in France)',
+
+  // TODO: Translate from English
+  'privacy.ul13.li2': '<strong>Notify Affected Users:</strong> Without undue delay if the breach poses high risk to your rights and freedoms',
+
+  // TODO: Translate from English
+  'privacy.ul13.li3': '<strong>Provide Information:</strong> Nature of the breach, likely consequences, measures taken, and recommended actions',
+
+  // TODO: Translate from English
+  'privacy.ul14.li1': '<strong>Content Moderation:</strong> Automated pre-screening of posts for prohibited content (hate speech, explicit imagery). Flagged content is reviewed by human moderators before any action',
+
+  // TODO: Translate from English
+  'privacy.ul14.li2': '<strong>Spam Prevention:</strong> Automated detection of suspicious activity patterns (e.g., rapid post submissions)',
+
+  // TODO: Translate from English
+  'privacy.ul14.li3': '<strong>Gamification:</strong> Automated calculation of user levels and trophy eligibility based on contribution metrics',
+
+  // TODO: Translate from English
+  'privacy.ul15.li1': 'Notify you by email of significant changes (if you have an account)',
+
+  // TODO: Translate from English
+  'privacy.ul15.li2': 'Display a prominent notice on the website',
+
+  // TODO: Translate from English
+  'privacy.ul15.li3': 'Update the ',
+
+  // TODO: Translate from English
+  'privacy.ul16.li1': '<strong>Email:</strong> support@lightmyfire.app',
+
+  // TODO: Translate from English
+  'privacy.ul16.li2': '<strong>Data Protection Officer:</strong> support@lightmyfire.app',
+
+  // TODO: Translate from English
+  'privacy.ul16.li3': '<strong>Postal Address:</strong> Revel Editions SASU, [Complete Address], France',
+
+  // TODO: Translate from English
+  'privacy.ul2.li1': '<strong>Posts:</strong> Text content, images, YouTube video links you share on lighter pages',
+
+  // TODO: Translate from English
+  'privacy.ul2.li2': '<strong>Location Data:</strong> Optional geographic coordinates (latitude/longitude) when you create location posts. We can\\'t know if coordinates entered are linked to your actual location',
+
+  // TODO: Translate from English
+  'privacy.ul2.li3': '<strong>Metadata:</strong> Post timestamps, lighter associations, and interaction data (likes, flags)',
+
+  // TODO: Translate from English
+  'privacy.ul3.li1': '<strong>Payment Information:</strong> Processed securely by Stripe (our payment processor). We never store your full credit card details',
+
+  // TODO: Translate from English
+  'privacy.ul3.li2': '<strong>Shipping Information:</strong> Name, address, email, and phone number for sticker delivery',
+
+  // TODO: Translate from English
+  'privacy.ul3.li3': '<strong>Order History:</strong> Details of sticker packs purchased and customization preferences',
+
+  // TODO: Translate from English
+  'privacy.ul4.li1': '<strong>Device Information:</strong> IP address, browser type, operating system',
+
+  // TODO: Translate from English
+  'privacy.ul4.li2': '<strong>Usage Data:</strong> Pages visited, features used, time spent on the platform',
+
+  // TODO: Translate from English
+  'privacy.ul4.li3': '<strong>Cookies:</strong> Essential cookies for authentication and session management (see Section 5.1)',
+
+  // TODO: Translate from English
+  'privacy.ul5.li1': '<strong>Service Provision:</strong> Create and manage your account, display your contributions, process orders',
+
+  // TODO: Translate from English
+  'privacy.ul5.li2': '<strong>Communication:</strong> Send order confirmations, respond to inquiries, notify you of lighter activity (if opted-in)',
+
+  // TODO: Translate from English
+  'privacy.ul5.li3': '<strong>Platform Integrity:</strong> Prevent spam, enforce community guidelines, moderate content',
+
+  // TODO: Translate from English
+  'privacy.ul5.li4': '<strong>Gamification:</strong> Track achievements, award trophies, calculate user levels',
+
+  // TODO: Translate from English
+  'privacy.ul5.li5': '<strong>Legal Compliance:</strong> Comply with applicable laws and respond to legal requests',
+
+  // TODO: Translate from English
+  'privacy.ul5.li6': '<strong>Service Improvement:</strong> Analyze usage patterns to enhance user experience (anonymized data only)',
+
+  // TODO: Translate from English
+  'privacy.ul6.li1': '<strong>Contractual Necessity (Art. 6(1)(b) GDPR):</strong> Processing necessary to provide the services you requested when creating an account',
+
+  // TODO: Translate from English
+  'privacy.ul6.li2': '<strong>Legitimate Interests (Art. 6(1)(f) GDPR):</strong> Platform security, fraud prevention, content moderation, and service improvement—balanced against your rights',
+
+  // TODO: Translate from English
+  'privacy.ul6.li3': '<strong>Consent (Art. 6(1)(a) GDPR):</strong> Optional features like public post sharing, nationality display, and non-essential cookies—you can withdraw consent anytime',
+
+  // TODO: Translate from English
+  'privacy.ul6.li4': '<strong>Legal Obligation (Art. 6(1)(c) GDPR):</strong> Compliance with French and EU law, including tax obligations and law enforcement requests',
+
+  // TODO: Translate from English
+  'privacy.ul7.li1': '<strong>Supabase (Backend Infrastructure):</strong> Hosts our database, authentication system, and file storage. Located in EU data centers. <a href=\\'https://supabase.com/privacy\\' target=\\'_blank\\'>View Supabase Privacy Policy</a>',
+
+  // TODO: Translate from English
+  'privacy.ul7.li2': '<strong>Stripe (Payment Processing):</strong> Processes all payment transactions securely. We receive only transaction confirmations, not card details. <a href=\\'https://stripe.com/privacy\\' target=\\'_blank\\'>View Stripe Privacy Policy</a>',
+
+  // TODO: Translate from English
+  'privacy.ul7.li3': '<strong>Shipping Partners:</strong> Receive name, address, and contact information solely for sticker delivery',
+
+  // TODO: Translate from English
+  'privacy.ul8.li1': '<strong>Essential Cookies (No Consent Required):</strong> Session management, authentication, security features, and shopping cart functionality. These are strictly necessary for the platform to work.',
+
+  // TODO: Translate from English
+  'privacy.ul8.li2': '<strong>Preference Cookies (No Consent Required):</strong> Remember your language selection, cookie consent choice, and display preferences.',
+
+  // TODO: Translate from English
+  'privacy.ul8.li3': '<strong>Analytics Cookies (Consent Required):</strong> Help us understand how visitors use the site through anonymized data. We only activate these with your explicit consent.',
+
+  // TODO: Translate from English
+  'privacy.ul9.li1': 'This data is <strong>publicly visible</strong> on the lighter\\'s page and map',
+
+  // TODO: Translate from English
+  'privacy.ul9.li2': 'Anyone with the lighter\\'s PIN can see this information',
+
+  // TODO: Translate from English
+  'privacy.ul9.li3': 'You control the accuracy—you can provide approximate or exact coordinates',
+
+  // TODO: Translate from English
+  'privacy.ul9.li4': 'You are solely responsible for privacy implications of any location data you share',
+
+  // TODO: Translate from English
+  'privacy.ul9.li5': 'You can delete your location posts anytime from your profile',
+
+  // TODO: Translate from English
+  'profile.update_error': 'Error: {error}',
+
+  // TODO: Translate from English
+  'profile.update_success': 'Profile updated successfully!',
+
+  // TODO: Translate from English
+  'redirect.login_add_story': 'You must be logged in to add a story.',
+
+  // TODO: Translate from English
+  'redirect.login_like': 'You must be logged in to like a post',
+
+  // TODO: Translate from English
+  'redirect.login_profile': 'You must be logged in to view your profile.',
+
+  // TODO: Translate from English
+  'redirect.login_save_lighter': 'You must be logged in to save a lighter',
+
+  // TODO: Translate from English
+  'refill_guide.citations.1.source': 'World Economic Forum - Plastic Waste Statistics (2023)',
+
+  // TODO: Translate from English
+  'refill_guide.citations.1.text': 'Global lighter production and environmental impact data',
+
+  // TODO: Translate from English
+  'refill_guide.citations.1.url': 'https://www.weforum.org/agenda/2023/plastic-waste/',
+
+  // TODO: Translate from English
+  'refill_guide.citations.title': 'Sources & References',
+
+  // TODO: Translate from English
+  'refill_guide.key_indicators': 'Key indicators:',
+
+  // TODO: Translate from English
+  'refill_guide.stats.lighters_sold': 'Disposable lighters sold yearly',
+
+  // TODO: Translate from English
+  'refill_guide.stats.lighters_sold_worldwide': 'Worldwide',
+
+  // TODO: Translate from English
+  'refill_guide.stats.waste_reduction': 'Waste reduction',
+
+  // TODO: Translate from English
+  'refill_guide.stats.waste_reduction_method': 'With refillable lighters',
+
+  // TODO: Translate from English
+  'refill_guide.stats.years_decompose': 'Years to decompose',
+
+  // TODO: Translate from English
+  'refill_guide.stats.years_decompose_location': 'In landfills',
+
+  // TODO: Translate from English
+  'refill_guide.type1.indicator1': 'Small round metal valve on the bottom',
+
+  // TODO: Translate from English
+  'refill_guide.type1.indicator2': 'Similar to a tire valve',
+
+  // TODO: Translate from English
+  'refill_guide.type1.indicator3': 'Most common type',
+
+  // TODO: Translate from English
+  'refill_guide.type2.indicator1': 'Metal lighter (often iconic design)',
+
+  // TODO: Translate from English
+  'refill_guide.type2.indicator2': 'Inner block can be pulled out',
+
+  // TODO: Translate from English
+  'refill_guide.type2.indicator3': 'Cotton visible inside',
+
+  // TODO: Translate from English
+  'refill_guide.type3.indicator1': 'Flat, sealed plastic bottom',
+
+  // TODO: Translate from English
+  'refill_guide.type3.indicator2': 'No valve or removable parts',
+
+  // TODO: Translate from English
+  'refill_guide.type3.indicator3': 'Single-use only',
+
+  // TODO: Translate from English
+  'save_lighter.change_pack': '← Change Pack',
+
+  // TODO: Translate from English
+  'save_lighter.creative_journey': 'Creative Journey',
+
+  // TODO: Translate from English
+  'save_lighter.creative_journey_desc': 'Be part of a fun, global movement. Give lighters a second life with beautiful, hand-crafted stickers.',
+
+  // TODO: Translate from English
+  'save_lighter.design_preview': 'Preview of your custom stickers. Sticker files will be generated after payment.',
+
+  // TODO: Translate from English
+  'save_lighter.human_mosaic': 'Human Mosaic',
+
+  // TODO: Translate from English
+  'save_lighter.human_mosaic_desc': 'Join thousands of LightSavers creating a human mosaic of stories and creativity while fighting waste.',
+
+  // TODO: Translate from English
+  'save_lighter.more_stickers': '+{count} more',
+
+  // TODO: Translate from English
+  'save_lighter.sticker_plural': 'Stickers',
+
+  // TODO: Translate from English
+  'save_lighter.sticker_singular': 'Sticker',
+
+  // TODO: Translate from English
+  'save_lighter.sustainable_impact': 'Sustainable Impact',
+
+  // TODO: Translate from English
+  'save_lighter.sustainable_impact_desc': 'Our stickers are hand-made and sustainably manufactured. Help maintain this project alive.',
+
+  // TODO: Translate from English
+  'save_lighter.why_it_matters': 'Why It Matters',
+
+  // TODO: Translate from English
+  'save_lighter.your_design': 'Your Sticker Design',
+
+  // TODO: Translate from English
+  'settings.profile.nationality_label': 'Nationality',
+
+  // TODO: Translate from English
+  'settings.profile.nationality_optional': '(optional)',
+
+  // TODO: Translate from English
+  'settings.profile.nationality_placeholder': 'Select a country',
+
+  // TODO: Translate from English
+  'settings.profile.save_button': 'Save Profile',
+
+  // TODO: Translate from English
+  'settings.profile.saving': 'Saving...',
+
+  // TODO: Translate from English
+  'settings.profile.show_nationality_label': 'Show my nationality on my posts',
+
+  // TODO: Translate from English
+  'settings.profile.username_label': 'Username',
+
+  // TODO: Translate from English
+  'shipping.address_suggestions': '(Start typing for suggestions)',
+
+  // TODO: Translate from English
+  'stripe.card_info': 'Card Information',
+
+  // TODO: Translate from English
+  'stripe.error.generic': 'Payment failed. Please check your details or try again.',
+
+  // TODO: Translate from English
+  'stripe.pay_button': 'Pay {amount}',
+
+  // TODO: Translate from English
+  'terms.h3.acceptance': '1. Acceptance of Terms',
+
+  // TODO: Translate from English
+  'terms.h3.contact_terms': '12. Contact Information',
+
+  // TODO: Translate from English
+  'terms.h3.dispute_resolution': '9. Dispute Resolution and Governing Law',
+
+  // TODO: Translate from English
+  'terms.h3.eligibility': '2. Eligibility and Account Requirements',
+
+  // TODO: Translate from English
+  'terms.h3.general': '11. General Provisions',
+
+  // TODO: Translate from English
+  'terms.h3.indemnification': '8. Indemnification',
+
+  // TODO: Translate from English
+  'terms.h3.liability': '7. Disclaimers and Limitation of Liability',
+
+  // TODO: Translate from English
+  'terms.h3.license': '3. License and Intellectual Property',
+
+  // TODO: Translate from English
+  'terms.h3.moderation': '5. Content Moderation and Enforcement',
+
+  // TODO: Translate from English
+  'terms.h3.stickers': '6. Sticker Sales and Orders',
+
+  // TODO: Translate from English
+  'terms.h3.termination': '10. Termination',
+
+  // TODO: Translate from English
+  'terms.h3.ugc': '4. User-Generated Content and Conduct',
+
+  // TODO: Translate from English
+  'terms.h4.account_accuracy': '2.3. Account Information',
+
+  // TODO: Translate from English
+  'terms.h4.account_security': '2.2. Account Security',
+
+  // TODO: Translate from English
+  'terms.h4.age': '2.1. Age Requirement',
+
+  // TODO: Translate from English
+  'terms.h4.appeals': '5.4. Appeals Process',
+
+  // TODO: Translate from English
+  'terms.h4.as_is': '7.1. ',
+
+  // TODO: Translate from English
+  'terms.h4.assignment': '11.5. Assignment',
+
+  // TODO: Translate from English
+  'terms.h4.by_us': '10.2. Termination by Us',
+
+  // TODO: Translate from English
+  'terms.h4.by_you': '10.1. Termination by You',
+
+  // TODO: Translate from English
+  'terms.h4.community_flagging': '5.2. Community Flagging',
+
+  // TODO: Translate from English
+  'terms.h4.custom': '6.3. Customization',
+
+  // TODO: Translate from English
+  'terms.h4.effect': '10.3. Effect of Termination',
+
+  // TODO: Translate from English
+  'terms.h4.enforcement': '5.3. Enforcement Actions',
+
+  // TODO: Translate from English
+  'terms.h4.entire_agreement': '11.1. Entire Agreement',
+
+  // TODO: Translate from English
+  'terms.h4.governing_law': '9.1. Governing Law',
+
+  // TODO: Translate from English
+  'terms.h4.informal_resolution': '9.3. Informal Dispute Resolution',
+
+  // TODO: Translate from English
+  'terms.h4.jurisdiction': '9.2. Jurisdiction',
+
+  // TODO: Translate from English
+  'terms.h4.jurisdiction_limits': '7.3. Jurisdictional Limitations',
+
+  // TODO: Translate from English
+  'terms.h4.limitation': '7.2. Limitation of Liability',
+
+  // TODO: Translate from English
+  'terms.h4.mod_rights': '5.1. Our Rights',
+
+  // TODO: Translate from English
+  'terms.h4.modifications': '11.2. Modifications to Terms',
+
+  // TODO: Translate from English
+  'terms.h4.our_ip': '3.2. LightMyFire Intellectual Property',
+
+  // TODO: Translate from English
+  'terms.h4.our_license': '3.1. License to Use the Service',
+
+  // TODO: Translate from English
+  'terms.h4.prohibited_conduct': '4.3. Prohibited Conduct',
+
+  // TODO: Translate from English
+  'terms.h4.prohibited_content': '4.2. Prohibited Content',
+
+  // TODO: Translate from English
+  'terms.h4.sales_final': '6.1. Sales Policy',
+
+  // TODO: Translate from English
+  'terms.h4.severability': '11.3. Severability',
+
+  // TODO: Translate from English
+  'terms.h4.shipping': '6.2. Shipping and Delivery',
+
+  // TODO: Translate from English
+  'terms.h4.third_party': '11.6. No Third-Party Beneficiaries',
+
+  // TODO: Translate from English
+  'terms.h4.ugc_responsibility': '4.1. Your Responsibility',
+
+  // TODO: Translate from English
+  'terms.h4.user_license': '3.3. License to Your User-Generated Content',
+
+  // TODO: Translate from English
+  'terms.h4.waiver': '11.4. No Waiver',
+
+  // TODO: Translate from English
+  'terms.last_updated': 'Last updated: October 28, 2025',
+
+  // TODO: Translate from English
+  'terms.p1': 'These Terms of Service (',
+
+  // TODO: Translate from English
+  'terms.p10': 'By posting User-Generated Content (',
+
+  // TODO: Translate from English
+  'terms.p11': '<strong>Important:</strong> This license is limited to operating and promoting the Service. We will not use your content for unrelated commercial purposes. You retain ownership of your UGC and can revoke this license for specific posts by deleting them from your profile. However, copies may persist in backups for up to 30 days.',
+
+  // TODO: Translate from English
+  'terms.p12': 'You are solely responsible for all content you post on LightMyFire, including text, images, links to songs (YouTube URLs), and location data. You represent and warrant that:',
+
+  // TODO: Translate from English
+  'terms.p13': 'You must not post content that:',
+
+  // TODO: Translate from English
+  'terms.p14': 'You must not:',
+
+  // TODO: Translate from English
+  'terms.p15': 'We reserve the right (but have no obligation) to:',
+
+  // TODO: Translate from English
+  'terms.p16': 'However, we are not responsible for monitoring all content and make no guarantee that prohibited content will not appear on the Service.',
+
+  // TODO: Translate from English
+  'terms.p17': 'We use a community-driven flagging system. Users can flag content they believe violates these Terms. Flagged content is reviewed by our moderation team, which may include automated pre-screening followed by human review.',
+
+  // TODO: Translate from English
+  'terms.p18': 'Violations of these Terms may result in:',
+
+  // TODO: Translate from English
+  'terms.p19': 'We may terminate accounts without prior notice if we determine there\\'s a serious violation that threatens user safety or platform integrity.',
+
+  // TODO: Translate from English
+  'terms.p2': 'By accessing or using LightMyFire, you agree to be bound by these Terms, our Privacy Policy, and all applicable laws. If you do not agree with any part of these Terms, you must not use the Service. Your continued use constitutes acceptance of any modifications we make to these Terms.',
+
+  // TODO: Translate from English
+  'terms.p20': 'If you believe content was removed or your account was suspended in error, you may appeal by contacting support@lightmyfire.app within 30 days of the action. Include:',
+
+  // TODO: Translate from English
+  'terms.p21': 'We will review appeals and respond within 14 business days. Our decision on appeals is final.',
+
+  // TODO: Translate from English
+  'terms.p22': 'All sticker sales are final. We do not offer refunds except in cases of:',
+
+  // TODO: Translate from English
+  'terms.p23': 'To request a refund for these reasons, contact support@lightmyfire.app within 30 days of delivery with photo evidence.',
+
+  // TODO: Translate from English
+  'terms.p24': 'Shipping times and costs are specified at checkout. We are not responsible for delays caused by shipping carriers, customs, or events beyond our control (force majeure). Risk of loss passes to you upon delivery to the carrier.',
+
+  // TODO: Translate from English
+  'terms.p25': 'Custom sticker orders cannot be canceled once processing begins (typically within 24 hours of order placement). Please review your customizations carefully before completing your order.',
+
+  // TODO: Translate from English
+  'terms.p26': 'THE SERVICE IS PROVIDED ',
+
+  // TODO: Translate from English
+  'terms.p27': 'TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, REVEL EDITIONS SASU AND ITS DIRECTORS, EMPLOYEES, AGENTS, AND AFFILIATES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO:',
+
+  // TODO: Translate from English
+  'terms.p28': 'OUR TOTAL LIABILITY TO YOU FOR ALL CLAIMS ARISING FROM OR RELATED TO THE SERVICE SHALL NOT EXCEED THE GREATER OF (A) €100 OR (B) THE AMOUNT YOU PAID US IN THE 12 MONTHS PRECEDING THE CLAIM.',
+
+  // TODO: Translate from English
+  'terms.p29': 'Some jurisdictions do not allow the exclusion of certain warranties or limitation of liability for consequential damages. In such jurisdictions, our liability is limited to the maximum extent permitted by law.',
+
+  // TODO: Translate from English
+  'terms.p3': 'You must be at least 16 years old (or the minimum age required in your country to provide consent for data processing under applicable privacy laws) to create an account and use this Service. By creating an account, you represent and warrant that you meet this age requirement.',
+
+  // TODO: Translate from English
+  'terms.p30': 'You agree to defend, indemnify, and hold harmless Revel Editions SASU, its directors, officers, employees, and agents from any claims, damages, losses, liabilities, and expenses (including reasonable attorneys\\' fees) arising from:',
+
+  // TODO: Translate from English
+  'terms.p31': 'These Terms are governed by and construed in accordance with the laws of France, without regard to its conflict of law principles. The United Nations Convention on Contracts for the International Sale of Goods does not apply.',
+
+  // TODO: Translate from English
+  'terms.p32': 'Any disputes arising from these Terms or your use of the Service shall be subject to the exclusive jurisdiction of the courts of Paris, France. However, we may seek injunctive relief in any court of competent jurisdiction.',
+
+  // TODO: Translate from English
+  'terms.p33': 'Before filing any formal claim, you agree to contact us at support@lightmyfire.app to attempt to resolve the dispute informally. We commit to working with you in good faith to reach a resolution within 60 days.',
+
+  // TODO: Translate from English
+  'terms.p34': 'You may terminate your account at any time by contacting support@lightmyfire.app. Upon termination:',
+
+  // TODO: Translate from English
+  'terms.p35': 'We may suspend or terminate your account immediately, without prior notice, for:',
+
+  // TODO: Translate from English
+  'terms.p36': 'Upon termination for any reason:',
+
+  // TODO: Translate from English
+  'terms.p37': 'These Terms, together with our Privacy Policy, constitute the entire agreement between you and Revel Editions SASU regarding the Service and supersede all prior agreements.',
+
+  // TODO: Translate from English
+  'terms.p38': 'We reserve the right to modify these Terms at any time. When we make changes:',
+
+  // TODO: Translate from English
+  'terms.p39': 'If you don\\'t agree to modified Terms, you must stop using the Service.',
+
+  // TODO: Translate from English
+  'terms.p4': 'You are responsible for:',
+
+  // TODO: Translate from English
+  'terms.p40': 'If any provision of these Terms is found invalid or unenforceable, that provision shall be enforced to the maximum extent possible, and the remaining provisions shall remain in full effect.',
+
+  // TODO: Translate from English
+  'terms.p41': 'Our failure to enforce any right or provision of these Terms does not constitute a waiver of that right or provision.',
+
+  // TODO: Translate from English
+  'terms.p42': 'You may not assign or transfer these Terms or your account without our written consent. We may assign our rights and obligations without restriction.',
+
+  // TODO: Translate from English
+  'terms.p43': 'These Terms do not create any third-party beneficiary rights except as expressly stated.',
+
+  // TODO: Translate from English
+  'terms.p44': 'For questions about these Terms, contact us:',
+
+  // TODO: Translate from English
+  'terms.p5': 'You may not share your account with others or use another person\\'s account without permission.',
+
+  // TODO: Translate from English
+  'terms.p6': 'You agree to provide accurate, current, and complete information during registration and to update it as necessary to maintain its accuracy.',
+
+  // TODO: Translate from English
+  'terms.p7': 'Subject to these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to access and use LightMyFire for personal, non-commercial purposes.',
+
+  // TODO: Translate from English
+  'terms.p8': 'All content, features, and functionality of the Service—including but not limited to text, graphics, logos, icons, images, audio clips, data compilations, software, and the ',
+
+  // TODO: Translate from English
+  'terms.p9': '[TODO: Translate terms.p9]',
+
+  // TODO: Translate from English
+  'terms.ul1.li1': 'Maintaining the confidentiality of your account credentials',
+
+  // TODO: Translate from English
+  'terms.ul1.li2': 'All activities that occur under your account',
+
+  // TODO: Translate from English
+  'terms.ul1.li3': 'Notifying us immediately of any unauthorized use at: support@lightmyfire.app',
+
+  // TODO: Translate from English
+  'terms.ul10.li1': 'The Service will meet your requirements',
+
+  // TODO: Translate from English
+  'terms.ul10.li2': 'The Service will be uninterrupted, timely, secure, or error-free',
+
+  // TODO: Translate from English
+  'terms.ul10.li3': 'Results obtained from use of the Service will be accurate or reliable',
+
+  // TODO: Translate from English
+  'terms.ul10.li4': 'Any errors in the Service will be corrected',
+
+  // TODO: Translate from English
+  'terms.ul11.li1': 'Loss of profits, data, use, goodwill, or other intangible losses',
+
+  // TODO: Translate from English
+  'terms.ul11.li2': 'Unauthorized access to or alteration of your content',
+
+  // TODO: Translate from English
+  'terms.ul11.li3': 'Third-party conduct or content on the Service',
+
+  // TODO: Translate from English
+  'terms.ul11.li4': 'Any matter beyond our reasonable control',
+
+  // TODO: Translate from English
+  'terms.ul12.li1': 'Your use or misuse of the Service',
+
+  // TODO: Translate from English
+  'terms.ul12.li2': 'Your violation of these Terms',
+
+  // TODO: Translate from English
+  'terms.ul12.li3': 'Your violation of any rights of another party',
+
+  // TODO: Translate from English
+  'terms.ul12.li4': 'Your User-Generated Content',
+
+  // TODO: Translate from English
+  'terms.ul13.li1': 'Your account will be deactivated',
+
+  // TODO: Translate from English
+  'terms.ul13.li2': 'You lose access to all account features',
+
+  // TODO: Translate from English
+  'terms.ul13.li3': 'Your posts remain visible on lighter pages (they\\'re part of those lighters\\' stories)',
+
+  // TODO: Translate from English
+  'terms.ul13.li4': 'To delete your posts before account termination, do so manually from your profile',
+
+  // TODO: Translate from English
+  'terms.ul14.li1': 'Violation of these Terms',
+
+  // TODO: Translate from English
+  'terms.ul14.li2': 'Fraudulent, abusive, or illegal activity',
+
+  // TODO: Translate from English
+  'terms.ul14.li3': 'Prolonged inactivity (accounts inactive for 3+ years)',
+
+  // TODO: Translate from English
+  'terms.ul14.li4': 'At our sole discretion if necessary to protect the Service or other users',
+
+  // TODO: Translate from English
+  'terms.ul15.li1': 'Your right to use the Service ceases immediately',
+
+  // TODO: Translate from English
+  'terms.ul15.li2': 'Sections that by their nature should survive termination remain in effect (including Intellectual Property, Disclaimers, Limitation of Liability, Indemnification, Dispute Resolution)',
+
+  // TODO: Translate from English
+  'terms.ul15.li3': 'We may retain certain data as required by law or legitimate business purposes',
+
+  // TODO: Translate from English
+  'terms.ul16.li1': 'We\\'ll update the ',
+
+  // TODO: Translate from English
+  'terms.ul16.li2': 'For material changes, we\\'ll notify you by email or prominent notice on the Service',
+
+  // TODO: Translate from English
+  'terms.ul16.li3': 'Your continued use after changes constitutes acceptance',
+
+  // TODO: Translate from English
+  'terms.ul17.li1': '<strong>Email:</strong> support@lightmyfire.app',
+
+  // TODO: Translate from English
+  'terms.ul17.li2': '<strong>Support:</strong> support@lightmyfire.app',
+
+  // TODO: Translate from English
+  'terms.ul17.li3': '<strong>Address:</strong> Revel Editions SASU, Cs 20008 145 Rue de Noisy-le-Sec 93260 Les Lilas, France',
+
+  // TODO: Translate from English
+  'terms.ul2.li1': 'Use, reproduce, distribute, modify, adapt, publicly perform, and publicly display your UGC',
+
+  // TODO: Translate from English
+  'terms.ul2.li2': 'Incorporate your UGC into other works in any format or medium',
+
+  // TODO: Translate from English
+  'terms.ul2.li3': 'Sublicense these rights to third parties solely for the operation and promotion of LightMyFire',
+
+  // TODO: Translate from English
+  'terms.ul3.li1': 'You own or have the necessary rights to post the content',
+
+  // TODO: Translate from English
+  'terms.ul3.li2': 'Your content does not violate any third party\\'s intellectual property, privacy, or other rights',
+
+  // TODO: Translate from English
+  'terms.ul3.li3': 'Your content complies with these Terms and applicable laws',
+
+  // TODO: Translate from English
+  'terms.ul4.li1': '<strong>Illegal:</strong> Violates any local, national, or international law',
+
+  // TODO: Translate from English
+  'terms.ul4.li10': '<strong>Malicious:</strong> Contains viruses, malware, or other harmful code',
+
+  // TODO: Translate from English
+  'terms.ul4.li11': '<strong>Private Information:</strong> Shares others\\' personal information without consent (doxxing)',
+
+  // TODO: Translate from English
+  'terms.ul4.li2': '<strong>Harmful to Minors:</strong> Exploits, sexualizes, or endangers children in any way',
+
+  // TODO: Translate from English
+  'terms.ul4.li3': '<strong>Hateful:</strong> Promotes hatred, discrimination, or violence against individuals or groups based on race, ethnicity, religion, gender, sexual orientation, disability, or other protected characteristics',
+
+  // TODO: Translate from English
+  'terms.ul4.li4': '<strong>Violent or Threatening:</strong> Depicts, encourages, or threatens violence, self-harm, or harm to others',
+
+  // TODO: Translate from English
+  'terms.ul4.li5': '<strong>Harassing:</strong> Bullies, harasses, stalks, or intimidates others',
+
+  // TODO: Translate from English
+  'terms.ul4.li6': '<strong>Sexually Explicit:</strong> Contains pornography or sexually explicit material',
+
+  // TODO: Translate from English
+  'terms.ul4.li7': '<strong>Misleading:</strong> Contains false, misleading, or fraudulent information',
+
+  // TODO: Translate from English
+  'terms.ul4.li8': '<strong>Spam:</strong> Consists of unsolicited advertising, promotional material, or repetitive content',
+
+  // TODO: Translate from English
+  'terms.ul4.li9': '<strong>Infringing:</strong> Violates copyrights, trademarks, patents, or other intellectual property rights',
+
+  // TODO: Translate from English
+  'terms.ul5.li1': 'Impersonate any person or entity',
+
+  // TODO: Translate from English
+  'terms.ul5.li2': 'Manipulate the Service to artificially inflate metrics (likes, views, etc.)',
+
+  // TODO: Translate from English
+  'terms.ul5.li3': 'Interfere with or disrupt the Service or servers',
+
+  // TODO: Translate from English
+  'terms.ul5.li4': 'Attempt to gain unauthorized access to any part of the Service',
+
+  // TODO: Translate from English
+  'terms.ul5.li5': 'Use automated tools (bots, scrapers) without written permission',
+
+  // TODO: Translate from English
+  'terms.ul5.li6': 'Circumvent any content filtering or security measures',
+
+  // TODO: Translate from English
+  'terms.ul5.li7': 'Use the Service for any commercial purpose without our consent',
+
+  // TODO: Translate from English
+  'terms.ul6.li1': 'Review, screen, edit, or remove any UGC at any time for any reason',
+
+  // TODO: Translate from English
+  'terms.ul6.li2': 'Monitor user activity for violations of these Terms',
+
+  // TODO: Translate from English
+  'terms.ul6.li3': 'Investigate complaints and reported content',
+
+  // TODO: Translate from English
+  'terms.ul7.li1': '<strong>Content Removal:</strong> Removal of violating posts without notice',
+
+  // TODO: Translate from English
+  'terms.ul7.li2': '<strong>Warning:</strong> A formal warning for first-time or minor violations',
+
+  // TODO: Translate from English
+  'terms.ul7.li3': '<strong>Temporary Suspension:</strong> Temporary account suspension (duration determined by severity)',
+
+  // TODO: Translate from English
+  'terms.ul7.li4': '<strong>Permanent Termination:</strong> Permanent account termination for serious or repeated violations',
+
+  // TODO: Translate from English
+  'terms.ul7.li5': '<strong>Legal Action:</strong> Reporting to law enforcement for illegal activity',
+
+  // TODO: Translate from English
+  'terms.ul8.li1': 'Your username and account email',
+
+  // TODO: Translate from English
+  'terms.ul8.li2': 'Description of the content or action in question',
+
+  // TODO: Translate from English
+  'terms.ul8.li3': 'Explanation of why you believe the decision was incorrect',
+
+  // TODO: Translate from English
+  'terms.ul9.li1': 'Manufacturing defects in the stickers',
+
+  // TODO: Translate from English
+  'terms.ul9.li2': 'Incorrect items shipped',
+
+  // TODO: Translate from English
+  'terms.ul9.li3': 'Non-delivery due to our error',
+
+  // TODO: Translate from English
+  'validation.email_invalid': 'Please enter a valid email address.',
+
+  // TODO: Translate from English
+  'validation.email_required': 'Email is required.',
+
+  // TODO: Translate from English
+  'validation.field_required': 'This field is required.',
+
+  // TODO: Translate from English
+  'validation.password_requirement.lowercase': 'At least one lowercase letter',
+
+  // TODO: Translate from English
+  'validation.password_requirement.min_length': 'At least {count} characters',
+
+  // TODO: Translate from English
+  'validation.password_requirement.number': 'At least one number',
+
+  // TODO: Translate from English
+  'validation.password_requirement.uppercase': 'At least one uppercase letter',
+
+  // TODO: Translate from English
+  'validation.password_requirements': 'Password must contain at least one uppercase letter, one lowercase letter, and one number',
+
+  // TODO: Translate from English
+  'validation.password_too_short': 'Password must be at least {min} characters.',
+
+  // TODO: Translate from English
+  'validation.username_length': 'Username must be between {min} and {max} characters.',
+
+  // TODO: Translate from English
+  'validation.username_required': 'Username cannot be empty.',
+} as const;

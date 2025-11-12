@@ -725,4 +725,2156 @@ export default {
   'auth.signup.error.passwords_no_match': '비밀번호가 일치하지 않습니다',
   'my_profile.tabs.my_orders': '내 주문',
 
-  } as const;
+  
+  'add_post.button.checking_alt': '확인 중...',
+
+  'add_post.button.checking_content': '콘텐츠 확인 중...',
+
+  'add_post.button.loading_alt': '로딩 중...',
+
+  'add_post.button.search': '검색',
+
+  'add_post.button.select': '선택',
+
+  'add_post.char_counter': '남은 글자 수: {remaining}자',
+
+  'add_post.error.cooldown_active': '이 라이터에 다시 게시하려면 {hours}시간을 기다려주세요.',
+
+  'add_post.error.cooldown_check_failed': '게시 가능 여부를 확인할 수 없습니다. 다시 시도해주세요.',
+
+  'add_post.error.file_too_large': '파일이 너무 큽니다. 2MB 이하의 파일을 선택해주세요.',
+
+  'add_post.error.invalid_latitude': '위도는 -90에서 90 사이여야 합니다.',
+
+  'add_post.error.invalid_longitude': '경도는 -180에서 180 사이여야 합니다.',
+
+  'add_post.error.text_too_long': '텍스트가 너무 깁니다. 최대 {max}자까지 입력할 수 있습니다.',
+
+  'add_post.error.youtube_api_error': 'YouTube API 오류: {message}',
+
+  // TODO: Translate from English
+  'add_post.moderation.content_review': '⚠️ Content Review',
+
+  // TODO: Translate from English
+  'add_post.moderation.tip': '💡 Tip: Consider revising to be more community-friendly.',
+
+  'add_post.options': '옵션',
+
+  'add_post.placeholder.location_lat': '위도 (예: 48.8566)',
+
+  'add_post.placeholder.location_lng': '경도 (예: 2.3522)',
+
+  // TODO: Translate from English
+  'add_post.placeholder.location_name': 'Name of a place (e.g., \\'Cafe Central\\')',
+
+  'add_post.prompt_v1': '이 라이터는 어떤 추억을 담고 있나요? 이야기를 들려주세요...',
+
+  'add_post.prompt_v2': '어디서 찾았나요? 그 다음은 무슨 일이 있었나요?',
+
+  // TODO: Translate from English
+  'add_post.prompt_v3': 'A thought, a poem, a moment—share what\\'s on your mind...',
+
+  'add_post.prompt_v4': '어떤 노래가 흘러나오나요? 분위기를 설명해보세요...',
+
+  'add_post.prompt_v5': '이 라이터가 말을 할 수 있다면 뭐라고 할까요?',
+
+  'add_post.select_post_type': '게시물 유형 선택',
+
+  'add_post.youtube_search.selected_video': '선택된 동영상:',
+
+  'add_post.youtube_search.video_preview': '동영상 미리보기:',
+
+  'admin.orders.action.refund': '환불',
+
+  'admin.orders.action.refunded': '환불됨',
+
+  'admin.orders.action.refunding': '환불 중...',
+
+  // TODO: Translate from English
+  'admin.orders.action.send_fulfillment': '📧 Send to Fulfillment',
+
+  'admin.orders.action.sending': '전송 중...',
+
+  // TODO: Translate from English
+  'admin.orders.confirm_resend': 'Resend fulfillment email with stickers for order {orderId}...?',
+
+  'admin.orders.details.full_order_id': '전체 주문 ID',
+
+  'admin.orders.details.na': '해당 없음',
+
+  'admin.orders.details.payment_intent_id': '결제 의도 ID',
+
+  'admin.orders.details.refund_info': '환불 정보',
+
+  'admin.orders.details.shipping_address': '배송 주소',
+
+  'admin.orders.details.title': '주문 상세',
+
+  'admin.orders.details.user_email': '사용자 이메일',
+
+  'admin.orders.no_orders': '주문이 없습니다.',
+
+  // TODO: Translate from English
+  'admin.orders.pack_size_count': '{count} stickers',
+
+  'admin.orders.pending_refunds': '대기 중인 환불',
+
+  // TODO: Translate from English
+  'admin.orders.refund_confirm': 'Are you sure you want to refund €{amount} to {email}?',
+
+  // TODO: Translate from English
+  'admin.orders.refund_error': 'Refund failed: {error}',
+
+  'admin.orders.refund_failed': '환불 실패',
+
+  // TODO: Translate from English
+  'admin.orders.refund_success': 'Refund successful! Amount: €{amount}',
+
+  'admin.orders.refunded': '환불됨',
+
+  // TODO: Translate from English
+  'admin.orders.resend_error': '❌ Failed to resend: {error}',
+
+  // TODO: Translate from English
+  'admin.orders.resend_failed': 'Failed to resend fulfillment email',
+
+  // TODO: Translate from English
+  'admin.orders.resend_success': '✅ Fulfillment email resent successfully!\n\n{count} sticker(s) sent to fulfillment team.',
+
+  'admin.orders.table.actions': '작업',
+
+  'admin.orders.table.amount': '금액',
+
+  'admin.orders.table.customer': '고객',
+
+  'admin.orders.table.date': '날짜',
+
+  'admin.orders.table.order_id': '주문 ID',
+
+  'admin.orders.table.pack_size': '팩 크기',
+
+  'admin.orders.table.status': '상태',
+
+  'admin.orders.total_orders': '전체 주문 수',
+
+  'admin.orders.total_revenue': '전체 수익',
+
+  'alt.arrow_save_lighter': '라이터 저장 버튼을 가리키는 화살표',
+
+  'alt.butane_lighter': '부탄 충전식 라이터',
+
+  'alt.butane_refill_process': '부탄 라이터 충전 과정',
+
+  'alt.community': '커뮤니티',
+
+  'alt.creative': '창의적',
+
+  'alt.gasoline_lighter': '가솔린 충전식 라이터',
+
+  'alt.gasoline_refill_process': '가솔린 라이터 충전 과정',
+
+  'alt.lighter_illustration': '라이터 일러스트',
+
+  'alt.lightmyfire_logo': '라이트마이파이어',
+
+  'alt.lightmyfire_tagline': '라이트마이파이어 - 라이터에 두 번째 생명을 불어넣으세요',
+
+  'alt.non_refillable_lighter': '충전 불가 라이터',
+
+  'alt.personalise': '개인화',
+
+  'alt.qr_code': 'QR 코드',
+
+  'alt.sustainable': '지속 가능한',
+
+  'aria.close_notification': '알림 닫기',
+
+  'aria.global': '전체',
+
+  'aria.hex_color': 'HEX 색상 코드',
+
+  'aria.learn_levels': '레벨을 얻는 방법 알아보기',
+
+  'aria.popular_colors': '인기 색상 팔레트',
+
+  'aria.search_location': '위치 검색',
+
+  'auth.already_have_account': '이미 계정이 있나요? 로그인',
+
+  'auth.continue_with': '계속하기',
+
+  // TODO: Translate from English
+  'auth.dont_have_account': 'Don\\'t have an account? Sign up',
+
+  'auth.email_label': '이메일',
+
+  'auth.email_placeholder': 'you@example.com',
+
+  'auth.forgot_password': '비밀번호를 잊으셨나요?',
+
+  'auth.password_label': '비밀번호',
+
+  'auth.password_placeholder': '비밀번호',
+
+  'auth.sign_in': '로그인',
+
+  'auth.sign_up': '가입',
+
+  'auth.signing_in': '로그인 중...',
+
+  'auth.signing_up': '가입 중...',
+
+  'color.blue_violet': '청보라',
+
+  'color.bright_yellow': '밝은 노랑',
+
+  'color.coral_red': '산호 빨강',
+
+  'color.deep_pink': '진분홍',
+
+  'color.forest_green': '숲 초록',
+
+  'color.golden_yellow': '금빛 노랑',
+
+  'color.light_gray': '밝은 회색',
+
+  'color.light_green': '연두',
+
+  'color.light_pink': '연분홍',
+
+  'color.royal_blue': '로열 블루',
+
+  'color.sky_blue': '하늘색',
+
+  'color.sunset_orange': '노을 주황',
+
+  'color.turquoise': '청록색',
+
+  'color.warm_orange': '따뜻한 주황',
+
+  'common.loading_alt': '로딩 중...',
+
+  'contact.button': '문의하기',
+
+  'contact.cancel': '취소',
+
+  'contact.email_label': '이메일',
+
+  'contact.email_placeholder': 'your.email@example.com',
+
+  'contact.message_label': '메시지',
+
+  'contact.message_placeholder': '어떻게 도와드릴까요?',
+
+  'contact.modal_title': '문의하기',
+
+  'contact.name_label': '이름',
+
+  'contact.name_placeholder': '이름',
+
+  'contact.optional': '선택사항',
+
+  'contact.phone_label': '전화번호',
+
+  // TODO: Translate from English
+  'contact.phone_placeholder': '+33 6 12 34 56 78',
+
+  'contact.sending': '전송 중...',
+
+  'contact.subject.custom_branding': '맞춤 브랜딩 문의',
+
+  'contact.subject.general': '일반 문의',
+
+  'contact.subject.question': '라이트마이파이어 관련 질문',
+
+  'contact.success_message': '메시지가 전송되었습니다!',
+
+  // TODO: Translate from English
+  'contact.success_subtitle': 'We\\'ll get back to you soon.',
+
+  'email.activity.by': '작성자:',
+
+  // TODO: Translate from English
+  'email.activity.greeting': 'Hi {name},',
+
+  // TODO: Translate from English
+  'email.activity.intro': 'There\\'s new activity on your lighter ',
+
+  'email.activity.lighter': '라이터:',
+
+  // TODO: Translate from English
+  'email.activity.outro': 'Your lighter\\'s journey continues! See where it\\'s been and who\\'s found it.',
+
+  'email.activity.pin': 'PIN:',
+
+  'email.activity.type.milestone': '이정표 달성',
+
+  'email.activity.type.new_like': '누군가 게시물을 좋아합니다',
+
+  'email.activity.type.new_post': '새로운 이야기 추가됨',
+
+  'email.activity.type.refuel': '라이터 재충전됨',
+
+  'email.common.button.accept_invite': '초대 수락',
+
+  'email.common.button.save_lighter': '첫 라이터 저장하기',
+
+  'email.common.button.track_package': '배송 추적',
+
+  'email.common.button.view_lighter': '라이터 보기',
+
+  'email.common.button.view_order': '주문 상세 보기',
+
+  'email.common.button.view_profile': '내 프로필 보기',
+
+  'email.common.button.view_trophies': '내 트로피 보기',
+
+  // TODO: Translate from English
+  'email.common.footer_copyright': '© {year} LightMyFire. All rights reserved.',
+
+  'email.common.footer_questions': '문의사항이 있으신가요? 이메일:',
+
+  // TODO: Translate from English
+  'email.common.footer_tagline': 'LightMyFire – Give Your Lighter a Second Life',
+
+  // TODO: Translate from English
+  'email.first_post.achievement': '🏆 Achievement Unlocked: First Spark',
+
+  // TODO: Translate from English
+  'email.first_post.achievement_content': 'You\\'ve lit your first flame in the LightMyFire community!',
+
+  // TODO: Translate from English
+  'email.first_post.greeting': 'Congratulations, {name}! 🎉',
+
+  // TODO: Translate from English
+  'email.first_post.intro': 'You just added your very first post to your LightMyFire lighter ',
+
+  'email.first_post.lighter': '라이터:',
+
+  // TODO: Translate from English
+  'email.first_post.next_step1': 'Share it: Pass your lighter to a friend or leave it somewhere interesting',
+
+  // TODO: Translate from English
+  'email.first_post.next_step2': 'Get stickers: Order custom stickers to help others find your lighter\\'s story',
+
+  // TODO: Translate from English
+  'email.first_post.next_step3': 'Watch it grow: Check back to see new posts as your lighter travels',
+
+  // TODO: Translate from English
+  'email.first_post.next_steps_title': '💡 Next Steps',
+
+  'email.first_post.pin': 'PIN:',
+
+  'email.first_post.type': '첫 게시물 유형:',
+
+  'email.first_post.welcome_title': '운동에 오신 것을 환영합니다!',
+
+  // TODO: Translate from English
+  'email.first_post.what_started_content': 'Your lighter is now part of something special. Every time someone finds it and adds their story, you\\'ll be able to see where it\\'s been and the connections it\\'s made.',
+
+  // TODO: Translate from English
+  'email.first_post.what_started_title': '🎯 What You\\'ve Started',
+
+  // TODO: Translate from English
+  'email.first_post_subject': 'You lit the first spark! 🔥 Welcome to the LightSaver family',
+
+  // TODO: Translate from English
+  'email.lighter_activity_subject': 'Your lighter is making new friends! 🌍',
+
+  // TODO: Translate from English
+  'email.moderation_approved_subject': 'Good news! Your story is now live. 🎉',
+
+  // TODO: Translate from English
+  'email.moderation_rejected_subject': 'About your recent post... let\\'s chat',
+
+  // TODO: Translate from English
+  'email.moderator.benefit1': 'Early access to new features',
+
+  // TODO: Translate from English
+  'email.moderator.benefit2': 'Special moderator badge on your profile',
+
+  // TODO: Translate from English
+  'email.moderator.benefit3': 'Direct communication with the LightMyFire team',
+
+  // TODO: Translate from English
+  'email.moderator.benefit4': 'Help shape the future of the community',
+
+  // TODO: Translate from English
+  'email.moderator.benefits_title': '🎁 Moderator Benefits',
+
+  // TODO: Translate from English
+  'email.moderator.greeting': 'Hi {name},',
+
+  // TODO: Translate from English
+  'email.moderator.intro': '{inviter} has invited you to join the LightMyFire moderation team!',
+
+  // TODO: Translate from English
+  'email.moderator.not_interested': 'Not interested? You can ignore this email.',
+
+  // TODO: Translate from English
+  'email.moderator.responsibilities_title': '📋 Your Responsibilities',
+
+  // TODO: Translate from English
+  'email.moderator.what_is_content': 'Moderators help keep the LightMyFire community safe, positive, and welcoming by reviewing flagged content and ensuring our community guidelines are upheld.',
+
+  // TODO: Translate from English
+  'email.moderator.what_is_title': '👮 What is a Moderator?',
+
+  // TODO: Translate from English
+  'email.moderator_invite_subject': 'You\\'ve Been Invited to Join the Moderation Team',
+
+  // TODO: Translate from English
+  'email.order_confirmation.estimated_delivery': 'Estimated delivery: 5-10 business days',
+
+  // TODO: Translate from English
+  'email.order_confirmation.greeting': 'Hi {name},',
+
+  // TODO: Translate from English
+  'email.order_confirmation.intro': 'Thank you for your order! Your payment has been processed successfully. 🎉',
+
+  // TODO: Translate from English
+  'email.order_confirmation.lighters_ready': 'Each lighter now has a unique PIN and is ready to start its journey!',
+
+  // TODO: Translate from English
+  'email.order_confirmation.lighters_title': '🔥 Your Lighters',
+
+  'email.order_confirmation.order_id': '주문 ID:',
+
+  // TODO: Translate from English
+  'email.order_confirmation.questions': 'Questions about your order? Reply to this email anytime.',
+
+  // TODO: Translate from English
+  'email.order_confirmation.shipping_title': '📮 Shipping To',
+
+  'email.order_confirmation.stickers': '스티커:',
+
+  // TODO: Translate from English
+  'email.order_confirmation.stickers_packs': '{quantity} pack{plural}',
+
+  // TODO: Translate from English
+  'email.order_confirmation.summary_title': '📦 Order Summary',
+
+  'email.order_confirmation.total_paid': '결제 금액:',
+
+  // TODO: Translate from English
+  'email.order_confirmation.whats_next_content': 'Your stickers are being prepared for shipment. You\\'ll receive another email with tracking information once they\\'re on their way!',
+
+  // TODO: Translate from English
+  'email.order_confirmation.whats_next_title': '⏰ What\\'s Next?',
+
+  // TODO: Translate from English
+  'email.order_confirmation_subject': 'Order Confirmed! Your LightMyFire stickers are on the way 📦',
+
+  'email.order_shipped.carrier': '택배사:',
+
+  // TODO: Translate from English
+  'email.order_shipped.details_title': '📋 Shipping Details',
+
+  'email.order_shipped.estimated_delivery': '예상 배송일:',
+
+  // TODO: Translate from English
+  'email.order_shipped.greeting': 'Great news, {name}! 📦',
+
+  // TODO: Translate from English
+  'email.order_shipped.intro': 'Your custom LightMyFire stickers have been shipped and are on their way to you.',
+
+  // TODO: Translate from English
+  'email.order_shipped.lighters_intro': 'You ordered {quantity} custom stickers for:',
+
+  // TODO: Translate from English
+  'email.order_shipped.lighters_title': '🔥 Your Lighters',
+
+  'email.order_shipped.order_id': '주문 ID:',
+
+  // TODO: Translate from English
+  'email.order_shipped.pro_tip': '💡 Pro Tip:',
+
+  // TODO: Translate from English
+  'email.order_shipped.pro_tip_content': 'Your lighters are already active! Start adding posts now while you wait for your stickers to arrive.',
+
+  // TODO: Translate from English
+  'email.order_shipped.pro_tip_link': 'View My Lighters →',
+
+  'email.order_shipped.tracking': '송장 번호:',
+
+  // TODO: Translate from English
+  'email.order_shipped_subject': 'Your lighter-saving kit is on the way! 🚀✨',
+
+  // TODO: Translate from English
+  'email.trophy.greeting': 'Awesome work, {name}! 🏆',
+
+  // TODO: Translate from English
+  'email.trophy.intro': 'You\\'ve earned a new trophy on LightMyFire!',
+
+  // TODO: Translate from English
+  'email.trophy.keep_going': '💡 Keep Going!',
+
+  // TODO: Translate from English
+  'email.trophy.keep_going_content': 'There are more trophies waiting to be unlocked. Can you collect them all?',
+
+  // TODO: Translate from English
+  'email.trophy.what_you_did': '🎯 What You Did',
+
+  // TODO: Translate from English
+  'email.trophy_earned_subject': '🏆 Achievement unlocked: {trophy_name}!',
+
+  // TODO: Translate from English
+  'email.welcome.get_started_intro': 'Here\\'s what you can do now:',
+
+  // TODO: Translate from English
+  'email.welcome.get_started_title': '🚀 Get Started',
+
+  // TODO: Translate from English
+  'email.welcome.greeting': 'Hi {name}! 👋',
+
+  // TODO: Translate from English
+  'email.welcome.intro': 'Welcome to the LightSavers\\' community! We\\'re thrilled to have you here.',
+
+  // TODO: Translate from English
+  'email.welcome.questions': 'Questions? Just reply to this email—we\\'re here to help!',
+
+  // TODO: Translate from English
+  'email.welcome.step1': 'Save your first lighter - Give it a name and get custom stickers delivered to your home',
+
+  // TODO: Translate from English
+  'email.welcome.step2': 'Find a lighter - Enter a PIN from a sticker you found to see its journey',
+
+  // TODO: Translate from English
+  'email.welcome.step3': 'Join the mosaic - Share posts, thoughts, songs, and locations',
+
+  // TODO: Translate from English
+  'email.welcome.what_is_content': 'LightMyFire is a global movement giving lighters a second life through storytelling. Every lighter gets a digital identity, a unique sticker, and travels the world collecting stories from everyone who finds it.',
+
+  // TODO: Translate from English
+  'email.welcome.what_is_title': '🔥 What is LightMyFire?',
+
+  // TODO: Translate from English
+  'email.welcome_subject': 'Welcome to LightMyFire! 🔥',
+
+  'empty_lighter.action': '첫 게시물 추가하기',
+
+  // TODO: Translate from English
+  'empty_lighter.description': 'This lighter\\'s journey has just started. Be the first to add a chapter to its story and inspire others!',
+
+  // TODO: Translate from English
+  'empty_lighter.title': 'The Story Begins...',
+
+  'empty_posts.action': '첫 게시물 추가하기',
+
+  // TODO: Translate from English
+  'empty_posts.message': 'Be the first to add a story, picture, or song to this lighter\\'s journey!',
+
+  // TODO: Translate from English
+  'empty_posts.title': 'This lighter\\'s story is waiting to be written! ✨',
+
+  // TODO: Translate from English
+  'empty_state.default_message': 'Nothing here yet, but that\\'s about to change!',
+
+  // TODO: Translate from English
+  'empty_state.default_title': 'This space is waiting for you ✨',
+
+  // TODO: Translate from English
+  'empty_state.no_posts_message': 'Be the first to add a post and start its journey.',
+
+  // TODO: Translate from English
+  'empty_state.no_posts_title': 'This lighter\\'s story is waiting to be written!',
+
+  // TODO: Translate from English
+  'error.content_flagged': 'Heads up! Our community guidelines flag this content as {reason}. Let\\'s keep LightMyFire welcoming for everyone. 🌟',
+
+  'error.critical.description': '치명적인 오류가 발생했습니다. 페이지를 새로고침해주세요.',
+
+  'error.critical.title': '애플리케이션 오류',
+
+  'error.generic.description': '예기치 않은 오류가 발생했습니다. 팀에 알려졌습니다.',
+
+  'error.generic.details_title': '오류 상세 (개발 전용)',
+
+  'error.generic.error_id': '오류 ID:',
+
+  'error.generic.go_home': '홈으로',
+
+  'error.generic.title': '앗! 문제가 발생했습니다',
+
+  'error.generic.try_again': '다시 시도',
+
+  // TODO: Translate from English
+  'error.generic_message': 'Sorry, there was a small issue on our end. If the problem persists, don\\'t hesitate to contact support: support@lightmyfire.app',
+
+  'error.generic_title': '앗! 문제가 발생했습니다',
+
+  // TODO: Translate from English
+  'error.invalid_pin': 'Hmm, that PIN doesn\\'t match any lighter we know. Double-check the sticker!',
+
+  'error.not_found.description': '죄송합니다, 찾고 계신 페이지를 찾을 수 없습니다.',
+
+  'error.not_found.go_home': '홈으로 돌아가기',
+
+  // TODO: Translate from English
+  'error.not_found.title': 'It\\'s all burnt up',
+
+  // TODO: Translate from English
+  'error.rate_limit': 'Whoa there, speedy! 🏃‍♂️\n\nYou\\'re adding posts faster than we can keep up. Take a 24-hour break to let others add to this lighter\\'s story, then come back!\n\n(This keeps our mosaic diverse and interesting for everyone.)',
+
+  'error.try_again': '다시 시도',
+
+  // TODO: Translate from English
+  'error.upload_too_large': 'That image is too big! Please choose one under 2MB. 📸',
+
+  // TODO: Translate from English
+  'faq.q1.desc': 'It\\'s a project to reduce waste and create a ',
+
+  'faq.q1.title': '라이트마이파이어란?',
+
+  // TODO: Translate from English
+  'faq.q2.desc': 'You must find a lighter with a LightMyFire sticker. Scan the QR code (or go to our site) and enter the unique PIN from the sticker. You\\'ll need to create a free account to contribute.',
+
+  'faq.q2.title': '이야기를 추가하는 방법은?',
+
+  // TODO: Translate from English
+  'faq.q3.desc': 'To keep the mosaic diverse, we have a 24-hour cooldown period *per lighter*. This encourages you to pass the lighter on so someone else can add their story.',
+
+  // TODO: Translate from English
+  'faq.q3.title': 'Why can\\'t I post twice in a row?',
+
+  // TODO: Translate from English
+  'faq.q4.desc': 'You have two choices. All posts are visible on the lighter\\'s page (which requires the PIN to access). When you post, you can also check a box to make it ',
+
+  'faq.q4.title': '내 게시물은 공개인가요?',
+
+  // TODO: Translate from English
+  'faq.q5.desc': 'Log in and go to your ',
+
+  'faq.q5.title': '작성한 게시물을 삭제하는 방법은?',
+
+  // TODO: Translate from English
+  'faq.q6.desc': 'That\\'s part of the fun! As the ',
+
+  'faq.q6.title': '저장한 라이터를 잃어버리면 어떻게 되나요?',
+
+  // TODO: Translate from English
+  'faq.q7.desc': 'On each lighter\\'s page, you\\'ll find a map that shows the journey of that specific lighter. Every time someone makes a ',
+
+  'faq.q7.title': '지도는 어떻게 작동하나요?',
+
+  'home.become_lightsaver.alt': '공유 일러스트',
+
+  'home.become_lightsaver.alt_arrow': '라이터 저장 버튼을 가리키는 화살표',
+
+  'home.community.alt': '커뮤니티 일러스트',
+
+  'home.hero.alt_image': '라이트마이파이어 - 라이터에 두 번째 생명을 불어넣으세요',
+
+  'home.how_it_works.step1.alt': '라이터 저장',
+
+  'home.how_it_works.step2.alt': '라이터 공유',
+
+  'home.how_it_works.step3.alt': '이야기 따라가기',
+
+  'home.pin_entry.image_alt': '라이터를 찾았어요',
+
+  'home.stats.citations_title': '출처',
+
+  'how_it_works.cant_find_answer': '수량',
+
+  'how_it_works.contact_us': '문의하기',
+
+  // TODO: Translate from English
+  'how_it_works.step1.desc': 'Discover a lighter with a unique ID or save your own',
+
+  'how_it_works.step1.title': '라이터 찾기',
+
+  // TODO: Translate from English
+  'how_it_works.step2.desc': 'Share memories, photos, videos, or poems',
+
+  'how_it_works.step2.title': '이야기에 추가',
+
+  // TODO: Translate from English
+  'how_it_works.step3.desc': 'Let the lighter continue its journey with others',
+
+  'how_it_works.step3.title': '전달하기',
+
+  // TODO: Translate from English
+  'how_it_works.subtitle': 'Save lighters, share stories, spread the flame',
+
+  'how_it_works.title': '작동 방식',
+
+  // TODO: Translate from English
+  'how_it_works_details.step1.desc': 'Give a lighter a name to create its digital logbook and download your unique PIN/QR sticker.',
+
+  // TODO: Translate from English
+  'how_it_works_details.step1.title': '1. Save',
+
+  // TODO: Translate from English
+  'how_it_works_details.step2.desc': 'Stick it on your lighter and give it away or ',
+
+  // TODO: Translate from English
+  'how_it_works_details.step2.title': '2. Share',
+
+  // TODO: Translate from English
+  'how_it_works_details.step3.desc': 'Once saved, you are directed to its permanent web page. Add the first post: a photo, a video, a song link, or just a story from where you are. This is your lighter\\'s \\'birth.\\'',
+
+  // TODO: Translate from English
+  'how_it_works_details.step3.title': '3. Add Your First Story',
+
+  // TODO: Translate from English
+  'how_it_works_details.step4.desc': 'By passing the lighter, each new person who finds it can scan it and add their own post to its timeline. You are no longer just sharing a flame; you are co-writing a global chronicle.',
+
+  // TODO: Translate from English
+  'how_it_works_details.step4.title': '4. Watch the Story Grow',
+
+  // TODO: Translate from English
+  'how_it_works_details.step5.desc': 'Our community is built on respect and creativity. If you see a post that violates our <strong>guidelines</strong> (spam, hateful content, etc.), use the ',
+
+  // TODO: Translate from English
+  'how_it_works_details.step5.title': '5. Be a Good Community Member',
+
+  // TODO: Translate from English
+  'how_it_works_details.step6.desc': 'By participating, you and your lighters will unlock achievements. Add your first post to get the ',
+
+  // TODO: Translate from English
+  'how_it_works_details.step6.title': '6. Collect Your Trophies!',
+
+  // TODO: Translate from English
+  'how_it_works_details.title': 'How It Works: From Spark to Global Story',
+
+  'lighter.add_to_story': '이야기에 추가',
+
+  'lighter.all_loaded': '모든 게시물 로드됨',
+
+  'lighter.level': '레벨',
+
+  'lighter.load_more': '더 많은 게시물 로드',
+
+  'lighter.loading': '로딩 중...',
+
+  // TODO: Translate from English
+  'lighter.map.center_coords': 'Center: Lat {lat}, Lng {lng}',
+
+  // TODO: Translate from English
+  'lighter.map.markers': '{count} locations',
+
+  // TODO: Translate from English
+  'lighter.map.no_locations': 'No locations posted yet. Add one to start the map!',
+
+  'lighter.map.title': '지금까지의 여정',
+
+  'lighter.meta.description': '라는 이름의 라이터 이야기 보기',
+
+  'lighter.meta.og_description': '라이트마이파이어에서 이야기 보기',
+
+  'lighter.meta.twitter_description': '라이트마이파이어에서 이야기 보기',
+
+  'lighter.no_posts': '이 라이터에는 아직 이야기가 없습니다. 첫 번째로 추가해보세요!',
+
+  'lighter.not_found.description': '인간 창의성 모자이크.',
+
+  // TODO: Translate from English
+  'lighter.not_found.title': 'Lighter Not Found | LightMyFire',
+
+  'lighter.on': '날짜:',
+
+  'lighter.post_plural': '게시물',
+
+  'lighter.post_single': '게시물',
+
+  'lighter.saved_by': '저장자:',
+
+  'lighter.saved_by_label': '라이터 저장자',
+
+  'lighter_personalization.apply_all': '모두에 적용',
+
+  'lighter_personalization.button.save_continue': '저장하고 계속',
+
+  'lighter_personalization.button_save_customizations': '스티커 맞춤 설정 저장',
+
+  'lighter_personalization.color.black': '검정',
+
+  'lighter_personalization.color.blue': '파랑',
+
+  'lighter_personalization.color.red': '빨강',
+
+  'lighter_personalization.color.white': '하양',
+
+  'lighter_personalization.color_label': '배경 색상 선택',
+
+  'lighter_personalization.english_included': '영어는 항상 스티커에 포함됩니다',
+
+  'lighter_personalization.enter_name_preview': '이름을 입력하세요 (최소 3자) 미리보기를 보려면',
+
+  'lighter_personalization.helper.background_picker': '스티커 배경의 이미지 또는 색상을 선택하세요.',
+
+  'lighter_personalization.language.select_placeholder': '언어 선택...',
+
+  'lighter_personalization.language_label': '스티커의 두 번째 언어 (+ 영어)',
+
+  // TODO: Translate from English
+  'lighter_personalization.lighter_count': 'Lighter #{index}',
+
+  'lighter_personalization.min_3_chars': '(최소 3자)',
+
+  'lighter_personalization.name_label': '이름 (3-16자)',
+
+  'lighter_personalization.name_placeholder': '라이터 이름...',
+
+  'lighter_personalization.preview': '미리보기',
+
+  'lighter_personalization.subtitle': '각 라이터 개인화',
+
+  // TODO: Translate from English
+  'lighter_personalization.summary.design': '{count} design',
+
+  // TODO: Translate from English
+  'lighter_personalization.summary.designs': '{count} designs',
+
+  // TODO: Translate from English
+  'lighter_personalization.summary.identical': 'All {count} identical',
+
+  // TODO: Translate from English
+  'lighter_personalization.summary.plus_english': ' + English',
+
+  'lighter_personalization.title': '스티커 맞춤 설정',
+
+  'lighter_personalization.warning_fill_name': '계속하기 전에 라이터 이름을 입력해주세요 (3-16자).',
+
+  'lighter_personalization.warning_fill_names': '계속하기 전에 모든 라이터 이름을 입력해주세요 (각 3-16자).',
+
+  // TODO: Translate from English
+  'loading.generating_stickers': 'Crafting your lighter\\'s passport... ✨',
+
+  'loading.posting_v1': '타임라인에 이야기를 추가하는 중...',
+
+  'loading.posting_v2': '모자이크에 순간을 엮는 중...',
+
+  'loading.posting_v3': '이 라이터의 여정을 밝히는 중...',
+
+  // TODO: Translate from English
+  'loading.posting_v4': 'Making this Lightee\\'s story brighter...',
+
+  // TODO: Translate from English
+  'loading.searching': 'Following the trail... 🔍',
+
+  'location.edit_coordinates': '좌표 수동 편집',
+
+  'location.latitude_placeholder': '위도',
+
+  'location.longitude_placeholder': '경도',
+
+  // TODO: Translate from English
+  'location.map_consent_description': 'This map uses OpenStreetMap with no tracking cookies. We only store your preference locally.',
+
+  'location.map_preview_title': '지도 미리보기 가능',
+
+  'location.map_title': '위치 지도',
+
+  'location.no_location_selected': '선택된 위치 없음',
+
+  'location.no_results': '위치를 찾을 수 없습니다. 다른 검색어를 시도해보세요.',
+
+  'location.search_placeholder': '위치 검색 (도시, 주소, 랜드마크)...',
+
+  'location.selected_location': '선택된 위치',
+
+  'location.show_map_button': '지도 표시',
+
+  'location.view_larger_map': '더 큰 지도 보기',
+
+  // TODO: Translate from English
+  'login.button.signin': 'Sign In',
+
+  // TODO: Translate from English
+  'login.button.signup': 'Sign Up',
+
+  'login.forgot_password': '비밀번호를 잊으셨나요?',
+
+  // TODO: Translate from English
+  'login.social_divider': 'or continue with',
+
+  // TODO: Translate from English
+  'login.tab.login': 'Log in',
+
+  'login.tab.signup': '가입',
+
+  'moderation.action_confirm': '작업 확인',
+
+  'moderation.approve_confirm_message': '이 게시물을 승인하시겠어요? 공개됩니다.',
+
+  'moderation.approve_confirm_title': '게시물을 승인하시겠어요?',
+
+  'moderation.approve_success': '게시물이 승인되고 공개되었습니다.',
+
+  'moderation.button.delete_post': '게시물 삭제',
+
+  'moderation.button.delete_user': '사용자 삭제',
+
+  'moderation.content_type': '유형',
+
+  'moderation.delete': '삭제',
+
+  'moderation.delete_confirm_message': '이 게시물을 영구적으로 삭제하시겠어요?',
+
+  'moderation.delete_confirm_title': '게시물을 삭제하시겠어요?',
+
+  'moderation.delete_success': '게시물이 삭제되었습니다.',
+
+  'moderation.delete_user_confirm': '이 사용자와 모든 콘텐츠를 삭제하시겠어요?',
+
+  'moderation.error': '오류가 발생했습니다: {message}',
+
+  'moderation.error.rpc_error': '오류: {message}',
+
+  // TODO: Translate from English
+  'moderation.flagged_by': 'Flagged by {count} users',
+
+  'moderation.lighter_name': '라이터',
+
+  'moderation.no_posts': '현재 중재를 위해 신고된 게시물이 없습니다.',
+
+  'moderation.no_posts_in_queue': '중재 대기열이 비어있습니다. 모든 것이 평화롭습니다.',
+
+  'moderation.post_by': '게시자:',
+
+  'moderation.post_on': '게시일:',
+
+  // TODO: Translate from English
+  'moderation.queue.count': '{count} post awaiting moderation',
+
+  // TODO: Translate from English
+  'moderation.queue.count_plural': '{count} posts awaiting moderation',
+
+  'moderation.queue.empty.back_home': '홈으로',
+
+  'moderation.queue.empty.description': '모든 신고된 게시물이 검토되고 처리되었습니다. 훌륭한 중재 작업입니다!',
+
+  'moderation.queue.empty.title': '대기열이 비어있습니다',
+
+  'moderation.show_less': '접기',
+
+  'moderation.table.flag_count': '신고',
+
+  'moderation.table.lighter': '라이터',
+
+  'moderation.table.post_id': '게시물 ID',
+
+  'moderation.view_full': '전체 보기',
+
+  'moderation.view_post': '게시물 보기',
+
+  'my_orders.canceled.title': '주문 취소됨',
+
+  'my_orders.empty.cta': '스티커 주문하기',
+
+  // TODO: Translate from English
+  'my_orders.empty.description': 'You haven\\'t placed any sticker orders yet.',
+
+  'my_orders.empty.title': '아직 주문 없음',
+
+  // TODO: Translate from English
+  'my_orders.error.description': '{error}. You may still have orders that aren\\'t showing here.',
+
+  'my_orders.error.title': '주문을 불러올 수 없습니다',
+
+  'my_orders.error.try_again': '다시 시도',
+
+  'my_orders.failed.contact': '고객 지원에 문의해주세요:',
+
+  'my_orders.failed.title': '주문 실패',
+
+  'my_orders.go_home': '홈으로',
+
+  'my_orders.help.contact': '고객 지원 문의',
+
+  'my_orders.help.label': '도움이 필요하신가요?',
+
+  'my_orders.hold.title': '주문 보류 중',
+
+  'my_orders.lighters.title': '라이터 이름',
+
+  'my_orders.loading': '주문을 불러오는 중...',
+
+  // TODO: Translate from English
+  'my_orders.order_id': 'Order #{orderId}',
+
+  // TODO: Translate from English
+  'my_orders.placed_on': 'Placed on {date}',
+
+  'my_orders.shipping.title': '배송 주소',
+
+  'my_orders.status.canceled': '취소됨',
+
+  'my_orders.status.delivered': '배송 완료',
+
+  'my_orders.status.failed': '실패',
+
+  'my_orders.status.pending': '대기 중',
+
+  'my_orders.status.processing': '처리 중',
+
+  'my_orders.status.returned': '반품됨',
+
+  'my_orders.status.shipped': '배송됨',
+
+  // TODO: Translate from English
+  'my_orders.sticker_count': '{count} sticker',
+
+  // TODO: Translate from English
+  'my_orders.stickers_count': '{count} stickers',
+
+  'my_orders.tracking.carrier': '택배사:',
+
+  'my_orders.tracking.number': '송장 번호:',
+
+  'my_orders.tracking.shipped': '배송일:',
+
+  'my_orders.tracking.title': '배송 추적 정보',
+
+  // TODO: Translate from English
+  'my_orders.tracking.track_button': 'Track Package →',
+
+  'my_posts.deleting': '삭제 중...',
+
+  'my_profile.find_lighter_to_post': '라이터 찾기',
+
+  // TODO: Translate from English
+  'my_profile.no_posts': 'Your story collection is waiting to begin! 📖\nFind a lighter and add your first post.',
+
+  'my_profile.save_first_lighter': '첫 라이터 저장하기',
+
+  'my_profile.settings.account_title': '계정',
+
+  'my_profile.settings.confirm_password_label': '새 비밀번호 확인',
+
+  'my_profile.settings.email_label': '이메일',
+
+  'my_profile.settings.error.email_exists': '이미 사용 중인 이메일입니다.',
+
+  'my_profile.settings.error.generic': '오류가 발생했습니다. 다시 시도해주세요.',
+
+  'my_profile.settings.error.rpc_error': '오류: {message}',
+
+  'my_profile.settings.error.username_exists': '이미 사용 중인 사용자 이름입니다.',
+
+  'my_profile.settings.new_password_label': '새 비밀번호',
+
+  // TODO: Translate from English
+  'my_profile.settings.password_mismatch': 'Passwords don\\'t match.',
+
+  'my_profile.settings.password_title': '비밀번호 변경',
+
+  'my_profile.settings.placeholder.email': '새 이메일 입력',
+
+  // TODO: Translate from English
+  'my_profile.settings.placeholder.password': '••••••••',
+
+  'my_profile.settings.placeholder.password_confirm': '새 비밀번호 재입력',
+
+  'my_profile.settings.placeholder.username': '새 사용자 이름 입력',
+
+  'my_profile.settings.update_profile_button': '프로필 업데이트',
+
+  'my_profile.settings.updating': '업데이트 중...',
+
+  'my_profile.settings.username_label': '사용자 이름',
+
+  'my_profile.trophies.coming_soon': '트로피 케이스 곧 출시!',
+
+  'my_profile.trophies.subtitle': '이야기를 저장하고 공유하여 업적을 수집하세요.',
+
+  'my_profile.trophies.unlocked': '잠금 해제!',
+
+  'notifications.action_error': '오류',
+
+  'notifications.action_success': '성공',
+
+  'notifications.auth_failed': '인증에 실패했습니다. 다시 시도해주세요.',
+
+  'notifications.invalid_credentials': '잘못된 이메일 또는 비밀번호입니다. 자격 증명을 확인하고 다시 시도해주세요.',
+
+  'notifications.password_reset_sent': '비밀번호 재설정 이메일이 전송되었습니다! 받은 편지함을 확인하세요.',
+
+  // TODO: Translate from English
+  'notifications.password_updated': 'Password updated! Your account is secure. 🔒',
+
+  'notifications.post_deleted_success': '게시물이 삭제되었습니다.',
+
+  // TODO: Translate from English
+  'notifications.post_success_first': 'Congratulations! 🌟 You lit the first spark in this lighter\\'s story.',
+
+  // TODO: Translate from English
+  'notifications.post_success_public': 'Story shared with the world! 🌍 It\\'s now part of our global mosaic.',
+
+  // TODO: Translate from English
+  'notifications.session_expired': 'Your session has expired. Please log in again to continue.',
+
+  // TODO: Translate from English
+  'notifications.sticker_downloaded': 'Stickers ready! Time to set {lighterName} free. 🚀',
+
+  'notifications.success': '성공!',
+
+  // TODO: Translate from English
+  'notifications.trophy_earned': '🏆 Trophy Unlocked: {trophy_name}! You\\'re on fire!',
+
+  'notifications.user_not_found': '이 이메일로 계정을 찾을 수 없습니다. 먼저 가입해주세요!',
+
+  'notifications.warning': '경고',
+
+  // TODO: Translate from English
+  'order.guidelines.step1': 'Apply the sticker to a clean, dust-free, oil-free, and moisture-free surface.',
+
+  // TODO: Translate from English
+  'order.guidelines.step2': 'After application, press the sticker down with a clean cloth to maximize adhesion and avoid air bubbles.',
+
+  // TODO: Translate from English
+  'order.guidelines.step3': 'Make sure the sticker is applied correctly the first time. With every reapplication, the sticker\\'s ability to stick will decrease.',
+
+  'order.guidelines.title': '적용 지침',
+
+  'order.payment.error_email_invalid': '유효한 이메일 주소를 입력해주세요',
+
+  // TODO: Translate from English
+  'order.quality.durability': '2–3 year durability',
+
+  'order.quality.fast_application': '빠르고 쉬운 부착',
+
+  'order.quality.glossy_finish': '광택 마감',
+
+  'order.quality.title': '프리미엄 품질 스티커',
+
+  'order.shipping.error_postal_invalid': '선택한 국가에 유효하지 않은 우편번호',
+
+  'order.summary.shipping': '배송비:',
+
+  'order.summary.shipping_calculated': '+ 배송비',
+
+  'order.summary.shipping_express': '빠른 배송',
+
+  'order.summary.shipping_express_time': '영업일 기준 3-5일',
+
+  'order.summary.shipping_method': '배송 방법:',
+
+  'order.summary.shipping_standard': '일반 배송',
+
+  'order.summary.shipping_standard_time': '영업일 기준 7-14일',
+
+  'order.summary.subtotal': '소계:',
+
+  'order_success.email_subject': '스티커 주문 문의',
+
+  'payment.card_not_found': '카드 요소를 찾을 수 없습니다',
+
+  'payment.stripe_load_failed': 'Stripe을 불러오지 못했습니다. 구성을 확인해주세요.',
+
+  'personalization.customize_stickers': '스티커 맞춤 설정',
+
+  'personalization.english_included': '영어는 항상 스티커에 포함됩니다',
+
+  'personalization.personalize_each': '각 라이터 개인화',
+
+  'personalization.second_language': '스티커의 두 번째 언어 (+ 영어)',
+
+  'philosophy.button.hide': '숨기기',
+
+  'philosophy.button.learn_more': '더 알아보기',
+
+  // TODO: Translate from English
+  'philosophy.cta': 'Join us in giving lighters a second life, one story at a time.',
+
+  'philosophy.image_alt': '글로벌 창의성 모자이크',
+
+  // TODO: Translate from English
+  'philosophy.lead': 'We believe that even the smallest, most disposable object can carry a great story.',
+
+  // TODO: Translate from English
+  'philosophy.p1': '<strong>LightMyFire</strong> was born from a simple idea: what if we stopped treating lighters as throwaway items? <strong>In a world of mass consumption where billions of these items are discarded every year,</strong> what if we saw them as companions, as tiny vessels for our memories, ideas, and creativity?',
+
+  // TODO: Translate from English
+  'philosophy.p2': 'The everyday lighter is <strong>a powerful social catalyst.</strong> It\\'s no personal possession; it belongs to everyone. It passes from hand to hand, from friend to stranger, at parties, concerts, and quiet meetups. It hears our secrets and lights our way. <strong>It\\'s the silent witness to a great conversation, the spark for a new friendship. But its story is ephemeral, lost as soon as it\\'s passed on.</strong>',
+
+  // TODO: Translate from English
+  'philosophy.p3': 'By giving a lighter a permanent, digital story, we give it sentimental value. <strong>Your lighter becomes a living artifact, a message in a bottle.</strong> And when something has value, we\\'re less likely to throw it away.',
+
+  // TODO: Translate from English
+  'philosophy.p4': 'Our goal is simple: to create a global, human creativity mosaic, one lighter at a time, and reduce waste in the process. <strong>This is our stand against a throwaway culture. It\\'s an experiment in collaborative art. It\\'s a way to prove that if you give an object a story, you give it a soul.</strong>',
+
+  'philosophy.title': '우리의 철학',
+
+  // TODO: Translate from English
+  'placeholder.hex_color': '#FF6B6B',
+
+  'placeholder.lighter_name': '라이터 이름...',
+
+  'placeholder.location_search': '위치 검색...',
+
+  'placeholder.pin_entry': 'ABC-123',
+
+  'post.default_location': '알 수 없는 위치',
+
+  'post.deleted_user': '삭제된 사용자',
+
+  'post.like_button': '좋아요',
+
+  'post.location_at': '위치:',
+
+  'post.post_type.image': '이미지를 공유했습니다',
+
+  'post.post_type.location': '체크인했습니다',
+
+  'post.post_type.refuel': '이 라이터를 재충전했습니다',
+
+  'post.post_type.song': '노래를 공유했습니다',
+
+  'post.post_type.text': '이야기를 작성했습니다',
+
+  'post.user_upload_alt': '사용자 업로드',
+
+  'post.youtube_player_title': 'YouTube 동영상 플레이어',
+
+  'privacy.h3.automated_decisions': '7. 자동화된 의사결정',
+
+  // TODO: Translate from English
+  'privacy.h3.changes': '9. Changes to This Privacy Policy',
+
+  // TODO: Translate from English
+  'privacy.h3.children': '8. Children\\'s Privacy',
+
+  'privacy.h3.contact': '10. 문의하기',
+
+  // TODO: Translate from English
+  'privacy.h3.cookies': '5.1. Cookies',
+
+  // TODO: Translate from English
+  'privacy.h3.data_breaches': '5.6. Data Breach Notification',
+
+  'privacy.h3.data_controller': '1. 데이터 관리자',
+
+  // TODO: Translate from English
+  'privacy.h3.data_retention': '5.4. Data Retention Periods',
+
+  // TODO: Translate from English
+  'privacy.h3.data_security': '5.5. Security Measures',
+
+  'privacy.h3.data_sharing': '5. 데이터 공유 및 처리자',
+
+  'privacy.h3.how_we_use': '3. 정보 사용 방법',
+
+  'privacy.h3.info_we_collect': '2. 수집하는 정보',
+
+  // TODO: Translate from English
+  'privacy.h3.international_transfers': '5.3. International Data Transfers',
+
+  'privacy.h3.legal_basis': '4. 처리의 법적 근거 (GDPR)',
+
+  // TODO: Translate from English
+  'privacy.h3.location_data': '5.2. Location Data',
+
+  'privacy.h3.your_rights': '6. GDPR에 따른 권리',
+
+  // TODO: Translate from English
+  'privacy.h4.cookie_types': 'Types of Cookies We Use',
+
+  // TODO: Translate from English
+  'privacy.h4.personal_data': '2.1. Personal Data You Provide',
+
+  // TODO: Translate from English
+  'privacy.h4.right_access': '6.1. Right of Access (Art. 15 GDPR)',
+
+  // TODO: Translate from English
+  'privacy.h4.right_complain': '6.8. Right to Lodge a Complaint',
+
+  // TODO: Translate from English
+  'privacy.h4.right_erasure': '6.3. Right to Erasure - ',
+
+  // TODO: Translate from English
+  'privacy.h4.right_object': '6.6. Right to Object (Art. 21 GDPR)',
+
+  // TODO: Translate from English
+  'privacy.h4.right_portability': '6.5. Right to Data Portability (Art. 20 GDPR)',
+
+  // TODO: Translate from English
+  'privacy.h4.right_rectification': '6.2. Right to Rectification (Art. 16 GDPR)',
+
+  // TODO: Translate from English
+  'privacy.h4.right_restriction': '6.4. Right to Restriction of Processing (Art. 18 GDPR)',
+
+  // TODO: Translate from English
+  'privacy.h4.right_withdraw': '6.7. Right to Withdraw Consent',
+
+  // TODO: Translate from English
+  'privacy.h4.technical_data': '2.4. Technical Data (Automatically Collected)',
+
+  // TODO: Translate from English
+  'privacy.h4.transaction_data': '2.3. Transaction Data',
+
+  // TODO: Translate from English
+  'privacy.h4.user_content': '2.2. User-Generated Content',
+
+  'privacy.last_updated': '최종 업데이트: 2025년 11월 8일',
+
+  // TODO: Translate from English
+  'privacy.p1': 'LightMyFire (',
+
+  // TODO: Translate from English
+  'privacy.p10': 'Your data is primarily stored on Supabase servers located within the European Union. However, some sub-processors may be located outside the EU/EEA. When data is transferred internationally, we ensure adequate protection through:',
+
+  // TODO: Translate from English
+  'privacy.p11': 'We retain personal data only as long as necessary for the purposes outlined in this policy:',
+
+  // TODO: Translate from English
+  'privacy.p12': 'After retention periods expire, data is securely deleted from all systems, including backups.',
+
+  // TODO: Translate from English
+  'privacy.p13': 'We implement appropriate technical and organizational measures to protect your data:',
+
+  // TODO: Translate from English
+  'privacy.p14': 'In the unlikely event of a personal data breach, we will:',
+
+  // TODO: Translate from English
+  'privacy.p15': 'You have the following rights regarding your personal data. To exercise any of these rights, contact us at <strong>support@lightmyfire.app</strong>.',
+
+  // TODO: Translate from English
+  'privacy.p16': 'You can request a copy of all personal data we hold about you. We\\'ll provide this in a structured, commonly used format within 30 days.',
+
+  // TODO: Translate from English
+  'privacy.p17': 'You can correct inaccurate or incomplete data. Update most information directly in your profile settings, or contact us for assistance.',
+
+  // TODO: Translate from English
+  'privacy.p18': 'You can request deletion of your personal data. You can delete individual posts anytime from ',
+
+  // TODO: Translate from English
+  'privacy.p19': 'You can request we limit how we use your data while you contest its accuracy or lawfulness of processing.',
+
+  // TODO: Translate from English
+  'privacy.p2': 'The data controller for your personal information is:<br><br><strong>Revel Editions SASU</strong><br>145 Rue de Noisy-le-Sec<br>93260 Les Lilas, France<br><br><strong>Contact Email:</strong> support@lightmyfire.app<br><strong>Data Protection Officer:</strong> support@lightmyfire.app',
+
+  // TODO: Translate from English
+  'privacy.p20': 'You can receive your data in a machine-readable format (JSON/CSV) to transfer to another service.',
+
+  // TODO: Translate from English
+  'privacy.p21': 'You can object to processing based on legitimate interests. We\\'ll stop processing unless we demonstrate compelling legitimate grounds.',
+
+  // TODO: Translate from English
+  'privacy.p22': 'For processing based on consent, you can withdraw it anytime. This doesn\\'t affect the lawfulness of processing before withdrawal.',
+
+  // TODO: Translate from English
+  'privacy.p23': 'If you believe we\\'re not complying with GDPR, you have the right to lodge a complaint with a supervisory authority:',
+
+  // TODO: Translate from English
+  'privacy.p24': '<strong>France (Our Primary Jurisdiction):</strong><br>Commission Nationale de l\\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, France<br>Website: <a href=\\'https://www.cnil.fr\\' target=\\'_blank\\'>www.cnil.fr</a>',
+
+  // TODO: Translate from English
+  'privacy.p25': 'You can also contact the data protection authority in your country of residence.',
+
+  // TODO: Translate from English
+  'privacy.p26': 'We use limited automated processing for:',
+
+  // TODO: Translate from English
+  'privacy.p27': 'These automated processes do not produce legal effects or significantly affect you. You can always contact us to contest a decision or request human review.',
+
+  // TODO: Translate from English
+  'privacy.p28': 'Our service is not directed to children under 16 years of age (or the minimum age required in your jurisdiction to consent to data processing). We do not knowingly collect personal data from children. If you believe we\\'ve inadvertently collected data from a child, contact us immediately at support@lightmyfire.app and we\\'ll delete it promptly.',
+
+  // TODO: Translate from English
+  'privacy.p29': 'We may update this Privacy Policy to reflect changes in our practices or legal requirements. We will:',
+
+  // TODO: Translate from English
+  'privacy.p3': 'We collect personal information in several ways to provide and improve our services:',
+
+  // TODO: Translate from English
+  'privacy.p30': 'Continued use of our services after changes constitutes acceptance of the updated policy.',
+
+  // TODO: Translate from English
+  'privacy.p31': 'For any questions about this Privacy Policy or to exercise your rights, contact us:',
+
+  // TODO: Translate from English
+  'privacy.p32': 'We aim to respond to all requests within 30 days. If your request is complex, we may extend this by an additional 60 days and will inform you.',
+
+  // TODO: Translate from English
+  'privacy.p4': 'We use the information we collect to:',
+
+  // TODO: Translate from English
+  'privacy.p5': 'Under GDPR, we process your personal data based on the following legal grounds:',
+
+  // TODO: Translate from English
+  'privacy.p6': 'We do not sell, rent, or trade your personal data. We share data only with trusted service providers who help us operate the platform:',
+
+  // TODO: Translate from English
+  'privacy.p7': 'All third-party processors are bound by Data Processing Agreements (DPAs) ensuring GDPR compliance and data protection.',
+
+  // TODO: Translate from English
+  'privacy.p8': 'You can manage cookie preferences through the consent banner displayed on your first visit. You can change your choice anytime in your browser settings or by contacting us.',
+
+  // TODO: Translate from English
+  'privacy.p9': 'When you create a location post, you may voluntarily provide geographic coordinates (latitude and longitude). <strong>Important disclosures:</strong>',
+
+  // TODO: Translate from English
+  'privacy.ul1.li1': '<strong>Account Registration:</strong> Email address, username, and hashed password (we never store passwords in plain text)',
+
+  // TODO: Translate from English
+  'privacy.ul1.li2': '<strong>Profile Information:</strong> Optional nationality information and profile preferences',
+
+  // TODO: Translate from English
+  'privacy.ul1.li3': '<strong>Communications:</strong> Any information you provide when contacting us for support',
+
+  // TODO: Translate from English
+  'privacy.ul10.li1': '<strong>Standard Contractual Clauses (SCCs):</strong> EU-approved data transfer mechanisms',
+
+  // TODO: Translate from English
+  'privacy.ul10.li2': '<strong>Adequacy Decisions:</strong> Transfers only to countries recognized by the EU Commission as providing adequate protection',
+
+  // TODO: Translate from English
+  'privacy.ul10.li3': '<strong>Processor Guarantees:</strong> All processors commit to GDPR-equivalent data protection standards',
+
+  // TODO: Translate from English
+  'privacy.ul11.li1': '<strong>Account Data:</strong> Retained while your account is active, plus 30 days after deletion (to allow reactivation)',
+
+  // TODO: Translate from English
+  'privacy.ul11.li2': '<strong>User Posts:</strong> Retained while your account exists. When you delete a post, it\\'s permanently removed within 24 hours',
+
+  // TODO: Translate from English
+  'privacy.ul11.li3': '<strong>Order Data:</strong> 7 years from date of purchase (French tax law requirement)',
+
+  // TODO: Translate from English
+  'privacy.ul11.li4': '<strong>Technical Logs:</strong> IP addresses and security logs retained for 12 months maximum',
+
+  // TODO: Translate from English
+  'privacy.ul11.li5': '<strong>Anonymized Analytics:</strong> Retained indefinitely for service improvement (cannot be linked back to you)',
+
+  // TODO: Translate from English
+  'privacy.ul12.li1': '<strong>Encryption:</strong> All data transmitted using TLS/SSL encryption. Passwords stored using industry-standard hashing',
+
+  // TODO: Translate from English
+  'privacy.ul12.li2': '<strong>Access Controls:</strong> Role-based access, limited employee access, multi-factor authentication for admin accounts',
+
+  // TODO: Translate from English
+  'privacy.ul12.li3': '<strong>Regular Audits:</strong> Security assessments, vulnerability scanning, and code reviews',
+
+  // TODO: Translate from English
+  'privacy.ul12.li4': '<strong>Incident Response:</strong> Documented breach notification procedures (see Section 5.6)',
+
+  // TODO: Translate from English
+  'privacy.ul13.li1': '<strong>Notify Supervisory Authority:</strong> Within 72 hours of becoming aware of the breach (CNIL in France)',
+
+  // TODO: Translate from English
+  'privacy.ul13.li2': '<strong>Notify Affected Users:</strong> Without undue delay if the breach poses high risk to your rights and freedoms',
+
+  // TODO: Translate from English
+  'privacy.ul13.li3': '<strong>Provide Information:</strong> Nature of the breach, likely consequences, measures taken, and recommended actions',
+
+  // TODO: Translate from English
+  'privacy.ul14.li1': '<strong>Content Moderation:</strong> Automated pre-screening of posts for prohibited content (hate speech, explicit imagery). Flagged content is reviewed by human moderators before any action',
+
+  // TODO: Translate from English
+  'privacy.ul14.li2': '<strong>Spam Prevention:</strong> Automated detection of suspicious activity patterns (e.g., rapid post submissions)',
+
+  // TODO: Translate from English
+  'privacy.ul14.li3': '<strong>Gamification:</strong> Automated calculation of user levels and trophy eligibility based on contribution metrics',
+
+  // TODO: Translate from English
+  'privacy.ul15.li1': 'Notify you by email of significant changes (if you have an account)',
+
+  // TODO: Translate from English
+  'privacy.ul15.li2': 'Display a prominent notice on the website',
+
+  // TODO: Translate from English
+  'privacy.ul15.li3': 'Update the ',
+
+  // TODO: Translate from English
+  'privacy.ul16.li1': '<strong>Email:</strong> support@lightmyfire.app',
+
+  // TODO: Translate from English
+  'privacy.ul16.li2': '<strong>Data Protection Officer:</strong> support@lightmyfire.app',
+
+  // TODO: Translate from English
+  'privacy.ul16.li3': '<strong>Postal Address:</strong> Revel Editions SASU, [Complete Address], France',
+
+  // TODO: Translate from English
+  'privacy.ul2.li1': '<strong>Posts:</strong> Text content, images, YouTube video links you share on lighter pages',
+
+  // TODO: Translate from English
+  'privacy.ul2.li2': '<strong>Location Data:</strong> Optional geographic coordinates (latitude/longitude) when you create location posts. We can\\'t know if coordinates entered are linked to your actual location',
+
+  // TODO: Translate from English
+  'privacy.ul2.li3': '<strong>Metadata:</strong> Post timestamps, lighter associations, and interaction data (likes, flags)',
+
+  // TODO: Translate from English
+  'privacy.ul3.li1': '<strong>Payment Information:</strong> Processed securely by Stripe (our payment processor). We never store your full credit card details',
+
+  // TODO: Translate from English
+  'privacy.ul3.li2': '<strong>Shipping Information:</strong> Name, address, email, and phone number for sticker delivery',
+
+  // TODO: Translate from English
+  'privacy.ul3.li3': '<strong>Order History:</strong> Details of sticker packs purchased and customization preferences',
+
+  // TODO: Translate from English
+  'privacy.ul4.li1': '<strong>Device Information:</strong> IP address, browser type, operating system',
+
+  // TODO: Translate from English
+  'privacy.ul4.li2': '<strong>Usage Data:</strong> Pages visited, features used, time spent on the platform',
+
+  // TODO: Translate from English
+  'privacy.ul4.li3': '<strong>Cookies:</strong> Essential cookies for authentication and session management (see Section 5.1)',
+
+  // TODO: Translate from English
+  'privacy.ul5.li1': '<strong>Service Provision:</strong> Create and manage your account, display your contributions, process orders',
+
+  // TODO: Translate from English
+  'privacy.ul5.li2': '<strong>Communication:</strong> Send order confirmations, respond to inquiries, notify you of lighter activity (if opted-in)',
+
+  // TODO: Translate from English
+  'privacy.ul5.li3': '<strong>Platform Integrity:</strong> Prevent spam, enforce community guidelines, moderate content',
+
+  // TODO: Translate from English
+  'privacy.ul5.li4': '<strong>Gamification:</strong> Track achievements, award trophies, calculate user levels',
+
+  // TODO: Translate from English
+  'privacy.ul5.li5': '<strong>Legal Compliance:</strong> Comply with applicable laws and respond to legal requests',
+
+  // TODO: Translate from English
+  'privacy.ul5.li6': '<strong>Service Improvement:</strong> Analyze usage patterns to enhance user experience (anonymized data only)',
+
+  // TODO: Translate from English
+  'privacy.ul6.li1': '<strong>Contractual Necessity (Art. 6(1)(b) GDPR):</strong> Processing necessary to provide the services you requested when creating an account',
+
+  // TODO: Translate from English
+  'privacy.ul6.li2': '<strong>Legitimate Interests (Art. 6(1)(f) GDPR):</strong> Platform security, fraud prevention, content moderation, and service improvement—balanced against your rights',
+
+  // TODO: Translate from English
+  'privacy.ul6.li3': '<strong>Consent (Art. 6(1)(a) GDPR):</strong> Optional features like public post sharing, nationality display, and non-essential cookies—you can withdraw consent anytime',
+
+  // TODO: Translate from English
+  'privacy.ul6.li4': '<strong>Legal Obligation (Art. 6(1)(c) GDPR):</strong> Compliance with French and EU law, including tax obligations and law enforcement requests',
+
+  // TODO: Translate from English
+  'privacy.ul7.li1': '<strong>Supabase (Backend Infrastructure):</strong> Hosts our database, authentication system, and file storage. Located in EU data centers. <a href=\\'https://supabase.com/privacy\\' target=\\'_blank\\'>View Supabase Privacy Policy</a>',
+
+  // TODO: Translate from English
+  'privacy.ul7.li2': '<strong>Stripe (Payment Processing):</strong> Processes all payment transactions securely. We receive only transaction confirmations, not card details. <a href=\\'https://stripe.com/privacy\\' target=\\'_blank\\'>View Stripe Privacy Policy</a>',
+
+  // TODO: Translate from English
+  'privacy.ul7.li3': '<strong>Shipping Partners:</strong> Receive name, address, and contact information solely for sticker delivery',
+
+  // TODO: Translate from English
+  'privacy.ul8.li1': '<strong>Essential Cookies (No Consent Required):</strong> Session management, authentication, security features, and shopping cart functionality. These are strictly necessary for the platform to work.',
+
+  // TODO: Translate from English
+  'privacy.ul8.li2': '<strong>Preference Cookies (No Consent Required):</strong> Remember your language selection, cookie consent choice, and display preferences.',
+
+  // TODO: Translate from English
+  'privacy.ul8.li3': '<strong>Analytics Cookies (Consent Required):</strong> Help us understand how visitors use the site through anonymized data. We only activate these with your explicit consent.',
+
+  // TODO: Translate from English
+  'privacy.ul9.li1': 'This data is <strong>publicly visible</strong> on the lighter\\'s page and map',
+
+  // TODO: Translate from English
+  'privacy.ul9.li2': 'Anyone with the lighter\\'s PIN can see this information',
+
+  // TODO: Translate from English
+  'privacy.ul9.li3': 'You control the accuracy—you can provide approximate or exact coordinates',
+
+  // TODO: Translate from English
+  'privacy.ul9.li4': 'You are solely responsible for privacy implications of any location data you share',
+
+  // TODO: Translate from English
+  'privacy.ul9.li5': 'You can delete your location posts anytime from your profile',
+
+  'profile.update_error': '오류: {error}',
+
+  'profile.update_success': '프로필이 성공적으로 업데이트되었습니다!',
+
+  'redirect.login_add_story': '이야기를 추가하려면 로그인해야 합니다.',
+
+  'redirect.login_like': '게시물을 좋아요하려면 로그인해야 합니다',
+
+  'redirect.login_profile': '프로필을 보려면 로그인해야 합니다.',
+
+  'redirect.login_save_lighter': '라이터를 저장하려면 로그인해야 합니다',
+
+  // TODO: Translate from English
+  'refill_guide.citations.1.source': 'World Economic Forum - Plastic Waste Statistics (2023)',
+
+  // TODO: Translate from English
+  'refill_guide.citations.1.text': 'Global lighter production and environmental impact data',
+
+  // TODO: Translate from English
+  'refill_guide.citations.1.url': 'https://www.weforum.org/agenda/2023/plastic-waste/',
+
+  'refill_guide.citations.title': '출처 및 참고자료',
+
+  'refill_guide.key_indicators': '주요 지표:',
+
+  // TODO: Translate from English
+  'refill_guide.stats.lighters_sold': 'Disposable lighters sold yearly',
+
+  'refill_guide.stats.lighters_sold_worldwide': '전 세계',
+
+  'refill_guide.stats.waste_reduction': '폐기물 감소',
+
+  // TODO: Translate from English
+  'refill_guide.stats.waste_reduction_method': 'With refillable lighters',
+
+  'refill_guide.stats.years_decompose': '분해 소요 연수',
+
+  'refill_guide.stats.years_decompose_location': '매립지에서',
+
+  // TODO: Translate from English
+  'refill_guide.type1.indicator1': 'Small round metal valve on the bottom',
+
+  // TODO: Translate from English
+  'refill_guide.type1.indicator2': 'Similar to a tire valve',
+
+  'refill_guide.type1.indicator3': '가장 일반적인 유형',
+
+  // TODO: Translate from English
+  'refill_guide.type2.indicator1': 'Metal lighter (often iconic design)',
+
+  // TODO: Translate from English
+  'refill_guide.type2.indicator2': 'Inner block can be pulled out',
+
+  // TODO: Translate from English
+  'refill_guide.type2.indicator3': 'Cotton visible inside',
+
+  // TODO: Translate from English
+  'refill_guide.type3.indicator1': 'Flat, sealed plastic bottom',
+
+  // TODO: Translate from English
+  'refill_guide.type3.indicator2': 'No valve or removable parts',
+
+  'refill_guide.type3.indicator3': '일회용만 가능',
+
+  // TODO: Translate from English
+  'save_lighter.change_pack': '← Change Pack',
+
+  'save_lighter.creative_journey': '창의적 여정',
+
+  // TODO: Translate from English
+  'save_lighter.creative_journey_desc': 'Be part of a fun, global movement. Give lighters a second life with beautiful, hand-crafted stickers.',
+
+  // TODO: Translate from English
+  'save_lighter.design_preview': 'Preview of your custom stickers. Sticker files will be generated after payment.',
+
+  'save_lighter.human_mosaic': '인간 모자이크',
+
+  // TODO: Translate from English
+  'save_lighter.human_mosaic_desc': 'Join thousands of LightSavers creating a human mosaic of stories and creativity while fighting waste.',
+
+  // TODO: Translate from English
+  'save_lighter.more_stickers': '+{count} more',
+
+  'save_lighter.sticker_plural': '스티커',
+
+  'save_lighter.sticker_singular': '스티커',
+
+  'save_lighter.sustainable_impact': '지속 가능한 영향',
+
+  // TODO: Translate from English
+  'save_lighter.sustainable_impact_desc': 'Our stickers are hand-made and sustainably manufactured. Help maintain this project alive.',
+
+  'save_lighter.why_it_matters': '중요한 이유',
+
+  'save_lighter.your_design': '스티커 디자인',
+
+  'settings.profile.nationality_label': '국적',
+
+  'settings.profile.nationality_optional': '(선택사항)',
+
+  'settings.profile.nationality_placeholder': '국가 선택',
+
+  'settings.profile.save_button': '프로필 저장',
+
+  'settings.profile.saving': '저장 중...',
+
+  'settings.profile.show_nationality_label': '게시물에 국적 표시',
+
+  'settings.profile.username_label': '사용자 이름',
+
+  'shipping.address_suggestions': '(입력하면 제안이 표시됩니다)',
+
+  'stripe.card_info': '카드 정보',
+
+  'stripe.error.generic': '결제에 실패했습니다. 정보를 확인하거나 다시 시도해주세요.',
+
+  'stripe.pay_button': '{amount} 결제',
+
+  'terms.h3.acceptance': '1. 약관 동의',
+
+  'terms.h3.contact_terms': '12. 연락처 정보',
+
+  'terms.h3.dispute_resolution': '9. 분쟁 해결 및 준거법',
+
+  'terms.h3.eligibility': '2. 자격 및 계정 요구사항',
+
+  'terms.h3.general': '11. 일반 조항',
+
+  'terms.h3.indemnification': '8. 면책',
+
+  'terms.h3.liability': '7. 면책조항 및 책임 제한',
+
+  'terms.h3.license': '3. 라이선스 및 지적 재산권',
+
+  'terms.h3.moderation': '5. 콘텐츠 중재 및 시행',
+
+  'terms.h3.stickers': '6. 스티커 판매 및 주문',
+
+  'terms.h3.termination': '10. 종료',
+
+  'terms.h3.ugc': '4. 사용자 생성 콘텐츠 및 행동',
+
+  // TODO: Translate from English
+  'terms.h4.account_accuracy': '2.3. Account Information',
+
+  // TODO: Translate from English
+  'terms.h4.account_security': '2.2. Account Security',
+
+  // TODO: Translate from English
+  'terms.h4.age': '2.1. Age Requirement',
+
+  // TODO: Translate from English
+  'terms.h4.appeals': '5.4. Appeals Process',
+
+  // TODO: Translate from English
+  'terms.h4.as_is': '7.1. ',
+
+  // TODO: Translate from English
+  'terms.h4.assignment': '11.5. Assignment',
+
+  // TODO: Translate from English
+  'terms.h4.by_us': '10.2. Termination by Us',
+
+  // TODO: Translate from English
+  'terms.h4.by_you': '10.1. Termination by You',
+
+  // TODO: Translate from English
+  'terms.h4.community_flagging': '5.2. Community Flagging',
+
+  // TODO: Translate from English
+  'terms.h4.custom': '6.3. Customization',
+
+  // TODO: Translate from English
+  'terms.h4.effect': '10.3. Effect of Termination',
+
+  // TODO: Translate from English
+  'terms.h4.enforcement': '5.3. Enforcement Actions',
+
+  // TODO: Translate from English
+  'terms.h4.entire_agreement': '11.1. Entire Agreement',
+
+  // TODO: Translate from English
+  'terms.h4.governing_law': '9.1. Governing Law',
+
+  // TODO: Translate from English
+  'terms.h4.informal_resolution': '9.3. Informal Dispute Resolution',
+
+  // TODO: Translate from English
+  'terms.h4.jurisdiction': '9.2. Jurisdiction',
+
+  // TODO: Translate from English
+  'terms.h4.jurisdiction_limits': '7.3. Jurisdictional Limitations',
+
+  // TODO: Translate from English
+  'terms.h4.limitation': '7.2. Limitation of Liability',
+
+  // TODO: Translate from English
+  'terms.h4.mod_rights': '5.1. Our Rights',
+
+  // TODO: Translate from English
+  'terms.h4.modifications': '11.2. Modifications to Terms',
+
+  // TODO: Translate from English
+  'terms.h4.our_ip': '3.2. LightMyFire Intellectual Property',
+
+  // TODO: Translate from English
+  'terms.h4.our_license': '3.1. License to Use the Service',
+
+  // TODO: Translate from English
+  'terms.h4.prohibited_conduct': '4.3. Prohibited Conduct',
+
+  // TODO: Translate from English
+  'terms.h4.prohibited_content': '4.2. Prohibited Content',
+
+  // TODO: Translate from English
+  'terms.h4.sales_final': '6.1. Sales Policy',
+
+  // TODO: Translate from English
+  'terms.h4.severability': '11.3. Severability',
+
+  // TODO: Translate from English
+  'terms.h4.shipping': '6.2. Shipping and Delivery',
+
+  // TODO: Translate from English
+  'terms.h4.third_party': '11.6. No Third-Party Beneficiaries',
+
+  // TODO: Translate from English
+  'terms.h4.ugc_responsibility': '4.1. Your Responsibility',
+
+  // TODO: Translate from English
+  'terms.h4.user_license': '3.3. License to Your User-Generated Content',
+
+  // TODO: Translate from English
+  'terms.h4.waiver': '11.4. No Waiver',
+
+  'terms.last_updated': '최종 업데이트: 2025년 10월 28일',
+
+  // TODO: Translate from English
+  'terms.p1': 'These Terms of Service (',
+
+  // TODO: Translate from English
+  'terms.p10': 'By posting User-Generated Content (',
+
+  // TODO: Translate from English
+  'terms.p11': '<strong>Important:</strong> This license is limited to operating and promoting the Service. We will not use your content for unrelated commercial purposes. You retain ownership of your UGC and can revoke this license for specific posts by deleting them from your profile. However, copies may persist in backups for up to 30 days.',
+
+  // TODO: Translate from English
+  'terms.p12': 'You are solely responsible for all content you post on LightMyFire, including text, images, links to songs (YouTube URLs), and location data. You represent and warrant that:',
+
+  // TODO: Translate from English
+  'terms.p13': 'You must not post content that:',
+
+  // TODO: Translate from English
+  'terms.p14': 'You must not:',
+
+  // TODO: Translate from English
+  'terms.p15': 'We reserve the right (but have no obligation) to:',
+
+  // TODO: Translate from English
+  'terms.p16': 'However, we are not responsible for monitoring all content and make no guarantee that prohibited content will not appear on the Service.',
+
+  // TODO: Translate from English
+  'terms.p17': 'We use a community-driven flagging system. Users can flag content they believe violates these Terms. Flagged content is reviewed by our moderation team, which may include automated pre-screening followed by human review.',
+
+  // TODO: Translate from English
+  'terms.p18': 'Violations of these Terms may result in:',
+
+  // TODO: Translate from English
+  'terms.p19': 'We may terminate accounts without prior notice if we determine there\\'s a serious violation that threatens user safety or platform integrity.',
+
+  // TODO: Translate from English
+  'terms.p2': 'By accessing or using LightMyFire, you agree to be bound by these Terms, our Privacy Policy, and all applicable laws. If you do not agree with any part of these Terms, you must not use the Service. Your continued use constitutes acceptance of any modifications we make to these Terms.',
+
+  // TODO: Translate from English
+  'terms.p20': 'If you believe content was removed or your account was suspended in error, you may appeal by contacting support@lightmyfire.app within 30 days of the action. Include:',
+
+  // TODO: Translate from English
+  'terms.p21': 'We will review appeals and respond within 14 business days. Our decision on appeals is final.',
+
+  // TODO: Translate from English
+  'terms.p22': 'All sticker sales are final. We do not offer refunds except in cases of:',
+
+  // TODO: Translate from English
+  'terms.p23': 'To request a refund for these reasons, contact support@lightmyfire.app within 30 days of delivery with photo evidence.',
+
+  // TODO: Translate from English
+  'terms.p24': 'Shipping times and costs are specified at checkout. We are not responsible for delays caused by shipping carriers, customs, or events beyond our control (force majeure). Risk of loss passes to you upon delivery to the carrier.',
+
+  // TODO: Translate from English
+  'terms.p25': 'Custom sticker orders cannot be canceled once processing begins (typically within 24 hours of order placement). Please review your customizations carefully before completing your order.',
+
+  // TODO: Translate from English
+  'terms.p26': 'THE SERVICE IS PROVIDED ',
+
+  // TODO: Translate from English
+  'terms.p27': 'TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, REVEL EDITIONS SASU AND ITS DIRECTORS, EMPLOYEES, AGENTS, AND AFFILIATES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO:',
+
+  // TODO: Translate from English
+  'terms.p28': 'OUR TOTAL LIABILITY TO YOU FOR ALL CLAIMS ARISING FROM OR RELATED TO THE SERVICE SHALL NOT EXCEED THE GREATER OF (A) €100 OR (B) THE AMOUNT YOU PAID US IN THE 12 MONTHS PRECEDING THE CLAIM.',
+
+  // TODO: Translate from English
+  'terms.p29': 'Some jurisdictions do not allow the exclusion of certain warranties or limitation of liability for consequential damages. In such jurisdictions, our liability is limited to the maximum extent permitted by law.',
+
+  // TODO: Translate from English
+  'terms.p3': 'You must be at least 16 years old (or the minimum age required in your country to provide consent for data processing under applicable privacy laws) to create an account and use this Service. By creating an account, you represent and warrant that you meet this age requirement.',
+
+  // TODO: Translate from English
+  'terms.p30': 'You agree to defend, indemnify, and hold harmless Revel Editions SASU, its directors, officers, employees, and agents from any claims, damages, losses, liabilities, and expenses (including reasonable attorneys\\' fees) arising from:',
+
+  // TODO: Translate from English
+  'terms.p31': 'These Terms are governed by and construed in accordance with the laws of France, without regard to its conflict of law principles. The United Nations Convention on Contracts for the International Sale of Goods does not apply.',
+
+  // TODO: Translate from English
+  'terms.p32': 'Any disputes arising from these Terms or your use of the Service shall be subject to the exclusive jurisdiction of the courts of Paris, France. However, we may seek injunctive relief in any court of competent jurisdiction.',
+
+  // TODO: Translate from English
+  'terms.p33': 'Before filing any formal claim, you agree to contact us at support@lightmyfire.app to attempt to resolve the dispute informally. We commit to working with you in good faith to reach a resolution within 60 days.',
+
+  // TODO: Translate from English
+  'terms.p34': 'You may terminate your account at any time by contacting support@lightmyfire.app. Upon termination:',
+
+  // TODO: Translate from English
+  'terms.p35': 'We may suspend or terminate your account immediately, without prior notice, for:',
+
+  // TODO: Translate from English
+  'terms.p36': 'Upon termination for any reason:',
+
+  // TODO: Translate from English
+  'terms.p37': 'These Terms, together with our Privacy Policy, constitute the entire agreement between you and Revel Editions SASU regarding the Service and supersede all prior agreements.',
+
+  // TODO: Translate from English
+  'terms.p38': 'We reserve the right to modify these Terms at any time. When we make changes:',
+
+  // TODO: Translate from English
+  'terms.p39': 'If you don\\'t agree to modified Terms, you must stop using the Service.',
+
+  // TODO: Translate from English
+  'terms.p4': 'You are responsible for:',
+
+  // TODO: Translate from English
+  'terms.p40': 'If any provision of these Terms is found invalid or unenforceable, that provision shall be enforced to the maximum extent possible, and the remaining provisions shall remain in full effect.',
+
+  // TODO: Translate from English
+  'terms.p41': 'Our failure to enforce any right or provision of these Terms does not constitute a waiver of that right or provision.',
+
+  // TODO: Translate from English
+  'terms.p42': 'You may not assign or transfer these Terms or your account without our written consent. We may assign our rights and obligations without restriction.',
+
+  // TODO: Translate from English
+  'terms.p43': 'These Terms do not create any third-party beneficiary rights except as expressly stated.',
+
+  // TODO: Translate from English
+  'terms.p44': 'For questions about these Terms, contact us:',
+
+  // TODO: Translate from English
+  'terms.p5': 'You may not share your account with others or use another person\\'s account without permission.',
+
+  // TODO: Translate from English
+  'terms.p6': 'You agree to provide accurate, current, and complete information during registration and to update it as necessary to maintain its accuracy.',
+
+  // TODO: Translate from English
+  'terms.p7': 'Subject to these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to access and use LightMyFire for personal, non-commercial purposes.',
+
+  // TODO: Translate from English
+  'terms.p8': 'All content, features, and functionality of the Service—including but not limited to text, graphics, logos, icons, images, audio clips, data compilations, software, and the ',
+
+  // TODO: Translate from English
+  'terms.p9': '[TODO: Translate terms.p9]',
+
+  // TODO: Translate from English
+  'terms.ul1.li1': 'Maintaining the confidentiality of your account credentials',
+
+  // TODO: Translate from English
+  'terms.ul1.li2': 'All activities that occur under your account',
+
+  // TODO: Translate from English
+  'terms.ul1.li3': 'Notifying us immediately of any unauthorized use at: support@lightmyfire.app',
+
+  // TODO: Translate from English
+  'terms.ul10.li1': 'The Service will meet your requirements',
+
+  // TODO: Translate from English
+  'terms.ul10.li2': 'The Service will be uninterrupted, timely, secure, or error-free',
+
+  // TODO: Translate from English
+  'terms.ul10.li3': 'Results obtained from use of the Service will be accurate or reliable',
+
+  // TODO: Translate from English
+  'terms.ul10.li4': 'Any errors in the Service will be corrected',
+
+  // TODO: Translate from English
+  'terms.ul11.li1': 'Loss of profits, data, use, goodwill, or other intangible losses',
+
+  // TODO: Translate from English
+  'terms.ul11.li2': 'Unauthorized access to or alteration of your content',
+
+  // TODO: Translate from English
+  'terms.ul11.li3': 'Third-party conduct or content on the Service',
+
+  // TODO: Translate from English
+  'terms.ul11.li4': 'Any matter beyond our reasonable control',
+
+  // TODO: Translate from English
+  'terms.ul12.li1': 'Your use or misuse of the Service',
+
+  // TODO: Translate from English
+  'terms.ul12.li2': 'Your violation of these Terms',
+
+  // TODO: Translate from English
+  'terms.ul12.li3': 'Your violation of any rights of another party',
+
+  // TODO: Translate from English
+  'terms.ul12.li4': 'Your User-Generated Content',
+
+  // TODO: Translate from English
+  'terms.ul13.li1': 'Your account will be deactivated',
+
+  // TODO: Translate from English
+  'terms.ul13.li2': 'You lose access to all account features',
+
+  // TODO: Translate from English
+  'terms.ul13.li3': 'Your posts remain visible on lighter pages (they\\'re part of those lighters\\' stories)',
+
+  // TODO: Translate from English
+  'terms.ul13.li4': 'To delete your posts before account termination, do so manually from your profile',
+
+  // TODO: Translate from English
+  'terms.ul14.li1': 'Violation of these Terms',
+
+  // TODO: Translate from English
+  'terms.ul14.li2': 'Fraudulent, abusive, or illegal activity',
+
+  // TODO: Translate from English
+  'terms.ul14.li3': 'Prolonged inactivity (accounts inactive for 3+ years)',
+
+  // TODO: Translate from English
+  'terms.ul14.li4': 'At our sole discretion if necessary to protect the Service or other users',
+
+  // TODO: Translate from English
+  'terms.ul15.li1': 'Your right to use the Service ceases immediately',
+
+  // TODO: Translate from English
+  'terms.ul15.li2': 'Sections that by their nature should survive termination remain in effect (including Intellectual Property, Disclaimers, Limitation of Liability, Indemnification, Dispute Resolution)',
+
+  // TODO: Translate from English
+  'terms.ul15.li3': 'We may retain certain data as required by law or legitimate business purposes',
+
+  // TODO: Translate from English
+  'terms.ul16.li1': 'We\\'ll update the ',
+
+  // TODO: Translate from English
+  'terms.ul16.li2': 'For material changes, we\\'ll notify you by email or prominent notice on the Service',
+
+  // TODO: Translate from English
+  'terms.ul16.li3': 'Your continued use after changes constitutes acceptance',
+
+  // TODO: Translate from English
+  'terms.ul17.li1': '<strong>Email:</strong> support@lightmyfire.app',
+
+  // TODO: Translate from English
+  'terms.ul17.li2': '<strong>Support:</strong> support@lightmyfire.app',
+
+  // TODO: Translate from English
+  'terms.ul17.li3': '<strong>Address:</strong> Revel Editions SASU, Cs 20008 145 Rue de Noisy-le-Sec 93260 Les Lilas, France',
+
+  // TODO: Translate from English
+  'terms.ul2.li1': 'Use, reproduce, distribute, modify, adapt, publicly perform, and publicly display your UGC',
+
+  // TODO: Translate from English
+  'terms.ul2.li2': 'Incorporate your UGC into other works in any format or medium',
+
+  // TODO: Translate from English
+  'terms.ul2.li3': 'Sublicense these rights to third parties solely for the operation and promotion of LightMyFire',
+
+  // TODO: Translate from English
+  'terms.ul3.li1': 'You own or have the necessary rights to post the content',
+
+  // TODO: Translate from English
+  'terms.ul3.li2': 'Your content does not violate any third party\\'s intellectual property, privacy, or other rights',
+
+  // TODO: Translate from English
+  'terms.ul3.li3': 'Your content complies with these Terms and applicable laws',
+
+  // TODO: Translate from English
+  'terms.ul4.li1': '<strong>Illegal:</strong> Violates any local, national, or international law',
+
+  // TODO: Translate from English
+  'terms.ul4.li10': '<strong>Malicious:</strong> Contains viruses, malware, or other harmful code',
+
+  // TODO: Translate from English
+  'terms.ul4.li11': '<strong>Private Information:</strong> Shares others\\' personal information without consent (doxxing)',
+
+  // TODO: Translate from English
+  'terms.ul4.li2': '<strong>Harmful to Minors:</strong> Exploits, sexualizes, or endangers children in any way',
+
+  // TODO: Translate from English
+  'terms.ul4.li3': '<strong>Hateful:</strong> Promotes hatred, discrimination, or violence against individuals or groups based on race, ethnicity, religion, gender, sexual orientation, disability, or other protected characteristics',
+
+  // TODO: Translate from English
+  'terms.ul4.li4': '<strong>Violent or Threatening:</strong> Depicts, encourages, or threatens violence, self-harm, or harm to others',
+
+  // TODO: Translate from English
+  'terms.ul4.li5': '<strong>Harassing:</strong> Bullies, harasses, stalks, or intimidates others',
+
+  // TODO: Translate from English
+  'terms.ul4.li6': '<strong>Sexually Explicit:</strong> Contains pornography or sexually explicit material',
+
+  // TODO: Translate from English
+  'terms.ul4.li7': '<strong>Misleading:</strong> Contains false, misleading, or fraudulent information',
+
+  // TODO: Translate from English
+  'terms.ul4.li8': '<strong>Spam:</strong> Consists of unsolicited advertising, promotional material, or repetitive content',
+
+  // TODO: Translate from English
+  'terms.ul4.li9': '<strong>Infringing:</strong> Violates copyrights, trademarks, patents, or other intellectual property rights',
+
+  // TODO: Translate from English
+  'terms.ul5.li1': 'Impersonate any person or entity',
+
+  // TODO: Translate from English
+  'terms.ul5.li2': 'Manipulate the Service to artificially inflate metrics (likes, views, etc.)',
+
+  // TODO: Translate from English
+  'terms.ul5.li3': 'Interfere with or disrupt the Service or servers',
+
+  // TODO: Translate from English
+  'terms.ul5.li4': 'Attempt to gain unauthorized access to any part of the Service',
+
+  // TODO: Translate from English
+  'terms.ul5.li5': 'Use automated tools (bots, scrapers) without written permission',
+
+  // TODO: Translate from English
+  'terms.ul5.li6': 'Circumvent any content filtering or security measures',
+
+  // TODO: Translate from English
+  'terms.ul5.li7': 'Use the Service for any commercial purpose without our consent',
+
+  // TODO: Translate from English
+  'terms.ul6.li1': 'Review, screen, edit, or remove any UGC at any time for any reason',
+
+  // TODO: Translate from English
+  'terms.ul6.li2': 'Monitor user activity for violations of these Terms',
+
+  // TODO: Translate from English
+  'terms.ul6.li3': 'Investigate complaints and reported content',
+
+  // TODO: Translate from English
+  'terms.ul7.li1': '<strong>Content Removal:</strong> Removal of violating posts without notice',
+
+  // TODO: Translate from English
+  'terms.ul7.li2': '<strong>Warning:</strong> A formal warning for first-time or minor violations',
+
+  // TODO: Translate from English
+  'terms.ul7.li3': '<strong>Temporary Suspension:</strong> Temporary account suspension (duration determined by severity)',
+
+  // TODO: Translate from English
+  'terms.ul7.li4': '<strong>Permanent Termination:</strong> Permanent account termination for serious or repeated violations',
+
+  // TODO: Translate from English
+  'terms.ul7.li5': '<strong>Legal Action:</strong> Reporting to law enforcement for illegal activity',
+
+  // TODO: Translate from English
+  'terms.ul8.li1': 'Your username and account email',
+
+  // TODO: Translate from English
+  'terms.ul8.li2': 'Description of the content or action in question',
+
+  // TODO: Translate from English
+  'terms.ul8.li3': 'Explanation of why you believe the decision was incorrect',
+
+  // TODO: Translate from English
+  'terms.ul9.li1': 'Manufacturing defects in the stickers',
+
+  // TODO: Translate from English
+  'terms.ul9.li2': 'Incorrect items shipped',
+
+  // TODO: Translate from English
+  'terms.ul9.li3': 'Non-delivery due to our error',
+
+  'validation.email_invalid': '유효한 이메일 주소를 입력해주세요.',
+
+  'validation.email_required': '이메일은 필수입니다.',
+
+  'validation.field_required': '이 필드는 필수입니다.',
+
+  'validation.password_requirement.lowercase': '소문자 1개 이상',
+
+  'validation.password_requirement.min_length': '최소 {count}자',
+
+  'validation.password_requirement.number': '숫자 1개 이상',
+
+  'validation.password_requirement.uppercase': '대문자 1개 이상',
+
+  'validation.password_requirements': '비밀번호는 대문자, 소문자, 숫자를 각각 1개 이상 포함해야 합니다',
+
+  'validation.password_too_short': '비밀번호는 최소 {min}자여야 합니다.',
+
+  'validation.username_length': '사용자 이름은 {min}자에서 {max}자 사이여야 합니다.',
+
+  'validation.username_required': '사용자 이름은 비워둘 수 없습니다.',
+} as const;

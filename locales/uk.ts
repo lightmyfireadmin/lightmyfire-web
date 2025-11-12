@@ -764,4 +764,1287 @@ export default {
   'color.light_gray': 'Світло-Сірий',
   'color.gray': 'Сірий',
 
+  'add_post.button.checking_alt': 'Перевіряємо...',
+  'add_post.button.checking_content': 'Перевіряємо вміст...',
+  'add_post.button.loading_alt': 'Завантажуємо...',
+  'add_post.button.search': 'Шукати',
+  'add_post.button.select': 'Вибрати',
+  'add_post.char_counter': 'Залишилось {remaining} символів',
+  'add_post.error.cooldown_active': 'Ти зможеш додати пост до цієї запальнички через {hours} годин. Будь ласка, зачекай перед наступним постом.',
+  'add_post.error.cooldown_check_failed': 'Не вдалося перевірити можливість додавання посту. Будь ласка, спробуй ще раз.',
+  'add_post.error.file_too_large': 'Файл занадто великий. Вибери файл менше 2МБ.',
+  'add_post.error.invalid_latitude': 'Широта має бути між -90 та 90.',
+  'add_post.error.invalid_longitude': 'Довгота має бути між -180 та 180.',
+  'add_post.error.text_too_long': 'Текст занадто довгий. Максимум {max} символів.',
+  'add_post.error.youtube_api_error': 'Помилка YouTube API: {message}',
+  'add_post.moderation.content_review': '⚠️ Перевірка Вмісту',
+  'add_post.moderation.tip': '💡 Порада: Спробуй зробити вміст більш дружнім до спільноти.',
+  'add_post.options': 'Опції',
+
+  'add_post.placeholder.location_lat': 'Широта (напр., 48.8566)',
+  'add_post.placeholder.location_lng': 'Довгота (напр., 2.3522)',
+  'add_post.placeholder.location_name': 'Назва місця (напр., \\'Кафе Централ\\')',
+  'add_post.prompt_v1': 'Яку пам\\'ять зберігає ця запальничка? Розкажи її історію...',
+  'add_post.prompt_v2': 'Де ти її знайшов? Що сталося потім?',
+  'add_post.prompt_v3': 'Думка, вірш, момент — поділись тим, що на душі...',
+  'add_post.prompt_v4': 'Яка пісня грає? Опиши атмосферу...',
+  'add_post.prompt_v5': 'Якби ця запальничка могла говорити, що б вона сказала?',
+  'add_post.select_post_type': 'Вибери Тип Посту',
+  'add_post.youtube_search.selected_video': 'Обране відео:',
+  'add_post.youtube_search.video_preview': 'Попередній перегляд відео:',
+  'auth.already_have_account': 'Вже є обліковий запис? Увійди',
+  'auth.continue_with': 'Продовжити через',
+  'auth.dont_have_account': 'Немає облікового запису? Зареєструйся',
+  'auth.email_label': 'Електронна пошта',
+  'auth.email_placeholder': 'ти@приклад.com',
+  'auth.forgot_password': 'Забув пароль?',
+  'auth.login_to_like': 'Увійди, щоб вподобати пости',
+  'auth.password_label': 'Пароль',
+  'auth.password_placeholder': 'Твій пароль',
+
+  'auth.sign_in': 'Увійти',
+
+  'auth.sign_up': 'Зареєструватися',
+
+  'auth.signing_in': 'Входимо...',
+
+  'auth.signing_up': 'Реєструємось...',
+
+  'empty_lighter.action': 'Додати Перший Пост',
+
+  'empty_lighter.description': 'Подорож цієї запальнички щойно розпочалася. Будь першим, хто додасть розділ до її історії та надихне інших!',
+
+  'empty_lighter.title': 'Історія Починається...',
+
+  'empty_posts.action': 'Додати Перший Пост',
+
+  'empty_posts.message': 'Будь першим, хто додасть історію, фото або пісню до подорожі цієї запальнички!',
+
+  'empty_posts.title': 'Історія цієї запальнички чекає, щоб її написали! ✨',
+
+  'empty_state.default_message': 'Тут поки нічого немає, але це скоро зміниться!',
+
+  'empty_state.default_title': 'Цей простір чекає на тебе ✨',
+
+  'empty_state.no_posts_message': 'Будь першим, хто додасть пост і розпочне її подорож.',
+
+  'empty_state.no_posts_title': 'Історія цієї запальнички чекає, щоб її написали!',
+
+  'error.content_flagged': 'Увага! Наші правила спільноти позначають цей вміст як {reason}. Давай тримати LightMyFire привітним для всіх. 🌟',
+
+  'error.generic_message': 'Вибач, у нас виникла невелика проблема. Якщо проблема не зникає, зв\\'яжись з підтримкою: support@lightmyfire.app',
+
+  'error.generic_title': 'Ой! Щось пішло не так',
+
+  'error.invalid_pin': 'Хм, цей PIN не відповідає жодній запальничці, яку ми знаємо. Перевір стікер!',
+
+  'error.network': 'Схоже, інтернет підвів. Перевір своє з\\'єднання та спробуй ще раз. 🌐',
+
+  'error.rate_limit': 'Гей, не так швидко! 🏃‍♂️\n\nТи додаєш пости швидше, ніж ми встигаємо відстежити. Зроби паузу на 24 години, щоб дати іншим можливість додати до історії цієї запальнички, а потім повертайся!\n\n(Це тримає нашу мозаїку різноманітною та цікавою для всіх.)',
+
+  'error.try_again': 'Спробувати Ще Раз',
+
+  'error.upload_too_large': 'Це зображення занадто велике! Вибери файл менше 2МБ. 📸',
+
+  'faq.q1.desc': 'It\\'s a project to reduce waste and create a ',
+
+  'faq.q1.title': 'What is LightMyFire?',
+
+  'faq.q2.desc': 'You must find a lighter with a LightMyFire sticker. Scan the QR code (or go to our site) and enter the unique PIN from the sticker. You\\'ll need to create a free account to contribute.',
+
+  'faq.q2.title': 'How do I add a story?',
+
+  'faq.q3.desc': 'To keep the mosaic diverse, we have a 24-hour cooldown period *per lighter*. This encourages you to pass the lighter on so someone else can add their story.',
+
+  'faq.q3.title': 'Why can\\'t I post twice in a row?',
+
+  'faq.q4.desc': 'You have two choices. All posts are visible on the lighter\\'s page (which requires the PIN to access). When you post, you can also check a box to make it ',
+
+  'faq.q4.title': 'Is my post public?',
+
+  'faq.q5.desc': 'Log in and go to your ',
+
+  'faq.q5.title': 'How do I delete a post I made?',
+
+  'faq.q6.desc': 'That\\'s part of the fun! As the ',
+
+  'faq.q6.title': 'What happens if I lose the lighter I saved?',
+
+  'faq.q7.desc': 'On each lighter\\'s page, you\\'ll find a map that shows the journey of that specific lighter. Every time someone makes a ',
+
+  'faq.q7.title': 'How does the map work?',
+
+  'footer.copyright': '© {year} Revel Editions SASU. All rights reserved.',
+
+  'footer.disclaimer': 'This project is an independent creative initiative, not affiliated with lighter manufacturers or other surfaces on which you might find us.',
+
+  'footer.facebook_aria': 'Facebook',
+
+  'footer.instagram_aria': 'Instagram',
+
+  'footer.links.about': 'About',
+
+  'footer.links.faq': 'FAQ',
+
+  'footer.links.privacy': 'Privacy Policy',
+
+  'footer.links.terms': 'Terms of Use',
+
+  'footer.notice': 'We\\'re committed to a safe, respectful community. If you see content that doesn\\'t belong, please flag it so we can review. Thank you!',
+
+  'footer.social.facebook': 'Facebook',
+
+  'footer.social.instagram': 'Instagram',
+
+  'footer.social.tiktok': 'TikTok',
+
+  'footer.tiktok_aria': 'TikTok',
+
+  'home.become_lightsaver.alt': 'Illustration of sharing',
+
+  'home.become_lightsaver.alt_arrow': 'Arrow pointing to save lighter button',
+
+  'home.community.alt': 'Community illustration',
+
+  'home.hero.alt_image': 'LightMyFire - Give lighters a second life',
+
+  'home.how_it_works.step1.alt': 'Save a lighter',
+
+  'home.how_it_works.step2.alt': 'Share the lighter',
+
+  'home.how_it_works.step3.alt': 'Follow the story',
+
+  'home.pin_entry.image_alt': 'Found a lighter',
+
+  'home.stats.citations_title': 'Sources',
+
+  'how_it_works_details.step1.desc': 'Give a lighter a name to create its digital logbook and download your unique PIN/QR sticker.',
+
+  'how_it_works_details.step1.title': '1. Save',
+
+  'how_it_works_details.step2.desc': 'Stick it on your lighter and give it away or ',
+
+  'how_it_works_details.step2.title': '2. Share',
+
+  'how_it_works_details.step3.desc': 'Once saved, you are directed to its permanent web page. Add the first post: a photo, a video, a song link, or just a story from where you are. This is your lighter\\'s \\'birth.\\'',
+
+  'how_it_works_details.step3.title': '3. Add Your First Story',
+
+  'how_it_works_details.step4.desc': 'By passing the lighter, each new person who finds it can scan it and add their own post to its timeline. You are no longer just sharing a flame; you are co-writing a global chronicle.',
+
+  'how_it_works_details.step4.title': '4. Watch the Story Grow',
+
+  'how_it_works_details.step5.desc': 'Our community is built on respect and creativity. If you see a post that violates our <strong>guidelines</strong> (spam, hateful content, etc.), use the ',
+
+  'how_it_works_details.step5.title': '5. Be a Good Community Member',
+
+  'how_it_works_details.step6.desc': 'By participating, you and your lighters will unlock achievements. Add your first post to get the ',
+
+  'how_it_works_details.step6.title': '6. Collect Your Trophies!',
+
+  'how_it_works_details.title': 'How It Works: From Spark to Global Story',
+
+  'lighter.add_to_story': 'Add to Story',
+
+  'lighter.all_loaded': 'All posts loaded',
+
+  'lighter.level': 'Level',
+
+  'lighter.load_more': 'Load More Posts',
+
+  'lighter.loading': 'Loading...',
+
+  'lighter.map.center_coords': 'Center: Lat {lat}, Lng {lng}',
+
+  'lighter.map.markers': '{count} locations',
+
+  'lighter.map.no_locations': 'No locations posted yet. Add one to start the map!',
+
+  'lighter.map.title': 'The Journey So Far',
+
+  'lighter.no_posts': 'This lighter has no stories yet. Be the first to add one!',
+
+  'lighter.on': 'on',
+
+  'lighter.post_plural': 'Posts',
+
+  'lighter.post_single': 'Post',
+
+  'lighter.saved_by': 'Saved by',
+
+  'lighter.saved_by_label': 'Lighter Saved By',
+
+  'lighter_personalization.apply_all': 'Apply to All',
+
+  'lighter_personalization.button.save_continue': 'Save and Continue',
+
+  'lighter_personalization.button_save_customizations': 'Save Sticker Customizations',
+
+  'lighter_personalization.color.black': 'Black',
+
+  'lighter_personalization.color.blue': 'Blue',
+
+  'lighter_personalization.color.red': 'Red',
+
+  'lighter_personalization.color.white': 'White',
+
+  'lighter_personalization.color_label': 'Pick Background Color',
+
+  'lighter_personalization.english_included': 'English will always be included on your stickers',
+
+  'lighter_personalization.enter_name_preview': 'Enter a name (min 3 characters) to see preview',
+
+  'lighter_personalization.helper.background_picker': 'Choose an image or color for the background of the sticker.',
+
+  'lighter_personalization.language.select_placeholder': 'Select a language...',
+
+  'lighter_personalization.language_label': 'Second Language on Sticker (+ English)',
+
+  'lighter_personalization.lighter_count': 'Lighter #{index}',
+
+  'lighter_personalization.min_3_chars': '(min 3)',
+
+  'lighter_personalization.name_label': 'Name (3-16 characters)',
+
+  'lighter_personalization.name_placeholder': 'Lighter name...',
+
+  'lighter_personalization.preview': 'Preview',
+
+  'lighter_personalization.subtitle': 'Personalize each lighter',
+
+  'lighter_personalization.summary.design': '{count} design',
+
+  'lighter_personalization.summary.designs': '{count} designs',
+
+  'lighter_personalization.summary.identical': 'All {count} identical',
+
+  'lighter_personalization.summary.plus_english': ' + English',
+
+  'lighter_personalization.title': 'Customize Your Stickers',
+
+  'lighter_personalization.warning_fill_name': 'Please fill in the lighter name (3-16 characters) before continuing.',
+
+  'lighter_personalization.warning_fill_names': 'Please fill in all lighter names (3-16 characters each) before continuing.',
+
+  'loading.generating_stickers': 'Crafting your lighter\\'s passport... ✨',
+
+  'loading.posting_v1': 'Adding your story to the timeline...',
+
+  'loading.posting_v2': 'Weaving your moment into the mosaic...',
+
+  'loading.posting_v3': 'Lighting up this lighter\\'s journey...',
+
+  'loading.posting_v4': 'Making this Lightee\\'s story brighter...',
+
+  'loading.searching': 'Following the trail... 🔍',
+
+  'location.edit_coordinates': 'Edit coordinates manually',
+
+  'location.latitude_placeholder': 'Latitude',
+
+  'location.longitude_placeholder': 'Longitude',
+
+  'location.map_consent_description': 'This map uses OpenStreetMap with no tracking cookies. We only store your preference locally.',
+
+  'location.map_preview_title': 'Map Preview Available',
+
+  'location.map_title': 'Location map',
+
+  'location.no_location_selected': 'No location selected',
+
+  'location.no_results': 'No locations found. Try a different search.',
+
+  'location.search_placeholder': 'Search for a location (city, address, landmark)...',
+
+  'location.selected_location': 'Selected Location',
+
+  'location.show_map_button': 'Show Map',
+
+  'location.view_larger_map': 'View larger map',
+
+  'login.button.signin': 'Sign In',
+
+  'login.button.signup': 'Sign Up',
+
+  'login.email_label': 'Email Address',
+
+  'login.forgot_password': 'Forgot your password?',
+
+  'login.password_label': 'Password',
+
+  'login.social_divider': 'or continue with',
+
+  'login.tab.login': 'Log in',
+
+  'login.tab.signup': 'Sign up',
+
+  'login.title': 'LightMyFire',
+
+  'moderation.action_confirm': 'Confirm Action',
+
+  'moderation.approve': 'Approve',
+
+  'moderation.approve_confirm_message': 'Are you sure you want to approve this post? It will become public.',
+
+  'moderation.approve_confirm_title': 'Approve Post?',
+
+  'moderation.approve_success': 'Post approved and released.',
+
+  'moderation.button.delete_post': 'Delete Post',
+
+  'moderation.button.delete_user': 'Delete User',
+
+  'moderation.content_type': 'Type',
+
+  'moderation.delete': 'Delete',
+
+  'moderation.delete_confirm_message': 'Are you sure you want to permanently delete this post?',
+
+  'moderation.delete_confirm_title': 'Delete Post?',
+
+  'moderation.delete_success': 'Post deleted successfully.',
+
+  'moderation.delete_user_confirm': 'Are you sure you want to delete this user and all their content?',
+
+  'moderation.error': 'An error occurred: {message}',
+
+  'moderation.error.rpc_error': 'Error: {message}',
+
+  'moderation.flagged_by': 'Flagged by {count} users',
+
+  'moderation.lighter_name': 'Lighter',
+
+  'moderation.no_posts': 'No posts currently flagged for moderation.',
+
+  'moderation.no_posts_in_queue': 'The moderation queue is empty. All is peaceful.',
+
+  'moderation.post_by': 'Post by',
+
+  'moderation.post_on': 'Post on',
+
+  'moderation.show_less': 'Show Less',
+
+  'moderation.table.flag_count': 'Flags',
+
+  'moderation.table.lighter': 'Lighter',
+
+  'moderation.table.post_id': 'Post ID',
+
+  'moderation.title': 'Moderation Queue',
+
+  'moderation.view_full': 'View Full',
+
+  'moderation.view_post': 'View Post',
+
+  'my_orders.canceled.title': 'Order Canceled',
+
+  'my_orders.empty.cta': 'Order Stickers',
+
+  'my_orders.empty.description': 'You haven\\'t placed any sticker orders yet.',
+
+  'my_orders.empty.title': 'No Orders Yet',
+
+  'my_orders.error.description': '{error}. You may still have orders that aren\\'t showing here.',
+
+  'my_orders.error.title': 'Could not load orders',
+
+  'my_orders.error.try_again': 'Try again',
+
+  'my_orders.failed.contact': 'Please contact support at',
+
+  'my_orders.failed.title': 'Order Failed',
+
+  'my_orders.go_home': 'Go Home',
+
+  'my_orders.help.contact': 'Contact Support',
+
+  'my_orders.help.label': 'Need help?',
+
+  'my_orders.hold.title': 'Order On Hold',
+
+  'my_orders.lighters.title': 'Lighter Names',
+
+  'my_orders.loading': 'Loading your orders...',
+
+  'my_orders.order_id': 'Order #{orderId}',
+
+  'my_orders.placed_on': 'Placed on {date}',
+
+  'my_orders.shipping.title': 'Shipping Address',
+
+  'my_orders.status.canceled': 'Canceled',
+
+  'my_orders.status.delivered': 'Delivered',
+
+  'my_orders.status.failed': 'Failed',
+
+  'my_orders.status.pending': 'Pending',
+
+  'my_orders.status.processing': 'Processing',
+
+  'my_orders.status.returned': 'Returned',
+
+  'my_orders.status.shipped': 'Shipped',
+
+  'my_orders.sticker_count': '{count} sticker',
+
+  'my_orders.stickers_count': '{count} stickers',
+
+  'my_orders.tracking.carrier': 'Carrier:',
+
+  'my_orders.tracking.number': 'Tracking Number:',
+
+  'my_orders.tracking.shipped': 'Shipped:',
+
+  'my_orders.tracking.title': 'Tracking Information',
+
+  'my_orders.tracking.track_button': 'Track Package →',
+
+  'my_posts.deleting': 'Deleting...',
+
+  'my_profile.find_lighter_to_post': 'Find a Lighter',
+
+  'my_profile.no_posts': 'Your story collection is waiting to begin! 📖\nFind a lighter and add your first post.',
+
+  'my_profile.save_first_lighter': 'Save Your First Lighter',
+
+  'my_profile.settings.account_title': 'Account',
+
+  'my_profile.settings.confirm_password_label': 'Confirm New Password',
+
+  'my_profile.settings.email_label': 'Email',
+
+  'my_profile.settings.error.email_exists': 'Email already in use.',
+
+  'my_profile.settings.error.generic': 'An error occurred. Try again.',
+
+  'my_profile.settings.error.rpc_error': 'Error: {message}',
+
+  'my_profile.settings.error.username_exists': 'Username already taken.',
+
+  'my_profile.settings.new_password_label': 'New Password',
+
+  'my_profile.settings.password_mismatch': 'Passwords don\\'t match.',
+
+  'my_profile.settings.password_title': 'Change Password',
+
+  'my_profile.settings.placeholder.email': 'Enter new email',
+
+  'my_profile.settings.placeholder.password': '••••••••',
+
+  'my_profile.settings.placeholder.password_confirm': 'Re-enter new password',
+
+  'my_profile.settings.placeholder.username': 'Enter new username',
+
+  'my_profile.settings.update_profile_button': 'Update Profile',
+
+  'my_profile.settings.updating': 'Updating...',
+
+  'my_profile.settings.username_label': 'Username',
+
+  'my_profile.trophies.coming_soon': 'Trophy case coming soon!',
+
+  'my_profile.trophies.subtitle': 'Collect achievements by saving and sharing stories.',
+
+  'my_profile.trophies.unlocked': 'Unlocked!',
+
+  'nav.logging_out': 'Logging out...',
+
+  'nav.logo_alt': 'LightMyFire',
+
+  'nav.my_orders': 'My Orders',
+
+  'nav.search_aria': 'Search for lighter',
+
+  'nav.search_title': 'Find a lighter',
+
+  'not_found.go_home': 'Go Home',
+
+  'not_found.message': 'Oops! The page you\\'re looking for doesn\\'t exist.',
+
+  'not_found.title': '404 - Page Not Found',
+
+  'notifications.action_error': 'Error',
+
+  'notifications.action_success': 'Success',
+
+  'notifications.auth_failed': 'Authentication failed. Please try again.',
+
+  'notifications.error': 'Error',
+
+  'notifications.invalid_credentials': 'Invalid email or password. Please check your credentials and try again.',
+
+  'notifications.lighter_saved': 'Success! {lighterName} is ready for adventure! 🌍',
+
+  'notifications.password_reset_sent': 'Password reset email sent! Check your inbox.',
+
+  'notifications.password_updated': 'Password updated! Your account is secure. 🔒',
+
+  'notifications.post_deleted_success': 'Post deleted. Like it never happened.',
+
+  'notifications.post_success_first': 'Congratulations! 🌟 You lit the first spark in this lighter\\'s story.',
+
+  'notifications.post_success_public': 'Story shared with the world! 🌍 It\\'s now part of our global mosaic.',
+
+  'notifications.profile_updated': 'Profile updated! Looking good, LightSaver. ✨',
+
+  'notifications.session_expired': 'Your session has expired. Please log in again to continue.',
+
+  'notifications.sticker_downloaded': 'Stickers ready! Time to set {lighterName} free. 🚀',
+
+  'notifications.success': 'Success!',
+
+  'notifications.trophy_earned': '🏆 Trophy Unlocked: {trophy_name}! You\\'re on fire!',
+
+  'notifications.user_not_found': 'No account found with this email. Please sign up first!',
+
+  'notifications.warning': 'Warning',
+
+  'order.choose_pack_subtitle': 'Select how many custom stickers you want to order',
+
+  'order.choose_pack_title': 'Choose Your Pack',
+
+  'order.guidelines.step1': 'Apply the sticker to a clean, dust-free, oil-free, and moisture-free surface.',
+
+  'order.guidelines.step2': 'After application, press the sticker down with a clean cloth to maximize adhesion and avoid air bubbles.',
+
+  'order.guidelines.step3': 'Make sure the sticker is applied correctly the first time. With every reapplication, the sticker\\'s ability to stick will decrease.',
+
+  'order.guidelines.title': 'Application Guidelines',
+
+  'order.pack_select_button': 'Select',
+
+  'order.pack_sheets_plural': 'sheets',
+
+  'order.pack_sheets_single': 'sheet',
+
+  'order.payment.error_email_invalid': 'Please enter a valid email address',
+
+  'order.price_at_checkout': 'Price calculated at checkout',
+
+  'order.quality.durability': '2–3 year durability',
+
+  'order.quality.fast_application': 'Fast and easy application',
+
+  'order.quality.glossy_finish': 'Glossy finish',
+
+  'order.quality.title': 'Premium Quality Stickers',
+
+  'order.shipping.error_postal_invalid': 'Invalid postal code for selected country',
+
+  'order.summary.shipping': 'Shipping:',
+
+  'order.summary.shipping_calculated': '+ shipping',
+
+  'order.summary.shipping_express': 'Express Shipping',
+
+  'order.summary.shipping_express_time': '3-5 business days',
+
+  'order.summary.shipping_method': 'Shipping Method:',
+
+  'order.summary.shipping_standard': 'Standard Shipping',
+
+  'order.summary.shipping_standard_time': '7-14 business days',
+
+  'order.summary.subtotal': 'Subtotal:',
+
+  'philosophy.button.hide': 'Hide',
+
+  'philosophy.button.learn_more': 'Learn More',
+
+  'philosophy.cta': 'Join us in giving lighters a second life, one story at a time.',
+
+  'philosophy.image_alt': 'Global Creativity Mosaic',
+
+  'philosophy.lead': 'We believe that even the smallest, most disposable object can carry a great story.',
+
+  'philosophy.p1': '<strong>LightMyFire</strong> was born from a simple idea: what if we stopped treating lighters as throwaway items? <strong>In a world of mass consumption where billions of these items are discarded every year,</strong> what if we saw them as companions, as tiny vessels for our memories, ideas, and creativity?',
+
+  'philosophy.p2': 'The everyday lighter is <strong>a powerful social catalyst.</strong> It\\'s no personal possession; it belongs to everyone. It passes from hand to hand, from friend to stranger, at parties, concerts, and quiet meetups. It hears our secrets and lights our way. <strong>It\\'s the silent witness to a great conversation, the spark for a new friendship. But its story is ephemeral, lost as soon as it\\'s passed on.</strong>',
+
+  'philosophy.p3': 'By giving a lighter a permanent, digital story, we give it sentimental value. <strong>Your lighter becomes a living artifact, a message in a bottle.</strong> And when something has value, we\\'re less likely to throw it away.',
+
+  'philosophy.p4': 'Our goal is simple: to create a global, human creativity mosaic, one lighter at a time, and reduce waste in the process. <strong>This is our stand against a throwaway culture. It\\'s an experiment in collaborative art. It\\'s a way to prove that if you give an object a story, you give it a soul.</strong>',
+
+  'philosophy.title': 'Our Philosophy',
+
+  'post.anonymous': 'Anonymous',
+
+  'post.default_location': 'Unknown Location',
+
+  'post.deleted_user': 'Deleted User',
+
+  'post.like_button': 'Like',
+
+  'post.location_at': 'at',
+
+  'post.post_type.image': 'shared an image',
+
+  'post.post_type.location': 'checked in',
+
+  'post.post_type.refuel': 'refueled this lighter',
+
+  'post.post_type.song': 'shared a song',
+
+  'post.post_type.text': 'wrote a story',
+
+  'post.user_upload_alt': 'User upload',
+
+  'post.youtube_player_title': 'YouTube video player',
+
+  'privacy.h3.automated_decisions': '7. Automated Decision-Making',
+
+  'privacy.h3.changes': '9. Changes to This Privacy Policy',
+
+  'privacy.h3.children': '8. Children\\'s Privacy',
+
+  'privacy.h3.contact': '10. Contact Us',
+
+  'privacy.h3.cookies': '5.1. Cookies',
+
+  'privacy.h3.data_breaches': '5.6. Data Breach Notification',
+
+  'privacy.h3.data_controller': '1. Data Controller',
+
+  'privacy.h3.data_retention': '5.4. Data Retention Periods',
+
+  'privacy.h3.data_security': '5.5. Security Measures',
+
+  'privacy.h3.data_sharing': '5. Data Sharing and Processors',
+
+  'privacy.h3.how_we_use': '3. How We Use Your Information',
+
+  'privacy.h3.info_we_collect': '2. Information We Collect',
+
+  'privacy.h3.international_transfers': '5.3. International Data Transfers',
+
+  'privacy.h3.legal_basis': '4. Legal Basis for Processing (GDPR)',
+
+  'privacy.h3.location_data': '5.2. Location Data',
+
+  'privacy.h3.your_rights': '6. Your Rights Under GDPR',
+
+  'privacy.h4.cookie_types': 'Types of Cookies We Use',
+
+  'privacy.h4.personal_data': '2.1. Personal Data You Provide',
+
+  'privacy.h4.right_access': '6.1. Right of Access (Art. 15 GDPR)',
+
+  'privacy.h4.right_complain': '6.8. Right to Lodge a Complaint',
+
+  'privacy.h4.right_erasure': '6.3. Right to Erasure - ',
+
+  'privacy.h4.right_object': '6.6. Right to Object (Art. 21 GDPR)',
+
+  'privacy.h4.right_portability': '6.5. Right to Data Portability (Art. 20 GDPR)',
+
+  'privacy.h4.right_rectification': '6.2. Right to Rectification (Art. 16 GDPR)',
+
+  'privacy.h4.right_restriction': '6.4. Right to Restriction of Processing (Art. 18 GDPR)',
+
+  'privacy.h4.right_withdraw': '6.7. Right to Withdraw Consent',
+
+  'privacy.h4.technical_data': '2.4. Technical Data (Automatically Collected)',
+
+  'privacy.h4.transaction_data': '2.3. Transaction Data',
+
+  'privacy.h4.user_content': '2.2. User-Generated Content',
+
+  'privacy.last_updated': 'Last updated: November 8, 2025',
+
+  'privacy.p1': 'LightMyFire (',
+
+  'privacy.p10': 'Your data is primarily stored on Supabase servers located within the European Union. However, some sub-processors may be located outside the EU/EEA. When data is transferred internationally, we ensure adequate protection through:',
+
+  'privacy.p11': 'We retain personal data only as long as necessary for the purposes outlined in this policy:',
+
+  'privacy.p12': 'After retention periods expire, data is securely deleted from all systems, including backups.',
+
+  'privacy.p13': 'We implement appropriate technical and organizational measures to protect your data:',
+
+  'privacy.p14': 'In the unlikely event of a personal data breach, we will:',
+
+  'privacy.p15': 'You have the following rights regarding your personal data. To exercise any of these rights, contact us at <strong>support@lightmyfire.app</strong>.',
+
+  'privacy.p16': 'You can request a copy of all personal data we hold about you. We\\'ll provide this in a structured, commonly used format within 30 days.',
+
+  'privacy.p17': 'You can correct inaccurate or incomplete data. Update most information directly in your profile settings, or contact us for assistance.',
+
+  'privacy.p18': 'You can request deletion of your personal data. You can delete individual posts anytime from ',
+
+  'privacy.p19': 'You can request we limit how we use your data while you contest its accuracy or lawfulness of processing.',
+
+  'privacy.p2': 'The data controller for your personal information is:<br><br><strong>Revel Editions SASU</strong><br>145 Rue de Noisy-le-Sec<br>93260 Les Lilas, France<br><br><strong>Contact Email:</strong> support@lightmyfire.app<br><strong>Data Protection Officer:</strong> support@lightmyfire.app',
+
+  'privacy.p20': 'You can receive your data in a machine-readable format (JSON/CSV) to transfer to another service.',
+
+  'privacy.p21': 'You can object to processing based on legitimate interests. We\\'ll stop processing unless we demonstrate compelling legitimate grounds.',
+
+  'privacy.p22': 'For processing based on consent, you can withdraw it anytime. This doesn\\'t affect the lawfulness of processing before withdrawal.',
+
+  'privacy.p23': 'If you believe we\\'re not complying with GDPR, you have the right to lodge a complaint with a supervisory authority:',
+
+  'privacy.p24': '<strong>France (Our Primary Jurisdiction):</strong><br>Commission Nationale de l\\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, France<br>Website: <a href=\\'https://www.cnil.fr\\' target=\\'_blank\\'>www.cnil.fr</a>',
+
+  'privacy.p25': 'You can also contact the data protection authority in your country of residence.',
+
+  'privacy.p26': 'We use limited automated processing for:',
+
+  'privacy.p27': 'These automated processes do not produce legal effects or significantly affect you. You can always contact us to contest a decision or request human review.',
+
+  'privacy.p28': 'Our service is not directed to children under 16 years of age (or the minimum age required in your jurisdiction to consent to data processing). We do not knowingly collect personal data from children. If you believe we\\'ve inadvertently collected data from a child, contact us immediately at support@lightmyfire.app and we\\'ll delete it promptly.',
+
+  'privacy.p29': 'We may update this Privacy Policy to reflect changes in our practices or legal requirements. We will:',
+
+  'privacy.p3': 'We collect personal information in several ways to provide and improve our services:',
+
+  'privacy.p30': 'Continued use of our services after changes constitutes acceptance of the updated policy.',
+
+  'privacy.p31': 'For any questions about this Privacy Policy or to exercise your rights, contact us:',
+
+  'privacy.p32': 'We aim to respond to all requests within 30 days. If your request is complex, we may extend this by an additional 60 days and will inform you.',
+
+  'privacy.p4': 'We use the information we collect to:',
+
+  'privacy.p5': 'Under GDPR, we process your personal data based on the following legal grounds:',
+
+  'privacy.p6': 'We do not sell, rent, or trade your personal data. We share data only with trusted service providers who help us operate the platform:',
+
+  'privacy.p7': 'All third-party processors are bound by Data Processing Agreements (DPAs) ensuring GDPR compliance and data protection.',
+
+  'privacy.p8': 'You can manage cookie preferences through the consent banner displayed on your first visit. You can change your choice anytime in your browser settings or by contacting us.',
+
+  'privacy.p9': 'When you create a location post, you may voluntarily provide geographic coordinates (latitude and longitude). <strong>Important disclosures:</strong>',
+
+  'privacy.ul1.li1': '<strong>Account Registration:</strong> Email address, username, and hashed password (we never store passwords in plain text)',
+
+  'privacy.ul1.li2': '<strong>Profile Information:</strong> Optional nationality information and profile preferences',
+
+  'privacy.ul1.li3': '<strong>Communications:</strong> Any information you provide when contacting us for support',
+
+  'privacy.ul10.li1': '<strong>Standard Contractual Clauses (SCCs):</strong> EU-approved data transfer mechanisms',
+
+  'privacy.ul10.li2': '<strong>Adequacy Decisions:</strong> Transfers only to countries recognized by the EU Commission as providing adequate protection',
+
+  'privacy.ul10.li3': '<strong>Processor Guarantees:</strong> All processors commit to GDPR-equivalent data protection standards',
+
+  'privacy.ul11.li1': '<strong>Account Data:</strong> Retained while your account is active, plus 30 days after deletion (to allow reactivation)',
+
+  'privacy.ul11.li2': '<strong>User Posts:</strong> Retained while your account exists. When you delete a post, it\\'s permanently removed within 24 hours',
+
+  'privacy.ul11.li3': '<strong>Order Data:</strong> 7 years from date of purchase (French tax law requirement)',
+
+  'privacy.ul11.li4': '<strong>Technical Logs:</strong> IP addresses and security logs retained for 12 months maximum',
+
+  'privacy.ul11.li5': '<strong>Anonymized Analytics:</strong> Retained indefinitely for service improvement (cannot be linked back to you)',
+
+  'privacy.ul12.li1': '<strong>Encryption:</strong> All data transmitted using TLS/SSL encryption. Passwords stored using industry-standard hashing',
+
+  'privacy.ul12.li2': '<strong>Access Controls:</strong> Role-based access, limited employee access, multi-factor authentication for admin accounts',
+
+  'privacy.ul12.li3': '<strong>Regular Audits:</strong> Security assessments, vulnerability scanning, and code reviews',
+
+  'privacy.ul12.li4': '<strong>Incident Response:</strong> Documented breach notification procedures (see Section 5.6)',
+
+  'privacy.ul13.li1': '<strong>Notify Supervisory Authority:</strong> Within 72 hours of becoming aware of the breach (CNIL in France)',
+
+  'privacy.ul13.li2': '<strong>Notify Affected Users:</strong> Without undue delay if the breach poses high risk to your rights and freedoms',
+
+  'privacy.ul13.li3': '<strong>Provide Information:</strong> Nature of the breach, likely consequences, measures taken, and recommended actions',
+
+  'privacy.ul14.li1': '<strong>Content Moderation:</strong> Automated pre-screening of posts for prohibited content (hate speech, explicit imagery). Flagged content is reviewed by human moderators before any action',
+
+  'privacy.ul14.li2': '<strong>Spam Prevention:</strong> Automated detection of suspicious activity patterns (e.g., rapid post submissions)',
+
+  'privacy.ul14.li3': '<strong>Gamification:</strong> Automated calculation of user levels and trophy eligibility based on contribution metrics',
+
+  'privacy.ul15.li1': 'Notify you by email of significant changes (if you have an account)',
+
+  'privacy.ul15.li2': 'Display a prominent notice on the website',
+
+  'privacy.ul15.li3': 'Update the ',
+
+  'privacy.ul16.li1': '<strong>Email:</strong> support@lightmyfire.app',
+
+  'privacy.ul16.li2': '<strong>Data Protection Officer:</strong> support@lightmyfire.app',
+
+  'privacy.ul16.li3': '<strong>Postal Address:</strong> Revel Editions SASU, [Complete Address], France',
+
+  'privacy.ul2.li1': '<strong>Posts:</strong> Text content, images, YouTube video links you share on lighter pages',
+
+  'privacy.ul2.li2': '<strong>Location Data:</strong> Optional geographic coordinates (latitude/longitude) when you create location posts. We can\\'t know if coordinates entered are linked to your actual location',
+
+  'privacy.ul2.li3': '<strong>Metadata:</strong> Post timestamps, lighter associations, and interaction data (likes, flags)',
+
+  'privacy.ul3.li1': '<strong>Payment Information:</strong> Processed securely by Stripe (our payment processor). We never store your full credit card details',
+
+  'privacy.ul3.li2': '<strong>Shipping Information:</strong> Name, address, email, and phone number for sticker delivery',
+
+  'privacy.ul3.li3': '<strong>Order History:</strong> Details of sticker packs purchased and customization preferences',
+
+  'privacy.ul4.li1': '<strong>Device Information:</strong> IP address, browser type, operating system',
+
+  'privacy.ul4.li2': '<strong>Usage Data:</strong> Pages visited, features used, time spent on the platform',
+
+  'privacy.ul4.li3': '<strong>Cookies:</strong> Essential cookies for authentication and session management (see Section 5.1)',
+
+  'privacy.ul5.li1': '<strong>Service Provision:</strong> Create and manage your account, display your contributions, process orders',
+
+  'privacy.ul5.li2': '<strong>Communication:</strong> Send order confirmations, respond to inquiries, notify you of lighter activity (if opted-in)',
+
+  'privacy.ul5.li3': '<strong>Platform Integrity:</strong> Prevent spam, enforce community guidelines, moderate content',
+
+  'privacy.ul5.li4': '<strong>Gamification:</strong> Track achievements, award trophies, calculate user levels',
+
+  'privacy.ul5.li5': '<strong>Legal Compliance:</strong> Comply with applicable laws and respond to legal requests',
+
+  'privacy.ul5.li6': '<strong>Service Improvement:</strong> Analyze usage patterns to enhance user experience (anonymized data only)',
+
+  'privacy.ul6.li1': '<strong>Contractual Necessity (Art. 6(1)(b) GDPR):</strong> Processing necessary to provide the services you requested when creating an account',
+
+  'privacy.ul6.li2': '<strong>Legitimate Interests (Art. 6(1)(f) GDPR):</strong> Platform security, fraud prevention, content moderation, and service improvement—balanced against your rights',
+
+  'privacy.ul6.li3': '<strong>Consent (Art. 6(1)(a) GDPR):</strong> Optional features like public post sharing, nationality display, and non-essential cookies—you can withdraw consent anytime',
+
+  'privacy.ul6.li4': '<strong>Legal Obligation (Art. 6(1)(c) GDPR):</strong> Compliance with French and EU law, including tax obligations and law enforcement requests',
+
+  'privacy.ul7.li1': '<strong>Supabase (Backend Infrastructure):</strong> Hosts our database, authentication system, and file storage. Located in EU data centers. <a href=\\'https://supabase.com/privacy\\' target=\\'_blank\\'>View Supabase Privacy Policy</a>',
+
+  'privacy.ul7.li2': '<strong>Stripe (Payment Processing):</strong> Processes all payment transactions securely. We receive only transaction confirmations, not card details. <a href=\\'https://stripe.com/privacy\\' target=\\'_blank\\'>View Stripe Privacy Policy</a>',
+
+  'privacy.ul7.li3': '<strong>Shipping Partners:</strong> Receive name, address, and contact information solely for sticker delivery',
+
+  'privacy.ul8.li1': '<strong>Essential Cookies (No Consent Required):</strong> Session management, authentication, security features, and shopping cart functionality. These are strictly necessary for the platform to work.',
+
+  'privacy.ul8.li2': '<strong>Preference Cookies (No Consent Required):</strong> Remember your language selection, cookie consent choice, and display preferences.',
+
+  'privacy.ul8.li3': '<strong>Analytics Cookies (Consent Required):</strong> Help us understand how visitors use the site through anonymized data. We only activate these with your explicit consent.',
+
+  'privacy.ul9.li1': 'This data is <strong>publicly visible</strong> on the lighter\\'s page and map',
+
+  'privacy.ul9.li2': 'Anyone with the lighter\\'s PIN can see this information',
+
+  'privacy.ul9.li3': 'You control the accuracy—you can provide approximate or exact coordinates',
+
+  'privacy.ul9.li4': 'You are solely responsible for privacy implications of any location data you share',
+
+  'privacy.ul9.li5': 'You can delete your location posts anytime from your profile',
+
+  'refill_guide.citations.1.source': 'World Economic Forum - Plastic Waste Statistics (2023)',
+
+  'refill_guide.citations.1.text': 'Global lighter production and environmental impact data',
+
+  'refill_guide.citations.1.url': 'https://www.weforum.org/agenda/2023/plastic-waste/',
+
+  'refill_guide.citations.title': 'Sources & References',
+
+  'refill_guide.key_indicators': 'Key indicators:',
+
+  'refill_guide.stats.lighters_sold': 'Disposable lighters sold yearly',
+
+  'refill_guide.stats.lighters_sold_worldwide': 'Worldwide',
+
+  'refill_guide.stats.waste_reduction': 'Waste reduction',
+
+  'refill_guide.stats.waste_reduction_method': 'With refillable lighters',
+
+  'refill_guide.stats.years_decompose': 'Years to decompose',
+
+  'refill_guide.stats.years_decompose_location': 'In landfills',
+
+  'refill_guide.type1.indicator1': 'Small round metal valve on the bottom',
+
+  'refill_guide.type1.indicator2': 'Similar to a tire valve',
+
+  'refill_guide.type1.indicator3': 'Most common type',
+
+  'refill_guide.type2.indicator1': 'Metal lighter (often iconic design)',
+
+  'refill_guide.type2.indicator2': 'Inner block can be pulled out',
+
+  'refill_guide.type2.indicator3': 'Cotton visible inside',
+
+  'refill_guide.type3.indicator1': 'Flat, sealed plastic bottom',
+
+  'refill_guide.type3.indicator2': 'No valve or removable parts',
+
+  'refill_guide.type3.indicator3': 'Single-use only',
+
+  'save_lighter.change_pack': '← Change Pack',
+
+  'save_lighter.creative_journey': 'Creative Journey',
+
+  'save_lighter.creative_journey_desc': 'Be part of a fun, global movement. Give lighters a second life with beautiful, hand-crafted stickers.',
+
+  'save_lighter.design_preview': 'Preview of your custom stickers. Sticker files will be generated after payment.',
+
+  'save_lighter.error.failed_to_save': 'Failed to save lighter: {message}',
+
+  'save_lighter.helper.background_url': 'Optional. This image URL will be the background for your lighter\\'s page. Try an Imgur or Unsplash link.',
+
+  'save_lighter.human_mosaic': 'Human Mosaic',
+
+  'save_lighter.human_mosaic_desc': 'Join thousands of LightSavers creating a human mosaic of stories and creativity while fighting waste.',
+
+  'save_lighter.more_stickers': '+{count} more',
+
+  'save_lighter.pack_count': 'Pack of {count} stickers',
+
+  'save_lighter.pack_total': 'Total: {price}',
+
+  'save_lighter.payment_mock': 'Simulate Payment',
+
+  'save_lighter.sticker_plural': 'Stickers',
+
+  'save_lighter.sticker_singular': 'Sticker',
+
+  'save_lighter.sustainable_impact': 'Sustainable Impact',
+
+  'save_lighter.sustainable_impact_desc': 'Our stickers are hand-made and sustainably manufactured. Help maintain this project alive.',
+
+  'save_lighter.why_it_matters': 'Why It Matters',
+
+  'save_lighter.your_design': 'Your Sticker Design',
+
+  'save_success.error_fetching': 'An error occurred while fetching lighter details.',
+
+  'save_success.generating_sticker': 'Generating Sticker...',
+
+  'save_success.next_steps.download_label': 'Download',
+
+  'settings.profile.nationality_label': 'Nationality',
+
+  'settings.profile.nationality_optional': '(optional)',
+
+  'settings.profile.nationality_placeholder': 'Select a country',
+
+  'settings.profile.save_button': 'Save Profile',
+
+  'settings.profile.saving': 'Saving...',
+
+  'settings.profile.show_nationality_label': 'Show my nationality on my posts',
+
+  'settings.profile.username_label': 'Username',
+
+  'stripe.card_info': 'Card Information',
+
+  'stripe.error.generic': 'Payment failed. Please check your details or try again.',
+
+  'stripe.pay_button': 'Pay {amount}',
+
+  'terms.h3.acceptance': '1. Acceptance of Terms',
+
+  'terms.h3.contact_terms': '12. Contact Information',
+
+  'terms.h3.dispute_resolution': '9. Dispute Resolution and Governing Law',
+
+  'terms.h3.eligibility': '2. Eligibility and Account Requirements',
+
+  'terms.h3.general': '11. General Provisions',
+
+  'terms.h3.indemnification': '8. Indemnification',
+
+  'terms.h3.liability': '7. Disclaimers and Limitation of Liability',
+
+  'terms.h3.license': '3. License and Intellectual Property',
+
+  'terms.h3.moderation': '5. Content Moderation and Enforcement',
+
+  'terms.h3.stickers': '6. Sticker Sales and Orders',
+
+  'terms.h3.termination': '10. Termination',
+
+  'terms.h3.ugc': '4. User-Generated Content and Conduct',
+
+  'terms.h4.account_accuracy': '2.3. Account Information',
+
+  'terms.h4.account_security': '2.2. Account Security',
+
+  'terms.h4.age': '2.1. Age Requirement',
+
+  'terms.h4.appeals': '5.4. Appeals Process',
+
+  'terms.h4.as_is': '7.1. ',
+
+  'terms.h4.assignment': '11.5. Assignment',
+
+  'terms.h4.by_us': '10.2. Termination by Us',
+
+  'terms.h4.by_you': '10.1. Termination by You',
+
+  'terms.h4.community_flagging': '5.2. Community Flagging',
+
+  'terms.h4.custom': '6.3. Customization',
+
+  'terms.h4.effect': '10.3. Effect of Termination',
+
+  'terms.h4.enforcement': '5.3. Enforcement Actions',
+
+  'terms.h4.entire_agreement': '11.1. Entire Agreement',
+
+  'terms.h4.governing_law': '9.1. Governing Law',
+
+  'terms.h4.informal_resolution': '9.3. Informal Dispute Resolution',
+
+  'terms.h4.jurisdiction': '9.2. Jurisdiction',
+
+  'terms.h4.jurisdiction_limits': '7.3. Jurisdictional Limitations',
+
+  'terms.h4.limitation': '7.2. Limitation of Liability',
+
+  'terms.h4.mod_rights': '5.1. Our Rights',
+
+  'terms.h4.modifications': '11.2. Modifications to Terms',
+
+  'terms.h4.our_ip': '3.2. LightMyFire Intellectual Property',
+
+  'terms.h4.our_license': '3.1. License to Use the Service',
+
+  'terms.h4.prohibited_conduct': '4.3. Prohibited Conduct',
+
+  'terms.h4.prohibited_content': '4.2. Prohibited Content',
+
+  'terms.h4.sales_final': '6.1. Sales Policy',
+
+  'terms.h4.severability': '11.3. Severability',
+
+  'terms.h4.shipping': '6.2. Shipping and Delivery',
+
+  'terms.h4.third_party': '11.6. No Third-Party Beneficiaries',
+
+  'terms.h4.ugc_responsibility': '4.1. Your Responsibility',
+
+  'terms.h4.user_license': '3.3. License to Your User-Generated Content',
+
+  'terms.h4.waiver': '11.4. No Waiver',
+
+  'terms.last_updated': 'Last updated: October 28, 2025',
+
+  'terms.p1': 'These Terms of Service (',
+
+  'terms.p10': 'By posting User-Generated Content (',
+
+  'terms.p11': '<strong>Important:</strong> This license is limited to operating and promoting the Service. We will not use your content for unrelated commercial purposes. You retain ownership of your UGC and can revoke this license for specific posts by deleting them from your profile. However, copies may persist in backups for up to 30 days.',
+
+  'terms.p12': 'You are solely responsible for all content you post on LightMyFire, including text, images, links to songs (YouTube URLs), and location data. You represent and warrant that:',
+
+  'terms.p13': 'You must not post content that:',
+
+  'terms.p14': 'You must not:',
+
+  'terms.p15': 'We reserve the right (but have no obligation) to:',
+
+  'terms.p16': 'However, we are not responsible for monitoring all content and make no guarantee that prohibited content will not appear on the Service.',
+
+  'terms.p17': 'We use a community-driven flagging system. Users can flag content they believe violates these Terms. Flagged content is reviewed by our moderation team, which may include automated pre-screening followed by human review.',
+
+  'terms.p18': 'Violations of these Terms may result in:',
+
+  'terms.p19': 'We may terminate accounts without prior notice if we determine there\\'s a serious violation that threatens user safety or platform integrity.',
+
+  'terms.p2': 'By accessing or using LightMyFire, you agree to be bound by these Terms, our Privacy Policy, and all applicable laws. If you do not agree with any part of these Terms, you must not use the Service. Your continued use constitutes acceptance of any modifications we make to these Terms.',
+
+  'terms.p20': 'If you believe content was removed or your account was suspended in error, you may appeal by contacting support@lightmyfire.app within 30 days of the action. Include:',
+
+  'terms.p21': 'We will review appeals and respond within 14 business days. Our decision on appeals is final.',
+
+  'terms.p22': 'All sticker sales are final. We do not offer refunds except in cases of:',
+
+  'terms.p23': 'To request a refund for these reasons, contact support@lightmyfire.app within 30 days of delivery with photo evidence.',
+
+  'terms.p24': 'Shipping times and costs are specified at checkout. We are not responsible for delays caused by shipping carriers, customs, or events beyond our control (force majeure). Risk of loss passes to you upon delivery to the carrier.',
+
+  'terms.p25': 'Custom sticker orders cannot be canceled once processing begins (typically within 24 hours of order placement). Please review your customizations carefully before completing your order.',
+
+  'terms.p26': 'THE SERVICE IS PROVIDED ',
+
+  'terms.p27': 'TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, REVEL EDITIONS SASU AND ITS DIRECTORS, EMPLOYEES, AGENTS, AND AFFILIATES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO:',
+
+  'terms.p28': 'OUR TOTAL LIABILITY TO YOU FOR ALL CLAIMS ARISING FROM OR RELATED TO THE SERVICE SHALL NOT EXCEED THE GREATER OF (A) €100 OR (B) THE AMOUNT YOU PAID US IN THE 12 MONTHS PRECEDING THE CLAIM.',
+
+  'terms.p29': 'Some jurisdictions do not allow the exclusion of certain warranties or limitation of liability for consequential damages. In such jurisdictions, our liability is limited to the maximum extent permitted by law.',
+
+  'terms.p3': 'You must be at least 16 years old (or the minimum age required in your country to provide consent for data processing under applicable privacy laws) to create an account and use this Service. By creating an account, you represent and warrant that you meet this age requirement.',
+
+  'terms.p30': 'You agree to defend, indemnify, and hold harmless Revel Editions SASU, its directors, officers, employees, and agents from any claims, damages, losses, liabilities, and expenses (including reasonable attorneys\\' fees) arising from:',
+
+  'terms.p31': 'These Terms are governed by and construed in accordance with the laws of France, without regard to its conflict of law principles. The United Nations Convention on Contracts for the International Sale of Goods does not apply.',
+
+  'terms.p32': 'Any disputes arising from these Terms or your use of the Service shall be subject to the exclusive jurisdiction of the courts of Paris, France. However, we may seek injunctive relief in any court of competent jurisdiction.',
+
+  'terms.p33': 'Before filing any formal claim, you agree to contact us at support@lightmyfire.app to attempt to resolve the dispute informally. We commit to working with you in good faith to reach a resolution within 60 days.',
+
+  'terms.p34': 'You may terminate your account at any time by contacting support@lightmyfire.app. Upon termination:',
+
+  'terms.p35': 'We may suspend or terminate your account immediately, without prior notice, for:',
+
+  'terms.p36': 'Upon termination for any reason:',
+
+  'terms.p37': 'These Terms, together with our Privacy Policy, constitute the entire agreement between you and Revel Editions SASU regarding the Service and supersede all prior agreements.',
+
+  'terms.p38': 'We reserve the right to modify these Terms at any time. When we make changes:',
+
+  'terms.p39': 'If you don\\'t agree to modified Terms, you must stop using the Service.',
+
+  'terms.p4': 'You are responsible for:',
+
+  'terms.p40': 'If any provision of these Terms is found invalid or unenforceable, that provision shall be enforced to the maximum extent possible, and the remaining provisions shall remain in full effect.',
+
+  'terms.p41': 'Our failure to enforce any right or provision of these Terms does not constitute a waiver of that right or provision.',
+
+  'terms.p42': 'You may not assign or transfer these Terms or your account without our written consent. We may assign our rights and obligations without restriction.',
+
+  'terms.p43': 'These Terms do not create any third-party beneficiary rights except as expressly stated.',
+
+  'terms.p44': 'For questions about these Terms, contact us:',
+
+  'terms.p5': 'You may not share your account with others or use another person\\'s account without permission.',
+
+  'terms.p6': 'You agree to provide accurate, current, and complete information during registration and to update it as necessary to maintain its accuracy.',
+
+  'terms.p7': 'Subject to these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to access and use LightMyFire for personal, non-commercial purposes.',
+
+  'terms.p8': 'All content, features, and functionality of the Service—including but not limited to text, graphics, logos, icons, images, audio clips, data compilations, software, and the ',
+
+  'terms.p9': '[TODO: Translate terms.p9]',
+
+  'terms.ul1.li1': 'Maintaining the confidentiality of your account credentials',
+
+  'terms.ul1.li2': 'All activities that occur under your account',
+
+  'terms.ul1.li3': 'Notifying us immediately of any unauthorized use at: support@lightmyfire.app',
+
+  'terms.ul10.li1': 'The Service will meet your requirements',
+
+  'terms.ul10.li2': 'The Service will be uninterrupted, timely, secure, or error-free',
+
+  'terms.ul10.li3': 'Results obtained from use of the Service will be accurate or reliable',
+
+  'terms.ul10.li4': 'Any errors in the Service will be corrected',
+
+  'terms.ul11.li1': 'Loss of profits, data, use, goodwill, or other intangible losses',
+
+  'terms.ul11.li2': 'Unauthorized access to or alteration of your content',
+
+  'terms.ul11.li3': 'Third-party conduct or content on the Service',
+
+  'terms.ul11.li4': 'Any matter beyond our reasonable control',
+
+  'terms.ul12.li1': 'Your use or misuse of the Service',
+
+  'terms.ul12.li2': 'Your violation of these Terms',
+
+  'terms.ul12.li3': 'Your violation of any rights of another party',
+
+  'terms.ul12.li4': 'Your User-Generated Content',
+
+  'terms.ul13.li1': 'Your account will be deactivated',
+
+  'terms.ul13.li2': 'You lose access to all account features',
+
+  'terms.ul13.li3': 'Your posts remain visible on lighter pages (they\\'re part of those lighters\\' stories)',
+
+  'terms.ul13.li4': 'To delete your posts before account termination, do so manually from your profile',
+
+  'terms.ul14.li1': 'Violation of these Terms',
+
+  'terms.ul14.li2': 'Fraudulent, abusive, or illegal activity',
+
+  'terms.ul14.li3': 'Prolonged inactivity (accounts inactive for 3+ years)',
+
+  'terms.ul14.li4': 'At our sole discretion if necessary to protect the Service or other users',
+
+  'terms.ul15.li1': 'Your right to use the Service ceases immediately',
+
+  'terms.ul15.li2': 'Sections that by their nature should survive termination remain in effect (including Intellectual Property, Disclaimers, Limitation of Liability, Indemnification, Dispute Resolution)',
+
+  'terms.ul15.li3': 'We may retain certain data as required by law or legitimate business purposes',
+
+  'terms.ul16.li1': 'We\\'ll update the ',
+
+  'terms.ul16.li2': 'For material changes, we\\'ll notify you by email or prominent notice on the Service',
+
+  'terms.ul16.li3': 'Your continued use after changes constitutes acceptance',
+
+  'terms.ul17.li1': '<strong>Email:</strong> support@lightmyfire.app',
+
+  'terms.ul17.li2': '<strong>Support:</strong> support@lightmyfire.app',
+
+  'terms.ul17.li3': '<strong>Address:</strong> Revel Editions SASU, Cs 20008 145 Rue de Noisy-le-Sec 93260 Les Lilas, France',
+
+  'terms.ul2.li1': 'Use, reproduce, distribute, modify, adapt, publicly perform, and publicly display your UGC',
+
+  'terms.ul2.li2': 'Incorporate your UGC into other works in any format or medium',
+
+  'terms.ul2.li3': 'Sublicense these rights to third parties solely for the operation and promotion of LightMyFire',
+
+  'terms.ul3.li1': 'You own or have the necessary rights to post the content',
+
+  'terms.ul3.li2': 'Your content does not violate any third party\\'s intellectual property, privacy, or other rights',
+
+  'terms.ul3.li3': 'Your content complies with these Terms and applicable laws',
+
+  'terms.ul4.li1': '<strong>Illegal:</strong> Violates any local, national, or international law',
+
+  'terms.ul4.li10': '<strong>Malicious:</strong> Contains viruses, malware, or other harmful code',
+
+  'terms.ul4.li11': '<strong>Private Information:</strong> Shares others\\' personal information without consent (doxxing)',
+
+  'terms.ul4.li2': '<strong>Harmful to Minors:</strong> Exploits, sexualizes, or endangers children in any way',
+
+  'terms.ul4.li3': '<strong>Hateful:</strong> Promotes hatred, discrimination, or violence against individuals or groups based on race, ethnicity, religion, gender, sexual orientation, disability, or other protected characteristics',
+
+  'terms.ul4.li4': '<strong>Violent or Threatening:</strong> Depicts, encourages, or threatens violence, self-harm, or harm to others',
+
+  'terms.ul4.li5': '<strong>Harassing:</strong> Bullies, harasses, stalks, or intimidates others',
+
+  'terms.ul4.li6': '<strong>Sexually Explicit:</strong> Contains pornography or sexually explicit material',
+
+  'terms.ul4.li7': '<strong>Misleading:</strong> Contains false, misleading, or fraudulent information',
+
+  'terms.ul4.li8': '<strong>Spam:</strong> Consists of unsolicited advertising, promotional material, or repetitive content',
+
+  'terms.ul4.li9': '<strong>Infringing:</strong> Violates copyrights, trademarks, patents, or other intellectual property rights',
+
+  'terms.ul5.li1': 'Impersonate any person or entity',
+
+  'terms.ul5.li2': 'Manipulate the Service to artificially inflate metrics (likes, views, etc.)',
+
+  'terms.ul5.li3': 'Interfere with or disrupt the Service or servers',
+
+  'terms.ul5.li4': 'Attempt to gain unauthorized access to any part of the Service',
+
+  'terms.ul5.li5': 'Use automated tools (bots, scrapers) without written permission',
+
+  'terms.ul5.li6': 'Circumvent any content filtering or security measures',
+
+  'terms.ul5.li7': 'Use the Service for any commercial purpose without our consent',
+
+  'terms.ul6.li1': 'Review, screen, edit, or remove any UGC at any time for any reason',
+
+  'terms.ul6.li2': 'Monitor user activity for violations of these Terms',
+
+  'terms.ul6.li3': 'Investigate complaints and reported content',
+
+  'terms.ul7.li1': '<strong>Content Removal:</strong> Removal of violating posts without notice',
+
+  'terms.ul7.li2': '<strong>Warning:</strong> A formal warning for first-time or minor violations',
+
+  'terms.ul7.li3': '<strong>Temporary Suspension:</strong> Temporary account suspension (duration determined by severity)',
+
+  'terms.ul7.li4': '<strong>Permanent Termination:</strong> Permanent account termination for serious or repeated violations',
+
+  'terms.ul7.li5': '<strong>Legal Action:</strong> Reporting to law enforcement for illegal activity',
+
+  'terms.ul8.li1': 'Your username and account email',
+
+  'terms.ul8.li2': 'Description of the content or action in question',
+
+  'terms.ul8.li3': 'Explanation of why you believe the decision was incorrect',
+
+  'terms.ul9.li1': 'Manufacturing defects in the stickers',
+
+  'terms.ul9.li2': 'Incorrect items shipped',
+
+  'terms.ul9.li3': 'Non-delivery due to our error',
 } as const;
