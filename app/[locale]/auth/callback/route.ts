@@ -141,7 +141,14 @@ export async function GET(request: NextRequest, { params }: { params: { locale: 
 
               const emailLang = (locale || 'en') as SupportedEmailLanguage;
 
-              await sendWelcomeEmail({
+              console.log('Sending welcome email to new user:', {
+                email: session.user.email,
+                userName,
+                userId: session.user.id,
+                isGoogleAuth: session.user.app_metadata?.provider === 'google',
+              });
+
+              const emailResult = await sendWelcomeEmail({
                 userEmail: session.user.email,
                 userName,
                 profileUrl: `${requestUrl.origin}/${locale}/my-profile`,
@@ -149,15 +156,46 @@ export async function GET(request: NextRequest, { params }: { params: { locale: 
                 language: emailLang,
               });
 
-              logger.event('welcome_email_sent', {
-                email: session.user.email,
-                userId: session.user.id,
-                language: emailLang
-              });
+              if (emailResult.success) {
+                console.log('Welcome email sent successfully:', {
+                  email: session.user.email,
+                  emailId: emailResult.id,
+                });
+                logger.event('welcome_email_sent', {
+                  email: session.user.email,
+                  userId: session.user.id,
+                  language: emailLang,
+                  emailId: emailResult.id,
+                });
+              } else {
+                console.error('Welcome email failed to send:', {
+                  email: session.user.email,
+                  error: emailResult.error,
+                });
+                logger.event('welcome_email_failed', {
+                  email: session.user.email,
+                  userId: session.user.id,
+                  error: emailResult.error,
+                });
+              }
             } catch (emailError) {
               // Don't block the signup flow if email fails
-              console.error('Failed to send welcome email:', emailError);
+              console.error('Failed to send welcome email (exception):', {
+                error: emailError,
+                email: session.user.email,
+                userId: session.user.id,
+              });
+              logger.event('welcome_email_error', {
+                email: session.user.email,
+                userId: session.user.id,
+                error: emailError instanceof Error ? emailError.message : 'Unknown error',
+              });
             }
+          } else if (!isNewUser && session.user.email) {
+            console.log('Existing user logged in, skipping welcome email:', {
+              email: session.user.email,
+              userId: session.user.id,
+            });
           }
         }
       }
