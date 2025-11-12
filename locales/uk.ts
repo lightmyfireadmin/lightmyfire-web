@@ -846,51 +846,51 @@ export default {
 
   'error.upload_too_large': 'Це зображення занадто велике! Вибери файл менше 2МБ. 📸',
 
-  'faq.q1.desc': 'It\\'s a project to reduce waste and create a ',
+  'faq.q1.desc': 'Це проєкт зі зменшення відходів та створення «людської мозаїки». Ми продаємо стікери з QR-кодами, які ти клеїш на запальничку. Будь-хто, хто знайде цю запальничку, може відсканувати код, ввести PIN і додати історію, фото або пісню до її цифрового журналу.',
 
-  'faq.q1.title': 'What is LightMyFire?',
+  'faq.q1.title': 'Що таке LightMyFire?',
 
-  'faq.q2.desc': 'You must find a lighter with a LightMyFire sticker. Scan the QR code (or go to our site) and enter the unique PIN from the sticker. You\\'ll need to create a free account to contribute.',
+  'faq.q2.desc': 'Ти маєш знайти запальничку зі стікером LightMyFire. Відскануй QR-код (або зайди на наш сайт) і введи унікальний PIN зі стікера. Тобі потрібно створити безкоштовний акаунт для участі.',
 
-  'faq.q2.title': 'How do I add a story?',
+  'faq.q2.title': 'Як додати історію?',
 
-  'faq.q3.desc': 'To keep the mosaic diverse, we have a 24-hour cooldown period *per lighter*. This encourages you to pass the lighter on so someone else can add their story.',
+  'faq.q3.desc': 'Щоб зберегти мозаїку різноманітною, у нас є 24-годинний період очікування *на запальничку*. Це спонукає тебе передати запальничку далі, щоб хтось інший міг додати свою історію.',
 
-  'faq.q3.title': 'Why can\\'t I post twice in a row?',
+  'faq.q3.title': 'Чому я не можу публікувати двічі підряд?',
 
-  'faq.q4.desc': 'You have two choices. All posts are visible on the lighter\\'s page (which requires the PIN to access). When you post, you can also check a box to make it ',
+  'faq.q4.desc': 'У тебе є два вибори. Всі пости видимі на сторінці запальнички (для доступу потрібен PIN). Коли ти публікуєш, можеш також поставити галочку, щоб зробити його «публічним», що дозволить йому з\\'явитися в мозаїці на головній сторінці.',
 
-  'faq.q4.title': 'Is my post public?',
+  'faq.q4.title': 'Мій пост публічний?',
 
-  'faq.q5.desc': 'Log in and go to your ',
+  'faq.q5.desc': 'Увійди і перейди на сторінку «Мій профіль». Ти побачиш список усіх своїх внесків з кнопкою видалення поряд з кожним.',
 
-  'faq.q5.title': 'How do I delete a post I made?',
+  'faq.q5.title': 'Як видалити зроблений мною пост?',
 
-  'faq.q6.desc': 'That\\'s part of the fun! As the ',
+  'faq.q6.desc': 'Це частина веселощів! Як «Рятівник Вогнів» (людина, що купила стікер), ти завжди можеш бачити сторінку своєї запальнички з панелі «Мій профіль». Ти можеш спостерігати за її подорожжю і бачити, куди вона йде та які історії вона збирає ще довго після того, як покине твої руки.',
 
-  'faq.q6.title': 'What happens if I lose the lighter I saved?',
+  'faq.q6.title': 'Що станеться, якщо я втрачу врятовану запальничку?',
 
-  'faq.q7.desc': 'On each lighter\\'s page, you\\'ll find a map that shows the journey of that specific lighter. Every time someone makes a ',
+  'faq.q7.desc': 'На сторінці кожної запальнички ти знайдеш карту, що показує подорож цієї конкретної запальнички. Кожного разу, коли хтось робить пост «місцезнаходження», координати записуються і додаються на карту, простежуючи шлях запальнички по всьому світу.',
 
-  'faq.q7.title': 'How does the map work?',
+  'faq.q7.title': 'Як працює карта?',
 
-  'footer.copyright': '© {year} Revel Editions SASU. All rights reserved.',
+  'footer.copyright': '© {year} Revel Editions SASU. Усі права захищені.',
 
-  'footer.disclaimer': 'This project is an independent creative initiative, not affiliated with lighter manufacturers or other surfaces on which you might find us.',
+  'footer.disclaimer': 'Цей проєкт — незалежна творча ініціатива, не пов\\'язана з виробниками запальничок або іншими поверхнями, на яких ти можеш нас знайти.',
 
   'footer.facebook_aria': 'Facebook',
 
   'footer.instagram_aria': 'Instagram',
 
-  'footer.links.about': 'About',
+  'footer.links.about': 'Про нас',
 
   'footer.links.faq': 'FAQ',
 
-  'footer.links.privacy': 'Privacy Policy',
+  'footer.links.privacy': 'Політика конфіденційності',
 
-  'footer.links.terms': 'Terms of Use',
+  'footer.links.terms': 'Умови використання',
 
-  'footer.notice': 'We\\'re committed to a safe, respectful community. If you see content that doesn\\'t belong, please flag it so we can review. Thank you!',
+  'footer.notice': 'Ми прагнемо безпечної, поважної спільноти. Якщо ти бачиш контент, якому тут не місце, будь ласка, поскаржся на нього, щоб ми могли перевірити. Дякуємо!',
 
   'footer.social.facebook': 'Facebook',
 
@@ -900,675 +900,675 @@ export default {
 
   'footer.tiktok_aria': 'TikTok',
 
-  'home.become_lightsaver.alt': 'Illustration of sharing',
+  'home.become_lightsaver.alt': 'Ілюстрація ділитися',
 
-  'home.become_lightsaver.alt_arrow': 'Arrow pointing to save lighter button',
+  'home.become_lightsaver.alt_arrow': 'Стрілка вказує на кнопку врятувати запальничку',
 
-  'home.community.alt': 'Community illustration',
+  'home.community.alt': 'Ілюстрація спільноти',
 
-  'home.hero.alt_image': 'LightMyFire - Give lighters a second life',
+  'home.hero.alt_image': 'LightMyFire - Подаруй запальничкам друге життя',
 
-  'home.how_it_works.step1.alt': 'Save a lighter',
+  'home.how_it_works.step1.alt': 'Врятуй запальничку',
 
-  'home.how_it_works.step2.alt': 'Share the lighter',
+  'home.how_it_works.step2.alt': 'Поділися запальничкою',
 
-  'home.how_it_works.step3.alt': 'Follow the story',
+  'home.how_it_works.step3.alt': 'Стеж за історією',
 
-  'home.pin_entry.image_alt': 'Found a lighter',
+  'home.pin_entry.image_alt': 'Знайдена запальничка',
 
-  'home.stats.citations_title': 'Sources',
+  'home.stats.citations_title': 'Джерела',
 
-  'how_it_works_details.step1.desc': 'Give a lighter a name to create its digital logbook and download your unique PIN/QR sticker.',
+  'how_it_works_details.step1.desc': 'Дай запальничці ім\\'я, щоб створити її цифровий журнал і завантажити унікальний PIN/QR-стікер.',
 
-  'how_it_works_details.step1.title': '1. Save',
+  'how_it_works_details.step1.title': '1. Врятуй',
 
-  'how_it_works_details.step2.desc': 'Stick it on your lighter and give it away or ',
+  'how_it_works_details.step2.desc': 'Наклей його на запальничку і подаруй її або «загуби». Її подорож починається.',
 
-  'how_it_works_details.step2.title': '2. Share',
+  'how_it_works_details.step2.title': '2. Поділися',
 
-  'how_it_works_details.step3.desc': 'Once saved, you are directed to its permanent web page. Add the first post: a photo, a video, a song link, or just a story from where you are. This is your lighter\\'s \\'birth.\\'',
+  'how_it_works_details.step3.desc': 'Після збереження ти перейдеш на її постійну веб-сторінку. Додай перший пост: фото, відео, посилання на пісню або просто історію про те, де ти знаходишся. Це «народження» твоєї запальнички.',
 
-  'how_it_works_details.step3.title': '3. Add Your First Story',
+  'how_it_works_details.step3.title': '3. Додай першу історію',
 
-  'how_it_works_details.step4.desc': 'By passing the lighter, each new person who finds it can scan it and add their own post to its timeline. You are no longer just sharing a flame; you are co-writing a global chronicle.',
+  'how_it_works_details.step4.desc': 'Передаючи запальничку, кожна нова людина, яка її знайде, може відсканувати її і додати свій пост до її хронології. Ти більше не просто ділишся полум\\'ям; ти створюєш глобальну хроніку разом з іншими.',
 
-  'how_it_works_details.step4.title': '4. Watch the Story Grow',
+  'how_it_works_details.step4.title': '4. Спостерігай, як зростає історія',
 
-  'how_it_works_details.step5.desc': 'Our community is built on respect and creativity. If you see a post that violates our <strong>guidelines</strong> (spam, hateful content, etc.), use the ',
+  'how_it_works_details.step5.desc': 'Наша спільнота побудована на повазі та творчості. Якщо ти бачиш пост, що порушує наші <strong>правила</strong> (спам, образливий контент тощо), використовуй кнопку «Поскаржитися». Наша система пре-модерації та модератори перевірять його, щоб платформа залишалася безпечною.',
 
-  'how_it_works_details.step5.title': '5. Be a Good Community Member',
+  'how_it_works_details.step5.title': '5. Будь хорошим членом спільноти',
 
-  'how_it_works_details.step6.desc': 'By participating, you and your lighters will unlock achievements. Add your first post to get the ',
+  'how_it_works_details.step6.desc': 'Беручи участь, ти і твої запальнички розблокуєте досягнення. Додай перший пост, щоб отримати трофей «Перша іскра». Дивись, як твоя запальничка подорожує в нову країну, щоб заробити трофей «Мандрівник». Перевір свій профіль, щоб побачити всі <strong>трофеї</strong>, які ти зібрав!',
 
-  'how_it_works_details.step6.title': '6. Collect Your Trophies!',
+  'how_it_works_details.step6.title': '6. Збирай трофеї!',
 
-  'how_it_works_details.title': 'How It Works: From Spark to Global Story',
+  'how_it_works_details.title': 'Як Це Працює: Від Іскри До Глобальної Історії',
 
-  'lighter.add_to_story': 'Add to Story',
+  'lighter.add_to_story': 'Додати до історії',
 
-  'lighter.all_loaded': 'All posts loaded',
+  'lighter.all_loaded': 'Всі пости завантажені',
 
-  'lighter.level': 'Level',
+  'lighter.level': 'Рівень',
 
-  'lighter.load_more': 'Load More Posts',
+  'lighter.load_more': 'Завантажити ще пости',
 
-  'lighter.loading': 'Loading...',
+  'lighter.loading': 'Завантаження...',
 
-  'lighter.map.center_coords': 'Center: Lat {lat}, Lng {lng}',
+  'lighter.map.center_coords': 'Центр: Шир {lat}, Довг {lng}',
 
-  'lighter.map.markers': '{count} locations',
+  'lighter.map.markers': '{count} місцезнаходжень',
 
-  'lighter.map.no_locations': 'No locations posted yet. Add one to start the map!',
+  'lighter.map.no_locations': 'Місцезнаходження ще не опубліковані. Додай одне, щоб почати карту!',
 
-  'lighter.map.title': 'The Journey So Far',
+  'lighter.map.title': 'Подорож Досі',
 
-  'lighter.no_posts': 'This lighter has no stories yet. Be the first to add one!',
+  'lighter.no_posts': 'У цієї запальнички ще немає історій. Будь першим, хто додасть одну!',
 
-  'lighter.on': 'on',
+  'lighter.on': 'на',
 
-  'lighter.post_plural': 'Posts',
+  'lighter.post_plural': 'Постів',
 
-  'lighter.post_single': 'Post',
+  'lighter.post_single': 'Пост',
 
-  'lighter.saved_by': 'Saved by',
+  'lighter.saved_by': 'Врятована',
 
-  'lighter.saved_by_label': 'Lighter Saved By',
+  'lighter.saved_by_label': 'Запальничка Врятована',
 
-  'lighter_personalization.apply_all': 'Apply to All',
+  'lighter_personalization.apply_all': 'Застосувати до всіх',
 
-  'lighter_personalization.button.save_continue': 'Save and Continue',
+  'lighter_personalization.button.save_continue': 'Зберегти і продовжити',
 
-  'lighter_personalization.button_save_customizations': 'Save Sticker Customizations',
+  'lighter_personalization.button_save_customizations': 'Зберегти персоналізацію стікерів',
 
-  'lighter_personalization.color.black': 'Black',
+  'lighter_personalization.color.black': 'Чорний',
 
-  'lighter_personalization.color.blue': 'Blue',
+  'lighter_personalization.color.blue': 'Синій',
 
-  'lighter_personalization.color.red': 'Red',
+  'lighter_personalization.color.red': 'Червоний',
 
-  'lighter_personalization.color.white': 'White',
+  'lighter_personalization.color.white': 'Білий',
 
-  'lighter_personalization.color_label': 'Pick Background Color',
+  'lighter_personalization.color_label': 'Обери колір фону',
 
-  'lighter_personalization.english_included': 'English will always be included on your stickers',
+  'lighter_personalization.english_included': 'Англійська завжди буде включена на твоїх стікерах',
 
-  'lighter_personalization.enter_name_preview': 'Enter a name (min 3 characters) to see preview',
+  'lighter_personalization.enter_name_preview': 'Введи назву (мін 3 символи), щоб побачити попередній перегляд',
 
-  'lighter_personalization.helper.background_picker': 'Choose an image or color for the background of the sticker.',
+  'lighter_personalization.helper.background_picker': 'Обери зображення або колір для фону стікера.',
 
-  'lighter_personalization.language.select_placeholder': 'Select a language...',
+  'lighter_personalization.language.select_placeholder': 'Обери мову...',
 
-  'lighter_personalization.language_label': 'Second Language on Sticker (+ English)',
+  'lighter_personalization.language_label': 'Друга мова на стікері (+ англійська)',
 
-  'lighter_personalization.lighter_count': 'Lighter #{index}',
+  'lighter_personalization.lighter_count': 'Запальничка #{index}',
 
-  'lighter_personalization.min_3_chars': '(min 3)',
+  'lighter_personalization.min_3_chars': '(мін 3)',
 
-  'lighter_personalization.name_label': 'Name (3-16 characters)',
+  'lighter_personalization.name_label': 'Назва (3-16 символів)',
 
-  'lighter_personalization.name_placeholder': 'Lighter name...',
+  'lighter_personalization.name_placeholder': 'Назва запальнички...',
 
-  'lighter_personalization.preview': 'Preview',
+  'lighter_personalization.preview': 'Попередній перегляд',
 
-  'lighter_personalization.subtitle': 'Personalize each lighter',
+  'lighter_personalization.subtitle': 'Персоналізуй кожну запальничку',
 
-  'lighter_personalization.summary.design': '{count} design',
+  'lighter_personalization.summary.design': '{count} дизайн',
 
-  'lighter_personalization.summary.designs': '{count} designs',
+  'lighter_personalization.summary.designs': '{count} дизайнів',
 
-  'lighter_personalization.summary.identical': 'All {count} identical',
+  'lighter_personalization.summary.identical': 'Всі {count} однакові',
 
-  'lighter_personalization.summary.plus_english': ' + English',
+  'lighter_personalization.summary.plus_english': ' + англійська',
 
-  'lighter_personalization.title': 'Customize Your Stickers',
+  'lighter_personalization.title': 'Налаштуй Свої Стікери',
 
-  'lighter_personalization.warning_fill_name': 'Please fill in the lighter name (3-16 characters) before continuing.',
+  'lighter_personalization.warning_fill_name': 'Будь ласка, заповни назву запальнички (3-16 символів) перед продовженням.',
 
-  'lighter_personalization.warning_fill_names': 'Please fill in all lighter names (3-16 characters each) before continuing.',
+  'lighter_personalization.warning_fill_names': 'Будь ласка, заповни всі назви запальничок (по 3-16 символів кожна) перед продовженням.',
 
-  'loading.generating_stickers': 'Crafting your lighter\\'s passport... ✨',
+  'loading.generating_stickers': 'Створюємо паспорт твоєї запальнички... ✨',
 
-  'loading.posting_v1': 'Adding your story to the timeline...',
+  'loading.posting_v1': 'Додаємо твою історію до хронології...',
 
-  'loading.posting_v2': 'Weaving your moment into the mosaic...',
+  'loading.posting_v2': 'Вплітаємо твій момент у мозаїку...',
 
-  'loading.posting_v3': 'Lighting up this lighter\\'s journey...',
+  'loading.posting_v3': 'Освітлюємо подорож цієї запальнички...',
 
-  'loading.posting_v4': 'Making this Lightee\\'s story brighter...',
+  'loading.posting_v4': 'Робимо історію цієї запальнички яскравішою...',
 
-  'loading.searching': 'Following the trail... 🔍',
+  'loading.searching': 'Слідуємо за слідом... 🔍',
 
-  'location.edit_coordinates': 'Edit coordinates manually',
+  'location.edit_coordinates': 'Редагувати координати вручну',
 
-  'location.latitude_placeholder': 'Latitude',
+  'location.latitude_placeholder': 'Широта',
 
-  'location.longitude_placeholder': 'Longitude',
+  'location.longitude_placeholder': 'Довгота',
 
-  'location.map_consent_description': 'This map uses OpenStreetMap with no tracking cookies. We only store your preference locally.',
+  'location.map_consent_description': 'Ця карта використовує OpenStreetMap без відстежувальних cookies. Ми зберігаємо лише твої налаштування локально.',
 
-  'location.map_preview_title': 'Map Preview Available',
+  'location.map_preview_title': 'Доступний попередній перегляд карти',
 
-  'location.map_title': 'Location map',
+  'location.map_title': 'Карта місцезнаходження',
 
-  'location.no_location_selected': 'No location selected',
+  'location.no_location_selected': 'Місцезнаходження не вибрано',
 
-  'location.no_results': 'No locations found. Try a different search.',
+  'location.no_results': 'Місцезнаходження не знайдені. Спробуй інший пошук.',
 
-  'location.search_placeholder': 'Search for a location (city, address, landmark)...',
+  'location.search_placeholder': 'Шукати місцезнаходження (місто, адреса, орієнтир)...',
 
-  'location.selected_location': 'Selected Location',
+  'location.selected_location': 'Вибране місцезнаходження',
 
-  'location.show_map_button': 'Show Map',
+  'location.show_map_button': 'Показати карту',
 
-  'location.view_larger_map': 'View larger map',
+  'location.view_larger_map': 'Переглянути карту крупніше',
 
-  'login.button.signin': 'Sign In',
+  'login.button.signin': 'Увійти',
 
-  'login.button.signup': 'Sign Up',
+  'login.button.signup': 'Зареєструватися',
 
-  'login.email_label': 'Email Address',
+  'login.email_label': 'Адреса електронної пошти',
 
-  'login.forgot_password': 'Forgot your password?',
+  'login.forgot_password': 'Забув пароль?',
 
-  'login.password_label': 'Password',
+  'login.password_label': 'Пароль',
 
-  'login.social_divider': 'or continue with',
+  'login.social_divider': 'або продовжити з',
 
-  'login.tab.login': 'Log in',
+  'login.tab.login': 'Увійти',
 
-  'login.tab.signup': 'Sign up',
+  'login.tab.signup': 'Зареєструватися',
 
   'login.title': 'LightMyFire',
 
-  'moderation.action_confirm': 'Confirm Action',
+  'moderation.action_confirm': 'Підтвердити дію',
 
-  'moderation.approve': 'Approve',
+  'moderation.approve': 'Схвалити',
 
-  'moderation.approve_confirm_message': 'Are you sure you want to approve this post? It will become public.',
+  'moderation.approve_confirm_message': 'Ти впевнений, що хочеш схвалити цей пост? Він стане публічним.',
 
-  'moderation.approve_confirm_title': 'Approve Post?',
+  'moderation.approve_confirm_title': 'Схвалити пост?',
 
-  'moderation.approve_success': 'Post approved and released.',
+  'moderation.approve_success': 'Пост схвалений і опублікований.',
 
-  'moderation.button.delete_post': 'Delete Post',
+  'moderation.button.delete_post': 'Видалити пост',
 
-  'moderation.button.delete_user': 'Delete User',
+  'moderation.button.delete_user': 'Видалити користувача',
 
-  'moderation.content_type': 'Type',
+  'moderation.content_type': 'Тип',
 
-  'moderation.delete': 'Delete',
+  'moderation.delete': 'Видалити',
 
-  'moderation.delete_confirm_message': 'Are you sure you want to permanently delete this post?',
+  'moderation.delete_confirm_message': 'Ти впевнений, що хочеш назавжди видалити цей пост?',
 
-  'moderation.delete_confirm_title': 'Delete Post?',
+  'moderation.delete_confirm_title': 'Видалити пост?',
 
-  'moderation.delete_success': 'Post deleted successfully.',
+  'moderation.delete_success': 'Пост успішно видалений.',
 
-  'moderation.delete_user_confirm': 'Are you sure you want to delete this user and all their content?',
+  'moderation.delete_user_confirm': 'Ти впевнений, що хочеш видалити цього користувача і весь його контент?',
 
-  'moderation.error': 'An error occurred: {message}',
+  'moderation.error': 'Сталася помилка: {message}',
 
-  'moderation.error.rpc_error': 'Error: {message}',
+  'moderation.error.rpc_error': 'Помилка: {message}',
 
-  'moderation.flagged_by': 'Flagged by {count} users',
+  'moderation.flagged_by': 'Позначено {count} користувачами',
 
-  'moderation.lighter_name': 'Lighter',
+  'moderation.lighter_name': 'Запальничка',
 
-  'moderation.no_posts': 'No posts currently flagged for moderation.',
+  'moderation.no_posts': 'Немає постів, позначених для модерації.',
 
-  'moderation.no_posts_in_queue': 'The moderation queue is empty. All is peaceful.',
+  'moderation.no_posts_in_queue': 'Черга модерації порожня. Все спокійно.',
 
-  'moderation.post_by': 'Post by',
+  'moderation.post_by': 'Пост від',
 
-  'moderation.post_on': 'Post on',
+  'moderation.post_on': 'Пост на',
 
-  'moderation.show_less': 'Show Less',
+  'moderation.show_less': 'Показати менше',
 
-  'moderation.table.flag_count': 'Flags',
+  'moderation.table.flag_count': 'Скарги',
 
-  'moderation.table.lighter': 'Lighter',
+  'moderation.table.lighter': 'Запальничка',
 
-  'moderation.table.post_id': 'Post ID',
+  'moderation.table.post_id': 'ID поста',
 
-  'moderation.title': 'Moderation Queue',
+  'moderation.title': 'Черга модерації',
 
-  'moderation.view_full': 'View Full',
+  'moderation.view_full': 'Переглянути повністю',
 
-  'moderation.view_post': 'View Post',
+  'moderation.view_post': 'Переглянути пост',
 
-  'my_orders.canceled.title': 'Order Canceled',
+  'my_orders.canceled.title': 'Замовлення скасовано',
 
-  'my_orders.empty.cta': 'Order Stickers',
+  'my_orders.empty.cta': 'Замовити стікери',
 
-  'my_orders.empty.description': 'You haven\\'t placed any sticker orders yet.',
+  'my_orders.empty.description': 'Ти ще не зробив жодного замовлення стікерів.',
 
-  'my_orders.empty.title': 'No Orders Yet',
+  'my_orders.empty.title': 'Замовлень поки немає',
 
-  'my_orders.error.description': '{error}. You may still have orders that aren\\'t showing here.',
+  'my_orders.error.description': '{error}. У тебе все ще можуть бути замовлення, які тут не відображаються.',
 
-  'my_orders.error.title': 'Could not load orders',
+  'my_orders.error.title': 'Не вдалося завантажити замовлення',
 
-  'my_orders.error.try_again': 'Try again',
+  'my_orders.error.try_again': 'Спробувати ще раз',
 
-  'my_orders.failed.contact': 'Please contact support at',
+  'my_orders.failed.contact': 'Будь ласка, зв\\'яжися з підтримкою за адресою',
 
-  'my_orders.failed.title': 'Order Failed',
+  'my_orders.failed.title': 'Замовлення не вдалося',
 
-  'my_orders.go_home': 'Go Home',
+  'my_orders.go_home': 'На головну',
 
-  'my_orders.help.contact': 'Contact Support',
+  'my_orders.help.contact': 'Зв\\'язатися з підтримкою',
 
-  'my_orders.help.label': 'Need help?',
+  'my_orders.help.label': 'Потрібна допомога?',
 
-  'my_orders.hold.title': 'Order On Hold',
+  'my_orders.hold.title': 'Замовлення призупинено',
 
-  'my_orders.lighters.title': 'Lighter Names',
+  'my_orders.lighters.title': 'Назви запальничок',
 
-  'my_orders.loading': 'Loading your orders...',
+  'my_orders.loading': 'Завантажуємо твої замовлення...',
 
-  'my_orders.order_id': 'Order #{orderId}',
+  'my_orders.order_id': 'Замовлення #{orderId}',
 
-  'my_orders.placed_on': 'Placed on {date}',
+  'my_orders.placed_on': 'Розміщено {date}',
 
-  'my_orders.shipping.title': 'Shipping Address',
+  'my_orders.shipping.title': 'Адреса доставки',
 
-  'my_orders.status.canceled': 'Canceled',
+  'my_orders.status.canceled': 'Скасовано',
 
-  'my_orders.status.delivered': 'Delivered',
+  'my_orders.status.delivered': 'Доставлено',
 
-  'my_orders.status.failed': 'Failed',
+  'my_orders.status.failed': 'Не вдалося',
 
-  'my_orders.status.pending': 'Pending',
+  'my_orders.status.pending': 'Очікується',
 
-  'my_orders.status.processing': 'Processing',
+  'my_orders.status.processing': 'Обробляється',
 
-  'my_orders.status.returned': 'Returned',
+  'my_orders.status.returned': 'Повернено',
 
-  'my_orders.status.shipped': 'Shipped',
+  'my_orders.status.shipped': 'Відправлено',
 
-  'my_orders.sticker_count': '{count} sticker',
+  'my_orders.sticker_count': '{count} стікер',
 
-  'my_orders.stickers_count': '{count} stickers',
+  'my_orders.stickers_count': '{count} стікерів',
 
-  'my_orders.tracking.carrier': 'Carrier:',
+  'my_orders.tracking.carrier': 'Перевізник:',
 
-  'my_orders.tracking.number': 'Tracking Number:',
+  'my_orders.tracking.number': 'Номер відстеження:',
 
-  'my_orders.tracking.shipped': 'Shipped:',
+  'my_orders.tracking.shipped': 'Відправлено:',
 
-  'my_orders.tracking.title': 'Tracking Information',
+  'my_orders.tracking.title': 'Інформація про відстеження',
 
-  'my_orders.tracking.track_button': 'Track Package →',
+  'my_orders.tracking.track_button': 'Відстежити пакунок →',
 
-  'my_posts.deleting': 'Deleting...',
+  'my_posts.deleting': 'Видаляємо...',
 
-  'my_profile.find_lighter_to_post': 'Find a Lighter',
+  'my_profile.find_lighter_to_post': 'Знайти запальничку',
 
-  'my_profile.no_posts': 'Your story collection is waiting to begin! 📖\nFind a lighter and add your first post.',
+  'my_profile.no_posts': 'Твоя колекція історій чекає, щоб розпочатися! 📖\nЗнайди запальничку і додай свій перший пост.',
 
-  'my_profile.save_first_lighter': 'Save Your First Lighter',
+  'my_profile.save_first_lighter': 'Врятуй свою першу запальничку',
 
-  'my_profile.settings.account_title': 'Account',
+  'my_profile.settings.account_title': 'Акаунт',
 
-  'my_profile.settings.confirm_password_label': 'Confirm New Password',
+  'my_profile.settings.confirm_password_label': 'Підтвердити новий пароль',
 
-  'my_profile.settings.email_label': 'Email',
+  'my_profile.settings.email_label': 'Електронна пошта',
 
-  'my_profile.settings.error.email_exists': 'Email already in use.',
+  'my_profile.settings.error.email_exists': 'Електронна пошта вже використовується.',
 
-  'my_profile.settings.error.generic': 'An error occurred. Try again.',
+  'my_profile.settings.error.generic': 'Сталася помилка. Спробуй ще раз.',
 
-  'my_profile.settings.error.rpc_error': 'Error: {message}',
+  'my_profile.settings.error.rpc_error': 'Помилка: {message}',
 
-  'my_profile.settings.error.username_exists': 'Username already taken.',
+  'my_profile.settings.error.username_exists': 'Ім\\'я користувача вже зайняте.',
 
-  'my_profile.settings.new_password_label': 'New Password',
+  'my_profile.settings.new_password_label': 'Новий пароль',
 
-  'my_profile.settings.password_mismatch': 'Passwords don\\'t match.',
+  'my_profile.settings.password_mismatch': 'Паролі не збігаються.',
 
-  'my_profile.settings.password_title': 'Change Password',
+  'my_profile.settings.password_title': 'Змінити пароль',
 
-  'my_profile.settings.placeholder.email': 'Enter new email',
+  'my_profile.settings.placeholder.email': 'Введи нову електронну пошту',
 
   'my_profile.settings.placeholder.password': '••••••••',
 
-  'my_profile.settings.placeholder.password_confirm': 'Re-enter new password',
+  'my_profile.settings.placeholder.password_confirm': 'Введи новий пароль ще раз',
 
-  'my_profile.settings.placeholder.username': 'Enter new username',
+  'my_profile.settings.placeholder.username': 'Введи нове ім\\'я користувача',
 
-  'my_profile.settings.update_profile_button': 'Update Profile',
+  'my_profile.settings.update_profile_button': 'Оновити профіль',
 
-  'my_profile.settings.updating': 'Updating...',
+  'my_profile.settings.updating': 'Оновлюємо...',
 
-  'my_profile.settings.username_label': 'Username',
+  'my_profile.settings.username_label': 'Ім\\'я користувача',
 
-  'my_profile.trophies.coming_soon': 'Trophy case coming soon!',
+  'my_profile.trophies.coming_soon': 'Вітрина трофеїв скоро з\\'явиться!',
 
-  'my_profile.trophies.subtitle': 'Collect achievements by saving and sharing stories.',
+  'my_profile.trophies.subtitle': 'Збирай досягнення, рятуючи та ділячись історіями.',
 
-  'my_profile.trophies.unlocked': 'Unlocked!',
+  'my_profile.trophies.unlocked': 'Розблоковано!',
 
-  'nav.logging_out': 'Logging out...',
+  'nav.logging_out': 'Виходимо...',
 
   'nav.logo_alt': 'LightMyFire',
 
-  'nav.my_orders': 'My Orders',
+  'nav.my_orders': 'Мої замовлення',
 
-  'nav.search_aria': 'Search for lighter',
+  'nav.search_aria': 'Шукати запальничку',
 
-  'nav.search_title': 'Find a lighter',
+  'nav.search_title': 'Знайти запальничку',
 
-  'not_found.go_home': 'Go Home',
+  'not_found.go_home': 'На головну',
 
-  'not_found.message': 'Oops! The page you\\'re looking for doesn\\'t exist.',
+  'not_found.message': 'Ой! Сторінка, яку ти шукаєш, не існує.',
 
-  'not_found.title': '404 - Page Not Found',
+  'not_found.title': '404 - Сторінку не знайдено',
 
-  'notifications.action_error': 'Error',
+  'notifications.action_error': 'Помилка',
 
-  'notifications.action_success': 'Success',
+  'notifications.action_success': 'Успіх',
 
-  'notifications.auth_failed': 'Authentication failed. Please try again.',
+  'notifications.auth_failed': 'Автентифікація не вдалася. Будь ласка, спробуй ще раз.',
 
-  'notifications.error': 'Error',
+  'notifications.error': 'Помилка',
 
-  'notifications.invalid_credentials': 'Invalid email or password. Please check your credentials and try again.',
+  'notifications.invalid_credentials': 'Невірна електронна пошта або пароль. Будь ласка, перевір свої дані та спробуй ще раз.',
 
-  'notifications.lighter_saved': 'Success! {lighterName} is ready for adventure! 🌍',
+  'notifications.lighter_saved': 'Успіх! {lighterName} готова до пригод! 🌍',
 
-  'notifications.password_reset_sent': 'Password reset email sent! Check your inbox.',
+  'notifications.password_reset_sent': 'Лист для скидання пароля надіслано! Перевір свою скриньку.',
 
-  'notifications.password_updated': 'Password updated! Your account is secure. 🔒',
+  'notifications.password_updated': 'Пароль оновлено! Твій акаунт захищений. 🔒',
 
-  'notifications.post_deleted_success': 'Post deleted. Like it never happened.',
+  'notifications.post_deleted_success': 'Пост видалено. Ніби його ніколи і не було.',
 
-  'notifications.post_success_first': 'Congratulations! 🌟 You lit the first spark in this lighter\\'s story.',
+  'notifications.post_success_first': 'Вітаємо! 🌟 Ти запалив першу іскру в історії цієї запальнички.',
 
-  'notifications.post_success_public': 'Story shared with the world! 🌍 It\\'s now part of our global mosaic.',
+  'notifications.post_success_public': 'Історія поділена зі світом! 🌍 Тепер вона частина нашої глобальної мозаїки.',
 
-  'notifications.profile_updated': 'Profile updated! Looking good, LightSaver. ✨',
+  'notifications.profile_updated': 'Профіль оновлено! Виглядаєш чудово, Рятівнику Вогнів. ✨',
 
-  'notifications.session_expired': 'Your session has expired. Please log in again to continue.',
+  'notifications.session_expired': 'Твоя сесія закінчилася. Будь ласка, увійди ще раз, щоб продовжити.',
 
-  'notifications.sticker_downloaded': 'Stickers ready! Time to set {lighterName} free. 🚀',
+  'notifications.sticker_downloaded': 'Стікери готові! Час відпустити {lighterName} у вільне плавання. 🚀',
 
-  'notifications.success': 'Success!',
+  'notifications.success': 'Успіх!',
 
-  'notifications.trophy_earned': '🏆 Trophy Unlocked: {trophy_name}! You\\'re on fire!',
+  'notifications.trophy_earned': '🏆 Трофей розблоковано: {trophy_name}! Ти палаєш!',
 
-  'notifications.user_not_found': 'No account found with this email. Please sign up first!',
+  'notifications.user_not_found': 'Акаунт з цією електронною поштою не знайдено. Будь ласка, спочатку зареєструйся!',
 
-  'notifications.warning': 'Warning',
+  'notifications.warning': 'Попередження',
 
-  'order.choose_pack_subtitle': 'Select how many custom stickers you want to order',
+  'order.choose_pack_subtitle': 'Обери, скільки індивідуальних стікерів ти хочеш замовити',
 
-  'order.choose_pack_title': 'Choose Your Pack',
+  'order.choose_pack_title': 'Обери свій пакет',
 
-  'order.guidelines.step1': 'Apply the sticker to a clean, dust-free, oil-free, and moisture-free surface.',
+  'order.guidelines.step1': 'Наклеюй стікер на чисту поверхню без пилу, жиру та вологи.',
 
-  'order.guidelines.step2': 'After application, press the sticker down with a clean cloth to maximize adhesion and avoid air bubbles.',
+  'order.guidelines.step2': 'Після нанесення притисни стікер чистою тканиною, щоб максимізувати адгезію та уникнути повітряних бульбашок.',
 
-  'order.guidelines.step3': 'Make sure the sticker is applied correctly the first time. With every reapplication, the sticker\\'s ability to stick will decrease.',
+  'order.guidelines.step3': 'Переконайся, що стікер наклеєний правильно з першого разу. З кожним повторним наклеюванням здатність стікера до прилипання зменшується.',
 
-  'order.guidelines.title': 'Application Guidelines',
+  'order.guidelines.title': 'Інструкції з нанесення',
 
-  'order.pack_select_button': 'Select',
+  'order.pack_select_button': 'Обрати',
 
-  'order.pack_sheets_plural': 'sheets',
+  'order.pack_sheets_plural': 'аркушів',
 
-  'order.pack_sheets_single': 'sheet',
+  'order.pack_sheets_single': 'аркуш',
 
-  'order.payment.error_email_invalid': 'Please enter a valid email address',
+  'order.payment.error_email_invalid': 'Будь ласка, введи дійсну адресу електронної пошти',
 
-  'order.price_at_checkout': 'Price calculated at checkout',
+  'order.price_at_checkout': 'Ціна розраховується при оформленні',
 
-  'order.quality.durability': '2–3 year durability',
+  'order.quality.durability': 'Витривалість 2–3 роки',
 
-  'order.quality.fast_application': 'Fast and easy application',
+  'order.quality.fast_application': 'Швидке та легке нанесення',
 
-  'order.quality.glossy_finish': 'Glossy finish',
+  'order.quality.glossy_finish': 'Глянцеве покриття',
 
-  'order.quality.title': 'Premium Quality Stickers',
+  'order.quality.title': 'Стікери преміум якості',
 
-  'order.shipping.error_postal_invalid': 'Invalid postal code for selected country',
+  'order.shipping.error_postal_invalid': 'Невірний поштовий індекс для вибраної країни',
 
-  'order.summary.shipping': 'Shipping:',
+  'order.summary.shipping': 'Доставка:',
 
-  'order.summary.shipping_calculated': '+ shipping',
+  'order.summary.shipping_calculated': '+ доставка',
 
-  'order.summary.shipping_express': 'Express Shipping',
+  'order.summary.shipping_express': 'Експрес-доставка',
 
-  'order.summary.shipping_express_time': '3-5 business days',
+  'order.summary.shipping_express_time': '3-5 робочих днів',
 
-  'order.summary.shipping_method': 'Shipping Method:',
+  'order.summary.shipping_method': 'Метод доставки:',
 
-  'order.summary.shipping_standard': 'Standard Shipping',
+  'order.summary.shipping_standard': 'Стандартна доставка',
 
-  'order.summary.shipping_standard_time': '7-14 business days',
+  'order.summary.shipping_standard_time': '7-14 робочих днів',
 
-  'order.summary.subtotal': 'Subtotal:',
+  'order.summary.subtotal': 'Підсумок:',
 
-  'philosophy.button.hide': 'Hide',
+  'philosophy.button.hide': 'Сховати',
 
-  'philosophy.button.learn_more': 'Learn More',
+  'philosophy.button.learn_more': 'Дізнатися більше',
 
-  'philosophy.cta': 'Join us in giving lighters a second life, one story at a time.',
+  'philosophy.cta': 'Приєднуйся до нас, даруючи запальничкам друге життя, по одній історії за раз.',
 
-  'philosophy.image_alt': 'Global Creativity Mosaic',
+  'philosophy.image_alt': 'Глобальна мозаїка творчості',
 
-  'philosophy.lead': 'We believe that even the smallest, most disposable object can carry a great story.',
+  'philosophy.lead': 'Ми віримо, що навіть найменший, найодноразовіший об\\'єкт може нести велику історію.',
 
-  'philosophy.p1': '<strong>LightMyFire</strong> was born from a simple idea: what if we stopped treating lighters as throwaway items? <strong>In a world of mass consumption where billions of these items are discarded every year,</strong> what if we saw them as companions, as tiny vessels for our memories, ideas, and creativity?',
+  'philosophy.p1': '<strong>LightMyFire</strong> народився з простої ідеї: а що, якщо ми перестанемо ставитись до запальничок як до одноразових речей? <strong>У світі масового споживання, де мільярди цих предметів викидаються щороку,</strong> а що, якщо ми побачимо в них супутників, крихітні посудини для наших спогадів, ідей і творчості?',
 
-  'philosophy.p2': 'The everyday lighter is <strong>a powerful social catalyst.</strong> It\\'s no personal possession; it belongs to everyone. It passes from hand to hand, from friend to stranger, at parties, concerts, and quiet meetups. It hears our secrets and lights our way. <strong>It\\'s the silent witness to a great conversation, the spark for a new friendship. But its story is ephemeral, lost as soon as it\\'s passed on.</strong>',
+  'philosophy.p2': 'Звичайна запальничка — це <strong>потужний соціальний каталізатор.</strong> Вона не є особистим володінням; вона належить усім. Вона переходить з рук в руки, від друга до незнайомця, на вечірках, концертах і тихих зустрічах. Вона чує наші секрети і освітлює наш шлях. <strong>Вона — мовчазний свідок чудової розмови, іскра для нової дружби. Але її історія ефемерна, втрачається, щойно її передають далі.</strong>',
 
-  'philosophy.p3': 'By giving a lighter a permanent, digital story, we give it sentimental value. <strong>Your lighter becomes a living artifact, a message in a bottle.</strong> And when something has value, we\\'re less likely to throw it away.',
+  'philosophy.p3': 'Даруючи запальничці постійну цифрову історію, ми надаємо їй сентиментальну цінність. <strong>Твоя запальничка стає живим артефактом, посланням у пляшці.</strong> А коли щось має цінність, ми рідше її викидаємо.',
 
-  'philosophy.p4': 'Our goal is simple: to create a global, human creativity mosaic, one lighter at a time, and reduce waste in the process. <strong>This is our stand against a throwaway culture. It\\'s an experiment in collaborative art. It\\'s a way to prove that if you give an object a story, you give it a soul.</strong>',
+  'philosophy.p4': 'Наша мета проста: створити глобальну мозаїку людської творчості, по одній запальничці за раз, і зменшити відходи в процесі. <strong>Це наша позиція проти культури одноразовості. Це експеримент у колаборативному мистецтві. Це спосіб довести, що якщо ти даруєш об\\'єкту історію, ти даруєш йому душу.</strong>',
 
-  'philosophy.title': 'Our Philosophy',
+  'philosophy.title': 'Наша Філософія',
 
-  'post.anonymous': 'Anonymous',
+  'post.anonymous': 'Анонімний',
 
-  'post.default_location': 'Unknown Location',
+  'post.default_location': 'Невідоме місцезнаходження',
 
-  'post.deleted_user': 'Deleted User',
+  'post.deleted_user': 'Видалений користувач',
 
-  'post.like_button': 'Like',
+  'post.like_button': 'Вподобати',
 
-  'post.location_at': 'at',
+  'post.location_at': 'в',
 
-  'post.post_type.image': 'shared an image',
+  'post.post_type.image': 'поділився зображенням',
 
-  'post.post_type.location': 'checked in',
+  'post.post_type.location': 'відмітився',
 
-  'post.post_type.refuel': 'refueled this lighter',
+  'post.post_type.refuel': 'заправив цю запальничку',
 
-  'post.post_type.song': 'shared a song',
+  'post.post_type.song': 'поділився піснею',
 
-  'post.post_type.text': 'wrote a story',
+  'post.post_type.text': 'написав історію',
 
-  'post.user_upload_alt': 'User upload',
+  'post.user_upload_alt': 'Завантаження користувача',
 
-  'post.youtube_player_title': 'YouTube video player',
+  'post.youtube_player_title': 'Відеоплеєр YouTube',
 
-  'privacy.h3.automated_decisions': '7. Automated Decision-Making',
+  'privacy.h3.automated_decisions': '7. Автоматизоване прийняття рішень',
 
-  'privacy.h3.changes': '9. Changes to This Privacy Policy',
+  'privacy.h3.changes': '9. Зміни в цій політиці конфіденційності',
 
-  'privacy.h3.children': '8. Children\\'s Privacy',
+  'privacy.h3.children': '8. Конфіденційність дітей',
 
-  'privacy.h3.contact': '10. Contact Us',
+  'privacy.h3.contact': '10. Зв\\'яжися з нами',
 
   'privacy.h3.cookies': '5.1. Cookies',
 
-  'privacy.h3.data_breaches': '5.6. Data Breach Notification',
+  'privacy.h3.data_breaches': '5.6. Повідомлення про витік даних',
 
-  'privacy.h3.data_controller': '1. Data Controller',
+  'privacy.h3.data_controller': '1. Контролер даних',
 
-  'privacy.h3.data_retention': '5.4. Data Retention Periods',
+  'privacy.h3.data_retention': '5.4. Періоди зберігання даних',
 
-  'privacy.h3.data_security': '5.5. Security Measures',
+  'privacy.h3.data_security': '5.5. Заходи безпеки',
 
-  'privacy.h3.data_sharing': '5. Data Sharing and Processors',
+  'privacy.h3.data_sharing': '5. Обмін даними та процесори',
 
-  'privacy.h3.how_we_use': '3. How We Use Your Information',
+  'privacy.h3.how_we_use': '3. Як ми використовуємо твою інформацію',
 
-  'privacy.h3.info_we_collect': '2. Information We Collect',
+  'privacy.h3.info_we_collect': '2. Інформація, яку ми збираємо',
 
-  'privacy.h3.international_transfers': '5.3. International Data Transfers',
+  'privacy.h3.international_transfers': '5.3. Міжнародна передача даних',
 
-  'privacy.h3.legal_basis': '4. Legal Basis for Processing (GDPR)',
+  'privacy.h3.legal_basis': '4. Правова підстава для обробки (GDPR)',
 
-  'privacy.h3.location_data': '5.2. Location Data',
+  'privacy.h3.location_data': '5.2. Дані про місцезнаходження',
 
-  'privacy.h3.your_rights': '6. Your Rights Under GDPR',
+  'privacy.h3.your_rights': '6. Твої права згідно з GDPR',
 
-  'privacy.h4.cookie_types': 'Types of Cookies We Use',
+  'privacy.h4.cookie_types': 'Типи cookies, які ми використовуємо',
 
-  'privacy.h4.personal_data': '2.1. Personal Data You Provide',
+  'privacy.h4.personal_data': '2.1. Персональні дані, які ти надаєш',
 
-  'privacy.h4.right_access': '6.1. Right of Access (Art. 15 GDPR)',
+  'privacy.h4.right_access': '6.1. Право доступу (Ст. 15 GDPR)',
 
-  'privacy.h4.right_complain': '6.8. Right to Lodge a Complaint',
+  'privacy.h4.right_complain': '6.8. Право подати скаргу',
 
-  'privacy.h4.right_erasure': '6.3. Right to Erasure - ',
+  'privacy.h4.right_erasure': '6.3. Право на видалення - «Право бути забутим» (Ст. 17 GDPR)',
 
-  'privacy.h4.right_object': '6.6. Right to Object (Art. 21 GDPR)',
+  'privacy.h4.right_object': '6.6. Право заперечувати (Ст. 21 GDPR)',
 
-  'privacy.h4.right_portability': '6.5. Right to Data Portability (Art. 20 GDPR)',
+  'privacy.h4.right_portability': '6.5. Право на переносимість даних (Ст. 20 GDPR)',
 
-  'privacy.h4.right_rectification': '6.2. Right to Rectification (Art. 16 GDPR)',
+  'privacy.h4.right_rectification': '6.2. Право на виправлення (Ст. 16 GDPR)',
 
-  'privacy.h4.right_restriction': '6.4. Right to Restriction of Processing (Art. 18 GDPR)',
+  'privacy.h4.right_restriction': '6.4. Право на обмеження обробки (Ст. 18 GDPR)',
 
-  'privacy.h4.right_withdraw': '6.7. Right to Withdraw Consent',
+  'privacy.h4.right_withdraw': '6.7. Право відкликати згоду',
 
-  'privacy.h4.technical_data': '2.4. Technical Data (Automatically Collected)',
+  'privacy.h4.technical_data': '2.4. Технічні дані (збираються автоматично)',
 
-  'privacy.h4.transaction_data': '2.3. Transaction Data',
+  'privacy.h4.transaction_data': '2.3. Дані транзакцій',
 
-  'privacy.h4.user_content': '2.2. User-Generated Content',
+  'privacy.h4.user_content': '2.2. Користувацький контент',
 
-  'privacy.last_updated': 'Last updated: November 8, 2025',
+  'privacy.last_updated': 'Останнє оновлення: 8 листопада 2025',
 
-  'privacy.p1': 'LightMyFire (',
+  'privacy.p1': 'LightMyFire («ми», «нас» або «наш») працює під керівництвом Revel Editions SASU, компанії SASU, зареєстрованої у Франції (RCS: 849 409 313). Ми прагнемо захищати твою конфіденційність і дотримуватися Загального регламенту про захист даних (GDPR). Ця Політика конфіденційності пояснює, як ми збираємо, використовуємо, розкриваємо та захищаємо твою інформацію, коли ти користуєшся нашим вебсайтом і послугами.',
 
-  'privacy.p10': 'Your data is primarily stored on Supabase servers located within the European Union. However, some sub-processors may be located outside the EU/EEA. When data is transferred internationally, we ensure adequate protection through:',
+  'privacy.p10': 'Твої дані в основному зберігаються на серверах Supabase, розташованих у Європейському Союзі. Однак деякі субпроцесори можуть знаходитися за межами ЄС/ЄЕЗ. Коли дані передаються міжнародно, ми забезпечуємо належний захист через:',
 
-  'privacy.p11': 'We retain personal data only as long as necessary for the purposes outlined in this policy:',
+  'privacy.p11': 'Ми зберігаємо персональні дані тільки стільки, скільки необхідно для цілей, викладених у цій політиці:',
 
-  'privacy.p12': 'After retention periods expire, data is securely deleted from all systems, including backups.',
+  'privacy.p12': 'Після закінчення періодів зберігання дані безпечно видаляються з усіх систем, включаючи резервні копії.',
 
-  'privacy.p13': 'We implement appropriate technical and organizational measures to protect your data:',
+  'privacy.p13': 'Ми застосовуємо відповідні технічні та організаційні заходи для захисту твоїх даних:',
 
-  'privacy.p14': 'In the unlikely event of a personal data breach, we will:',
+  'privacy.p14': 'У неймовірному випадку витоку персональних даних ми:',
 
-  'privacy.p15': 'You have the following rights regarding your personal data. To exercise any of these rights, contact us at <strong>support@lightmyfire.app</strong>.',
+  'privacy.p15': 'Ти маєш наступні права щодо своїх персональних даних. Щоб скористатися будь-яким із цих прав, зв\\'яжися з нами за адресою <strong>support@lightmyfire.app</strong>.',
 
-  'privacy.p16': 'You can request a copy of all personal data we hold about you. We\\'ll provide this in a structured, commonly used format within 30 days.',
+  'privacy.p16': 'Ти можеш запитати копію всіх персональних даних, які ми маємо про тебе. Ми надамо це у структурованому, загальновживаному форматі протягом 30 днів.',
 
-  'privacy.p17': 'You can correct inaccurate or incomplete data. Update most information directly in your profile settings, or contact us for assistance.',
+  'privacy.p17': 'Ти можеш виправити неточні або неповні дані. Оновлюй більшість інформації безпосередньо в налаштуваннях свого профілю або зв\\'яжися з нами для допомоги.',
 
-  'privacy.p18': 'You can request deletion of your personal data. You can delete individual posts anytime from ',
+  'privacy.p18': 'Ти можеш запитати видалення своїх персональних даних. Ти можеш видалити окремі пости в будь-який час з «Мого профілю». Щоб видалити весь свій акаунт і всі пов\\'язані дані, зв\\'яжися з нами за адресою support@lightmyfire.app. Зауваж: Ми можемо зберігати певні дані, якщо це юридично вимагається (наприклад, історію замовлень для податкових цілей).',
 
-  'privacy.p19': 'You can request we limit how we use your data while you contest its accuracy or lawfulness of processing.',
+  'privacy.p19': 'Ти можеш запитати нас обмежити те, як ми використовуємо твої дані, поки ти оспорюєш їх точність або законність обробки.',
 
-  'privacy.p2': 'The data controller for your personal information is:<br><br><strong>Revel Editions SASU</strong><br>145 Rue de Noisy-le-Sec<br>93260 Les Lilas, France<br><br><strong>Contact Email:</strong> support@lightmyfire.app<br><strong>Data Protection Officer:</strong> support@lightmyfire.app',
+  'privacy.p2': 'Контролер даних для твоєї особистої інформації:<br><br><strong>Revel Editions SASU</strong><br>145 Rue de Noisy-le-Sec<br>93260 Les Lilas, France<br><br><strong>Контактна електронна пошта:</strong> support@lightmyfire.app<br><strong>Відповідальний за захист даних:</strong> support@lightmyfire.app',
 
-  'privacy.p20': 'You can receive your data in a machine-readable format (JSON/CSV) to transfer to another service.',
+  'privacy.p20': 'Ти можеш отримати свої дані у машиночитаному форматі (JSON/CSV) для передачі іншому сервісу.',
 
-  'privacy.p21': 'You can object to processing based on legitimate interests. We\\'ll stop processing unless we demonstrate compelling legitimate grounds.',
+  'privacy.p21': 'Ти можеш заперечити проти обробки на основі законних інтересів. Ми припинимо обробку, якщо не продемонструємо переконливі законні підстави.',
 
-  'privacy.p22': 'For processing based on consent, you can withdraw it anytime. This doesn\\'t affect the lawfulness of processing before withdrawal.',
+  'privacy.p22': 'Для обробки на основі згоди ти можеш відкликати її в будь-який час. Це не впливає на законність обробки до відкликання.',
 
-  'privacy.p23': 'If you believe we\\'re not complying with GDPR, you have the right to lodge a complaint with a supervisory authority:',
+  'privacy.p23': 'Якщо ти вважаєш, що ми не дотримуємося GDPR, ти маєш право подати скаргу до наглядового органу:',
 
-  'privacy.p24': '<strong>France (Our Primary Jurisdiction):</strong><br>Commission Nationale de l\\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, France<br>Website: <a href=\\'https://www.cnil.fr\\' target=\\'_blank\\'>www.cnil.fr</a>',
+  'privacy.p24': '<strong>Франція (наша основна юрисдикція):</strong><br>Commission Nationale de l\\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, France<br>Вебсайт: <a href=\\'https://www.cnil.fr\\' target=\\'_blank\\'>www.cnil.fr</a>',
 
-  'privacy.p25': 'You can also contact the data protection authority in your country of residence.',
+  'privacy.p25': 'Ти також можеш зв\\'язатися з органом захисту даних у своїй країні проживання.',
 
-  'privacy.p26': 'We use limited automated processing for:',
+  'privacy.p26': 'Ми використовуємо обмежену автоматизовану обробку для:',
 
-  'privacy.p27': 'These automated processes do not produce legal effects or significantly affect you. You can always contact us to contest a decision or request human review.',
+  'privacy.p27': 'Ці автоматизовані процеси не створюють юридичних наслідків і не впливають на тебе істотно. Ти завжди можеш зв\\'язатися з нами, щоб оскаржити рішення або запитати людську перевірку.',
 
-  'privacy.p28': 'Our service is not directed to children under 16 years of age (or the minimum age required in your jurisdiction to consent to data processing). We do not knowingly collect personal data from children. If you believe we\\'ve inadvertently collected data from a child, contact us immediately at support@lightmyfire.app and we\\'ll delete it promptly.',
+  'privacy.p28': 'Наш сервіс не призначений для дітей віком до 16 років (або мінімального віку, необхідного у твоїй юрисдикції для згоди на обробку даних). Ми не збираємо персональні дані дітей свідомо. Якщо ти вважаєш, що ми ненавмисно зібрали дані від дитини, зв\\'яжися з нами негайно за адресою support@lightmyfire.app, і ми швидко їх видалимо.',
 
-  'privacy.p29': 'We may update this Privacy Policy to reflect changes in our practices or legal requirements. We will:',
+  'privacy.p29': 'Ми можемо оновлювати цю Політику конфіденційності, щоб відобразити зміни в наших практиках або юридичних вимогах. Ми:',
 
-  'privacy.p3': 'We collect personal information in several ways to provide and improve our services:',
+  'privacy.p3': 'Ми збираємо персональну інформацію кількома способами, щоб надавати та покращувати наші послуги:',
 
-  'privacy.p30': 'Continued use of our services after changes constitutes acceptance of the updated policy.',
+  'privacy.p30': 'Продовження використання наших послуг після змін означає прийняття оновленої політики.',
 
-  'privacy.p31': 'For any questions about this Privacy Policy or to exercise your rights, contact us:',
+  'privacy.p31': 'З будь-яких питань щодо цієї Політики конфіденційності або для здійснення своїх прав зв\\'яжися з нами:',
 
-  'privacy.p32': 'We aim to respond to all requests within 30 days. If your request is complex, we may extend this by an additional 60 days and will inform you.',
+  'privacy.p32': 'Ми прагнемо відповідати на всі запити протягом 30 днів. Якщо твій запит складний, ми можемо продовжити це ще на 60 днів і повідомимо тебе.',
 
-  'privacy.p4': 'We use the information we collect to:',
+  'privacy.p4': 'Ми використовуємо інформацію, яку збираємо, для:',
 
-  'privacy.p5': 'Under GDPR, we process your personal data based on the following legal grounds:',
+  'privacy.p5': 'Згідно з GDPR, ми обробляємо твої персональні дані на основі наступних правових підстав:',
 
-  'privacy.p6': 'We do not sell, rent, or trade your personal data. We share data only with trusted service providers who help us operate the platform:',
+  'privacy.p6': 'Ми не продаємо, не здаємо в оренду і не обмінюємо твої персональні дані. Ми ділимося даними тільки з надійними постачальниками послуг, які допомагають нам керувати платформою:',
 
-  'privacy.p7': 'All third-party processors are bound by Data Processing Agreements (DPAs) ensuring GDPR compliance and data protection.',
+  'privacy.p7': 'Усі сторонні процесори зв\\'язані Угодами про обробку даних (DPA), що забезпечують відповідність GDPR та захист даних.',
 
-  'privacy.p8': 'You can manage cookie preferences through the consent banner displayed on your first visit. You can change your choice anytime in your browser settings or by contacting us.',
+  'privacy.p8': 'Ти можеш керувати налаштуваннями cookies через банер згоди, що відображається під час твого першого відвідування. Ти можеш змінити свій вибір у будь-який час в налаштуваннях свого браузера або зв\\'язавшись з нами.',
 
-  'privacy.p9': 'When you create a location post, you may voluntarily provide geographic coordinates (latitude and longitude). <strong>Important disclosures:</strong>',
+  'privacy.p9': 'Коли ти створюєш пост про місцезнаходження, ти можеш добровільно надати географічні координати (широту та довготу). <strong>Важливі розкриття:</strong>',
 
-  'privacy.ul1.li1': '<strong>Account Registration:</strong> Email address, username, and hashed password (we never store passwords in plain text)',
+  'privacy.ul1.li1': '<strong>Реєстрація акаунту:</strong> Адреса електронної пошти, ім\\'я користувача і хешований пароль (ми ніколи не зберігаємо паролі у відкритому тексті)',
 
-  'privacy.ul1.li2': '<strong>Profile Information:</strong> Optional nationality information and profile preferences',
+  'privacy.ul1.li2': '<strong>Інформація профілю:</strong> Необов\\'язкова інформація про національність і налаштування профілю',
 
-  'privacy.ul1.li3': '<strong>Communications:</strong> Any information you provide when contacting us for support',
+  'privacy.ul1.li3': '<strong>Комунікації:</strong> Будь-яка інформація, яку ти надаєш, зв\\'язуючись з нами для підтримки',
 
-  'privacy.ul10.li1': '<strong>Standard Contractual Clauses (SCCs):</strong> EU-approved data transfer mechanisms',
+  'privacy.ul10.li1': '<strong>Стандартні контрактні положення (SCC):</strong> Затверджені ЄС механізми передачі даних',
 
-  'privacy.ul10.li2': '<strong>Adequacy Decisions:</strong> Transfers only to countries recognized by the EU Commission as providing adequate protection',
+  'privacy.ul10.li2': '<strong>Рішення про адекватність:</strong> Передача тільки до країн, визнаних Комісією ЄС як таких, що забезпечують адекватний захист',
 
-  'privacy.ul10.li3': '<strong>Processor Guarantees:</strong> All processors commit to GDPR-equivalent data protection standards',
+  'privacy.ul10.li3': '<strong>Гарантії процесорів:</strong> Усі процесори зобов\\'язуються дотримуватись стандартів захисту даних, еквівалентних GDPR',
 
-  'privacy.ul11.li1': '<strong>Account Data:</strong> Retained while your account is active, plus 30 days after deletion (to allow reactivation)',
+  'privacy.ul11.li1': '<strong>Дані акаунту:</strong> Зберігаються, поки твій акаунт активний, плюс 30 днів після видалення (щоб дозволити реактивацію)',
 
-  'privacy.ul11.li2': '<strong>User Posts:</strong> Retained while your account exists. When you delete a post, it\\'s permanently removed within 24 hours',
+  'privacy.ul11.li2': '<strong>Пости користувачів:</strong> Зберігаються, поки існує твій акаунт. Коли ти видаляєш пост, він остаточно видаляється протягом 24 годин',
 
-  'privacy.ul11.li3': '<strong>Order Data:</strong> 7 years from date of purchase (French tax law requirement)',
+  'privacy.ul11.li3': '<strong>Дані замовлень:</strong> 7 років з дати покупки (вимога французького податкового законодавства)',
 
-  'privacy.ul11.li4': '<strong>Technical Logs:</strong> IP addresses and security logs retained for 12 months maximum',
+  'privacy.ul11.li4': '<strong>Технічні логи:</strong> IP-адреси та журнали безпеки зберігаються максимум 12 місяців',
 
-  'privacy.ul11.li5': '<strong>Anonymized Analytics:</strong> Retained indefinitely for service improvement (cannot be linked back to you)',
+  'privacy.ul11.li5': '<strong>Анонімізована аналітика:</strong> Зберігається невизначено для покращення сервісу (не може бути пов\\'язана з тобою)',
 
-  'privacy.ul12.li1': '<strong>Encryption:</strong> All data transmitted using TLS/SSL encryption. Passwords stored using industry-standard hashing',
+  'privacy.ul12.li1': '<strong>Шифрування:</strong> Всі дані передаються з використанням шифрування TLS/SSL. Паролі зберігаються з використанням стандартного хешування',
 
-  'privacy.ul12.li2': '<strong>Access Controls:</strong> Role-based access, limited employee access, multi-factor authentication for admin accounts',
+  'privacy.ul12.li2': '<strong>Контроль доступу:</strong> Рольовий доступ, обмежений доступ співробітників, багатофакторна автентифікація для адміністраторських акаунтів',
 
-  'privacy.ul12.li3': '<strong>Regular Audits:</strong> Security assessments, vulnerability scanning, and code reviews',
+  'privacy.ul12.li3': '<strong>Регулярні аудити:</strong> Оцінка безпеки, сканування вразливостей та перевірка коду',
 
-  'privacy.ul12.li4': '<strong>Incident Response:</strong> Documented breach notification procedures (see Section 5.6)',
+  'privacy.ul12.li4': '<strong>Реагування на інциденти:</strong> Документовані процедури повідомлення про порушення (див. Розділ 5.6)',
 
-  'privacy.ul13.li1': '<strong>Notify Supervisory Authority:</strong> Within 72 hours of becoming aware of the breach (CNIL in France)',
+  'privacy.ul13.li1': '<strong>Повідомити наглядовий орган:</strong> Протягом 72 годин з моменту виявлення порушення (CNIL у Франції)',
 
-  'privacy.ul13.li2': '<strong>Notify Affected Users:</strong> Without undue delay if the breach poses high risk to your rights and freedoms',
+  'privacy.ul13.li2': '<strong>Повідомити постраждалих користувачів:</strong> Без зайвої затримки, якщо порушення створює високий ризик для твоїх прав і свобод',
 
-  'privacy.ul13.li3': '<strong>Provide Information:</strong> Nature of the breach, likely consequences, measures taken, and recommended actions',
+  'privacy.ul13.li3': '<strong>Надати інформацію:</strong> Характер порушення, ймовірні наслідки, вжиті заходи та рекомендовані дії',
 
-  'privacy.ul14.li1': '<strong>Content Moderation:</strong> Automated pre-screening of posts for prohibited content (hate speech, explicit imagery). Flagged content is reviewed by human moderators before any action',
+  'privacy.ul14.li1': '<strong>Модерація контенту:</strong> Автоматизована попередня перевірка постів на заборонений контент (мова ненависті, відвертих зображень). Позначений контент переглядається модераторами перед будь-якими діями',
 
-  'privacy.ul14.li2': '<strong>Spam Prevention:</strong> Automated detection of suspicious activity patterns (e.g., rapid post submissions)',
+  'privacy.ul14.li2': '<strong>Запобігання спаму:</strong> Автоматизоване виявлення підозрілих патернів активності (наприклад, швидкі подання постів)',
 
-  'privacy.ul14.li3': '<strong>Gamification:</strong> Automated calculation of user levels and trophy eligibility based on contribution metrics',
+  'privacy.ul14.li3': '<strong>Гейміфікація:</strong> Автоматизований розрахунок рівнів користувачів і права на трофеї на основі метрик внеску',
 
-  'privacy.ul15.li1': 'Notify you by email of significant changes (if you have an account)',
+  'privacy.ul15.li1': 'Повідомити тебе електронною поштою про значні зміни (якщо у тебе є акаунт)',
 
-  'privacy.ul15.li2': 'Display a prominent notice on the website',
+  'privacy.ul15.li2': 'Відобразити помітне повідомлення на вебсайті',
 
-  'privacy.ul15.li3': 'Update the ',
+  'privacy.ul15.li3': 'Оновити дату «Останнє оновлення» вгорі цієї сторінки',
 
-  'privacy.ul16.li1': '<strong>Email:</strong> support@lightmyfire.app',
+  'privacy.ul16.li1': '<strong>Електронна пошта:</strong> support@lightmyfire.app',
 
-  'privacy.ul16.li2': '<strong>Data Protection Officer:</strong> support@lightmyfire.app',
+  'privacy.ul16.li2': '<strong>Відповідальний за захист даних:</strong> support@lightmyfire.app',
 
-  'privacy.ul16.li3': '<strong>Postal Address:</strong> Revel Editions SASU, [Complete Address], France',
+  'privacy.ul16.li3': '<strong>Поштова адреса:</strong> Revel Editions SASU, [Повна адреса], France',
 
   'privacy.ul2.li1': '<strong>Posts:</strong> Text content, images, YouTube video links you share on lighter pages',
 
