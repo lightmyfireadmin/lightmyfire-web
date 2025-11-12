@@ -14,6 +14,7 @@ interface ProfileData {
   username: string;
   level?: number;
   points?: number;
+  welcome_email_sent?: boolean;
 }
 
 async function waitForProfile(
@@ -25,15 +26,13 @@ async function waitForProfile(
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     const { data: profile, error } = await supabase
       .from('profiles')
-      .select('created_at, username')
+      .select('created_at, username, welcome_email_sent')
       .eq('id', userId)
-      .single<{ created_at: string; username: string }>();
+      .single<{ created_at: string; username: string; welcome_email_sent: boolean }>();
 
     if (profile) {
-      
-      const createdTime = new Date(profile.created_at).getTime();
-      const now = Date.now();
-      const isNewUser = (now - createdTime) < 10000; 
+      // User is new if they haven't received a welcome email yet
+      const isNewUser = !profile.welcome_email_sent;
 
       return { profile, isNewUser };
     }
@@ -111,6 +110,15 @@ export async function GET(request: NextRequest, { params }: { params: { locale: 
 
           isNewUser = profileIsNew;
 
+          console.log('Auth callback - user status:', {
+            userId: session.user.id,
+            email: session.user.email,
+            isNewUser,
+            profileFound: !!profile,
+            welcomeEmailSent: profile?.welcome_email_sent,
+            provider: session.user.app_metadata?.provider,
+          });
+
           
           if (!profile) {
             const fallbackProfile = await createFallbackProfile(supabase, session);
@@ -167,6 +175,12 @@ export async function GET(request: NextRequest, { params }: { params: { locale: 
                   language: emailLang,
                   emailId: emailResult.id,
                 });
+
+                // Mark welcome email as sent in database
+                await supabase
+                  .from('profiles')
+                  .update({ welcome_email_sent: true })
+                  .eq('id', session.user.id);
               } else {
                 console.error('Welcome email failed to send:', {
                   email: session.user.email,
