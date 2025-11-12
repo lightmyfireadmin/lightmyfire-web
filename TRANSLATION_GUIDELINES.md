@@ -529,6 +529,1324 @@ Maintain friendly, helpful tone:
 
 ---
 
+## Italian (Italiano) Guidelines
+
+### Core Italian Translation Rules
+
+**1. Gender-Inclusive Writing: Schwa (ə) or Asterisk**
+
+Modern Italian is adopting inclusive language patterns:
+
+**Option 1: Schwa (ə)** - Progressive choice
+- `utentə` (instead of utente/utenta)
+- `tuttə` (instead of tutti/tutte)
+- Pronunciation-friendly for screen readers
+
+**Option 2: Asterisk (*)** - Common in writing
+- `utent*` or `tutt*`
+- Visual marker, simpler typing
+
+**Option 3: Gender-neutral constructions**
+- `persona`, `individuo`, `chi` (who)
+- Use when naturally available
+
+**Application:**
+✅ `Unə LightSaver`
+✅ `Tuttə lə utentə`
+✅ `Benvenutə`
+
+**2. "Tu" vs "Lei"**
+
+**ALWAYS use "tu"** (informal):
+- ✅ `Puoi aggiungere la tua storia`
+- ❌ `Può aggiungere la Sua storia`
+
+Italian "tu" creates warmth and community feeling.
+
+**3. Keep English Brand Terms**
+
+- "LightMyFire" (brand name)
+- "LightSaver" → Can adapt as "LightSaver" (invariable) or with gender marker
+- "Sticker" → Use "sticker" (anglicism widely used, not "adesivo")
+
+**Why "sticker"?** Young Italians use the English term. "Adesivo" is technical/formal.
+
+**4. Natural Italian Idioms**
+
+| English | ❌ Literal | ✅ Natural Italian |
+|---------|-----------|-------------------|
+| "Oops!" | "Ups!" | "Ops!" |
+| "Give it a try" | "Dagli un tentativo" | "Provaci!" / "Dai un'occhiata!" |
+| "You're on fire!" | "Sei sul fuoco!" | "Sei in forma!" / "Stai andando alla grande!" |
+| "Looks like..." | "Sembra come..." | "Sembra che..." / "A quanto pare..." |
+
+### Italian-Specific Terminology
+
+| English | Italian | Notes |
+|---------|---------|-------|
+| Lighter | Accendino | Masculine (l'accendino) |
+| Sticker | Sticker | English word, plural: stickers |
+| PIN code | Codice PIN / PIN | Masculine (il PIN) |
+| QR code | Codice QR | Masculine |
+| Username | Nome utente | Space between words |
+| Email | Email / Posta elettronica | Feminine (l'email) |
+| Password | Password | Feminine (la password) |
+| Log in | Accedere / Effettuare l'accesso | |
+| Log out | Disconnettersi / Uscire | |
+| Sign up | Registrarsi | Reflexive verb |
+| Refill | Ricaricare | Standard |
+
+**Cultural Notes:**
+- Italians appreciate eloquence and expressiveness
+- Use present tense for immediacy
+- Dates: DD/MM/YYYY (es. 12/11/2025)
+- Currency: €5,99 (comma for decimal)
+- Warm, passionate tone fits Italian culture
+
+---
+
+## Portuguese (Português) Guidelines
+
+### Core Portuguese Translation Rules
+
+**1. European vs Brazilian Portuguese**
+
+Use **neutral Portuguese** understood by both:
+
+**Safe neutral terms:**
+- "Você" (you - neutral)
+- "Telemóvel/Celular" → Use "**telefone**" (neutral)
+- "Autocarro/Ônibus" → Use "**transporte**" when possible
+
+**Regional differences to avoid:**
+- PT: "Ecrã" vs BR: "Tela" → Use "**tela**" (more common)
+- PT: "Rato" vs BR: "Mouse" → Use "**mouse**" (universal)
+
+**2. Gender-Inclusive Writing**
+
+Portuguese is exploring inclusive forms:
+
+**Option 1: @, x, or e**
+- `tod@s`, `todxs`, or `todes`
+- `usuári@`, `usuárie`
+
+**Option 2: Duo form**
+- `todos e todas`, `usuários e usuárias`
+
+**Recommendation:** Use duo form for formal, @ for casual
+
+**3. "Você/Tu" vs "Você/O Senhor"**
+
+**Use informal "você"** (neutral between PT and BR):
+- ✅ `Você pode adicionar`
+- ❌ `O senhor pode adicionar`
+
+**Note:** In European Portuguese "tu" is informal, but "você" works universally.
+
+**4. Keep English Brand Terms**
+
+- "LightMyFire" (brand)
+- "LightSaver" (brand)
+- "Stickers" → Use "**stickers**" (modern, not "adesivos/autocolantes")
+
+### Portuguese-Specific Terminology
+
+| English | Portuguese (Neutral) | Notes |
+|---------|---------------------|-------|
+| Lighter | Isqueiro | Masculine |
+| Sticker | Sticker | English term preferred |
+| PIN code | Código PIN | Masculine |
+| QR code | Código QR | Masculine |
+| Username | Nome de usuário | Standard |
+| Email | E-mail / Email | Masculine (o e-mail) |
+| Password | Senha (BR) / Palavra-passe (PT) | Use "**senha**" (more common) |
+| Log in | Entrar / Fazer login | |
+| Log out | Sair | |
+| Sign up | Registrar-se / Inscrever-se | |
+| Refill | Recarregar | |
+
+**Cultural Notes:**
+- Portuguese speakers appreciate warmth and hospitality
+- Dates: DD/MM/YYYY
+- Currency: €5,99 (Europe) or R$5,99 (Brazil)
+- Use cordial, welcoming tone
+
+---
+
+## Dutch (Nederlands) Guidelines
+
+### Core Dutch Translation Rules
+
+**1. Gender-Inclusive Writing**
+
+Dutch has limited grammatical gender, making it easier:
+
+**Use neutral constructions:**
+- `gebruiker` (already neutral for user)
+- `iedereen` (everyone - neutral)
+- `wie` (who - neutral)
+- `mensen` (people - neutral)
+
+**When gender-specific:**
+- Use duo: `gebruikers en gebruiksters`
+- Or neutral professional terms: `het personeel`, `de deelnemers`
+
+**2. "Je/Jij" vs "U"**
+
+**ALWAYS use "je/jij"** (informal):
+- ✅ `Je kunt je verhaal toevoegen`
+- ❌ `U kunt uw verhaal toevoegen`
+
+Dutch informal "je" is standard for online communities.
+
+**3. Keep English Brand Terms**
+
+- "LightMyFire" (brand)
+- "LightSaver" (brand)
+- "Sticker" → Use "**sticker**" (Dutch adopted this, not "plakker")
+
+**4. Natural Dutch Idioms**
+
+| English | ❌ Literal | ✅ Natural Dutch |
+|---------|-----------|-----------------|
+| "Oops!" | "Oeps!" | "Oeps!" (same!) |
+| "Give it a try" | "Geef het een poging" | "Probeer het!" |
+| "You're on fire!" | "Je staat in brand!" | "Je bent top!" / "Je doet het geweldig!" |
+| "Looks like..." | "Het ziet eruit als..." | "Het lijkt erop dat..." |
+
+### Dutch-Specific Terminology
+
+| English | Dutch | Notes |
+|---------|-------|-------|
+| Lighter | Aansteker | Common noun (de aansteker) |
+| Sticker | Sticker | English word adopted |
+| PIN code | Pincode | One word, lowercase |
+| QR code | QR-code | Hyphenated |
+| Username | Gebruikersnaam | Compound word |
+| Email | E-mail | Hyphenated (de e-mail) |
+| Password | Wachtwoord | Compound word |
+| Log in | Inloggen | Separable verb |
+| Log out | Uitloggen | Separable verb |
+| Sign up | Registreren / Aanmelden | |
+| Refill | Bijvullen | Separable verb |
+
+**Cultural Notes:**
+- Dutch speakers appreciate directness and clarity
+- Avoid overly flowery language
+- Dates: DD-MM-YYYY (with dashes)
+- Currency: €5,99 (comma)
+- Pragmatic, straightforward tone works best
+
+---
+
+## Russian (Русский) Guidelines
+
+### Core Russian Translation Rules
+
+**1. Gender-Inclusive Writing**
+
+Russian has grammatical gender, making inclusion challenging:
+
+**Strategies:**
+- Use plural forms (more neutral)
+- Use professional nouns that don't decline by gender
+- Duo forms when needed: `пользователи и пользовательницы`
+
+**Modern experimental forms:**
+- Some use `*` or `_`: `пользовател*`
+- Not yet widely adopted, use cautiously
+
+**2. "Ты" vs "Вы"**
+
+**Use "ты"** (informal) for community feel:
+- ✅ `Ты можешь добавить свою историю`
+- ❌ `Вы можете добавить свою историю`
+
+**Important:** Capitalize "Вы" only for formal letters, not UI.
+
+**3. Cyrillic Transliteration**
+
+**Keep in English:**
+- "LightMyFire" (Latin script for brand)
+- "LightSaver" (Latin script for brand)
+- "PIN", "QR" (standard acronyms)
+
+**Transliterate when natural:**
+- "Sticker" → Can use "**стикер**" (Russified)
+
+**4. Natural Russian Idioms**
+
+| English | ❌ Literal | ✅ Natural Russian |
+|---------|-----------|-------------------|
+| "Oops!" | "Упс!" | "Ой!" / "Упс!" |
+| "Give it a try" | "Дай ему попытку" | "Попробуй!" |
+| "You're on fire!" | "Ты в огне!" | "Ты молодец!" / "Круто получается!" |
+| "Looks like..." | "Выглядит как..." | "Похоже..." / "Кажется..." |
+
+### Russian-Specific Terminology
+
+| English | Russian | Notes |
+|---------|---------|-------|
+| Lighter | Зажигалка | Feminine |
+| Sticker | Стикер | Masculine (borrowed word) |
+| PIN code | ПИН-код / PIN | Can use Cyrillic or Latin |
+| QR code | QR-код | QR in Latin, код in Cyrillic |
+| Username | Имя пользователя | |
+| Email | Электронная почта / Имейл | Имейл more casual |
+| Password | Пароль | Masculine |
+| Log in | Войти | Perfective verb |
+| Log out | Выйти | Perfective verb |
+| Sign up | Зарегистрироваться | Reflexive |
+| Refill | Заправить | Perfective |
+
+**Cultural Notes:**
+- Russians appreciate sincerity and depth
+- Humor can be more subtle or ironic
+- Dates: DD.MM.YYYY (dots)
+- Currency: 5,99 ₽ (ruble) or €5,99
+- Warm but not overly casual tone
+
+---
+
+## Polish (Polski) Guidelines
+
+### Core Polish Translation Rules
+
+**1. Gender-Inclusive Writing**
+
+Polish has complex gender system (masculine/feminine/neuter):
+
+**Modern approaches:**
+- Duo forms: `użytkownicy i użytkowniczki`
+- Neutral professional terms when possible
+- Some use `_` or `*`: `użytkowni**`
+
+**Conservative but clear approach:**
+- Use masculine plural (grammatically includes all)
+- Specify "wszystkie osoby" (all people) for clarity
+
+**2. "Ty" vs "Pan/Pani"**
+
+**Use "ty"** (informal):
+- ✅ `Możesz dodać swoją historię`
+- ❌ `Może Pan/Pani dodać swoją historię`
+
+Polish "ty" shows closeness and community.
+
+**3. Keep English Brand Terms**
+
+- "LightMyFire" (brand)
+- "LightSaver" (brand)
+- "Sticker" → Use "**sticker**" or "naklejka" (naklejka more Polish)
+
+**Recommendation:** "**Naklejka**" (more natural Polish)
+
+**4. Natural Polish Idioms**
+
+| English | ❌ Literal | ✅ Natural Polish |
+|---------|-----------|-------------------|
+| "Oops!" | "Ups!" | "Ups!" / "Ojej!" |
+| "Give it a try" | "Daj temu próbę" | "Spróbuj!" |
+| "You're on fire!" | "Jesteś w ogniu!" | "Świetnie Ci idzie!" / "Jesteś w formie!" |
+| "Looks like..." | "Wygląda jak..." | "Wygląda na to, że..." |
+
+### Polish-Specific Terminology
+
+| English | Polish | Notes |
+|---------|--------|-------|
+| Lighter | Zapalniczka | Feminine |
+| Sticker | Naklejka / Sticker | Naklejka more natural |
+| PIN code | Kod PIN | Masculine |
+| QR code | Kod QR | Masculine |
+| Username | Nazwa użytkownika | |
+| Email | Email / E-mail | Masculine |
+| Password | Hasło | Neuter |
+| Log in | Zalogować się | Reflexive |
+| Log out | Wylogować się | Reflexive |
+| Sign up | Zarejestrować się | Reflexive |
+| Refill | Napełnić / Uzupełnić | |
+
+**Cultural Notes:**
+- Polish speakers appreciate formality in business but warmth in community
+- Dates: DD.MM.YYYY or DD-MM-YYYY
+- Currency: 5,99 zł (złoty) or €5,99
+- Balance professionalism with friendliness
+
+---
+
+## Japanese (日本語) Guidelines
+
+### Core Japanese Translation Rules
+
+**1. Gender-Inclusive Writing**
+
+Japanese is largely gender-neutral:
+
+**Naturally inclusive:**
+- `ユーザー` (user - neutral)
+- `皆さん` (everyone - neutral)
+- `人々` (people - neutral)
+
+**Avoid gendered terms:**
+- Don't use `彼` (he) or `彼女` (she) unless necessary
+- Use `あなた` (you - neutral) or omit subject
+
+**2. Politeness Level: Casual vs Polite**
+
+**Use casual-polite mix** (適度な丁寧語):
+
+**For UI/Buttons:** Casual form
+- ✅ `追加する` (add - casual)
+- ✅ `保存` (save - casual)
+
+**For messages:** Polite form
+- ✅ `ログインしてください` (please log in - polite)
+- ✅ `ありがとうございます` (thank you - polite)
+
+**NOT ultra-formal:** Avoid keigo (敬語) - too stiff for community
+
+**3. Brand Names**
+
+**Keep in English:**
+- "LightMyFire" → **ライトマイファイア** (katakana)
+- "LightSaver" → **ライトセーバー** (katakana)
+- "Sticker" → **ステッカー** (katakana)
+
+**Technical terms:**
+- PIN → **PIN** (alphanumeric OK)
+- QR code → **QRコード** (katakana code)
+
+**4. Natural Japanese Expressions**
+
+| English | ❌ Direct | ✅ Natural Japanese |
+|---------|----------|---------------------|
+| "Oops!" | "おっと!" | "あれ!" / "おっと!" |
+| "Give it a try" | "試しを与える" | "試してみて!" |
+| "You're on fire!" | "火がついている!" | "すごいね!" / "調子いいね!" |
+| "Looks like..." | "のように見える" | "〜のようですね" |
+
+### Japanese-Specific Terminology
+
+| English | Japanese | Notes |
+|---------|----------|-------|
+| Lighter | ライター | Katakana (loan word) |
+| Sticker | ステッカー | Katakana |
+| PIN code | PINコード | Alphanumeric + katakana |
+| QR code | QRコード | |
+| Username | ユーザー名 | |
+| Email | メール / Eメール | |
+| Password | パスワード | Katakana |
+| Log in | ログイン / ログインする | |
+| Log out | ログアウト / ログアウトする | |
+| Sign up | 登録 / 登録する | |
+| Refill | 詰め替え / 補充 | |
+
+**Cultural Notes:**
+- Japanese users appreciate clarity and precision
+- Avoid ambiguity - be specific
+- Dates: YYYY/MM/DD or YYYY年MM月DD日
+- Currency: ¥599 (yen) or €5.99
+- Respectful but not overly formal tone
+
+---
+
+## Korean (한국어) Guidelines
+
+### Core Korean Translation Rules
+
+**1. Gender-Inclusive Writing**
+
+Korean is largely gender-neutral:
+
+**Naturally neutral:**
+- `사용자` (user - neutral)
+- `모두` (everyone - neutral)
+- `사람들` (people - neutral)
+
+**No gendered pronouns in common use:**
+- Subjects often omitted
+- Use formal/informal instead of gendered
+
+**2. Honorific Level: Casual vs Polite**
+
+**Use 해요체 (haeyo-che) - polite casual:**
+
+**For UI/Actions:**
+- ✅ `추가하기` (add - neutral form)
+- ✅ `저장하기` (save - neutral form)
+
+**For messages:**
+- ✅ `로그인해주세요` (please log in - polite)
+- ✅ `감사합니다` (thank you - polite)
+
+**AVOID:**
+- ❌ 합니다체 (hamnida - too formal)
+- ❌ 반말 (banmal - too casual/rude)
+
+**3. Brand Names**
+
+**Use English + Hangul:**
+- "LightMyFire" → **라이트마이파이어** (hangul)
+- "LightSaver" → **라이트세이버** (hangul)
+- "Sticker" → **스티커** (hangul - common loan word)
+
+**4. Natural Korean Expressions**
+
+| English | ❌ Direct | ✅ Natural Korean |
+|---------|----------|------------------|
+| "Oops!" | "웁스!" | "앗!" / "이런!" |
+| "Give it a try" | "시도를 주세요" | "한번 해보세요!" |
+| "You're on fire!" | "불 위에 있어요!" | "정말 잘하시네요!" / "대단해요!" |
+| "Looks like..." | "처럼 보입니다" | "~인 것 같아요" |
+
+### Korean-Specific Terminology
+
+| English | Korean | Notes |
+|---------|--------|-------|
+| Lighter | 라이터 | Loan word |
+| Sticker | 스티커 | Loan word |
+| PIN code | PIN 코드 / 핀 코드 | |
+| QR code | QR 코드 | |
+| Username | 사용자 이름 / 닉네임 | |
+| Email | 이메일 | Loan word |
+| Password | 비밀번호 | Native term |
+| Log in | 로그인 | Loan word |
+| Log out | 로그아웃 | Loan word |
+| Sign up | 가입 / 회원가입 | |
+| Refill | 리필 / 재충전 | |
+
+**Cultural Notes:**
+- Koreans appreciate efficiency and clarity
+- Dates: YYYY.MM.DD or YYYY년 MM월 DD일
+- Currency: ₩5,990 (won)
+- Respectful, helpful tone important
+
+---
+
+## Chinese - Simplified (简体中文) Guidelines
+
+### Core Chinese Translation Rules
+
+**1. Gender-Inclusive Writing**
+
+Chinese is naturally gender-neutral:
+
+**No grammatical gender:**
+- `用户` (user - neutral)
+- `大家` (everyone - neutral)
+- `他` (he/she/they - can be neutral in writing)
+
+**Use neutral collective terms:**
+- `用户们` (users)
+- `各位` (everyone - respectful)
+
+**2. Formal vs Informal**
+
+**Use moderately formal tone** (不太正式):
+
+**For UI:** Simple, direct
+- ✅ `添加` (add)
+- ✅ `保存` (save)
+
+**For messages:** Polite
+- ✅ `请登录` (please log in)
+- ✅ `谢谢` (thanks)
+
+**Avoid:**
+- Overly formal: `敬请` (too stiff)
+- Too casual: omitting politeness entirely
+
+**3. Brand Names**
+
+**Transliterate or keep English:**
+- "LightMyFire" → **点亮我的火** (translation) or **LightMyFire** (English)
+- "LightSaver" → **救火者** (translation) or **LightSaver**
+- "Sticker" → **贴纸** (Chinese) - commonly used
+
+**Technical terms:** Usually keep English
+- PIN → **PIN码** or **密码**
+- QR code → **二维码** (Chinese term widely used)
+
+**4. Natural Chinese Expressions**
+
+| English | ❌ Direct | ✅ Natural Chinese |
+|---------|----------|-------------------|
+| "Oops!" | "哎呀!" | "哎呀!" / "糟糕!" |
+| "Give it a try" | "给它一个尝试" | "试试看!" / "试一下!" |
+| "You're on fire!" | "你在火上!" | "你太棒了!" / "你真厉害!" |
+| "Looks like..." | "看起来像..." | "看来..." / "似乎..." |
+
+### Chinese-Specific Terminology
+
+| English | Chinese (Simplified) | Notes |
+|---------|---------------------|-------|
+| Lighter | 打火机 | Common term |
+| Sticker | 贴纸 | Common term |
+| PIN code | PIN码 / 密码 | |
+| QR code | 二维码 | Native term widely used |
+| Username | 用户名 | |
+| Email | 电子邮件 / 邮箱 | 邮箱 more common |
+| Password | 密码 | |
+| Log in | 登录 | |
+| Log out | 登出 / 退出 | |
+| Sign up | 注册 | |
+| Refill | 补充 / 加油 | |
+
+**Cultural Notes:**
+- Chinese users appreciate efficiency and value
+- Avoid superstitions: number 4 (sounds like "death")
+- Dates: YYYY年MM月DD日 or YYYY-MM-DD
+- Currency: ¥5.99 (yuan)
+- Clear, helpful tone with face-saving language
+
+---
+
+## Thai (ไทย) Guidelines
+
+### Core Thai Translation Rules
+
+**1. Gender-Inclusive Writing**
+
+Thai is largely gender-neutral:
+
+**Naturally neutral:**
+- `ผู้ใช้` (user - neutral)
+- `ทุกคน` (everyone - neutral)
+- No gendered pronouns in formal writing
+
+**Polite particles:**
+- Male speaker ends with `ครับ` (khrap)
+- Female speaker ends with `ค่ะ` (kha)
+- **For UI:** Omit particles or use gender-neutral `คะ/ค่ะ`
+
+**2. Formal vs Informal**
+
+**Use polite formal tone** (ภาษาสุภาพ):
+
+**For all content:**
+- Use polite words: `กรุณา` (please), `ขอบคุณ` (thank you)
+- Add polite particles: `ค่ะ/ครับ` where appropriate
+- Respectful pronouns: `คุณ` (you - polite)
+
+**Thai culture values politeness highly.**
+
+**3. Brand Names**
+
+**Keep English + Thai translation:**
+- "LightMyFire" → **ไลท์มายไฟร์** (Thai) + LightMyFire (English)
+- "LightSaver" → **ผู้ช่วยไฟ** (translation) or **LightSaver**
+- "Sticker" → **สติ๊กเกอร์** (Thai transliteration) - common
+
+**4. Natural Thai Expressions**
+
+| English | ❌ Direct | ✅ Natural Thai |
+|---------|----------|-----------------|
+| "Oops!" | "อุ๊ปส์!" | "อุ๊ย!" / "โอ๊ะ!" |
+| "Give it a try" | "ให้มันลอง" | "ลองดูสิ!" / "ลองดูนะ!" |
+| "You're on fire!" | "คุณอยู่บนไฟ!" | "เก่งมาก!" / "สุดยอด!" |
+| "Looks like..." | "ดูเหมือน..." | "ดูเหมือนว่า..." / "เหมือนกับว่า..." |
+
+### Thai-Specific Terminology
+
+| English | Thai | Notes |
+|---------|------|-------|
+| Lighter | ไฟแช็ก | Common term |
+| Sticker | สติ๊กเกอร์ | Loan word |
+| PIN code | รหัส PIN / พิน | |
+| QR code | คิวอาร์โค้ด / QR | |
+| Username | ชื่อผู้ใช้ | |
+| Email | อีเมล | Loan word |
+| Password | รหัสผ่าน | |
+| Log in | เข้าสู่ระบบ | |
+| Log out | ออกจากระบบ | |
+| Sign up | สมัครสมาชิก | |
+| Refill | เติม / เติมเชื้อเพลิง | |
+
+**Cultural Notes:**
+- Thai culture emphasizes respect and hierarchy
+- Always use polite language
+- Dates: DD/MM/YYYY (Thai style) or พ.ศ. (Buddhist era)
+- Currency: ฿199 (baht)
+- Very polite, respectful tone essential
+
+---
+
+## Vietnamese (Tiếng Việt) Guidelines
+
+### Core Vietnamese Translation Rules
+
+**1. Gender-Inclusive Writing**
+
+Vietnamese is gender-neutral:
+
+**No grammatical gender:**
+- `người dùng` (user - neutral)
+- `mọi người` (everyone - neutral)
+- Pronouns context-dependent but often omitted
+
+**Use neutral collective terms.**
+
+**2. Formal vs Informal**
+
+**Use polite formal tone:**
+
+**Respectful pronouns:**
+- `bạn` (you - friendly equal)
+- `quý vị` (you - formal plural)
+
+**For community:** Use `bạn` (friendly)
+
+**Polite words:**
+- `vui lòng` (please)
+- `cảm ơn` (thanks)
+- `xin` (please - formal request)
+
+**3. Brand Names**
+
+**Mix of English and Vietnamese:**
+- "LightMyFire" → Keep English or **Thắp Lửa Của Tôi**
+- "LightSaver" → **Người Cứu Lửa** or keep English
+- "Sticker" → **nhãn dán** (Vietnamese) - common term
+
+**4. Natural Vietnamese Expressions**
+
+| English | ❌ Direct | ✅ Natural Vietnamese |
+|---------|----------|----------------------|
+| "Oops!" | "Úi!" | "Ối!" / "Ủa!" |
+| "Give it a try" | "Cho nó thử" | "Thử xem!" / "Hãy thử đi!" |
+| "You're on fire!" | "Bạn đang cháy!" | "Bạn giỏi quá!" / "Tuyệt vời!" |
+| "Looks like..." | "Trông giống như..." | "Có vẻ như..." / "Dường như..." |
+
+### Vietnamese-Specific Terminology
+
+| English | Vietnamese | Notes |
+|---------|-----------|-------|
+| Lighter | Bật lửa / Hộp quẹt | Common terms |
+| Sticker | Nhãn dán / Sticker | Both used |
+| PIN code | Mã PIN | |
+| QR code | Mã QR | |
+| Username | Tên người dùng | |
+| Email | Email / Thư điện tử | Email more common |
+| Password | Mật khẩu | |
+| Log in | Đăng nhập | |
+| Log out | Đăng xuất | |
+| Sign up | Đăng ký | |
+| Refill | Nạp lại / Đổ thêm | |
+
+**Cultural Notes:**
+- Vietnamese culture values respect and collectivism
+- Use polite, helpful language
+- Dates: DD/MM/YYYY
+- Currency: 150.000₫ (dong - use period for thousands)
+- Warm, respectful tone
+
+---
+
+## Hindi (हिन्दी) Guidelines
+
+### Core Hindi Translation Rules
+
+**1. Gender-Inclusive Writing**
+
+Hindi has grammatical gender (masculine/feminine):
+
+**Strategies:**
+- Use plural forms (more neutral)
+- Duo forms: `उपयोगकर्ता और उपयोगकर्ताएं`
+- Professional neutral terms when possible
+
+**Some writers use slashes:**
+- `उपयोगकर्ता/ओं` (users - both genders)
+
+**2. "Tum/Aap" Formality**
+
+**Use "aap" (आप)** - respectful form:
+- ✅ `आप अपनी कहानी जोड़ सकते हैं`
+- NOT `तुम` (too informal/rude for strangers)
+
+Hindi culture emphasizes respect.
+
+**3. Devanagari Script + English**
+
+**Brand names:**
+- "LightMyFire" → **लाइटमायफायर** (Devanagari) or keep English
+- "LightSaver" → **लाइटसेवर** or translate: **प्रकाश रक्षक**
+- "Sticker" → **स्टिकर** (transliterated) - common
+
+**Technical terms:** Often transliterated
+- PIN → **पिन** or PIN
+- QR code → **क्यूआर कोड**
+
+**4. Natural Hindi Expressions**
+
+| English | ❌ Direct | ✅ Natural Hindi |
+|---------|----------|-----------------|
+| "Oops!" | "ऊप्स!" | "अरे!" / "ओह!" |
+| "Give it a try" | "इसे कोशिश दो" | "प्रयास करें!" / "कोशिश करिए!" |
+| "You're on fire!" | "आप आग पर हैं!" | "बहुत बढ़िया!" / "शानदार!" |
+| "Looks like..." | "जैसा दिखता है..." | "लगता है..." / "ऐसा प्रतीत होता है..." |
+
+### Hindi-Specific Terminology
+
+| English | Hindi | Notes |
+|---------|-------|-------|
+| Lighter | लाइटर / चिंगारी | Loan word common |
+| Sticker | स्टिकर | Transliteration |
+| PIN code | पिन कोड / PIN | |
+| QR code | क्यूआर कोड | |
+| Username | उपयोगकर्ता नाम | |
+| Email | ईमेल / इलेक्ट्रॉनिक मेल | |
+| Password | पासवर्ड / कूटशब्द | Loan word more common |
+| Log in | लॉग इन / प्रवेश | |
+| Log out | लॉग आउट / निकास | |
+| Sign up | साइन अप / पंजीकरण | |
+| Refill | रिफिल / फिर से भरना | |
+
+**Cultural Notes:**
+- Hindi speakers appreciate respect and formality
+- Use formal "aap" (आप)
+- Dates: DD/MM/YYYY or DD-MM-YYYY
+- Currency: ₹599 (rupee)
+- Respectful, helpful tone essential
+
+---
+
+## Arabic (العربية) Guidelines
+
+### Core Arabic Translation Rules
+
+**1. Gender-Inclusive Writing**
+
+Arabic has masculine and feminine:
+
+**Approaches:**
+- Use masculine plural (grammatically includes all in formal contexts)
+- Duo forms when specific: `المستخدمون والمستخدمات`
+- Neutral professional terms: `الأشخاص` (people)
+
+**Modern experiments:**
+- Some use `ـ/ـة` to show both genders
+- Not yet standardized
+
+**2. Formal vs Informal**
+
+**Use formal Modern Standard Arabic (MSA):**
+- Formal pronouns: `أنت` (you - masculine), `أنتِ` (you - feminine)
+- Polite constructions with `من فضلك` (please)
+
+**AVOID:**
+- Colloquial dialects (Egyptian, Levantine, Gulf)
+- Use MSA understood by all Arabic speakers
+
+**3. Right-to-Left (RTL) Considerations**
+
+**Important:**
+- Text flows right-to-left
+- Latin letters (LightMyFire, PIN) embed left-to-right
+- Numbers can be tricky: verify display
+
+**Brand names:**
+- "LightMyFire" → Keep English (Latin script)
+- Can add Arabic: **أشعل ناري**
+- "Sticker" → **ملصق** (Arabic term common)
+
+**4. Natural Arabic Expressions**
+
+| English | ❌ Direct | ✅ Natural Arabic |
+|---------|----------|------------------|
+| "Oops!" | "أووبس!" | "آه!" / "للأسف!" |
+| "Give it a try" | "أعطه محاولة" | "جرّب!" / "حاول!" |
+| "You're on fire!" | "أنت على النار!" | "رائع!" / "ممتاز!" |
+| "Looks like..." | "يبدو كـ..." | "يبدو أن..." / "على ما يبدو..." |
+
+### Arabic-Specific Terminology
+
+| English | Arabic | Notes |
+|---------|--------|-------|
+| Lighter | ولاعة / قداحة | Common terms |
+| Sticker | ملصق | Standard |
+| PIN code | رمز PIN / رمز سري | |
+| QR code | رمز QR / رمز الاستجابة السريعة | |
+| Username | اسم المستخدم | |
+| Email | البريد الإلكتروني / الإيميل | |
+| Password | كلمة المرور / كلمة السر | |
+| Log in | تسجيل الدخول | |
+| Log out | تسجيل الخروج | |
+| Sign up | التسجيل / إنشاء حساب | |
+| Refill | إعادة التعبئة | |
+
+**Cultural Notes:**
+- Arabic culture values hospitality and eloquence
+- Use polite, respectful language
+- Dates: DD/MM/YYYY or Islamic calendar
+- Currency: Various (SAR, AED, EGP, etc.) - use regional currency
+- Formal, respectful tone important
+- RTL layout must be tested
+
+---
+
+## Persian/Farsi (فارسی) Guidelines
+
+### Core Persian Translation Rules
+
+**1. Gender-Inclusive Writing**
+
+Persian/Farsi is gender-neutral:
+
+**No grammatical gender:**
+- `کاربر` (user - neutral)
+- `همه` (everyone - neutral)
+- Pronouns don't distinguish gender: `او` (he/she/they)
+
+**This makes Persian naturally inclusive!**
+
+**2. Formal vs Informal**
+
+**Use polite formal tone:**
+- Formal "you": `شما` (shoma - respectful)
+- NOT informal: `تو` (to - only for close friends/family)
+
+**Polite constructions:**
+- `لطفاً` (lotfan - please)
+- Use subjunctive for politeness
+
+**3. Persian Script + English**
+
+**Brand names:**
+- "LightMyFire" → **لایت‌مای‌فایر** (Persian script) or keep English
+- "LightSaver" → **لایت‌سیور** or **نجات‌دهنده نور**
+- "Sticker" → **استیکر** (transliterated) - common
+
+**Technical terms:**
+- PIN → **پین** or PIN
+- QR code → **کد QR** or **کد کیوآر**
+
+**4. Natural Persian Expressions**
+
+| English | ❌ Direct | ✅ Natural Persian |
+|---------|----------|-------------------|
+| "Oops!" | "اوپس!" | "اوه!" / "وای!" |
+| "Give it a try" | "آن را امتحان بده" | "امتحان کنید!" / "تلاش کنید!" |
+| "You're on fire!" | "شما روی آتش هستید!" | "عالی هستید!" / "فوق‌العاده!" |
+| "Looks like..." | "شبیه به نظر می‌رسد..." | "به نظر می‌رسد..." / "گویا..." |
+
+### Persian-Specific Terminology
+
+| English | Persian | Notes |
+|---------|---------|-------|
+| Lighter | فندک | Common term |
+| Sticker | استیکر / برچسب | Both used |
+| PIN code | کد PIN / کد پین | |
+| QR code | کد QR / کد کیوآر | |
+| Username | نام کاربری | |
+| Email | ایمیل / پست الکترونیک | ایمیل more common |
+| Password | رمز عبور / پسورد | |
+| Log in | ورود | |
+| Log out | خروج | |
+| Sign up | ثبت‌نام | |
+| Refill | شارژ مجدد / پر کردن | |
+
+**Cultural Notes:**
+- Persian culture values poetry and eloquence
+- Appreciate beautiful, flowing language
+- Dates: Persian calendar (1400s) or Gregorian
+- Currency: IRR (rial) - often in thousands
+- Respectful, eloquent tone appreciated
+- RTL layout must be tested
+
+---
+
+## Urdu (اردو) Guidelines
+
+### Core Urdu Translation Rules
+
+**1. Gender-Inclusive Writing**
+
+Urdu has grammatical gender (masculine/feminine):
+
+**Strategies:**
+- Use masculine plural (grammatically includes both)
+- Duo forms: `صارفین اور صارفات` (users - both genders)
+- Professional neutral terms
+
+**2. Formal "Aap" (آپ)**
+
+**ALWAYS use "aap" (آپ)** - respectful:
+- ✅ `آپ اپنی کہانی شامل کر سکتے ہیں`
+- NOT `تم` (informal/rude for strangers)
+
+Urdu culture emphasizes respect and courtesy.
+
+**3. Urdu Script (Nastaliq)**
+
+**Brand names:**
+- "LightMyFire" → **لائٹ مائی فائر** (Urdu script) or keep English
+- "LightSaver" → **لائٹ سیور** or **روشنی بچانے والا**
+- "Sticker" → **اسٹیکر** (transliteration) - common
+
+**Technical terms:**
+- PIN → **پن** or PIN
+- QR code → **کیو آر کوڈ**
+
+**4. Natural Urdu Expressions**
+
+| English | ❌ Direct | ✅ Natural Urdu |
+|---------|----------|----------------|
+| "Oops!" | "اوپس!" | "اوہ!" / "ارے!" |
+| "Give it a try" | "اسے کوشش دیں" | "کوشش کریں!" / "آزمائیں!" |
+| "You're on fire!" | "آپ آگ پر ہیں!" | "شاندار!" / "بہترین!" |
+| "Looks like..." | "ایسا لگتا ہے..." | "لگتا ہے..." / "معلوم ہوتا ہے..." |
+
+### Urdu-Specific Terminology
+
+| English | Urdu | Notes |
+|---------|------|-------|
+| Lighter | لائٹر / چنگاری | Loan word common |
+| Sticker | اسٹیکر / پرچی | |
+| PIN code | پن کوڈ / PIN | |
+| QR code | کیو آر کوڈ | |
+| Username | صارف نام | |
+| Email | ای میل / برقی خط | |
+| Password | پاس ورڈ / خفیہ لفظ | Loan word more common |
+| Log in | لاگ ان / داخلہ | |
+| Log out | لاگ آؤٹ / خارج | |
+| Sign up | سائن اپ / اندراج | |
+| Refill | دوبارہ بھرنا | |
+
+**Cultural Notes:**
+- Urdu speakers appreciate courtesy and respect
+- Use formal "aap" always
+- Dates: DD/MM/YYYY
+- Currency: PKR (rupee) - Rs. 599
+- Very respectful, polite tone
+- RTL layout must be tested
+
+---
+
+## Marathi (मराठी) Guidelines
+
+### Core Marathi Translation Rules
+
+**1. Gender-Inclusive Writing**
+
+Marathi has grammatical gender:
+
+**Approaches:**
+- Masculine plural (grammatically inclusive in formal contexts)
+- Duo forms: `वापरकर्ते आणि वापरकर्त्या`
+- Neutral professional terms
+
+**2. "Tumhi/Aap" Formality**
+
+**Use "tumhi" (तुम्ही)** - respectful:
+- ✅ `तुम्ही तुमची कथा जोडू शकता`
+- NOT `तू` (too informal)
+
+**For very formal:** `आपण` (aapan)
+
+**3. Devanagari Script + English**
+
+**Brand names:**
+- "LightMyFire" → **लाइटमायफायर** (Devanagari) or keep English
+- "LightSaver" → **लाइटसेव्हर** or **प्रकाश रक्षक**
+- "Sticker" → **स्टिकर** (transliterated) - common
+
+**4. Natural Marathi Expressions**
+
+| English | ❌ Direct | ✅ Natural Marathi |
+|---------|----------|-------------------|
+| "Oops!" | "ऊप्स!" | "अरेच्चा!" / "अरे!" |
+| "Give it a try" | "त्याला प्रयत्न द्या" | "प्रयत्न करा!" |
+| "You're on fire!" | "तुम्ही आगीवर आहात!" | "खूप छान!" / "उत्तम!" |
+| "Looks like..." | "असे दिसते..." | "असे वाटते..." |
+
+### Marathi-Specific Terminology
+
+| English | Marathi | Notes |
+|---------|---------|-------|
+| Lighter | लायटर / ठिणगी | |
+| Sticker | स्टिकर / चिकट | |
+| PIN code | पिन कोड / PIN | |
+| QR code | क्यूआर कोड | |
+| Username | वापरकर्ता नाव | |
+| Email | ईमेल / विद्युत पत्र | |
+| Password | पासवर्ड / गुप्त शब्द | |
+| Log in | लॉग इन / प्रवेश | |
+| Log out | लॉग आउट / बाहेर पडणे | |
+| Sign up | साइन अप / नोंदणी | |
+| Refill | रिफिल / पुन्हा भरणे | |
+
+**Cultural Notes:**
+- Marathi speakers appreciate respect
+- Use "tumhi" (तुम्ही) for politeness
+- Dates: DD/MM/YYYY
+- Currency: ₹599 (rupee)
+- Respectful, helpful tone
+
+---
+
+## Telugu (తెలుగు) Guidelines
+
+### Core Telugu Translation Rules
+
+**1. Gender-Inclusive Writing**
+
+Telugu has grammatical gender:
+
+**Approaches:**
+- Plural forms (more neutral)
+- Duo forms when needed
+- Professional neutral terms
+
+**2. "Meeru" Formality**
+
+**Use "meeru" (మీరు)** - respectful:
+- ✅ `మీరు మీ కథను జోడించవచ్చు`
+- NOT `నువ్వు` (nuvvu - too informal)
+
+Telugu culture values respect.
+
+**3. Telugu Script + English**
+
+**Brand names:**
+- "LightMyFire" → **లైట్‌మైఫైర్** (Telugu script) or keep English
+- "LightSaver" → **లైట్‌సేవర్**
+- "Sticker" → **స్టిక్కర్** (transliteration) - common
+
+**4. Natural Telugu Expressions**
+
+| English | ❌ Direct | ✅ Natural Telugu |
+|---------|----------|------------------|
+| "Oops!" | "ఓప్స్!" | "అయ్యో!" / "ఓహ్!" |
+| "Give it a try" | "దానికి ప్రయత్నం ఇవ్వండి" | "ప్రయత్నించండి!" |
+| "You're on fire!" | "మీరు నిప్పులపై ఉన్నారు!" | "చాలా బాగుంది!" / "అద్భుతం!" |
+| "Looks like..." | "లాగా కనిపిస్తోంది..." | "అనిపిస్తోంది..." |
+
+### Telugu-Specific Terminology
+
+| English | Telugu | Notes |
+|---------|--------|-------|
+| Lighter | లైటర్ / నిప్పు పెట్టె | |
+| Sticker | స్టిక్కర్ | |
+| PIN code | పిన్ కోడ్ / PIN | |
+| QR code | క్యూఆర్ కోడ్ | |
+| Username | వినియోగదారు పేరు | |
+| Email | ఇమెయిల్ / విద్యుత్ మెయిల్ | |
+| Password | పాస్‌వర్డ్ / రహస్య పదం | |
+| Log in | లాగిన్ / ప్రవేశం | |
+| Log out | లాగౌట్ / నిష్క్రమణ | |
+| Sign up | సైన్ అప్ / నమోదు | |
+| Refill | రీఫిల్ / మళ్ళీ నింపు | |
+
+**Cultural Notes:**
+- Telugu speakers appreciate formal respect
+- Use "meeru" (మీరు)
+- Dates: DD/MM/YYYY or DD-MM-YYYY
+- Currency: ₹599 (rupee)
+- Respectful, courteous tone
+
+---
+
+## Indonesian (Bahasa Indonesia) Guidelines
+
+### Core Indonesian Translation Rules
+
+**1. Gender-Inclusive Writing**
+
+Indonesian is gender-neutral:
+
+**No grammatical gender:**
+- `pengguna` (user - neutral)
+- `semua orang` (everyone - neutral)
+- Naturally inclusive language
+
+**This is a huge advantage!**
+
+**2. Formal vs Informal**
+
+**Use polite but friendly tone:**
+
+**Pronouns:**
+- `Anda` (you - polite)
+- `Kamu` (you - informal, avoid for strangers)
+
+**For community:** Slightly informal `Anda` works
+
+**Polite words:**
+- `silakan` (please)
+- `terima kasih` (thank you)
+
+**3. Brand Names**
+
+**Keep English or adapt:**
+- "LightMyFire" → Keep English or **Nyalakan Apiku**
+- "LightSaver" → **Penyelamat Api** or keep English
+- "Sticker" → **stiker** (Indonesian spelling) - very common
+
+**4. Natural Indonesian Expressions**
+
+| English | ❌ Direct | ✅ Natural Indonesian |
+|---------|----------|----------------------|
+| "Oops!" | "Ups!" | "Ups!" / "Waduh!" |
+| "Give it a try" | "Berikan mencoba" | "Coba saja!" / "Silakan coba!" |
+| "You're on fire!" | "Anda di atas api!" | "Hebat!" / "Luar biasa!" |
+| "Looks like..." | "Terlihat seperti..." | "Sepertinya..." / "Tampaknya..." |
+
+### Indonesian-Specific Terminology
+
+| English | Indonesian | Notes |
+|---------|-----------|-------|
+| Lighter | Korek api | Common term |
+| Sticker | Stiker | Adapted spelling |
+| PIN code | Kode PIN | |
+| QR code | Kode QR | |
+| Username | Nama pengguna | |
+| Email | Email / Surel | Email more common |
+| Password | Kata sandi / Password | Both used |
+| Log in | Masuk / Login | |
+| Log out | Keluar / Logout | |
+| Sign up | Daftar | |
+| Refill | Isi ulang | |
+
+**Cultural Notes:**
+- Indonesian culture values politeness and harmony
+- Use respectful but not overly formal language
+- Dates: DD/MM/YYYY or DD-MM-YYYY
+- Currency: Rp5.990 (rupiah - use period for thousands)
+- Friendly, helpful tone
+
+---
+
+## Ukrainian (Українська) Guidelines
+
+### Core Ukrainian Translation Rules
+
+**1. Gender-Inclusive Writing**
+
+Ukrainian has grammatical gender:
+
+**Modern approaches:**
+- Duo forms: `користувачі та користувачки`
+- Use neutral plural forms
+- Some use `*` or `_`: `користувач*`
+
+**2. "Ти" vs "Ви"**
+
+**Use "ти"** (informal) for community:
+- ✅ `Ти можеш додати свою історію`
+- Use "Ви" only for very formal contexts
+
+Ukrainian online communities typically use "ти."
+
+**3. Cyrillic Script**
+
+**Brand names:**
+- "LightMyFire" → Keep English or **Засвіти Мій Вогонь**
+- "LightSaver" → **ЛайтСейвер** (transliteration) or **Рятівник Вогню**
+- "Sticker" → **стікер** (transliterated) - common
+
+**Technical terms:**
+- PIN → **ПІН** (Cyrillic) or PIN
+- QR code → **QR-код**
+
+**4. Natural Ukrainian Expressions**
+
+| English | ❌ Direct | ✅ Natural Ukrainian |
+|---------|----------|---------------------|
+| "Oops!" | "Упс!" | "От халепа!" / "Ой!" |
+| "Give it a try" | "Дай цьому спробу" | "Спробуй!" / "Давай спробуємо!" |
+| "You're on fire!" | "Ти в вогні!" | "Круто!" / "Чудово виходить!" |
+| "Looks like..." | "Виглядає як..." | "Схоже на те, що..." |
+
+### Ukrainian-Specific Terminology
+
+| English | Ukrainian | Notes |
+|---------|-----------|-------|
+| Lighter | Запальничка | Feminine |
+| Sticker | Стікер / Наклейка | Both used |
+| PIN code | ПІН-код | Cyrillic |
+| QR code | QR-код | |
+| Username | Ім'я користувача | |
+| Email | Електронна пошта / Імейл | |
+| Password | Пароль | Masculine |
+| Log in | Увійти | Perfective |
+| Log out | Вийти | Perfective |
+| Sign up | Зареєструватися | Reflexive |
+| Refill | Заправити | |
+
+**Cultural Notes:**
+- Ukrainian culture values independence and creativity
+- Use warm, friendly tone
+- Dates: DD.MM.YYYY (dots)
+- Currency: ₴599 (hryvnia) or €5.99
+- Supportive, community-focused tone
+
+---
+
+## Turkish (Türkçe) Guidelines
+
+### Core Turkish Translation Rules
+
+**1. Gender-Inclusive Writing**
+
+Turkish is gender-neutral:
+
+**No grammatical gender:**
+- `kullanıcı` (user - neutral)
+- `herkes` (everyone - neutral)
+- Pronouns are gender-neutral: `o` (he/she/it/they)
+
+**This makes Turkish naturally inclusive!**
+
+**2. "Sen" vs "Siz"**
+
+**Use "sen"** (informal) for community:
+- ✅ `Hikayeni ekleyebilirsin`
+- Use "siz" for very formal/plural contexts
+
+Turkish online communities use "sen."
+
+**3. Brand Names**
+
+**Keep English or adapt:**
+- "LightMyFire" → Keep English or **Ateşimi Yak**
+- "LightSaver" → **LightSaver** or **Ateş Kurtarıcı**
+- "Sticker" → **sticker** (Turkish borrowed it) - very common
+
+**4. Natural Turkish Expressions**
+
+| English | ❌ Direct | ✅ Natural Turkish |
+|---------|----------|-------------------|
+| "Oops!" | "Hoop!" | "Eyvah!" / "Hay aksi!" |
+| "Give it a try" | "Ona deneme ver" | "Dene!" / "Bir dene!" |
+| "You're on fire!" | "Ateşteysin!" | "Harikasın!" / "Çok iyisin!" |
+| "Looks like..." | "Gibi görünüyor..." | "Görünüşe göre..." / "Sanırım..." |
+
+### Turkish-Specific Terminology
+
+| English | Turkish | Notes |
+|---------|---------|-------|
+| Lighter | Çakmak | Common term |
+| Sticker | Sticker / Çıkartma | Sticker more trendy |
+| PIN code | PIN kodu | |
+| QR code | QR kodu | |
+| Username | Kullanıcı adı | |
+| Email | E-posta / Email | Both used |
+| Password | Şifre | Standard |
+| Log in | Giriş yap | |
+| Log out | Çıkış yap | |
+| Sign up | Kayıt ol | |
+| Refill | Dolum / Doldur | |
+
+**Cultural Notes:**
+- Turkish culture values hospitality and warmth
+- Use friendly, welcoming tone
+- Dates: DD.MM.YYYY (dots) or DD/MM/YYYY
+- Currency: ₺59,90 (lira - comma for decimal)
+- Warm, friendly tone fits culture well
+
+---
+
 ## General Translation Best Practices
 
 ### 1. Context is Everything
