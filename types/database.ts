@@ -557,6 +557,7 @@ export type Database = {
           role: string | null
           show_nationality: boolean | null
           username: string
+          welcome_email_sent: boolean
         }
         Insert: {
           created_at?: string
@@ -567,6 +568,7 @@ export type Database = {
           role?: string | null
           show_nationality?: boolean | null
           username: string
+          welcome_email_sent?: boolean
         }
         Update: {
           created_at?: string
@@ -577,6 +579,7 @@ export type Database = {
           role?: string | null
           show_nationality?: boolean | null
           username?: string
+          welcome_email_sent?: boolean
         }
         Relationships: []
       }
