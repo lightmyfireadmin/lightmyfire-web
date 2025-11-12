@@ -752,11 +752,9 @@ export default {
 
   'add_post.error.youtube_api_error': 'YouTube API 오류: {message}',
 
-  // TODO: Translate from English
-  'add_post.moderation.content_review': '⚠️ Content Review',
+  'add_post.moderation.content_review': '⚠️ 콘텐츠 검토',
 
-  // TODO: Translate from English
-  'add_post.moderation.tip': '💡 Tip: Consider revising to be more community-friendly.',
+  'add_post.moderation.tip': '💡 팁: 커뮤니티 친화적으로 수정하는 것을 고려해보세요.',
 
   'add_post.options': '옵션',
 
@@ -764,15 +762,13 @@ export default {
 
   'add_post.placeholder.location_lng': '경도 (예: 2.3522)',
 
-  // TODO: Translate from English
-  'add_post.placeholder.location_name': 'Name of a place (e.g., \\'Cafe Central\\')',
+  'add_post.placeholder.location_name': '장소 이름 (예: \\'중앙카페\\')',
 
   'add_post.prompt_v1': '이 라이터는 어떤 추억을 담고 있나요? 이야기를 들려주세요...',
 
   'add_post.prompt_v2': '어디서 찾았나요? 그 다음은 무슨 일이 있었나요?',
 
-  // TODO: Translate from English
-  'add_post.prompt_v3': 'A thought, a poem, a moment—share what\\'s on your mind...',
+  'add_post.prompt_v3': '생각, 시, 순간—마음속에 있는 것을 공유해보세요...',
 
   'add_post.prompt_v4': '어떤 노래가 흘러나오나요? 분위기를 설명해보세요...',
 
@@ -790,13 +786,11 @@ export default {
 
   'admin.orders.action.refunding': '환불 중...',
 
-  // TODO: Translate from English
-  'admin.orders.action.send_fulfillment': '📧 Send to Fulfillment',
+  'admin.orders.action.send_fulfillment': '📧 주문 이행팀에 전송',
 
   'admin.orders.action.sending': '전송 중...',
 
-  // TODO: Translate from English
-  'admin.orders.confirm_resend': 'Resend fulfillment email with stickers for order {orderId}...?',
+  'admin.orders.confirm_resend': '주문 {orderId}의 스티커와 함께 이행 이메일을 다시 보내시겠습니까?',
 
   'admin.orders.details.full_order_id': '전체 주문 ID',
 
@@ -814,32 +808,25 @@ export default {
 
   'admin.orders.no_orders': '주문이 없습니다.',
 
-  // TODO: Translate from English
-  'admin.orders.pack_size_count': '{count} stickers',
+  'admin.orders.pack_size_count': '{count}개 스티커',
 
   'admin.orders.pending_refunds': '대기 중인 환불',
 
-  // TODO: Translate from English
-  'admin.orders.refund_confirm': 'Are you sure you want to refund €{amount} to {email}?',
+  'admin.orders.refund_confirm': '€{amount}을(를) {email}로 환불하시겠습니까?',
 
-  // TODO: Translate from English
-  'admin.orders.refund_error': 'Refund failed: {error}',
+  'admin.orders.refund_error': '환불 실패: {error}',
 
   'admin.orders.refund_failed': '환불 실패',
 
-  // TODO: Translate from English
-  'admin.orders.refund_success': 'Refund successful! Amount: €{amount}',
+  'admin.orders.refund_success': '환불 성공! 금액: €{amount}',
 
   'admin.orders.refunded': '환불됨',
 
-  // TODO: Translate from English
-  'admin.orders.resend_error': '❌ Failed to resend: {error}',
+  'admin.orders.resend_error': '❌ 재전송 실패: {error}',
 
-  // TODO: Translate from English
-  'admin.orders.resend_failed': 'Failed to resend fulfillment email',
+  'admin.orders.resend_failed': '이행 이메일 재전송 실패',
 
-  // TODO: Translate from English
-  'admin.orders.resend_success': '✅ Fulfillment email resent successfully!\n\n{count} sticker(s) sent to fulfillment team.',
+  'admin.orders.resend_success': '✅ 이행 이메일이 성공적으로 재전송되었습니다!\n\n{count}개 스티커가 이행팀에 전송되었습니다.',
 
   'admin.orders.table.actions': '작업',
 
@@ -903,8 +890,7 @@ export default {
 
   'auth.continue_with': '계속하기',
 
-  // TODO: Translate from English
-  'auth.dont_have_account': 'Don\\'t have an account? Sign up',
+  'auth.dont_have_account': '계정이 없으신가요? 가입하기',
 
   'auth.email_label': '이메일',
 
@@ -976,8 +962,7 @@ export default {
 
   'contact.phone_label': '전화번호',
 
-  // TODO: Translate from English
-  'contact.phone_placeholder': '+33 6 12 34 56 78',
+  'contact.phone_placeholder': '+82 10 1234 5678',
 
   'contact.sending': '전송 중...',
 
@@ -989,21 +974,17 @@ export default {
 
   'contact.success_message': '메시지가 전송되었습니다!',
 
-  // TODO: Translate from English
-  'contact.success_subtitle': 'We\\'ll get back to you soon.',
+  'contact.success_subtitle': '곧 답변 드리겠습니다.',
 
   'email.activity.by': '작성자:',
 
-  // TODO: Translate from English
-  'email.activity.greeting': 'Hi {name},',
+  'email.activity.greeting': '안녕하세요 {name}님,',
 
-  // TODO: Translate from English
-  'email.activity.intro': 'There\\'s new activity on your lighter ',
+  'email.activity.intro': '라이터에 새로운 활동이 있습니다 ',
 
   'email.activity.lighter': '라이터:',
 
-  // TODO: Translate from English
-  'email.activity.outro': 'Your lighter\\'s journey continues! See where it\\'s been and who\\'s found it.',
+  'email.activity.outro': '라이터의 여정이 계속됩니다! 어디에 있었는지, 누가 찾았는지 확인해보세요.',
 
   'email.activity.pin': 'PIN:',
 
@@ -1029,39 +1010,29 @@ export default {
 
   'email.common.button.view_trophies': '내 트로피 보기',
 
-  // TODO: Translate from English
-  'email.common.footer_copyright': '© {year} LightMyFire. All rights reserved.',
+  'email.common.footer_copyright': '© {year} 라이트마이파이어. All rights reserved.',
 
   'email.common.footer_questions': '문의사항이 있으신가요? 이메일:',
 
-  // TODO: Translate from English
-  'email.common.footer_tagline': 'LightMyFire – Give Your Lighter a Second Life',
+  'email.common.footer_tagline': '라이트마이파이어 – 라이터에 두 번째 생명을',
 
-  // TODO: Translate from English
-  'email.first_post.achievement': '🏆 Achievement Unlocked: First Spark',
+  'email.first_post.achievement': '🏆 업적 달성: 첫 번째 불꽃',
 
-  // TODO: Translate from English
-  'email.first_post.achievement_content': 'You\\'ve lit your first flame in the LightMyFire community!',
+  'email.first_post.achievement_content': '라이트마이파이어 커뮤니티에서 첫 번째 불꽃을 밝혔습니다!',
 
-  // TODO: Translate from English
-  'email.first_post.greeting': 'Congratulations, {name}! 🎉',
+  'email.first_post.greeting': '축하합니다, {name}님! 🎉',
 
-  // TODO: Translate from English
-  'email.first_post.intro': 'You just added your very first post to your LightMyFire lighter ',
+  'email.first_post.intro': '라이트마이파이어 라이터에 첫 번째 게시물을 추가했습니다 ',
 
   'email.first_post.lighter': '라이터:',
 
-  // TODO: Translate from English
-  'email.first_post.next_step1': 'Share it: Pass your lighter to a friend or leave it somewhere interesting',
+  'email.first_post.next_step1': '공유하기: 친구에게 라이터를 전달하거나 흥미로운 곳에 두고 오세요',
 
-  // TODO: Translate from English
-  'email.first_post.next_step2': 'Get stickers: Order custom stickers to help others find your lighter\\'s story',
+  'email.first_post.next_step2': '스티커 받기: 다른 사람들이 라이터의 이야기를 찾을 수 있도록 맞춤형 스티커를 주문하세요',
 
-  // TODO: Translate from English
-  'email.first_post.next_step3': 'Watch it grow: Check back to see new posts as your lighter travels',
+  'email.first_post.next_step3': '성장 지켜보기: 라이터가 여행하면서 새로운 게시물을 확인하세요',
 
-  // TODO: Translate from English
-  'email.first_post.next_steps_title': '💡 Next Steps',
+  'email.first_post.next_steps_title': '💡 다음 단계',
 
   'email.first_post.pin': 'PIN:',
 
@@ -1069,218 +1040,153 @@ export default {
 
   'email.first_post.welcome_title': '운동에 오신 것을 환영합니다!',
 
-  // TODO: Translate from English
-  'email.first_post.what_started_content': 'Your lighter is now part of something special. Every time someone finds it and adds their story, you\\'ll be able to see where it\\'s been and the connections it\\'s made.',
+  'email.first_post.what_started_content': '라이터가 이제 특별한 것의 일부가 되었습니다. 누군가 라이터를 찾아 이야기를 추가할 때마다, 어디에 있었는지 어떤 연결이 만들어졌는지 확인할 수 있습니다.',
 
-  // TODO: Translate from English
-  'email.first_post.what_started_title': '🎯 What You\\'ve Started',
+  'email.first_post.what_started_title': '🎯 시작한 것',
 
-  // TODO: Translate from English
-  'email.first_post_subject': 'You lit the first spark! 🔥 Welcome to the LightSaver family',
+  'email.first_post_subject': '첫 번째 불꽃을 밝혔습니다! 🔥 라이트세이버 가족에 오신 것을 환영합니다',
 
-  // TODO: Translate from English
-  'email.lighter_activity_subject': 'Your lighter is making new friends! 🌍',
+  'email.lighter_activity_subject': '라이터가 새로운 친구를 만들고 있습니다! 🌍',
 
-  // TODO: Translate from English
-  'email.moderation_approved_subject': 'Good news! Your story is now live. 🎉',
+  'email.moderation_approved_subject': '좋은 소식! 이야기가 이제 공개되었습니다. 🎉',
 
-  // TODO: Translate from English
-  'email.moderation_rejected_subject': 'About your recent post... let\\'s chat',
+  'email.moderation_rejected_subject': '최근 게시물에 대해... 이야기해볼까요',
 
-  // TODO: Translate from English
-  'email.moderator.benefit1': 'Early access to new features',
+  'email.moderator.benefit1': '새로운 기능에 대한 조기 액세스',
 
-  // TODO: Translate from English
-  'email.moderator.benefit2': 'Special moderator badge on your profile',
+  'email.moderator.benefit2': '프로필에 특별한 중재자 배지',
 
-  // TODO: Translate from English
-  'email.moderator.benefit3': 'Direct communication with the LightMyFire team',
+  'email.moderator.benefit3': '라이트마이파이어 팀과의 직접 소통',
 
-  // TODO: Translate from English
-  'email.moderator.benefit4': 'Help shape the future of the community',
+  'email.moderator.benefit4': '커뮤니티의 미래를 함께 만들어가기',
 
-  // TODO: Translate from English
-  'email.moderator.benefits_title': '🎁 Moderator Benefits',
+  'email.moderator.benefits_title': '🎁 중재자 혜택',
 
-  // TODO: Translate from English
-  'email.moderator.greeting': 'Hi {name},',
+  'email.moderator.greeting': '안녕하세요 {name}님,',
 
-  // TODO: Translate from English
-  'email.moderator.intro': '{inviter} has invited you to join the LightMyFire moderation team!',
+  'email.moderator.intro': '{inviter}님이 라이트마이파이어 중재팀에 초대했습니다!',
 
-  // TODO: Translate from English
-  'email.moderator.not_interested': 'Not interested? You can ignore this email.',
+  'email.moderator.not_interested': '관심이 없으신가요? 이 이메일을 무시하셔도 됩니다.',
 
-  // TODO: Translate from English
-  'email.moderator.responsibilities_title': '📋 Your Responsibilities',
+  'email.moderator.responsibilities_title': '📋 책임사항',
 
-  // TODO: Translate from English
-  'email.moderator.what_is_content': 'Moderators help keep the LightMyFire community safe, positive, and welcoming by reviewing flagged content and ensuring our community guidelines are upheld.',
+  'email.moderator.what_is_content': '중재자는 신고된 콘텐츠를 검토하고 커뮤니티 가이드라인이 준수되도록 하여 라이트마이파이어 커뮤니티를 안전하고 긍정적이며 환영받는 곳으로 유지하는 데 도움을 줍니다.',
 
-  // TODO: Translate from English
-  'email.moderator.what_is_title': '👮 What is a Moderator?',
+  'email.moderator.what_is_title': '👮 중재자란 무엇인가요?',
 
-  // TODO: Translate from English
-  'email.moderator_invite_subject': 'You\\'ve Been Invited to Join the Moderation Team',
+  'email.moderator_invite_subject': '중재팀에 초대되었습니다',
 
-  // TODO: Translate from English
-  'email.order_confirmation.estimated_delivery': 'Estimated delivery: 5-10 business days',
+  'email.order_confirmation.estimated_delivery': '예상 배송: 영업일 기준 5-10일',
 
-  // TODO: Translate from English
-  'email.order_confirmation.greeting': 'Hi {name},',
+  'email.order_confirmation.greeting': '안녕하세요 {name}님,',
 
-  // TODO: Translate from English
-  'email.order_confirmation.intro': 'Thank you for your order! Your payment has been processed successfully. 🎉',
+  'email.order_confirmation.intro': '주문해 주셔서 감사합니다! 결제가 성공적으로 처리되었습니다. 🎉',
 
-  // TODO: Translate from English
-  'email.order_confirmation.lighters_ready': 'Each lighter now has a unique PIN and is ready to start its journey!',
+  'email.order_confirmation.lighters_ready': '각 라이터에는 이제 고유한 PIN이 있으며 여정을 시작할 준비가 되었습니다!',
 
-  // TODO: Translate from English
-  'email.order_confirmation.lighters_title': '🔥 Your Lighters',
+  'email.order_confirmation.lighters_title': '🔥 라이터',
 
   'email.order_confirmation.order_id': '주문 ID:',
 
-  // TODO: Translate from English
-  'email.order_confirmation.questions': 'Questions about your order? Reply to this email anytime.',
+  'email.order_confirmation.questions': '주문에 대한 질문이 있으신가요? 언제든지 이 이메일에 답장하세요.',
 
-  // TODO: Translate from English
-  'email.order_confirmation.shipping_title': '📮 Shipping To',
+  'email.order_confirmation.shipping_title': '📮 배송지',
 
   'email.order_confirmation.stickers': '스티커:',
 
-  // TODO: Translate from English
-  'email.order_confirmation.stickers_packs': '{quantity} pack{plural}',
+  'email.order_confirmation.stickers_packs': '{quantity}팩',
 
-  // TODO: Translate from English
-  'email.order_confirmation.summary_title': '📦 Order Summary',
+  'email.order_confirmation.summary_title': '📦 주문 요약',
 
   'email.order_confirmation.total_paid': '결제 금액:',
 
-  // TODO: Translate from English
-  'email.order_confirmation.whats_next_content': 'Your stickers are being prepared for shipment. You\\'ll receive another email with tracking information once they\\'re on their way!',
+  'email.order_confirmation.whats_next_content': '스티커가 배송을 위해 준비 중입니다. 배송되면 추적 정보가 포함된 이메일을 받으실 수 있습니다!',
 
-  // TODO: Translate from English
-  'email.order_confirmation.whats_next_title': '⏰ What\\'s Next?',
+  'email.order_confirmation.whats_next_title': '⏰ 다음은?',
 
-  // TODO: Translate from English
-  'email.order_confirmation_subject': 'Order Confirmed! Your LightMyFire stickers are on the way 📦',
+  'email.order_confirmation_subject': '주문 확인! 라이트마이파이어 스티커가 배송 중입니다 📦',
 
   'email.order_shipped.carrier': '택배사:',
 
-  // TODO: Translate from English
-  'email.order_shipped.details_title': '📋 Shipping Details',
+  'email.order_shipped.details_title': '📋 배송 정보',
 
   'email.order_shipped.estimated_delivery': '예상 배송일:',
 
-  // TODO: Translate from English
-  'email.order_shipped.greeting': 'Great news, {name}! 📦',
+  'email.order_shipped.greeting': '좋은 소식, {name}님! 📦',
 
-  // TODO: Translate from English
-  'email.order_shipped.intro': 'Your custom LightMyFire stickers have been shipped and are on their way to you.',
+  'email.order_shipped.intro': '맞춤형 라이트마이파이어 스티커가 배송되었으며 곧 도착할 예정입니다.',
 
-  // TODO: Translate from English
-  'email.order_shipped.lighters_intro': 'You ordered {quantity} custom stickers for:',
+  'email.order_shipped.lighters_intro': '{quantity}개의 맞춤형 스티커를 주문하셨습니다:',
 
-  // TODO: Translate from English
-  'email.order_shipped.lighters_title': '🔥 Your Lighters',
+  'email.order_shipped.lighters_title': '🔥 라이터',
 
   'email.order_shipped.order_id': '주문 ID:',
 
-  // TODO: Translate from English
-  'email.order_shipped.pro_tip': '💡 Pro Tip:',
+  'email.order_shipped.pro_tip': '💡 프로 팁:',
 
-  // TODO: Translate from English
-  'email.order_shipped.pro_tip_content': 'Your lighters are already active! Start adding posts now while you wait for your stickers to arrive.',
+  'email.order_shipped.pro_tip_content': '라이터가 이미 활성화되었습니다! 스티커가 도착하기를 기다리는 동안 지금 바로 게시물을 추가하세요.',
 
-  // TODO: Translate from English
-  'email.order_shipped.pro_tip_link': 'View My Lighters →',
+  'email.order_shipped.pro_tip_link': '내 라이터 보기 →',
 
   'email.order_shipped.tracking': '송장 번호:',
 
-  // TODO: Translate from English
-  'email.order_shipped_subject': 'Your lighter-saving kit is on the way! 🚀✨',
+  'email.order_shipped_subject': '라이터 구조 키트가 배송 중입니다! 🚀✨',
 
-  // TODO: Translate from English
-  'email.trophy.greeting': 'Awesome work, {name}! 🏆',
+  'email.trophy.greeting': '멋진 활동이에요, {name}님! 🏆',
 
-  // TODO: Translate from English
-  'email.trophy.intro': 'You\\'ve earned a new trophy on LightMyFire!',
+  'email.trophy.intro': '라이트마이파이어에서 새로운 트로피를 획득했습니다!',
 
-  // TODO: Translate from English
-  'email.trophy.keep_going': '💡 Keep Going!',
+  'email.trophy.keep_going': '💡 계속하세요!',
 
-  // TODO: Translate from English
-  'email.trophy.keep_going_content': 'There are more trophies waiting to be unlocked. Can you collect them all?',
+  'email.trophy.keep_going_content': '잠금 해제를 기다리는 트로피가 더 있습니다. 모두 모을 수 있을까요?',
 
-  // TODO: Translate from English
-  'email.trophy.what_you_did': '🎯 What You Did',
+  'email.trophy.what_you_did': '🎯 달성한 것',
 
-  // TODO: Translate from English
-  'email.trophy_earned_subject': '🏆 Achievement unlocked: {trophy_name}!',
+  'email.trophy_earned_subject': '🏆 업적 달성: {trophy_name}!',
 
-  // TODO: Translate from English
-  'email.welcome.get_started_intro': 'Here\\'s what you can do now:',
+  'email.welcome.get_started_intro': '지금 할 수 있는 것들:',
 
-  // TODO: Translate from English
-  'email.welcome.get_started_title': '🚀 Get Started',
+  'email.welcome.get_started_title': '🚀 시작하기',
 
-  // TODO: Translate from English
-  'email.welcome.greeting': 'Hi {name}! 👋',
+  'email.welcome.greeting': '안녕하세요 {name}님! 👋',
 
-  // TODO: Translate from English
-  'email.welcome.intro': 'Welcome to the LightSavers\\' community! We\\'re thrilled to have you here.',
+  'email.welcome.intro': '라이트세이버 커뮤니티에 오신 것을 환영합니다! 함께하게 되어 기쁩니다.',
 
-  // TODO: Translate from English
-  'email.welcome.questions': 'Questions? Just reply to this email—we\\'re here to help!',
+  'email.welcome.questions': '궁금한 점이 있으신가요? 이 이메일에 답장하세요—도와드리겠습니다!',
 
-  // TODO: Translate from English
-  'email.welcome.step1': 'Save your first lighter - Give it a name and get custom stickers delivered to your home',
+  'email.welcome.step1': '첫 라이터 저장 - 이름을 지어주고 맞춤형 스티커를 집으로 배송 받으세요',
 
-  // TODO: Translate from English
-  'email.welcome.step2': 'Find a lighter - Enter a PIN from a sticker you found to see its journey',
+  'email.welcome.step2': '라이터 찾기 - 발견한 스티커의 PIN을 입력하여 여정을 확인하세요',
 
-  // TODO: Translate from English
-  'email.welcome.step3': 'Join the mosaic - Share posts, thoughts, songs, and locations',
+  'email.welcome.step3': '모자이크에 참여 - 게시물, 생각, 노래, 위치를 공유하세요',
 
-  // TODO: Translate from English
-  'email.welcome.what_is_content': 'LightMyFire is a global movement giving lighters a second life through storytelling. Every lighter gets a digital identity, a unique sticker, and travels the world collecting stories from everyone who finds it.',
+  'email.welcome.what_is_content': '라이트마이파이어는 스토리텔링을 통해 라이터에 두 번째 생명을 부여하는 글로벌 운동입니다. 모든 라이터는 디지털 정체성과 고유한 스티커를 받고, 세계를 여행하며 발견하는 모든 사람들의 이야기를 수집합니다.',
 
-  // TODO: Translate from English
-  'email.welcome.what_is_title': '🔥 What is LightMyFire?',
+  'email.welcome.what_is_title': '🔥 라이트마이파이어란?',
 
-  // TODO: Translate from English
-  'email.welcome_subject': 'Welcome to LightMyFire! 🔥',
+  'email.welcome_subject': '라이트마이파이어에 오신 것을 환영합니다! 🔥',
 
   'empty_lighter.action': '첫 게시물 추가하기',
 
-  // TODO: Translate from English
-  'empty_lighter.description': 'This lighter\\'s journey has just started. Be the first to add a chapter to its story and inspire others!',
+  'empty_lighter.description': '이 라이터의 여정이 막 시작되었습니다. 이야기에 첫 챕터를 추가하고 다른 사람들에게 영감을 주세요!',
 
-  // TODO: Translate from English
-  'empty_lighter.title': 'The Story Begins...',
+  'empty_lighter.title': '이야기가 시작됩니다...',
 
   'empty_posts.action': '첫 게시물 추가하기',
 
-  // TODO: Translate from English
-  'empty_posts.message': 'Be the first to add a story, picture, or song to this lighter\\'s journey!',
+  'empty_posts.message': '이 라이터의 여정에 첫 이야기, 사진 또는 노래를 추가해보세요!',
 
-  // TODO: Translate from English
-  'empty_posts.title': 'This lighter\\'s story is waiting to be written! ✨',
+  'empty_posts.title': '이 라이터의 이야기가 작성되기를 기다리고 있습니다! ✨',
 
-  // TODO: Translate from English
-  'empty_state.default_message': 'Nothing here yet, but that\\'s about to change!',
+  'empty_state.default_message': '아직 아무것도 없지만, 곧 바뀔 것입니다!',
 
-  // TODO: Translate from English
-  'empty_state.default_title': 'This space is waiting for you ✨',
+  'empty_state.default_title': '이 공간이 여러분을 기다리고 있습니다 ✨',
 
-  // TODO: Translate from English
-  'empty_state.no_posts_message': 'Be the first to add a post and start its journey.',
+  'empty_state.no_posts_message': '첫 게시물을 추가하고 여정을 시작하세요.',
 
-  // TODO: Translate from English
-  'empty_state.no_posts_title': 'This lighter\\'s story is waiting to be written!',
+  'empty_state.no_posts_title': '이 라이터의 이야기가 작성되기를 기다리고 있습니다!',
 
-  // TODO: Translate from English
-  'error.content_flagged': 'Heads up! Our community guidelines flag this content as {reason}. Let\\'s keep LightMyFire welcoming for everyone. 🌟',
+  'error.content_flagged': '알림! 커뮤니티 가이드라인에 따라 이 콘텐츠는 {reason}(으)로 표시되었습니다. 라이트마이파이어를 모두에게 환영받는 곳으로 유지합시다. 🌟',
 
   'error.critical.description': '치명적인 오류가 발생했습니다. 페이지를 새로고침해주세요.',
 
@@ -1298,52 +1204,41 @@ export default {
 
   'error.generic.try_again': '다시 시도',
 
-  // TODO: Translate from English
-  'error.generic_message': 'Sorry, there was a small issue on our end. If the problem persists, don\\'t hesitate to contact support: support@lightmyfire.app',
+  'error.generic_message': '죄송합니다. 저희 쪽에서 작은 문제가 발생했습니다. 문제가 계속되면 지원팀에 문의하세요: support@lightmyfire.app',
 
   'error.generic_title': '앗! 문제가 발생했습니다',
 
-  // TODO: Translate from English
-  'error.invalid_pin': 'Hmm, that PIN doesn\\'t match any lighter we know. Double-check the sticker!',
+  'error.invalid_pin': '음, 해당 PIN과 일치하는 라이터가 없습니다. 스티커를 다시 확인해주세요!',
 
   'error.not_found.description': '죄송합니다, 찾고 계신 페이지를 찾을 수 없습니다.',
 
   'error.not_found.go_home': '홈으로 돌아가기',
 
-  // TODO: Translate from English
-  'error.not_found.title': 'It\\'s all burnt up',
+  'error.not_found.title': '모두 타버렸습니다',
 
-  // TODO: Translate from English
-  'error.rate_limit': 'Whoa there, speedy! 🏃‍♂️\n\nYou\\'re adding posts faster than we can keep up. Take a 24-hour break to let others add to this lighter\\'s story, then come back!\n\n(This keeps our mosaic diverse and interesting for everyone.)',
+  'error.rate_limit': '잠깐만요! 🏃‍♂️\n\n너무 빠르게 게시물을 추가하고 있습니다. 24시간 쉬면서 다른 사람들이 이 라이터의 이야기를 추가할 수 있게 해주세요!\n\n(이렇게 하면 모두를 위한 다양하고 흥미로운 모자이크를 유지할 수 있습니다.)',
 
   'error.try_again': '다시 시도',
 
-  // TODO: Translate from English
-  'error.upload_too_large': 'That image is too big! Please choose one under 2MB. 📸',
+  'error.upload_too_large': '이미지가 너무 큽니다! 2MB 이하로 선택해주세요. 📸',
 
-  // TODO: Translate from English
-  'faq.q1.desc': 'It\\'s a project to reduce waste and create a ',
+  'faq.q1.desc': '폐기물을 줄이고 ',
 
   'faq.q1.title': '라이트마이파이어란?',
 
-  // TODO: Translate from English
-  'faq.q2.desc': 'You must find a lighter with a LightMyFire sticker. Scan the QR code (or go to our site) and enter the unique PIN from the sticker. You\\'ll need to create a free account to contribute.',
+  'faq.q2.desc': '라이트마이파이어 스티커가 붙은 라이터를 찾아야 합니다. QR 코드를 스캔하거나 사이트로 이동하여 스티커의 고유한 PIN을 입력하세요. 기여하려면 무료 계정을 만들어야 합니다.',
 
   'faq.q2.title': '이야기를 추가하는 방법은?',
 
-  // TODO: Translate from English
-  'faq.q3.desc': 'To keep the mosaic diverse, we have a 24-hour cooldown period *per lighter*. This encourages you to pass the lighter on so someone else can add their story.',
+  'faq.q3.desc': '모자이크를 다양하게 유지하기 위해 *라이터당* 24시간의 대기 시간이 있습니다. 이는 라이터를 전달하여 다른 사람이 자신의 이야기를 추가할 수 있도록 권장합니다.',
 
-  // TODO: Translate from English
-  'faq.q3.title': 'Why can\\'t I post twice in a row?',
+  'faq.q3.title': '연속으로 두 번 게시할 수 없는 이유는?',
 
-  // TODO: Translate from English
-  'faq.q4.desc': 'You have two choices. All posts are visible on the lighter\\'s page (which requires the PIN to access). When you post, you can also check a box to make it ',
+  'faq.q4.desc': '두 가지 선택이 있습니다. 모든 게시물은 라이터 페이지에서 볼 수 있습니다(PIN이 필요함). 게시할 때 확인란을 선택하여 ',
 
   'faq.q4.title': '내 게시물은 공개인가요?',
 
-  // TODO: Translate from English
-  'faq.q5.desc': 'Log in and go to your ',
+  'faq.q5.desc': '로그인하고 ',
 
   'faq.q5.title': '작성한 게시물을 삭제하는 방법은?',
 

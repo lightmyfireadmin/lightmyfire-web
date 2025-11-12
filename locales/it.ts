@@ -529,8 +529,7 @@ export default {
 
   'add_post.button.checking_alt': 'Controllo in corso...',
 
-  // TODO: Translate from English
-  'add_post.button.checking_content': 'Checking content...',
+  'add_post.button.checking_content': 'Controllo del contenuto...',
 
   'add_post.button.loading_alt': 'Caricamento...',
 
@@ -538,8 +537,7 @@ export default {
 
   'add_post.button.select': 'Seleziona',
 
-  // TODO: Translate from English
-  'add_post.char_counter': '{remaining} characters remaining',
+  'add_post.char_counter': '{remaining} caratteri rimanenti',
 
   'add_post.error.cooldown_active': 'Puoi post to this accendino again in {hours} hours. Per favore wait before posting again.',
 
@@ -547,44 +545,33 @@ export default {
 
   'add_post.error.file_too_large': 'File too large. Seleziona one smaller than 2MB.',
 
-  // TODO: Translate from English
-  'add_post.error.invalid_latitude': 'Latitude must be between -90 and 90.',
+  'add_post.error.invalid_latitude': 'La latitudine deve essere compresa tra -90 e 90.',
 
-  // TODO: Translate from English
-  'add_post.error.invalid_longitude': 'Longitude must be between -180 and 180.',
+  'add_post.error.invalid_longitude': 'La longitudine deve essere compresa tra -180 e 180.',
 
-  // TODO: Translate from English
-  'add_post.error.text_too_long': 'Text is too long. Maximum {max} characters allowed.',
+  'add_post.error.text_too_long': 'Il testo è troppo lungo. Massimo {max} caratteri consentiti.',
 
   'add_post.error.youtube_api_error': 'YouTube API Errore: {message}',
 
-  // TODO: Translate from English
-  'add_post.moderation.content_review': '⚠️ Content Review',
+  'add_post.moderation.content_review': '⚠️ Revisione del contenuto',
 
-  // TODO: Translate from English
-  'add_post.moderation.tip': '💡 Tip: Consider revising to be more community-friendly.',
+  'add_post.moderation.tip': '💡 Consiglio: Considera di revisionare per essere più rispettosə della community.',
 
   'add_post.options': 'Opzioni',
 
-  // TODO: Translate from English
-  'add_post.placeholder.location_lat': 'Latitude (e.g., 48.8566)',
+  'add_post.placeholder.location_lat': 'Latitudine (es. 48,8566)',
 
-  // TODO: Translate from English
-  'add_post.placeholder.location_lng': 'Longitude (e.g., 2.3522)',
+  'add_post.placeholder.location_lng': 'Longitudine (es. 2,3522)',
 
-  // TODO: Translate from English
-  'add_post.placeholder.location_name': 'Name of a place (e.g., \\'Cafe Central\\')',
+  'add_post.placeholder.location_name': 'Nome di un luogo (es. \'Café Central\')',
 
   'add_post.prompt_v1': 'What memory does this accendino hold? Tell its storia...',
 
-  // TODO: Translate from English
-  'add_post.prompt_v2': 'Where did you find it? What happened next?',
+  'add_post.prompt_v2': 'Dove l\'hai trovato? Cosa è successo dopo?',
 
-  // TODO: Translate from English
-  'add_post.prompt_v3': 'A thought, a poem, a moment—share what\\'s on your mind...',
+  'add_post.prompt_v3': 'Un pensiero, una poesia, un momento—condividi cosa ti passa per la mente...',
 
-  // TODO: Translate from English
-  'add_post.prompt_v4': 'What song is playing? Describe the vibe...',
+  'add_post.prompt_v4': 'Quale canzone sta suonando? Descrivi l\'atmosfera...',
 
   'add_post.prompt_v5': 'If this accendino could talk, what would it say?',
 
@@ -592,8 +579,7 @@ export default {
 
   'add_post.youtube_search.selected_video': 'Selezionaed video:',
 
-  // TODO: Translate from English
-  'add_post.youtube_search.video_preview': 'Video preview:',
+  'add_post.youtube_search.video_preview': 'Anteprima video:',
 
   'admin.orders.action.refund': 'Rimborsa',
 
@@ -601,8 +587,7 @@ export default {
 
   'admin.orders.action.refunding': 'Rimborso in corso...',
 
-  // TODO: Translate from English
-  'admin.orders.action.send_fulfillment': '📧 Send to Fulfillment',
+  'admin.orders.action.send_fulfillment': '📧 Invia all\'evasione',
 
   'admin.orders.action.sending': 'Invio in corso...',
 
@@ -612,18 +597,15 @@ export default {
 
   'admin.orders.details.na': 'N/D',
 
-  // TODO: Translate from English
-  'admin.orders.details.payment_intent_id': 'Payment Intent ID',
+  'admin.orders.details.payment_intent_id': 'ID Intento di pagamento',
 
   'admin.orders.details.refund_info': 'Rimborsa Information',
 
-  // TODO: Translate from English
-  'admin.orders.details.shipping_address': 'Shipping Address',
+  'admin.orders.details.shipping_address': 'Indirizzo di spedizione',
 
   'admin.orders.details.title': 'Ordine Details',
 
-  // TODO: Translate from English
-  'admin.orders.details.user_email': 'User Email',
+  'admin.orders.details.user_email': 'Email utente',
 
   'admin.orders.no_orders': 'No ordines found.',
 
@@ -641,14 +623,11 @@ export default {
 
   'admin.orders.refunded': 'Rimborsato',
 
-  // TODO: Translate from English
-  'admin.orders.resend_error': '❌ Failed to resend: {error}',
+  'admin.orders.resend_error': '❌ Errore nell\'invio: {error}',
 
-  // TODO: Translate from English
-  'admin.orders.resend_failed': 'Failed to resend fulfillment email',
+  'admin.orders.resend_failed': 'Impossibile inviare l\'email di evasione',
 
-  // TODO: Translate from English
-  'admin.orders.resend_success': '✅ Fulfillment email resent successfully!\n\n{count} sticker(s) sent to fulfillment team.',
+  'admin.orders.resend_success': '✅ Email di evasione inviata con successo!\n\n{count} sticker inviati al team di evasione.',
 
   'admin.orders.table.actions': 'Azioni',
 
@@ -660,15 +639,13 @@ export default {
 
   'admin.orders.table.order_id': 'ID Ordine',
 
-  // TODO: Translate from English
-  'admin.orders.table.pack_size': 'Pack Size',
+  'admin.orders.table.pack_size': 'Dimensione pacchetto',
 
   'admin.orders.table.status': 'Stato',
 
   'admin.orders.total_orders': 'Total Ordines',
 
-  // TODO: Translate from English
-  'admin.orders.total_revenue': 'Total Revenue',
+  'admin.orders.total_revenue': 'Ricavi totali',
 
   'alt.arrow_save_lighter': 'Arrow pointing to save accendino button',
 
@@ -676,11 +653,9 @@ export default {
 
   'alt.butane_refill_process': 'Butane Accendino Refill Process',
 
-  // TODO: Translate from English
-  'alt.community': 'Community',
+  'alt.community': 'Comunità',
 
-  // TODO: Translate from English
-  'alt.creative': 'Creative',
+  'alt.creative': 'Creativo',
 
   'alt.gasoline_lighter': 'Gasoline Refillable Accendino',
 
@@ -688,21 +663,17 @@ export default {
 
   'alt.lighter_illustration': 'Accendino illustration',
 
-  // TODO: Translate from English
   'alt.lightmyfire_logo': 'LightMyFire',
 
   'alt.lightmyfire_tagline': 'LightMyFire - Give accendinos a second life',
 
   'alt.non_refillable_lighter': 'Non-Refillable Accendino',
 
-  // TODO: Translate from English
-  'alt.personalise': 'Personalise',
+  'alt.personalise': 'Personalizza',
 
-  // TODO: Translate from English
-  'alt.qr_code': 'QR Code',
+  'alt.qr_code': 'Codice QR',
 
-  // TODO: Translate from English
-  'alt.sustainable': 'Sustainable',
+  'alt.sustainable': 'Sostenibile',
 
   'aria.close': 'Chiudi',
 
@@ -710,14 +681,11 @@ export default {
 
   'aria.global': 'Globale',
 
-  // TODO: Translate from English
-  'aria.hex_color': 'HEX color code',
+  'aria.hex_color': 'Codice colore HEX',
 
-  // TODO: Translate from English
-  'aria.learn_levels': 'Learn how to earn levels',
+  'aria.learn_levels': 'Scopri come guadagnare livelli',
 
-  // TODO: Translate from English
-  'aria.popular_colors': 'Popular color palette',
+  'aria.popular_colors': 'Palette di colori popolari',
 
   'aria.search_location': 'Cerca for a location',
 
@@ -725,23 +693,18 @@ export default {
 
   'auth.continue_with': 'Continua con',
 
-  // TODO: Translate from English
-  'auth.dont_have_account': 'Don\\'t have an account? Sign up',
+  'auth.dont_have_account': 'Non hai un account? Registrati',
 
-  // TODO: Translate from English
   'auth.email_label': 'Email',
 
-  // TODO: Translate from English
-  'auth.email_placeholder': 'you@example.com',
+  'auth.email_placeholder': 'tua@esempio.com',
 
   'auth.forgot_password': 'Hai dimenticato la password?',
 
   'auth.login_required': 'You must be logged in to save a accendino',
 
-  // TODO: Translate from English
-  'auth.login_to_like': 'Log in to like posts',
+  'auth.login_to_like': 'Accedi per mettere Mi piace ai post',
 
-  // TODO: Translate from English
   'auth.password_label': 'Password',
 
   'auth.password_placeholder': 'Il tuo password',
@@ -750,100 +713,71 @@ export default {
 
   'auth.sign_up': 'Registrati',
 
-  // TODO: Translate from English
-  'auth.signing_in': 'Signing in...',
+  'auth.signing_in': 'Accesso in corso...',
 
-  // TODO: Translate from English
-  'auth.signing_up': 'Signing up...',
+  'auth.signing_up': 'Registrazione in corso...',
 
-  // TODO: Translate from English
-  'color.blue_violet': 'Blue Violet',
+  'color.blue_violet': 'Viola Blu',
 
-  // TODO: Translate from English
-  'color.bright_yellow': 'Bright Yellow',
+  'color.bright_yellow': 'Giallo Brillante',
 
-  // TODO: Translate from English
-  'color.coral_red': 'Coral Red',
+  'color.coral_red': 'Rosso Corallo',
 
-  // TODO: Translate from English
-  'color.deep_pink': 'Deep Pink',
+  'color.deep_pink': 'Rosa Intenso',
 
-  // TODO: Translate from English
-  'color.forest_green': 'Forest Green',
+  'color.forest_green': 'Verde Foresta',
 
-  // TODO: Translate from English
-  'color.golden_yellow': 'Golden Yellow',
+  'color.golden_yellow': 'Giallo Dorato',
 
-  // TODO: Translate from English
-  'color.gray': 'Gray',
+  'color.gray': 'Grigio',
 
-  // TODO: Translate from English
-  'color.light_gray': 'Light Gray',
+  'color.light_gray': 'Grigio Chiaro',
 
-  // TODO: Translate from English
-  'color.light_green': 'Light Green',
+  'color.light_green': 'Verde Chiaro',
 
-  // TODO: Translate from English
-  'color.light_pink': 'Light Pink',
+  'color.light_pink': 'Rosa Chiaro',
 
-  // TODO: Translate from English
-  'color.royal_blue': 'Royal Blue',
+  'color.royal_blue': 'Blu Reale',
 
-  // TODO: Translate from English
-  'color.sky_blue': 'Sky Blue',
+  'color.sky_blue': 'Celeste',
 
-  // TODO: Translate from English
-  'color.sunset_orange': 'Sunset Orange',
+  'color.sunset_orange': 'Arancione Tramonto',
 
-  // TODO: Translate from English
-  'color.turquoise': 'Turquoise',
+  'color.turquoise': 'Turchese',
 
-  // TODO: Translate from English
-  'color.warm_orange': 'Warm Orange',
+  'color.warm_orange': 'Arancione Caldo',
 
   'common.loading': 'Caricamento...',
 
   'common.loading_alt': 'Caricamento...',
 
-  // TODO: Translate from English
-  'contact.subject.custom_branding': 'Custom Branding Inquiry',
+  'contact.subject.custom_branding': 'Richiesta Branding Personalizzato',
 
-  // TODO: Translate from English
-  'contact.subject.general': 'General Inquiry',
+  'contact.subject.general': 'Richiesta Generale',
 
-  // TODO: Translate from English
-  'contact.subject.question': 'Question about LightMyFire',
+  'contact.subject.question': 'Domanda su LightMyFire',
 
-  // TODO: Translate from English
-  'cookie_consent.accept': 'Accept & Continue',
+  'cookie_consent.accept': 'Accetta e Continua',
 
-  // TODO: Translate from English
-  'cookie_consent.message': 'We use cookies to ensure you get the best experience on our website. By continuing, you agree to our privacy policy and cookie use.',
+  'cookie_consent.message': 'Utilizziamo i cookie per garantirti la migliore esperienza sul nostro sito. Continuando, accetti la nostra informativa sulla privacy e l\'uso dei cookie.',
 
-  // TODO: Translate from English
-  'cookie_consent.privacy_link': 'Privacy Policy',
+  'cookie_consent.privacy_link': 'Informativa sulla Privacy',
 
   'cookie_consent.title': 'We value tuo privacy',
 
-  // TODO: Translate from English
-  'email.activity.by': 'By:',
+  'email.activity.by': 'Da:',
 
-  // TODO: Translate from English
-  'email.activity.greeting': 'Hi {name},',
+  'email.activity.greeting': 'Ciao {name},',
 
-  // TODO: Translate from English
-  'email.activity.intro': 'There\\'s new activity on your lighter ',
+  'email.activity.intro': 'C\'è nuova attività sul tuo accendino ',
 
   'email.activity.lighter': 'Accendino:',
 
-  // TODO: Translate from English
-  'email.activity.outro': 'Your lighter\\'s journey continues! See where it\\'s been and who\\'s found it.',
+  'email.activity.outro': 'Il viaggio del tuo accendino continua! Scopri dove è stato e chi l\'ha trovato.',
 
-  // TODO: Translate from English
   'email.activity.pin': 'PIN:',
 
-  // TODO: Translate from English
-  'email.activity.type.milestone': 'Milestone Reached',
+  'email.activity.type.milestone': 'Traguardo Raggiunto',
 
   'email.activity.type.new_like': 'Someone Liked Il tuo Post',
 
@@ -851,8 +785,7 @@ export default {
 
   'email.activity.type.refuel': 'Accendino Refueled',
 
-  // TODO: Translate from English
-  'email.common.button.accept_invite': 'Accept Invitation',
+  'email.common.button.accept_invite': 'Accetta Invito',
 
   'email.common.button.save_lighter': 'Save Il tuo First Accendino',
 
@@ -862,28 +795,21 @@ export default {
 
   'email.common.button.view_order': 'View Ordine Details',
 
-  // TODO: Translate from English
-  'email.common.button.view_profile': 'View My Profile',
+  'email.common.button.view_profile': 'Visualizza il mio profilo',
 
-  // TODO: Translate from English
-  'email.common.button.view_trophies': 'View My Trophies',
+  'email.common.button.view_trophies': 'Visualizza i miei trofei',
 
-  // TODO: Translate from English
-  'email.common.footer_copyright': '© {year} LightMyFire. All rights reserved.',
+  'email.common.footer_copyright': '© {year} LightMyFire. Tutti i diritti riservati.',
 
-  // TODO: Translate from English
-  'email.common.footer_questions': 'Questions? Email us at',
+  'email.common.footer_questions': 'Domande? Scrivici a',
 
   'email.common.footer_tagline': 'LightMyFire – Give Il tuo Accendino a Second Life',
 
-  // TODO: Translate from English
-  'email.first_post.achievement': '🏆 Achievement Unlocked: First Spark',
+  'email.first_post.achievement': '🏆 Obiettivo Sbloccato: Prima Scintilla',
 
-  // TODO: Translate from English
-  'email.first_post.achievement_content': 'You\\'ve lit your first flame in the LightMyFire community!',
+  'email.first_post.achievement_content': 'Hai acceso la tua prima fiamma nella community LightMyFire!',
 
-  // TODO: Translate from English
-  'email.first_post.greeting': 'Congratulations, {name}! 🎉',
+  'email.first_post.greeting': 'Congratulazioni, {name}! 🎉',
 
   'email.first_post.intro': 'You just added tuo very first post to tuo LightMyFire accendino "{accendino}"!',
 
@@ -891,77 +817,57 @@ export default {
 
   'email.first_post.next_step1': 'Share it: Pass tuo accendino to a friend or leave it somewhere interesting',
 
-  // TODO: Translate from English
-  'email.first_post.next_step2': 'Get stickers: Order custom stickers to help others find your lighter\\'s story',
+  'email.first_post.next_step2': 'Ottieni sticker: Ordina sticker personalizzati per aiutare altri a trovare la storia del tuo accendino',
 
   'email.first_post.next_step3': 'Watch it grow: Check back to see new posts as tuo accendino travels',
 
-  // TODO: Translate from English
-  'email.first_post.next_steps_title': '💡 Next Steps',
+  'email.first_post.next_steps_title': '💡 Prossimi Passi',
 
-  // TODO: Translate from English
   'email.first_post.pin': 'PIN:',
 
-  // TODO: Translate from English
-  'email.first_post.type': 'First Post Type:',
+  'email.first_post.type': 'Tipo Primo Post:',
 
-  // TODO: Translate from English
-  'email.first_post.welcome_title': 'Welcome to the Movement!',
+  'email.first_post.welcome_title': 'Benvenutə nel Movimento!',
 
-  // TODO: Translate from English
-  'email.first_post.what_started_content': 'Your lighter is now part of something special. Every time someone finds it and adds their story, you\\'ll be able to see where it\\'s been and the connections it\\'s made.',
+  'email.first_post.what_started_content': 'Il tuo accendino fa ora parte di qualcosa di speciale. Ogni volta che qualcuno lo trova e aggiunge la sua storia, potrai vedere dove è stato e le connessioni che ha creato.',
 
-  // TODO: Translate from English
-  'email.first_post.what_started_title': '🎯 What You\\'ve Started',
+  'email.first_post.what_started_title': '🎯 Cosa Hai Iniziato',
 
-  // TODO: Translate from English
-  'email.first_post_subject': 'You lit the first spark! 🔥 Welcome to the LightSaver family',
+  'email.first_post_subject': 'Hai acceso la prima scintilla! 🔥 Benvenutə nella famiglia LightSaver',
 
   'email.lighter_activity_subject': 'Il tuo accendino is making new friends! 🌍',
 
   'email.moderation_approved_subject': 'Good news! Il tuo storia is now live. 🎉',
 
-  // TODO: Translate from English
-  'email.moderation_rejected_subject': 'About your recent post... let\\'s chat',
+  'email.moderation_rejected_subject': 'Sul tuo post recente... parliamone',
 
-  // TODO: Translate from English
-  'email.moderator.benefit1': 'Early access to new features',
+  'email.moderator.benefit1': 'Accesso anticipato alle nuove funzionalità',
 
   'email.moderator.benefit2': 'Special moderator badge on tuo profile',
 
-  // TODO: Translate from English
-  'email.moderator.benefit3': 'Direct communication with the LightMyFire team',
+  'email.moderator.benefit3': 'Comunicazione diretta con il team LightMyFire',
 
-  // TODO: Translate from English
-  'email.moderator.benefit4': 'Help shape the future of the community',
+  'email.moderator.benefit4': 'Aiuta a plasmare il futuro della community',
 
-  // TODO: Translate from English
-  'email.moderator.benefits_title': '🎁 Moderator Benefits',
+  'email.moderator.benefits_title': '🎁 Vantaggi Moderatore',
 
-  // TODO: Translate from English
-  'email.moderator.greeting': 'Hi {name},',
+  'email.moderator.greeting': 'Ciao {name},',
 
-  // TODO: Translate from English
-  'email.moderator.intro': '{inviter} has invited you to join the LightMyFire moderation team!',
+  'email.moderator.intro': '{inviter} ti ha invitatə a unirti al team di moderazione LightMyFire!',
 
   'email.moderator.not_interested': 'Not interested? Puoi ignore this email.',
 
   'email.moderator.responsibilities_title': '📋 Il tuo Responsibilities',
 
-  // TODO: Translate from English
-  'email.moderator.what_is_content': 'Moderators help keep the LightMyFire community safe, positive, and welcoming by reviewing flagged content and ensuring our community guidelines are upheld.',
+  'email.moderator.what_is_content': 'I moderatori aiutano a mantenere la community LightMyFire sicura, positiva e accogliente revisionando i contenuti segnalati e assicurando il rispetto delle linee guida della community.',
 
-  // TODO: Translate from English
-  'email.moderator.what_is_title': '👮 What is a Moderator?',
+  'email.moderator.what_is_title': '👮 Cos\'è un Moderatore?',
 
-  // TODO: Translate from English
-  'email.moderator_invite_subject': 'You\\'ve Been Invited to Join the Moderation Team',
+  'email.moderator_invite_subject': 'Sei statə invitatə a unirti al Team di Moderazione',
 
-  // TODO: Translate from English
-  'email.order_confirmation.estimated_delivery': 'Estimated delivery: 5-10 business days',
+  'email.order_confirmation.estimated_delivery': 'Consegna stimata: 5-10 giorni lavorativi',
 
-  // TODO: Translate from English
-  'email.order_confirmation.greeting': 'Hi {name},',
+  'email.order_confirmation.greeting': 'Ciao {name},',
 
   'email.order_confirmation.intro': 'Thank you for tuo ordine! Il tuo payment has been processed successfully. 🎉',
 
@@ -973,38 +879,29 @@ export default {
 
   'email.order_confirmation.questions': 'Questions about tuo ordine? Reply to this email anytime.',
 
-  // TODO: Translate from English
-  'email.order_confirmation.shipping_title': '📮 Shipping To',
+  'email.order_confirmation.shipping_title': '📮 Spedizione A',
 
   'email.order_confirmation.stickers': 'Sticker:',
 
-  // TODO: Translate from English
-  'email.order_confirmation.stickers_packs': '{quantity} pack{plural}',
+  'email.order_confirmation.stickers_packs': '{quantity} pacchetto{plural}',
 
   'email.order_confirmation.summary_title': '📦 Ordine Summary',
 
-  // TODO: Translate from English
-  'email.order_confirmation.total_paid': 'Total Paid:',
+  'email.order_confirmation.total_paid': 'Totale Pagato:',
 
-  // TODO: Translate from English
-  'email.order_confirmation.whats_next_content': 'Your stickers are being prepared for shipment. You\\'ll receive another email with tracking information once they\\'re on their way!',
+  'email.order_confirmation.whats_next_content': 'I tuoi sticker sono in preparazione per la spedizione. Riceverai un\'altra email con le informazioni di tracciamento una volta spediti!',
 
-  // TODO: Translate from English
-  'email.order_confirmation.whats_next_title': '⏰ What\\'s Next?',
+  'email.order_confirmation.whats_next_title': '⏰ Cosa Succede Dopo?',
 
   'email.order_confirmation_subject': 'Ordine Confermaed! Il tuo LightMyFire sticker are on the way 📦',
 
-  // TODO: Translate from English
-  'email.order_shipped.carrier': 'Carrier:',
+  'email.order_shipped.carrier': 'Corriere:',
 
-  // TODO: Translate from English
-  'email.order_shipped.details_title': '📋 Shipping Details',
+  'email.order_shipped.details_title': '📋 Dettagli di spedizione',
 
-  // TODO: Translate from English
-  'email.order_shipped.estimated_delivery': 'Estimated Delivery:',
+  'email.order_shipped.estimated_delivery': 'Consegna stimata:',
 
-  // TODO: Translate from English
-  'email.order_shipped.greeting': 'Great news, {name}! 📦',
+  'email.order_shipped.greeting': 'Ottime notizie, {name}! 📦',
 
   'email.order_shipped.intro': 'Il tuo custom LightMyFire sticker have been shipped and are on their way to you.',
 
@@ -1014,44 +911,35 @@ export default {
 
   'email.order_shipped.order_id': 'ID Ordine:',
 
-  // TODO: Translate from English
-  'email.order_shipped.pro_tip': '💡 Pro Tip:',
+  'email.order_shipped.pro_tip': '💡 Consiglio:',
 
   'email.order_shipped.pro_tip_content': 'Il tuo accendinos are already active! Start adding posts now while you wait for tuo sticker to arrive.',
 
   'email.order_shipped.pro_tip_link': 'View My Accendinos →',
 
-  // TODO: Translate from English
-  'email.order_shipped.tracking': 'Tracking Number:',
+  'email.order_shipped.tracking': 'Numero di tracciamento:',
 
   'email.order_shipped_subject': 'Il tuo accendino-saving kit is on the way! 🚀✨',
 
-  // TODO: Translate from English
-  'email.trophy.greeting': 'Awesome work, {name}! 🏆',
+  'email.trophy.greeting': 'Ottimo lavoro, {name}! 🏆',
 
   // TODO: Translate from English
   'email.trophy.intro': 'You\\'ve earned a new trophy on LightMyFire!',
 
-  // TODO: Translate from English
-  'email.trophy.keep_going': '💡 Keep Going!',
+  'email.trophy.keep_going': '💡 Continua!',
 
-  // TODO: Translate from English
-  'email.trophy.keep_going_content': 'There are more trophies waiting to be unlocked. Can you collect them all?',
+  'email.trophy.keep_going_content': 'Ci sono altri trofei che aspettano di essere sbloccati. Riesci a collezionarli tutti?',
 
-  // TODO: Translate from English
-  'email.trophy.what_you_did': '🎯 What You Did',
+  'email.trophy.what_you_did': '🎯 Cosa Hai Fatto',
 
-  // TODO: Translate from English
-  'email.trophy_earned_subject': '🏆 Achievement unlocked: {trophy_name}!',
+  'email.trophy_earned_subject': 'Hai guadagnato un trofeo! 🏆',
 
   // TODO: Translate from English
   'email.welcome.get_started_intro': 'Here\\'s what you can do now:',
 
-  // TODO: Translate from English
-  'email.welcome.get_started_title': '🚀 Get Started',
+  'email.welcome.get_started_title': '🚀 Inizia',
 
-  // TODO: Translate from English
-  'email.welcome.greeting': 'Hi {name}! 👋',
+  'email.welcome.greeting': 'Benvenutə, {name}! 🔥',
 
   // TODO: Translate from English
   'email.welcome.intro': 'Welcome to the LightSavers\\' community! We\\'re thrilled to have you here.',
@@ -1063,27 +951,22 @@ export default {
 
   'email.welcome.step2': 'Find a accendino - Enter a PIN from a sticker you found to see its journey',
 
-  // TODO: Translate from English
-  'email.welcome.step3': 'Join the mosaic - Share posts, thoughts, songs, and locations',
+  'email.welcome.step3': 'Unisciti al mosaico - Condividi post, pensieri, canzoni e posizioni',
 
   'email.welcome.what_is_content': 'LightMyFire is a global movement giving accendinos a second life through storiatelling. Every accendino gets a digital identity, a unique sticker, and travels the world collecting stories from everyone who finds it.',
 
-  // TODO: Translate from English
-  'email.welcome.what_is_title': '🔥 What is LightMyFire?',
+  'email.welcome.what_is_title': '🔥 Cos'è LightMyFire?',
 
-  // TODO: Translate from English
-  'email.welcome_subject': 'Welcome to LightMyFire! 🔥',
+  'email.welcome_subject': 'Benvenutə in LightMyFire! 🔥',
 
-  // TODO: Translate from English
-  'empty_lighter.action': 'Add the First Post',
+  'empty_lighter.action': 'Aggiungi il Primo Post',
 
   // TODO: Translate from English
   'empty_lighter.description': 'This lighter\\'s journey has just started. Be the first to add a chapter to its story and inspire others!',
 
   'empty_lighter.title': 'The Storia Begins...',
 
-  // TODO: Translate from English
-  'empty_posts.action': 'Add the First Post',
+  'empty_posts.action': 'Aggiungi il Primo Post',
 
   // TODO: Translate from English
   'empty_posts.message': 'Be the first to add a story, picture, or song to this lighter\\'s journey!',
@@ -1094,11 +977,9 @@ export default {
   // TODO: Translate from English
   'empty_state.default_message': 'Nothing here yet, but that\\'s about to change!',
 
-  // TODO: Translate from English
-  'empty_state.default_title': 'This space is waiting for you ✨',
+  'empty_state.default_title': 'Questo spazio ti aspetta ✨',
 
-  // TODO: Translate from English
-  'empty_state.no_posts_message': 'Be the first to add a post and start its journey.',
+  'empty_state.no_posts_message': 'Sii il primo ad aggiungere un post e inizia il suo viaggio.',
 
   // TODO: Translate from English
   'empty_state.no_posts_title': 'This lighter\\'s story is waiting to be written!',
@@ -1108,32 +989,24 @@ export default {
 
   'error.critical.description': 'A critical error occurred. Per favore try refreshing the page.',
 
-  // TODO: Translate from English
-  'error.critical.title': 'Application Error',
+  'error.critical.title': 'Errore dell'Applicazione',
 
-  // TODO: Translate from English
-  'error.generic.description': 'An unexpected error occurred. Our team has been notified.',
+  'error.generic.description': 'Si è verificato un errore imprevisto. Il nostro team è stato notificato.',
 
-  // TODO: Translate from English
-  'error.generic.details_title': 'Error Details (Development Only)',
+  'error.generic.details_title': 'Dettagli Errore (Solo Sviluppo)',
 
-  // TODO: Translate from English
-  'error.generic.error_id': 'Error ID:',
+  'error.generic.error_id': 'ID Errore:',
 
-  // TODO: Translate from English
-  'error.generic.go_home': 'Go Home',
+  'error.generic.go_home': 'Torna alla Home',
 
-  // TODO: Translate from English
-  'error.generic.title': 'Oops! Something went wrong',
+  'error.generic.title': 'Ops! Qualcosa è andato storto',
 
-  // TODO: Translate from English
-  'error.generic.try_again': 'Try Again',
+  'error.generic.try_again': 'Riprova',
 
   // TODO: Translate from English
   'error.generic_message': 'Sorry, there was a small issue on our end. If the problem persists, don\\'t hesitate to contact support: support@lightmyfire.app',
 
-  // TODO: Translate from English
-  'error.generic_title': 'Oops! Something went wrong',
+  'error.generic_title': 'Ops! Qualcosa è andato storto',
 
   // TODO: Translate from English
   'error.invalid_pin': 'Hmm, that PIN doesn\\'t match any lighter we know. Double-check the sticker!',
@@ -1143,8 +1016,7 @@ export default {
   // TODO: Translate from English
   'error.not_found.description': 'Sorry, we couldn\\'t find the page you\\'re looking for.',
 
-  // TODO: Translate from English
-  'error.not_found.go_home': 'Go back home',
+  'error.not_found.go_home': 'Torna alla home',
 
   // TODO: Translate from English
   'error.not_found.title': 'It\\'s all burnt up',
@@ -1152,16 +1024,14 @@ export default {
   // TODO: Translate from English
   'error.rate_limit': 'Whoa there, speedy! 🏃‍♂️\n\nYou\\'re adding posts faster than we can keep up. Take a 24-hour break to let others add to this lighter\\'s story, then come back!\n\n(This keeps our mosaic diverse and interesting for everyone.)',
 
-  // TODO: Translate from English
-  'error.try_again': 'Try Again',
+  'error.try_again': 'Riprova',
 
   'error.upload_too_large': 'That image is too big! Per favore choose one under 2MB. 📸',
 
   // TODO: Translate from English
   'faq.q1.desc': 'It\\'s a project to reduce waste and create a ',
 
-  // TODO: Translate from English
-  'faq.q1.title': 'What is LightMyFire?',
+  'faq.q1.title': 'Cos'è LightMyFire?',
 
   // TODO: Translate from English
   'faq.q2.desc': 'You must find a lighter with a LightMyFire sticker. Scan the QR code (or go to our site) and enter the unique PIN from the sticker. You\\'ll need to create a free account to contribute.',
@@ -1176,13 +1046,11 @@ export default {
   // TODO: Translate from English
   'faq.q4.desc': 'You have two choices. All posts are visible on the lighter\\'s page (which requires the PIN to access). When you post, you can also check a box to make it ',
 
-  // TODO: Translate from English
-  'faq.q4.title': 'Is my post public?',
+  'faq.q4.title': 'Il mio post è pubblico?',
 
   'faq.q5.desc': 'Log in and go to tuo "My Profile" page. You\'ll see a list of all tuo contributions with a delete button next to each one.',
 
-  // TODO: Translate from English
-  'faq.q5.title': 'How do I delete a post I made?',
+  'faq.q5.title': 'Come elimino un post che ho fatto?',
 
   // TODO: Translate from English
   'faq.q6.desc': 'That\\'s part of the fun! As the ',
@@ -1192,54 +1060,40 @@ export default {
   // TODO: Translate from English
   'faq.q7.desc': 'On each lighter\\'s page, you\\'ll find a map that shows the journey of that specific lighter. Every time someone makes a ',
 
-  // TODO: Translate from English
-  'faq.q7.title': 'How does the map work?',
+  'faq.q7.title': 'Come funziona la mappa?',
 
-  // TODO: Translate from English
-  'footer.copyright': '© {year} Revel Editions SASU. All rights reserved.',
+  'footer.copyright': '© {year} Revel Editions SASU. Tutti i diritti riservati.',
 
   'footer.disclaimer': 'This project is an independent creative initiative, not affiliated with accendino manufacturers or other surfaces on which you might find us.',
 
-  // TODO: Translate from English
   'footer.facebook_aria': 'Facebook',
 
-  // TODO: Translate from English
   'footer.instagram_aria': 'Instagram',
 
-  // TODO: Translate from English
-  'footer.links.about': 'About',
+  'footer.links.about': 'Informazioni',
 
-  // TODO: Translate from English
-  'footer.links.faq': 'FAQ',
+  'footer.links.faq': 'Domande frequenti',
 
-  // TODO: Translate from English
-  'footer.links.privacy': 'Privacy Policy',
+  'footer.links.privacy': 'Informativa sulla privacy',
 
-  // TODO: Translate from English
-  'footer.links.terms': 'Terms of Use',
+  'footer.links.terms': 'Termini di utilizzo',
 
   // TODO: Translate from English
   'footer.notice': 'We\\'re committed to a safe, respectful community. If you see content that doesn\\'t belong, please flag it so we can review. Thank you!',
 
-  // TODO: Translate from English
   'footer.social.facebook': 'Facebook',
 
-  // TODO: Translate from English
   'footer.social.instagram': 'Instagram',
 
-  // TODO: Translate from English
   'footer.social.tiktok': 'TikTok',
 
-  // TODO: Translate from English
   'footer.tiktok_aria': 'TikTok',
 
-  // TODO: Translate from English
-  'home.become_lightsaver.alt': 'Illustration of sharing',
+  'home.become_lightsaver.alt': 'Illustrazione di condivisione',
 
   'home.become_lightsaver.alt_arrow': 'Arrow pointing to save accendino button',
 
-  // TODO: Translate from English
-  'home.community.alt': 'Community illustration',
+  'home.community.alt': 'Illustrazione della community',
 
   'home.hero.alt_image': 'LightMyFire - Give accendinos a second life',
 
@@ -1251,18 +1105,15 @@ export default {
 
   'home.pin_entry.image_alt': 'Found a accendino',
 
-  // TODO: Translate from English
-  'home.stats.citations_title': 'Sources',
+  'home.stats.citations_title': 'Fonti',
 
   'how_it_works_details.step1.desc': 'Give a accendino a name to create its digital logbook and download tuo unique PIN/QR sticker.',
 
-  // TODO: Translate from English
-  'how_it_works_details.step1.title': '1. Save',
+  'how_it_works_details.step1.title': '1. Salva',
 
   'how_it_works_details.step2.desc': 'Stick it on tuo accendino and give it away or "lose" it. Its journey begins.',
 
-  // TODO: Translate from English
-  'how_it_works_details.step2.title': '2. Share',
+  'how_it_works_details.step2.title': '2. Condividi',
 
   // TODO: Translate from English
   'how_it_works_details.step3.desc': 'Once saved, you are directed to its permanent web page. Add the first post: a photo, a video, a song link, or just a story from where you are. This is your lighter\\'s \\'birth.\\'',
@@ -1273,11 +1124,9 @@ export default {
 
   'how_it_works_details.step4.title': '4. Watch the Storia Grow',
 
-  // TODO: Translate from English
-  'how_it_works_details.step5.desc': 'Our community is built on respect and creativity. If you see a post that violates our <strong>guidelines</strong> (spam, hateful content, etc.), use the ',
+  'how_it_works_details.step5.desc': 'La nostra community si basa sul rispetto e la creatività. Se vedi un post che viola le nostre <strong>linee guida</strong> (spam, contenuti di odio, ecc.), usa il ',
 
-  // TODO: Translate from English
-  'how_it_works_details.step5.title': '5. Be a Good Community Member',
+  'how_it_works_details.step5.title': '5. Sii un Buon Membro della Community',
 
   'how_it_works_details.step6.desc': 'By participating, you and tuo accendinos will unlock achievements. Add tuo first post to get the "First Spark" trophy. Watch tuo accendino travel to a new country to earn the "Globetrotter" trophy. Check tuo profile to see all the <strong>trophies</strong> you\'ve collected!',
 
@@ -1287,28 +1136,21 @@ export default {
 
   'lighter.add_to_story': 'Add to Storia',
 
-  // TODO: Translate from English
-  'lighter.all_loaded': 'All posts loaded',
+  'lighter.all_loaded': 'Tutti i post caricati',
 
-  // TODO: Translate from English
-  'lighter.level': 'Level',
+  'lighter.level': 'Livello',
 
-  // TODO: Translate from English
-  'lighter.load_more': 'Load More Posts',
+  'lighter.load_more': 'Carica Altri Post',
 
   'lighter.loading': 'Caricamento...',
 
-  // TODO: Translate from English
-  'lighter.map.center_coords': 'Center: Lat {lat}, Lng {lng}',
+  'lighter.map.center_coords': 'Centro: Lat {lat}, Lng {lng}',
 
-  // TODO: Translate from English
-  'lighter.map.markers': '{count} locations',
+  'lighter.map.markers': '{count} posizioni',
 
-  // TODO: Translate from English
-  'lighter.map.no_locations': 'No locations posted yet. Add one to start the map!',
+  'lighter.map.no_locations': 'Nessuna posizione ancora postata. Aggiungine una per iniziare la mappa!',
 
-  // TODO: Translate from English
-  'lighter.map.title': 'The Journey So Far',
+  'lighter.map.title': 'Il Viaggio Finora',
 
   'lighter.meta.description': 'See the storia of a accendino named "{name}". Add tuo own chapter to its journey!',
 
@@ -1318,69 +1160,51 @@ export default {
 
   'lighter.no_posts': 'This accendino has no stories yet. Be the first to add one!',
 
-  // TODO: Translate from English
-  'lighter.not_found.description': 'A human creativity mosaic.',
+  'lighter.not_found.description': 'Un mosaico di creatività umana.',
 
   'lighter.not_found.title': 'Accendino Not Found | LightMyFire',
 
-  // TODO: Translate from English
-  'lighter.on': 'on',
+  'lighter.on': 'il',
 
-  // TODO: Translate from English
-  'lighter.post_plural': 'Posts',
+  'lighter.post_plural': 'Post',
 
-  // TODO: Translate from English
   'lighter.post_single': 'Post',
 
-  // TODO: Translate from English
-  'lighter.saved_by': 'Saved by',
+  'lighter.saved_by': 'Salvato da',
 
   'lighter.saved_by_label': 'Accendino Saved By',
 
-  // TODO: Translate from English
-  'lighter_personalization.apply_all': 'Apply to All',
+  'lighter_personalization.apply_all': 'Applica a Tutti',
 
-  // TODO: Translate from English
-  'lighter_personalization.button.save_continue': 'Save and Continue',
+  'lighter_personalization.button.save_continue': 'Salva e Continua',
 
-  // TODO: Translate from English
-  'lighter_personalization.button_save_customizations': 'Save Sticker Customizations',
+  'lighter_personalization.button_save_customizations': 'Salva Personalizzazioni Sticker',
 
-  // TODO: Translate from English
-  'lighter_personalization.color.black': 'Black',
+  'lighter_personalization.color.black': 'Nero',
 
-  // TODO: Translate from English
-  'lighter_personalization.color.blue': 'Blue',
+  'lighter_personalization.color.blue': 'Blu',
 
-  // TODO: Translate from English
-  'lighter_personalization.color.red': 'Red',
+  'lighter_personalization.color.red': 'Rosso',
 
-  // TODO: Translate from English
-  'lighter_personalization.color.white': 'White',
+  'lighter_personalization.color.white': 'Bianco',
 
-  // TODO: Translate from English
-  'lighter_personalization.color_label': 'Pick Background Color',
+  'lighter_personalization.color_label': 'Scegli il Colore di Sfondo',
 
   'lighter_personalization.english_included': 'English will always be included on tuo sticker',
 
-  // TODO: Translate from English
-  'lighter_personalization.enter_name_preview': 'Enter a name (min 3 characters) to see preview',
+  'lighter_personalization.enter_name_preview': 'Inserisci un nome (min 3 caratteri) per vedere l'anteprima',
 
-  // TODO: Translate from English
-  'lighter_personalization.helper.background_picker': 'Choose an image or color for the background of the sticker.',
+  'lighter_personalization.helper.background_picker': 'Scegli un'immagine o un colore per lo sfondo dello sticker.',
 
   'lighter_personalization.language.select_placeholder': 'Seleziona a language...',
 
-  // TODO: Translate from English
-  'lighter_personalization.language_label': 'Second Language on Sticker (+ English)',
+  'lighter_personalization.language_label': 'Seconda Lingua sullo Sticker (+ Inglese)',
 
   'lighter_personalization.lighter_count': 'Accendino #{index}',
 
-  // TODO: Translate from English
   'lighter_personalization.min_3_chars': '(min 3)',
 
-  // TODO: Translate from English
-  'lighter_personalization.name_label': 'Name (3-16 characters)',
+  'lighter_personalization.name_label': 'Nome (3-16 caratteri)',
 
   'lighter_personalization.name_placeholder': 'Accendino name...',
 
@@ -1388,17 +1212,13 @@ export default {
 
   'lighter_personalization.subtitle': 'Personalize each accendino',
 
-  // TODO: Translate from English
   'lighter_personalization.summary.design': '{count} design',
 
-  // TODO: Translate from English
-  'lighter_personalization.summary.designs': '{count} designs',
+  'lighter_personalization.summary.designs': '{count} design',
 
-  // TODO: Translate from English
-  'lighter_personalization.summary.identical': 'All {count} identical',
+  'lighter_personalization.summary.identical': 'Tutti i {count} identici',
 
-  // TODO: Translate from English
-  'lighter_personalization.summary.plus_english': ' + English',
+  'lighter_personalization.summary.plus_english': ' + Inglese',
 
   'lighter_personalization.title': 'Customize Il tuo Sticker',
 
@@ -1419,85 +1239,65 @@ export default {
   // TODO: Translate from English
   'loading.posting_v4': 'Making this Lightee\\'s story brighter...',
 
-  // TODO: Translate from English
-  'loading.searching': 'Following the trail... 🔍',
+  'loading.searching': 'Seguendo le tracce... 🔍',
 
-  // TODO: Translate from English
-  'location.edit_coordinates': 'Edit coordinates manually',
+  'location.edit_coordinates': 'Modifica coordinate manualmente',
 
-  // TODO: Translate from English
-  'location.latitude_placeholder': 'Latitude',
+  'location.latitude_placeholder': 'Latitudine',
 
-  // TODO: Translate from English
-  'location.longitude_placeholder': 'Longitude',
+  'location.longitude_placeholder': 'Longitudine',
 
   'location.map_consent_description': 'This map uses OpenStreetMap with no tracking cookies. We only store tuo preference locally.',
 
   'location.map_preview_title': 'Map Anteprima Available',
 
-  // TODO: Translate from English
-  'location.map_title': 'Location map',
+  'location.map_title': 'Mappa della posizione',
 
-  // TODO: Translate from English
-  'location.no_location_selected': 'No location selected',
+  'location.no_location_selected': 'Nessuna posizione selezionata',
 
-  // TODO: Translate from English
-  'location.no_results': 'No locations found. Try a different search.',
+  'location.no_results': 'Nessuna posizione trovata. Prova una ricerca diversa.',
 
   'location.search_placeholder': 'Cerca for a location (city, address, landmark)...',
 
   'location.selected_location': 'Selezionaed Location',
 
-  // TODO: Translate from English
-  'location.show_map_button': 'Show Map',
+  'location.show_map_button': 'Mostra Mappa',
 
-  // TODO: Translate from English
-  'location.view_larger_map': 'View larger map',
+  'location.view_larger_map': 'Visualizza mappa più grande',
 
-  // TODO: Translate from English
-  'login.button.signin': 'Sign In',
+  'login.button.signin': 'Accedi',
 
-  // TODO: Translate from English
-  'login.button.signup': 'Sign Up',
+  'login.button.signup': 'Registrati',
 
-  // TODO: Translate from English
-  'login.email_label': 'Email Address',
+  'login.email_label': 'Indirizzo Email',
 
   'login.forgot_password': 'Hai dimenticato la password?',
 
-  // TODO: Translate from English
   'login.password_label': 'Password',
 
-  // TODO: Translate from English
-  'login.social_divider': 'or continue with',
+  'login.social_divider': 'oppure continua con',
 
-  // TODO: Translate from English
-  'login.tab.login': 'Log in',
+  'login.tab.login': 'Accedi',
 
   'login.tab.signup': 'Registrati',
 
-  // TODO: Translate from English
   'login.title': 'LightMyFire',
 
   'moderation.action_confirm': 'Conferma Action',
 
-  // TODO: Translate from English
-  'moderation.approve': 'Approve',
+  'moderation.approve': 'Approva',
 
   'moderation.approve_confirm_message': 'Sei sicurə you want to approve this post? It will become public.',
 
-  // TODO: Translate from English
-  'moderation.approve_confirm_title': 'Approve Post?',
+  'moderation.approve_confirm_title': 'Approvare Post?',
 
-  // TODO: Translate from English
-  'moderation.approve_success': 'Post approved and released.',
+  'moderation.approve_success': 'Post approvato e rilasciato.',
 
   'moderation.button.delete_post': 'Elimina Post',
 
   'moderation.button.delete_user': 'Elimina User',
 
-  // TODO: Translate from English
-  'moderation.content_type': 'Type',
+  'moderation.content_type': 'Tipo',
 
   'moderation.delete': 'Elimina',
 
@@ -1505,67 +1305,49 @@ export default {
 
   'moderation.delete_confirm_title': 'Elimina Post?',
 
-  // TODO: Translate from English
-  'moderation.delete_success': 'Post deleted successfully.',
+  'moderation.delete_success': 'Post eliminato con successo.',
 
   'moderation.delete_user_confirm': 'Sei sicurə you want to delete this user and all their content?',
 
-  // TODO: Translate from English
-  'moderation.error': 'An error occurred: {message}',
+  'moderation.error': 'Si è verificato un errore: {message}',
 
   'moderation.error.rpc_error': 'Errore: {message}',
 
-  // TODO: Translate from English
-  'moderation.flagged_by': 'Flagged by {count} users',
+  'moderation.flagged_by': 'Segnalato da {count} utenti',
 
   'moderation.lighter_name': 'Accendino',
 
-  // TODO: Translate from English
-  'moderation.no_posts': 'No posts currently flagged for moderation.',
+  'moderation.no_posts': 'Nessun post attualmente segnalato per moderazione.',
 
-  // TODO: Translate from English
-  'moderation.no_posts_in_queue': 'The moderation queue is empty. All is peaceful.',
+  'moderation.no_posts_in_queue': 'La coda di moderazione è vuota. Tutto è tranquillo.',
 
-  // TODO: Translate from English
-  'moderation.post_by': 'Post by',
+  'moderation.post_by': 'Post di',
 
-  // TODO: Translate from English
-  'moderation.post_on': 'Post on',
+  'moderation.post_on': 'Post su',
 
-  // TODO: Translate from English
-  'moderation.queue.count': '{count} post awaiting moderation',
+  'moderation.queue.count': '{count} post in attesa di moderazione',
 
-  // TODO: Translate from English
-  'moderation.queue.count_plural': '{count} posts awaiting moderation',
+  'moderation.queue.count_plural': '{count} post in attesa di moderazione',
 
-  // TODO: Translate from English
-  'moderation.queue.empty.back_home': 'Back to Home',
+  'moderation.queue.empty.back_home': 'Torna alla Home',
 
-  // TODO: Translate from English
-  'moderation.queue.empty.description': 'All flagged posts have been reviewed and handled. Great moderation work!',
+  'moderation.queue.empty.description': 'Tutti i post segnalati sono stati revisionati e gestiti. Ottimo lavoro di moderazione!',
 
-  // TODO: Translate from English
-  'moderation.queue.empty.title': 'Queue is Empty',
+  'moderation.queue.empty.title': 'Coda Vuota',
 
-  // TODO: Translate from English
-  'moderation.show_less': 'Show Less',
+  'moderation.show_less': 'Mostra Meno',
 
-  // TODO: Translate from English
-  'moderation.table.flag_count': 'Flags',
+  'moderation.table.flag_count': 'Segnalazioni',
 
   'moderation.table.lighter': 'Accendino',
 
-  // TODO: Translate from English
-  'moderation.table.post_id': 'Post ID',
+  'moderation.table.post_id': 'ID Post',
 
-  // TODO: Translate from English
-  'moderation.title': 'Moderation Queue',
+  'moderation.title': 'Coda di Moderazione',
 
-  // TODO: Translate from English
-  'moderation.view_full': 'View Full',
+  'moderation.view_full': 'Visualizza Completo',
 
-  // TODO: Translate from English
-  'moderation.view_post': 'View Post',
+  'moderation.view_post': 'Visualizza Post',
 
   'my_orders.canceled.title': 'Ordine Annullaed',
 
@@ -1587,14 +1369,11 @@ export default {
 
   'my_orders.failed.title': 'Ordine Failed',
 
-  // TODO: Translate from English
-  'my_orders.go_home': 'Go Home',
+  'my_orders.go_home': 'Torna alla Home',
 
-  // TODO: Translate from English
-  'my_orders.help.contact': 'Contact Support',
+  'my_orders.help.contact': 'Contattaci',
 
-  // TODO: Translate from English
-  'my_orders.help.label': 'Need help?',
+  'my_orders.help.label': 'Hai bisogno di aiuto?',
 
   'my_orders.hold.title': 'Ordine On Hold',
 
@@ -1604,54 +1383,39 @@ export default {
 
   'my_orders.order_id': 'Ordine #{ordineId}',
 
-  // TODO: Translate from English
-  'my_orders.placed_on': 'Placed on {date}',
+  'my_orders.placed_on': 'Effettuato il',
 
-  // TODO: Translate from English
-  'my_orders.shipping.title': 'Shipping Address',
+  'my_orders.shipping.title': 'Spedizione',
 
   'my_orders.status.canceled': 'Annullaed',
 
-  // TODO: Translate from English
-  'my_orders.status.delivered': 'Delivered',
+  'my_orders.status.delivered': 'Consegnato',
 
-  // TODO: Translate from English
-  'my_orders.status.failed': 'Failed',
+  'my_orders.status.failed': 'Non riuscito',
 
-  // TODO: Translate from English
-  'my_orders.status.pending': 'Pending',
+  'my_orders.status.pending': 'In attesa',
 
-  // TODO: Translate from English
-  'my_orders.status.processing': 'Processing',
+  'my_orders.status.processing': 'In elaborazione',
 
-  // TODO: Translate from English
-  'my_orders.status.returned': 'Returned',
+  'my_orders.status.returned': 'Restituito',
 
-  // TODO: Translate from English
-  'my_orders.status.shipped': 'Shipped',
+  'my_orders.status.shipped': 'Spedito',
 
-  // TODO: Translate from English
   'my_orders.sticker_count': '{count} sticker',
 
   'my_orders.stickers_count': '{count} sticker',
 
-  // TODO: Translate from English
-  'my_orders.tracking.carrier': 'Carrier:',
+  'my_orders.tracking.carrier': 'Corriere',
 
-  // TODO: Translate from English
-  'my_orders.tracking.number': 'Tracking Number:',
+  'my_orders.tracking.number': 'Numero di tracciamento',
 
-  // TODO: Translate from English
-  'my_orders.tracking.shipped': 'Shipped:',
+  'my_orders.tracking.shipped': 'Spedito il',
 
-  // TODO: Translate from English
-  'my_orders.tracking.title': 'Tracking Information',
+  'my_orders.tracking.title': 'Tracciamento',
 
-  // TODO: Translate from English
-  'my_orders.tracking.track_button': 'Track Package →',
+  'my_orders.tracking.track_button': 'Traccia Pacco',
 
-  // TODO: Translate from English
-  'my_posts.deleting': 'Deleting...',
+  'my_posts.deleting': 'Eliminazione...',
 
   'my_profile.find_lighter_to_post': 'Find a Accendino',
 
@@ -1659,68 +1423,50 @@ export default {
 
   'my_profile.save_first_lighter': 'Save Il tuo First Accendino',
 
-  // TODO: Translate from English
-  'my_profile.settings.account_title': 'Account',
+  'my_profile.settings.account_title': 'Informazioni Account',
 
   'my_profile.settings.confirm_password_label': 'Conferma New Password',
 
-  // TODO: Translate from English
   'my_profile.settings.email_label': 'Email',
 
-  // TODO: Translate from English
-  'my_profile.settings.error.email_exists': 'Email already in use.',
+  'my_profile.settings.error.email_exists': 'Questa email è già in uso',
 
   'my_profile.settings.error.generic': 'An error occurred. Riprova.',
 
   'my_profile.settings.error.rpc_error': 'Errore: {message}',
 
-  // TODO: Translate from English
-  'my_profile.settings.error.username_exists': 'Username already taken.',
+  'my_profile.settings.error.username_exists': 'Questo nome utente è già in uso',
 
-  // TODO: Translate from English
-  'my_profile.settings.new_password_label': 'New Password',
+  'my_profile.settings.new_password_label': 'Nuova Password',
 
   // TODO: Translate from English
   'my_profile.settings.password_mismatch': 'Passwords don\\'t match.',
 
-  // TODO: Translate from English
-  'my_profile.settings.password_title': 'Change Password',
+  'my_profile.settings.password_title': 'Password',
 
-  // TODO: Translate from English
-  'my_profile.settings.placeholder.email': 'Enter new email',
+  'my_profile.settings.placeholder.email': 'tua@esempio.com',
 
-  // TODO: Translate from English
-  'my_profile.settings.placeholder.password': '••••••••',
+  'my_profile.settings.placeholder.password': 'Inserisci nuova password',
 
-  // TODO: Translate from English
-  'my_profile.settings.placeholder.password_confirm': 'Re-enter new password',
+  'my_profile.settings.placeholder.password_confirm': 'Conferma nuova password',
 
-  // TODO: Translate from English
-  'my_profile.settings.placeholder.username': 'Enter new username',
+  'my_profile.settings.placeholder.username': 'Scegli un nome utente',
 
-  // TODO: Translate from English
-  'my_profile.settings.update_profile_button': 'Update Profile',
+  'my_profile.settings.update_profile_button': 'Aggiorna Profilo',
 
-  // TODO: Translate from English
-  'my_profile.settings.updating': 'Updating...',
+  'my_profile.settings.updating': 'Aggiornamento...',
 
-  // TODO: Translate from English
-  'my_profile.settings.username_label': 'Username',
+  'my_profile.settings.username_label': 'Nome utente',
 
-  // TODO: Translate from English
-  'my_profile.trophies.coming_soon': 'Trophy case coming soon!',
+  'my_profile.trophies.coming_soon': 'Prossimamente!',
 
-  // TODO: Translate from English
-  'my_profile.trophies.subtitle': 'Collect achievements by saving and sharing stories.',
+  'my_profile.trophies.subtitle': 'Sblocca trofei contribuendo alla community',
 
-  // TODO: Translate from English
-  'my_profile.trophies.unlocked': 'Unlocked!',
+  'my_profile.trophies.unlocked': 'Sbloccato',
 
-  // TODO: Translate from English
-  'nav.logging_out': 'Logging out...',
+  'nav.logging_out': 'Disconnessione...',
 
-  // TODO: Translate from English
-  'nav.logo_alt': 'LightMyFire',
+  'nav.logo_alt': 'Logo LightMyFire',
 
   'nav.my_orders': 'My Ordines',
 
@@ -1728,25 +1474,20 @@ export default {
 
   'nav.search_title': 'Find a accendino',
 
-  // TODO: Translate from English
-  'not_found.go_home': 'Go Home',
+  'not_found.go_home': 'Torna alla home',
 
   // TODO: Translate from English
   'not_found.message': 'Oops! The page you\\'re looking for doesn\\'t exist.',
 
-  // TODO: Translate from English
-  'not_found.title': '404 - Page Not Found',
+  'not_found.title': 'Pagina non trovata',
 
-  // TODO: Translate from English
-  'notifications.action_error': 'Error',
+  'notifications.action_error': 'Azione non riuscita',
 
-  // TODO: Translate from English
-  'notifications.action_success': 'Success',
+  'notifications.action_success': 'Azione completata con successo',
 
   'notifications.auth_failed': 'Authentication failed. Per favore riprova.',
 
-  // TODO: Translate from English
-  'notifications.error': 'Error',
+  'notifications.error': 'Si è verificato un errore',
 
   'notifications.invalid_credentials': 'Invalid email or password. Per favore check tuo credentials and riprova.',
 
@@ -1756,8 +1497,7 @@ export default {
 
   'notifications.password_updated': 'Password updated! Il tuo account is secure. 🔒',
 
-  // TODO: Translate from English
-  'notifications.post_deleted_success': 'Post deleted. Like it never happened.',
+  'notifications.post_deleted_success': 'Post eliminato con successo',
 
   // TODO: Translate from English
   'notifications.post_success_first': 'Congratulations! 🌟 You lit the first spark in this lighter\\'s story.',
@@ -1765,8 +1505,7 @@ export default {
   // TODO: Translate from English
   'notifications.post_success_public': 'Story shared with the world! 🌍 It\\'s now part of our global mosaic.',
 
-  // TODO: Translate from English
-  'notifications.profile_updated': 'Profile updated! Looking good, LightSaver. ✨',
+  'notifications.profile_updated': 'Profilo aggiornato con successo',
 
   'notifications.session_expired': 'Il tuo session has expired. Per favore log in again to continue.',
 
@@ -1779,65 +1518,48 @@ export default {
 
   'notifications.user_not_found': 'No account found with this email. Per favore sign up first!',
 
-  // TODO: Translate from English
-  'notifications.warning': 'Warning',
+  'notifications.warning': 'Attenzione',
 
-  // TODO: Translate from English
-  'order.guidelines.step1': 'Apply the sticker to a clean, dust-free, oil-free, and moisture-free surface.',
+  'order.guidelines.step1': 'Personalizza: Dagli un nome e scegli i tuoi colori',
 
-  // TODO: Translate from English
-  'order.guidelines.step2': 'After application, press the sticker down with a clean cloth to maximize adhesion and avoid air bubbles.',
+  'order.guidelines.step2': 'Ordina: Ricevi sticker fisici a casa tua',
 
   // TODO: Translate from English
   'order.guidelines.step3': 'Make sure the sticker is applied correctly the first time. With every reapplication, the sticker\\'s ability to stick will decrease.',
 
-  // TODO: Translate from English
-  'order.guidelines.title': 'Application Guidelines',
+  'order.guidelines.title': 'Come Funziona',
 
   'order.payment.error_email_invalid': 'Per favore enter a valid email address',
 
-  // TODO: Translate from English
-  'order.quality.durability': '2–3 year durability',
+  'order.quality.durability': 'Durata 2-3 anni',
 
-  // TODO: Translate from English
-  'order.quality.fast_application': 'Fast and easy application',
+  'order.quality.fast_application': 'Applicazione rapida e facile',
 
-  // TODO: Translate from English
-  'order.quality.glossy_finish': 'Glossy finish',
+  'order.quality.glossy_finish': 'Finitura lucida',
 
   'order.quality.title': 'Premium Quality Sticker',
 
-  // TODO: Translate from English
-  'order.shipping.error_postal_invalid': 'Invalid postal code for selected country',
+  'order.shipping.error_postal_invalid': 'Codice postale non valido per il paese selezionato',
 
-  // TODO: Translate from English
-  'order.summary.shipping': 'Shipping:',
+  'order.summary.shipping': 'Spedizione:',
 
-  // TODO: Translate from English
-  'order.summary.shipping_calculated': '+ shipping',
+  'order.summary.shipping_calculated': '+ spedizione',
 
-  // TODO: Translate from English
-  'order.summary.shipping_express': 'Express Shipping',
+  'order.summary.shipping_express': 'Spedizione Express',
 
-  // TODO: Translate from English
-  'order.summary.shipping_express_time': '3-5 business days',
+  'order.summary.shipping_express_time': '3-5 giorni lavorativi',
 
-  // TODO: Translate from English
-  'order.summary.shipping_method': 'Shipping Method:',
+  'order.summary.shipping_method': 'Metodo di spedizione:',
 
-  // TODO: Translate from English
-  'order.summary.shipping_standard': 'Standard Shipping',
+  'order.summary.shipping_standard': 'Spedizione Standard',
 
-  // TODO: Translate from English
-  'order.summary.shipping_standard_time': '7-14 business days',
+  'order.summary.shipping_standard_time': '7-14 giorni lavorativi',
 
-  // TODO: Translate from English
-  'order.summary.subtotal': 'Subtotal:',
+  'order.summary.subtotal': 'Subtotale:',
 
   'order_success.email_subject': 'Question about my sticker ordine',
 
-  // TODO: Translate from English
-  'payment.card_not_found': 'Card element not found',
+  'payment.card_not_found': 'Elemento carta non trovato',
 
   'payment.stripe_load_failed': 'Failed to load Stripe. Per favore check tuo configuration.',
 
@@ -1847,14 +1569,11 @@ export default {
 
   'personalization.personalize_each': 'Personalize each accendino',
 
-  // TODO: Translate from English
-  'personalization.second_language': 'Second Language on Sticker (+ English)',
+  'personalization.second_language': 'Seconda Lingua sullo Sticker (+ Inglese)',
 
-  // TODO: Translate from English
-  'philosophy.button.hide': 'Hide',
+  'philosophy.button.hide': 'Nascondi',
 
-  // TODO: Translate from English
-  'philosophy.button.learn_more': 'Learn More',
+  'philosophy.button.learn_more': 'Scopri di più',
 
   'philosophy.cta': 'Join us in giving accendinos a second life, one storia at a time.',
 
@@ -1873,139 +1592,100 @@ export default {
   // TODO: Translate from English
   'philosophy.p4': 'Our goal is simple: to create a global, human creativity mosaic, one lighter at a time, and reduce waste in the process. <strong>This is our stand against a throwaway culture. It\\'s an experiment in collaborative art. It\\'s a way to prove that if you give an object a story, you give it a soul.</strong>',
 
-  // TODO: Translate from English
-  'philosophy.title': 'Our Philosophy',
+  'philosophy.title': 'La Nostra Filosofia',
 
-  // TODO: Translate from English
   'placeholder.hex_color': '#FF6B6B',
 
   'placeholder.lighter_name': 'Accendino name...',
 
   'placeholder.location_search': 'Cerca for a location...',
 
-  // TODO: Translate from English
   'placeholder.pin_entry': 'ABC-123',
 
-  // TODO: Translate from English
-  'post.anonymous': 'Anonymous',
+  'post.anonymous': 'Anonimə',
 
-  // TODO: Translate from English
-  'post.default_location': 'Unknown Location',
+  'post.default_location': 'Posizione Sconosciuta',
 
   'post.deleted_user': 'Eliminad User',
 
-  // TODO: Translate from English
-  'post.like_button': 'Like',
+  'post.like_button': 'Mi piace',
 
-  // TODO: Translate from English
-  'post.location_at': 'at',
+  'post.location_at': 'a',
 
-  // TODO: Translate from English
-  'post.post_type.image': 'shared an image',
+  'post.post_type.image': 'ha condiviso un'immagine',
 
-  // TODO: Translate from English
-  'post.post_type.location': 'checked in',
+  'post.post_type.location': 'si è registratə',
 
   'post.post_type.refuel': 'refueled this accendino',
 
-  // TODO: Translate from English
-  'post.post_type.song': 'shared a song',
+  'post.post_type.song': 'ha condiviso una canzone',
 
   'post.post_type.text': 'wrote a storia',
 
-  // TODO: Translate from English
-  'post.user_upload_alt': 'User upload',
+  'post.user_upload_alt': 'Caricamento utente',
 
-  // TODO: Translate from English
-  'post.youtube_player_title': 'YouTube video player',
+  'post.youtube_player_title': 'Lettore video YouTube',
 
-  // TODO: Translate from English
-  'privacy.h3.automated_decisions': '7. Automated Decision-Making',
+  'privacy.h3.automated_decisions': '7. Processo Decisionale Automatizzato',
 
-  // TODO: Translate from English
-  'privacy.h3.changes': '9. Changes to This Privacy Policy',
+  'privacy.h3.changes': '9. Modifiche a Questa Informativa sulla Privacy',
 
   // TODO: Translate from English
   'privacy.h3.children': '8. Children\\'s Privacy',
 
-  // TODO: Translate from English
-  'privacy.h3.contact': '10. Contact Us',
+  'privacy.h3.contact': '10. Contattaci',
 
-  // TODO: Translate from English
-  'privacy.h3.cookies': '5.1. Cookies',
+  'privacy.h3.cookies': '5.1. Cookie',
 
-  // TODO: Translate from English
-  'privacy.h3.data_breaches': '5.6. Data Breach Notification',
+  'privacy.h3.data_breaches': '5.6. Notifica di Violazione dei Dati',
 
-  // TODO: Translate from English
-  'privacy.h3.data_controller': '1. Data Controller',
+  'privacy.h3.data_controller': '1. Titolare del Trattamento dei Dati',
 
-  // TODO: Translate from English
-  'privacy.h3.data_retention': '5.4. Data Retention Periods',
+  'privacy.h3.data_retention': '5.4. Periodi di Conservazione dei Dati',
 
-  // TODO: Translate from English
-  'privacy.h3.data_security': '5.5. Security Measures',
+  'privacy.h3.data_security': '5.5. Misure di Sicurezza',
 
-  // TODO: Translate from English
-  'privacy.h3.data_sharing': '5. Data Sharing and Processors',
+  'privacy.h3.data_sharing': '5. Condivisione dei Dati e Responsabili del Trattamento',
 
   'privacy.h3.how_we_use': '3. How We Use Il tuo Information',
 
-  // TODO: Translate from English
-  'privacy.h3.info_we_collect': '2. Information We Collect',
+  'privacy.h3.info_we_collect': '2. Informazioni che Raccogliamo',
 
-  // TODO: Translate from English
-  'privacy.h3.international_transfers': '5.3. International Data Transfers',
+  'privacy.h3.international_transfers': '5.3. Trasferimenti Internazionali di Dati',
 
-  // TODO: Translate from English
-  'privacy.h3.legal_basis': '4. Legal Basis for Processing (GDPR)',
+  'privacy.h3.legal_basis': '4. Base Giuridica per il Trattamento (GDPR)',
 
-  // TODO: Translate from English
-  'privacy.h3.location_data': '5.2. Location Data',
+  'privacy.h3.location_data': '5.2. Dati di Posizione',
 
   'privacy.h3.your_rights': '6. Il tuo Rights Under GDPR',
 
-  // TODO: Translate from English
-  'privacy.h4.cookie_types': 'Types of Cookies We Use',
+  'privacy.h4.cookie_types': 'Tipi di Cookie che Utilizziamo',
 
-  // TODO: Translate from English
-  'privacy.h4.personal_data': '2.1. Personal Data You Provide',
+  'privacy.h4.personal_data': '2.1. Dati Personali che Fornisci',
 
-  // TODO: Translate from English
-  'privacy.h4.right_access': '6.1. Right of Access (Art. 15 GDPR)',
+  'privacy.h4.right_access': '6.1. Diritto di Accesso (Art. 15 GDPR)',
 
-  // TODO: Translate from English
-  'privacy.h4.right_complain': '6.8. Right to Lodge a Complaint',
+  'privacy.h4.right_complain': '6.8. Diritto di Presentare Reclamo',
 
-  // TODO: Translate from English
-  'privacy.h4.right_erasure': '6.3. Right to Erasure - ',
+  'privacy.h4.right_erasure': '6.3. Diritto alla Cancellazione - ',
 
-  // TODO: Translate from English
-  'privacy.h4.right_object': '6.6. Right to Object (Art. 21 GDPR)',
+  'privacy.h4.right_object': '6.6. Diritto di Opposizione (Art. 21 GDPR)',
 
-  // TODO: Translate from English
-  'privacy.h4.right_portability': '6.5. Right to Data Portability (Art. 20 GDPR)',
+  'privacy.h4.right_portability': '6.5. Diritto alla Portabilità dei Dati (Art. 20 GDPR)',
 
-  // TODO: Translate from English
-  'privacy.h4.right_rectification': '6.2. Right to Rectification (Art. 16 GDPR)',
+  'privacy.h4.right_rectification': '6.2. Diritto di Rettifica (Art. 16 GDPR)',
 
-  // TODO: Translate from English
-  'privacy.h4.right_restriction': '6.4. Right to Restriction of Processing (Art. 18 GDPR)',
+  'privacy.h4.right_restriction': '6.4. Diritto alla Limitazione del Trattamento (Art. 18 GDPR)',
 
-  // TODO: Translate from English
-  'privacy.h4.right_withdraw': '6.7. Right to Withdraw Consent',
+  'privacy.h4.right_withdraw': '6.7. Diritto di Revocare il Consenso',
 
-  // TODO: Translate from English
-  'privacy.h4.technical_data': '2.4. Technical Data (Automatically Collected)',
+  'privacy.h4.technical_data': '2.2. Dati Tecnici',
 
-  // TODO: Translate from English
-  'privacy.h4.transaction_data': '2.3. Transaction Data',
+  'privacy.h4.transaction_data': '2.3. Dati di Transazione',
 
-  // TODO: Translate from English
-  'privacy.h4.user_content': '2.2. User-Generated Content',
+  'privacy.h4.user_content': '2.4. Contenuti Utente',
 
-  // TODO: Translate from English
-  'privacy.last_updated': 'Last updated: November 8, 2025',
+  'privacy.last_updated': 'Ultimo aggiornamento:',
 
   'privacy.p1': 'LightMyFire ("we," "us," or "our") is operated by Revel Editions SASU, a SASU company registered in France (RCS: 849 409 313). We are committed to protecting tuo privacy and complying with the General Data Protection Regulation (GDPR). This Privacy Policy explains how we collect, use, disclose, and safeguard tuo information when you use our website and services.',
 
@@ -2245,47 +1925,37 @@ export default {
 
   'profile.update_error': 'Errore: {error}',
 
-  // TODO: Translate from English
-  'profile.update_success': 'Profile updated successfully!',
+  'profile.update_success': 'Profilo aggiornato con successo',
 
   'redirect.login_add_story': 'You must be logged in to add a storia.',
 
-  // TODO: Translate from English
-  'redirect.login_like': 'You must be logged in to like a post',
+  'redirect.login_like': 'Accedi per mettere Mi piace ai post',
 
   'redirect.login_profile': 'You must be logged in to view tuo profile.',
 
   'redirect.login_save_lighter': 'You must be logged in to save a accendino',
 
-  // TODO: Translate from English
-  'refill_guide.citations.1.source': 'World Economic Forum - Plastic Waste Statistics (2023)',
+  'refill_guide.citations.1.source': 'BIC Group - Rapporto Annuale 2023',
 
   'refill_guide.citations.1.text': 'Globale accendino production and environmental impact data',
 
-  // TODO: Translate from English
-  'refill_guide.citations.1.url': 'https://www.weforum.org/agenda/2023/plastic-waste/',
+  'refill_guide.citations.1.url': 'https://www.bic.com/en/investors/financial-results',
 
-  // TODO: Translate from English
-  'refill_guide.citations.title': 'Sources & References',
+  'refill_guide.citations.title': 'Fonti',
 
-  // TODO: Translate from English
-  'refill_guide.key_indicators': 'Key indicators:',
+  'refill_guide.key_indicators': 'Indicatori Chiave',
 
   'refill_guide.stats.lighters_sold': 'Disposable accendinos sold yearly',
 
-  // TODO: Translate from English
-  'refill_guide.stats.lighters_sold_worldwide': 'Worldwide',
+  'refill_guide.stats.lighters_sold_worldwide': 'Accendini venduti nel mondo ogni anno',
 
-  // TODO: Translate from English
-  'refill_guide.stats.waste_reduction': 'Waste reduction',
+  'refill_guide.stats.waste_reduction': 'Riduzione dei rifiuti ricaricando',
 
   'refill_guide.stats.waste_reduction_method': 'With refillable accendinos',
 
-  // TODO: Translate from English
-  'refill_guide.stats.years_decompose': 'Years to decompose',
+  'refill_guide.stats.years_decompose': 'Anni per decomporsi',
 
-  // TODO: Translate from English
-  'refill_guide.stats.years_decompose_location': 'In landfills',
+  'refill_guide.stats.years_decompose_location': 'nelle discariche o nell'oceano',
 
   // TODO: Translate from English
   'refill_guide.type1.indicator1': 'Small round metal valve on the bottom',
