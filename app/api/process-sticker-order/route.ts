@@ -227,7 +227,6 @@ export async function POST(request: NextRequest) {
         payment_intent_id: paymentIntentId,
         quantity: lighterData.length,
         amount_paid: paymentIntent.amount,
-        user_email: shippingAddress.email,
         shipping_name: shippingAddress.name,
         shipping_email: shippingAddress.email,
         shipping_address: shippingAddress.address,

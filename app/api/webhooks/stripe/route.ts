@@ -192,8 +192,6 @@ export async function POST(request: NextRequest) {
           refunded: charge.refunded,
         });
 
-        // TODO: Add refund columns to sticker_orders table (refunded, refund_amount, refund_reason)
-        // For now, just log the refund event
         if (typeof charge.payment_intent === 'string') {
           const latestRefund = charge.refunds?.data?.[0];
 
@@ -203,10 +201,30 @@ export async function POST(request: NextRequest) {
             reason: latestRefund?.reason || 'unknown',
           });
 
-          logger.warn('Refund received but not saved to database - refund columns do not exist in sticker_orders table', {
-            paymentIntentId: charge.payment_intent,
-            amount: charge.amount_refunded,
-          });
+          // Update order with refund information
+          const { error: refundError } = await supabase
+            .from('sticker_orders')
+            .update({
+              refunded: true,
+              refund_amount_cents: charge.amount_refunded,
+              refund_reason: latestRefund?.reason || null,
+              refunded_at: new Date().toISOString(),
+              updated_at: new Date().toISOString(),
+            })
+            .eq('payment_intent_id', charge.payment_intent);
+
+          if (refundError) {
+            console.error('Failed to update order refund status:', {
+              paymentIntentId: charge.payment_intent,
+              error: refundError.message,
+              details: refundError.details,
+            });
+          } else {
+            logger.info('Order refund status updated successfully', {
+              paymentIntentId: charge.payment_intent,
+              amount: charge.amount_refunded,
+            });
+          }
         }
         break;
       }
