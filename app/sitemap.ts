@@ -49,7 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Fetch all lighters with their updated_at timestamps
     const { data: lighters, error } = await supabaseAdmin
       .from('lighters')
-      .select('pin, updated_at')
+      .select('pin_code, updated_at')
       .order('created_at', { ascending: false });
 
     if (error) {
@@ -59,7 +59,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       for (const lighter of lighters) {
         for (const locale of i18n.locales) {
           urls.push({
-            url: `${SITE_URL}/${locale}/lighter/${lighter.pin}`,
+            url: `${SITE_URL}/${locale}/lighter/${lighter.pin_code}`,
             lastModified: lighter.updated_at ? new Date(lighter.updated_at) : new Date(),
             changeFrequency: 'daily',
             priority: 0.7,
