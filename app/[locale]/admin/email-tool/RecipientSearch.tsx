@@ -127,7 +127,7 @@ export default function RecipientSearch({ onSelectUser, selectedUser, onManualEm
             className="w-full px-4 py-2.5 bg-background border border-input rounded-md text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-primary focus:border-transparent"
           />
           <p className="text-xs text-yellow-600 dark:text-yellow-400 mt-1">
-            ⚠️ Manual mode: User data (orders, lighters, posts) won't be available
+            ⚠️ Manual mode: User data (orders, lighters, posts) won&apos;t be available
           </p>
         </div>
       ) : selectedUser ? (
@@ -188,7 +188,7 @@ export default function RecipientSearch({ onSelectUser, selectedUser, onManualEm
           {showDropdown && searchQuery.length >= 2 && users.length === 0 && !isSearching && (
             <div className="absolute z-10 w-full mt-1 bg-background border border-border rounded-md shadow-lg p-4">
               <p className="text-sm text-muted-foreground mb-2">
-                No users found matching "{searchQuery}"
+                No users found matching &ldquo;{searchQuery}&rdquo;
               </p>
               <button
                 type="button"

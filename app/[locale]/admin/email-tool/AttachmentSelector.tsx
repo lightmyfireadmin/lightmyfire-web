@@ -99,7 +99,7 @@ export default function AttachmentSelector({
       })
       .catch(err => console.error('Error fetching posts:', err))
       .finally(() => setIsLoadingPosts(false));
-  }, [userId]);
+  }, [userId, onSelectOrder, onSelectLighter, onSelectPost]);
 
   if (!userId) {
     return (

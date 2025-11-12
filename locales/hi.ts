@@ -1207,7 +1207,6 @@ export default {
   'save_lighter.human_mosaic': 'Human Mosaic',
   'save_lighter.human_mosaic_desc': 'Join thousands of LightSavers creating a human mosaic of stories and creativity while fighting waste.',
   'save_lighter.more_stickers': '+{count} more',
-  'save_lighter.pack_5.description': 'Perfect for starting your LightSaver journey.',
   'save_lighter.sticker_plural': 'Stickers',
   'save_lighter.sticker_singular': 'Sticker',
   'save_lighter.sustainable_impact': 'Sustainable Impact',

@@ -79,12 +79,12 @@ export default function EmailToolPage() {
 
             <div>
               <h4 className="font-semibold mb-2">2. Find Recipient</h4>
-              <p>Search for a user by email or use manual input mode. Once selected, you'll be able to attach their orders, lighters, and posts to the email.</p>
+              <p>Search for a user by email or use manual input mode. Once selected, you&apos;ll be able to attach their orders, lighters, and posts to the email.</p>
             </div>
 
             <div>
               <h4 className="font-semibold mb-2">3. Choose Template</h4>
-              <p>Select a pre-made template or start from scratch with "Custom". Templates support multiple languages.</p>
+              <p>Select a pre-made template or start from scratch with &ldquo;Custom&rdquo;. Templates support multiple languages.</p>
             </div>
 
             <div>

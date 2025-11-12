@@ -420,7 +420,7 @@ export default function EmailComposer({ onPreviewChange }: EmailComposerProps) {
                   <span className="font-medium text-foreground mb-1">Attachments:</span>
                   <ul className="text-muted-foreground space-y-1">
                     {selectedOrder && <li>📦 Order #{selectedOrder.stripe_payment_intent_id?.slice(-6) || selectedOrder.id.slice(0, 6)}</li>}
-                    {selectedLighter && <li>🔥 Lighter "{selectedLighter.lighter_name}"</li>}
+                    {selectedLighter && <li>🔥 Lighter &ldquo;{selectedLighter.lighter_name}&rdquo;</li>}
                     {selectedPost && <li>📝 Post on {selectedPost.lighters?.lighter_name}</li>}
                   </ul>
                 </div>
