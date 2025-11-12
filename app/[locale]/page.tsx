@@ -89,6 +89,17 @@ export default async function Home() {
           <Suspense fallback={<div className="h-64 flex items-center justify-center"><div className="text-muted-foreground">Loading...</div></div>}>
             <PinEntryForm />
           </Suspense>
+
+          {/* New here? Link to FAQ */}
+          <div className="mt-4 text-center">
+            <Link
+              href={`/${locale}/legal/faq`}
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary/80 transition-colors duration-200 underline decoration-primary/30 hover:decoration-primary/60 underline-offset-4"
+              aria-label={t('home.new_here_aria')}
+            >
+              {t('home.new_here_link')}
+            </Link>
+          </div>
         </div>
       </div>
 

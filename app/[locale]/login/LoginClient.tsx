@@ -89,6 +89,25 @@ export default function LoginClient() {
             </div>
           )}
 
+          {/* Helper text about why account is needed */}
+          <div className="mb-6 rounded-lg bg-primary/5 border border-primary/20 p-4">
+            <h2 className="text-sm font-bold text-foreground mb-2">
+              {t('auth.why_account_needed')}
+            </h2>
+            <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
+              {t('auth.account_reason_short')}
+            </p>
+            <div className="text-xs text-muted-foreground mb-3 whitespace-pre-line leading-relaxed">
+              {t('auth.account_benefits')}
+            </div>
+            <Link
+              href={`/${locale}/legal/faq`}
+              className="text-xs font-semibold text-primary hover:text-primary/80 underline decoration-primary/30 hover:decoration-primary/60 underline-offset-2"
+            >
+              {t('auth.learn_more')} →
+            </Link>
+          </div>
+
           <Auth
             supabaseClient={supabase}
             appearance={{
@@ -101,10 +120,15 @@ export default function LoginClient() {
                   },
                 },
               },
+              className: {
+                anchor: 'font-bold text-primary hover:text-primary/80',
+                button: 'font-bold',
+              },
             }}
             theme="light"
             providers={['google']}
             redirectTo={getAuthCallbackUrl(locale)}
+            view="sign_up"
             localization={{
               variables: {
                 sign_in: {
