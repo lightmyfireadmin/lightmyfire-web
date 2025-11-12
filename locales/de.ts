@@ -4,6 +4,7 @@ export default {
   'nav.refill_guide': 'Nachfüllen!',
   'nav.save_lighter': 'Werde LightSaver*in',
   'nav.my_profile': 'Mein Profil',
+  'nav.my_orders': 'Meine Bestellungen',
   'nav.login_signup': 'Anmelden / Registrieren',
   'nav.logout': 'Abmelden',
   'nav.logging_out': 'Wird abgemeldet...',
@@ -105,10 +106,42 @@ export default {
 
   // My Orders
   'my_orders.title': 'Meine Bestellungen',
-  'my_orders.subtitle': 'Verfolgen Sie Ihre LightMyFire Aufkleber-Bestellungen',
+  'my_orders.subtitle': 'Verfolge deine LightMyFire Aufkleber-Bestellungen',
+  'my_orders.loading': 'Lade deine Bestellungen...',
+  'my_orders.error.title': 'Bestellungen konnten nicht geladen werden',
+  'my_orders.error.description': '{error}. Möglicherweise hast du Bestellungen, die hier nicht angezeigt werden.',
+  'my_orders.error.try_again': 'Nochmal versuchen',
+  'my_orders.empty.title': 'Noch keine Bestellungen',
+  'my_orders.empty.description': 'Du hast noch keine Aufkleber-Bestellungen aufgegeben.',
+  'my_orders.empty.cta': 'Aufkleber bestellen',
   'my_orders.no_orders': 'Noch keine Bestellungen',
-  'my_orders.no_orders_text': 'Sie haben noch keine Aufkleber-Bestellungen aufgegeben.',
+  'my_orders.no_orders_text': 'Du hast noch keine Aufkleber-Bestellungen aufgegeben.',
   'my_orders.order_stickers': 'Aufkleber bestellen',
+  'my_orders.order_id': 'Bestellung #{orderId}',
+  'my_orders.placed_on': 'Aufgegeben am {date}',
+  'my_orders.sticker_count': '{count} Aufkleber',
+  'my_orders.stickers_count': '{count} Aufkleber',
+  'my_orders.status.pending': 'Ausstehend',
+  'my_orders.status.processing': 'In Bearbeitung',
+  'my_orders.status.shipped': 'Versandt',
+  'my_orders.status.delivered': 'Zugestellt',
+  'my_orders.status.failed': 'Fehlgeschlagen',
+  'my_orders.status.canceled': 'Storniert',
+  'my_orders.status.returned': 'Zurückgesendet',
+  'my_orders.shipping.title': 'Lieferadresse',
+  'my_orders.lighters.title': 'Feuerzeug-Namen',
+  'my_orders.tracking.title': 'Sendungsverfolgung',
+  'my_orders.tracking.carrier': 'Versanddienstleister:',
+  'my_orders.tracking.number': 'Sendungsnummer:',
+  'my_orders.tracking.shipped': 'Versandt:',
+  'my_orders.tracking.track_button': 'Paket verfolgen →',
+  'my_orders.hold.title': 'Bestellung pausiert',
+  'my_orders.failed.title': 'Bestellung fehlgeschlagen',
+  'my_orders.failed.contact': 'Bitte kontaktiere den Support unter',
+  'my_orders.canceled.title': 'Bestellung storniert',
+  'my_orders.help.label': 'Brauchst du Hilfe?',
+  'my_orders.help.contact': 'Support kontaktieren',
+  'my_orders.go_home': 'Zur Startseite',
 
   'notifications.login_success': 'Schön, dich wiederzusehen, LightSaver*in! Deine Feuerzeuge haben dich vermisst. 💫',
   'notifications.logout_success': 'Bis bald! ✨',
@@ -1220,6 +1253,167 @@ export default {
   'email.moderator.benefit2': 'Spezielles Moderator*innen-Abzeichen auf deinem Profil',
   'email.moderator.benefit3': 'Direkte Kommunikation mit dem LightMyFire-Team',
   'email.moderator.benefit4': 'Mitgestaltung der Zukunft der Gemeinschaft',
-  'email.moderator.not_interested': 'Nicht interessiert? Du kannst diese E-Mail ignorieren.'
+  'email.moderator.not_interested': 'Nicht interessiert? Du kannst diese E-Mail ignorieren.',
+
+  // Error Pages
+  'error.not_found.title': 'Alles verbrannt',
+  'error.not_found.description': 'Entschuldigung, wir konnten die gesuchte Seite nicht finden.',
+  'error.not_found.go_home': 'Zurück zur Startseite',
+  'error.generic.title': 'Hoppla! Etwas ist schiefgelaufen',
+  'error.generic.description': 'Ein unerwarteter Fehler ist aufgetreten. Unser Team wurde benachrichtigt.',
+  'error.generic.error_id': 'Fehler-ID:',
+  'error.generic.try_again': 'Nochmal versuchen',
+  'error.generic.go_home': 'Zur Startseite',
+  'error.generic.details_title': 'Fehlerdetails (nur Entwicklungsmodus)',
+  'error.critical.title': 'Anwendungsfehler',
+  'error.critical.description': 'Ein kritischer Fehler ist aufgetreten. Bitte aktualisiere die Seite.',
+
+  // Loading States
+  'common.loading': 'Lädt...',
+  'common.loading_alt': 'Lädt...',
+
+  // Form Validation
+  'validation.username_required': 'Benutzername darf nicht leer sein.',
+  'validation.username_length': 'Benutzername muss zwischen {min} und {max} Zeichen lang sein.',
+  'validation.password_too_short': 'Passwort muss mindestens {min} Zeichen lang sein.',
+  'validation.password_requirements': 'Passwort muss mindestens einen Großbuchstaben, einen Kleinbuchstaben und eine Zahl enthalten',
+  'validation.password_requirement.min_length': 'Mindestens {count} Zeichen',
+  'validation.password_requirement.uppercase': 'Mindestens ein Großbuchstabe',
+  'validation.password_requirement.lowercase': 'Mindestens ein Kleinbuchstabe',
+  'validation.password_requirement.number': 'Mindestens eine Zahl',
+  'validation.email_required': 'E-Mail ist erforderlich.',
+  'validation.email_invalid': 'Bitte gib eine gültige E-Mail-Adresse ein.',
+  'validation.field_required': 'Dieses Feld ist erforderlich.',
+
+  // Profile Messages
+  'profile.update_success': 'Profil erfolgreich aktualisiert!',
+  'profile.update_error': 'Fehler: {error}',
+
+  // Moderation Queue
+  'moderation.queue.empty.title': 'Warteschlange ist leer',
+  'moderation.queue.empty.description': 'Alle gemeldeten Beiträge wurden überprüft und bearbeitet. Großartige Moderationsarbeit!',
+  'moderation.queue.empty.back_home': 'Zurück zur Startseite',
+  'moderation.queue.count': '{count} Beitrag wartet auf Moderation',
+  'moderation.queue.count_plural': '{count} Beiträge warten auf Moderation',
+
+  // Admin - Orders
+  'admin.orders.no_orders': 'Keine Bestellungen gefunden.',
+  'admin.orders.total_orders': 'Gesamtbestellungen',
+  'admin.orders.total_revenue': 'Gesamtumsatz',
+  'admin.orders.refunded': 'Erstattet',
+  'admin.orders.pending_refunds': 'Ausstehende Erstattungen',
+  'admin.orders.table.order_id': 'Bestellnummer',
+  'admin.orders.table.customer': 'Kunde*in',
+  'admin.orders.table.pack_size': 'Paketgröße',
+  'admin.orders.table.amount': 'Betrag',
+  'admin.orders.table.status': 'Status',
+  'admin.orders.table.date': 'Datum',
+  'admin.orders.table.actions': 'Aktionen',
+  'admin.orders.action.send_fulfillment': '📧 An Versandteam senden',
+  'admin.orders.action.sending': 'Wird gesendet...',
+  'admin.orders.action.refund': 'Erstatten',
+  'admin.orders.action.refunding': 'Wird erstattet...',
+  'admin.orders.action.refunded': 'Erstattet',
+  'admin.orders.details.title': 'Bestelldetails',
+  'admin.orders.details.full_order_id': 'Vollständige Bestellnummer',
+  'admin.orders.details.payment_intent_id': 'Zahlungsabsichts-ID',
+  'admin.orders.details.user_email': 'Benutzer*innen-E-Mail',
+  'admin.orders.details.shipping_address': 'Lieferadresse',
+  'admin.orders.details.refund_info': 'Erstattungsinformationen',
+  'admin.orders.details.na': 'k. A.',
+  'admin.orders.confirm_resend': 'Versand-E-Mail mit Aufklebern für Bestellung {orderId} erneut senden?',
+  'admin.orders.resend_failed': 'Versand-E-Mail konnte nicht erneut gesendet werden',
+  'admin.orders.resend_success': '✅ Versand-E-Mail erfolgreich erneut gesendet!\n\n{count} Aufkleber an Versandteam gesendet.',
+  'admin.orders.resend_error': '❌ Erneutes Senden fehlgeschlagen: {error}',
+  'admin.orders.refund_confirm': 'Bist du sicher, dass du €{amount} an {email} erstatten möchtest?',
+  'admin.orders.refund_failed': 'Erstattung fehlgeschlagen',
+  'admin.orders.refund_success': 'Erstattung erfolgreich! Betrag: €{amount}',
+  'admin.orders.refund_error': 'Erstattung fehlgeschlagen: {error}',
+  'admin.orders.pack_size_count': '{count} Aufkleber',
+
+  // Shipping & Order Forms
+  'shipping.address_suggestions': '(Tippe für Vorschläge)',
+
+  // Payment
+  'payment.card_not_found': 'Kartenelement nicht gefunden',
+  'payment.stripe_load_failed': 'Stripe konnte nicht geladen werden. Bitte überprüfe deine Konfiguration.',
+
+  // Personalization
+  'personalization.second_language': 'Zweite Sprache auf Aufkleber (+ Englisch)',
+  'personalization.english_included': 'Englisch ist immer auf deinen Aufklebern enthalten',
+  'personalization.customize_stickers': 'Personalisiere deine Aufkleber',
+  'personalization.personalize_each': 'Personalisiere jedes Feuerzeug',
+
+  // Order Success
+  'order_success.email_subject': 'Frage zu meiner Aufkleber-Bestellung',
+
+  // Lighter Metadata
+  'lighter.not_found.title': 'Feuerzeug nicht gefunden | LightMyFire',
+  'lighter.not_found.description': 'Ein menschliches Kreativitätsmosaik.',
+  'lighter.meta.description': 'Sieh die Geschichte eines Feuerzeugs namens "{name}". Füge dein eigenes Kapitel zu seiner Reise hinzu!',
+  'lighter.meta.og_description': 'Sieh seine Geschichte auf LightMyFire',
+  'lighter.meta.twitter_description': 'Sieh seine Geschichte auf LightMyFire',
+
+  // Authentication redirects
+  'auth.login_required': 'Du musst angemeldet sein, um ein Feuerzeug zu retten',
+
+  // Additional Image Alt Text
+  'alt.lightmyfire_logo': 'LightMyFire',
+  'alt.lightmyfire_tagline': 'LightMyFire - Gib Feuerzeugen ein zweites Leben',
+  'alt.arrow_save_lighter': 'Pfeil zeigt auf Feuerzeug-retten-Button',
+  'alt.lighter_illustration': 'Feuerzeug-Illustration',
+  'alt.creative': 'Kreativ',
+  'alt.community': 'Gemeinschaft',
+  'alt.sustainable': 'Nachhaltig',
+  'alt.personalise': 'Personalisieren',
+  'alt.qr_code': 'QR-Code',
+  'alt.butane_lighter': 'Nachfüllbares Butan-Feuerzeug',
+  'alt.gasoline_lighter': 'Nachfüllbares Benzin-Feuerzeug',
+  'alt.non_refillable_lighter': 'Nicht nachfüllbares Feuerzeug',
+  'alt.butane_refill_process': 'Butan-Feuerzeug-Nachfüllvorgang',
+  'alt.gasoline_refill_process': 'Benzin-Feuerzeug-Nachfüllvorgang',
+
+  // Form Placeholders
+  'placeholder.pin_entry': 'ABC-123',
+  'placeholder.location_search': 'Nach einem Ort suchen...',
+  'placeholder.lighter_name': 'Feuerzeugname...',
+  'placeholder.hex_color': '#FF6B6B',
+
+  // Aria Labels (Accessibility)
+  'aria.global': 'Global',
+  'aria.search_location': 'Nach einem Ort suchen',
+  'aria.close': 'Schließen',
+  'aria.popular_colors': 'Beliebte Farbpalette',
+  'aria.hex_color': 'HEX-Farbcode',
+  'aria.learn_levels': 'Erfahre, wie du Level verdienst',
+  'aria.close_notification': 'Benachrichtigung schließen',
+
+  // Contact Form Subjects
+  'contact.subject.custom_branding': 'Anfrage zu individuellem Branding',
+  'contact.subject.question': 'Frage zu LightMyFire',
+  'contact.subject.general': 'Allgemeine Anfrage',
+
+  // Redirect Messages
+  'redirect.login_profile': 'Du musst angemeldet sein, um dein Profil anzusehen.',
+  'redirect.login_save_lighter': 'Du musst angemeldet sein, um ein Feuerzeug zu retten',
+  'redirect.login_add_story': 'Du musst angemeldet sein, um eine Geschichte hinzuzufügen.',
+  'redirect.login_like': 'Du musst angemeldet sein, um einen Beitrag zu liken',
+
+  // Color Names
+  'color.coral_red': 'Korallenrot',
+  'color.sunset_orange': 'Sonnenuntergangsorange',
+  'color.warm_orange': 'Warmes Orange',
+  'color.golden_yellow': 'Goldgelb',
+  'color.bright_yellow': 'Leuchtendgelb',
+  'color.light_green': 'Hellgrün',
+  'color.forest_green': 'Waldgrün',
+  'color.turquoise': 'Türkis',
+  'color.sky_blue': 'Himmelblau',
+  'color.royal_blue': 'Königsblau',
+  'color.blue_violet': 'Blauviolett',
+  'color.deep_pink': 'Tiefes Pink',
+  'color.light_pink': 'Hellrosa',
+  'color.light_gray': 'Hellgrau',
+  'color.gray': 'Grau',
 
 } as const;
