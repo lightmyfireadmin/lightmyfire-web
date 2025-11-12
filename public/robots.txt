@@ -1,0 +1,28 @@
+# LightMyFire Robots.txt
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+
+# Disallow admin and API routes
+Disallow: /*/admin
+Disallow: /*/admin/*
+Disallow: /api/
+Disallow: /api/*
+
+# Disallow auth callback pages
+Disallow: /*/auth/
+Disallow: /*/auth/*
+
+# Allow crawling of static assets
+Allow: /*.js
+Allow: /*.css
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+
+# Sitemap location
+Sitemap: https://lightmyfire.app/sitemap.xml

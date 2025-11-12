@@ -13,6 +13,20 @@ import Image from 'next/image';
 import { getI18n, getCurrentLocale } from '@/locales/server';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 import type { Database } from '@/types/database';
+import { generatePageMetadata, localizedMetadata } from '@/lib/metadata';
+import { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getCurrentLocale();
+  const content = localizedMetadata.profile[locale as keyof typeof localizedMetadata.profile] || localizedMetadata.profile.en;
+
+  return generatePageMetadata(locale, {
+    title: content.title,
+    description: content.description,
+    keywords: content.keywords,
+    url: '/my-profile',
+  });
+}
 
 interface SavedLighter {
   id: string;

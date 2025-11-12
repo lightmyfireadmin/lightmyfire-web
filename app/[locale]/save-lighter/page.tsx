@@ -1,11 +1,25 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import SaveLighterFlow from './SaveLighterFlow'; 
-import { getI18n } from '@/locales/server';
+import SaveLighterFlow from './SaveLighterFlow';
+import { getI18n, getCurrentLocale } from '@/locales/server';
 import Image from 'next/image';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
+import { generatePageMetadata, localizedMetadata } from '@/lib/metadata';
+import { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getCurrentLocale();
+  const content = localizedMetadata.save[locale as keyof typeof localizedMetadata.save] || localizedMetadata.save.en;
+
+  return generatePageMetadata(locale, {
+    title: content.title,
+    description: content.description,
+    keywords: content.keywords,
+    url: '/save-lighter',
+  });
+}
 
 export default async function SaveLighterPage({ params }: { params: { locale: string } }) {
   const t = await getI18n() as any;

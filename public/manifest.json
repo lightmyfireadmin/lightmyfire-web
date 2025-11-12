@@ -1,0 +1,66 @@
+{
+  "name": "LightMyFire - Save Lighters, Share Stories",
+  "short_name": "LightMyFire",
+  "description": "A global movement to save lighters and share their stories. Join thousands creating a human mosaic of creativity while fighting waste.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F8F4",
+  "theme_color": "#B400A3",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "categories": ["social", "lifestyle", "entertainment"],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/webclip.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/webclip.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/illustrations/around_the_world.png",
+      "sizes": "800x600",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Find a Lighter",
+      "short_name": "Find",
+      "description": "Enter a PIN to find a lighter's story",
+      "url": "/en/find",
+      "icons": [{ "src": "/favicon.ico", "sizes": "192x192" }]
+    },
+    {
+      "name": "Save a Lighter",
+      "short_name": "Save",
+      "description": "Become a LightSaver",
+      "url": "/en/save-lighter",
+      "icons": [{ "src": "/favicon.ico", "sizes": "192x192" }]
+    },
+    {
+      "name": "My Profile",
+      "short_name": "Profile",
+      "description": "View your lighters and posts",
+      "url": "/en/my-profile",
+      "icons": [{ "src": "/favicon.ico", "sizes": "192x192" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

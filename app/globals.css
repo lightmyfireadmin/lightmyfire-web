@@ -99,6 +99,58 @@
     --tw-space-x-reverse: 1;
   }
 
+  /* ========================================
+     MOBILE OPTIMIZATIONS
+     ======================================== */
+
+  /* Safe area insets for notched devices (iPhone X+, etc.) */
+  @supports (padding: max(0px)) {
+    body {
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+  }
+
+  /* Prevent text size adjustment on orientation change */
+  html {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Smooth momentum scrolling on iOS */
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none; /* Prevent pull-to-refresh when not wanted */
+  }
+
+  /* Remove tap delay on mobile (faster tap response) */
+  a, button, input, select, textarea, [role="button"] {
+    touch-action: manipulation; /* Prevents double-tap zoom */
+  }
+
+  /* Better tap highlighting */
+  * {
+    -webkit-tap-highlight-color: rgba(180, 0, 163, 0.15);
+  }
+
+  /* Prevent zoom on input focus (iOS) while keeping accessibility */
+  @media screen and (max-width: 768px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="password"],
+    input[type="search"],
+    textarea,
+    select {
+      font-size: 16px !important; /* iOS doesn't zoom if font-size >= 16px */
+    }
+  }
+
   /* Mobile-specific: Enforce consistent styling regardless of system theme */
   @media (max-width: 768px) {
     /* Ensure proper background colors on mobile */

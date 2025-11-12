@@ -15,8 +15,22 @@ import { createServerSupabaseClient } from '@/lib/supabase-server';
 import CommunityStats from '@/app/components/CommunityStats';
 import OurPhilosophy from '@/app/components/OurPhilosophy';
 import LaunchAnnouncementPopup from '@/components/LaunchAnnouncementPopup';
+import { generatePageMetadata, localizedMetadata } from '@/lib/metadata';
+import { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getCurrentLocale();
+  const content = localizedMetadata.home[locale as keyof typeof localizedMetadata.home] || localizedMetadata.home.en;
+
+  return generatePageMetadata(locale, {
+    title: content.title,
+    description: content.description,
+    keywords: content.keywords,
+    url: '',
+  });
+}
 
 export default async function Home() {
   const t = await getI18n() as any;
