@@ -178,11 +178,11 @@ export default {
 
     'save_lighter.error.failed_to_create': 'Kan aansteker niet maken. Probeer het opnieuw。',
 
-    'save_lighter.button.saving': 'Opslaan...', 
+    'save_lighter.button.saving': 'Opslaan...',
 
     'save_lighter.button.save_lighter': 'Red aansteker',
 
-    'save_success.loading': 'Details van uw aansteker laden...', 
+    'save_success.loading': 'Details van uw aansteker laden...',
 
     'save_success.lighter_not_found': 'Kan aansteker niet vinden。',
 
@@ -198,7 +198,7 @@ export default {
 
     'save_success.next_steps.share_label': 'Delen',
 
-    'save_success.button.generating': 'Genereren...', 
+    'save_success.button.generating': 'Genereren...',
 
     'save_success.button.download_pdf': 'Sticker-PDF downloaden',
 
@@ -772,7 +772,7 @@ export default {
   'add_post.placeholder.location_lng': 'Longitude (e.g., 2.3522)',
 
   // TODO: Translate from English
-  'add_post.placeholder.location_name': 'Name of a place (e.g., \\'Cafe Central\\')',
+  'add_post.placeholder.location_name': 'Name of a place (e.g., \'Cafe Central\')',
 
   // TODO: Translate from English
   'add_post.prompt_v1': 'What memory does this lighter hold? Tell its story...',
@@ -781,7 +781,7 @@ export default {
   'add_post.prompt_v2': 'Where did you find it? What happened next?',
 
   // TODO: Translate from English
-  'add_post.prompt_v3': 'A thought, a poem, a moment—share what\\'s on your mind...',
+  'add_post.prompt_v3': 'A thought, a poem, a moment—share what\'s on your mind...',
 
   // TODO: Translate from English
   'add_post.prompt_v4': 'What song is playing? Describe the vibe...',
@@ -964,7 +964,7 @@ export default {
   'auth.continue_with': 'Continue with',
 
   // TODO: Translate from English
-  'auth.dont_have_account': 'Don\\'t have an account? Sign up',
+  'auth.dont_have_account': 'Don\'t have an account? Sign up',
 
   // TODO: Translate from English
   'auth.email_label': 'Email',
@@ -1090,7 +1090,7 @@ export default {
   'contact.success_message': 'Message sent successfully!',
 
   // TODO: Translate from English
-  'contact.success_subtitle': 'We\\'ll get back to you soon.',
+  'contact.success_subtitle': 'We\'ll get back to you soon.',
 
   // TODO: Translate from English
   'email.activity.by': 'By:',
@@ -1099,13 +1099,13 @@ export default {
   'email.activity.greeting': 'Hi {name},',
 
   // TODO: Translate from English
-  'email.activity.intro': 'There\\'s new activity on your lighter ',
+  'email.activity.intro': 'There\'s new activity on your lighter ',
 
   // TODO: Translate from English
   'email.activity.lighter': 'Lighter:',
 
   // TODO: Translate from English
-  'email.activity.outro': 'Your lighter\\'s journey continues! See where it\\'s been and who\\'s found it.',
+  'email.activity.outro': 'Your lighter\'s journey continues! See where it\'s been and who\'s found it.',
 
   // TODO: Translate from English
   'email.activity.pin': 'PIN:',
@@ -1156,7 +1156,7 @@ export default {
   'email.first_post.achievement': '🏆 Achievement Unlocked: First Spark',
 
   // TODO: Translate from English
-  'email.first_post.achievement_content': 'You\\'ve lit your first flame in the LightMyFire community!',
+  'email.first_post.achievement_content': 'You\'ve lit your first flame in the LightMyFire community!',
 
   // TODO: Translate from English
   'email.first_post.greeting': 'Congratulations, {name}! 🎉',
@@ -1171,7 +1171,7 @@ export default {
   'email.first_post.next_step1': 'Share it: Pass your lighter to a friend or leave it somewhere interesting',
 
   // TODO: Translate from English
-  'email.first_post.next_step2': 'Get stickers: Order custom stickers to help others find your lighter\\'s story',
+  'email.first_post.next_step2': 'Get stickers: Order custom stickers to help others find your lighter\'s story',
 
   // TODO: Translate from English
   'email.first_post.next_step3': 'Watch it grow: Check back to see new posts as your lighter travels',
@@ -1189,10 +1189,10 @@ export default {
   'email.first_post.welcome_title': 'Welcome to the Movement!',
 
   // TODO: Translate from English
-  'email.first_post.what_started_content': 'Your lighter is now part of something special. Every time someone finds it and adds their story, you\\'ll be able to see where it\\'s been and the connections it\\'s made.',
+  'email.first_post.what_started_content': 'Your lighter is now part of something special. Every time someone finds it and adds their story, you\'ll be able to see where it\'s been and the connections it\'s made.',
 
   // TODO: Translate from English
-  'email.first_post.what_started_title': '🎯 What You\\'ve Started',
+  'email.first_post.what_started_title': '🎯 What You\'ve Started',
 
   // TODO: Translate from English
   'email.first_post_subject': 'You lit the first spark! 🔥 Welcome to the LightSaver family',
@@ -1204,7 +1204,7 @@ export default {
   'email.moderation_approved_subject': 'Good news! Your story is now live. 🎉',
 
   // TODO: Translate from English
-  'email.moderation_rejected_subject': 'About your recent post... let\\'s chat',
+  'email.moderation_rejected_subject': 'About your recent post... let\'s chat',
 
   // TODO: Translate from English
   'email.moderator.benefit1': 'Early access to new features',
@@ -1240,7 +1240,7 @@ export default {
   'email.moderator.what_is_title': '👮 What is a Moderator?',
 
   // TODO: Translate from English
-  'email.moderator_invite_subject': 'You\\'ve Been Invited to Join the Moderation Team',
+  'email.moderator_invite_subject': 'You\'ve Been Invited to Join the Moderation Team',
 
   // TODO: Translate from English
   'email.order_confirmation.estimated_delivery': 'Estimated delivery: 5-10 business days',
@@ -1279,10 +1279,10 @@ export default {
   'email.order_confirmation.total_paid': 'Total Paid:',
 
   // TODO: Translate from English
-  'email.order_confirmation.whats_next_content': 'Your stickers are being prepared for shipment. You\\'ll receive another email with tracking information once they\\'re on their way!',
+  'email.order_confirmation.whats_next_content': 'Your stickers are being prepared for shipment. You\'ll receive another email with tracking information once they\'re on their way!',
 
   // TODO: Translate from English
-  'email.order_confirmation.whats_next_title': '⏰ What\\'s Next?',
+  'email.order_confirmation.whats_next_title': '⏰ What\'s Next?',
 
   // TODO: Translate from English
   'email.order_confirmation_subject': 'Order Confirmed! Your LightMyFire stickers are on the way 📦',
@@ -1330,7 +1330,7 @@ export default {
   'email.trophy.greeting': 'Awesome work, {name}! 🏆',
 
   // TODO: Translate from English
-  'email.trophy.intro': 'You\\'ve earned a new trophy on LightMyFire!',
+  'email.trophy.intro': 'You\'ve earned a new trophy on LightMyFire!',
 
   // TODO: Translate from English
   'email.trophy.keep_going': '💡 Keep Going!',
@@ -1345,7 +1345,7 @@ export default {
   'email.trophy_earned_subject': '🏆 Achievement unlocked: {trophy_name}!',
 
   // TODO: Translate from English
-  'email.welcome.get_started_intro': 'Here\\'s what you can do now:',
+  'email.welcome.get_started_intro': 'Here\'s what you can do now:',
 
   // TODO: Translate from English
   'email.welcome.get_started_title': '🚀 Get Started',
@@ -1354,10 +1354,10 @@ export default {
   'email.welcome.greeting': 'Hi {name}! 👋',
 
   // TODO: Translate from English
-  'email.welcome.intro': 'Welcome to the LightSavers\\' community! We\\'re thrilled to have you here.',
+  'email.welcome.intro': 'Welcome to the LightSavers\' community! We\'re thrilled to have you here.',
 
   // TODO: Translate from English
-  'email.welcome.questions': 'Questions? Just reply to this email—we\\'re here to help!',
+  'email.welcome.questions': 'Questions? Just reply to this email—we\'re here to help!',
 
   // TODO: Translate from English
   'email.welcome.step1': 'Save your first lighter - Give it a name and get custom stickers delivered to your home',
@@ -1381,7 +1381,7 @@ export default {
   'empty_lighter.action': 'Add the First Post',
 
   // TODO: Translate from English
-  'empty_lighter.description': 'This lighter\\'s journey has just started. Be the first to add a chapter to its story and inspire others!',
+  'empty_lighter.description': 'This lighter\'s journey has just started. Be the first to add a chapter to its story and inspire others!',
 
   // TODO: Translate from English
   'empty_lighter.title': 'The Story Begins...',
@@ -1390,13 +1390,13 @@ export default {
   'empty_posts.action': 'Add the First Post',
 
   // TODO: Translate from English
-  'empty_posts.message': 'Be the first to add a story, picture, or song to this lighter\\'s journey!',
+  'empty_posts.message': 'Be the first to add a story, picture, or song to this lighter\'s journey!',
 
   // TODO: Translate from English
-  'empty_posts.title': 'This lighter\\'s story is waiting to be written! ✨',
+  'empty_posts.title': 'This lighter\'s story is waiting to be written! ✨',
 
   // TODO: Translate from English
-  'empty_state.default_message': 'Nothing here yet, but that\\'s about to change!',
+  'empty_state.default_message': 'Nothing here yet, but that\'s about to change!',
 
   // TODO: Translate from English
   'empty_state.default_title': 'This space is waiting for you ✨',
@@ -1405,10 +1405,10 @@ export default {
   'empty_state.no_posts_message': 'Be the first to add a post and start its journey.',
 
   // TODO: Translate from English
-  'empty_state.no_posts_title': 'This lighter\\'s story is waiting to be written!',
+  'empty_state.no_posts_title': 'This lighter\'s story is waiting to be written!',
 
   // TODO: Translate from English
-  'error.content_flagged': 'Heads up! Our community guidelines flag this content as {reason}. Let\\'s keep LightMyFire welcoming for everyone. 🌟',
+  'error.content_flagged': 'Heads up! Our community guidelines flag this content as {reason}. Let\'s keep LightMyFire welcoming for everyone. 🌟',
 
   // TODO: Translate from English
   'error.critical.description': 'A critical error occurred. Please try refreshing the page.',
@@ -1435,25 +1435,25 @@ export default {
   'error.generic.try_again': 'Try Again',
 
   // TODO: Translate from English
-  'error.generic_message': 'Sorry, there was a small issue on our end. If the problem persists, don\\'t hesitate to contact support: support@lightmyfire.app',
+  'error.generic_message': 'Sorry, there was a small issue on our end. If the problem persists, don\'t hesitate to contact support: support@lightmyfire.app',
 
   // TODO: Translate from English
   'error.generic_title': 'Oops! Something went wrong',
 
   // TODO: Translate from English
-  'error.invalid_pin': 'Hmm, that PIN doesn\\'t match any lighter we know. Double-check the sticker!',
+  'error.invalid_pin': 'Hmm, that PIN doesn\'t match any lighter we know. Double-check the sticker!',
 
   // TODO: Translate from English
-  'error.not_found.description': 'Sorry, we couldn\\'t find the page you\\'re looking for.',
+  'error.not_found.description': 'Sorry, we couldn\'t find the page you\'re looking for.',
 
   // TODO: Translate from English
   'error.not_found.go_home': 'Go back home',
 
   // TODO: Translate from English
-  'error.not_found.title': 'It\\'s all burnt up',
+  'error.not_found.title': 'It\'s all burnt up',
 
   // TODO: Translate from English
-  'error.rate_limit': 'Whoa there, speedy! 🏃‍♂️\n\nYou\\'re adding posts faster than we can keep up. Take a 24-hour break to let others add to this lighter\\'s story, then come back!\n\n(This keeps our mosaic diverse and interesting for everyone.)',
+  'error.rate_limit': 'Whoa there, speedy! 🏃‍♂️\n\nYou\'re adding posts faster than we can keep up. Take a 24-hour break to let others add to this lighter\'s story, then come back!\n\n(This keeps our mosaic diverse and interesting for everyone.)',
 
   // TODO: Translate from English
   'error.try_again': 'Try Again',
@@ -1462,13 +1462,13 @@ export default {
   'error.upload_too_large': 'That image is too big! Please choose one under 2MB. 📸',
 
   // TODO: Translate from English
-  'faq.q1.desc': 'It\\'s a project to reduce waste and create a ',
+  'faq.q1.desc': 'It\'s a project to reduce waste and create a ',
 
   // TODO: Translate from English
   'faq.q1.title': 'What is LightMyFire?',
 
   // TODO: Translate from English
-  'faq.q2.desc': 'You must find a lighter with a LightMyFire sticker. Scan the QR code (or go to our site) and enter the unique PIN from the sticker. You\\'ll need to create a free account to contribute.',
+  'faq.q2.desc': 'You must find a lighter with a LightMyFire sticker. Scan the QR code (or go to our site) and enter the unique PIN from the sticker. You\'ll need to create a free account to contribute.',
 
   // TODO: Translate from English
   'faq.q2.title': 'How do I add a story?',
@@ -1477,10 +1477,10 @@ export default {
   'faq.q3.desc': 'To keep the mosaic diverse, we have a 24-hour cooldown period *per lighter*. This encourages you to pass the lighter on so someone else can add their story.',
 
   // TODO: Translate from English
-  'faq.q3.title': 'Why can\\'t I post twice in a row?',
+  'faq.q3.title': 'Why can\'t I post twice in a row?',
 
   // TODO: Translate from English
-  'faq.q4.desc': 'You have two choices. All posts are visible on the lighter\\'s page (which requires the PIN to access). When you post, you can also check a box to make it ',
+  'faq.q4.desc': 'You have two choices. All posts are visible on the lighter\'s page (which requires the PIN to access). When you post, you can also check a box to make it ',
 
   // TODO: Translate from English
   'faq.q4.title': 'Is my post public?',
@@ -1492,13 +1492,13 @@ export default {
   'faq.q5.title': 'How do I delete a post I made?',
 
   // TODO: Translate from English
-  'faq.q6.desc': 'That\\'s part of the fun! As the ',
+  'faq.q6.desc': 'That\'s part of the fun! As the ',
 
   // TODO: Translate from English
   'faq.q6.title': 'What happens if I lose the lighter I saved?',
 
   // TODO: Translate from English
-  'faq.q7.desc': 'On each lighter\\'s page, you\\'ll find a map that shows the journey of that specific lighter. Every time someone makes a ',
+  'faq.q7.desc': 'On each lighter\'s page, you\'ll find a map that shows the journey of that specific lighter. Every time someone makes a ',
 
   // TODO: Translate from English
   'faq.q7.title': 'How does the map work?',
@@ -1573,7 +1573,7 @@ export default {
   'how_it_works_details.step2.title': '2. Share',
 
   // TODO: Translate from English
-  'how_it_works_details.step3.desc': 'Once saved, you are directed to its permanent web page. Add the first post: a photo, a video, a song link, or just a story from where you are. This is your lighter\\'s \\'birth.\\'',
+  'how_it_works_details.step3.desc': 'Once saved, you are directed to its permanent web page. Add the first post: a photo, a video, a song link, or just a story from where you are. This is your lighter\'s \'birth.\'',
 
   // TODO: Translate from English
   'how_it_works_details.step3.title': '3. Add Your First Story',
@@ -1771,7 +1771,7 @@ export default {
   'lighter_personalization.warning_fill_names': 'Please fill in all lighter names (3-16 characters each) before continuing.',
 
   // TODO: Translate from English
-  'loading.generating_stickers': 'Crafting your lighter\\'s passport... ✨',
+  'loading.generating_stickers': 'Crafting your lighter\'s passport... ✨',
 
   // TODO: Translate from English
   'loading.posting_v1': 'Adding your story to the timeline...',
@@ -1780,10 +1780,10 @@ export default {
   'loading.posting_v2': 'Weaving your moment into the mosaic...',
 
   // TODO: Translate from English
-  'loading.posting_v3': 'Lighting up this lighter\\'s journey...',
+  'loading.posting_v3': 'Lighting up this lighter\'s journey...',
 
   // TODO: Translate from English
-  'loading.posting_v4': 'Making this Lightee\\'s story brighter...',
+  'loading.posting_v4': 'Making this Lightee\'s story brighter...',
 
   // TODO: Translate from English
   'loading.searching': 'Following the trail... 🔍',
@@ -1942,13 +1942,13 @@ export default {
   'my_orders.empty.cta': 'Order Stickers',
 
   // TODO: Translate from English
-  'my_orders.empty.description': 'You haven\\'t placed any sticker orders yet.',
+  'my_orders.empty.description': 'You haven\'t placed any sticker orders yet.',
 
   // TODO: Translate from English
   'my_orders.empty.title': 'No Orders Yet',
 
   // TODO: Translate from English
-  'my_orders.error.description': '{error}. You may still have orders that aren\\'t showing here.',
+  'my_orders.error.description': '{error}. You may still have orders that aren\'t showing here.',
 
   // TODO: Translate from English
   'my_orders.error.title': 'Could not load orders',
@@ -2068,7 +2068,7 @@ export default {
   'my_profile.settings.new_password_label': 'New Password',
 
   // TODO: Translate from English
-  'my_profile.settings.password_mismatch': 'Passwords don\\'t match.',
+  'my_profile.settings.password_mismatch': 'Passwords don\'t match.',
 
   // TODO: Translate from English
   'my_profile.settings.password_title': 'Change Password',
@@ -2125,10 +2125,10 @@ export default {
   'notifications.post_deleted_success': 'Post deleted. Like it never happened.',
 
   // TODO: Translate from English
-  'notifications.post_success_first': 'Congratulations! 🌟 You lit the first spark in this lighter\\'s story.',
+  'notifications.post_success_first': 'Congratulations! 🌟 You lit the first spark in this lighter\'s story.',
 
   // TODO: Translate from English
-  'notifications.post_success_public': 'Story shared with the world! 🌍 It\\'s now part of our global mosaic.',
+  'notifications.post_success_public': 'Story shared with the world! 🌍 It\'s now part of our global mosaic.',
 
   // TODO: Translate from English
   'notifications.session_expired': 'Your session has expired. Please log in again to continue.',
@@ -2140,7 +2140,7 @@ export default {
   'notifications.success': 'Success!',
 
   // TODO: Translate from English
-  'notifications.trophy_earned': '🏆 Trophy Unlocked: {trophy_name}! You\\'re on fire!',
+  'notifications.trophy_earned': '🏆 Trophy Unlocked: {trophy_name}! You\'re on fire!',
 
   // TODO: Translate from English
   'notifications.user_not_found': 'No account found with this email. Please sign up first!',
@@ -2155,7 +2155,7 @@ export default {
   'order.guidelines.step2': 'After application, press the sticker down with a clean cloth to maximize adhesion and avoid air bubbles.',
 
   // TODO: Translate from English
-  'order.guidelines.step3': 'Make sure the sticker is applied correctly the first time. With every reapplication, the sticker\\'s ability to stick will decrease.',
+  'order.guidelines.step3': 'Make sure the sticker is applied correctly the first time. With every reapplication, the sticker\'s ability to stick will decrease.',
 
   // TODO: Translate from English
   'order.guidelines.title': 'Application Guidelines',
@@ -2242,13 +2242,13 @@ export default {
   'philosophy.p1': '<strong>LightMyFire</strong> was born from a simple idea: what if we stopped treating lighters as throwaway items? <strong>In a world of mass consumption where billions of these items are discarded every year,</strong> what if we saw them as companions, as tiny vessels for our memories, ideas, and creativity?',
 
   // TODO: Translate from English
-  'philosophy.p2': 'The everyday lighter is <strong>a powerful social catalyst.</strong> It\\'s no personal possession; it belongs to everyone. It passes from hand to hand, from friend to stranger, at parties, concerts, and quiet meetups. It hears our secrets and lights our way. <strong>It\\'s the silent witness to a great conversation, the spark for a new friendship. But its story is ephemeral, lost as soon as it\\'s passed on.</strong>',
+  'philosophy.p2': 'The everyday lighter is <strong>a powerful social catalyst.</strong> It\'s no personal possession; it belongs to everyone. It passes from hand to hand, from friend to stranger, at parties, concerts, and quiet meetups. It hears our secrets and lights our way. <strong>It\'s the silent witness to a great conversation, the spark for a new friendship. But its story is ephemeral, lost as soon as it\'s passed on.</strong>',
 
   // TODO: Translate from English
-  'philosophy.p3': 'By giving a lighter a permanent, digital story, we give it sentimental value. <strong>Your lighter becomes a living artifact, a message in a bottle.</strong> And when something has value, we\\'re less likely to throw it away.',
+  'philosophy.p3': 'By giving a lighter a permanent, digital story, we give it sentimental value. <strong>Your lighter becomes a living artifact, a message in a bottle.</strong> And when something has value, we\'re less likely to throw it away.',
 
   // TODO: Translate from English
-  'philosophy.p4': 'Our goal is simple: to create a global, human creativity mosaic, one lighter at a time, and reduce waste in the process. <strong>This is our stand against a throwaway culture. It\\'s an experiment in collaborative art. It\\'s a way to prove that if you give an object a story, you give it a soul.</strong>',
+  'philosophy.p4': 'Our goal is simple: to create a global, human creativity mosaic, one lighter at a time, and reduce waste in the process. <strong>This is our stand against a throwaway culture. It\'s an experiment in collaborative art. It\'s a way to prove that if you give an object a story, you give it a soul.</strong>',
 
   // TODO: Translate from English
   'philosophy.title': 'Our Philosophy',
@@ -2305,7 +2305,7 @@ export default {
   'privacy.h3.changes': '9. Changes to This Privacy Policy',
 
   // TODO: Translate from English
-  'privacy.h3.children': '8. Children\\'s Privacy',
+  'privacy.h3.children': '8. Children\'s Privacy',
 
   // TODO: Translate from English
   'privacy.h3.contact': '10. Contact Us',
@@ -2410,7 +2410,7 @@ export default {
   'privacy.p15': 'You have the following rights regarding your personal data. To exercise any of these rights, contact us at <strong>support@lightmyfire.app</strong>.',
 
   // TODO: Translate from English
-  'privacy.p16': 'You can request a copy of all personal data we hold about you. We\\'ll provide this in a structured, commonly used format within 30 days.',
+  'privacy.p16': 'You can request a copy of all personal data we hold about you. We\'ll provide this in a structured, commonly used format within 30 days.',
 
   // TODO: Translate from English
   'privacy.p17': 'You can correct inaccurate or incomplete data. Update most information directly in your profile settings, or contact us for assistance.',
@@ -2428,16 +2428,16 @@ export default {
   'privacy.p20': 'You can receive your data in a machine-readable format (JSON/CSV) to transfer to another service.',
 
   // TODO: Translate from English
-  'privacy.p21': 'You can object to processing based on legitimate interests. We\\'ll stop processing unless we demonstrate compelling legitimate grounds.',
+  'privacy.p21': 'You can object to processing based on legitimate interests. We\'ll stop processing unless we demonstrate compelling legitimate grounds.',
 
   // TODO: Translate from English
-  'privacy.p22': 'For processing based on consent, you can withdraw it anytime. This doesn\\'t affect the lawfulness of processing before withdrawal.',
+  'privacy.p22': 'For processing based on consent, you can withdraw it anytime. This doesn\'t affect the lawfulness of processing before withdrawal.',
 
   // TODO: Translate from English
-  'privacy.p23': 'If you believe we\\'re not complying with GDPR, you have the right to lodge a complaint with a supervisory authority:',
+  'privacy.p23': 'If you believe we\'re not complying with GDPR, you have the right to lodge a complaint with a supervisory authority:',
 
   // TODO: Translate from English
-  'privacy.p24': '<strong>France (Our Primary Jurisdiction):</strong><br>Commission Nationale de l\\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, France<br>Website: <a href=\\'https://www.cnil.fr\\' target=\\'_blank\\'>www.cnil.fr</a>',
+  'privacy.p24': '<strong>France (Our Primary Jurisdiction):</strong><br>Commission Nationale de l\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, France<br>Website: <a href=\'https://www.cnil.fr\' target=\'_blank\'>www.cnil.fr</a>',
 
   // TODO: Translate from English
   'privacy.p25': 'You can also contact the data protection authority in your country of residence.',
@@ -2449,7 +2449,7 @@ export default {
   'privacy.p27': 'These automated processes do not produce legal effects or significantly affect you. You can always contact us to contest a decision or request human review.',
 
   // TODO: Translate from English
-  'privacy.p28': 'Our service is not directed to children under 16 years of age (or the minimum age required in your jurisdiction to consent to data processing). We do not knowingly collect personal data from children. If you believe we\\'ve inadvertently collected data from a child, contact us immediately at support@lightmyfire.app and we\\'ll delete it promptly.',
+  'privacy.p28': 'Our service is not directed to children under 16 years of age (or the minimum age required in your jurisdiction to consent to data processing). We do not knowingly collect personal data from children. If you believe we\'ve inadvertently collected data from a child, contact us immediately at support@lightmyfire.app and we\'ll delete it promptly.',
 
   // TODO: Translate from English
   'privacy.p29': 'We may update this Privacy Policy to reflect changes in our practices or legal requirements. We will:',
@@ -2506,7 +2506,7 @@ export default {
   'privacy.ul11.li1': '<strong>Account Data:</strong> Retained while your account is active, plus 30 days after deletion (to allow reactivation)',
 
   // TODO: Translate from English
-  'privacy.ul11.li2': '<strong>User Posts:</strong> Retained while your account exists. When you delete a post, it\\'s permanently removed within 24 hours',
+  'privacy.ul11.li2': '<strong>User Posts:</strong> Retained while your account exists. When you delete a post, it\'s permanently removed within 24 hours',
 
   // TODO: Translate from English
   'privacy.ul11.li3': '<strong>Order Data:</strong> 7 years from date of purchase (French tax law requirement)',
@@ -2569,7 +2569,7 @@ export default {
   'privacy.ul2.li1': '<strong>Posts:</strong> Text content, images, YouTube video links you share on lighter pages',
 
   // TODO: Translate from English
-  'privacy.ul2.li2': '<strong>Location Data:</strong> Optional geographic coordinates (latitude/longitude) when you create location posts. We can\\'t know if coordinates entered are linked to your actual location',
+  'privacy.ul2.li2': '<strong>Location Data:</strong> Optional geographic coordinates (latitude/longitude) when you create location posts. We can\'t know if coordinates entered are linked to your actual location',
 
   // TODO: Translate from English
   'privacy.ul2.li3': '<strong>Metadata:</strong> Post timestamps, lighter associations, and interaction data (likes, flags)',
@@ -2623,10 +2623,10 @@ export default {
   'privacy.ul6.li4': '<strong>Legal Obligation (Art. 6(1)(c) GDPR):</strong> Compliance with French and EU law, including tax obligations and law enforcement requests',
 
   // TODO: Translate from English
-  'privacy.ul7.li1': '<strong>Supabase (Backend Infrastructure):</strong> Hosts our database, authentication system, and file storage. Located in EU data centers. <a href=\\'https://supabase.com/privacy\\' target=\\'_blank\\'>View Supabase Privacy Policy</a>',
+  'privacy.ul7.li1': '<strong>Supabase (Backend Infrastructure):</strong> Hosts our database, authentication system, and file storage. Located in EU data centers. <a href=\'https://supabase.com/privacy\' target=\'_blank\'>View Supabase Privacy Policy</a>',
 
   // TODO: Translate from English
-  'privacy.ul7.li2': '<strong>Stripe (Payment Processing):</strong> Processes all payment transactions securely. We receive only transaction confirmations, not card details. <a href=\\'https://stripe.com/privacy\\' target=\\'_blank\\'>View Stripe Privacy Policy</a>',
+  'privacy.ul7.li2': '<strong>Stripe (Payment Processing):</strong> Processes all payment transactions securely. We receive only transaction confirmations, not card details. <a href=\'https://stripe.com/privacy\' target=\'_blank\'>View Stripe Privacy Policy</a>',
 
   // TODO: Translate from English
   'privacy.ul7.li3': '<strong>Shipping Partners:</strong> Receive name, address, and contact information solely for sticker delivery',
@@ -2641,10 +2641,10 @@ export default {
   'privacy.ul8.li3': '<strong>Analytics Cookies (Consent Required):</strong> Help us understand how visitors use the site through anonymized data. We only activate these with your explicit consent.',
 
   // TODO: Translate from English
-  'privacy.ul9.li1': 'This data is <strong>publicly visible</strong> on the lighter\\'s page and map',
+  'privacy.ul9.li1': 'This data is <strong>publicly visible</strong> on the lighter\'s page and map',
 
   // TODO: Translate from English
-  'privacy.ul9.li2': 'Anyone with the lighter\\'s PIN can see this information',
+  'privacy.ul9.li2': 'Anyone with the lighter\'s PIN can see this information',
 
   // TODO: Translate from English
   'privacy.ul9.li3': 'You control the accuracy—you can provide approximate or exact coordinates',
@@ -2968,7 +2968,7 @@ export default {
   'terms.p18': 'Violations of these Terms may result in:',
 
   // TODO: Translate from English
-  'terms.p19': 'We may terminate accounts without prior notice if we determine there\\'s a serious violation that threatens user safety or platform integrity.',
+  'terms.p19': 'We may terminate accounts without prior notice if we determine there\'s a serious violation that threatens user safety or platform integrity.',
 
   // TODO: Translate from English
   'terms.p2': 'By accessing or using LightMyFire, you agree to be bound by these Terms, our Privacy Policy, and all applicable laws. If you do not agree with any part of these Terms, you must not use the Service. Your continued use constitutes acceptance of any modifications we make to these Terms.',
@@ -3007,7 +3007,7 @@ export default {
   'terms.p3': 'You must be at least 16 years old (or the minimum age required in your country to provide consent for data processing under applicable privacy laws) to create an account and use this Service. By creating an account, you represent and warrant that you meet this age requirement.',
 
   // TODO: Translate from English
-  'terms.p30': 'You agree to defend, indemnify, and hold harmless Revel Editions SASU, its directors, officers, employees, and agents from any claims, damages, losses, liabilities, and expenses (including reasonable attorneys\\' fees) arising from:',
+  'terms.p30': 'You agree to defend, indemnify, and hold harmless Revel Editions SASU, its directors, officers, employees, and agents from any claims, damages, losses, liabilities, and expenses (including reasonable attorneys\' fees) arising from:',
 
   // TODO: Translate from English
   'terms.p31': 'These Terms are governed by and construed in accordance with the laws of France, without regard to its conflict of law principles. The United Nations Convention on Contracts for the International Sale of Goods does not apply.',
@@ -3034,7 +3034,7 @@ export default {
   'terms.p38': 'We reserve the right to modify these Terms at any time. When we make changes:',
 
   // TODO: Translate from English
-  'terms.p39': 'If you don\\'t agree to modified Terms, you must stop using the Service.',
+  'terms.p39': 'If you don\'t agree to modified Terms, you must stop using the Service.',
 
   // TODO: Translate from English
   'terms.p4': 'You are responsible for:',
@@ -3055,7 +3055,7 @@ export default {
   'terms.p44': 'For questions about these Terms, contact us:',
 
   // TODO: Translate from English
-  'terms.p5': 'You may not share your account with others or use another person\\'s account without permission.',
+  'terms.p5': 'You may not share your account with others or use another person\'s account without permission.',
 
   // TODO: Translate from English
   'terms.p6': 'You agree to provide accurate, current, and complete information during registration and to update it as necessary to maintain its accuracy.',
@@ -3121,7 +3121,7 @@ export default {
   'terms.ul13.li2': 'You lose access to all account features',
 
   // TODO: Translate from English
-  'terms.ul13.li3': 'Your posts remain visible on lighter pages (they\\'re part of those lighters\\' stories)',
+  'terms.ul13.li3': 'Your posts remain visible on lighter pages (they\'re part of those lighters\' stories)',
 
   // TODO: Translate from English
   'terms.ul13.li4': 'To delete your posts before account termination, do so manually from your profile',
@@ -3148,10 +3148,10 @@ export default {
   'terms.ul15.li3': 'We may retain certain data as required by law or legitimate business purposes',
 
   // TODO: Translate from English
-  'terms.ul16.li1': 'We\\'ll update the ',
+  'terms.ul16.li1': 'We\'ll update the ',
 
   // TODO: Translate from English
-  'terms.ul16.li2': 'For material changes, we\\'ll notify you by email or prominent notice on the Service',
+  'terms.ul16.li2': 'For material changes, we\'ll notify you by email or prominent notice on the Service',
 
   // TODO: Translate from English
   'terms.ul16.li3': 'Your continued use after changes constitutes acceptance',
@@ -3178,7 +3178,7 @@ export default {
   'terms.ul3.li1': 'You own or have the necessary rights to post the content',
 
   // TODO: Translate from English
-  'terms.ul3.li2': 'Your content does not violate any third party\\'s intellectual property, privacy, or other rights',
+  'terms.ul3.li2': 'Your content does not violate any third party\'s intellectual property, privacy, or other rights',
 
   // TODO: Translate from English
   'terms.ul3.li3': 'Your content complies with these Terms and applicable laws',
@@ -3190,7 +3190,7 @@ export default {
   'terms.ul4.li10': '<strong>Malicious:</strong> Contains viruses, malware, or other harmful code',
 
   // TODO: Translate from English
-  'terms.ul4.li11': '<strong>Private Information:</strong> Shares others\\' personal information without consent (doxxing)',
+  'terms.ul4.li11': '<strong>Private Information:</strong> Shares others\' personal information without consent (doxxing)',
 
   // TODO: Translate from English
   'terms.ul4.li2': '<strong>Harmful to Minors:</strong> Exploits, sexualizes, or endangers children in any way',

@@ -1004,11 +1004,7 @@ export default {
 
   'error.not_found.title': 'Semuanya terbakar habis',
 
-  'error.rate_limit': 'Wah, cepat sekali! 🏃‍♂️
-
-Anda menambahkan postingan lebih cepat dari yang bisa kami tangani. Istirahat 24 jam untuk membiarkan orang lain menambahkan cerita ke korek api ini, lalu kembali lagi!
-
-(Ini menjaga mosaik kami beragam dan menarik untuk semua orang.)',
+  'error.rate_limit': 'Wah, cepat sekali! 🏃‍♂️\\n\\nAnda menambahkan postingan lebih cepat dari yang bisa kami tangani. Istirahat 24 jam untuk membiarkan orang lain menambahkan cerita ke korek api ini, lalu kembali lagi!\\n\\n(Ini menjaga mosaik kami beragam dan menarik untuk semua orang.)',
 
   'error.try_again': 'Coba Lagi',
 

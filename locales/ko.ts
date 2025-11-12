@@ -184,11 +184,11 @@ export default {
 
     'save_lighter.error.failed_to_create': '라이터를 만들지 못했습니다. 다시 시도해주세요。',
 
-    'save_lighter.button.saving': '저장 중...', 
+    'save_lighter.button.saving': '저장 중...',
 
     'save_lighter.button.save_lighter': '라이터 구하기',
 
-    'save_success.loading': '라이터 세부 정보를 불러오는 중...', 
+    'save_success.loading': '라이터 세부 정보를 불러오는 중...',
 
     'save_success.lighter_not_found': '라이터를 찾을 수 없습니다。',
 
@@ -204,7 +204,7 @@ export default {
 
     'save_success.next_steps.share_label': '공유',
 
-    'save_success.button.generating': '생성 중...', 
+    'save_success.button.generating': '생성 중...',
 
     'save_success.button.download_pdf': '스티커 PDF 다운로드',
 
@@ -214,7 +214,7 @@ export default {
 
     'signup_welcome.title': 'LightMyFire에 오신 것을 환영합니다！',
 
-    'signup_welcome.subtitle': '우리 커뮤니티에 가입해 주셔서 감사합니다! 다음은 몇 가지 할 수 있는 일입니다.', 
+    'signup_welcome.subtitle': '우리 커뮤니티에 가입해 주셔서 감사합니다! 다음은 몇 가지 할 수 있는 일입니다.',
 
     'signup_welcome.quick_actions': '빠른 시작:',
 
@@ -762,7 +762,7 @@ export default {
 
   'add_post.placeholder.location_lng': '경도 (예: 2.3522)',
 
-  'add_post.placeholder.location_name': '장소 이름 (예: \\'중앙카페\\')',
+  'add_post.placeholder.location_name': '장소 이름 (예: \'중앙카페\')',
 
   'add_post.prompt_v1': '이 라이터는 어떤 추억을 담고 있나요? 이야기를 들려주세요...',
 
@@ -1243,12 +1243,12 @@ export default {
   'faq.q5.title': '작성한 게시물을 삭제하는 방법은?',
 
   // TODO: Translate from English
-  'faq.q6.desc': 'That\\'s part of the fun! As the ',
+  'faq.q6.desc': 'That\'s part of the fun! As the ',
 
   'faq.q6.title': '저장한 라이터를 잃어버리면 어떻게 되나요?',
 
   // TODO: Translate from English
-  'faq.q7.desc': 'On each lighter\\'s page, you\\'ll find a map that shows the journey of that specific lighter. Every time someone makes a ',
+  'faq.q7.desc': 'On each lighter\'s page, you\'ll find a map that shows the journey of that specific lighter. Every time someone makes a ',
 
   'faq.q7.title': '지도는 어떻게 작동하나요?',
 
@@ -1307,7 +1307,7 @@ export default {
   'how_it_works_details.step2.title': '2. Share',
 
   // TODO: Translate from English
-  'how_it_works_details.step3.desc': 'Once saved, you are directed to its permanent web page. Add the first post: a photo, a video, a song link, or just a story from where you are. This is your lighter\\'s \\'birth.\\'',
+  'how_it_works_details.step3.desc': 'Once saved, you are directed to its permanent web page. Add the first post: a photo, a video, a song link, or just a story from where you are. This is your lighter\'s \'birth.\'',
 
   // TODO: Translate from English
   'how_it_works_details.step3.title': '3. Add Your First Story',
@@ -1435,7 +1435,7 @@ export default {
   'lighter_personalization.warning_fill_names': '계속하기 전에 모든 라이터 이름을 입력해주세요 (각 3-16자).',
 
   // TODO: Translate from English
-  'loading.generating_stickers': 'Crafting your lighter\\'s passport... ✨',
+  'loading.generating_stickers': 'Crafting your lighter\'s passport... ✨',
 
   'loading.posting_v1': '타임라인에 이야기를 추가하는 중...',
 
@@ -1444,7 +1444,7 @@ export default {
   'loading.posting_v3': '이 라이터의 여정을 밝히는 중...',
 
   // TODO: Translate from English
-  'loading.posting_v4': 'Making this Lightee\\'s story brighter...',
+  'loading.posting_v4': 'Making this Lightee\'s story brighter...',
 
   // TODO: Translate from English
   'loading.searching': 'Following the trail... 🔍',
@@ -1560,12 +1560,12 @@ export default {
   'my_orders.empty.cta': '스티커 주문하기',
 
   // TODO: Translate from English
-  'my_orders.empty.description': 'You haven\\'t placed any sticker orders yet.',
+  'my_orders.empty.description': 'You haven\'t placed any sticker orders yet.',
 
   'my_orders.empty.title': '아직 주문 없음',
 
   // TODO: Translate from English
-  'my_orders.error.description': '{error}. You may still have orders that aren\\'t showing here.',
+  'my_orders.error.description': '{error}. You may still have orders that aren\'t showing here.',
 
   'my_orders.error.title': '주문을 불러올 수 없습니다',
 
@@ -1652,7 +1652,7 @@ export default {
   'my_profile.settings.new_password_label': '새 비밀번호',
 
   // TODO: Translate from English
-  'my_profile.settings.password_mismatch': 'Passwords don\\'t match.',
+  'my_profile.settings.password_mismatch': 'Passwords don\'t match.',
 
   'my_profile.settings.password_title': '비밀번호 변경',
 
@@ -1693,10 +1693,10 @@ export default {
   'notifications.post_deleted_success': '게시물이 삭제되었습니다.',
 
   // TODO: Translate from English
-  'notifications.post_success_first': 'Congratulations! 🌟 You lit the first spark in this lighter\\'s story.',
+  'notifications.post_success_first': 'Congratulations! 🌟 You lit the first spark in this lighter\'s story.',
 
   // TODO: Translate from English
-  'notifications.post_success_public': 'Story shared with the world! 🌍 It\\'s now part of our global mosaic.',
+  'notifications.post_success_public': 'Story shared with the world! 🌍 It\'s now part of our global mosaic.',
 
   // TODO: Translate from English
   'notifications.session_expired': 'Your session has expired. Please log in again to continue.',
@@ -1707,7 +1707,7 @@ export default {
   'notifications.success': '성공!',
 
   // TODO: Translate from English
-  'notifications.trophy_earned': '🏆 Trophy Unlocked: {trophy_name}! You\\'re on fire!',
+  'notifications.trophy_earned': '🏆 Trophy Unlocked: {trophy_name}! You\'re on fire!',
 
   'notifications.user_not_found': '이 이메일로 계정을 찾을 수 없습니다. 먼저 가입해주세요!',
 
@@ -1720,7 +1720,7 @@ export default {
   'order.guidelines.step2': 'After application, press the sticker down with a clean cloth to maximize adhesion and avoid air bubbles.',
 
   // TODO: Translate from English
-  'order.guidelines.step3': 'Make sure the sticker is applied correctly the first time. With every reapplication, the sticker\\'s ability to stick will decrease.',
+  'order.guidelines.step3': 'Make sure the sticker is applied correctly the first time. With every reapplication, the sticker\'s ability to stick will decrease.',
 
   'order.guidelines.title': '적용 지침',
 
@@ -1783,13 +1783,13 @@ export default {
   'philosophy.p1': '<strong>LightMyFire</strong> was born from a simple idea: what if we stopped treating lighters as throwaway items? <strong>In a world of mass consumption where billions of these items are discarded every year,</strong> what if we saw them as companions, as tiny vessels for our memories, ideas, and creativity?',
 
   // TODO: Translate from English
-  'philosophy.p2': 'The everyday lighter is <strong>a powerful social catalyst.</strong> It\\'s no personal possession; it belongs to everyone. It passes from hand to hand, from friend to stranger, at parties, concerts, and quiet meetups. It hears our secrets and lights our way. <strong>It\\'s the silent witness to a great conversation, the spark for a new friendship. But its story is ephemeral, lost as soon as it\\'s passed on.</strong>',
+  'philosophy.p2': 'The everyday lighter is <strong>a powerful social catalyst.</strong> It\'s no personal possession; it belongs to everyone. It passes from hand to hand, from friend to stranger, at parties, concerts, and quiet meetups. It hears our secrets and lights our way. <strong>It\'s the silent witness to a great conversation, the spark for a new friendship. But its story is ephemeral, lost as soon as it\'s passed on.</strong>',
 
   // TODO: Translate from English
-  'philosophy.p3': 'By giving a lighter a permanent, digital story, we give it sentimental value. <strong>Your lighter becomes a living artifact, a message in a bottle.</strong> And when something has value, we\\'re less likely to throw it away.',
+  'philosophy.p3': 'By giving a lighter a permanent, digital story, we give it sentimental value. <strong>Your lighter becomes a living artifact, a message in a bottle.</strong> And when something has value, we\'re less likely to throw it away.',
 
   // TODO: Translate from English
-  'philosophy.p4': 'Our goal is simple: to create a global, human creativity mosaic, one lighter at a time, and reduce waste in the process. <strong>This is our stand against a throwaway culture. It\\'s an experiment in collaborative art. It\\'s a way to prove that if you give an object a story, you give it a soul.</strong>',
+  'philosophy.p4': 'Our goal is simple: to create a global, human creativity mosaic, one lighter at a time, and reduce waste in the process. <strong>This is our stand against a throwaway culture. It\'s an experiment in collaborative art. It\'s a way to prove that if you give an object a story, you give it a soul.</strong>',
 
   'philosophy.title': '우리의 철학',
 
@@ -1830,7 +1830,7 @@ export default {
   'privacy.h3.changes': '9. Changes to This Privacy Policy',
 
   // TODO: Translate from English
-  'privacy.h3.children': '8. Children\\'s Privacy',
+  'privacy.h3.children': '8. Children\'s Privacy',
 
   'privacy.h3.contact': '10. 문의하기',
 
@@ -1927,7 +1927,7 @@ export default {
   'privacy.p15': 'You have the following rights regarding your personal data. To exercise any of these rights, contact us at <strong>support@lightmyfire.app</strong>.',
 
   // TODO: Translate from English
-  'privacy.p16': 'You can request a copy of all personal data we hold about you. We\\'ll provide this in a structured, commonly used format within 30 days.',
+  'privacy.p16': 'You can request a copy of all personal data we hold about you. We\'ll provide this in a structured, commonly used format within 30 days.',
 
   // TODO: Translate from English
   'privacy.p17': 'You can correct inaccurate or incomplete data. Update most information directly in your profile settings, or contact us for assistance.',
@@ -1945,16 +1945,16 @@ export default {
   'privacy.p20': 'You can receive your data in a machine-readable format (JSON/CSV) to transfer to another service.',
 
   // TODO: Translate from English
-  'privacy.p21': 'You can object to processing based on legitimate interests. We\\'ll stop processing unless we demonstrate compelling legitimate grounds.',
+  'privacy.p21': 'You can object to processing based on legitimate interests. We\'ll stop processing unless we demonstrate compelling legitimate grounds.',
 
   // TODO: Translate from English
-  'privacy.p22': 'For processing based on consent, you can withdraw it anytime. This doesn\\'t affect the lawfulness of processing before withdrawal.',
+  'privacy.p22': 'For processing based on consent, you can withdraw it anytime. This doesn\'t affect the lawfulness of processing before withdrawal.',
 
   // TODO: Translate from English
-  'privacy.p23': 'If you believe we\\'re not complying with GDPR, you have the right to lodge a complaint with a supervisory authority:',
+  'privacy.p23': 'If you believe we\'re not complying with GDPR, you have the right to lodge a complaint with a supervisory authority:',
 
   // TODO: Translate from English
-  'privacy.p24': '<strong>France (Our Primary Jurisdiction):</strong><br>Commission Nationale de l\\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, France<br>Website: <a href=\\'https://www.cnil.fr\\' target=\\'_blank\\'>www.cnil.fr</a>',
+  'privacy.p24': '<strong>France (Our Primary Jurisdiction):</strong><br>Commission Nationale de l\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, France<br>Website: <a href=\'https://www.cnil.fr\' target=\'_blank\'>www.cnil.fr</a>',
 
   // TODO: Translate from English
   'privacy.p25': 'You can also contact the data protection authority in your country of residence.',
@@ -1966,7 +1966,7 @@ export default {
   'privacy.p27': 'These automated processes do not produce legal effects or significantly affect you. You can always contact us to contest a decision or request human review.',
 
   // TODO: Translate from English
-  'privacy.p28': 'Our service is not directed to children under 16 years of age (or the minimum age required in your jurisdiction to consent to data processing). We do not knowingly collect personal data from children. If you believe we\\'ve inadvertently collected data from a child, contact us immediately at support@lightmyfire.app and we\\'ll delete it promptly.',
+  'privacy.p28': 'Our service is not directed to children under 16 years of age (or the minimum age required in your jurisdiction to consent to data processing). We do not knowingly collect personal data from children. If you believe we\'ve inadvertently collected data from a child, contact us immediately at support@lightmyfire.app and we\'ll delete it promptly.',
 
   // TODO: Translate from English
   'privacy.p29': 'We may update this Privacy Policy to reflect changes in our practices or legal requirements. We will:',
@@ -2023,7 +2023,7 @@ export default {
   'privacy.ul11.li1': '<strong>Account Data:</strong> Retained while your account is active, plus 30 days after deletion (to allow reactivation)',
 
   // TODO: Translate from English
-  'privacy.ul11.li2': '<strong>User Posts:</strong> Retained while your account exists. When you delete a post, it\\'s permanently removed within 24 hours',
+  'privacy.ul11.li2': '<strong>User Posts:</strong> Retained while your account exists. When you delete a post, it\'s permanently removed within 24 hours',
 
   // TODO: Translate from English
   'privacy.ul11.li3': '<strong>Order Data:</strong> 7 years from date of purchase (French tax law requirement)',
@@ -2086,7 +2086,7 @@ export default {
   'privacy.ul2.li1': '<strong>Posts:</strong> Text content, images, YouTube video links you share on lighter pages',
 
   // TODO: Translate from English
-  'privacy.ul2.li2': '<strong>Location Data:</strong> Optional geographic coordinates (latitude/longitude) when you create location posts. We can\\'t know if coordinates entered are linked to your actual location',
+  'privacy.ul2.li2': '<strong>Location Data:</strong> Optional geographic coordinates (latitude/longitude) when you create location posts. We can\'t know if coordinates entered are linked to your actual location',
 
   // TODO: Translate from English
   'privacy.ul2.li3': '<strong>Metadata:</strong> Post timestamps, lighter associations, and interaction data (likes, flags)',
@@ -2140,10 +2140,10 @@ export default {
   'privacy.ul6.li4': '<strong>Legal Obligation (Art. 6(1)(c) GDPR):</strong> Compliance with French and EU law, including tax obligations and law enforcement requests',
 
   // TODO: Translate from English
-  'privacy.ul7.li1': '<strong>Supabase (Backend Infrastructure):</strong> Hosts our database, authentication system, and file storage. Located in EU data centers. <a href=\\'https://supabase.com/privacy\\' target=\\'_blank\\'>View Supabase Privacy Policy</a>',
+  'privacy.ul7.li1': '<strong>Supabase (Backend Infrastructure):</strong> Hosts our database, authentication system, and file storage. Located in EU data centers. <a href=\'https://supabase.com/privacy\' target=\'_blank\'>View Supabase Privacy Policy</a>',
 
   // TODO: Translate from English
-  'privacy.ul7.li2': '<strong>Stripe (Payment Processing):</strong> Processes all payment transactions securely. We receive only transaction confirmations, not card details. <a href=\\'https://stripe.com/privacy\\' target=\\'_blank\\'>View Stripe Privacy Policy</a>',
+  'privacy.ul7.li2': '<strong>Stripe (Payment Processing):</strong> Processes all payment transactions securely. We receive only transaction confirmations, not card details. <a href=\'https://stripe.com/privacy\' target=\'_blank\'>View Stripe Privacy Policy</a>',
 
   // TODO: Translate from English
   'privacy.ul7.li3': '<strong>Shipping Partners:</strong> Receive name, address, and contact information solely for sticker delivery',
@@ -2158,10 +2158,10 @@ export default {
   'privacy.ul8.li3': '<strong>Analytics Cookies (Consent Required):</strong> Help us understand how visitors use the site through anonymized data. We only activate these with your explicit consent.',
 
   // TODO: Translate from English
-  'privacy.ul9.li1': 'This data is <strong>publicly visible</strong> on the lighter\\'s page and map',
+  'privacy.ul9.li1': 'This data is <strong>publicly visible</strong> on the lighter\'s page and map',
 
   // TODO: Translate from English
-  'privacy.ul9.li2': 'Anyone with the lighter\\'s PIN can see this information',
+  'privacy.ul9.li2': 'Anyone with the lighter\'s PIN can see this information',
 
   // TODO: Translate from English
   'privacy.ul9.li3': 'You control the accuracy—you can provide approximate or exact coordinates',
@@ -2440,7 +2440,7 @@ export default {
   'terms.p18': 'Violations of these Terms may result in:',
 
   // TODO: Translate from English
-  'terms.p19': 'We may terminate accounts without prior notice if we determine there\\'s a serious violation that threatens user safety or platform integrity.',
+  'terms.p19': 'We may terminate accounts without prior notice if we determine there\'s a serious violation that threatens user safety or platform integrity.',
 
   // TODO: Translate from English
   'terms.p2': 'By accessing or using LightMyFire, you agree to be bound by these Terms, our Privacy Policy, and all applicable laws. If you do not agree with any part of these Terms, you must not use the Service. Your continued use constitutes acceptance of any modifications we make to these Terms.',
@@ -2479,7 +2479,7 @@ export default {
   'terms.p3': 'You must be at least 16 years old (or the minimum age required in your country to provide consent for data processing under applicable privacy laws) to create an account and use this Service. By creating an account, you represent and warrant that you meet this age requirement.',
 
   // TODO: Translate from English
-  'terms.p30': 'You agree to defend, indemnify, and hold harmless Revel Editions SASU, its directors, officers, employees, and agents from any claims, damages, losses, liabilities, and expenses (including reasonable attorneys\\' fees) arising from:',
+  'terms.p30': 'You agree to defend, indemnify, and hold harmless Revel Editions SASU, its directors, officers, employees, and agents from any claims, damages, losses, liabilities, and expenses (including reasonable attorneys\' fees) arising from:',
 
   // TODO: Translate from English
   'terms.p31': 'These Terms are governed by and construed in accordance with the laws of France, without regard to its conflict of law principles. The United Nations Convention on Contracts for the International Sale of Goods does not apply.',
@@ -2506,7 +2506,7 @@ export default {
   'terms.p38': 'We reserve the right to modify these Terms at any time. When we make changes:',
 
   // TODO: Translate from English
-  'terms.p39': 'If you don\\'t agree to modified Terms, you must stop using the Service.',
+  'terms.p39': 'If you don\'t agree to modified Terms, you must stop using the Service.',
 
   // TODO: Translate from English
   'terms.p4': 'You are responsible for:',
@@ -2527,7 +2527,7 @@ export default {
   'terms.p44': 'For questions about these Terms, contact us:',
 
   // TODO: Translate from English
-  'terms.p5': 'You may not share your account with others or use another person\\'s account without permission.',
+  'terms.p5': 'You may not share your account with others or use another person\'s account without permission.',
 
   // TODO: Translate from English
   'terms.p6': 'You agree to provide accurate, current, and complete information during registration and to update it as necessary to maintain its accuracy.',
@@ -2593,7 +2593,7 @@ export default {
   'terms.ul13.li2': 'You lose access to all account features',
 
   // TODO: Translate from English
-  'terms.ul13.li3': 'Your posts remain visible on lighter pages (they\\'re part of those lighters\\' stories)',
+  'terms.ul13.li3': 'Your posts remain visible on lighter pages (they\'re part of those lighters\' stories)',
 
   // TODO: Translate from English
   'terms.ul13.li4': 'To delete your posts before account termination, do so manually from your profile',
@@ -2620,10 +2620,10 @@ export default {
   'terms.ul15.li3': 'We may retain certain data as required by law or legitimate business purposes',
 
   // TODO: Translate from English
-  'terms.ul16.li1': 'We\\'ll update the ',
+  'terms.ul16.li1': 'We\'ll update the ',
 
   // TODO: Translate from English
-  'terms.ul16.li2': 'For material changes, we\\'ll notify you by email or prominent notice on the Service',
+  'terms.ul16.li2': 'For material changes, we\'ll notify you by email or prominent notice on the Service',
 
   // TODO: Translate from English
   'terms.ul16.li3': 'Your continued use after changes constitutes acceptance',
@@ -2650,7 +2650,7 @@ export default {
   'terms.ul3.li1': 'You own or have the necessary rights to post the content',
 
   // TODO: Translate from English
-  'terms.ul3.li2': 'Your content does not violate any third party\\'s intellectual property, privacy, or other rights',
+  'terms.ul3.li2': 'Your content does not violate any third party\'s intellectual property, privacy, or other rights',
 
   // TODO: Translate from English
   'terms.ul3.li3': 'Your content complies with these Terms and applicable laws',
@@ -2662,7 +2662,7 @@ export default {
   'terms.ul4.li10': '<strong>Malicious:</strong> Contains viruses, malware, or other harmful code',
 
   // TODO: Translate from English
-  'terms.ul4.li11': '<strong>Private Information:</strong> Shares others\\' personal information without consent (doxxing)',
+  'terms.ul4.li11': '<strong>Private Information:</strong> Shares others\' personal information without consent (doxxing)',
 
   // TODO: Translate from English
   'terms.ul4.li2': '<strong>Harmful to Minors:</strong> Exploits, sexualizes, or endangers children in any way',

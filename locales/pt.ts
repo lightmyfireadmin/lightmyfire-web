@@ -1213,7 +1213,7 @@ export default {
 
   'privacy.p23': 'Se você acredita que não estamos cumprindo o GDPR, você tem o direito de apresentar uma reclamação a uma autoridade supervisora:',
 
-  'privacy.p24': '<strong>França (Nossa Jurisdição Principal):</strong><br>Commission Nationale de l\\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, França<br>Website: <a href=\\'https://www.cnil.fr\\' target=\\'_blank\\'>www.cnil.fr</a>',
+  'privacy.p24': '<strong>França (Nossa Jurisdição Principal):</strong><br>Commission Nationale de l\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, França<br>Website: <a href=\'https://www.cnil.fr\' target=\'_blank\'>www.cnil.fr</a>',
 
   'privacy.p25': 'Você também pode entrar em contato com a autoridade de proteção de dados em seu país de residência.',
 
@@ -1337,9 +1337,9 @@ export default {
 
   'privacy.ul6.li4': '<strong>Obrigação Legal (Art. 6(1)(c) GDPR):</strong> Conformidade com a lei francesa e da UE, incluindo obrigações fiscais e solicitações de aplicação da lei',
 
-  'privacy.ul7.li1': '<strong>Supabase (Infraestrutura Backend):</strong> Hospeda nosso banco de dados, sistema de autenticação e armazenamento de arquivos. Localizado em data centers da UE. <a href=\\'https://supabase.com/privacy\\' target=\\'_blank\\'>Ver Política de Privacidade do Supabase</a>',
+  'privacy.ul7.li1': '<strong>Supabase (Infraestrutura Backend):</strong> Hospeda nosso banco de dados, sistema de autenticação e armazenamento de arquivos. Localizado em data centers da UE. <a href=\'https://supabase.com/privacy\' target=\'_blank\'>Ver Política de Privacidade do Supabase</a>',
 
-  'privacy.ul7.li2': '<strong>Stripe (Processamento de Pagamento):</strong> Processa todas as transações de pagamento com segurança. Recebemos apenas confirmações de transação, não detalhes do cartão. <a href=\\'https://stripe.com/privacy\\' target=\\'_blank\\'>Ver Política de Privacidade do Stripe</a>',
+  'privacy.ul7.li2': '<strong>Stripe (Processamento de Pagamento):</strong> Processa todas as transações de pagamento com segurança. Recebemos apenas confirmações de transação, não detalhes do cartão. <a href=\'https://stripe.com/privacy\' target=\'_blank\'>Ver Política de Privacidade do Stripe</a>',
 
   'privacy.ul7.li3': '<strong>Parceiros de Envio:</strong> Recebem nome, endereço e informações de contato exclusivamente para entrega de stickers',
 
