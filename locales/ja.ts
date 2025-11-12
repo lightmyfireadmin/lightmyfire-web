@@ -1117,1167 +1117,779 @@ export default {
   'notifications.user_not_found': 'このメールアドレスのアカウントが見つかりません。まず登録してください！',
   'notifications.warning': '警告',
 
-  // TODO: Translate from English
-  'order.guidelines.step1': 'Apply the sticker to a clean, dust-free, oil-free, and moisture-free surface.',
+  'order.guidelines.step1': 'きれいで、埃、油分、湿気のない表面にステッカーを貼ってください。',
 
-  // TODO: Translate from English
-  'order.guidelines.step2': 'After application, press the sticker down with a clean cloth to maximize adhesion and avoid air bubbles.',
+  'order.guidelines.step2': '貼り付け後、きれいな布でステッカーを押さえて密着性を高め、気泡を避けてください。',
 
-  // TODO: Translate from English
-  'order.guidelines.step3': 'Make sure the sticker is applied correctly the first time. With every reapplication, the sticker\\'s ability to stick will decrease.',
+  'order.guidelines.step3': '必ず一度で正しく貼ってください。貼り直すたびに、ステッカーの粘着力が低下します。',
 
-  // TODO: Translate from English
-  'order.guidelines.title': 'Application Guidelines',
+  'order.guidelines.title': '貼り付けガイドライン',
 
-  // TODO: Translate from English
-  'order.payment.error_email_invalid': 'Please enter a valid email address',
+  'order.payment.error_email_invalid': '有効なメールアドレスを入力してください',
 
-  // TODO: Translate from English
-  'order.quality.durability': '2–3 year durability',
+  'order.quality.durability': '2〜3年の耐久性',
 
-  // TODO: Translate from English
-  'order.quality.fast_application': 'Fast and easy application',
+  'order.quality.fast_application': '迅速で簡単な貼り付け',
 
-  // TODO: Translate from English
-  'order.quality.glossy_finish': 'Glossy finish',
+  'order.quality.glossy_finish': '光沢仕上げ',
 
-  // TODO: Translate from English
-  'order.quality.title': 'Premium Quality Stickers',
+  'order.quality.title': 'プレミアム品質ステッカー',
 
-  // TODO: Translate from English
-  'order.shipping.error_postal_invalid': 'Invalid postal code for selected country',
+  'order.shipping.error_postal_invalid': '選択した国の郵便番号が無効です',
 
-  // TODO: Translate from English
-  'order.summary.shipping': 'Shipping:',
+  'order.summary.shipping': '配送料：',
 
-  // TODO: Translate from English
-  'order.summary.shipping_calculated': '+ shipping',
+  'order.summary.shipping_calculated': '+ 配送料',
 
-  // TODO: Translate from English
-  'order.summary.shipping_express': 'Express Shipping',
+  'order.summary.shipping_express': '速達配送',
 
-  // TODO: Translate from English
-  'order.summary.shipping_express_time': '3-5 business days',
+  'order.summary.shipping_express_time': '営業日3〜5日',
 
-  // TODO: Translate from English
-  'order.summary.shipping_method': 'Shipping Method:',
+  'order.summary.shipping_method': '配送方法：',
 
-  // TODO: Translate from English
-  'order.summary.shipping_standard': 'Standard Shipping',
+  'order.summary.shipping_standard': '標準配送',
 
-  // TODO: Translate from English
-  'order.summary.shipping_standard_time': '7-14 business days',
+  'order.summary.shipping_standard_time': '営業日7〜14日',
 
-  // TODO: Translate from English
-  'order.summary.subtotal': 'Subtotal:',
+  'order.summary.subtotal': '小計：',
 
-  // TODO: Translate from English
-  'order_success.email_subject': 'Question about my sticker order',
+  'order_success.email_subject': 'ステッカー注文についての質問',
 
-  // TODO: Translate from English
-  'payment.card_not_found': 'Card element not found',
+  'payment.card_not_found': 'カード要素が見つかりません',
 
-  // TODO: Translate from English
-  'payment.stripe_load_failed': 'Failed to load Stripe. Please check your configuration.',
+  'payment.stripe_load_failed': 'Stripeの読み込みに失敗しました。設定を確認してください。',
 
-  // TODO: Translate from English
-  'personalization.customize_stickers': 'Customize Your Stickers',
+  'personalization.customize_stickers': 'ステッカーをカスタマイズ',
 
-  // TODO: Translate from English
-  'personalization.english_included': 'English will always be included on your stickers',
+  'personalization.english_included': '英語は常にステッカーに含まれます',
 
-  // TODO: Translate from English
-  'personalization.personalize_each': 'Personalize each lighter',
+  'personalization.personalize_each': '各ライターをカスタマイズ',
 
-  // TODO: Translate from English
-  'personalization.second_language': 'Second Language on Sticker (+ English)',
+  'personalization.second_language': 'ステッカーの第二言語（+英語）',
 
-  // TODO: Translate from English
-  'philosophy.button.hide': 'Hide',
+  'philosophy.button.hide': '閉じる',
 
-  // TODO: Translate from English
-  'philosophy.button.learn_more': 'Learn More',
+  'philosophy.button.learn_more': 'もっと知る',
 
-  // TODO: Translate from English
-  'philosophy.cta': 'Join us in giving lighters a second life, one story at a time.',
+  'philosophy.cta': '一つの物語ずつ、ライターに第二の人生を与える私たちの活動にご参加ください。',
 
-  // TODO: Translate from English
-  'philosophy.image_alt': 'Global Creativity Mosaic',
+  'philosophy.image_alt': 'グローバル創造性モザイク',
 
-  // TODO: Translate from English
-  'philosophy.lead': 'We believe that even the smallest, most disposable object can carry a great story.',
+  'philosophy.lead': '私たちは、最も小さく使い捨てられがちな物でも、素晴らしい物語を持つことができると信じています。',
 
-  // TODO: Translate from English
-  'philosophy.p1': '<strong>LightMyFire</strong> was born from a simple idea: what if we stopped treating lighters as throwaway items? <strong>In a world of mass consumption where billions of these items are discarded every year,</strong> what if we saw them as companions, as tiny vessels for our memories, ideas, and creativity?',
+  'philosophy.p1': '<strong>ライトマイファイア</strong>は、シンプルなアイデアから生まれました：ライターを使い捨てのものとして扱うのをやめたらどうなるか？<strong>毎年何十億ものライターが捨てられる大量消費の世界で、</strong>もし私たちがライターを仲間として、記憶や思考、創造性を入れる小さな器として見たらどうなるか？',
 
-  // TODO: Translate from English
-  'philosophy.p2': 'The everyday lighter is <strong>a powerful social catalyst.</strong> It\\'s no personal possession; it belongs to everyone. It passes from hand to hand, from friend to stranger, at parties, concerts, and quiet meetups. It hears our secrets and lights our way. <strong>It\\'s the silent witness to a great conversation, the spark for a new friendship. But its story is ephemeral, lost as soon as it\\'s passed on.</strong>',
+  'philosophy.p2': '日常のライターは<strong>強力な社会的触媒です。</strong>それは個人の所有物ではなく、みんなのものです。友人から見知らぬ人へ、パーティーやコンサート、静かな集まりで手から手へと渡ります。私たちの秘密を聞き、道を照らします。<strong>素晴らしい会話の静かな証人であり、新しい友情の火花です。しかし、その物語は儚く、次の人に渡されるとすぐに失われてしまいます。</strong>',
 
-  // TODO: Translate from English
-  'philosophy.p3': 'By giving a lighter a permanent, digital story, we give it sentimental value. <strong>Your lighter becomes a living artifact, a message in a bottle.</strong> And when something has value, we\\'re less likely to throw it away.',
+  'philosophy.p3': 'ライターに永続的なデジタルストーリーを与えることで、感傷的な価値を与えます。<strong>あなたのライターは生きた遺物、ボトルに入れたメッセージになります。</strong>そして、何かに価値があるとき、私たちはそれを捨てる可能性が低くなります。',
 
-  // TODO: Translate from English
-  'philosophy.p4': 'Our goal is simple: to create a global, human creativity mosaic, one lighter at a time, and reduce waste in the process. <strong>This is our stand against a throwaway culture. It\\'s an experiment in collaborative art. It\\'s a way to prove that if you give an object a story, you give it a soul.</strong>',
+  'philosophy.p4': '私たちの目標はシンプルです：一度に1つのライターで、グローバルな人間の創造性モザイクを作り、その過程で廃棄物を削減することです。<strong>これは使い捨て文化に対する私たちの姿勢です。共同芸術の実験です。物語を与えれば魂を与えることができることを証明する方法です。</strong>',
 
-  // TODO: Translate from English
-  'philosophy.title': 'Our Philosophy',
+  'philosophy.title': '私たちの理念',
 
-  // TODO: Translate from English
   'placeholder.hex_color': '#FF6B6B',
 
-  // TODO: Translate from English
-  'placeholder.lighter_name': 'Lighter name...',
+  'placeholder.lighter_name': 'ライター名...',
 
-  // TODO: Translate from English
-  'placeholder.location_search': 'Search for a location...',
+  'placeholder.location_search': '場所を検索...',
 
-  // TODO: Translate from English
   'placeholder.pin_entry': 'ABC-123',
 
-  // TODO: Translate from English
-  'post.default_location': 'Unknown Location',
+  'post.default_location': '場所不明',
 
-  // TODO: Translate from English
-  'post.deleted_user': 'Deleted User',
+  'post.deleted_user': '削除されたユーザー',
 
-  // TODO: Translate from English
-  'post.like_button': 'Like',
+  'post.like_button': 'いいね',
 
-  // TODO: Translate from English
-  'post.location_at': 'at',
+  'post.location_at': '〜で',
 
-  // TODO: Translate from English
-  'post.post_type.image': 'shared an image',
+  'post.post_type.image': '画像をシェア',
 
-  // TODO: Translate from English
-  'post.post_type.location': 'checked in',
+  'post.post_type.location': 'チェックイン',
 
-  // TODO: Translate from English
-  'post.post_type.refuel': 'refueled this lighter',
+  'post.post_type.refuel': 'このライターに燃料補給',
 
-  // TODO: Translate from English
-  'post.post_type.song': 'shared a song',
+  'post.post_type.song': '曲をシェア',
 
-  // TODO: Translate from English
-  'post.post_type.text': 'wrote a story',
+  'post.post_type.text': 'ストーリーを書いた',
 
-  // TODO: Translate from English
-  'post.user_upload_alt': 'User upload',
+  'post.user_upload_alt': 'ユーザーアップロード',
 
-  // TODO: Translate from English
-  'post.youtube_player_title': 'YouTube video player',
+  'post.youtube_player_title': 'YouTube動画プレーヤー',
 
-  // TODO: Translate from English
-  'privacy.h3.automated_decisions': '7. Automated Decision-Making',
+  'privacy.h3.automated_decisions': '7. 自動意思決定',
 
-  // TODO: Translate from English
-  'privacy.h3.changes': '9. Changes to This Privacy Policy',
+  'privacy.h3.changes': '9. プライバシーポリシーの変更',
 
-  // TODO: Translate from English
-  'privacy.h3.children': '8. Children\\'s Privacy',
+  'privacy.h3.children': '8. 子どものプライバシー',
 
-  // TODO: Translate from English
-  'privacy.h3.contact': '10. Contact Us',
+  'privacy.h3.contact': '10. お問い合わせ',
 
-  // TODO: Translate from English
-  'privacy.h3.cookies': '5.1. Cookies',
+  'privacy.h3.cookies': '5.1. クッキー',
 
-  // TODO: Translate from English
-  'privacy.h3.data_breaches': '5.6. Data Breach Notification',
+  'privacy.h3.data_breaches': '5.6. データ侵害通知',
 
-  // TODO: Translate from English
-  'privacy.h3.data_controller': '1. Data Controller',
+  'privacy.h3.data_controller': '1. データ管理者',
 
-  // TODO: Translate from English
-  'privacy.h3.data_retention': '5.4. Data Retention Periods',
+  'privacy.h3.data_retention': '5.4. データ保持期間',
 
-  // TODO: Translate from English
-  'privacy.h3.data_security': '5.5. Security Measures',
+  'privacy.h3.data_security': '5.5. セキュリティ対策',
 
-  // TODO: Translate from English
-  'privacy.h3.data_sharing': '5. Data Sharing and Processors',
+  'privacy.h3.data_sharing': '5. データ共有と処理者',
 
-  // TODO: Translate from English
-  'privacy.h3.how_we_use': '3. How We Use Your Information',
+  'privacy.h3.how_we_use': '3. 情報の使用方法',
 
-  // TODO: Translate from English
-  'privacy.h3.info_we_collect': '2. Information We Collect',
+  'privacy.h3.info_we_collect': '2. 収集する情報',
 
-  // TODO: Translate from English
-  'privacy.h3.international_transfers': '5.3. International Data Transfers',
+  'privacy.h3.international_transfers': '5.3. 国際データ転送',
 
-  // TODO: Translate from English
-  'privacy.h3.legal_basis': '4. Legal Basis for Processing (GDPR)',
+  'privacy.h3.legal_basis': '4. 処理の法的根拠（GDPR）',
 
-  // TODO: Translate from English
-  'privacy.h3.location_data': '5.2. Location Data',
+  'privacy.h3.location_data': '5.2. 位置情報データ',
 
-  // TODO: Translate from English
-  'privacy.h3.your_rights': '6. Your Rights Under GDPR',
+  'privacy.h3.your_rights': '6. GDPRに基づくあなたの権利',
 
-  // TODO: Translate from English
-  'privacy.h4.cookie_types': 'Types of Cookies We Use',
+  'privacy.h4.cookie_types': '使用するクッキーの種類',
 
-  // TODO: Translate from English
-  'privacy.h4.personal_data': '2.1. Personal Data You Provide',
+  'privacy.h4.personal_data': '2.1. 提供いただく個人データ',
 
-  // TODO: Translate from English
-  'privacy.h4.right_access': '6.1. Right of Access (Art. 15 GDPR)',
+  'privacy.h4.right_access': '6.1. アクセス権（GDPR第15条）',
 
-  // TODO: Translate from English
-  'privacy.h4.right_complain': '6.8. Right to Lodge a Complaint',
+  'privacy.h4.right_complain': '6.8. 苦情申立権',
 
-  // TODO: Translate from English
-  'privacy.h4.right_erasure': '6.3. Right to Erasure - ',
+  'privacy.h4.right_erasure': '6.3. 消去権 - ',
 
-  // TODO: Translate from English
-  'privacy.h4.right_object': '6.6. Right to Object (Art. 21 GDPR)',
+  'privacy.h4.right_object': '6.6. 異議申立権（GDPR第21条）',
 
-  // TODO: Translate from English
-  'privacy.h4.right_portability': '6.5. Right to Data Portability (Art. 20 GDPR)',
+  'privacy.h4.right_portability': '6.5. データポータビリティ権（GDPR第20条）',
 
-  // TODO: Translate from English
-  'privacy.h4.right_rectification': '6.2. Right to Rectification (Art. 16 GDPR)',
+  'privacy.h4.right_rectification': '6.2. 訂正権（GDPR第16条）',
 
-  // TODO: Translate from English
-  'privacy.h4.right_restriction': '6.4. Right to Restriction of Processing (Art. 18 GDPR)',
+  'privacy.h4.right_restriction': '6.4. 処理制限権（GDPR第18条）',
 
-  // TODO: Translate from English
-  'privacy.h4.right_withdraw': '6.7. Right to Withdraw Consent',
+  'privacy.h4.right_withdraw': '6.7. 同意撤回権',
 
-  // TODO: Translate from English
-  'privacy.h4.technical_data': '2.4. Technical Data (Automatically Collected)',
+  'privacy.h4.technical_data': '2.4. 技術データ（自動収集）',
 
-  // TODO: Translate from English
-  'privacy.h4.transaction_data': '2.3. Transaction Data',
+  'privacy.h4.transaction_data': '2.3. 取引データ',
 
-  // TODO: Translate from English
-  'privacy.h4.user_content': '2.2. User-Generated Content',
+  'privacy.h4.user_content': '2.2. ユーザー生成コンテンツ',
 
-  // TODO: Translate from English
-  'privacy.last_updated': 'Last updated: November 8, 2025',
+  'privacy.last_updated': '最終更新日：2025年11月8日',
 
-  // TODO: Translate from English
-  'privacy.p1': 'LightMyFire (',
+  'privacy.p1': 'ライトマイファイア（',
 
-  // TODO: Translate from English
-  'privacy.p10': 'Your data is primarily stored on Supabase servers located within the European Union. However, some sub-processors may be located outside the EU/EEA. When data is transferred internationally, we ensure adequate protection through:',
+  'privacy.p10': 'お客様のデータは主に欧州連合内にあるSupabaseサーバーに保存されます。ただし、一部のサブプロセッサーはEU/EEA外に所在する場合があります。データが国際的に転送される場合、以下を通じて適切な保護を確保します：',
 
-  // TODO: Translate from English
-  'privacy.p11': 'We retain personal data only as long as necessary for the purposes outlined in this policy:',
+  'privacy.p11': '個人データは、このポリシーに記載された目的に必要な期間のみ保持します：',
 
-  // TODO: Translate from English
-  'privacy.p12': 'After retention periods expire, data is securely deleted from all systems, including backups.',
+  'privacy.p12': '保持期間が満了した後、データはバックアップを含むすべてのシステムから安全に削除されます。',
 
-  // TODO: Translate from English
-  'privacy.p13': 'We implement appropriate technical and organizational measures to protect your data:',
+  'privacy.p13': 'お客様のデータを保護するために、適切な技術的および組織的措置を実施しています：',
 
-  // TODO: Translate from English
-  'privacy.p14': 'In the unlikely event of a personal data breach, we will:',
+  'privacy.p14': '個人データ侵害が発生した場合、私たちは以下を行います：',
 
-  // TODO: Translate from English
-  'privacy.p15': 'You have the following rights regarding your personal data. To exercise any of these rights, contact us at <strong>support@lightmyfire.app</strong>.',
+  'privacy.p15': 'お客様の個人データに関して、以下の権利があります。これらの権利を行使するには、<strong>support@lightmyfire.app</strong>までご連絡ください。',
 
-  // TODO: Translate from English
-  'privacy.p16': 'You can request a copy of all personal data we hold about you. We\\'ll provide this in a structured, commonly used format within 30 days.',
+  'privacy.p16': '当社が保持するすべての個人データのコピーを請求できます。30日以内に構造化された一般的に使用される形式で提供します。',
 
-  // TODO: Translate from English
-  'privacy.p17': 'You can correct inaccurate or incomplete data. Update most information directly in your profile settings, or contact us for assistance.',
+  'privacy.p17': '不正確または不完全なデータを訂正できます。ほとんどの情報はプロフィール設定で直接更新できます。サポートが必要な場合はお問い合わせください。',
 
-  // TODO: Translate from English
-  'privacy.p18': 'You can request deletion of your personal data. You can delete individual posts anytime from ',
+  'privacy.p18': '個人データの削除を請求できます。個人の投稿は、',
 
-  // TODO: Translate from English
-  'privacy.p19': 'You can request we limit how we use your data while you contest its accuracy or lawfulness of processing.',
+  'privacy.p19': 'データの正確性や処理の合法性について争う間、データの使用方法を制限するよう請求できます。',
 
-  // TODO: Translate from English
-  'privacy.p2': 'The data controller for your personal information is:<br><br><strong>Revel Editions SASU</strong><br>145 Rue de Noisy-le-Sec<br>93260 Les Lilas, France<br><br><strong>Contact Email:</strong> support@lightmyfire.app<br><strong>Data Protection Officer:</strong> support@lightmyfire.app',
+  'privacy.p2': 'お客様の個人情報のデータ管理者は以下の通りです：<br><br><strong>Revel Editions SASU</strong><br>145 Rue de Noisy-le-Sec<br>93260 Les Lilas, France<br><br><strong>連絡先メール：</strong> support@lightmyfire.app<br><strong>データ保護責任者：</strong> support@lightmyfire.app',
 
-  // TODO: Translate from English
-  'privacy.p20': 'You can receive your data in a machine-readable format (JSON/CSV) to transfer to another service.',
+  'privacy.p20': '機械可読形式（JSON/CSV）でデータを受け取り、別のサービスに転送できます。',
 
-  // TODO: Translate from English
-  'privacy.p21': 'You can object to processing based on legitimate interests. We\\'ll stop processing unless we demonstrate compelling legitimate grounds.',
+  'privacy.p21': '正当な利益に基づく処理に異議を申し立てることができます。当社が正当な根拠を示せない限り、処理を停止します。',
 
-  // TODO: Translate from English
-  'privacy.p22': 'For processing based on consent, you can withdraw it anytime. This doesn\\'t affect the lawfulness of processing before withdrawal.',
+  'privacy.p22': '同意に基づく処理の場合、いつでも撤回できます。撤回前の処理の合法性には影響しません。',
 
-  // TODO: Translate from English
-  'privacy.p23': 'If you believe we\\'re not complying with GDPR, you have the right to lodge a complaint with a supervisory authority:',
+  'privacy.p23': '当社がGDPRに準拠していないと思われる場合、監督機関に苦情を申し立てる権利があります：',
 
-  // TODO: Translate from English
-  'privacy.p24': '<strong>France (Our Primary Jurisdiction):</strong><br>Commission Nationale de l\\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, France<br>Website: <a href=\\'https://www.cnil.fr\\' target=\\'_blank\\'>www.cnil.fr</a>',
+  'privacy.p24': '<strong>フランス（当社の主要管轄区域）：</strong><br>Commission Nationale de l\\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, France<br>ウェブサイト： <a href=\\'https://www.cnil.fr\\' target=\\'_blank\\'>www.cnil.fr</a>',
 
-  // TODO: Translate from English
-  'privacy.p25': 'You can also contact the data protection authority in your country of residence.',
+  'privacy.p25': 'お住まいの国のデータ保護機関にも連絡できます。',
 
-  // TODO: Translate from English
-  'privacy.p26': 'We use limited automated processing for:',
+  'privacy.p26': '以下の目的で限定的な自動処理を使用します：',
 
-  // TODO: Translate from English
-  'privacy.p27': 'These automated processes do not produce legal effects or significantly affect you. You can always contact us to contest a decision or request human review.',
+  'privacy.p27': 'これらの自動プロセスは、法的効果を生じたり、お客様に重大な影響を与えたりするものではありません。決定に異議を唱えたり、人間によるレビューを要求したりするために、いつでもお問い合わせいただけます。',
 
-  // TODO: Translate from English
-  'privacy.p28': 'Our service is not directed to children under 16 years of age (or the minimum age required in your jurisdiction to consent to data processing). We do not knowingly collect personal data from children. If you believe we\\'ve inadvertently collected data from a child, contact us immediately at support@lightmyfire.app and we\\'ll delete it promptly.',
+  'privacy.p28': '当サービスは16歳未満の子ども（またはお客様の管轄区域でデータ処理に同意するために必要な最低年齢未満の子ども）を対象としていません。子どもから個人データを故意に収集することはありません。子どもからデータを誤って収集したと思われる場合は、support@lightmyfire.appまですぐにご連絡ください。速やかに削除いたします。',
 
-  // TODO: Translate from English
-  'privacy.p29': 'We may update this Privacy Policy to reflect changes in our practices or legal requirements. We will:',
+  'privacy.p29': '当社の慣行や法的要件の変更を反映するため、このプライバシーポリシーを更新することがあります。その場合：',
 
-  // TODO: Translate from English
-  'privacy.p3': 'We collect personal information in several ways to provide and improve our services:',
+  'privacy.p3': 'サービスの提供と改善のため、いくつかの方法で個人情報を収集します：',
 
-  // TODO: Translate from English
-  'privacy.p30': 'Continued use of our services after changes constitutes acceptance of the updated policy.',
+  'privacy.p30': '変更後も当サービスを継続して使用することは、更新されたポリシーの承認を構成します。',
 
-  // TODO: Translate from English
-  'privacy.p31': 'For any questions about this Privacy Policy or to exercise your rights, contact us:',
+  'privacy.p31': 'このプライバシーポリシーについてご質問がある場合、または権利を行使する場合は、お問い合わせください：',
 
-  // TODO: Translate from English
-  'privacy.p32': 'We aim to respond to all requests within 30 days. If your request is complex, we may extend this by an additional 60 days and will inform you.',
+  'privacy.p32': 'すべてのリクエストに30日以内に対応することを目指しています。リクエストが複雑な場合は、さらに60日延長する場合があり、その旨お知らせします。',
 
-  // TODO: Translate from English
-  'privacy.p4': 'We use the information we collect to:',
+  'privacy.p4': '収集した情報は以下の目的で使用します：',
 
-  // TODO: Translate from English
-  'privacy.p5': 'Under GDPR, we process your personal data based on the following legal grounds:',
+  'privacy.p5': 'GDPRに基づき、以下の法的根拠に基づいてお客様の個人データを処理します：',
 
-  // TODO: Translate from English
-  'privacy.p6': 'We do not sell, rent, or trade your personal data. We share data only with trusted service providers who help us operate the platform:',
+  'privacy.p6': 'お客様の個人データを販売、賃貸、取引することはありません。プラットフォームの運営を支援する信頼できるサービスプロバイダーとのみデータを共有します：',
 
-  // TODO: Translate from English
-  'privacy.p7': 'All third-party processors are bound by Data Processing Agreements (DPAs) ensuring GDPR compliance and data protection.',
+  'privacy.p7': 'すべての第三者処理者は、GDPR準拠とデータ保護を保証するデータ処理契約（DPA）に拘束されています。',
 
-  // TODO: Translate from English
-  'privacy.p8': 'You can manage cookie preferences through the consent banner displayed on your first visit. You can change your choice anytime in your browser settings or by contacting us.',
+  'privacy.p8': 'クッキーの設定は、初回訪問時に表示される同意バナーで管理できます。ブラウザ設定で、またはお問い合わせいただくことで、いつでも選択を変更できます。',
 
-  // TODO: Translate from English
-  'privacy.p9': 'When you create a location post, you may voluntarily provide geographic coordinates (latitude and longitude). <strong>Important disclosures:</strong>',
+  'privacy.p9': '位置情報投稿を作成する際、地理座標（緯度と経度）を自発的に提供することができます。<strong>重要な開示事項：</strong>',
 
-  // TODO: Translate from English
-  'privacy.ul1.li1': '<strong>Account Registration:</strong> Email address, username, and hashed password (we never store passwords in plain text)',
+  'privacy.ul1.li1': '<strong>アカウント登録：</strong>メールアドレス、ユーザー名、ハッシュ化パスワード（平文でパスワードを保存することはありません）',
 
-  // TODO: Translate from English
-  'privacy.ul1.li2': '<strong>Profile Information:</strong> Optional nationality information and profile preferences',
+  'privacy.ul1.li2': '<strong>プロフィール情報：</strong>任意の国籍情報とプロフィール設定',
 
-  // TODO: Translate from English
-  'privacy.ul1.li3': '<strong>Communications:</strong> Any information you provide when contacting us for support',
+  'privacy.ul1.li3': '<strong>通信：</strong>サポートへのお問い合わせ時に提供いただく情報',
 
-  // TODO: Translate from English
-  'privacy.ul10.li1': '<strong>Standard Contractual Clauses (SCCs):</strong> EU-approved data transfer mechanisms',
+  'privacy.ul10.li1': '<strong>標準契約条項（SCC）：</strong>EU承認のデータ転送メカニズム',
 
-  // TODO: Translate from English
-  'privacy.ul10.li2': '<strong>Adequacy Decisions:</strong> Transfers only to countries recognized by the EU Commission as providing adequate protection',
+  'privacy.ul10.li2': '<strong>十分性認定：</strong>EU委員会が十分な保護を提供すると認めた国へのみ転送',
 
-  // TODO: Translate from English
-  'privacy.ul10.li3': '<strong>Processor Guarantees:</strong> All processors commit to GDPR-equivalent data protection standards',
+  'privacy.ul10.li3': '<strong>処理者保証：</strong>すべての処理者がGDPR相当のデータ保護基準を約束',
 
-  // TODO: Translate from English
-  'privacy.ul11.li1': '<strong>Account Data:</strong> Retained while your account is active, plus 30 days after deletion (to allow reactivation)',
+  'privacy.ul11.li1': '<strong>アカウントデータ：</strong>アカウントがアクティブな間、および削除後30日間保持（再アクティベーションのため）',
 
-  // TODO: Translate from English
-  'privacy.ul11.li2': '<strong>User Posts:</strong> Retained while your account exists. When you delete a post, it\\'s permanently removed within 24 hours',
+  'privacy.ul11.li2': '<strong>ユーザー投稿：</strong>アカウントが存在する間保持。投稿を削除すると24時間以内に完全に削除されます',
 
-  // TODO: Translate from English
-  'privacy.ul11.li3': '<strong>Order Data:</strong> 7 years from date of purchase (French tax law requirement)',
+  'privacy.ul11.li3': '<strong>注文データ：</strong>購入日から7年間（フランス税法の要件）',
 
-  // TODO: Translate from English
-  'privacy.ul11.li4': '<strong>Technical Logs:</strong> IP addresses and security logs retained for 12 months maximum',
+  'privacy.ul11.li4': '<strong>技術ログ：</strong>IPアドレスとセキュリティログは最大12か月間保持',
 
-  // TODO: Translate from English
-  'privacy.ul11.li5': '<strong>Anonymized Analytics:</strong> Retained indefinitely for service improvement (cannot be linked back to you)',
+  'privacy.ul11.li5': '<strong>匿名化分析：</strong>サービス改善のため無期限に保持（お客様にリンクできません）',
 
-  // TODO: Translate from English
-  'privacy.ul12.li1': '<strong>Encryption:</strong> All data transmitted using TLS/SSL encryption. Passwords stored using industry-standard hashing',
+  'privacy.ul12.li1': '<strong>暗号化：</strong>すべてのデータはTLS/SSL暗号化を使用して送信。パスワードは業界標準のハッシュで保存',
 
-  // TODO: Translate from English
-  'privacy.ul12.li2': '<strong>Access Controls:</strong> Role-based access, limited employee access, multi-factor authentication for admin accounts',
+  'privacy.ul12.li2': '<strong>アクセス制御：</strong>ロールベースのアクセス、従業員アクセスの制限、管理者アカウントの多要素認証',
 
-  // TODO: Translate from English
-  'privacy.ul12.li3': '<strong>Regular Audits:</strong> Security assessments, vulnerability scanning, and code reviews',
+  'privacy.ul12.li3': '<strong>定期監査：</strong>セキュリティ評価、脆弱性スキャン、コードレビュー',
 
-  // TODO: Translate from English
-  'privacy.ul12.li4': '<strong>Incident Response:</strong> Documented breach notification procedures (see Section 5.6)',
+  'privacy.ul12.li4': '<strong>インシデント対応：</strong>文書化された侵害通知手順（セクション5.6を参照）',
 
-  // TODO: Translate from English
-  'privacy.ul13.li1': '<strong>Notify Supervisory Authority:</strong> Within 72 hours of becoming aware of the breach (CNIL in France)',
+  'privacy.ul13.li1': '<strong>監督機関への通知：</strong>侵害を認識してから72時間以内（フランスのCNIL）',
 
-  // TODO: Translate from English
-  'privacy.ul13.li2': '<strong>Notify Affected Users:</strong> Without undue delay if the breach poses high risk to your rights and freedoms',
+  'privacy.ul13.li2': '<strong>影響を受けるユーザーへの通知：</strong>侵害がお客様の権利と自由に高いリスクをもたらす場合、不当な遅延なく',
 
-  // TODO: Translate from English
-  'privacy.ul13.li3': '<strong>Provide Information:</strong> Nature of the breach, likely consequences, measures taken, and recommended actions',
+  'privacy.ul13.li3': '<strong>情報提供：</strong>侵害の性質、予想される結果、講じた措置、推奨されるアクション',
 
-  // TODO: Translate from English
-  'privacy.ul14.li1': '<strong>Content Moderation:</strong> Automated pre-screening of posts for prohibited content (hate speech, explicit imagery). Flagged content is reviewed by human moderators before any action',
+  'privacy.ul14.li1': '<strong>コンテンツモデレーション：</strong>禁止コンテンツ（ヘイトスピーチ、露骨な画像）の投稿の自動事前スクリーニング。フラグされたコンテンツは、アクションの前に人間のモデレーターがレビュー',
 
-  // TODO: Translate from English
-  'privacy.ul14.li2': '<strong>Spam Prevention:</strong> Automated detection of suspicious activity patterns (e.g., rapid post submissions)',
+  'privacy.ul14.li2': '<strong>スパム防止：</strong>疑わしいアクティビティパターン（例：迅速な投稿送信）の自動検出',
 
-  // TODO: Translate from English
-  'privacy.ul14.li3': '<strong>Gamification:</strong> Automated calculation of user levels and trophy eligibility based on contribution metrics',
+  'privacy.ul14.li3': '<strong>ゲーミフィケーション：</strong>貢献指標に基づくユーザーレベルとトロフィー資格の自動計算',
 
-  // TODO: Translate from English
-  'privacy.ul15.li1': 'Notify you by email of significant changes (if you have an account)',
+  'privacy.ul15.li1': '重要な変更をメールで通知します（アカウントをお持ちの場合）',
 
-  // TODO: Translate from English
-  'privacy.ul15.li2': 'Display a prominent notice on the website',
+  'privacy.ul15.li2': 'ウェブサイトに目立つ通知を表示',
 
-  // TODO: Translate from English
-  'privacy.ul15.li3': 'Update the ',
+  'privacy.ul15.li3': '更新する ',
 
-  // TODO: Translate from English
-  'privacy.ul16.li1': '<strong>Email:</strong> support@lightmyfire.app',
+  'privacy.ul16.li1': '<strong>メール：</strong>support@lightmyfire.app',
 
-  // TODO: Translate from English
-  'privacy.ul16.li2': '<strong>Data Protection Officer:</strong> support@lightmyfire.app',
+  'privacy.ul16.li2': '<strong>データ保護責任者：</strong>support@lightmyfire.app',
 
-  // TODO: Translate from English
-  'privacy.ul16.li3': '<strong>Postal Address:</strong> Revel Editions SASU, [Complete Address], France',
+  'privacy.ul16.li3': '<strong>郵送先住所：</strong>Revel Editions SASU, [完全な住所], France',
 
-  // TODO: Translate from English
-  'privacy.ul2.li1': '<strong>Posts:</strong> Text content, images, YouTube video links you share on lighter pages',
+  'privacy.ul2.li1': '<strong>投稿：</strong>ライターページで共有するテキストコンテンツ、画像、YouTube動画リンク',
 
-  // TODO: Translate from English
-  'privacy.ul2.li2': '<strong>Location Data:</strong> Optional geographic coordinates (latitude/longitude) when you create location posts. We can\\'t know if coordinates entered are linked to your actual location',
+  'privacy.ul2.li2': '<strong>位置情報データ：</strong>位置情報投稿を作成する際の任意の地理座標（緯度/経度）。入力された座標が実際の位置とリンクしているかどうかは判別できません',
 
-  // TODO: Translate from English
-  'privacy.ul2.li3': '<strong>Metadata:</strong> Post timestamps, lighter associations, and interaction data (likes, flags)',
+  'privacy.ul2.li3': '<strong>メタデータ：</strong>投稿のタイムスタンプ、ライターとの関連付け、インタラクションデータ（いいね、フラグ）',
 
-  // TODO: Translate from English
-  'privacy.ul3.li1': '<strong>Payment Information:</strong> Processed securely by Stripe (our payment processor). We never store your full credit card details',
+  'privacy.ul3.li1': '<strong>支払い情報：</strong>Stripe（当社の決済処理業者）によって安全に処理されます。完全なクレジットカード情報を保存することはありません',
 
-  // TODO: Translate from English
-  'privacy.ul3.li2': '<strong>Shipping Information:</strong> Name, address, email, and phone number for sticker delivery',
+  'privacy.ul3.li2': '<strong>配送情報：</strong>ステッカー配送のための氏名、住所、メール、電話番号',
 
-  // TODO: Translate from English
-  'privacy.ul3.li3': '<strong>Order History:</strong> Details of sticker packs purchased and customization preferences',
+  'privacy.ul3.li3': '<strong>注文履歴：</strong>購入したステッカーパックの詳細とカスタマイズの設定',
 
-  // TODO: Translate from English
-  'privacy.ul4.li1': '<strong>Device Information:</strong> IP address, browser type, operating system',
+  'privacy.ul4.li1': '<strong>デバイス情報：</strong>IPアドレス、ブラウザの種類、オペレーティングシステム',
 
-  // TODO: Translate from English
-  'privacy.ul4.li2': '<strong>Usage Data:</strong> Pages visited, features used, time spent on the platform',
+  'privacy.ul4.li2': '<strong>使用データ：</strong>訪問したページ、使用した機能、プラットフォームでの滞在時間',
 
-  // TODO: Translate from English
-  'privacy.ul4.li3': '<strong>Cookies:</strong> Essential cookies for authentication and session management (see Section 5.1)',
+  'privacy.ul4.li3': '<strong>クッキー：</strong>認証とセッション管理のための必須クッキー（セクション5.1を参照）',
 
-  // TODO: Translate from English
-  'privacy.ul5.li1': '<strong>Service Provision:</strong> Create and manage your account, display your contributions, process orders',
+  'privacy.ul5.li1': '<strong>サービス提供：</strong>アカウントの作成と管理、投稿の表示、注文の処理',
 
-  // TODO: Translate from English
-  'privacy.ul5.li2': '<strong>Communication:</strong> Send order confirmations, respond to inquiries, notify you of lighter activity (if opted-in)',
+  'privacy.ul5.li2': '<strong>通信：</strong>注文確認の送信、お問い合わせへの対応、ライターアクティビティの通知（オプトインした場合）',
 
-  // TODO: Translate from English
-  'privacy.ul5.li3': '<strong>Platform Integrity:</strong> Prevent spam, enforce community guidelines, moderate content',
+  'privacy.ul5.li3': '<strong>プラットフォームの完全性：</strong>スパムの防止、コミュニティガイドラインの実施、コンテンツのモデレーション',
 
-  // TODO: Translate from English
-  'privacy.ul5.li4': '<strong>Gamification:</strong> Track achievements, award trophies, calculate user levels',
+  'privacy.ul5.li4': '<strong>ゲーミフィケーション：</strong>実績の追跡、トロフィーの授与、ユーザーレベルの計算',
 
-  // TODO: Translate from English
-  'privacy.ul5.li5': '<strong>Legal Compliance:</strong> Comply with applicable laws and respond to legal requests',
+  'privacy.ul5.li5': '<strong>法的遵守：</strong>適用法の遵守と法的要求への対応',
 
-  // TODO: Translate from English
-  'privacy.ul5.li6': '<strong>Service Improvement:</strong> Analyze usage patterns to enhance user experience (anonymized data only)',
+  'privacy.ul5.li6': '<strong>サービス改善：</strong>使用パターンを分析してユーザーエクスペリエンスを向上（匿名化データのみ）',
 
-  // TODO: Translate from English
-  'privacy.ul6.li1': '<strong>Contractual Necessity (Art. 6(1)(b) GDPR):</strong> Processing necessary to provide the services you requested when creating an account',
+  'privacy.ul6.li1': '<strong>契約上の必要性（GDPR第6条1項b）：</strong>アカウント作成時に要求されたサービスを提供するために必要な処理',
 
-  // TODO: Translate from English
-  'privacy.ul6.li2': '<strong>Legitimate Interests (Art. 6(1)(f) GDPR):</strong> Platform security, fraud prevention, content moderation, and service improvement—balanced against your rights',
+  'privacy.ul6.li2': '<strong>正当な利益（GDPR第6条1項f）：</strong>プラットフォームのセキュリティ、不正防止、コンテンツモデレーション、サービス改善—お客様の権利とのバランスをとっています',
 
-  // TODO: Translate from English
-  'privacy.ul6.li3': '<strong>Consent (Art. 6(1)(a) GDPR):</strong> Optional features like public post sharing, nationality display, and non-essential cookies—you can withdraw consent anytime',
+  'privacy.ul6.li3': '<strong>同意（GDPR第6条1項a）：</strong>公開投稿の共有、国籍の表示、非必須クッキーなどのオプション機能—いつでも同意を撤回できます',
 
-  // TODO: Translate from English
-  'privacy.ul6.li4': '<strong>Legal Obligation (Art. 6(1)(c) GDPR):</strong> Compliance with French and EU law, including tax obligations and law enforcement requests',
+  'privacy.ul6.li4': '<strong>法的義務（GDPR第6条1項c）：</strong>税務義務や法執行機関の要求を含む、フランスおよびEU法の遵守',
 
-  // TODO: Translate from English
-  'privacy.ul7.li1': '<strong>Supabase (Backend Infrastructure):</strong> Hosts our database, authentication system, and file storage. Located in EU data centers. <a href=\\'https://supabase.com/privacy\\' target=\\'_blank\\'>View Supabase Privacy Policy</a>',
+  'privacy.ul7.li1': '<strong>Supabase（バックエンドインフラストラクチャ）：</strong>データベース、認証システム、ファイルストレージをホスト。EUデータセンターに配置。<a href=\\'https://supabase.com/privacy\\' target=\\'_blank\\'>Supabaseプライバシーポリシーを見る</a>',
 
-  // TODO: Translate from English
-  'privacy.ul7.li2': '<strong>Stripe (Payment Processing):</strong> Processes all payment transactions securely. We receive only transaction confirmations, not card details. <a href=\\'https://stripe.com/privacy\\' target=\\'_blank\\'>View Stripe Privacy Policy</a>',
+  'privacy.ul7.li2': '<strong>Stripe（決済処理）：</strong>すべての決済トランザクションを安全に処理。カードの詳細ではなく、トランザクション確認のみを受け取ります。<a href=\\'https://stripe.com/privacy\\' target=\\'_blank\\'>Stripeプライバシーポリシーを見る</a>',
 
-  // TODO: Translate from English
-  'privacy.ul7.li3': '<strong>Shipping Partners:</strong> Receive name, address, and contact information solely for sticker delivery',
+  'privacy.ul7.li3': '<strong>配送パートナー：</strong>ステッカー配送のためにのみ氏名、住所、連絡先情報を受け取ります',
 
-  // TODO: Translate from English
-  'privacy.ul8.li1': '<strong>Essential Cookies (No Consent Required):</strong> Session management, authentication, security features, and shopping cart functionality. These are strictly necessary for the platform to work.',
+  'privacy.ul8.li1': '<strong>必須クッキー（同意不要）：</strong>セッション管理、認証、セキュリティ機能、ショッピングカート機能。これらはプラットフォームの動作に厳密に必要です。',
 
-  // TODO: Translate from English
-  'privacy.ul8.li2': '<strong>Preference Cookies (No Consent Required):</strong> Remember your language selection, cookie consent choice, and display preferences.',
+  'privacy.ul8.li2': '<strong>設定クッキー（同意不要）：</strong>言語選択、クッキー同意の選択、表示設定を記憶します。',
 
-  // TODO: Translate from English
-  'privacy.ul8.li3': '<strong>Analytics Cookies (Consent Required):</strong> Help us understand how visitors use the site through anonymized data. We only activate these with your explicit consent.',
+  'privacy.ul8.li3': '<strong>分析クッキー（同意必要）：</strong>匿名化データを通じて訪問者のサイト利用方法を理解するのに役立ちます。明示的な同意がある場合にのみアクティブ化します。',
 
-  // TODO: Translate from English
-  'privacy.ul9.li1': 'This data is <strong>publicly visible</strong> on the lighter\\'s page and map',
+  'privacy.ul9.li1': 'このデータはライターのページとマップで<strong>公開表示</strong>されます',
 
-  // TODO: Translate from English
-  'privacy.ul9.li2': 'Anyone with the lighter\\'s PIN can see this information',
+  'privacy.ul9.li2': 'ライターのPINを持っている人は誰でもこの情報を見ることができます',
 
-  // TODO: Translate from English
-  'privacy.ul9.li3': 'You control the accuracy—you can provide approximate or exact coordinates',
+  'privacy.ul9.li3': '精度を制御できます—おおよその座標または正確な座標を提供できます',
 
-  // TODO: Translate from English
-  'privacy.ul9.li4': 'You are solely responsible for privacy implications of any location data you share',
+  'privacy.ul9.li4': '共有する位置情報データのプライバシーへの影響については、お客様のみが責任を負います',
 
-  // TODO: Translate from English
-  'privacy.ul9.li5': 'You can delete your location posts anytime from your profile',
+  'privacy.ul9.li5': 'プロフィールからいつでも位置情報投稿を削除できます',
 
-  // TODO: Translate from English
-  'profile.update_error': 'Error: {error}',
+  'profile.update_error': 'エラー: {error}',
 
-  // TODO: Translate from English
-  'profile.update_success': 'Profile updated successfully!',
+  'profile.update_success': 'プロフィールを更新しました！',
 
-  // TODO: Translate from English
-  'redirect.login_add_story': 'You must be logged in to add a story.',
+  'redirect.login_add_story': 'ストーリーを追加するにはログインしてください。',
 
-  // TODO: Translate from English
-  'redirect.login_like': 'You must be logged in to like a post',
+  'redirect.login_like': '投稿にいいねするにはログインしてください',
 
-  // TODO: Translate from English
-  'redirect.login_profile': 'You must be logged in to view your profile.',
+  'redirect.login_profile': 'プロフィールを表示するにはログインしてください。',
 
-  // TODO: Translate from English
-  'redirect.login_save_lighter': 'You must be logged in to save a lighter',
+  'redirect.login_save_lighter': 'ライターを保存するにはログインしてください',
 
-  // TODO: Translate from English
-  'refill_guide.citations.1.source': 'World Economic Forum - Plastic Waste Statistics (2023)',
+  'refill_guide.citations.1.source': '世界経済フォーラム - プラスチック廃棄物統計（2023年）',
 
-  // TODO: Translate from English
-  'refill_guide.citations.1.text': 'Global lighter production and environmental impact data',
+  'refill_guide.citations.1.text': '世界的なライター生産と環境への影響データ',
 
-  // TODO: Translate from English
   'refill_guide.citations.1.url': 'https://www.weforum.org/agenda/2023/plastic-waste/',
 
-  // TODO: Translate from English
-  'refill_guide.citations.title': 'Sources & References',
+  'refill_guide.citations.title': '出典・参考文献',
 
-  // TODO: Translate from English
-  'refill_guide.key_indicators': 'Key indicators:',
+  'refill_guide.key_indicators': '主要な指標：',
 
-  // TODO: Translate from English
-  'refill_guide.stats.lighters_sold': 'Disposable lighters sold yearly',
+  'refill_guide.stats.lighters_sold': '年間販売される使い捨てライター',
 
-  // TODO: Translate from English
-  'refill_guide.stats.lighters_sold_worldwide': 'Worldwide',
+  'refill_guide.stats.lighters_sold_worldwide': '世界中',
 
-  // TODO: Translate from English
-  'refill_guide.stats.waste_reduction': 'Waste reduction',
+  'refill_guide.stats.waste_reduction': '廃棄物削減',
 
-  // TODO: Translate from English
-  'refill_guide.stats.waste_reduction_method': 'With refillable lighters',
+  'refill_guide.stats.waste_reduction_method': '詰め替え可能なライターで',
 
-  // TODO: Translate from English
-  'refill_guide.stats.years_decompose': 'Years to decompose',
+  'refill_guide.stats.years_decompose': '分解にかかる年数',
 
-  // TODO: Translate from English
-  'refill_guide.stats.years_decompose_location': 'In landfills',
+  'refill_guide.stats.years_decompose_location': '埋め立て地で',
 
-  // TODO: Translate from English
-  'refill_guide.type1.indicator1': 'Small round metal valve on the bottom',
+  'refill_guide.type1.indicator1': '底部に小さな丸い金属バルブ',
 
-  // TODO: Translate from English
-  'refill_guide.type1.indicator2': 'Similar to a tire valve',
+  'refill_guide.type1.indicator2': 'タイヤバルブに似ている',
 
-  // TODO: Translate from English
-  'refill_guide.type1.indicator3': 'Most common type',
+  'refill_guide.type1.indicator3': '最も一般的なタイプ',
 
-  // TODO: Translate from English
-  'refill_guide.type2.indicator1': 'Metal lighter (often iconic design)',
+  'refill_guide.type2.indicator1': '金属製ライター（象徴的なデザインが多い）',
 
-  // TODO: Translate from English
-  'refill_guide.type2.indicator2': 'Inner block can be pulled out',
+  'refill_guide.type2.indicator2': '内部ブロックを引き出せる',
 
-  // TODO: Translate from English
-  'refill_guide.type2.indicator3': 'Cotton visible inside',
+  'refill_guide.type2.indicator3': '内部に綿が見える',
 
-  // TODO: Translate from English
-  'refill_guide.type3.indicator1': 'Flat, sealed plastic bottom',
+  'refill_guide.type3.indicator1': '平らで密閉されたプラスチック底部',
 
-  // TODO: Translate from English
-  'refill_guide.type3.indicator2': 'No valve or removable parts',
+  'refill_guide.type3.indicator2': 'バルブや取り外し可能な部品なし',
 
-  // TODO: Translate from English
-  'refill_guide.type3.indicator3': 'Single-use only',
+  'refill_guide.type3.indicator3': '使い捨てのみ',
 
-  // TODO: Translate from English
-  'save_lighter.change_pack': '← Change Pack',
+  'save_lighter.change_pack': '← パックを変更',
 
-  // TODO: Translate from English
-  'save_lighter.creative_journey': 'Creative Journey',
+  'save_lighter.creative_journey': 'クリエイティブな旅',
 
-  // TODO: Translate from English
-  'save_lighter.creative_journey_desc': 'Be part of a fun, global movement. Give lighters a second life with beautiful, hand-crafted stickers.',
+  'save_lighter.creative_journey_desc': '楽しいグローバルムーブメントに参加しよう。美しい手作りステッカーでライターに第二の人生を。',
 
-  // TODO: Translate from English
-  'save_lighter.design_preview': 'Preview of your custom stickers. Sticker files will be generated after payment.',
+  'save_lighter.design_preview': 'カスタムステッカーのプレビュー。ステッカーファイルは支払い後に生成されます。',
 
-  // TODO: Translate from English
-  'save_lighter.human_mosaic': 'Human Mosaic',
+  'save_lighter.human_mosaic': '人間モザイク',
 
-  // TODO: Translate from English
-  'save_lighter.human_mosaic_desc': 'Join thousands of LightSavers creating a human mosaic of stories and creativity while fighting waste.',
+  'save_lighter.human_mosaic_desc': '何千人ものライトセーバーと共に、廃棄物と闘いながらストーリーと創造性の人間モザイクを作りましょう。',
 
-  // TODO: Translate from English
-  'save_lighter.more_stickers': '+{count} more',
+  'save_lighter.more_stickers': '+{count}枚',
 
-  // TODO: Translate from English
-  'save_lighter.sticker_plural': 'Stickers',
+  'save_lighter.sticker_plural': 'ステッカー',
 
-  // TODO: Translate from English
-  'save_lighter.sticker_singular': 'Sticker',
+  'save_lighter.sticker_singular': 'ステッカー',
 
-  // TODO: Translate from English
-  'save_lighter.sustainable_impact': 'Sustainable Impact',
+  'save_lighter.sustainable_impact': '持続可能な影響',
 
-  // TODO: Translate from English
-  'save_lighter.sustainable_impact_desc': 'Our stickers are hand-made and sustainably manufactured. Help maintain this project alive.',
+  'save_lighter.sustainable_impact_desc': '当社のステッカーは手作りで持続可能に製造されています。このプロジェクトを存続させるのを助けてください。',
 
-  // TODO: Translate from English
-  'save_lighter.why_it_matters': 'Why It Matters',
+  'save_lighter.why_it_matters': '重要性',
 
-  // TODO: Translate from English
-  'save_lighter.your_design': 'Your Sticker Design',
+  'save_lighter.your_design': 'あなたのステッカーデザイン',
 
-  // TODO: Translate from English
-  'settings.profile.nationality_label': 'Nationality',
+  'settings.profile.nationality_label': '国籍',
 
-  // TODO: Translate from English
-  'settings.profile.nationality_optional': '(optional)',
+  'settings.profile.nationality_optional': '（任意）',
 
-  // TODO: Translate from English
-  'settings.profile.nationality_placeholder': 'Select a country',
+  'settings.profile.nationality_placeholder': '国を選択',
 
-  // TODO: Translate from English
-  'settings.profile.save_button': 'Save Profile',
+  'settings.profile.save_button': 'プロフィールを保存',
 
-  // TODO: Translate from English
-  'settings.profile.saving': 'Saving...',
+  'settings.profile.saving': '保存中...',
 
-  // TODO: Translate from English
-  'settings.profile.show_nationality_label': 'Show my nationality on my posts',
+  'settings.profile.show_nationality_label': '投稿に国籍を表示',
 
-  // TODO: Translate from English
-  'settings.profile.username_label': 'Username',
+  'settings.profile.username_label': 'ユーザー名',
 
-  // TODO: Translate from English
-  'shipping.address_suggestions': '(Start typing for suggestions)',
+  'shipping.address_suggestions': '（入力すると候補が表示されます）',
 
-  // TODO: Translate from English
-  'stripe.card_info': 'Card Information',
+  'stripe.card_info': 'カード情報',
 
-  // TODO: Translate from English
-  'stripe.error.generic': 'Payment failed. Please check your details or try again.',
+  'stripe.error.generic': '決済に失敗しました。詳細を確認するか、もう一度お試しください。',
 
-  // TODO: Translate from English
-  'stripe.pay_button': 'Pay {amount}',
+  'stripe.pay_button': '{amount}を支払う',
 
-  // TODO: Translate from English
-  'terms.h3.acceptance': '1. Acceptance of Terms',
+  'terms.h3.acceptance': '1. 利用規約の承認',
 
-  // TODO: Translate from English
-  'terms.h3.contact_terms': '12. Contact Information',
+  'terms.h3.contact_terms': '12. 連絡先情報',
 
-  // TODO: Translate from English
-  'terms.h3.dispute_resolution': '9. Dispute Resolution and Governing Law',
+  'terms.h3.dispute_resolution': '9. 紛争解決と準拠法',
 
-  // TODO: Translate from English
-  'terms.h3.eligibility': '2. Eligibility and Account Requirements',
+  'terms.h3.eligibility': '2. 資格とアカウント要件',
 
-  // TODO: Translate from English
-  'terms.h3.general': '11. General Provisions',
+  'terms.h3.general': '11. 一般条項',
 
-  // TODO: Translate from English
-  'terms.h3.indemnification': '8. Indemnification',
+  'terms.h3.indemnification': '8. 補償',
 
-  // TODO: Translate from English
-  'terms.h3.liability': '7. Disclaimers and Limitation of Liability',
+  'terms.h3.liability': '7. 免責事項と責任の制限',
 
-  // TODO: Translate from English
-  'terms.h3.license': '3. License and Intellectual Property',
+  'terms.h3.license': '3. ライセンスと知的財産',
 
-  // TODO: Translate from English
-  'terms.h3.moderation': '5. Content Moderation and Enforcement',
+  'terms.h3.moderation': '5. コンテンツモデレーションと執行',
 
-  // TODO: Translate from English
-  'terms.h3.stickers': '6. Sticker Sales and Orders',
+  'terms.h3.stickers': '6. ステッカーの販売と注文',
 
-  // TODO: Translate from English
-  'terms.h3.termination': '10. Termination',
+  'terms.h3.termination': '10. 解約',
 
-  // TODO: Translate from English
-  'terms.h3.ugc': '4. User-Generated Content and Conduct',
+  'terms.h3.ugc': '4. ユーザー生成コンテンツと行動規範',
 
-  // TODO: Translate from English
-  'terms.h4.account_accuracy': '2.3. Account Information',
+  'terms.h4.account_accuracy': '2.3. アカウント情報',
 
-  // TODO: Translate from English
-  'terms.h4.account_security': '2.2. Account Security',
+  'terms.h4.account_security': '2.2. アカウントのセキュリティ',
 
-  // TODO: Translate from English
-  'terms.h4.age': '2.1. Age Requirement',
+  'terms.h4.age': '2.1. 年齢要件',
 
-  // TODO: Translate from English
-  'terms.h4.appeals': '5.4. Appeals Process',
+  'terms.h4.appeals': '5.4. 異議申立手続き',
 
-  // TODO: Translate from English
   'terms.h4.as_is': '7.1. ',
 
-  // TODO: Translate from English
-  'terms.h4.assignment': '11.5. Assignment',
+  'terms.h4.assignment': '11.5. 譲渡',
 
-  // TODO: Translate from English
-  'terms.h4.by_us': '10.2. Termination by Us',
+  'terms.h4.by_us': '10.2. 当社による解約',
 
-  // TODO: Translate from English
-  'terms.h4.by_you': '10.1. Termination by You',
+  'terms.h4.by_you': '10.1. お客様による解約',
 
-  // TODO: Translate from English
-  'terms.h4.community_flagging': '5.2. Community Flagging',
+  'terms.h4.community_flagging': '5.2. コミュニティフラグ',
 
-  // TODO: Translate from English
-  'terms.h4.custom': '6.3. Customization',
+  'terms.h4.custom': '6.3. カスタマイズ',
 
-  // TODO: Translate from English
-  'terms.h4.effect': '10.3. Effect of Termination',
+  'terms.h4.effect': '10.3. 解約の効果',
 
-  // TODO: Translate from English
-  'terms.h4.enforcement': '5.3. Enforcement Actions',
+  'terms.h4.enforcement': '5.3. 執行措置',
 
-  // TODO: Translate from English
-  'terms.h4.entire_agreement': '11.1. Entire Agreement',
+  'terms.h4.entire_agreement': '11.1. 完全合意',
 
-  // TODO: Translate from English
-  'terms.h4.governing_law': '9.1. Governing Law',
+  'terms.h4.governing_law': '9.1. 準拠法',
 
-  // TODO: Translate from English
-  'terms.h4.informal_resolution': '9.3. Informal Dispute Resolution',
+  'terms.h4.informal_resolution': '9.3. 非公式紛争解決',
 
-  // TODO: Translate from English
-  'terms.h4.jurisdiction': '9.2. Jurisdiction',
+  'terms.h4.jurisdiction': '9.2. 管轄',
 
-  // TODO: Translate from English
-  'terms.h4.jurisdiction_limits': '7.3. Jurisdictional Limitations',
+  'terms.h4.jurisdiction_limits': '7.3. 管轄による制限',
 
-  // TODO: Translate from English
-  'terms.h4.limitation': '7.2. Limitation of Liability',
+  'terms.h4.limitation': '7.2. 責任の制限',
 
-  // TODO: Translate from English
-  'terms.h4.mod_rights': '5.1. Our Rights',
+  'terms.h4.mod_rights': '5.1. 当社の権利',
 
-  // TODO: Translate from English
-  'terms.h4.modifications': '11.2. Modifications to Terms',
+  'terms.h4.modifications': '11.2. 利用規約の変更',
 
-  // TODO: Translate from English
-  'terms.h4.our_ip': '3.2. LightMyFire Intellectual Property',
+  'terms.h4.our_ip': '3.2. ライトマイファイアの知的財産',
 
-  // TODO: Translate from English
-  'terms.h4.our_license': '3.1. License to Use the Service',
+  'terms.h4.our_license': '3.1. サービス使用のライセンス',
 
-  // TODO: Translate from English
-  'terms.h4.prohibited_conduct': '4.3. Prohibited Conduct',
+  'terms.h4.prohibited_conduct': '4.3. 禁止行為',
 
-  // TODO: Translate from English
-  'terms.h4.prohibited_content': '4.2. Prohibited Content',
+  'terms.h4.prohibited_content': '4.2. 禁止コンテンツ',
 
-  // TODO: Translate from English
-  'terms.h4.sales_final': '6.1. Sales Policy',
+  'terms.h4.sales_final': '6.1. 販売ポリシー',
 
-  // TODO: Translate from English
-  'terms.h4.severability': '11.3. Severability',
+  'terms.h4.severability': '11.3. 可分性',
 
-  // TODO: Translate from English
-  'terms.h4.shipping': '6.2. Shipping and Delivery',
+  'terms.h4.shipping': '6.2. 配送と納品',
 
-  // TODO: Translate from English
-  'terms.h4.third_party': '11.6. No Third-Party Beneficiaries',
+  'terms.h4.third_party': '11.6. 第三者受益者の不存在',
 
-  // TODO: Translate from English
-  'terms.h4.ugc_responsibility': '4.1. Your Responsibility',
+  'terms.h4.ugc_responsibility': '4.1. お客様の責任',
 
-  // TODO: Translate from English
-  'terms.h4.user_license': '3.3. License to Your User-Generated Content',
+  'terms.h4.user_license': '3.3. ユーザー生成コンテンツのライセンス',
 
-  // TODO: Translate from English
-  'terms.h4.waiver': '11.4. No Waiver',
+  'terms.h4.waiver': '11.4. 権利放棄の不成立',
 
-  // TODO: Translate from English
-  'terms.last_updated': 'Last updated: October 28, 2025',
+  'terms.last_updated': '最終更新日：2025年10月28日',
 
-  // TODO: Translate from English
-  'terms.p1': 'These Terms of Service (',
+  'terms.p1': 'この利用規約（',
 
-  // TODO: Translate from English
-  'terms.p10': 'By posting User-Generated Content (',
+  'terms.p10': 'ユーザー生成コンテンツ（',
 
-  // TODO: Translate from English
-  'terms.p11': '<strong>Important:</strong> This license is limited to operating and promoting the Service. We will not use your content for unrelated commercial purposes. You retain ownership of your UGC and can revoke this license for specific posts by deleting them from your profile. However, copies may persist in backups for up to 30 days.',
+  'terms.p11': '<strong>重要：</strong>このライセンスは、サービスの運営とプロモーションに限定されています。無関係な商業目的でお客様のコンテンツを使用することはありません。お客様はUGCの所有権を保持し、プロフィールから削除することで特定の投稿のこのライセンスを取り消すことができます。ただし、コピーはバックアップに最大30日間残る場合があります。',
 
-  // TODO: Translate from English
-  'terms.p12': 'You are solely responsible for all content you post on LightMyFire, including text, images, links to songs (YouTube URLs), and location data. You represent and warrant that:',
+  'terms.p12': 'ライトマイファイアに投稿するすべてのコンテンツ（テキスト、画像、曲へのリンク（YouTube URL）、位置情報データを含む）について、お客様が単独で責任を負います。お客様は以下を表明し保証します：',
 
-  // TODO: Translate from English
-  'terms.p13': 'You must not post content that:',
+  'terms.p13': '以下のコンテンツを投稿してはなりません：',
 
-  // TODO: Translate from English
-  'terms.p14': 'You must not:',
+  'terms.p14': '以下を行ってはなりません：',
 
-  // TODO: Translate from English
-  'terms.p15': 'We reserve the right (but have no obligation) to:',
+  'terms.p15': '当社は以下の権利を留保します（ただし義務はありません）：',
 
-  // TODO: Translate from English
-  'terms.p16': 'However, we are not responsible for monitoring all content and make no guarantee that prohibited content will not appear on the Service.',
+  'terms.p16': 'ただし、当社はすべてのコンテンツを監視する責任はなく、禁止コンテンツがサービスに表示されないことを保証しません。',
 
-  // TODO: Translate from English
-  'terms.p17': 'We use a community-driven flagging system. Users can flag content they believe violates these Terms. Flagged content is reviewed by our moderation team, which may include automated pre-screening followed by human review.',
+  'terms.p17': '当社はコミュニティ主導のフラグシステムを使用しています。ユーザーは、これらの利用規約に違反すると思われるコンテンツにフラグを付けることができます。フラグが付けられたコンテンツは、自動事前スクリーニングとその後の人間によるレビューを含む可能性のあるモデレーションチームによってレビューされます。',
 
-  // TODO: Translate from English
-  'terms.p18': 'Violations of these Terms may result in:',
+  'terms.p18': 'これらの利用規約の違反は、以下の結果をもたらす可能性があります：',
 
-  // TODO: Translate from English
-  'terms.p19': 'We may terminate accounts without prior notice if we determine there\\'s a serious violation that threatens user safety or platform integrity.',
+  'terms.p19': 'ユーザーの安全やプラットフォームの完全性を脅かす重大な違反があると判断した場合、事前通知なしにアカウントを解約することがあります。',
 
-  // TODO: Translate from English
-  'terms.p2': 'By accessing or using LightMyFire, you agree to be bound by these Terms, our Privacy Policy, and all applicable laws. If you do not agree with any part of these Terms, you must not use the Service. Your continued use constitutes acceptance of any modifications we make to these Terms.',
+  'terms.p2': 'ライトマイファイアにアクセスまたは使用することにより、お客様はこれらの利用規約、当社のプライバシーポリシー、およびすべての適用法に拘束されることに同意します。これらの利用規約のいずれかの部分に同意しない場合は、サービスを使用しないでください。継続して使用することは、当社がこれらの利用規約に加える変更の承認を構成します。',
 
-  // TODO: Translate from English
-  'terms.p20': 'If you believe content was removed or your account was suspended in error, you may appeal by contacting support@lightmyfire.app within 30 days of the action. Include:',
+  'terms.p20': 'コンテンツが削除されたか、アカウントが誤って停止されたと思われる場合は、アクションから30日以内にsupport@lightmyfire.appに連絡して異議を申し立てることができます。以下を含めてください：',
 
-  // TODO: Translate from English
-  'terms.p21': 'We will review appeals and respond within 14 business days. Our decision on appeals is final.',
+  'terms.p21': '当社は異議申立をレビューし、14営業日以内に対応します。異議申立に対する当社の決定は最終的なものです。',
 
-  // TODO: Translate from English
-  'terms.p22': 'All sticker sales are final. We do not offer refunds except in cases of:',
+  'terms.p22': 'すべてのステッカー販売は最終的なものです。以下の場合を除き、返金は提供しません：',
 
-  // TODO: Translate from English
-  'terms.p23': 'To request a refund for these reasons, contact support@lightmyfire.app within 30 days of delivery with photo evidence.',
+  'terms.p23': 'これらの理由で返金をリクエストするには、配達後30日以内に写真証拠とともにsupport@lightmyfire.appまでご連絡ください。',
 
-  // TODO: Translate from English
-  'terms.p24': 'Shipping times and costs are specified at checkout. We are not responsible for delays caused by shipping carriers, customs, or events beyond our control (force majeure). Risk of loss passes to you upon delivery to the carrier.',
+  'terms.p24': '配送時間と費用はチェックアウト時に指定されます。配送業者、税関、または当社の制御を超えた出来事（不可抗力）によって引き起こされた遅延については責任を負いません。損失のリスクは、配送業者への配達時にお客様に移ります。',
 
-  // TODO: Translate from English
-  'terms.p25': 'Custom sticker orders cannot be canceled once processing begins (typically within 24 hours of order placement). Please review your customizations carefully before completing your order.',
+  'terms.p25': 'カスタムステッカー注文は、処理が開始されると（通常は注文後24時間以内）キャンセルできません。注文を完了する前に、カスタマイズを慎重に確認してください。',
 
-  // TODO: Translate from English
-  'terms.p26': 'THE SERVICE IS PROVIDED ',
+  'terms.p26': 'サービスは',
 
-  // TODO: Translate from English
-  'terms.p27': 'TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, REVEL EDITIONS SASU AND ITS DIRECTORS, EMPLOYEES, AGENTS, AND AFFILIATES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO:',
+  'terms.p27': '適用法で許可される最大限の範囲で、REVEL EDITIONS SASUおよびその取締役、従業員、代理人、関連会社は、以下を含むがこれらに限定されない、間接的、偶発的、特別、結果的、または懲罰的損害について責任を負いません：',
 
-  // TODO: Translate from English
-  'terms.p28': 'OUR TOTAL LIABILITY TO YOU FOR ALL CLAIMS ARISING FROM OR RELATED TO THE SERVICE SHALL NOT EXCEED THE GREATER OF (A) €100 OR (B) THE AMOUNT YOU PAID US IN THE 12 MONTHS PRECEDING THE CLAIM.',
+  'terms.p28': 'サービスから生じるまたはサービスに関連するすべてのクレームに対する当社のお客様への総責任は、（A）€100または（B）クレーム前の12か月間にお客様が当社に支払った金額のいずれか大きい方を超えないものとします。',
 
-  // TODO: Translate from English
-  'terms.p29': 'Some jurisdictions do not allow the exclusion of certain warranties or limitation of liability for consequential damages. In such jurisdictions, our liability is limited to the maximum extent permitted by law.',
+  'terms.p29': '一部の管轄区域では、特定の保証の除外または結果的損害に対する責任の制限を許可していません。そのような管轄区域では、当社の責任は法律で許可される最大限に制限されます。',
 
-  // TODO: Translate from English
-  'terms.p3': 'You must be at least 16 years old (or the minimum age required in your country to provide consent for data processing under applicable privacy laws) to create an account and use this Service. By creating an account, you represent and warrant that you meet this age requirement.',
+  'terms.p3': 'アカウントを作成してこのサービスを使用するには、16歳以上（または適用されるプライバシー法に基づくデータ処理に同意するためにお客様の国で必要な最低年齢以上）である必要があります。アカウントを作成することにより、お客様はこの年齢要件を満たしていることを表明し保証します。',
 
-  // TODO: Translate from English
-  'terms.p30': 'You agree to defend, indemnify, and hold harmless Revel Editions SASU, its directors, officers, employees, and agents from any claims, damages, losses, liabilities, and expenses (including reasonable attorneys\\' fees) arising from:',
+  'terms.p30': 'お客様は、以下から生じるクレーム、損害、損失、負債、費用（合理的な弁護士費用を含む）から、Revel Editions SASU、その取締役、役員、従業員、代理人を防御し、補償し、無害にすることに同意します：',
 
-  // TODO: Translate from English
-  'terms.p31': 'These Terms are governed by and construed in accordance with the laws of France, without regard to its conflict of law principles. The United Nations Convention on Contracts for the International Sale of Goods does not apply.',
+  'terms.p31': 'これらの利用規約は、抵触法の原則に関係なく、フランスの法律に準拠し、フランスの法律に従って解釈されます。国際物品売買契約に関する国連条約は適用されません。',
 
-  // TODO: Translate from English
-  'terms.p32': 'Any disputes arising from these Terms or your use of the Service shall be subject to the exclusive jurisdiction of the courts of Paris, France. However, we may seek injunctive relief in any court of competent jurisdiction.',
+  'terms.p32': 'これらの利用規約またはサービスの使用から生じる紛争は、フランス、パリの裁判所の専属管轄に服します。ただし、当社は管轄権のある裁判所で差止命令を求めることができます。',
 
-  // TODO: Translate from English
-  'terms.p33': 'Before filing any formal claim, you agree to contact us at support@lightmyfire.app to attempt to resolve the dispute informally. We commit to working with you in good faith to reach a resolution within 60 days.',
+  'terms.p33': '正式なクレームを提出する前に、support@lightmyfire.appに連絡して、非公式に紛争を解決することに同意します。当社は、60日以内に解決に達するために誠意を持ってお客様と協力することを約束します。',
 
-  // TODO: Translate from English
-  'terms.p34': 'You may terminate your account at any time by contacting support@lightmyfire.app. Upon termination:',
+  'terms.p34': 'いつでもsupport@lightmyfire.appに連絡してアカウントを解約できます。解約時：',
 
-  // TODO: Translate from English
-  'terms.p35': 'We may suspend or terminate your account immediately, without prior notice, for:',
+  'terms.p35': '以下の理由により、事前通知なしに、お客様のアカウントを即座に停止または解約することがあります：',
 
-  // TODO: Translate from English
-  'terms.p36': 'Upon termination for any reason:',
+  'terms.p36': '何らかの理由で解約された場合：',
 
-  // TODO: Translate from English
-  'terms.p37': 'These Terms, together with our Privacy Policy, constitute the entire agreement between you and Revel Editions SASU regarding the Service and supersede all prior agreements.',
+  'terms.p37': 'これらの利用規約は、当社のプライバシーポリシーとともに、サービスに関するお客様とRevel Editions SASUの間の完全な合意を構成し、すべての以前の合意に優先します。',
 
-  // TODO: Translate from English
-  'terms.p38': 'We reserve the right to modify these Terms at any time. When we make changes:',
+  'terms.p38': '当社はいつでもこれらの利用規約を変更する権利を留保します。変更を加える場合：',
 
-  // TODO: Translate from English
-  'terms.p39': 'If you don\\'t agree to modified Terms, you must stop using the Service.',
+  'terms.p39': '変更された利用規約に同意しない場合は、サービスの使用を停止する必要があります。',
 
-  // TODO: Translate from English
-  'terms.p4': 'You are responsible for:',
+  'terms.p4': 'お客様は以下について責任を負います：',
 
-  // TODO: Translate from English
-  'terms.p40': 'If any provision of these Terms is found invalid or unenforceable, that provision shall be enforced to the maximum extent possible, and the remaining provisions shall remain in full effect.',
+  'terms.p40': 'これらの利用規約のいずれかの条項が無効または執行不能と判断された場合、その条項は可能な限り最大限に執行され、残りの条項は完全に有効に残ります。',
 
-  // TODO: Translate from English
-  'terms.p41': 'Our failure to enforce any right or provision of these Terms does not constitute a waiver of that right or provision.',
+  'terms.p41': '当社がこれらの利用規約のいずれかの権利または条項を執行しないことは、その権利または条項の放棄を構成しません。',
 
-  // TODO: Translate from English
-  'terms.p42': 'You may not assign or transfer these Terms or your account without our written consent. We may assign our rights and obligations without restriction.',
+  'terms.p42': '当社の書面による同意なしに、これらの利用規約またはお客様のアカウントを譲渡または移転することはできません。当社は、制限なく当社の権利と義務を譲渡できます。',
 
-  // TODO: Translate from English
-  'terms.p43': 'These Terms do not create any third-party beneficiary rights except as expressly stated.',
+  'terms.p43': '明示的に記載されている場合を除き、これらの利用規約は第三者受益者権を作成しません。',
 
-  // TODO: Translate from English
-  'terms.p44': 'For questions about these Terms, contact us:',
+  'terms.p44': 'これらの利用規約についてご質問がある場合は、お問い合わせください：',
 
-  // TODO: Translate from English
-  'terms.p5': 'You may not share your account with others or use another person\\'s account without permission.',
+  'terms.p5': 'アカウントを他の人と共有したり、許可なく他の人のアカウントを使用したりすることはできません。',
 
-  // TODO: Translate from English
-  'terms.p6': 'You agree to provide accurate, current, and complete information during registration and to update it as necessary to maintain its accuracy.',
+  'terms.p6': '登録時に正確で最新かつ完全な情報を提供し、その正確性を維持するために必要に応じて更新することに同意します。',
 
-  // TODO: Translate from English
-  'terms.p7': 'Subject to these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to access and use LightMyFire for personal, non-commercial purposes.',
+  'terms.p7': 'これらの利用規約に従い、お客様に個人的な非商用目的でライトマイファイアにアクセスして使用するための、限定的、非独占的、譲渡不可、取消可能なライセンスを付与します。',
 
-  // TODO: Translate from English
-  'terms.p8': 'All content, features, and functionality of the Service—including but not limited to text, graphics, logos, icons, images, audio clips, data compilations, software, and the ',
+  'terms.p8': 'サービスのすべてのコンテンツ、機能、機能性—テキスト、グラフィックス、ロゴ、アイコン、画像、オーディオクリップ、データコンパイル、ソフトウェア、および',
 
-  // TODO: Translate from English
   'terms.p9': '[TODO: Translate terms.p9]',
 
-  // TODO: Translate from English
-  'terms.ul1.li1': 'Maintaining the confidentiality of your account credentials',
+  'terms.ul1.li1': 'アカウント認証情報の機密保持',
 
-  // TODO: Translate from English
-  'terms.ul1.li2': 'All activities that occur under your account',
+  'terms.ul1.li2': 'お客様のアカウントで発生するすべてのアクティビティ',
 
-  // TODO: Translate from English
-  'terms.ul1.li3': 'Notifying us immediately of any unauthorized use at: support@lightmyfire.app',
+  'terms.ul1.li3': '不正使用があった場合は、support@lightmyfire.appまですぐに通知',
 
-  // TODO: Translate from English
-  'terms.ul10.li1': 'The Service will meet your requirements',
+  'terms.ul10.li1': 'サービスがお客様の要件を満たすこと',
 
-  // TODO: Translate from English
-  'terms.ul10.li2': 'The Service will be uninterrupted, timely, secure, or error-free',
+  'terms.ul10.li2': 'サービスが中断されず、タイムリーで、安全で、エラーがないこと',
 
-  // TODO: Translate from English
-  'terms.ul10.li3': 'Results obtained from use of the Service will be accurate or reliable',
+  'terms.ul10.li3': 'サービスの使用から得られる結果が正確または信頼できること',
 
-  // TODO: Translate from English
-  'terms.ul10.li4': 'Any errors in the Service will be corrected',
+  'terms.ul10.li4': 'サービスのエラーが修正されること',
 
-  // TODO: Translate from English
-  'terms.ul11.li1': 'Loss of profits, data, use, goodwill, or other intangible losses',
+  'terms.ul11.li1': '利益、データ、使用、信用、またはその他の無形の損失の喪失',
 
-  // TODO: Translate from English
-  'terms.ul11.li2': 'Unauthorized access to or alteration of your content',
+  'terms.ul11.li2': 'お客様のコンテンツへの不正アクセスまたは変更',
 
-  // TODO: Translate from English
-  'terms.ul11.li3': 'Third-party conduct or content on the Service',
+  'terms.ul11.li3': 'サービス上の第三者の行為またはコンテンツ',
 
-  // TODO: Translate from English
-  'terms.ul11.li4': 'Any matter beyond our reasonable control',
+  'terms.ul11.li4': '当社の合理的な制御を超えるあらゆる事項',
 
-  // TODO: Translate from English
-  'terms.ul12.li1': 'Your use or misuse of the Service',
+  'terms.ul12.li1': 'サービスの使用または誤用',
 
-  // TODO: Translate from English
-  'terms.ul12.li2': 'Your violation of these Terms',
+  'terms.ul12.li2': 'これらの利用規約への違反',
 
-  // TODO: Translate from English
-  'terms.ul12.li3': 'Your violation of any rights of another party',
+  'terms.ul12.li3': '他の当事者の権利の侵害',
 
-  // TODO: Translate from English
-  'terms.ul12.li4': 'Your User-Generated Content',
+  'terms.ul12.li4': 'お客様のユーザー生成コンテンツ',
 
-  // TODO: Translate from English
-  'terms.ul13.li1': 'Your account will be deactivated',
+  'terms.ul13.li1': 'お客様のアカウントは無効化されます',
 
-  // TODO: Translate from English
-  'terms.ul13.li2': 'You lose access to all account features',
+  'terms.ul13.li2': 'すべてのアカウント機能へのアクセスを失います',
 
-  // TODO: Translate from English
-  'terms.ul13.li3': 'Your posts remain visible on lighter pages (they\\'re part of those lighters\\' stories)',
+  'terms.ul13.li3': 'お客様の投稿はライターページに表示されたままです（それらはそのライターのストーリーの一部です）',
 
-  // TODO: Translate from English
-  'terms.ul13.li4': 'To delete your posts before account termination, do so manually from your profile',
+  'terms.ul13.li4': 'アカウント解約前に投稿を削除するには、プロフィールから手動で削除してください',
 
-  // TODO: Translate from English
-  'terms.ul14.li1': 'Violation of these Terms',
+  'terms.ul14.li1': 'これらの利用規約への違反',
 
-  // TODO: Translate from English
-  'terms.ul14.li2': 'Fraudulent, abusive, or illegal activity',
+  'terms.ul14.li2': '詐欺的、虐待的、または違法な活動',
 
-  // TODO: Translate from English
-  'terms.ul14.li3': 'Prolonged inactivity (accounts inactive for 3+ years)',
+  'terms.ul14.li3': '長期間の非アクティブ（3年以上非アクティブなアカウント）',
 
-  // TODO: Translate from English
-  'terms.ul14.li4': 'At our sole discretion if necessary to protect the Service or other users',
+  'terms.ul14.li4': 'サービスまたは他のユーザーを保護するために必要な場合、当社の独自の裁量で',
 
-  // TODO: Translate from English
-  'terms.ul15.li1': 'Your right to use the Service ceases immediately',
+  'terms.ul15.li1': 'サービスを使用する権利は直ちに停止されます',
 
-  // TODO: Translate from English
-  'terms.ul15.li2': 'Sections that by their nature should survive termination remain in effect (including Intellectual Property, Disclaimers, Limitation of Liability, Indemnification, Dispute Resolution)',
+  'terms.ul15.li2': '性質上、解約後も存続すべきセクションは有効に残ります（知的財産、免責事項、責任の制限、補償、紛争解決を含む）',
 
-  // TODO: Translate from English
-  'terms.ul15.li3': 'We may retain certain data as required by law or legitimate business purposes',
+  'terms.ul15.li3': '法律または正当な事業目的で必要な場合、特定のデータを保持することがあります',
 
-  // TODO: Translate from English
-  'terms.ul16.li1': 'We\\'ll update the ',
+  'terms.ul16.li1': '更新する',
 
-  // TODO: Translate from English
-  'terms.ul16.li2': 'For material changes, we\\'ll notify you by email or prominent notice on the Service',
+  'terms.ul16.li2': '重要な変更については、メールまたはサービス上の目立つ通知でお知らせします',
 
-  // TODO: Translate from English
-  'terms.ul16.li3': 'Your continued use after changes constitutes acceptance',
+  'terms.ul16.li3': '変更後の継続使用は承認を構成します',
 
-  // TODO: Translate from English
-  'terms.ul17.li1': '<strong>Email:</strong> support@lightmyfire.app',
+  'terms.ul17.li1': '<strong>メール：</strong>support@lightmyfire.app',
 
-  // TODO: Translate from English
-  'terms.ul17.li2': '<strong>Support:</strong> support@lightmyfire.app',
+  'terms.ul17.li2': '<strong>サポート：</strong>support@lightmyfire.app',
 
-  // TODO: Translate from English
-  'terms.ul17.li3': '<strong>Address:</strong> Revel Editions SASU, Cs 20008 145 Rue de Noisy-le-Sec 93260 Les Lilas, France',
+  'terms.ul17.li3': '<strong>住所：</strong>Revel Editions SASU, Cs 20008 145 Rue de Noisy-le-Sec 93260 Les Lilas, France',
 
-  // TODO: Translate from English
-  'terms.ul2.li1': 'Use, reproduce, distribute, modify, adapt, publicly perform, and publicly display your UGC',
+  'terms.ul2.li1': 'お客様のUGCを使用、複製、配布、変更、改変、公に実行、公に表示する',
 
-  // TODO: Translate from English
-  'terms.ul2.li2': 'Incorporate your UGC into other works in any format or medium',
+  'terms.ul2.li2': 'お客様のUGCを任意の形式またはメディアの他の作品に組み込む',
 
-  // TODO: Translate from English
-  'terms.ul2.li3': 'Sublicense these rights to third parties solely for the operation and promotion of LightMyFire',
+  'terms.ul2.li3': 'ライトマイファイアの運営とプロモーションのためにのみ、第三者にこれらの権利をサブライセンスする',
 
-  // TODO: Translate from English
-  'terms.ul3.li1': 'You own or have the necessary rights to post the content',
+  'terms.ul3.li1': 'コンテンツを投稿する権利を所有しているか、または必要な権利を持っている',
 
-  // TODO: Translate from English
-  'terms.ul3.li2': 'Your content does not violate any third party\\'s intellectual property, privacy, or other rights',
+  'terms.ul3.li2': 'お客様のコンテンツは、第三者の知的財産、プライバシー、またはその他の権利を侵害しない',
 
-  // TODO: Translate from English
-  'terms.ul3.li3': 'Your content complies with these Terms and applicable laws',
+  'terms.ul3.li3': 'お客様のコンテンツはこれらの利用規約および適用法に準拠している',
 
-  // TODO: Translate from English
-  'terms.ul4.li1': '<strong>Illegal:</strong> Violates any local, national, or international law',
+  'terms.ul4.li1': '<strong>違法：</strong>地方、国内、または国際法に違反する',
 
-  // TODO: Translate from English
-  'terms.ul4.li10': '<strong>Malicious:</strong> Contains viruses, malware, or other harmful code',
+  'terms.ul4.li10': '<strong>悪意のある：</strong>ウイルス、マルウェア、またはその他の有害なコードを含む',
 
-  // TODO: Translate from English
-  'terms.ul4.li11': '<strong>Private Information:</strong> Shares others\\' personal information without consent (doxxing)',
+  'terms.ul4.li11': '<strong>個人情報：</strong>同意なしに他人の個人情報を共有する（ドキシング）',
 
-  // TODO: Translate from English
-  'terms.ul4.li2': '<strong>Harmful to Minors:</strong> Exploits, sexualizes, or endangers children in any way',
+  'terms.ul4.li2': '<strong>未成年者に有害：</strong>子どもをあらゆる方法で搾取、性的対象化、または危険にさらす',
 
-  // TODO: Translate from English
-  'terms.ul4.li3': '<strong>Hateful:</strong> Promotes hatred, discrimination, or violence against individuals or groups based on race, ethnicity, religion, gender, sexual orientation, disability, or other protected characteristics',
+  'terms.ul4.li3': '<strong>憎悪：</strong>人種、民族、宗教、性別、性的指向、障害、またはその他の保護された特性に基づいて、個人またはグループに対する憎悪、差別、または暴力を促進する',
 
-  // TODO: Translate from English
-  'terms.ul4.li4': '<strong>Violent or Threatening:</strong> Depicts, encourages, or threatens violence, self-harm, or harm to others',
+  'terms.ul4.li4': '<strong>暴力的または脅迫的：</strong>暴力、自傷行為、または他者への危害を描写、奨励、または脅迫する',
 
-  // TODO: Translate from English
-  'terms.ul4.li5': '<strong>Harassing:</strong> Bullies, harasses, stalks, or intimidates others',
+  'terms.ul4.li5': '<strong>嫌がらせ：</strong>他人をいじめ、嫌がらせ、ストーカー行為、または脅迫する',
 
-  // TODO: Translate from English
-  'terms.ul4.li6': '<strong>Sexually Explicit:</strong> Contains pornography or sexually explicit material',
+  'terms.ul4.li6': '<strong>性的に露骨：</strong>ポルノまたは性的に露骨な素材を含む',
 
-  // TODO: Translate from English
-  'terms.ul4.li7': '<strong>Misleading:</strong> Contains false, misleading, or fraudulent information',
+  'terms.ul4.li7': '<strong>誤解を招く：</strong>虚偽、誤解を招く、または詐欺的な情報を含む',
 
-  // TODO: Translate from English
-  'terms.ul4.li8': '<strong>Spam:</strong> Consists of unsolicited advertising, promotional material, or repetitive content',
+  'terms.ul4.li8': '<strong>スパム：</strong>迷惑な広告、宣伝資料、または反復的なコンテンツで構成される',
 
-  // TODO: Translate from English
-  'terms.ul4.li9': '<strong>Infringing:</strong> Violates copyrights, trademarks, patents, or other intellectual property rights',
+  'terms.ul4.li9': '<strong>侵害：</strong>著作権、商標、特許、またはその他の知的財産権を侵害する',
 
-  // TODO: Translate from English
-  'terms.ul5.li1': 'Impersonate any person or entity',
+  'terms.ul5.li1': '人物または団体になりすます',
 
-  // TODO: Translate from English
-  'terms.ul5.li2': 'Manipulate the Service to artificially inflate metrics (likes, views, etc.)',
+  'terms.ul5.li2': 'メトリクス（いいね、ビューなど）を人為的に膨らませるためにサービスを操作する',
 
-  // TODO: Translate from English
-  'terms.ul5.li3': 'Interfere with or disrupt the Service or servers',
+  'terms.ul5.li3': 'サービスまたはサーバーを妨害または中断する',
 
-  // TODO: Translate from English
-  'terms.ul5.li4': 'Attempt to gain unauthorized access to any part of the Service',
+  'terms.ul5.li4': 'サービスの任意の部分への不正アクセスを試みる',
 
-  // TODO: Translate from English
-  'terms.ul5.li5': 'Use automated tools (bots, scrapers) without written permission',
+  'terms.ul5.li5': '書面による許可なしに自動ツール（ボット、スクレイパー）を使用する',
 
-  // TODO: Translate from English
-  'terms.ul5.li6': 'Circumvent any content filtering or security measures',
+  'terms.ul5.li6': 'コンテンツフィルタリングまたはセキュリティ対策を回避する',
 
-  // TODO: Translate from English
-  'terms.ul5.li7': 'Use the Service for any commercial purpose without our consent',
+  'terms.ul5.li7': '当社の同意なしに商業目的でサービスを使用する',
 
-  // TODO: Translate from English
-  'terms.ul6.li1': 'Review, screen, edit, or remove any UGC at any time for any reason',
+  'terms.ul6.li1': 'いつでも何らかの理由でUGCをレビュー、スクリーニング、編集、または削除する',
 
-  // TODO: Translate from English
-  'terms.ul6.li2': 'Monitor user activity for violations of these Terms',
+  'terms.ul6.li2': 'これらの利用規約の違反についてユーザーアクティビティを監視する',
 
-  // TODO: Translate from English
-  'terms.ul6.li3': 'Investigate complaints and reported content',
+  'terms.ul6.li3': '苦情および報告されたコンテンツを調査する',
 
-  // TODO: Translate from English
-  'terms.ul7.li1': '<strong>Content Removal:</strong> Removal of violating posts without notice',
+  'terms.ul7.li1': '<strong>コンテンツ削除：</strong>通知なしに違反投稿を削除',
 
-  // TODO: Translate from English
-  'terms.ul7.li2': '<strong>Warning:</strong> A formal warning for first-time or minor violations',
+  'terms.ul7.li2': '<strong>警告：</strong>初回または軽微な違反に対する正式な警告',
 
-  // TODO: Translate from English
-  'terms.ul7.li3': '<strong>Temporary Suspension:</strong> Temporary account suspension (duration determined by severity)',
+  'terms.ul7.li3': '<strong>一時停止：</strong>一時的なアカウント停止（期間は重大度によって決定）',
 
-  // TODO: Translate from English
-  'terms.ul7.li4': '<strong>Permanent Termination:</strong> Permanent account termination for serious or repeated violations',
+  'terms.ul7.li4': '<strong>永久解約：</strong>深刻または繰り返し違反に対する永久アカウント解約',
 
-  // TODO: Translate from English
-  'terms.ul7.li5': '<strong>Legal Action:</strong> Reporting to law enforcement for illegal activity',
+  'terms.ul7.li5': '<strong>法的措置：</strong>違法行為の法執行機関への報告',
 
-  // TODO: Translate from English
-  'terms.ul8.li1': 'Your username and account email',
+  'terms.ul8.li1': 'お客様のユーザー名とアカウントメール',
 
-  // TODO: Translate from English
-  'terms.ul8.li2': 'Description of the content or action in question',
+  'terms.ul8.li2': '問題のコンテンツまたはアクションの説明',
 
-  // TODO: Translate from English
-  'terms.ul8.li3': 'Explanation of why you believe the decision was incorrect',
+  'terms.ul8.li3': '決定が誤っていると思う理由の説明',
 
-  // TODO: Translate from English
-  'terms.ul9.li1': 'Manufacturing defects in the stickers',
+  'terms.ul9.li1': 'ステッカーの製造上の欠陥',
 
-  // TODO: Translate from English
-  'terms.ul9.li2': 'Incorrect items shipped',
+  'terms.ul9.li2': '誤った商品の発送',
 
-  // TODO: Translate from English
-  'terms.ul9.li3': 'Non-delivery due to our error',
+  'terms.ul9.li3': '当社の誤りによる不配達',
 
-  // TODO: Translate from English
-  'validation.email_invalid': 'Please enter a valid email address.',
+  'validation.email_invalid': '有効なメールアドレスを入力してください。',
 
-  // TODO: Translate from English
-  'validation.email_required': 'Email is required.',
+  'validation.email_required': 'メールアドレスは必須です。',
 
-  // TODO: Translate from English
-  'validation.field_required': 'This field is required.',
+  'validation.field_required': 'このフィールドは必須です。',
 
-  // TODO: Translate from English
-  'validation.password_requirement.lowercase': 'At least one lowercase letter',
+  'validation.password_requirement.lowercase': '小文字を1文字以上',
 
-  // TODO: Translate from English
-  'validation.password_requirement.min_length': 'At least {count} characters',
+  'validation.password_requirement.min_length': '{count}文字以上',
 
-  // TODO: Translate from English
-  'validation.password_requirement.number': 'At least one number',
+  'validation.password_requirement.number': '数字を1文字以上',
 
-  // TODO: Translate from English
-  'validation.password_requirement.uppercase': 'At least one uppercase letter',
+  'validation.password_requirement.uppercase': '大文字を1文字以上',
 
-  // TODO: Translate from English
-  'validation.password_requirements': 'Password must contain at least one uppercase letter, one lowercase letter, and one number',
+  'validation.password_requirements': 'パスワードには、大文字、小文字、数字を最低1文字ずつ含める必要があります',
 
-  // TODO: Translate from English
-  'validation.password_too_short': 'Password must be at least {min} characters.',
+  'validation.password_too_short': 'パスワードは{min}文字以上である必要があります。',
 
-  // TODO: Translate from English
-  'validation.username_length': 'Username must be between {min} and {max} characters.',
+  'validation.username_length': 'ユーザー名は{min}文字以上{max}文字以下である必要があります。',
 
-  // TODO: Translate from English
-  'validation.username_required': 'Username cannot be empty.',
+  'validation.username_required': 'ユーザー名は空欄にできません。',
 } as const;

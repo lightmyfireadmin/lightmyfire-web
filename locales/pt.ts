@@ -1043,1128 +1043,753 @@ export default {
   'order.summary.shipping': 'Envio:',
   'order.summary.shipping_calculated': '+ envio',
 
-  // TODO: Translate from English
-  'order.summary.shipping_express': 'Express Shipping',
+  'order.summary.shipping_express': 'Envio Expresso',
 
-  // TODO: Translate from English
-  'order.summary.shipping_express_time': '3-5 business days',
+  'order.summary.shipping_express_time': '3-5 dias úteis',
 
-  // TODO: Translate from English
-  'order.summary.shipping_method': 'Shipping Method:',
+  'order.summary.shipping_method': 'Método de Envio:',
 
-  // TODO: Translate from English
-  'order.summary.shipping_standard': 'Standard Shipping',
+  'order.summary.shipping_standard': 'Envio Padrão',
 
-  // TODO: Translate from English
-  'order.summary.shipping_standard_time': '7-14 business days',
+  'order.summary.shipping_standard_time': '7-14 dias úteis',
 
-  // TODO: Translate from English
   'order.summary.subtotal': 'Subtotal:',
 
-  // TODO: Translate from English
-  'order_success.email_subject': 'Question about my sticker order',
+  'order_success.email_subject': 'Pergunta sobre meu pedido de stickers',
 
-  // TODO: Translate from English
-  'payment.card_not_found': 'Card element not found',
+  'payment.card_not_found': 'Elemento do cartão não encontrado',
 
-  // TODO: Translate from English
-  'payment.stripe_load_failed': 'Failed to load Stripe. Please check your configuration.',
+  'payment.stripe_load_failed': 'Falha ao carregar Stripe. Verifique sua configuração.',
 
-  // TODO: Translate from English
-  'personalization.customize_stickers': 'Customize Your Stickers',
+  'personalization.customize_stickers': 'Personalize Seus Stickers',
 
-  // TODO: Translate from English
-  'personalization.english_included': 'English will always be included on your stickers',
+  'personalization.english_included': 'Inglês sempre será incluído em seus stickers',
 
-  // TODO: Translate from English
-  'personalization.personalize_each': 'Personalize each lighter',
+  'personalization.personalize_each': 'Personalizar cada isqueiro',
 
-  // TODO: Translate from English
-  'personalization.second_language': 'Second Language on Sticker (+ English)',
+  'personalization.second_language': 'Segunda Língua no Sticker (+ Inglês)',
 
-  // TODO: Translate from English
-  'philosophy.button.hide': 'Hide',
+  'philosophy.button.hide': 'Ocultar',
 
-  // TODO: Translate from English
-  'philosophy.button.learn_more': 'Learn More',
+  'philosophy.button.learn_more': 'Saiba Mais',
 
-  // TODO: Translate from English
-  'philosophy.cta': 'Join us in giving lighters a second life, one story at a time.',
+  'philosophy.cta': 'Junte-se a nós para dar aos isqueiros uma segunda vida, uma história de cada vez.',
 
-  // TODO: Translate from English
-  'philosophy.image_alt': 'Global Creativity Mosaic',
+  'philosophy.image_alt': 'Mosaico Global de Criatividade',
 
-  // TODO: Translate from English
-  'philosophy.lead': 'We believe that even the smallest, most disposable object can carry a great story.',
+  'philosophy.lead': 'Acreditamos que mesmo o menor e mais descartável objeto pode carregar uma grande história.',
 
-  // TODO: Translate from English
-  'philosophy.p1': '<strong>LightMyFire</strong> was born from a simple idea: what if we stopped treating lighters as throwaway items? <strong>In a world of mass consumption where billions of these items are discarded every year,</strong> what if we saw them as companions, as tiny vessels for our memories, ideas, and creativity?',
+  'philosophy.p1': '<strong>LightMyFire</strong> nasceu de uma ideia simples: e se parássemos de tratar isqueiros como itens descartáveis? <strong>Em um mundo de consumo em massa onde bilhões desses itens são descartados todos os anos,</strong> e se os víssemos como companheiros, como pequenos recipientes para nossas memórias, ideias e criatividade?',
 
-  // TODO: Translate from English
-  'philosophy.p2': 'The everyday lighter is <strong>a powerful social catalyst.</strong> It\\'s no personal possession; it belongs to everyone. It passes from hand to hand, from friend to stranger, at parties, concerts, and quiet meetups. It hears our secrets and lights our way. <strong>It\\'s the silent witness to a great conversation, the spark for a new friendship. But its story is ephemeral, lost as soon as it\\'s passed on.</strong>',
+  'philosophy.p2': 'O isqueiro do dia a dia é <strong>um poderoso catalisador social.</strong> Não é uma posse pessoal; pertence a todos. Passa de mão em mão, de amigo a estranho, em festas, shows e encontros tranquilos. Ouve nossos segredos e ilumina nosso caminho. <strong>É a testemunha silenciosa de uma ótima conversa, a faísca para uma nova amizade. Mas sua história é efêmera, perdida assim que é passada adiante.</strong>',
 
-  // TODO: Translate from English
-  'philosophy.p3': 'By giving a lighter a permanent, digital story, we give it sentimental value. <strong>Your lighter becomes a living artifact, a message in a bottle.</strong> And when something has value, we\\'re less likely to throw it away.',
+  'philosophy.p3': 'Ao dar a um isqueiro uma história digital permanente, damos a ele valor sentimental. <strong>Seu isqueiro se torna um artefato vivo, uma mensagem na garrafa.</strong> E quando algo tem valor, é menos provável que o descartemos.',
 
-  // TODO: Translate from English
-  'philosophy.p4': 'Our goal is simple: to create a global, human creativity mosaic, one lighter at a time, and reduce waste in the process. <strong>This is our stand against a throwaway culture. It\\'s an experiment in collaborative art. It\\'s a way to prove that if you give an object a story, you give it a soul.</strong>',
+  'philosophy.p4': 'Nosso objetivo é simples: criar um mosaico global de criatividade humana, um isqueiro de cada vez, e reduzir o desperdício no processo. <strong>Esta é nossa posição contra uma cultura descartável. É um experimento em arte colaborativa. É uma forma de provar que se você dá a um objeto uma história, você lhe dá uma alma.</strong>',
 
-  // TODO: Translate from English
-  'philosophy.title': 'Our Philosophy',
+  'philosophy.title': 'Nossa Filosofia',
 
-  // TODO: Translate from English
   'placeholder.hex_color': '#FF6B6B',
 
-  // TODO: Translate from English
-  'placeholder.lighter_name': 'Lighter name...',
+  'placeholder.lighter_name': 'Nome do isqueiro...',
 
-  // TODO: Translate from English
-  'placeholder.location_search': 'Search for a location...',
+  'placeholder.location_search': 'Buscar localização...',
 
-  // TODO: Translate from English
   'placeholder.pin_entry': 'ABC-123',
 
-  // TODO: Translate from English
-  'post.anonymous': 'Anonymous',
+  'post.anonymous': 'Anônimo',
 
-  // TODO: Translate from English
-  'post.default_location': 'Unknown Location',
+  'post.default_location': 'Localização Desconhecida',
 
-  // TODO: Translate from English
-  'post.deleted_user': 'Deleted User',
+  'post.deleted_user': 'Usuário Excluído',
 
-  // TODO: Translate from English
-  'post.like_button': 'Like',
+  'post.like_button': 'Curtir',
 
-  // TODO: Translate from English
-  'post.location_at': 'at',
+  'post.location_at': 'em',
 
-  // TODO: Translate from English
-  'post.post_type.image': 'shared an image',
+  'post.post_type.image': 'compartilhou uma imagem',
 
-  // TODO: Translate from English
-  'post.post_type.location': 'checked in',
+  'post.post_type.location': 'fez check-in',
 
-  // TODO: Translate from English
-  'post.post_type.refuel': 'refueled this lighter',
+  'post.post_type.refuel': 'recarregou este isqueiro',
 
-  // TODO: Translate from English
-  'post.post_type.song': 'shared a song',
+  'post.post_type.song': 'compartilhou uma música',
 
-  // TODO: Translate from English
-  'post.post_type.text': 'wrote a story',
+  'post.post_type.text': 'escreveu uma história',
 
-  // TODO: Translate from English
-  'post.user_upload_alt': 'User upload',
+  'post.user_upload_alt': 'Upload do usuário',
 
-  // TODO: Translate from English
-  'post.youtube_player_title': 'YouTube video player',
+  'post.youtube_player_title': 'Player de vídeo do YouTube',
 
-  // TODO: Translate from English
-  'privacy.h3.automated_decisions': '7. Automated Decision-Making',
+  'privacy.h3.automated_decisions': '7. Tomada de Decisão Automatizada',
 
-  // TODO: Translate from English
-  'privacy.h3.changes': '9. Changes to This Privacy Policy',
+  'privacy.h3.changes': '9. Alterações a Esta Política de Privacidade',
 
-  // TODO: Translate from English
-  'privacy.h3.children': '8. Children\\'s Privacy',
+  'privacy.h3.children': '8. Privacidade de Crianças',
 
-  // TODO: Translate from English
-  'privacy.h3.contact': '10. Contact Us',
+  'privacy.h3.contact': '10. Fale Conosco',
 
-  // TODO: Translate from English
   'privacy.h3.cookies': '5.1. Cookies',
 
-  // TODO: Translate from English
-  'privacy.h3.data_breaches': '5.6. Data Breach Notification',
+  'privacy.h3.data_breaches': '5.6. Notificação de Violação de Dados',
 
-  // TODO: Translate from English
-  'privacy.h3.data_controller': '1. Data Controller',
+  'privacy.h3.data_controller': '1. Controlador de Dados',
 
-  // TODO: Translate from English
-  'privacy.h3.data_retention': '5.4. Data Retention Periods',
+  'privacy.h3.data_retention': '5.4. Períodos de Retenção de Dados',
 
-  // TODO: Translate from English
-  'privacy.h3.data_security': '5.5. Security Measures',
+  'privacy.h3.data_security': '5.5. Medidas de Segurança',
 
-  // TODO: Translate from English
-  'privacy.h3.data_sharing': '5. Data Sharing and Processors',
+  'privacy.h3.data_sharing': '5. Compartilhamento de Dados e Processadores',
 
-  // TODO: Translate from English
-  'privacy.h3.how_we_use': '3. How We Use Your Information',
+  'privacy.h3.how_we_use': '3. Como Usamos Suas Informações',
 
-  // TODO: Translate from English
-  'privacy.h3.info_we_collect': '2. Information We Collect',
+  'privacy.h3.info_we_collect': '2. Informações Que Coletamos',
 
-  // TODO: Translate from English
-  'privacy.h3.international_transfers': '5.3. International Data Transfers',
+  'privacy.h3.international_transfers': '5.3. Transferências Internacionais de Dados',
 
-  // TODO: Translate from English
-  'privacy.h3.legal_basis': '4. Legal Basis for Processing (GDPR)',
+  'privacy.h3.legal_basis': '4. Base Legal para Processamento (GDPR)',
 
-  // TODO: Translate from English
-  'privacy.h3.location_data': '5.2. Location Data',
+  'privacy.h3.location_data': '5.2. Dados de Localização',
 
-  // TODO: Translate from English
-  'privacy.h3.your_rights': '6. Your Rights Under GDPR',
+  'privacy.h3.your_rights': '6. Seus Direitos Sob o GDPR',
 
-  // TODO: Translate from English
-  'privacy.h4.cookie_types': 'Types of Cookies We Use',
+  'privacy.h4.cookie_types': 'Tipos de Cookies Que Usamos',
 
-  // TODO: Translate from English
-  'privacy.h4.personal_data': '2.1. Personal Data You Provide',
+  'privacy.h4.personal_data': '2.1. Dados Pessoais Que Você Fornece',
 
-  // TODO: Translate from English
-  'privacy.h4.right_access': '6.1. Right of Access (Art. 15 GDPR)',
+  'privacy.h4.right_access': '6.1. Direito de Acesso (Art. 15 GDPR)',
 
-  // TODO: Translate from English
-  'privacy.h4.right_complain': '6.8. Right to Lodge a Complaint',
+  'privacy.h4.right_complain': '6.8. Direito de Apresentar Reclamação',
 
-  // TODO: Translate from English
-  'privacy.h4.right_erasure': '6.3. Right to Erasure - ',
+  'privacy.h4.right_erasure': '6.3. Direito ao Apagamento - ',
 
-  // TODO: Translate from English
-  'privacy.h4.right_object': '6.6. Right to Object (Art. 21 GDPR)',
+  'privacy.h4.right_object': '6.6. Direito de Objeção (Art. 21 GDPR)',
 
-  // TODO: Translate from English
-  'privacy.h4.right_portability': '6.5. Right to Data Portability (Art. 20 GDPR)',
+  'privacy.h4.right_portability': '6.5. Direito à Portabilidade de Dados (Art. 20 GDPR)',
 
-  // TODO: Translate from English
-  'privacy.h4.right_rectification': '6.2. Right to Rectification (Art. 16 GDPR)',
+  'privacy.h4.right_rectification': '6.2. Direito de Retificação (Art. 16 GDPR)',
 
-  // TODO: Translate from English
-  'privacy.h4.right_restriction': '6.4. Right to Restriction of Processing (Art. 18 GDPR)',
+  'privacy.h4.right_restriction': '6.4. Direito à Restrição de Processamento (Art. 18 GDPR)',
 
-  // TODO: Translate from English
-  'privacy.h4.right_withdraw': '6.7. Right to Withdraw Consent',
+  'privacy.h4.right_withdraw': '6.7. Direito de Retirar Consentimento',
 
-  // TODO: Translate from English
-  'privacy.h4.technical_data': '2.4. Technical Data (Automatically Collected)',
+  'privacy.h4.technical_data': '2.4. Dados Técnicos (Coletados Automaticamente)',
 
-  // TODO: Translate from English
-  'privacy.h4.transaction_data': '2.3. Transaction Data',
+  'privacy.h4.transaction_data': '2.3. Dados de Transação',
 
-  // TODO: Translate from English
-  'privacy.h4.user_content': '2.2. User-Generated Content',
+  'privacy.h4.user_content': '2.2. Conteúdo Gerado pelo Usuário',
 
-  // TODO: Translate from English
-  'privacy.last_updated': 'Last updated: November 8, 2025',
+  'privacy.last_updated': 'Última atualização: 8 de novembro de 2025',
 
-  // TODO: Translate from English
   'privacy.p1': 'LightMyFire (',
 
-  // TODO: Translate from English
-  'privacy.p10': 'Your data is primarily stored on Supabase servers located within the European Union. However, some sub-processors may be located outside the EU/EEA. When data is transferred internationally, we ensure adequate protection through:',
+  'privacy.p10': 'Seus dados são armazenados principalmente em servidores Supabase localizados dentro da União Europeia. No entanto, alguns subprocessadores podem estar localizados fora da UE/EEE. Quando os dados são transferidos internacionalmente, garantimos proteção adequada através de:',
 
-  // TODO: Translate from English
-  'privacy.p11': 'We retain personal data only as long as necessary for the purposes outlined in this policy:',
+  'privacy.p11': 'Retemos dados pessoais apenas pelo tempo necessário para os fins descritos nesta política:',
 
-  // TODO: Translate from English
-  'privacy.p12': 'After retention periods expire, data is securely deleted from all systems, including backups.',
+  'privacy.p12': 'Após os períodos de retenção expirarem, os dados são excluídos com segurança de todos os sistemas, incluindo backups.',
 
-  // TODO: Translate from English
-  'privacy.p13': 'We implement appropriate technical and organizational measures to protect your data:',
+  'privacy.p13': 'Implementamos medidas técnicas e organizacionais apropriadas para proteger seus dados:',
 
-  // TODO: Translate from English
-  'privacy.p14': 'In the unlikely event of a personal data breach, we will:',
+  'privacy.p14': 'No improvável caso de uma violação de dados pessoais, nós iremos:',
 
-  // TODO: Translate from English
-  'privacy.p15': 'You have the following rights regarding your personal data. To exercise any of these rights, contact us at <strong>support@lightmyfire.app</strong>.',
+  'privacy.p15': 'Você tem os seguintes direitos em relação aos seus dados pessoais. Para exercer qualquer um desses direitos, entre em contato conosco em <strong>support@lightmyfire.app</strong>.',
 
-  // TODO: Translate from English
-  'privacy.p16': 'You can request a copy of all personal data we hold about you. We\\'ll provide this in a structured, commonly used format within 30 days.',
+  'privacy.p16': 'Você pode solicitar uma cópia de todos os dados pessoais que mantemos sobre você. Forneceremos isso em um formato estruturado e comumente usado dentro de 30 dias.',
 
-  // TODO: Translate from English
-  'privacy.p17': 'You can correct inaccurate or incomplete data. Update most information directly in your profile settings, or contact us for assistance.',
+  'privacy.p17': 'Você pode corrigir dados imprecisos ou incompletos. Atualize a maioria das informações diretamente nas configurações do seu perfil ou entre em contato conosco para obter assistência.',
 
-  // TODO: Translate from English
-  'privacy.p18': 'You can request deletion of your personal data. You can delete individual posts anytime from ',
+  'privacy.p18': 'Você pode solicitar a exclusão de seus dados pessoais. Você pode excluir posts individuais a qualquer momento em ',
 
-  // TODO: Translate from English
-  'privacy.p19': 'You can request we limit how we use your data while you contest its accuracy or lawfulness of processing.',
+  'privacy.p19': 'Você pode solicitar que limitemos como usamos seus dados enquanto você contesta sua precisão ou legalidade do processamento.',
 
-  // TODO: Translate from English
-  'privacy.p2': 'The data controller for your personal information is:<br><br><strong>Revel Editions SASU</strong><br>145 Rue de Noisy-le-Sec<br>93260 Les Lilas, France<br><br><strong>Contact Email:</strong> support@lightmyfire.app<br><strong>Data Protection Officer:</strong> support@lightmyfire.app',
+  'privacy.p2': 'O controlador de dados para suas informações pessoais é:<br><br><strong>Revel Editions SASU</strong><br>145 Rue de Noisy-le-Sec<br>93260 Les Lilas, França<br><br><strong>Email de Contato:</strong> support@lightmyfire.app<br><strong>Oficial de Proteção de Dados:</strong> support@lightmyfire.app',
 
-  // TODO: Translate from English
-  'privacy.p20': 'You can receive your data in a machine-readable format (JSON/CSV) to transfer to another service.',
+  'privacy.p20': 'Você pode receber seus dados em um formato legível por máquina (JSON/CSV) para transferir para outro serviço.',
 
-  // TODO: Translate from English
-  'privacy.p21': 'You can object to processing based on legitimate interests. We\\'ll stop processing unless we demonstrate compelling legitimate grounds.',
+  'privacy.p21': 'Você pode se opor ao processamento com base em interesses legítimos. Interromperemos o processamento a menos que demonstremos fundamentos legítimos convincentes.',
 
-  // TODO: Translate from English
-  'privacy.p22': 'For processing based on consent, you can withdraw it anytime. This doesn\\'t affect the lawfulness of processing before withdrawal.',
+  'privacy.p22': 'Para processamento baseado em consentimento, você pode retirá-lo a qualquer momento. Isso não afeta a legalidade do processamento antes da retirada.',
 
-  // TODO: Translate from English
-  'privacy.p23': 'If you believe we\\'re not complying with GDPR, you have the right to lodge a complaint with a supervisory authority:',
+  'privacy.p23': 'Se você acredita que não estamos cumprindo o GDPR, você tem o direito de apresentar uma reclamação a uma autoridade supervisora:',
 
-  // TODO: Translate from English
-  'privacy.p24': '<strong>France (Our Primary Jurisdiction):</strong><br>Commission Nationale de l\\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, France<br>Website: <a href=\\'https://www.cnil.fr\\' target=\\'_blank\\'>www.cnil.fr</a>',
+  'privacy.p24': '<strong>França (Nossa Jurisdição Principal):</strong><br>Commission Nationale de l\\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, França<br>Website: <a href=\\'https://www.cnil.fr\\' target=\\'_blank\\'>www.cnil.fr</a>',
 
-  // TODO: Translate from English
-  'privacy.p25': 'You can also contact the data protection authority in your country of residence.',
+  'privacy.p25': 'Você também pode entrar em contato com a autoridade de proteção de dados em seu país de residência.',
 
-  // TODO: Translate from English
-  'privacy.p26': 'We use limited automated processing for:',
+  'privacy.p26': 'Usamos processamento automatizado limitado para:',
 
-  // TODO: Translate from English
-  'privacy.p27': 'These automated processes do not produce legal effects or significantly affect you. You can always contact us to contest a decision or request human review.',
+  'privacy.p27': 'Esses processos automatizados não produzem efeitos legais nem afetam você significativamente. Você sempre pode entrar em contato conosco para contestar uma decisão ou solicitar revisão humana.',
 
-  // TODO: Translate from English
-  'privacy.p28': 'Our service is not directed to children under 16 years of age (or the minimum age required in your jurisdiction to consent to data processing). We do not knowingly collect personal data from children. If you believe we\\'ve inadvertently collected data from a child, contact us immediately at support@lightmyfire.app and we\\'ll delete it promptly.',
+  'privacy.p28': 'Nosso serviço não é direcionado a crianças menores de 16 anos (ou a idade mínima exigida em sua jurisdição para consentir com o processamento de dados). Não coletamos intencionalmente dados pessoais de crianças. Se você acredita que inadvertidamente coletamos dados de uma criança, entre em contato conosco imediatamente em support@lightmyfire.app e os excluiremos prontamente.',
 
-  // TODO: Translate from English
-  'privacy.p29': 'We may update this Privacy Policy to reflect changes in our practices or legal requirements. We will:',
+  'privacy.p29': 'Podemos atualizar esta Política de Privacidade para refletir mudanças em nossas práticas ou requisitos legais. Nós iremos:',
 
-  // TODO: Translate from English
-  'privacy.p3': 'We collect personal information in several ways to provide and improve our services:',
+  'privacy.p3': 'Coletamos informações pessoais de várias maneiras para fornecer e melhorar nossos serviços:',
 
-  // TODO: Translate from English
-  'privacy.p30': 'Continued use of our services after changes constitutes acceptance of the updated policy.',
+  'privacy.p30': 'O uso contínuo de nossos serviços após as alterações constitui aceitação da política atualizada.',
 
-  // TODO: Translate from English
-  'privacy.p31': 'For any questions about this Privacy Policy or to exercise your rights, contact us:',
+  'privacy.p31': 'Para quaisquer perguntas sobre esta Política de Privacidade ou para exercer seus direitos, entre em contato conosco:',
 
-  // TODO: Translate from English
-  'privacy.p32': 'We aim to respond to all requests within 30 days. If your request is complex, we may extend this by an additional 60 days and will inform you.',
+  'privacy.p32': 'Nosso objetivo é responder a todas as solicitações dentro de 30 dias. Se sua solicitação for complexa, podemos estender isso em mais 60 dias e informaremos você.',
 
-  // TODO: Translate from English
-  'privacy.p4': 'We use the information we collect to:',
+  'privacy.p4': 'Usamos as informações que coletamos para:',
 
-  // TODO: Translate from English
-  'privacy.p5': 'Under GDPR, we process your personal data based on the following legal grounds:',
+  'privacy.p5': 'Sob o GDPR, processamos seus dados pessoais com base nos seguintes fundamentos legais:',
 
-  // TODO: Translate from English
-  'privacy.p6': 'We do not sell, rent, or trade your personal data. We share data only with trusted service providers who help us operate the platform:',
+  'privacy.p6': 'Não vendemos, alugamos ou negociamos seus dados pessoais. Compartilhamos dados apenas com provedores de serviços confiáveis que nos ajudam a operar a plataforma:',
 
-  // TODO: Translate from English
-  'privacy.p7': 'All third-party processors are bound by Data Processing Agreements (DPAs) ensuring GDPR compliance and data protection.',
+  'privacy.p7': 'Todos os processadores terceiros estão vinculados por Acordos de Processamento de Dados (DPAs) garantindo conformidade com GDPR e proteção de dados.',
 
-  // TODO: Translate from English
-  'privacy.p8': 'You can manage cookie preferences through the consent banner displayed on your first visit. You can change your choice anytime in your browser settings or by contacting us.',
+  'privacy.p8': 'Você pode gerenciar as preferências de cookies através do banner de consentimento exibido em sua primeira visita. Você pode alterar sua escolha a qualquer momento nas configurações do navegador ou entrando em contato conosco.',
 
-  // TODO: Translate from English
-  'privacy.p9': 'When you create a location post, you may voluntarily provide geographic coordinates (latitude and longitude). <strong>Important disclosures:</strong>',
+  'privacy.p9': 'Quando você cria um post de localização, pode fornecer voluntariamente coordenadas geográficas (latitude e longitude). <strong>Divulgações importantes:</strong>',
 
-  // TODO: Translate from English
-  'privacy.ul1.li1': '<strong>Account Registration:</strong> Email address, username, and hashed password (we never store passwords in plain text)',
+  'privacy.ul1.li1': '<strong>Registro de Conta:</strong> Endereço de email, nome de usuário e senha criptografada (nunca armazenamos senhas em texto simples)',
 
-  // TODO: Translate from English
-  'privacy.ul1.li2': '<strong>Profile Information:</strong> Optional nationality information and profile preferences',
+  'privacy.ul1.li2': '<strong>Informações de Perfil:</strong> Informações opcionais de nacionalidade e preferências de perfil',
 
-  // TODO: Translate from English
-  'privacy.ul1.li3': '<strong>Communications:</strong> Any information you provide when contacting us for support',
+  'privacy.ul1.li3': '<strong>Comunicações:</strong> Qualquer informação que você fornecer ao entrar em contato conosco para suporte',
 
-  // TODO: Translate from English
-  'privacy.ul10.li1': '<strong>Standard Contractual Clauses (SCCs):</strong> EU-approved data transfer mechanisms',
+  'privacy.ul10.li1': '<strong>Cláusulas Contratuais Padrão (SCCs):</strong> Mecanismos de transferência de dados aprovados pela UE',
 
-  // TODO: Translate from English
-  'privacy.ul10.li2': '<strong>Adequacy Decisions:</strong> Transfers only to countries recognized by the EU Commission as providing adequate protection',
+  'privacy.ul10.li2': '<strong>Decisões de Adequação:</strong> Transferências apenas para países reconhecidos pela Comissão da UE como fornecendo proteção adequada',
 
-  // TODO: Translate from English
-  'privacy.ul10.li3': '<strong>Processor Guarantees:</strong> All processors commit to GDPR-equivalent data protection standards',
+  'privacy.ul10.li3': '<strong>Garantias do Processador:</strong> Todos os processadores se comprometem com padrões de proteção de dados equivalentes ao GDPR',
 
-  // TODO: Translate from English
-  'privacy.ul11.li1': '<strong>Account Data:</strong> Retained while your account is active, plus 30 days after deletion (to allow reactivation)',
+  'privacy.ul11.li1': '<strong>Dados da Conta:</strong> Retidos enquanto sua conta estiver ativa, mais 30 dias após a exclusão (para permitir reativação)',
 
-  // TODO: Translate from English
-  'privacy.ul11.li2': '<strong>User Posts:</strong> Retained while your account exists. When you delete a post, it\\'s permanently removed within 24 hours',
+  'privacy.ul11.li2': '<strong>Posts de Usuário:</strong> Retidos enquanto sua conta existir. Quando você exclui um post, ele é permanentemente removido em até 24 horas',
 
-  // TODO: Translate from English
-  'privacy.ul11.li3': '<strong>Order Data:</strong> 7 years from date of purchase (French tax law requirement)',
+  'privacy.ul11.li3': '<strong>Dados de Pedido:</strong> 7 anos a partir da data de compra (requisito da lei tributária francesa)',
 
-  // TODO: Translate from English
-  'privacy.ul11.li4': '<strong>Technical Logs:</strong> IP addresses and security logs retained for 12 months maximum',
+  'privacy.ul11.li4': '<strong>Logs Técnicos:</strong> Endereços IP e logs de segurança retidos por no máximo 12 meses',
 
-  // TODO: Translate from English
-  'privacy.ul11.li5': '<strong>Anonymized Analytics:</strong> Retained indefinitely for service improvement (cannot be linked back to you)',
+  'privacy.ul11.li5': '<strong>Análises Anonimizadas:</strong> Retidas indefinidamente para melhoria do serviço (não podem ser vinculadas de volta a você)',
 
-  // TODO: Translate from English
-  'privacy.ul12.li1': '<strong>Encryption:</strong> All data transmitted using TLS/SSL encryption. Passwords stored using industry-standard hashing',
+  'privacy.ul12.li1': '<strong>Criptografia:</strong> Todos os dados transmitidos usando criptografia TLS/SSL. Senhas armazenadas usando hash padrão da indústria',
 
-  // TODO: Translate from English
-  'privacy.ul12.li2': '<strong>Access Controls:</strong> Role-based access, limited employee access, multi-factor authentication for admin accounts',
+  'privacy.ul12.li2': '<strong>Controles de Acesso:</strong> Acesso baseado em função, acesso limitado de funcionários, autenticação multifator para contas de administrador',
 
-  // TODO: Translate from English
-  'privacy.ul12.li3': '<strong>Regular Audits:</strong> Security assessments, vulnerability scanning, and code reviews',
+  'privacy.ul12.li3': '<strong>Auditorias Regulares:</strong> Avaliações de segurança, varredura de vulnerabilidades e revisões de código',
 
-  // TODO: Translate from English
-  'privacy.ul12.li4': '<strong>Incident Response:</strong> Documented breach notification procedures (see Section 5.6)',
+  'privacy.ul12.li4': '<strong>Resposta a Incidentes:</strong> Procedimentos documentados de notificação de violação (veja Seção 5.6)',
 
-  // TODO: Translate from English
-  'privacy.ul13.li1': '<strong>Notify Supervisory Authority:</strong> Within 72 hours of becoming aware of the breach (CNIL in France)',
+  'privacy.ul13.li1': '<strong>Notificar Autoridade Supervisora:</strong> Dentro de 72 horas após tomar conhecimento da violação (CNIL na França)',
 
-  // TODO: Translate from English
-  'privacy.ul13.li2': '<strong>Notify Affected Users:</strong> Without undue delay if the breach poses high risk to your rights and freedoms',
+  'privacy.ul13.li2': '<strong>Notificar Usuários Afetados:</strong> Sem demora indevida se a violação apresentar alto risco aos seus direitos e liberdades',
 
-  // TODO: Translate from English
-  'privacy.ul13.li3': '<strong>Provide Information:</strong> Nature of the breach, likely consequences, measures taken, and recommended actions',
+  'privacy.ul13.li3': '<strong>Fornecer Informações:</strong> Natureza da violação, consequências prováveis, medidas tomadas e ações recomendadas',
 
-  // TODO: Translate from English
-  'privacy.ul14.li1': '<strong>Content Moderation:</strong> Automated pre-screening of posts for prohibited content (hate speech, explicit imagery). Flagged content is reviewed by human moderators before any action',
+  'privacy.ul14.li1': '<strong>Moderação de Conteúdo:</strong> Pré-triagem automatizada de posts para conteúdo proibido (discurso de ódio, imagens explícitas). Conteúdo sinalizado é revisado por moderadores humanos antes de qualquer ação',
 
-  // TODO: Translate from English
-  'privacy.ul14.li2': '<strong>Spam Prevention:</strong> Automated detection of suspicious activity patterns (e.g., rapid post submissions)',
+  'privacy.ul14.li2': '<strong>Prevenção de Spam:</strong> Detecção automatizada de padrões de atividade suspeita (por exemplo, envios rápidos de posts)',
 
-  // TODO: Translate from English
-  'privacy.ul14.li3': '<strong>Gamification:</strong> Automated calculation of user levels and trophy eligibility based on contribution metrics',
+  'privacy.ul14.li3': '<strong>Gamificação:</strong> Cálculo automatizado de níveis de usuário e elegibilidade para troféus com base em métricas de contribuição',
 
-  // TODO: Translate from English
-  'privacy.ul15.li1': 'Notify you by email of significant changes (if you have an account)',
+  'privacy.ul15.li1': 'Notificar você por email sobre alterações significativas (se você tiver uma conta)',
 
-  // TODO: Translate from English
-  'privacy.ul15.li2': 'Display a prominent notice on the website',
+  'privacy.ul15.li2': 'Exibir um aviso proeminente no site',
 
-  // TODO: Translate from English
-  'privacy.ul15.li3': 'Update the ',
+  'privacy.ul15.li3': 'Atualizar a ',
 
-  // TODO: Translate from English
   'privacy.ul16.li1': '<strong>Email:</strong> support@lightmyfire.app',
 
-  // TODO: Translate from English
-  'privacy.ul16.li2': '<strong>Data Protection Officer:</strong> support@lightmyfire.app',
+  'privacy.ul16.li2': '<strong>Oficial de Proteção de Dados:</strong> support@lightmyfire.app',
 
-  // TODO: Translate from English
-  'privacy.ul16.li3': '<strong>Postal Address:</strong> Revel Editions SASU, [Complete Address], France',
+  'privacy.ul16.li3': '<strong>Endereço Postal:</strong> Revel Editions SASU, [Endereço Completo], França',
 
-  // TODO: Translate from English
-  'privacy.ul2.li1': '<strong>Posts:</strong> Text content, images, YouTube video links you share on lighter pages',
+  'privacy.ul2.li1': '<strong>Posts:</strong> Conteúdo de texto, imagens, links de vídeo do YouTube que você compartilha em páginas de isqueiros',
 
-  // TODO: Translate from English
-  'privacy.ul2.li2': '<strong>Location Data:</strong> Optional geographic coordinates (latitude/longitude) when you create location posts. We can\\'t know if coordinates entered are linked to your actual location',
+  'privacy.ul2.li2': '<strong>Dados de Localização:</strong> Coordenadas geográficas opcionais (latitude/longitude) quando você cria posts de localização. Não podemos saber se as coordenadas inseridas estão vinculadas à sua localização real',
 
-  // TODO: Translate from English
-  'privacy.ul2.li3': '<strong>Metadata:</strong> Post timestamps, lighter associations, and interaction data (likes, flags)',
+  'privacy.ul2.li3': '<strong>Metadados:</strong> Carimbos de data/hora de posts, associações de isqueiros e dados de interação (curtidas, sinalizações)',
 
-  // TODO: Translate from English
-  'privacy.ul3.li1': '<strong>Payment Information:</strong> Processed securely by Stripe (our payment processor). We never store your full credit card details',
+  'privacy.ul3.li1': '<strong>Informações de Pagamento:</strong> Processadas com segurança pela Stripe (nossa processadora de pagamentos). Nunca armazenamos os detalhes completos do seu cartão de crédito',
 
-  // TODO: Translate from English
-  'privacy.ul3.li2': '<strong>Shipping Information:</strong> Name, address, email, and phone number for sticker delivery',
+  'privacy.ul3.li2': '<strong>Informações de Envio:</strong> Nome, endereço, email e número de telefone para entrega de stickers',
 
-  // TODO: Translate from English
-  'privacy.ul3.li3': '<strong>Order History:</strong> Details of sticker packs purchased and customization preferences',
+  'privacy.ul3.li3': '<strong>Histórico de Pedidos:</strong> Detalhes de pacotes de stickers comprados e preferências de personalização',
 
-  // TODO: Translate from English
-  'privacy.ul4.li1': '<strong>Device Information:</strong> IP address, browser type, operating system',
+  'privacy.ul4.li1': '<strong>Informações do Dispositivo:</strong> Endereço IP, tipo de navegador, sistema operacional',
 
-  // TODO: Translate from English
-  'privacy.ul4.li2': '<strong>Usage Data:</strong> Pages visited, features used, time spent on the platform',
+  'privacy.ul4.li2': '<strong>Dados de Uso:</strong> Páginas visitadas, recursos utilizados, tempo gasto na plataforma',
 
-  // TODO: Translate from English
-  'privacy.ul4.li3': '<strong>Cookies:</strong> Essential cookies for authentication and session management (see Section 5.1)',
+  'privacy.ul4.li3': '<strong>Cookies:</strong> Cookies essenciais para autenticação e gerenciamento de sessão (veja Seção 5.1)',
 
-  // TODO: Translate from English
-  'privacy.ul5.li1': '<strong>Service Provision:</strong> Create and manage your account, display your contributions, process orders',
+  'privacy.ul5.li1': '<strong>Provisão de Serviço:</strong> Criar e gerenciar sua conta, exibir suas contribuições, processar pedidos',
 
-  // TODO: Translate from English
-  'privacy.ul5.li2': '<strong>Communication:</strong> Send order confirmations, respond to inquiries, notify you of lighter activity (if opted-in)',
+  'privacy.ul5.li2': '<strong>Comunicação:</strong> Enviar confirmações de pedido, responder a consultas, notificar sobre atividade de isqueiros (se optou por isso)',
 
-  // TODO: Translate from English
-  'privacy.ul5.li3': '<strong>Platform Integrity:</strong> Prevent spam, enforce community guidelines, moderate content',
+  'privacy.ul5.li3': '<strong>Integridade da Plataforma:</strong> Prevenir spam, aplicar diretrizes da comunidade, moderar conteúdo',
 
-  // TODO: Translate from English
-  'privacy.ul5.li4': '<strong>Gamification:</strong> Track achievements, award trophies, calculate user levels',
+  'privacy.ul5.li4': '<strong>Gamificação:</strong> Rastrear conquistas, conceder troféus, calcular níveis de usuário',
 
-  // TODO: Translate from English
-  'privacy.ul5.li5': '<strong>Legal Compliance:</strong> Comply with applicable laws and respond to legal requests',
+  'privacy.ul5.li5': '<strong>Conformidade Legal:</strong> Cumprir as leis aplicáveis e responder a solicitações legais',
 
-  // TODO: Translate from English
-  'privacy.ul5.li6': '<strong>Service Improvement:</strong> Analyze usage patterns to enhance user experience (anonymized data only)',
+  'privacy.ul5.li6': '<strong>Melhoria do Serviço:</strong> Analisar padrões de uso para melhorar a experiência do usuário (apenas dados anonimizados)',
 
-  // TODO: Translate from English
-  'privacy.ul6.li1': '<strong>Contractual Necessity (Art. 6(1)(b) GDPR):</strong> Processing necessary to provide the services you requested when creating an account',
+  'privacy.ul6.li1': '<strong>Necessidade Contratual (Art. 6(1)(b) GDPR):</strong> Processamento necessário para fornecer os serviços que você solicitou ao criar uma conta',
 
-  // TODO: Translate from English
-  'privacy.ul6.li2': '<strong>Legitimate Interests (Art. 6(1)(f) GDPR):</strong> Platform security, fraud prevention, content moderation, and service improvement—balanced against your rights',
+  'privacy.ul6.li2': '<strong>Interesses Legítimos (Art. 6(1)(f) GDPR):</strong> Segurança da plataforma, prevenção de fraudes, moderação de conteúdo e melhoria do serviço—balanceados contra seus direitos',
 
-  // TODO: Translate from English
-  'privacy.ul6.li3': '<strong>Consent (Art. 6(1)(a) GDPR):</strong> Optional features like public post sharing, nationality display, and non-essential cookies—you can withdraw consent anytime',
+  'privacy.ul6.li3': '<strong>Consentimento (Art. 6(1)(a) GDPR):</strong> Recursos opcionais como compartilhamento público de posts, exibição de nacionalidade e cookies não essenciais—você pode retirar o consentimento a qualquer momento',
 
-  // TODO: Translate from English
-  'privacy.ul6.li4': '<strong>Legal Obligation (Art. 6(1)(c) GDPR):</strong> Compliance with French and EU law, including tax obligations and law enforcement requests',
+  'privacy.ul6.li4': '<strong>Obrigação Legal (Art. 6(1)(c) GDPR):</strong> Conformidade com a lei francesa e da UE, incluindo obrigações fiscais e solicitações de aplicação da lei',
 
-  // TODO: Translate from English
-  'privacy.ul7.li1': '<strong>Supabase (Backend Infrastructure):</strong> Hosts our database, authentication system, and file storage. Located in EU data centers. <a href=\\'https://supabase.com/privacy\\' target=\\'_blank\\'>View Supabase Privacy Policy</a>',
+  'privacy.ul7.li1': '<strong>Supabase (Infraestrutura Backend):</strong> Hospeda nosso banco de dados, sistema de autenticação e armazenamento de arquivos. Localizado em data centers da UE. <a href=\\'https://supabase.com/privacy\\' target=\\'_blank\\'>Ver Política de Privacidade do Supabase</a>',
 
-  // TODO: Translate from English
-  'privacy.ul7.li2': '<strong>Stripe (Payment Processing):</strong> Processes all payment transactions securely. We receive only transaction confirmations, not card details. <a href=\\'https://stripe.com/privacy\\' target=\\'_blank\\'>View Stripe Privacy Policy</a>',
+  'privacy.ul7.li2': '<strong>Stripe (Processamento de Pagamento):</strong> Processa todas as transações de pagamento com segurança. Recebemos apenas confirmações de transação, não detalhes do cartão. <a href=\\'https://stripe.com/privacy\\' target=\\'_blank\\'>Ver Política de Privacidade do Stripe</a>',
 
-  // TODO: Translate from English
-  'privacy.ul7.li3': '<strong>Shipping Partners:</strong> Receive name, address, and contact information solely for sticker delivery',
+  'privacy.ul7.li3': '<strong>Parceiros de Envio:</strong> Recebem nome, endereço e informações de contato exclusivamente para entrega de stickers',
 
-  // TODO: Translate from English
-  'privacy.ul8.li1': '<strong>Essential Cookies (No Consent Required):</strong> Session management, authentication, security features, and shopping cart functionality. These are strictly necessary for the platform to work.',
+  'privacy.ul8.li1': '<strong>Cookies Essenciais (Sem Necessidade de Consentimento):</strong> Gerenciamento de sessão, autenticação, recursos de segurança e funcionalidade do carrinho de compras. Estes são estritamente necessários para o funcionamento da plataforma.',
 
-  // TODO: Translate from English
-  'privacy.ul8.li2': '<strong>Preference Cookies (No Consent Required):</strong> Remember your language selection, cookie consent choice, and display preferences.',
+  'privacy.ul8.li2': '<strong>Cookies de Preferência (Sem Necessidade de Consentimento):</strong> Lembram sua seleção de idioma, escolha de consentimento de cookies e preferências de exibição.',
 
-  // TODO: Translate from English
-  'privacy.ul8.li3': '<strong>Analytics Cookies (Consent Required):</strong> Help us understand how visitors use the site through anonymized data. We only activate these with your explicit consent.',
+  'privacy.ul8.li3': '<strong>Cookies de Análise (Consentimento Necessário):</strong> Ajudam-nos a entender como os visitantes usam o site através de dados anonimizados. Só os ativamos com seu consentimento explícito.',
 
-  // TODO: Translate from English
-  'privacy.ul9.li1': 'This data is <strong>publicly visible</strong> on the lighter\\'s page and map',
+  'privacy.ul9.li1': 'Esses dados são <strong>publicamente visíveis</strong> na página do isqueiro e no mapa',
 
-  // TODO: Translate from English
-  'privacy.ul9.li2': 'Anyone with the lighter\\'s PIN can see this information',
+  'privacy.ul9.li2': 'Qualquer pessoa com o PIN do isqueiro pode ver essas informações',
 
-  // TODO: Translate from English
-  'privacy.ul9.li3': 'You control the accuracy—you can provide approximate or exact coordinates',
+  'privacy.ul9.li3': 'Você controla a precisão—pode fornecer coordenadas aproximadas ou exatas',
 
-  // TODO: Translate from English
-  'privacy.ul9.li4': 'You are solely responsible for privacy implications of any location data you share',
+  'privacy.ul9.li4': 'Você é o único responsável pelas implicações de privacidade de qualquer dado de localização que compartilhar',
 
-  // TODO: Translate from English
-  'privacy.ul9.li5': 'You can delete your location posts anytime from your profile',
+  'privacy.ul9.li5': 'Você pode excluir seus posts de localização a qualquer momento do seu perfil',
 
-  // TODO: Translate from English
-  'profile.update_error': 'Error: {error}',
+  'profile.update_error': 'Erro: {error}',
 
-  // TODO: Translate from English
-  'profile.update_success': 'Profile updated successfully!',
+  'profile.update_success': 'Perfil atualizado com sucesso!',
 
-  // TODO: Translate from English
-  'redirect.login_add_story': 'You must be logged in to add a story.',
+  'redirect.login_add_story': 'Você deve estar conectado para adicionar uma história.',
 
-  // TODO: Translate from English
-  'redirect.login_like': 'You must be logged in to like a post',
+  'redirect.login_like': 'Você deve estar conectado para curtir um post',
 
-  // TODO: Translate from English
-  'redirect.login_profile': 'You must be logged in to view your profile.',
+  'redirect.login_profile': 'Você deve estar conectado para ver seu perfil.',
 
-  // TODO: Translate from English
-  'redirect.login_save_lighter': 'You must be logged in to save a lighter',
+  'redirect.login_save_lighter': 'Você deve estar conectado para salvar um isqueiro',
 
-  // TODO: Translate from English
-  'refill_guide.citations.1.source': 'World Economic Forum - Plastic Waste Statistics (2023)',
+  'refill_guide.citations.1.source': 'Fórum Econômico Mundial - Estatísticas de Resíduos Plásticos (2023)',
 
-  // TODO: Translate from English
-  'refill_guide.citations.1.text': 'Global lighter production and environmental impact data',
+  'refill_guide.citations.1.text': 'Dados globais de produção de isqueiros e impacto ambiental',
 
-  // TODO: Translate from English
   'refill_guide.citations.1.url': 'https://www.weforum.org/agenda/2023/plastic-waste/',
 
-  // TODO: Translate from English
-  'refill_guide.citations.title': 'Sources & References',
+  'refill_guide.citations.title': 'Fontes e Referências',
 
-  // TODO: Translate from English
-  'refill_guide.key_indicators': 'Key indicators:',
+  'refill_guide.key_indicators': 'Indicadores principais:',
 
-  // TODO: Translate from English
-  'refill_guide.stats.lighters_sold': 'Disposable lighters sold yearly',
+  'refill_guide.stats.lighters_sold': 'Isqueiros descartáveis vendidos anualmente',
 
-  // TODO: Translate from English
-  'refill_guide.stats.lighters_sold_worldwide': 'Worldwide',
+  'refill_guide.stats.lighters_sold_worldwide': 'Mundialmente',
 
-  // TODO: Translate from English
-  'refill_guide.stats.waste_reduction': 'Waste reduction',
+  'refill_guide.stats.waste_reduction': 'Redução de resíduos',
 
-  // TODO: Translate from English
-  'refill_guide.stats.waste_reduction_method': 'With refillable lighters',
+  'refill_guide.stats.waste_reduction_method': 'Com isqueiros recarregáveis',
 
-  // TODO: Translate from English
-  'refill_guide.stats.years_decompose': 'Years to decompose',
+  'refill_guide.stats.years_decompose': 'Anos para decompor',
 
-  // TODO: Translate from English
-  'refill_guide.stats.years_decompose_location': 'In landfills',
+  'refill_guide.stats.years_decompose_location': 'Em aterros sanitários',
 
-  // TODO: Translate from English
-  'refill_guide.type1.indicator1': 'Small round metal valve on the bottom',
+  'refill_guide.type1.indicator1': 'Pequena válvula de metal redonda na parte inferior',
 
-  // TODO: Translate from English
-  'refill_guide.type1.indicator2': 'Similar to a tire valve',
+  'refill_guide.type1.indicator2': 'Similar a uma válvula de pneu',
 
-  // TODO: Translate from English
-  'refill_guide.type1.indicator3': 'Most common type',
+  'refill_guide.type1.indicator3': 'Tipo mais comum',
 
-  // TODO: Translate from English
-  'refill_guide.type2.indicator1': 'Metal lighter (often iconic design)',
+  'refill_guide.type2.indicator1': 'Isqueiro de metal (frequentemente design icônico)',
 
-  // TODO: Translate from English
-  'refill_guide.type2.indicator2': 'Inner block can be pulled out',
+  'refill_guide.type2.indicator2': 'O bloco interno pode ser puxado para fora',
 
-  // TODO: Translate from English
-  'refill_guide.type2.indicator3': 'Cotton visible inside',
+  'refill_guide.type2.indicator3': 'Algodão visível no interior',
 
-  // TODO: Translate from English
-  'refill_guide.type3.indicator1': 'Flat, sealed plastic bottom',
+  'refill_guide.type3.indicator1': 'Parte inferior de plástico plana e selada',
 
-  // TODO: Translate from English
-  'refill_guide.type3.indicator2': 'No valve or removable parts',
+  'refill_guide.type3.indicator2': 'Sem válvula ou peças removíveis',
 
-  // TODO: Translate from English
-  'refill_guide.type3.indicator3': 'Single-use only',
+  'refill_guide.type3.indicator3': 'Uso único apenas',
 
-  // TODO: Translate from English
-  'save_lighter.change_pack': '← Change Pack',
+  'save_lighter.change_pack': '← Mudar Pacote',
 
-  // TODO: Translate from English
-  'save_lighter.creative_journey': 'Creative Journey',
+  'save_lighter.creative_journey': 'Jornada Criativa',
 
-  // TODO: Translate from English
-  'save_lighter.creative_journey_desc': 'Be part of a fun, global movement. Give lighters a second life with beautiful, hand-crafted stickers.',
+  'save_lighter.creative_journey_desc': 'Faça parte de um movimento global divertido. Dê aos isqueiros uma segunda vida com lindos stickers artesanais.',
 
-  // TODO: Translate from English
-  'save_lighter.design_preview': 'Preview of your custom stickers. Sticker files will be generated after payment.',
+  'save_lighter.design_preview': 'Prévia dos seus stickers personalizados. Os arquivos dos stickers serão gerados após o pagamento.',
 
-  // TODO: Translate from English
-  'save_lighter.human_mosaic': 'Human Mosaic',
+  'save_lighter.human_mosaic': 'Mosaico Humano',
 
-  // TODO: Translate from English
-  'save_lighter.human_mosaic_desc': 'Join thousands of LightSavers creating a human mosaic of stories and creativity while fighting waste.',
+  'save_lighter.human_mosaic_desc': 'Junte-se a milhares de LightSavers criando um mosaico humano de histórias e criatividade enquanto luta contra o desperdício.',
 
-  // TODO: Translate from English
-  'save_lighter.more_stickers': '+{count} more',
+  'save_lighter.more_stickers': '+{count} mais',
 
-  // TODO: Translate from English
   'save_lighter.sticker_plural': 'Stickers',
 
-  // TODO: Translate from English
   'save_lighter.sticker_singular': 'Sticker',
 
-  // TODO: Translate from English
-  'save_lighter.sustainable_impact': 'Sustainable Impact',
+  'save_lighter.sustainable_impact': 'Impacto Sustentável',
 
-  // TODO: Translate from English
-  'save_lighter.sustainable_impact_desc': 'Our stickers are hand-made and sustainably manufactured. Help maintain this project alive.',
+  'save_lighter.sustainable_impact_desc': 'Nossos stickers são feitos à mão e fabricados de forma sustentável. Ajude a manter este projeto vivo.',
 
-  // TODO: Translate from English
-  'save_lighter.why_it_matters': 'Why It Matters',
+  'save_lighter.why_it_matters': 'Por Que Isso Importa',
 
-  // TODO: Translate from English
-  'save_lighter.your_design': 'Your Sticker Design',
+  'save_lighter.your_design': 'Seu Design de Sticker',
 
-  // TODO: Translate from English
-  'save_success.next_steps.stick_label': 'Stick',
+  'save_success.next_steps.stick_label': 'Colar',
 
-  // TODO: Translate from English
-  'settings.profile.nationality_label': 'Nationality',
+  'settings.profile.nationality_label': 'Nacionalidade',
 
-  // TODO: Translate from English
-  'settings.profile.nationality_optional': '(optional)',
+  'settings.profile.nationality_optional': '(opcional)',
 
-  // TODO: Translate from English
-  'settings.profile.nationality_placeholder': 'Select a country',
+  'settings.profile.nationality_placeholder': 'Selecione um país',
 
-  // TODO: Translate from English
-  'settings.profile.show_nationality_label': 'Show my nationality on my posts',
+  'settings.profile.show_nationality_label': 'Mostrar minha nacionalidade nos meus posts',
 
-  // TODO: Translate from English
-  'shipping.address_suggestions': '(Start typing for suggestions)',
+  'shipping.address_suggestions': '(Comece a digitar para sugestões)',
 
-  // TODO: Translate from English
-  'stripe.card_info': 'Card Information',
+  'stripe.card_info': 'Informações do Cartão',
 
-  // TODO: Translate from English
-  'stripe.error.generic': 'Payment failed. Please check your details or try again.',
+  'stripe.error.generic': 'Pagamento falhou. Verifique seus dados ou tente novamente.',
 
-  // TODO: Translate from English
-  'stripe.pay_button': 'Pay {amount}',
+  'stripe.pay_button': 'Pagar {amount}',
 
-  // TODO: Translate from English
-  'terms.h3.acceptance': '1. Acceptance of Terms',
+  'terms.h3.acceptance': '1. Aceitação dos Termos',
 
-  // TODO: Translate from English
-  'terms.h3.contact_terms': '12. Contact Information',
+  'terms.h3.contact_terms': '12. Informações de Contato',
 
-  // TODO: Translate from English
-  'terms.h3.dispute_resolution': '9. Dispute Resolution and Governing Law',
+  'terms.h3.dispute_resolution': '9. Resolução de Disputas e Lei Aplicável',
 
-  // TODO: Translate from English
-  'terms.h3.eligibility': '2. Eligibility and Account Requirements',
+  'terms.h3.eligibility': '2. Elegibilidade e Requisitos de Conta',
 
-  // TODO: Translate from English
-  'terms.h3.general': '11. General Provisions',
+  'terms.h3.general': '11. Disposições Gerais',
 
-  // TODO: Translate from English
-  'terms.h3.indemnification': '8. Indemnification',
+  'terms.h3.indemnification': '8. Indenização',
 
-  // TODO: Translate from English
-  'terms.h3.liability': '7. Disclaimers and Limitation of Liability',
+  'terms.h3.liability': '7. Isenções de Responsabilidade e Limitação de Responsabilidade',
 
-  // TODO: Translate from English
-  'terms.h3.license': '3. License and Intellectual Property',
+  'terms.h3.license': '3. Licença e Propriedade Intelectual',
 
-  // TODO: Translate from English
-  'terms.h3.moderation': '5. Content Moderation and Enforcement',
+  'terms.h3.moderation': '5. Moderação de Conteúdo e Aplicação',
 
-  // TODO: Translate from English
-  'terms.h3.stickers': '6. Sticker Sales and Orders',
+  'terms.h3.stickers': '6. Vendas e Pedidos de Stickers',
 
-  // TODO: Translate from English
-  'terms.h3.termination': '10. Termination',
+  'terms.h3.termination': '10. Rescisão',
 
-  // TODO: Translate from English
-  'terms.h3.ugc': '4. User-Generated Content and Conduct',
+  'terms.h3.ugc': '4. Conteúdo Gerado pelo Usuário e Conduta',
 
-  // TODO: Translate from English
-  'terms.h4.account_accuracy': '2.3. Account Information',
+  'terms.h4.account_accuracy': '2.3. Informações da Conta',
 
-  // TODO: Translate from English
-  'terms.h4.account_security': '2.2. Account Security',
+  'terms.h4.account_security': '2.2. Segurança da Conta',
 
-  // TODO: Translate from English
-  'terms.h4.age': '2.1. Age Requirement',
+  'terms.h4.age': '2.1. Requisito de Idade',
 
-  // TODO: Translate from English
-  'terms.h4.appeals': '5.4. Appeals Process',
+  'terms.h4.appeals': '5.4. Processo de Recursos',
 
-  // TODO: Translate from English
   'terms.h4.as_is': '7.1. ',
 
-  // TODO: Translate from English
-  'terms.h4.assignment': '11.5. Assignment',
+  'terms.h4.assignment': '11.5. Cessão',
 
-  // TODO: Translate from English
-  'terms.h4.by_us': '10.2. Termination by Us',
+  'terms.h4.by_us': '10.2. Rescisão por Nós',
 
-  // TODO: Translate from English
-  'terms.h4.by_you': '10.1. Termination by You',
+  'terms.h4.by_you': '10.1. Rescisão por Você',
 
-  // TODO: Translate from English
-  'terms.h4.community_flagging': '5.2. Community Flagging',
+  'terms.h4.community_flagging': '5.2. Sinalização pela Comunidade',
 
-  // TODO: Translate from English
-  'terms.h4.custom': '6.3. Customization',
+  'terms.h4.custom': '6.3. Personalização',
 
-  // TODO: Translate from English
-  'terms.h4.effect': '10.3. Effect of Termination',
+  'terms.h4.effect': '10.3. Efeito da Rescisão',
 
-  // TODO: Translate from English
-  'terms.h4.enforcement': '5.3. Enforcement Actions',
+  'terms.h4.enforcement': '5.3. Ações de Aplicação',
 
-  // TODO: Translate from English
-  'terms.h4.entire_agreement': '11.1. Entire Agreement',
+  'terms.h4.entire_agreement': '11.1. Acordo Integral',
 
-  // TODO: Translate from English
-  'terms.h4.governing_law': '9.1. Governing Law',
+  'terms.h4.governing_law': '9.1. Lei Aplicável',
 
-  // TODO: Translate from English
-  'terms.h4.informal_resolution': '9.3. Informal Dispute Resolution',
+  'terms.h4.informal_resolution': '9.3. Resolução Informal de Disputas',
 
-  // TODO: Translate from English
-  'terms.h4.jurisdiction': '9.2. Jurisdiction',
+  'terms.h4.jurisdiction': '9.2. Jurisdição',
 
-  // TODO: Translate from English
-  'terms.h4.jurisdiction_limits': '7.3. Jurisdictional Limitations',
+  'terms.h4.jurisdiction_limits': '7.3. Limitações Jurisdicionais',
 
-  // TODO: Translate from English
-  'terms.h4.limitation': '7.2. Limitation of Liability',
+  'terms.h4.limitation': '7.2. Limitação de Responsabilidade',
 
-  // TODO: Translate from English
-  'terms.h4.mod_rights': '5.1. Our Rights',
+  'terms.h4.mod_rights': '5.1. Nossos Direitos',
 
-  // TODO: Translate from English
-  'terms.h4.modifications': '11.2. Modifications to Terms',
+  'terms.h4.modifications': '11.2. Modificações aos Termos',
 
-  // TODO: Translate from English
-  'terms.h4.our_ip': '3.2. LightMyFire Intellectual Property',
+  'terms.h4.our_ip': '3.2. Propriedade Intelectual da LightMyFire',
 
-  // TODO: Translate from English
-  'terms.h4.our_license': '3.1. License to Use the Service',
+  'terms.h4.our_license': '3.1. Licença para Usar o Serviço',
 
-  // TODO: Translate from English
-  'terms.h4.prohibited_conduct': '4.3. Prohibited Conduct',
+  'terms.h4.prohibited_conduct': '4.3. Conduta Proibida',
 
-  // TODO: Translate from English
-  'terms.h4.prohibited_content': '4.2. Prohibited Content',
+  'terms.h4.prohibited_content': '4.2. Conteúdo Proibido',
 
-  // TODO: Translate from English
-  'terms.h4.sales_final': '6.1. Sales Policy',
+  'terms.h4.sales_final': '6.1. Política de Vendas',
 
-  // TODO: Translate from English
-  'terms.h4.severability': '11.3. Severability',
+  'terms.h4.severability': '11.3. Separabilidade',
 
-  // TODO: Translate from English
-  'terms.h4.shipping': '6.2. Shipping and Delivery',
+  'terms.h4.shipping': '6.2. Envio e Entrega',
 
-  // TODO: Translate from English
-  'terms.h4.third_party': '11.6. No Third-Party Beneficiaries',
+  'terms.h4.third_party': '11.6. Sem Beneficiários Terceiros',
 
-  // TODO: Translate from English
-  'terms.h4.ugc_responsibility': '4.1. Your Responsibility',
+  'terms.h4.ugc_responsibility': '4.1. Sua Responsabilidade',
 
-  // TODO: Translate from English
-  'terms.h4.user_license': '3.3. License to Your User-Generated Content',
+  'terms.h4.user_license': '3.3. Licença ao Seu Conteúdo Gerado pelo Usuário',
 
-  // TODO: Translate from English
-  'terms.h4.waiver': '11.4. No Waiver',
+  'terms.h4.waiver': '11.4. Sem Renúncia',
 
-  // TODO: Translate from English
-  'terms.last_updated': 'Last updated: October 28, 2025',
+  'terms.last_updated': 'Última atualização: 28 de outubro de 2025',
 
-  // TODO: Translate from English
-  'terms.p1': 'These Terms of Service (',
+  'terms.p1': 'Estes Termos de Serviço (',
 
-  // TODO: Translate from English
-  'terms.p10': 'By posting User-Generated Content (',
+  'terms.p10': 'Ao postar Conteúdo Gerado pelo Usuário (',
 
-  // TODO: Translate from English
-  'terms.p11': '<strong>Important:</strong> This license is limited to operating and promoting the Service. We will not use your content for unrelated commercial purposes. You retain ownership of your UGC and can revoke this license for specific posts by deleting them from your profile. However, copies may persist in backups for up to 30 days.',
+  'terms.p11': '<strong>Importante:</strong> Esta licença é limitada à operação e promoção do Serviço. Não usaremos seu conteúdo para fins comerciais não relacionados. Você mantém a propriedade do seu UGC e pode revogar esta licença para posts específicos excluindo-os do seu perfil. No entanto, cópias podem persistir em backups por até 30 dias.',
 
-  // TODO: Translate from English
-  'terms.p12': 'You are solely responsible for all content you post on LightMyFire, including text, images, links to songs (YouTube URLs), and location data. You represent and warrant that:',
+  'terms.p12': 'Você é o único responsável por todo o conteúdo que postar no LightMyFire, incluindo texto, imagens, links para músicas (URLs do YouTube) e dados de localização. Você declara e garante que:',
 
-  // TODO: Translate from English
-  'terms.p13': 'You must not post content that:',
+  'terms.p13': 'Você não deve postar conteúdo que:',
 
-  // TODO: Translate from English
-  'terms.p14': 'You must not:',
+  'terms.p14': 'Você não deve:',
 
-  // TODO: Translate from English
-  'terms.p15': 'We reserve the right (but have no obligation) to:',
+  'terms.p15': 'Reservamo-nos o direito (mas não temos obrigação) de:',
 
-  // TODO: Translate from English
-  'terms.p16': 'However, we are not responsible for monitoring all content and make no guarantee that prohibited content will not appear on the Service.',
+  'terms.p16': 'No entanto, não somos responsáveis por monitorar todo o conteúdo e não garantimos que conteúdo proibido não aparecerá no Serviço.',
 
-  // TODO: Translate from English
-  'terms.p17': 'We use a community-driven flagging system. Users can flag content they believe violates these Terms. Flagged content is reviewed by our moderation team, which may include automated pre-screening followed by human review.',
+  'terms.p17': 'Usamos um sistema de sinalização orientado pela comunidade. Os usuários podem sinalizar conteúdo que acreditam violar estes Termos. O conteúdo sinalizado é revisado por nossa equipe de moderação, que pode incluir pré-triagem automatizada seguida de revisão humana.',
 
-  // TODO: Translate from English
-  'terms.p18': 'Violations of these Terms may result in:',
+  'terms.p18': 'Violações destes Termos podem resultar em:',
 
-  // TODO: Translate from English
-  'terms.p19': 'We may terminate accounts without prior notice if we determine there\\'s a serious violation that threatens user safety or platform integrity.',
+  'terms.p19': 'Podemos encerrar contas sem aviso prévio se determinarmos que há uma violação grave que ameaça a segurança do usuário ou a integridade da plataforma.',
 
-  // TODO: Translate from English
-  'terms.p2': 'By accessing or using LightMyFire, you agree to be bound by these Terms, our Privacy Policy, and all applicable laws. If you do not agree with any part of these Terms, you must not use the Service. Your continued use constitutes acceptance of any modifications we make to these Terms.',
+  'terms.p2': 'Ao acessar ou usar o LightMyFire, você concorda em se vincular a estes Termos, nossa Política de Privacidade e todas as leis aplicáveis. Se você não concordar com qualquer parte destes Termos, não deve usar o Serviço. Seu uso contínuo constitui aceitação de quaisquer modificações que fizermos a estes Termos.',
 
-  // TODO: Translate from English
-  'terms.p20': 'If you believe content was removed or your account was suspended in error, you may appeal by contacting support@lightmyfire.app within 30 days of the action. Include:',
+  'terms.p20': 'Se você acredita que o conteúdo foi removido ou sua conta foi suspensa por engano, pode recorrer entrando em contato com support@lightmyfire.app dentro de 30 dias da ação. Inclua:',
 
-  // TODO: Translate from English
-  'terms.p21': 'We will review appeals and respond within 14 business days. Our decision on appeals is final.',
+  'terms.p21': 'Revisaremos os recursos e responderemos dentro de 14 dias úteis. Nossa decisão sobre recursos é final.',
 
-  // TODO: Translate from English
-  'terms.p22': 'All sticker sales are final. We do not offer refunds except in cases of:',
+  'terms.p22': 'Todas as vendas de stickers são finais. Não oferecemos reembolsos exceto em casos de:',
 
-  // TODO: Translate from English
-  'terms.p23': 'To request a refund for these reasons, contact support@lightmyfire.app within 30 days of delivery with photo evidence.',
+  'terms.p23': 'Para solicitar um reembolso por esses motivos, entre em contato com support@lightmyfire.app dentro de 30 dias da entrega com evidência fotográfica.',
 
-  // TODO: Translate from English
-  'terms.p24': 'Shipping times and costs are specified at checkout. We are not responsible for delays caused by shipping carriers, customs, or events beyond our control (force majeure). Risk of loss passes to you upon delivery to the carrier.',
+  'terms.p24': 'Os prazos e custos de envio são especificados no checkout. Não somos responsáveis por atrasos causados por transportadoras, alfândega ou eventos além do nosso controle (força maior). O risco de perda passa para você após a entrega à transportadora.',
 
-  // TODO: Translate from English
-  'terms.p25': 'Custom sticker orders cannot be canceled once processing begins (typically within 24 hours of order placement). Please review your customizations carefully before completing your order.',
+  'terms.p25': 'Pedidos de stickers personalizados não podem ser cancelados uma vez que o processamento começa (normalmente dentro de 24 horas da realização do pedido). Por favor, revise suas personalizações cuidadosamente antes de completar seu pedido.',
 
-  // TODO: Translate from English
-  'terms.p26': 'THE SERVICE IS PROVIDED ',
+  'terms.p26': 'O SERVIÇO É FORNECIDO ',
 
-  // TODO: Translate from English
-  'terms.p27': 'TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, REVEL EDITIONS SASU AND ITS DIRECTORS, EMPLOYEES, AGENTS, AND AFFILIATES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO:',
+  'terms.p27': 'NA MÁXIMA EXTENSÃO PERMITIDA PELA LEI APLICÁVEL, A REVEL EDITIONS SASU E SEUS DIRETORES, FUNCIONÁRIOS, AGENTES E AFILIADOS NÃO SERÃO RESPONSÁVEIS POR QUAISQUER DANOS INDIRETOS, INCIDENTAIS, ESPECIAIS, CONSEQUENCIAIS OU PUNITIVOS, INCLUINDO, MAS NÃO SE LIMITANDO A:',
 
-  // TODO: Translate from English
-  'terms.p28': 'OUR TOTAL LIABILITY TO YOU FOR ALL CLAIMS ARISING FROM OR RELATED TO THE SERVICE SHALL NOT EXCEED THE GREATER OF (A) €100 OR (B) THE AMOUNT YOU PAID US IN THE 12 MONTHS PRECEDING THE CLAIM.',
+  'terms.p28': 'NOSSA RESPONSABILIDADE TOTAL PARA VOCÊ POR TODAS AS RECLAMAÇÕES DECORRENTES DE OU RELACIONADAS AO SERVIÇO NÃO EXCEDERÁ O MAIOR DE (A) €100 OU (B) O VALOR QUE VOCÊ NOS PAGOU NOS 12 MESES ANTERIORES À RECLAMAÇÃO.',
 
-  // TODO: Translate from English
-  'terms.p29': 'Some jurisdictions do not allow the exclusion of certain warranties or limitation of liability for consequential damages. In such jurisdictions, our liability is limited to the maximum extent permitted by law.',
+  'terms.p29': 'Algumas jurisdições não permitem a exclusão de certas garantias ou limitação de responsabilidade por danos consequenciais. Em tais jurisdições, nossa responsabilidade é limitada à extensão máxima permitida por lei.',
 
-  // TODO: Translate from English
-  'terms.p3': 'You must be at least 16 years old (or the minimum age required in your country to provide consent for data processing under applicable privacy laws) to create an account and use this Service. By creating an account, you represent and warrant that you meet this age requirement.',
+  'terms.p3': 'Você deve ter pelo menos 16 anos de idade (ou a idade mínima exigida em seu país para fornecer consentimento para processamento de dados sob as leis de privacidade aplicáveis) para criar uma conta e usar este Serviço. Ao criar uma conta, você declara e garante que atende a este requisito de idade.',
 
-  // TODO: Translate from English
-  'terms.p30': 'You agree to defend, indemnify, and hold harmless Revel Editions SASU, its directors, officers, employees, and agents from any claims, damages, losses, liabilities, and expenses (including reasonable attorneys\\' fees) arising from:',
+  'terms.p30': 'Você concorda em defender, indenizar e isentar de responsabilidade a Revel Editions SASU, seus diretores, executivos, funcionários e agentes de quaisquer reclamações, danos, perdas, responsabilidades e despesas (incluindo honorários advocatícios razoáveis) decorrentes de:',
 
-  // TODO: Translate from English
-  'terms.p31': 'These Terms are governed by and construed in accordance with the laws of France, without regard to its conflict of law principles. The United Nations Convention on Contracts for the International Sale of Goods does not apply.',
+  'terms.p31': 'Estes Termos são regidos e interpretados de acordo com as leis da França, sem considerar seus princípios de conflito de leis. A Convenção das Nações Unidas sobre Contratos de Compra e Venda Internacional de Mercadorias não se aplica.',
 
-  // TODO: Translate from English
-  'terms.p32': 'Any disputes arising from these Terms or your use of the Service shall be subject to the exclusive jurisdiction of the courts of Paris, France. However, we may seek injunctive relief in any court of competent jurisdiction.',
+  'terms.p32': 'Quaisquer disputas decorrentes destes Termos ou do seu uso do Serviço estarão sujeitas à jurisdição exclusiva dos tribunais de Paris, França. No entanto, podemos buscar medida cautelar em qualquer tribunal de jurisdição competente.',
 
-  // TODO: Translate from English
-  'terms.p33': 'Before filing any formal claim, you agree to contact us at support@lightmyfire.app to attempt to resolve the dispute informally. We commit to working with you in good faith to reach a resolution within 60 days.',
+  'terms.p33': 'Antes de apresentar qualquer reclamação formal, você concorda em entrar em contato conosco em support@lightmyfire.app para tentar resolver a disputa informalmente. Comprometemo-nos a trabalhar com você de boa fé para chegar a uma resolução dentro de 60 dias.',
 
-  // TODO: Translate from English
-  'terms.p34': 'You may terminate your account at any time by contacting support@lightmyfire.app. Upon termination:',
+  'terms.p34': 'Você pode encerrar sua conta a qualquer momento entrando em contato com support@lightmyfire.app. Após o encerramento:',
 
-  // TODO: Translate from English
-  'terms.p35': 'We may suspend or terminate your account immediately, without prior notice, for:',
+  'terms.p35': 'Podemos suspender ou encerrar sua conta imediatamente, sem aviso prévio, por:',
 
-  // TODO: Translate from English
-  'terms.p36': 'Upon termination for any reason:',
+  'terms.p36': 'Após o encerramento por qualquer motivo:',
 
-  // TODO: Translate from English
-  'terms.p37': 'These Terms, together with our Privacy Policy, constitute the entire agreement between you and Revel Editions SASU regarding the Service and supersede all prior agreements.',
+  'terms.p37': 'Estes Termos, juntamente com nossa Política de Privacidade, constituem o acordo integral entre você e a Revel Editions SASU em relação ao Serviço e substituem todos os acordos anteriores.',
 
-  // TODO: Translate from English
-  'terms.p38': 'We reserve the right to modify these Terms at any time. When we make changes:',
+  'terms.p38': 'Reservamo-nos o direito de modificar estes Termos a qualquer momento. Quando fizermos alterações:',
 
-  // TODO: Translate from English
-  'terms.p39': 'If you don\\'t agree to modified Terms, you must stop using the Service.',
+  'terms.p39': 'Se você não concordar com os Termos modificados, deve parar de usar o Serviço.',
 
-  // TODO: Translate from English
-  'terms.p4': 'You are responsible for:',
+  'terms.p4': 'Você é responsável por:',
 
-  // TODO: Translate from English
-  'terms.p40': 'If any provision of these Terms is found invalid or unenforceable, that provision shall be enforced to the maximum extent possible, and the remaining provisions shall remain in full effect.',
+  'terms.p40': 'Se qualquer disposição destes Termos for considerada inválida ou inexequível, essa disposição será aplicada na máxima extensão possível, e as disposições restantes permanecerão em pleno vigor.',
 
-  // TODO: Translate from English
-  'terms.p41': 'Our failure to enforce any right or provision of these Terms does not constitute a waiver of that right or provision.',
+  'terms.p41': 'Nossa falha em aplicar qualquer direito ou disposição destes Termos não constitui uma renúncia a esse direito ou disposição.',
 
-  // TODO: Translate from English
-  'terms.p42': 'You may not assign or transfer these Terms or your account without our written consent. We may assign our rights and obligations without restriction.',
+  'terms.p42': 'Você não pode ceder ou transferir estes Termos ou sua conta sem nosso consentimento por escrito. Podemos ceder nossos direitos e obrigações sem restrição.',
 
-  // TODO: Translate from English
-  'terms.p43': 'These Terms do not create any third-party beneficiary rights except as expressly stated.',
+  'terms.p43': 'Estes Termos não criam quaisquer direitos de terceiros beneficiários, exceto conforme expressamente declarado.',
 
-  // TODO: Translate from English
-  'terms.p44': 'For questions about these Terms, contact us:',
+  'terms.p44': 'Para perguntas sobre estes Termos, entre em contato conosco:',
 
-  // TODO: Translate from English
-  'terms.p5': 'You may not share your account with others or use another person\\'s account without permission.',
+  'terms.p5': 'Você não pode compartilhar sua conta com outros ou usar a conta de outra pessoa sem permissão.',
 
-  // TODO: Translate from English
-  'terms.p6': 'You agree to provide accurate, current, and complete information during registration and to update it as necessary to maintain its accuracy.',
+  'terms.p6': 'Você concorda em fornecer informações precisas, atuais e completas durante o registro e atualizá-las conforme necessário para manter sua precisão.',
 
-  // TODO: Translate from English
-  'terms.p7': 'Subject to these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to access and use LightMyFire for personal, non-commercial purposes.',
+  'terms.p7': 'Sujeito a estes Termos, concedemos a você uma licença limitada, não exclusiva, intransferível e revogável para acessar e usar o LightMyFire para fins pessoais e não comerciais.',
 
-  // TODO: Translate from English
-  'terms.p8': 'All content, features, and functionality of the Service—including but not limited to text, graphics, logos, icons, images, audio clips, data compilations, software, and the ',
+  'terms.p8': 'Todo o conteúdo, recursos e funcionalidade do Serviço—incluindo, mas não se limitando a texto, gráficos, logotipos, ícones, imagens, clipes de áudio, compilações de dados, software e o ',
 
-  // TODO: Translate from English
-  'terms.p9': '[TODO: Translate terms.p9]',
+  'terms.p9': '[TODO: Traduzir terms.p9]',
 
-  // TODO: Translate from English
-  'terms.ul1.li1': 'Maintaining the confidentiality of your account credentials',
+  'terms.ul1.li1': 'Manter a confidencialidade das credenciais da sua conta',
 
-  // TODO: Translate from English
-  'terms.ul1.li2': 'All activities that occur under your account',
+  'terms.ul1.li2': 'Todas as atividades que ocorrem sob sua conta',
 
-  // TODO: Translate from English
-  'terms.ul1.li3': 'Notifying us immediately of any unauthorized use at: support@lightmyfire.app',
+  'terms.ul1.li3': 'Notificar-nos imediatamente de qualquer uso não autorizado em: support@lightmyfire.app',
 
-  // TODO: Translate from English
-  'terms.ul10.li1': 'The Service will meet your requirements',
+  'terms.ul10.li1': 'O Serviço atenderá aos seus requisitos',
 
-  // TODO: Translate from English
-  'terms.ul10.li2': 'The Service will be uninterrupted, timely, secure, or error-free',
+  'terms.ul10.li2': 'O Serviço será ininterrupto, oportuno, seguro ou livre de erros',
 
-  // TODO: Translate from English
-  'terms.ul10.li3': 'Results obtained from use of the Service will be accurate or reliable',
+  'terms.ul10.li3': 'Os resultados obtidos do uso do Serviço serão precisos ou confiáveis',
 
-  // TODO: Translate from English
-  'terms.ul10.li4': 'Any errors in the Service will be corrected',
+  'terms.ul10.li4': 'Quaisquer erros no Serviço serão corrigidos',
 
-  // TODO: Translate from English
-  'terms.ul11.li1': 'Loss of profits, data, use, goodwill, or other intangible losses',
+  'terms.ul11.li1': 'Perda de lucros, dados, uso, goodwill ou outras perdas intangíveis',
 
-  // TODO: Translate from English
-  'terms.ul11.li2': 'Unauthorized access to or alteration of your content',
+  'terms.ul11.li2': 'Acesso não autorizado ou alteração do seu conteúdo',
 
-  // TODO: Translate from English
-  'terms.ul11.li3': 'Third-party conduct or content on the Service',
+  'terms.ul11.li3': 'Conduta ou conteúdo de terceiros no Serviço',
 
-  // TODO: Translate from English
-  'terms.ul11.li4': 'Any matter beyond our reasonable control',
+  'terms.ul11.li4': 'Qualquer assunto além do nosso controle razoável',
 
-  // TODO: Translate from English
-  'terms.ul12.li1': 'Your use or misuse of the Service',
+  'terms.ul12.li1': 'Seu uso ou uso indevido do Serviço',
 
-  // TODO: Translate from English
-  'terms.ul12.li2': 'Your violation of these Terms',
+  'terms.ul12.li2': 'Sua violação destes Termos',
 
-  // TODO: Translate from English
-  'terms.ul12.li3': 'Your violation of any rights of another party',
+  'terms.ul12.li3': 'Sua violação de quaisquer direitos de outra parte',
 
-  // TODO: Translate from English
-  'terms.ul12.li4': 'Your User-Generated Content',
+  'terms.ul12.li4': 'Seu Conteúdo Gerado pelo Usuário',
 
-  // TODO: Translate from English
-  'terms.ul13.li1': 'Your account will be deactivated',
+  'terms.ul13.li1': 'Sua conta será desativada',
 
-  // TODO: Translate from English
-  'terms.ul13.li2': 'You lose access to all account features',
+  'terms.ul13.li2': 'Você perde o acesso a todos os recursos da conta',
 
-  // TODO: Translate from English
-  'terms.ul13.li3': 'Your posts remain visible on lighter pages (they\\'re part of those lighters\\' stories)',
+  'terms.ul13.li3': 'Seus posts permanecem visíveis nas páginas dos isqueiros (eles fazem parte das histórias desses isqueiros)',
 
-  // TODO: Translate from English
-  'terms.ul13.li4': 'To delete your posts before account termination, do so manually from your profile',
+  'terms.ul13.li4': 'Para excluir seus posts antes do encerramento da conta, faça-o manualmente do seu perfil',
 
-  // TODO: Translate from English
-  'terms.ul14.li1': 'Violation of these Terms',
+  'terms.ul14.li1': 'Violação destes Termos',
 
-  // TODO: Translate from English
-  'terms.ul14.li2': 'Fraudulent, abusive, or illegal activity',
+  'terms.ul14.li2': 'Atividade fraudulenta, abusiva ou ilegal',
 
-  // TODO: Translate from English
-  'terms.ul14.li3': 'Prolonged inactivity (accounts inactive for 3+ years)',
+  'terms.ul14.li3': 'Inatividade prolongada (contas inativas por mais de 3 anos)',
 
-  // TODO: Translate from English
-  'terms.ul14.li4': 'At our sole discretion if necessary to protect the Service or other users',
+  'terms.ul14.li4': 'A nosso exclusivo critério, se necessário para proteger o Serviço ou outros usuários',
 
-  // TODO: Translate from English
-  'terms.ul15.li1': 'Your right to use the Service ceases immediately',
+  'terms.ul15.li1': 'Seu direito de usar o Serviço cessa imediatamente',
 
-  // TODO: Translate from English
-  'terms.ul15.li2': 'Sections that by their nature should survive termination remain in effect (including Intellectual Property, Disclaimers, Limitation of Liability, Indemnification, Dispute Resolution)',
+  'terms.ul15.li2': 'Seções que por sua natureza devem sobreviver ao encerramento permanecem em vigor (incluindo Propriedade Intelectual, Isenções de Responsabilidade, Limitação de Responsabilidade, Indenização, Resolução de Disputas)',
 
-  // TODO: Translate from English
-  'terms.ul15.li3': 'We may retain certain data as required by law or legitimate business purposes',
+  'terms.ul15.li3': 'Podemos reter certos dados conforme exigido por lei ou fins comerciais legítimos',
 
-  // TODO: Translate from English
-  'terms.ul16.li1': 'We\\'ll update the ',
+  'terms.ul16.li1': 'Atualizaremos o ',
 
-  // TODO: Translate from English
-  'terms.ul16.li2': 'For material changes, we\\'ll notify you by email or prominent notice on the Service',
+  'terms.ul16.li2': 'Para mudanças materiais, notificaremos você por email ou aviso proeminente no Serviço',
 
-  // TODO: Translate from English
-  'terms.ul16.li3': 'Your continued use after changes constitutes acceptance',
+  'terms.ul16.li3': 'Seu uso contínuo após as mudanças constitui aceitação',
 
-  // TODO: Translate from English
   'terms.ul17.li1': '<strong>Email:</strong> support@lightmyfire.app',
 
-  // TODO: Translate from English
-  'terms.ul17.li2': '<strong>Support:</strong> support@lightmyfire.app',
+  'terms.ul17.li2': '<strong>Suporte:</strong> support@lightmyfire.app',
 
-  // TODO: Translate from English
-  'terms.ul17.li3': '<strong>Address:</strong> Revel Editions SASU, Cs 20008 145 Rue de Noisy-le-Sec 93260 Les Lilas, France',
+  'terms.ul17.li3': '<strong>Endereço:</strong> Revel Editions SASU, Cs 20008 145 Rue de Noisy-le-Sec 93260 Les Lilas, França',
 
-  // TODO: Translate from English
-  'terms.ul2.li1': 'Use, reproduce, distribute, modify, adapt, publicly perform, and publicly display your UGC',
+  'terms.ul2.li1': 'Usar, reproduzir, distribuir, modificar, adaptar, executar publicamente e exibir publicamente seu UGC',
 
-  // TODO: Translate from English
-  'terms.ul2.li2': 'Incorporate your UGC into other works in any format or medium',
+  'terms.ul2.li2': 'Incorporar seu UGC em outros trabalhos em qualquer formato ou meio',
 
-  // TODO: Translate from English
-  'terms.ul2.li3': 'Sublicense these rights to third parties solely for the operation and promotion of LightMyFire',
+  'terms.ul2.li3': 'Sublicenciar esses direitos a terceiros exclusivamente para a operação e promoção do LightMyFire',
 
-  // TODO: Translate from English
-  'terms.ul3.li1': 'You own or have the necessary rights to post the content',
+  'terms.ul3.li1': 'Você possui ou tem os direitos necessários para postar o conteúdo',
 
-  // TODO: Translate from English
-  'terms.ul3.li2': 'Your content does not violate any third party\\'s intellectual property, privacy, or other rights',
+  'terms.ul3.li2': 'Seu conteúdo não viola a propriedade intelectual, privacidade ou outros direitos de terceiros',
 
-  // TODO: Translate from English
-  'terms.ul3.li3': 'Your content complies with these Terms and applicable laws',
+  'terms.ul3.li3': 'Seu conteúdo está em conformidade com estes Termos e leis aplicáveis',
 
-  // TODO: Translate from English
-  'terms.ul4.li1': '<strong>Illegal:</strong> Violates any local, national, or international law',
+  'terms.ul4.li1': '<strong>Ilegal:</strong> Viola qualquer lei local, nacional ou internacional',
 
-  // TODO: Translate from English
-  'terms.ul4.li10': '<strong>Malicious:</strong> Contains viruses, malware, or other harmful code',
+  'terms.ul4.li10': '<strong>Malicioso:</strong> Contém vírus, malware ou outro código prejudicial',
 
-  // TODO: Translate from English
-  'terms.ul4.li11': '<strong>Private Information:</strong> Shares others\\' personal information without consent (doxxing)',
+  'terms.ul4.li11': '<strong>Informações Privadas:</strong> Compartilha informações pessoais de outros sem consentimento (doxxing)',
 
-  // TODO: Translate from English
-  'terms.ul4.li2': '<strong>Harmful to Minors:</strong> Exploits, sexualizes, or endangers children in any way',
+  'terms.ul4.li2': '<strong>Prejudicial a Menores:</strong> Explora, sexualiza ou coloca crianças em perigo de qualquer forma',
 
-  // TODO: Translate from English
-  'terms.ul4.li3': '<strong>Hateful:</strong> Promotes hatred, discrimination, or violence against individuals or groups based on race, ethnicity, religion, gender, sexual orientation, disability, or other protected characteristics',
+  'terms.ul4.li3': '<strong>Odioso:</strong> Promove ódio, discriminação ou violência contra indivíduos ou grupos com base em raça, etnia, religião, gênero, orientação sexual, deficiência ou outras características protegidas',
 
-  // TODO: Translate from English
-  'terms.ul4.li4': '<strong>Violent or Threatening:</strong> Depicts, encourages, or threatens violence, self-harm, or harm to others',
+  'terms.ul4.li4': '<strong>Violento ou Ameaçador:</strong> Retrata, encoraja ou ameaça violência, automutilação ou dano a outros',
 
-  // TODO: Translate from English
-  'terms.ul4.li5': '<strong>Harassing:</strong> Bullies, harasses, stalks, or intimidates others',
+  'terms.ul4.li5': '<strong>Assediador:</strong> Intimida, assedia, persegue ou ameaça outros',
 
-  // TODO: Translate from English
-  'terms.ul4.li6': '<strong>Sexually Explicit:</strong> Contains pornography or sexually explicit material',
+  'terms.ul4.li6': '<strong>Sexualmente Explícito:</strong> Contém pornografia ou material sexualmente explícito',
 
-  // TODO: Translate from English
-  'terms.ul4.li7': '<strong>Misleading:</strong> Contains false, misleading, or fraudulent information',
+  'terms.ul4.li7': '<strong>Enganoso:</strong> Contém informações falsas, enganosas ou fraudulentas',
 
-  // TODO: Translate from English
-  'terms.ul4.li8': '<strong>Spam:</strong> Consists of unsolicited advertising, promotional material, or repetitive content',
+  'terms.ul4.li8': '<strong>Spam:</strong> Consiste em publicidade não solicitada, material promocional ou conteúdo repetitivo',
 
-  // TODO: Translate from English
-  'terms.ul4.li9': '<strong>Infringing:</strong> Violates copyrights, trademarks, patents, or other intellectual property rights',
+  'terms.ul4.li9': '<strong>Infrator:</strong> Viola direitos autorais, marcas registradas, patentes ou outros direitos de propriedade intelectual',
 
-  // TODO: Translate from English
-  'terms.ul5.li1': 'Impersonate any person or entity',
+  'terms.ul5.li1': 'Personificar qualquer pessoa ou entidade',
 
-  // TODO: Translate from English
-  'terms.ul5.li2': 'Manipulate the Service to artificially inflate metrics (likes, views, etc.)',
+  'terms.ul5.li2': 'Manipular o Serviço para inflar artificialmente métricas (curtidas, visualizações, etc.)',
 
-  // TODO: Translate from English
-  'terms.ul5.li3': 'Interfere with or disrupt the Service or servers',
+  'terms.ul5.li3': 'Interferir ou interromper o Serviço ou servidores',
 
-  // TODO: Translate from English
-  'terms.ul5.li4': 'Attempt to gain unauthorized access to any part of the Service',
+  'terms.ul5.li4': 'Tentar obter acesso não autorizado a qualquer parte do Serviço',
 
-  // TODO: Translate from English
-  'terms.ul5.li5': 'Use automated tools (bots, scrapers) without written permission',
+  'terms.ul5.li5': 'Usar ferramentas automatizadas (bots, scrapers) sem permissão por escrito',
 
-  // TODO: Translate from English
-  'terms.ul5.li6': 'Circumvent any content filtering or security measures',
+  'terms.ul5.li6': 'Contornar qualquer filtragem de conteúdo ou medidas de segurança',
 
-  // TODO: Translate from English
-  'terms.ul5.li7': 'Use the Service for any commercial purpose without our consent',
+  'terms.ul5.li7': 'Usar o Serviço para qualquer finalidade comercial sem nosso consentimento',
 
-  // TODO: Translate from English
-  'terms.ul6.li1': 'Review, screen, edit, or remove any UGC at any time for any reason',
+  'terms.ul6.li1': 'Revisar, filtrar, editar ou remover qualquer UGC a qualquer momento por qualquer motivo',
 
-  // TODO: Translate from English
-  'terms.ul6.li2': 'Monitor user activity for violations of these Terms',
+  'terms.ul6.li2': 'Monitorar a atividade do usuário para violações destes Termos',
 
-  // TODO: Translate from English
-  'terms.ul6.li3': 'Investigate complaints and reported content',
+  'terms.ul6.li3': 'Investigar reclamações e conteúdo denunciado',
 
-  // TODO: Translate from English
-  'terms.ul7.li1': '<strong>Content Removal:</strong> Removal of violating posts without notice',
+  'terms.ul7.li1': '<strong>Remoção de Conteúdo:</strong> Remoção de posts violadores sem aviso',
 
-  // TODO: Translate from English
-  'terms.ul7.li2': '<strong>Warning:</strong> A formal warning for first-time or minor violations',
+  'terms.ul7.li2': '<strong>Advertência:</strong> Uma advertência formal para violações iniciais ou menores',
 
-  // TODO: Translate from English
-  'terms.ul7.li3': '<strong>Temporary Suspension:</strong> Temporary account suspension (duration determined by severity)',
+  'terms.ul7.li3': '<strong>Suspensão Temporária:</strong> Suspensão temporária da conta (duração determinada pela gravidade)',
 
-  // TODO: Translate from English
-  'terms.ul7.li4': '<strong>Permanent Termination:</strong> Permanent account termination for serious or repeated violations',
+  'terms.ul7.li4': '<strong>Encerramento Permanente:</strong> Encerramento permanente da conta para violações graves ou repetidas',
 
-  // TODO: Translate from English
-  'terms.ul7.li5': '<strong>Legal Action:</strong> Reporting to law enforcement for illegal activity',
+  'terms.ul7.li5': '<strong>Ação Legal:</strong> Denúncia às autoridades policiais por atividade ilegal',
 
-  // TODO: Translate from English
-  'terms.ul8.li1': 'Your username and account email',
+  'terms.ul8.li1': 'Seu nome de usuário e email da conta',
 
-  // TODO: Translate from English
-  'terms.ul8.li2': 'Description of the content or action in question',
+  'terms.ul8.li2': 'Descrição do conteúdo ou ação em questão',
 
-  // TODO: Translate from English
-  'terms.ul8.li3': 'Explanation of why you believe the decision was incorrect',
+  'terms.ul8.li3': 'Explicação de por que você acredita que a decisão estava incorreta',
 
-  // TODO: Translate from English
-  'terms.ul9.li1': 'Manufacturing defects in the stickers',
+  'terms.ul9.li1': 'Defeitos de fabricação nos stickers',
 
-  // TODO: Translate from English
-  'terms.ul9.li2': 'Incorrect items shipped',
+  'terms.ul9.li2': 'Itens incorretos enviados',
 
-  // TODO: Translate from English
-  'terms.ul9.li3': 'Non-delivery due to our error',
+  'terms.ul9.li3': 'Não entrega devido a erro nosso',
 
-  // TODO: Translate from English
-  'validation.email_invalid': 'Please enter a valid email address.',
+  'validation.email_invalid': 'Por favor, insira um endereço de email válido.',
 
-  // TODO: Translate from English
-  'validation.email_required': 'Email is required.',
+  'validation.email_required': 'Email é obrigatório.',
 
-  // TODO: Translate from English
-  'validation.field_required': 'This field is required.',
+  'validation.field_required': 'Este campo é obrigatório.',
 
-  // TODO: Translate from English
-  'validation.password_requirement.lowercase': 'At least one lowercase letter',
+  'validation.password_requirement.lowercase': 'Pelo menos uma letra minúscula',
 
-  // TODO: Translate from English
-  'validation.password_requirement.min_length': 'At least {count} characters',
+  'validation.password_requirement.min_length': 'Pelo menos {count} caracteres',
 
-  // TODO: Translate from English
-  'validation.password_requirement.number': 'At least one number',
+  'validation.password_requirement.number': 'Pelo menos um número',
 
-  // TODO: Translate from English
-  'validation.password_requirement.uppercase': 'At least one uppercase letter',
+  'validation.password_requirement.uppercase': 'Pelo menos uma letra maiúscula',
 
-  // TODO: Translate from English
-  'validation.password_requirements': 'Password must contain at least one uppercase letter, one lowercase letter, and one number',
+  'validation.password_requirements': 'A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um número',
 
-  // TODO: Translate from English
-  'validation.password_too_short': 'Password must be at least {min} characters.',
+  'validation.password_too_short': 'A senha deve ter pelo menos {min} caracteres.',
 
-  // TODO: Translate from English
-  'validation.username_length': 'Username must be between {min} and {max} characters.',
+  'validation.username_length': 'O nome de usuário deve ter entre {min} e {max} caracteres.',
 
-  // TODO: Translate from English
-  'validation.username_required': 'Username cannot be empty.',
+  'validation.username_required': 'O nome de usuário não pode estar vazio.',
 } as const;
