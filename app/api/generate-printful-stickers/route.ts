@@ -1,4 +1,4 @@
-import { createCanvas, loadImage, Image, Canvas, CanvasRenderingContext2D as NodeCanvasContext, registerFont } from 'canvas';
+import { createCanvas, loadImage, Image, Canvas, SKRSContext2D as NodeCanvasContext, GlobalFonts } from '@napi-rs/canvas';
 import { NextRequest, NextResponse } from 'next/server';
 import QRCode from 'qrcode';
 import path from 'path';
@@ -17,21 +17,21 @@ try {
   const poppinsMedium = path.join(process.cwd(), 'public', 'fonts', 'Poppins-Medium.ttf');
 
     if (fs.existsSync(poppinsExtraBold)) {
-    registerFont(poppinsExtraBold, { family: 'Poppins', weight: '800' });
+    GlobalFonts.registerFromPath(poppinsExtraBold, 'Poppins');
     logger.log('Registered Poppins ExtraBold');
   } else {
     console.error('Poppins-ExtraBold.ttf not found at:', poppinsExtraBold);
   }
 
     if (fs.existsSync(poppinsBold)) {
-    registerFont(poppinsBold, { family: 'Poppins', weight: 'bold' });
+    GlobalFonts.registerFromPath(poppinsBold, 'Poppins');
     logger.log('Registered Poppins Bold');
   } else {
     console.error('Poppins-Bold.ttf not found at:', poppinsBold);
   }
 
     if (fs.existsSync(poppinsMedium)) {
-    registerFont(poppinsMedium, { family: 'Poppins', weight: '500' });
+    GlobalFonts.registerFromPath(poppinsMedium, 'Poppins');
     logger.log('Registered Poppins Medium');
   } else {
     console.error('Poppins-Medium.ttf not found at:', poppinsMedium);
@@ -401,11 +401,8 @@ async function generateSingleSheet(stickers: StickerData[]): Promise<Buffer> {
     }
   }
 
-    
-    return canvas.toBuffer('image/png', {
-    compressionLevel: 9,
-    filters: Canvas.PNG_FILTER_NONE
-  });
+
+    return canvas.encode('png');
 }
 
 async function drawSticker(
@@ -428,9 +425,7 @@ async function drawSticker(
       try {
     const bgLayerPath = path.join(process.cwd(), 'public', 'newassets', 'sticker_bg_layer.png');
     const bgLayerBuffer = fs.readFileSync(bgLayerPath);
-    const { Image } = await import('canvas');
-    const bgLayerImage = new Image();
-    bgLayerImage.src = bgLayerBuffer;
+    const bgLayerImage = await loadImage(bgLayerBuffer);
 
         ctx.save();
         roundRect(ctx, x, y, STICKER_WIDTH_PX, STICKER_HEIGHT_PX, cornerRadius);
@@ -590,9 +585,7 @@ async function drawSticker(
 
         const logoPath = path.join(process.cwd(), 'public', 'LOGOLONG.png');
     const logoBuffer = fs.readFileSync(logoPath);
-    const { Image } = await import('canvas');
-    const logoImage = new Image();
-    logoImage.src = logoBuffer;
+    const logoImage = await loadImage(logoBuffer);
 
         const logoPadding = 40;
     const logoBaseWidth = STICKER_WIDTH_PX - (logoPadding * 2);

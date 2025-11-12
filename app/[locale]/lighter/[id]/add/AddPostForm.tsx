@@ -617,6 +617,13 @@ export default function AddPostForm({
           </div>
         </div>
 
+      {/* Contextual helper message based on post type */}
+      <div className="my-6 rounded-lg bg-primary/5 border border-primary/20 p-4">
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          {t(`add_post.context.${postType}`)}
+        </p>
+      </div>
+
       {}
       <div className="space-y-4 min-h-[300px]">
         {postType !== 'refuel' && (

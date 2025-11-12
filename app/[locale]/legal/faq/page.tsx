@@ -2,7 +2,8 @@
 'use client';
 
 import Image from 'next/image';
-import { useI18n } from '@/locales/client';
+import Link from 'next/link';
+import { useI18n, useCurrentLocale } from '@/locales/client';
 import { useState } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import ContactFormModal from '@/app/components/ContactFormModal';
@@ -15,6 +16,7 @@ interface FAQItem {
 
 export default function FAQ() {
   const t = useI18n() as any;
+  const locale = useCurrentLocale();
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [showContactModal, setShowContactModal] = useState(false);
 
@@ -117,6 +119,24 @@ export default function FAQ() {
           {t('faq.subtitle')}
         </p>
 
+        {/* FAQ Navigation Buttons */}
+        <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
+          <Link
+            href={`/${locale}`}
+            className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors shadow-md"
+            aria-label={t('faq.nav.type_code_aria')}
+          >
+            {t('faq.nav.type_code')}
+          </Link>
+          <Link
+            href={`/${locale}/save-lighter`}
+            className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-secondary text-secondary-foreground font-semibold hover:bg-secondary/90 transition-colors shadow-md"
+            aria-label={t('faq.nav.take_part_aria')}
+          >
+            {t('faq.nav.take_part')}
+          </Link>
+        </div>
+
         {}
         <div className="space-y-3">
           {faqItems.map((item) => (
@@ -161,6 +181,24 @@ export default function FAQ() {
               {t('faq.contact_link')}
             </button>
           </p>
+        </div>
+
+        {/* FAQ Navigation Buttons - Bottom */}
+        <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
+          <Link
+            href={`/${locale}`}
+            className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors shadow-md"
+            aria-label={t('faq.nav.type_code_aria')}
+          >
+            {t('faq.nav.type_code')}
+          </Link>
+          <Link
+            href={`/${locale}/save-lighter`}
+            className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-secondary text-secondary-foreground font-semibold hover:bg-secondary/90 transition-colors shadow-md"
+            aria-label={t('faq.nav.take_part_aria')}
+          >
+            {t('faq.nav.take_part')}
+          </Link>
         </div>
       </div>
 

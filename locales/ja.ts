@@ -1309,7 +1309,7 @@ export default {
 
   'privacy.p23': '当社がGDPRに準拠していないと思われる場合、監督機関に苦情を申し立てる権利があります：',
 
-  'privacy.p24': '<strong>フランス（当社の主要管轄区域）：</strong><br>Commission Nationale de l\\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, France<br>ウェブサイト： <a href=\\'https://www.cnil.fr\\' target=\\'_blank\\'>www.cnil.fr</a>',
+  'privacy.p24': '<strong>フランス（当社の主要管轄区域）：</strong><br>Commission Nationale de l\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, France<br>ウェブサイト： <a href=\'https://www.cnil.fr\' target=\'_blank\'>www.cnil.fr</a>',
 
   'privacy.p25': 'お住まいの国のデータ保護機関にも連絡できます。',
 
@@ -1433,9 +1433,9 @@ export default {
 
   'privacy.ul6.li4': '<strong>法的義務（GDPR第6条1項c）：</strong>税務義務や法執行機関の要求を含む、フランスおよびEU法の遵守',
 
-  'privacy.ul7.li1': '<strong>Supabase（バックエンドインフラストラクチャ）：</strong>データベース、認証システム、ファイルストレージをホスト。EUデータセンターに配置。<a href=\\'https://supabase.com/privacy\\' target=\\'_blank\\'>Supabaseプライバシーポリシーを見る</a>',
+  'privacy.ul7.li1': '<strong>Supabase（バックエンドインフラストラクチャ）：</strong>データベース、認証システム、ファイルストレージをホスト。EUデータセンターに配置。<a href=\'https://supabase.com/privacy\' target=\'_blank\'>Supabaseプライバシーポリシーを見る</a>',
 
-  'privacy.ul7.li2': '<strong>Stripe（決済処理）：</strong>すべての決済トランザクションを安全に処理。カードの詳細ではなく、トランザクション確認のみを受け取ります。<a href=\\'https://stripe.com/privacy\\' target=\\'_blank\\'>Stripeプライバシーポリシーを見る</a>',
+  'privacy.ul7.li2': '<strong>Stripe（決済処理）：</strong>すべての決済トランザクションを安全に処理。カードの詳細ではなく、トランザクション確認のみを受け取ります。<a href=\'https://stripe.com/privacy\' target=\'_blank\'>Stripeプライバシーポリシーを見る</a>',
 
   'privacy.ul7.li3': '<strong>配送パートナー：</strong>ステッカー配送のためにのみ氏名、住所、連絡先情報を受け取ります',
 

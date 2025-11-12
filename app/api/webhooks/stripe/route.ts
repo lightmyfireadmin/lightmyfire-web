@@ -202,13 +202,20 @@ export async function POST(request: NextRequest) {
           });
 
           // Update order with refund information
+          // Note: sticker_orders table currently lacks dedicated refund columns
+          // Storing refund info in cancellation_reason as workaround
+          const refundInfo = {
+            refunded: true,
+            amount: charge.amount_refunded,
+            reason: latestRefund?.reason || 'unknown',
+            at: new Date().toISOString()
+          };
+
           const { error: refundError } = await supabase
             .from('sticker_orders')
             .update({
-              refunded: true,
-              refund_amount_cents: charge.amount_refunded,
-              refund_reason: latestRefund?.reason || null,
-              refunded_at: new Date().toISOString(),
+              status: 'refunded',
+              cancellation_reason: `Refunded: ${refundInfo.reason} (${refundInfo.amount} cents)`,
               updated_at: new Date().toISOString(),
             })
             .eq('payment_intent_id', charge.payment_intent);

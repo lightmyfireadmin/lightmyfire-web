@@ -58,10 +58,10 @@ export default function AuthNotification() {
         title: t('notifications.success'),
         message: t('notifications.signup_success'),
         icon: CheckCircleIcon,
-        bgColor: 'bg-green-50 dark:bg-green-950/50',
-        borderColor: 'border-green-200 dark:border-green-800',
-        iconColor: 'text-green-600 dark:text-green-400',
-        textColor: 'text-green-900 dark:text-green-100',
+        bgColor: 'bg-green-700/90',
+        borderColor: 'border-green-600',
+        iconColor: 'text-white',
+        textColor: 'text-white',
       };
     } else if (searchParams.get('login_success') === 'true') {
       config = {
@@ -69,10 +69,10 @@ export default function AuthNotification() {
         title: t('notifications.success'),
         message: t('notifications.login_success'),
         icon: CheckCircleIcon,
-        bgColor: 'bg-green-50 dark:bg-green-950/50',
-        borderColor: 'border-green-200 dark:border-green-800',
-        iconColor: 'text-green-600 dark:text-green-400',
-        textColor: 'text-green-900 dark:text-green-100',
+        bgColor: 'bg-green-700/90',
+        borderColor: 'border-green-600',
+        iconColor: 'text-white',
+        textColor: 'text-white',
       };
     } else if (searchParams.get('logout_success') === 'true') {
       config = {
@@ -80,10 +80,10 @@ export default function AuthNotification() {
         title: t('notifications.success'),
         message: t('notifications.logout_success'),
         icon: CheckCircleIcon,
-        bgColor: 'bg-blue-50 dark:bg-blue-950/50',
-        borderColor: 'border-blue-200 dark:border-blue-800',
-        iconColor: 'text-blue-600 dark:text-blue-400',
-        textColor: 'text-blue-900 dark:text-blue-100',
+        bgColor: 'bg-blue-700/90',
+        borderColor: 'border-blue-600',
+        iconColor: 'text-white',
+        textColor: 'text-white',
       };
     } else if (searchParams.get('password_reset') === 'true') {
       config = {
@@ -91,10 +91,10 @@ export default function AuthNotification() {
         title: t('notifications.success'),
         message: t('notifications.password_reset_sent'),
         icon: CheckCircleIcon,
-        bgColor: 'bg-green-50 dark:bg-green-950/50',
-        borderColor: 'border-green-200 dark:border-green-800',
-        iconColor: 'text-green-600 dark:text-green-400',
-        textColor: 'text-green-900 dark:text-green-100',
+        bgColor: 'bg-green-700/90',
+        borderColor: 'border-green-600',
+        iconColor: 'text-white',
+        textColor: 'text-white',
       };
     } else if (searchParams.get('password_updated') === 'true') {
       config = {
@@ -102,10 +102,10 @@ export default function AuthNotification() {
         title: t('notifications.success'),
         message: t('notifications.password_updated'),
         icon: CheckCircleIcon,
-        bgColor: 'bg-green-50 dark:bg-green-950/50',
-        borderColor: 'border-green-200 dark:border-green-800',
-        iconColor: 'text-green-600 dark:text-green-400',
-        textColor: 'text-green-900 dark:text-green-100',
+        bgColor: 'bg-green-700/90',
+        borderColor: 'border-green-600',
+        iconColor: 'text-white',
+        textColor: 'text-white',
       };
     } else if (searchParams.get('error') === 'auth_failed') {
       config = {
@@ -113,10 +113,10 @@ export default function AuthNotification() {
         title: t('notifications.error'),
         message: t('notifications.auth_failed'),
         icon: XCircleIcon,
-        bgColor: 'bg-red-50 dark:bg-red-950/50',
-        borderColor: 'border-red-200 dark:border-red-800',
-        iconColor: 'text-red-600 dark:text-red-400',
-        textColor: 'text-red-900 dark:text-red-100',
+        bgColor: 'bg-red-700/90',
+        borderColor: 'border-red-600',
+        iconColor: 'text-white',
+        textColor: 'text-white',
       };
     } else if (searchParams.get('error') === 'invalid_credentials') {
       config = {
@@ -124,10 +124,10 @@ export default function AuthNotification() {
         title: t('notifications.error'),
         message: t('notifications.invalid_credentials'),
         icon: XCircleIcon,
-        bgColor: 'bg-red-50 dark:bg-red-950/50',
-        borderColor: 'border-red-200 dark:border-red-800',
-        iconColor: 'text-red-600 dark:text-red-400',
-        textColor: 'text-red-900 dark:text-red-100',
+        bgColor: 'bg-red-700/90',
+        borderColor: 'border-red-600',
+        iconColor: 'text-white',
+        textColor: 'text-white',
       };
     } else if (searchParams.get('error') === 'user_not_found') {
       config = {
@@ -135,10 +135,10 @@ export default function AuthNotification() {
         title: t('notifications.error'),
         message: t('notifications.user_not_found'),
         icon: XCircleIcon,
-        bgColor: 'bg-red-50 dark:bg-red-950/50',
-        borderColor: 'border-red-200 dark:border-red-800',
-        iconColor: 'text-red-600 dark:text-red-400',
-        textColor: 'text-red-900 dark:text-red-100',
+        bgColor: 'bg-red-700/90',
+        borderColor: 'border-red-600',
+        iconColor: 'text-white',
+        textColor: 'text-white',
       };
     } else if (searchParams.get('error') === 'session_expired') {
       config = {
@@ -146,10 +146,10 @@ export default function AuthNotification() {
         title: t('notifications.warning'),
         message: t('notifications.session_expired'),
         icon: ExclamationTriangleIcon,
-        bgColor: 'bg-yellow-50 dark:bg-yellow-950/50',
-        borderColor: 'border-yellow-200 dark:border-yellow-800',
-        iconColor: 'text-yellow-600 dark:text-yellow-400',
-        textColor: 'text-yellow-900 dark:text-yellow-100',
+        bgColor: 'bg-yellow-600/90',
+        borderColor: 'border-yellow-500',
+        iconColor: 'text-white',
+        textColor: 'text-white',
       };
     }
 
@@ -197,10 +197,10 @@ export default function AuthNotification() {
 
             {}
             <div className="flex-1 min-w-0">
-              <h3 className={`text-lg font-bold ${notification.textColor} mb-1`}>
+              <h3 className={`text-lg font-extrabold ${notification.textColor} mb-1`}>
                 {notification.title}
               </h3>
-              <p className={`text-sm ${notification.textColor} opacity-90 leading-relaxed`}>
+              <p className={`text-sm font-bold ${notification.textColor} leading-relaxed`}>
                 {notification.message}
               </p>
             </div>

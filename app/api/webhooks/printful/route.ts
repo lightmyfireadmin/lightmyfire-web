@@ -90,14 +90,14 @@ export async function POST(request: NextRequest) {
     const supabase = createServerSupabaseClient(cookieStore);
 
     // Idempotency check: Generate unique webhook ID from payload
+    // Using this ID as the primary key since webhook_events.id is the only identifier
     const webhookId = `printful_${payload.type}_${payload.data.order?.id}_${payload.created}_${payload.retries}`;
 
     // Check if we've already processed this webhook
     const { data: existingWebhook } = await supabase
       .from('webhook_events')
       .select('id')
-      .eq('webhook_id', webhookId)
-      .eq('source', 'printful')
+      .eq('id', webhookId)
       .single();
 
     if (existingWebhook) {
