@@ -1,4 +1,3 @@
-import { createCanvas, loadImage, Image, Canvas, SKRSContext2D as NodeCanvasContext, GlobalFonts } from '@napi-rs/canvas';
 import { NextRequest, NextResponse } from 'next/server';
 import QRCode from 'qrcode';
 import path from 'path';
@@ -8,37 +7,12 @@ import { cookies } from 'next/headers';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { verifyInternalAuthToken } from '@/lib/internal-auth';
 import { logger } from '@/lib/logger';
+import sharp from 'sharp';
 
 export const dynamic = 'force-dynamic';
 
-try {
-  const poppinsExtraBold = path.join(process.cwd(), 'public', 'fonts', 'Poppins-ExtraBold.ttf');
-  const poppinsBold = path.join(process.cwd(), 'public', 'fonts', 'Poppins-Bold.ttf');
-  const poppinsMedium = path.join(process.cwd(), 'public', 'fonts', 'Poppins-Medium.ttf');
-
-    if (fs.existsSync(poppinsExtraBold)) {
-    GlobalFonts.registerFromPath(poppinsExtraBold, 'Poppins');
-    logger.log('Registered Poppins ExtraBold');
-  } else {
-    console.error('Poppins-ExtraBold.ttf not found at:', poppinsExtraBold);
-  }
-
-    if (fs.existsSync(poppinsBold)) {
-    GlobalFonts.registerFromPath(poppinsBold, 'Poppins');
-    logger.log('Registered Poppins Bold');
-  } else {
-    console.error('Poppins-Bold.ttf not found at:', poppinsBold);
-  }
-
-    if (fs.existsSync(poppinsMedium)) {
-    GlobalFonts.registerFromPath(poppinsMedium, 'Poppins');
-    logger.log('Registered Poppins Medium');
-  } else {
-    console.error('Poppins-Medium.ttf not found at:', poppinsMedium);
-  }
-} catch (error) {
-  console.error('Font registration error:', error);
-}
+// Font registration removed - Sharp handles fonts through SVG text elements
+logger.log('Font handling configured for SVG text elements');
 
 const SHEET_WIDTH_INCHES = 5.83;
 const SHEET_HEIGHT_INCHES = 8.27;
@@ -289,6 +263,19 @@ function getContrastingTextColor(backgroundColorHex: string): string {
     return luminance < 0.65 ? '#ffffff' : '#000000';
 }
 
+function escapeXml(unsafe: string): string {
+  return unsafe.replace(/[<>&'"]/g, (c) => {
+    switch (c) {
+      case '<': return '<';
+      case '>': return '>';
+      case '&': return '&';
+      case '\'': return ''';
+      case '"': return '"';
+      default: return c;
+    }
+  });
+}
+
 export async function POST(request: NextRequest) {
   try {
                         const internalAuth = request.headers.get('x-internal-auth');
@@ -369,10 +356,17 @@ export async function POST(request: NextRequest) {
 }
 
 async function generateSingleSheet(stickers: StickerData[]): Promise<Buffer> {
-    const canvas = createCanvas(SHEET_WIDTH_PX, SHEET_HEIGHT_PX);
-  const ctx = canvas.getContext('2d');
+    // Create a white background canvas with transparency support
+  const canvas = await sharp({
+    create: {
+      width: SHEET_WIDTH_PX,
+      height: SHEET_HEIGHT_PX,
+      channels: 4,
+      background: { r: 255, g: 255, b: 255, alpha: 0 } // Transparent background
+    }
+  });
 
-    ctx.clearRect(0, 0, SHEET_WIDTH_PX, SHEET_HEIGHT_PX);
+  const composite: sharp.OverlayOptions[] = [];
 
     const topSectionUsedWidth = STICKERS_PER_ROW * STICKER_WIDTH_PX + (STICKERS_PER_ROW - 1) * GAP_PX;
   const topOffsetX = Math.round((SHEET_WIDTH_PX - topSectionUsedWidth) / 2);
@@ -383,7 +377,12 @@ async function generateSingleSheet(stickers: StickerData[]): Promise<Buffer> {
     for (let col = 0; col < STICKERS_PER_ROW && stickerIndex < stickers.length; col++) {
       const x = topOffsetX + col * (STICKER_WIDTH_PX + GAP_PX);
       const y = topOffsetY + row * (STICKER_HEIGHT_PX + GAP_PX);
-      await drawSticker(ctx, stickers[stickerIndex], x, y);
+      const stickerBuffer = await generateStickerImage(stickers[stickerIndex], x, y);
+      composite.push({
+        input: stickerBuffer,
+        top: y,
+        left: x
+      });
       stickerIndex++;
     }
   }
@@ -396,76 +395,124 @@ async function generateSingleSheet(stickers: StickerData[]): Promise<Buffer> {
     for (let col = 0; col < STICKERS_PER_ROW_BOTTOM && stickerIndex < stickers.length; col++) {
       const x = bottomOffsetX + col * (STICKER_WIDTH_PX + GAP_PX);
       const y = bottomOffsetY + row * (STICKER_HEIGHT_PX + GAP_PX);
-      await drawSticker(ctx, stickers[stickerIndex], x, y);
+      const stickerBuffer = await generateStickerImage(stickers[stickerIndex], x, y);
+      composite.push({
+        input: stickerBuffer,
+        top: y,
+        left: x
+      });
       stickerIndex++;
     }
   }
 
 
-    return canvas.encode('png');
+    const finalCanvas = await canvas.composite(composite).png().toBuffer();
+  return finalCanvas;
 }
 
-async function drawSticker(
-  ctx: NodeCanvasContext,
-  sticker: StickerData,
-  x: number,
-  y: number
-) {
-    ctx.imageSmoothingEnabled = false;
-  (ctx as any).antialias = 'none';
-  (ctx as any).textDrawingMode = 'glyph';
+async function generateStickerImage(sticker: StickerData, x: number, y: number): Promise<Buffer> {
+  const canvas = await sharp({
+    create: {
+      width: STICKER_WIDTH_PX,
+      height: STICKER_HEIGHT_PX,
+      channels: 4,
+      background: {
+        r: parseInt(sticker.backgroundColor.slice(1, 3), 16),
+        g: parseInt(sticker.backgroundColor.slice(3, 5), 16),
+        b: parseInt(sticker.backgroundColor.slice(5, 7), 16),
+        alpha: 1
+      }
+    }
+  });
 
-    const padding = Math.round(STICKER_WIDTH_PX * 0.05);   const contentWidth = STICKER_WIDTH_PX - padding * 2;   const contentHeight = STICKER_HEIGHT_PX - padding * 2;   const cornerRadius = Math.round(STICKER_WIDTH_PX * 0.14);   const cardRadius = Math.round(STICKER_WIDTH_PX * 0.05);   const smallGap = 4; 
-    ctx.fillStyle = sticker.backgroundColor;
-  roundRect(ctx, x, y, STICKER_WIDTH_PX, STICKER_HEIGHT_PX, cornerRadius);
-  ctx.fill();
+  const composite: sharp.OverlayOptions[] = [];
 
-    const textColor = getContrastingTextColor(sticker.backgroundColor);
+  const padding = Math.round(STICKER_WIDTH_PX * 0.05);
+  const contentWidth = STICKER_WIDTH_PX - padding * 2;
+  const cardRadius = Math.round(STICKER_WIDTH_PX * 0.05);
+  const textColor = getContrastingTextColor(sticker.backgroundColor);
 
-      try {
+  const texts = getStickerTexts(sticker.language);
+
+  // Try to add background layer
+  try {
     const bgLayerPath = path.join(process.cwd(), 'public', 'newassets', 'sticker_bg_layer.png');
-    const bgLayerBuffer = fs.readFileSync(bgLayerPath);
-    const bgLayerImage = await loadImage(bgLayerBuffer);
-
-        ctx.save();
-        roundRect(ctx, x, y, STICKER_WIDTH_PX, STICKER_HEIGHT_PX, cornerRadius);
-    ctx.clip();
-        ctx.drawImage(bgLayerImage, x, y, STICKER_WIDTH_PX, STICKER_HEIGHT_PX);
-        ctx.restore();
+    if (fs.existsSync(bgLayerPath)) {
+      const bgLayerBuffer = await sharp(bgLayerPath).resize(STICKER_WIDTH_PX, STICKER_HEIGHT_PX).toBuffer();
+      composite.push({
+        input: bgLayerBuffer,
+        top: 0,
+        left: 0
+      });
+    }
   } catch (error) {
     console.error('Background layer loading error:', error);
   }
 
-  let currentY = y + padding;
+  // Create SVG for text elements
+  let currentY = padding;
 
-      const cardHeight = 140; 
-    ctx.fillStyle = CARD_BG_COLOR;
-  roundRect(ctx, x + padding, currentY, contentWidth, cardHeight, cardRadius);
-  ctx.fill();
+  // Card for name section (140px height)
+  const nameCardSvg = `
+    <svg width="${contentWidth}" height="140" xmlns="http://www.w3.org/2000/svg">
+      <rect width="${contentWidth}" height="140" rx="${cardRadius}" fill="${CARD_BG_COLOR}"/>
+    </svg>
+  `;
+  composite.push({
+    input: Buffer.from(nameCardSvg),
+    top: currentY,
+    left: padding
+  });
 
-    const texts = getStickerTexts(sticker.language);
+  // Text elements for name section
+  const nameTextSvg = `
+    <svg width="${contentWidth}" height="140" xmlns="http://www.w3.org/2000/svg">
+      <text x="${contentWidth / 2}" y="44" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" font-weight="500" fill="#000000">${texts.youFoundMe}</text>
+      <text x="${contentWidth / 2}" y="96" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" font-weight="800" fill="#000000">${escapeXml(sticker.name)}</text>
+    </svg>
+  `;
+  composite.push({
+    input: Buffer.from(nameTextSvg),
+    top: currentY,
+    left: padding
+  });
 
-    ctx.fillStyle = '#000000';
-  ctx.font = `500 36px Poppins, Arial, sans-serif`;   ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText(texts.youFoundMe, x + STICKER_WIDTH_PX / 2, currentY + 44); 
-    ctx.font = `800 48px Poppins, Arial, sans-serif`;   ctx.fillText(sticker.name, x + STICKER_WIDTH_PX / 2, currentY + 96); 
-  currentY += cardHeight + padding;
+  currentY += 140 + padding;
+  currentY -= 10;
 
-    currentY -= 10;
+  // Tell them how we met text
+  const tellThemTextSvg = `
+    <svg width="${contentWidth}" height="100" xmlns="http://www.w3.org/2000/svg">
+      <text x="${contentWidth / 2}" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="800" fill="${textColor}">${texts.tellThemHowWeMet}</text>
+    </svg>
+  `;
+  composite.push({
+    input: Buffer.from(tellThemTextSvg),
+    top: currentY + 4,
+    left: padding
+  });
 
-    ctx.fillStyle = textColor;   ctx.font = `800 34px Poppins, Arial, sans-serif`;   ctx.textAlign = 'center';
-  ctx.textBaseline = 'top';
-  ctx.fillText(texts.tellThemHowWeMet, x + STICKER_WIDTH_PX / 2, currentY + 4);
+  currentY += 100;
 
-  currentY += 100; 
-    const qrCardSize = Math.round(contentWidth * 0.7);   const qrSize = Math.round(qrCardSize * 0.89); 
-    ctx.fillStyle = CARD_BG_COLOR;
-  const qrCardX = x + padding + (contentWidth - qrCardSize) / 2;   roundRect(ctx, qrCardX, currentY, qrCardSize, qrCardSize, cardRadius);
-  ctx.fill();
+  // QR Code section
+  const qrCardSize = Math.round(contentWidth * 0.7);
+  const qrSize = Math.round(qrCardSize * 0.89);
+  const qrCardX = padding + (contentWidth - qrCardSize) / 2;
+  
+  const qrCardSvg = `
+    <svg width="${qrCardSize}" height="${qrCardSize}" xmlns="http://www.w3.org/2000/svg">
+      <rect width="${qrCardSize}" height="${qrCardSize}" rx="${cardRadius}" fill="${CARD_BG_COLOR}"/>
+    </svg>
+  `;
+  composite.push({
+    input: Buffer.from(qrCardSvg),
+    top: currentY,
+    left: qrCardX
+  });
 
+  // Generate and add QR code
   try {
-            const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://lightmyfire.app';
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://lightmyfire.app';
     const qrUrl = `${baseUrl}/?pin=${sticker.pinCode}`;
 
     const qrDataUrl = await QRCode.toDataURL(qrUrl, {
@@ -474,159 +521,125 @@ async function drawSticker(
       color: { dark: '#000000', light: '#ffffff' }
     });
 
-    const qrImage = await loadImage(qrDataUrl);
-    const qrX = Math.round(x + STICKER_WIDTH_PX / 2 - qrSize / 2);
+    const qrBuffer = Buffer.from(qrDataUrl.split(',')[1], 'base64');
+    const qrX = Math.round(STICKER_WIDTH_PX / 2 - qrSize / 2);
     const qrY = currentY + (qrCardSize - qrSize) / 2;
-    ctx.drawImage(qrImage, qrX, qrY, qrSize, qrSize);
+    
+    composite.push({
+      input: qrBuffer,
+      top: qrY,
+      left: qrX
+    });
   } catch (error) {
     console.error('QR code generation error:', error);
   }
 
-  currentY += qrCardSize + (smallGap * 6); 
-    const urlBgHeight = 116; 
-    ctx.fillStyle = CARD_BG_COLOR;
-  roundRect(ctx, x + padding, currentY, contentWidth, urlBgHeight, cardRadius);
-  ctx.fill();
+  currentY += qrCardSize + (4 * 6);
 
-  ctx.fillStyle = '#000000';
-  ctx.font = `500 32px Poppins, Arial, sans-serif`;   ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText(texts.orGoTo, x + STICKER_WIDTH_PX / 2, currentY + 38);     ctx.font = `bold 36px Poppins, Arial, sans-serif`;   ctx.fillText(texts.website, x + STICKER_WIDTH_PX / 2, currentY + 80); 
-  currentY += urlBgHeight + smallGap;
+  // URL section
+  const urlBgHeight = 116;
+  const urlCardSvg = `
+    <svg width="${contentWidth}" height="${urlBgHeight}" xmlns="http://www.w3.org/2000/svg">
+      <rect width="${contentWidth}" height="${urlBgHeight}" rx="${cardRadius}" fill="${CARD_BG_COLOR}"/>
+    </svg>
+  `;
+  composite.push({
+    input: Buffer.from(urlCardSvg),
+    top: currentY,
+    left: padding
+  });
 
-    ctx.fillStyle = textColor;   ctx.font = `800 36px Poppins, Arial, sans-serif`;   ctx.textAlign = 'center';
-  ctx.textBaseline = 'top';
-  ctx.fillText(texts.andTypeMyCode, x + STICKER_WIDTH_PX / 2, currentY + 4);
+  const urlTextSvg = `
+    <svg width="${contentWidth}" height="${urlBgHeight}" xmlns="http://www.w3.org/2000/svg">
+      <text x="${contentWidth / 2}" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="500" fill="#000000">${texts.orGoTo}</text>
+      <text x="${contentWidth / 2}" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#000000">${texts.website}</text>
+    </svg>
+  `;
+  composite.push({
+    input: Buffer.from(urlTextSvg),
+    top: currentY,
+    left: padding
+  });
 
-  currentY += 76;   currentY += (smallGap * 3); 
-    const pinBgHeight = 104; 
-    ctx.fillStyle = CARD_BG_COLOR;
-  roundRect(ctx, x + padding, currentY, contentWidth, pinBgHeight, cardRadius);
-  ctx.fill();
+  currentY += urlBgHeight + 4;
 
-  ctx.fillStyle = '#000000';
-  ctx.font = `800 64px Poppins, Arial, sans-serif`;   ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText(sticker.pinCode, x + STICKER_WIDTH_PX / 2, currentY + pinBgHeight / 2);
+  // And type my code text
+  const codeTextSvg = `
+    <svg width="${contentWidth}" height="76" xmlns="http://www.w3.org/2000/svg">
+      <text x="${contentWidth / 2}" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" font-weight="800" fill="${textColor}">${texts.andTypeMyCode}</text>
+    </svg>
+  `;
+  composite.push({
+    input: Buffer.from(codeTextSvg),
+    top: currentY + 4,
+    left: padding
+  });
 
-  currentY += pinBgHeight + (smallGap * 4); 
-    try {
-        const creamBgTop = currentY + 5;
-    const creamBgBottom = y + STICKER_HEIGHT_PX + 5;     const creamBgHeight = creamBgBottom - creamBgTop;
+  currentY += 76 + (4 * 3);
 
-        ctx.fillStyle = LOGO_BG_COLOR;
-        ctx.beginPath();
-    ctx.moveTo(x, creamBgTop);     ctx.lineTo(x + STICKER_WIDTH_PX, creamBgTop);     ctx.lineTo(x + STICKER_WIDTH_PX, creamBgBottom - cornerRadius);     ctx.arcTo(x + STICKER_WIDTH_PX, creamBgBottom, x + STICKER_WIDTH_PX - cornerRadius, creamBgBottom, cornerRadius);     ctx.lineTo(x + cornerRadius, creamBgBottom);     ctx.arcTo(x, creamBgBottom, x, creamBgBottom - cornerRadius, cornerRadius);     ctx.lineTo(x, creamBgTop);     ctx.closePath();
-    ctx.fill();
+  // PIN code section
+  const pinBgHeight = 104;
+  const pinCardSvg = `
+    <svg width="${contentWidth}" height="${pinBgHeight}" xmlns="http://www.w3.org/2000/svg">
+      <rect width="${contentWidth}" height="${pinBgHeight}" rx="${cardRadius}" fill="${CARD_BG_COLOR}"/>
+    </svg>
+  `;
+  composite.push({
+    input: Buffer.from(pinCardSvg),
+    top: currentY,
+    left: padding
+  });
 
-        const disclaimerPadding = 10;     const disclaimerWidth = STICKER_WIDTH_PX - (disclaimerPadding * 2);
-    const disclaimerText = "LightMyFire (LMF) is a community-driven project aiming at giving value to often deprecated objects. lightmyfire.app was audited to ensure online safety and anonymity. LMF has no affiliation with any legal representation of the support this sticker was found on. LMF cannot be held responsible for any private use of this sticker, i.e. displayed content and location.";
+  const pinTextSvg = `
+    <svg width="${contentWidth}" height="${pinBgHeight}" xmlns="http://www.w3.org/2000/svg">
+      <text x="${contentWidth / 2}" y="${pinBgHeight / 2}" text-anchor="middle" font-family="Arial, sans-serif" font-size="64" font-weight="800" fill="#000000" dominant-baseline="middle">${sticker.pinCode}</text>
+    </svg>
+  `;
+  composite.push({
+    input: Buffer.from(pinTextSvg),
+    top: currentY,
+    left: padding
+  });
 
-    ctx.fillStyle = '#000000';
-    ctx.font = `500 16px Poppins, Arial, sans-serif`;     ctx.textAlign = 'left';     ctx.textBaseline = 'top';
+  currentY += pinBgHeight + (4 * 4);
 
-        const wrapText = (text: string, maxWidth: number): string[] => {
-      const words = text.split(' ');
-      const lines: string[] = [];
-      let currentLine = '';
+  // Logo and disclaimer section
+  try {
+    const creamBgTop = currentY + 5;
+    const creamBgBottom = STICKER_HEIGHT_PX + 5;
 
-      for (const word of words) {
-        const testLine = currentLine ? `${currentLine} ${word}` : word;
-        const metrics = ctx.measureText(testLine);
+    const logoPath = path.join(process.cwd(), 'public', 'LOGOLONG.png');
+    if (fs.existsSync(logoPath)) {
+      const logoBuffer = await sharp(logoPath).toBuffer();
+      const logo = await sharp(logoBuffer);
+      const metadata = await logo.metadata();
+      
+      const logoPadding = 40;
+      const logoBaseWidth = STICKER_WIDTH_PX - (logoPadding * 2);
+      const logoTargetWidth = Math.round(logoBaseWidth * 0.6);
+      const logoAspectRatio = metadata.height / metadata.width;
+      const logoTargetHeight = Math.round(logoTargetWidth * logoAspectRatio);
 
-        if (metrics.width > maxWidth && currentLine) {
-          lines.push(currentLine);
-          currentLine = word;
-        } else {
-          currentLine = testLine;
-        }
-      }
+      const logoX = (STICKER_WIDTH_PX - logoTargetWidth) / 2;
+      const logoY = creamBgTop + (creamBgBottom - creamBgTop - logoTargetHeight) / 2;
 
-      if (currentLine) {
-        lines.push(currentLine);
-      }
+      // Resize logo and add to composite
+      const resizedLogo = await sharp(logoBuffer)
+        .resize(logoTargetWidth, logoTargetHeight)
+        .toBuffer();
+      
+      composite.push({
+        input: resizedLogo,
+        top: Math.round(logoY),
+        left: Math.round(logoX)
+      });
 
-      return lines;
-    };
-
-    const disclaimerLines = wrapText(disclaimerText, disclaimerWidth);
-    const lineHeight = 20;
-    let disclaimerY = creamBgTop + disclaimerPadding;
-
-        disclaimerLines.forEach((line, index) => {
-      const isLastLine = index === disclaimerLines.length - 1;
-
-      if (isLastLine) {
-                ctx.textAlign = 'left';
-        ctx.fillText(line, x + disclaimerPadding, disclaimerY);
-      } else {
-                const words = line.split(' ');
-        if (words.length === 1) {
-          ctx.textAlign = 'left';
-          ctx.fillText(line, x + disclaimerPadding, disclaimerY);
-        } else {
-          const lineWidth = ctx.measureText(line).width;
-          const spaceWidth = (disclaimerWidth - lineWidth) / (words.length - 1);
-          let wordX = x + disclaimerPadding;
-
-          words.forEach((word, wordIndex) => {
-            ctx.fillText(word, wordX, disclaimerY);
-            const wordWidth = ctx.measureText(word).width;
-            wordX += wordWidth + ctx.measureText(' ').width + spaceWidth;
-          });
-        }
-      }
-
-      disclaimerY += lineHeight;
-    });
-
-    const disclaimerTotalHeight = disclaimerLines.length * lineHeight;
-    const disclaimerBottomY = creamBgTop + disclaimerPadding + disclaimerTotalHeight;
-
-        const logoPath = path.join(process.cwd(), 'public', 'LOGOLONG.png');
-    const logoBuffer = fs.readFileSync(logoPath);
-    const logoImage = await loadImage(logoBuffer);
-
-        const logoPadding = 40;
-    const logoBaseWidth = STICKER_WIDTH_PX - (logoPadding * 2);
-    const logoTargetWidth = Math.round(logoBaseWidth * 0.6);     const logoAspectRatio = logoImage.height / logoImage.width;
-    const logoTargetHeight = Math.round(logoTargetWidth * logoAspectRatio);
-
-        const availableSpace = creamBgBottom - disclaimerBottomY;
-    const logoX = x + (STICKER_WIDTH_PX - logoTargetWidth) / 2;     const logoY = disclaimerBottomY + (availableSpace - logoTargetHeight) / 2;
-
-        ctx.imageSmoothingEnabled = true;
-        (ctx as any).imageSmoothingQuality = 'high';
-
-    ctx.drawImage(logoImage, logoX, logoY, logoTargetWidth, logoTargetHeight);
-
-    logger.log('Logo drawn successfully', { x: logoX, y: logoY, width: logoTargetWidth, height: logoTargetHeight });
+      logger.log('Logo drawn successfully', { x: logoX, y: logoY, width: logoTargetWidth, height: logoTargetHeight });
+    }
   } catch (error) {
     console.error('Logo loading error:', error);
-    console.error('Error details:', error);
   }
-}
 
-function roundRect(
-  ctx: NodeCanvasContext,
-  x: number,
-  y: number,
-  width: number,
-  height: number,
-  radius: number
-) {
-    if (width < 2 * radius) radius = width / 2;
-  if (height < 2 * radius) radius = height / 2;
-
-  ctx.beginPath();
-  ctx.moveTo(x + radius, y);
-  ctx.lineTo(x + width - radius, y);
-  ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-  ctx.lineTo(x + width, y + height - radius);
-  ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-  ctx.lineTo(x + radius, y + height);
-  ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-  ctx.lineTo(x, y + radius);
-  ctx.quadraticCurveTo(x, y, x + radius, y);
-  ctx.closePath();
+  const finalCanvas = await canvas.composite(composite).png().toBuffer();
+  return finalCanvas;
 }

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 import Stripe from 'stripe';
@@ -10,6 +10,8 @@ import { SupportedEmailLanguage } from '@/lib/email-i18n';
 import { generateInternalAuthToken } from '@/lib/internal-auth';
 
 export const dynamic = 'force-dynamic';
+
+const STORAGE_BUCKET_NAME = 'sticker-orders';
 
 interface LighterData {
   name: string;
@@ -346,10 +348,12 @@ export async function POST(request: NextRequest) {
       }, { status: 200 });
     }
 
-    const generateResult = await generateResponse.json();
+        const generateResult = await generateResponse.json();
+
+        await ensureStickerStorageBucketExists(supabaseAdmin);
 
         // Upload all sheets to storage and collect URLs
-    const stickerFileUrls: string[] = [];
+        const stickerFileUrls: string[] = [];
     const stickerFiles: { filename: string; buffer: Buffer }[] = [];
 
     for (let i = 0; i < generateResult.sheets.length; i++) {
@@ -524,5 +528,32 @@ export async function POST(request: NextRequest) {
       },
       { status: 500 }
     );
+  }
+}
+
+async function ensureStickerStorageBucketExists(client: SupabaseClient) {
+  try {
+    const { data: buckets, error: listError } = await client.storage.listBuckets();
+
+    if (listError) {
+      console.error('Failed to list storage buckets while ensuring sticker bucket exists:', listError);
+      return;
+    }
+
+    if (buckets?.some((bucket) => bucket.name === STORAGE_BUCKET_NAME)) {
+      return;
+    }
+
+    const { error: createError } = await client.storage.createBucket(STORAGE_BUCKET_NAME, {
+      public: false,
+    });
+
+    if (createError) {
+      console.error('Failed to create storage bucket for sticker sheets:', createError);
+    } else {
+      console.info('Created missing storage bucket for sticker sheets:', STORAGE_BUCKET_NAME);
+    }
+  } catch (error) {
+    console.error('Unexpected error while ensuring sticker storage bucket exists:', error);
   }
 }
