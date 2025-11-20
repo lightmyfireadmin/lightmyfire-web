@@ -220,6 +220,9 @@ describe('/api/webhooks/stripe', () => {
       mockConstructEvent.mockReturnValue(mockEvent);
 
       // Mock idempotency check - event not yet processed
+      const mockEq = vi.fn().mockResolvedValue({ data: {}, error: null });
+      const mockUpdate = vi.fn().mockReturnValue({ eq: mockEq });
+
       mockSupabaseClient.from.mockReturnValue({
         select: vi.fn().mockReturnValue({
           eq: vi.fn().mockReturnValue({
@@ -459,6 +462,9 @@ describe('/api/webhooks/stripe', () => {
 
       mockConstructEvent.mockReturnValue(mockEvent);
 
+      const mockEq = vi.fn().mockResolvedValue({ data: {}, error: null });
+      const mockUpdate = vi.fn().mockReturnValue({ eq: mockEq });
+
       mockSupabaseClient.from.mockReturnValue({
         select: vi.fn().mockReturnValue({
           eq: vi.fn().mockReturnValue({
@@ -652,6 +658,9 @@ describe('/api/webhooks/stripe', () => {
 
       mockConstructEvent.mockReturnValue(mockEvent);
 
+      const mockEq = vi.fn().mockResolvedValue({ data: {}, error: null });
+      const mockUpdate = vi.fn().mockReturnValue({ eq: mockEq });
+
       mockSupabaseClient.from.mockReturnValue({
         select: vi.fn().mockReturnValue({
           eq: vi.fn().mockReturnValue({
@@ -659,6 +668,7 @@ describe('/api/webhooks/stripe', () => {
           }),
         }),
         insert: vi.fn().mockResolvedValue({ data: {}, error: null }),
+        update: mockUpdate,
       });
 
       const request = new NextRequest('http://localhost:3000/api/webhooks/stripe', {
