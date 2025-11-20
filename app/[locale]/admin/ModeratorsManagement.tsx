@@ -31,7 +31,7 @@ export default function ModeratorsManagement({ initialModerators }: ModeratorsMa
       const { data, error } = await supabase.rpc('admin_get_moderators');
       if (error) throw error;
       setModerators(data || []);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error refreshing moderators:', error);
     }
   };
@@ -58,8 +58,9 @@ export default function ModeratorsManagement({ initialModerators }: ModeratorsMa
       } else {
         showMessage('error', data.error);
       }
-    } catch (error: any) {
-      showMessage('error', error.message || 'Failed to grant moderator role');
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Failed to grant moderator role';
+      showMessage('error', errorMessage);
     } finally {
       setLoading(false);
     }
@@ -84,8 +85,9 @@ export default function ModeratorsManagement({ initialModerators }: ModeratorsMa
       } else {
         showMessage('error', data.error);
       }
-    } catch (error: any) {
-      showMessage('error', error.message || 'Failed to revoke moderator role');
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Failed to revoke moderator role';
+      showMessage('error', errorMessage);
     } finally {
       setLoading(false);
     }
@@ -177,6 +179,7 @@ export default function ModeratorsManagement({ initialModerators }: ModeratorsMa
                     <td className="py-3 px-4 text-right">
                       {moderator.role === 'moderator' ? (
                         <button
+                          type="button"
                           onClick={() => handleRevokeModerator(moderator.user_id, moderator.email)}
                           disabled={loading}
                           className="rounded-md bg-red-100 dark:bg-red-900/30 px-3 py-1 text-xs font-medium text-red-700 dark:text-red-200 hover:bg-red-200 dark:hover:bg-red-900/50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"

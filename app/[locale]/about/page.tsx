@@ -5,7 +5,7 @@ import { useI18n } from '@/locales/client';
 import DOMPurify from 'dompurify';
 
 export default function AboutPage() {
-  const t = useI18n() as any;
+  const t = useI18n();
 
   const sanitizeHTML = (html: string) => {
     return DOMPurify.sanitize(html, {
@@ -26,18 +26,22 @@ export default function AboutPage() {
           </p>
           <div
             className="prose prose-lg max-w-none"
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: Content is sanitized
             dangerouslySetInnerHTML={{ __html: sanitizeHTML(t('philosophy.p1')) }}
           />
           <div
             className="prose prose-lg max-w-none"
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: Content is sanitized
             dangerouslySetInnerHTML={{ __html: sanitizeHTML(t('philosophy.p2')) }}
           />
           <div
             className="prose prose-lg max-w-none"
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: Content is sanitized
             dangerouslySetInnerHTML={{ __html: sanitizeHTML(t('philosophy.p3')) }}
           />
           <div
             className="prose prose-lg max-w-none"
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: Content is sanitized
             dangerouslySetInnerHTML={{ __html: sanitizeHTML(t('philosophy.p4')) }}
           />
           <Image
