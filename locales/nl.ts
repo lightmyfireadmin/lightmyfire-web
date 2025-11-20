@@ -3169,7 +3169,6 @@ export default {
 
   // TODO: Translate from English
   'validation.username_required': 'Username cannot be empty.',
-} as const;
 
   'home.new_here_link': '🤔 New here? Where did I just land?',
   'home.new_here_aria': 'Learn more about LightMyFire in our FAQ',
@@ -3199,3 +3198,4 @@ export default {
   'add_post.context.image': '📸 **Any photo counts.** A blurry selfie, a sunset, street art, or your lunch. You don\'t need to be a photographer. Every image adds color to this lighter\'s journey.',
   'add_post.context.location': '📍 **Places make memories.** A random street corner, your favorite cafe, or somewhere you\'ve never been but dream of visiting. Every location adds a pin to this lighter\'s map.',
   'add_post.context.refuel': '🔥 **You\'re keeping the flame alive!** By refueling, you\'re giving this lighter a second chance. That alone is worth celebrating—no explanation needed.',
+} as const;
