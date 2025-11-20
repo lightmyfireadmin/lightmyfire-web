@@ -2761,7 +2761,6 @@ export default {
 
   // TODO: Translate from English
   'terms.ul9.li3': 'Non-delivery due to our error',
-} as const;
 
   'home.new_here_link': '🤔 New here? Where did I just land?',
   'home.new_here_aria': 'Learn more about LightMyFire in our FAQ',
@@ -2795,3 +2794,4 @@ export default {
   'add_post.context.location': '📍 **Places make memories.** A random street corner, your favorite cafe, or somewhere you\'ve never been but dream of visiting. Every location adds a pin to this lighter\'s map.',
   'add_post.context.refuel': '🔥 **You\'re keeping the flame alive!** By refueling, you\'re giving this lighter a second chance. That alone is worth celebrating—no explanation needed.',
   'add_post.helper.find_location': 'Helps trace the lighter\'s journey on the map!',
+} as const;

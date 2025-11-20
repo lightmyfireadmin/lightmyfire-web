@@ -1419,7 +1419,6 @@ export default {
   'stripe.card_info': 'ข้อมูลบัตร',
 
   'terms.last_updated': 'อัปเดตล่าสุด: 28 ตุลาคม 2025',
-} as const;
 
   'home.hero.title': 'Too Young To Die',
   'home.hero.subtitle': 'Billions of lighters are thrown away every year. Found, loved, lost, passed from hand to hand, then forgotten... Yet filled with stories to tell. Among these lighters, many could still enjoy a new life: a huge portion of refillable lighters sold each year are discarded when empty. Let\'s give them a chance to stay with us by discovering the richness of their journey.',
@@ -1454,3 +1453,4 @@ export default {
   'add_post.context.location': '📍 **Places make memories.** A random street corner, your favorite cafe, or somewhere you\'ve never been but dream of visiting. Every location adds a pin to this lighter\'s map.',
   'add_post.context.refuel': '🔥 **You\'re keeping the flame alive!** By refueling, you\'re giving this lighter a second chance. That alone is worth celebrating—no explanation needed.',
   'add_post.helper.find_location': 'Helps trace the lighter\'s journey on the map!',
+} as const;

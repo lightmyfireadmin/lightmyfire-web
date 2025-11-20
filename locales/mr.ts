@@ -2249,7 +2249,6 @@ export default {
   'validation.username_length': 'वापरकर्तानाव {min} आणि {max} अक्षरांच्या दरम्यान असणे आवश्यक आहे.',
 
   'validation.username_required': 'वापरकर्तानाव रिक्त असू शकत नाही.',
-} as const;
 
   'home.new_here_link': '🤔 New here? Where did I just land?',
   'home.new_here_aria': 'Learn more about LightMyFire in our FAQ',
@@ -2282,3 +2281,4 @@ export default {
   'add_post.context.location': '📍 **Places make memories.** A random street corner, your favorite cafe, or somewhere you\'ve never been but dream of visiting. Every location adds a pin to this lighter\'s map.',
   'add_post.context.refuel': '🔥 **You\'re keeping the flame alive!** By refueling, you\'re giving this lighter a second chance. That alone is worth celebrating—no explanation needed.',
   'add_post.helper.find_location': 'Helps trace the lighter\'s journey on the map!',
+} as const;
