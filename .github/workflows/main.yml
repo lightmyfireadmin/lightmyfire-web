@@ -1,0 +1,19 @@
+name: Run Gitleaks
+on: [push, pull_request]
+jobs:
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          repository: <Owner_Name>/<Repository_Name>
+          path: <Repository_Name>
+          token: ${{ secrets.TOKEN }}
+
+      - name: Run Gitleaks
+        uses: FathAllaTechOps/gitleaks-action@v1.2.0
+        with:
+          source: <Repository_Name>
+          report-output-path: <Repository_Name>_report.html
+          fail-on-error: false
