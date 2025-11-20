@@ -48,12 +48,8 @@ const nextConfig = {
   },
 
   webpack: (config, { isServer }) => {
-    // Handle @napi-rs/canvas for Vercel serverless environment
-    // Externalize it so webpack doesn't try to bundle the .node binaries
-    if (isServer) {
-      config.externals.push('@napi-rs/canvas');
-    }
-
+    // Handle sharp for Vercel serverless environment if needed
+    // Usually Vercel handles sharp automatically, but we removed @napi-rs/canvas
     return config;
   },
 
