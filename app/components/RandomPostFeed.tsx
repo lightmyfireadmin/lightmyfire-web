@@ -8,7 +8,7 @@ import PostCard from './PostCard';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { MosaicSkeleton } from './Skeleton';
 
-const RandomPostFeed = () => {
+const RandomPostFeed = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const t = useI18n() as any;
   const [posts, setPosts] = useState<DetailedPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -133,7 +133,7 @@ const RandomPostFeed = () => {
               >
                 <PostCard
                   post={post}
-                  isLoggedIn={false}
+                  isLoggedIn={isLoggedIn}
                   isMini={false}
                 />
               </div>

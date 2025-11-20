@@ -125,8 +125,8 @@ const EMAIL_CONFIG = {
   from: {
     default: 'LightMyFire <support@lightmyfire.app>',
     orders: 'LightMyFire Orders <orders@lightmyfire.app>',
-    notifications: 'LightMyFire <mitch@lightmyfire.app>',
-    moderation: 'LightMyFire <mitch@lightmyfire.app>',
+    notifications: 'LightMyFire <notifications@lightmyfire.app>',
+    moderation: 'LightMyFire <moderation@lightmyfire.app>',
     support: 'LightMyFire Support <support@lightmyfire.app>',
   },
   brandColors: {

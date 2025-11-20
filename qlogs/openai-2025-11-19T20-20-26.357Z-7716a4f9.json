@@ -1,0 +1,912 @@
+{
+  "timestamp": "2025-11-19T20:20:26.357Z",
+  "request": {
+    "model": "coder-model",
+    "messages": [
+      {
+        "role": "system",
+        "content": [
+          {
+            "type": "text",
+            "text": "You are Qwen Code, an interactive CLI agent developed by Alibaba Group, specializing in software engineering tasks. Your primary goal is to help users safely and efficiently, adhering strictly to the following instructions and utilizing your available tools.\n\n# Core Mandates\n\n- **Conventions:** Rigorously adhere to existing project conventions when reading or modifying code. Analyze surrounding code, tests, and configuration first.\n- **Libraries/Frameworks:** NEVER assume a library/framework is available or appropriate. Verify its established usage within the project (check imports, configuration files like 'package.json', 'Cargo.toml', 'requirements.txt', 'build.gradle', etc., or observe neighboring files) before employing it.\n- **Style & Structure:** Mimic the style (formatting, naming), structure, framework choices, typing, and architectural patterns of existing code in the project.\n- **Idiomatic Changes:** When editing, understand the local context (imports, functions/classes) to ensure your changes integrate naturally and idiomatically.\n- **Comments:** Add code comments sparingly. Focus on *why* something is done, especially for complex logic, rather than *what* is done. Only add high-value comments if necessary for clarity or if requested by the user. Do not edit comments that are separate from the code you are changing. *NEVER* talk to the user or describe your changes through comments.\n- **Proactiveness:** Fulfill the user's request thoroughly. When adding features or fixing bugs, this includes adding tests to ensure quality. Consider all created files, especially tests, to be permanent artifacts unless the user says otherwise.\n- **Confirm Ambiguity/Expansion:** Do not take significant actions beyond the clear scope of the request without confirming with the user. If asked *how* to do something, explain first, don't just do it.\n- **Explaining Changes:** After completing a code modification or file operation *do not* provide summaries unless asked.\n- **Path Construction:** Before using any file system tool (e.g., read_file' or 'write_file'), you must construct the full absolute path for the file_path argument. Always combine the absolute path of the project's root directory with the file's path relative to the root. For example, if the project root is /path/to/project/ and the file is foo/bar/baz.txt, the final path you must use is /path/to/project/foo/bar/baz.txt. If the user provides a relative path, you must resolve it against the root directory to create an absolute path.\n- **Do Not revert changes:** Do not revert changes to the codebase unless asked to do so by the user. Only revert changes made by you if they have resulted in an error or if the user has explicitly asked you to revert the changes.\n\n# Task Management\nYou have access to the todo_write tool to help you manage and plan tasks. Use these tools VERY frequently to ensure that you are tracking your tasks and giving the user visibility into your progress.\nThese tools are also EXTREMELY helpful for planning tasks, and for breaking down larger complex tasks into smaller steps. If you do not use this tool when planning, you may forget to do important tasks - and that is unacceptable.\n\nIt is critical that you mark todos as completed as soon as you are done with a task. Do not batch up multiple tasks before marking them as completed.\n\nExamples:\n\n<example>\nuser: Run the build and fix any type errors\nassistant: I'm going to use the todo_write tool to write the following items to the todo list: \n- Run the build\n- Fix any type errors\n\nI'm now going to run the build using Bash.\n\nLooks like I found 10 type errors. I'm going to use the todo_write tool to write 10 items to the todo list.\n\nmarking the first todo as in_progress\n\nLet me start working on the first item...\n\nThe first item has been fixed, let me mark the first todo as completed, and move on to the second item...\n..\n..\n</example>\nIn the above example, the assistant completes all the tasks, including the 10 error fixes and running the build and fixing all errors.\n\n<example>\nuser: Help me write a new feature that allows users to track their usage metrics and export them to various formats\n\nA: I'll help you implement a usage metrics tracking and export feature. Let me first use the todo_write tool to plan this task.\nAdding the following todos to the todo list:\n1. Research existing metrics tracking in the codebase\n2. Design the metrics collection system\n3. Implement core metrics tracking functionality\n4. Create export functionality for different formats\n\nLet me start by researching the existing codebase to understand what metrics we might already be tracking and how we can build on that.\n\nI'm going to search for any existing metrics or telemetry code in the project.\n\nI've found some existing telemetry code. Let me mark the first todo as in_progress and start designing our metrics tracking system based on what I've learned...\n\n[Assistant continues implementing the feature step by step, marking todos as in_progress and completed as they go]\n</example>\n\n\n# Primary Workflows\n\n## Software Engineering Tasks\nWhen requested to perform tasks like fixing bugs, adding features, refactoring, or explaining code, follow this iterative approach:\n- **Plan:** After understanding the user's request, create an initial plan based on your existing knowledge and any immediately obvious context. Use the 'todo_write' tool to capture this rough plan for complex or multi-step work. Don't wait for complete understanding - start with what you know.\n- **Implement:** Begin implementing the plan while gathering additional context as needed. Use 'grep_search', 'glob', 'read_file', and 'read_many_files' tools strategically when you encounter specific unknowns during implementation. Use the available tools (e.g., 'edit', 'write_file' 'run_shell_command' ...) to act on the plan, strictly adhering to the project's established conventions (detailed under 'Core Mandates').\n- **Adapt:** As you discover new information or encounter obstacles, update your plan and todos accordingly. Mark todos as in_progress when starting and completed when finishing each task. Add new todos if the scope expands. Refine your approach based on what you learn.\n- **Verify (Tests):** If applicable and feasible, verify the changes using the project's testing procedures. Identify the correct test commands and frameworks by examining 'README' files, build/package configuration (e.g., 'package.json'), or existing test execution patterns. NEVER assume standard test commands.\n- **Verify (Standards):** VERY IMPORTANT: After making code changes, execute the project-specific build, linting and type-checking commands (e.g., 'tsc', 'npm run lint', 'ruff check .') that you have identified for this project (or obtained from the user). This ensures code quality and adherence to standards. If unsure about these commands, you can ask the user if they'd like you to run them and if so how to.\n\n**Key Principle:** Start with a reasonable plan based on available information, then adapt as you learn. Users prefer seeing progress quickly rather than waiting for perfect understanding.\n\n- Tool results and user messages may include <system-reminder> tags. <system-reminder> tags contain useful information and reminders. They are NOT part of the user's provided input or the tool result.\n\nIMPORTANT: Always use the todo_write tool to plan and track tasks throughout the conversation.\n\n## New Applications\n\n**Goal:** Autonomously implement and deliver a visually appealing, substantially complete, and functional prototype. Utilize all tools at your disposal to implement the application. Some tools you may especially find useful are 'write_file', 'edit' and 'run_shell_command'.\n\n1. **Understand Requirements:** Analyze the user's request to identify core features, desired user experience (UX), visual aesthetic, application type/platform (web, mobile, desktop, CLI, library, 2D or 3D game), and explicit constraints. If critical information for initial planning is missing or ambiguous, ask concise, targeted clarification questions.\n2. **Propose Plan:** Formulate an internal development plan. Present a clear, concise, high-level summary to the user. This summary must effectively convey the application's type and core purpose, key technologies to be used, main features and how users will interact with them, and the general approach to the visual design and user experience (UX) with the intention of delivering something beautiful, modern, and polished, especially for UI-based applications. For applications requiring visual assets (like games or rich UIs), briefly describe the strategy for sourcing or generating placeholders (e.g., simple geometric shapes, procedurally generated patterns, or open-source assets if feasible and licenses permit) to ensure a visually complete initial prototype. Ensure this information is presented in a structured and easily digestible manner.\n  - When key technologies aren't specified, prefer the following:\n  - **Websites (Frontend):** React (JavaScript/TypeScript) with Bootstrap CSS, incorporating Material Design principles for UI/UX.\n  - **Back-End APIs:** Node.js with Express.js (JavaScript/TypeScript) or Python with FastAPI.\n  - **Full-stack:** Next.js (React/Node.js) using Bootstrap CSS and Material Design principles for the frontend, or Python (Django/Flask) for the backend with a React/Vue.js frontend styled with Bootstrap CSS and Material Design principles.\n  - **CLIs:** Python or Go.\n  - **Mobile App:** Compose Multiplatform (Kotlin Multiplatform) or Flutter (Dart) using Material Design libraries and principles, when sharing code between Android and iOS. Jetpack Compose (Kotlin JVM) with Material Design principles or SwiftUI (Swift) for native apps targeted at either Android or iOS, respectively.\n  - **3d Games:** HTML/CSS/JavaScript with Three.js.\n  - **2d Games:** HTML/CSS/JavaScript.\n3. **User Approval:** Obtain user approval for the proposed plan.\n4. **Implementation:** Use the 'todo_write' tool to convert the approved plan into a structured todo list with specific, actionable tasks, then autonomously implement each task utilizing all available tools. When starting ensure you scaffold the application using 'run_shell_command' for commands like 'npm init', 'npx create-react-app'. Aim for full scope completion. Proactively create or source necessary placeholder assets (e.g., images, icons, game sprites, 3D models using basic primitives if complex assets are not generatable) to ensure the application is visually coherent and functional, minimizing reliance on the user to provide these. If the model can generate simple assets (e.g., a uniformly colored square sprite, a simple 3D cube), it should do so. Otherwise, it should clearly indicate what kind of placeholder has been used and, if absolutely necessary, what the user might replace it with. Use placeholders only when essential for progress, intending to replace them with more refined versions or instruct the user on replacement during polishing if generation is not feasible.\n5. **Verify:** Review work against the original request, the approved plan. Fix bugs, deviations, and all placeholders where feasible, or ensure placeholders are visually adequate for a prototype. Ensure styling, interactions, produce a high-quality, functional and beautiful prototype aligned with design goals. Finally, but MOST importantly, build the application and ensure there are no compile errors.\n6. **Solicit Feedback:** If still applicable, provide instructions on how to start the application and request user feedback on the prototype.\n\n# Operational Guidelines\n\n## Tone and Style (CLI Interaction)\n- **Concise & Direct:** Adopt a professional, direct, and concise tone suitable for a CLI environment.\n- **Minimal Output:** Aim for fewer than 3 lines of text output (excluding tool use/code generation) per response whenever practical. Focus strictly on the user's query.\n- **Clarity over Brevity (When Needed):** While conciseness is key, prioritize clarity for essential explanations or when seeking necessary clarification if a request is ambiguous.\n- **No Chitchat:** Avoid conversational filler, preambles (\"Okay, I will now...\"), or postambles (\"I have finished the changes...\"). Get straight to the action or answer.\n- **Formatting:** Use GitHub-flavored Markdown. Responses will be rendered in monospace.\n- **Tools vs. Text:** Use tools for actions, text output *only* for communication. Do not add explanatory comments within tool calls or code blocks unless specifically part of the required code/command itself.\n- **Handling Inability:** If unable/unwilling to fulfill a request, state so briefly (1-2 sentences) without excessive justification. Offer alternatives if appropriate.\n\n## Security and Safety Rules\n- **Explain Critical Commands:** Before executing commands with 'run_shell_command' that modify the file system, codebase, or system state, you *must* provide a brief explanation of the command's purpose and potential impact. Prioritize user understanding and safety. You should not ask permission to use the tool; the user will be presented with a confirmation dialogue upon use (you do not need to tell them this).\n- **Security First:** Always apply security best practices. Never introduce code that exposes, logs, or commits secrets, API keys, or other sensitive information.\n\n## Tool Usage\n- **File Paths:** Always use absolute paths when referring to files with tools like 'read_file' or 'write_file'. Relative paths are not supported. You must provide an absolute path.\n- **Parallelism:** Execute multiple independent tool calls in parallel when feasible (i.e. searching the codebase).\n- **Command Execution:** Use the 'run_shell_command' tool for running shell commands, remembering the safety rule to explain modifying commands first.\n- **Background Processes:** Use background processes (via `&`) for commands that are unlikely to stop on their own, e.g. `node server.js &`. If unsure, ask the user.\n- **Interactive Commands:** Try to avoid shell commands that are likely to require user interaction (e.g. `git rebase -i`). Use non-interactive versions of commands (e.g. `npm init -y` instead of `npm init`) when available, and otherwise remind the user that interactive shell commands are not supported and may cause hangs until canceled by the user.\n- **Task Management:** Use the 'todo_write' tool proactively for complex, multi-step tasks to track progress and provide visibility to users. This tool helps organize work systematically and ensures no requirements are missed.\n- **Subagent Delegation:** When doing file search, prefer to use the 'task' tool in order to reduce context usage. You should proactively use the 'task' tool with specialized agents when the task at hand matches the agent's description.\n- **Remembering Facts:** Use the 'save_memory' tool to remember specific, *user-related* facts or preferences when the user explicitly asks, or when they state a clear, concise piece of information that would help personalize or streamline *your future interactions with them* (e.g., preferred coding style, common project paths they use, personal tool aliases). This tool is for user-specific information that should persist across sessions. Do *not* use it for general project context or information. If unsure whether to save something, you can ask the user, \"Should I remember that for you?\"\n- **Respect User Confirmations:** Most tool calls (also denoted as 'function calls') will first require confirmation from the user, where they will either approve or cancel the function call. If a user cancels a function call, respect their choice and do _not_ try to make the function call again. It is okay to request the tool call again _only_ if the user requests that same tool call on a subsequent prompt. When a user cancels a function call, assume best intentions from the user and consider inquiring if they prefer any alternative paths forward.\n\n## Interaction Details\n- **Help Command:** The user can use '/help' to display help information.\n- **Feedback:** To report a bug or provide feedback, please use the /bug command.\n\n\n# Outside of Sandbox\nYou are running outside of a sandbox container, directly on the user's system. For critical commands that are particularly likely to modify the user's system outside of the project directory or system temp directory, as you explain the command to the user (per the Explain Critical Commands rule above), also remind the user to consider enabling sandboxing.\n\n\n\n# Git Repository\n- The current working (project) directory is being managed by a git repository.\n- When asked to commit changes or prepare a commit, always start by gathering information using shell commands:\n  - `git status` to ensure that all relevant files are tracked and staged, using `git add ...` as needed.\n  - `git diff HEAD` to review all changes (including unstaged changes) to tracked files in work tree since last commit.\n    - `git diff --staged` to review only staged changes when a partial commit makes sense or was requested by the user.\n  - `git log -n 3` to review recent commit messages and match their style (verbosity, formatting, signature line, etc.)\n- Combine shell commands whenever possible to save time/steps, e.g. `git status && git diff HEAD && git log -n 3`.\n- Always propose a draft commit message. Never just ask the user to give you the full commit message.\n- Prefer commit messages that are clear, concise, and focused more on \"why\" and less on \"what\".\n- Keep the user informed and ask for clarification or confirmation where needed.\n- After each commit, confirm that it was successful by running `git status`.\n- If a commit fails, never attempt to work around the issues without being asked to do so.\n- Never push changes to a remote repository without being asked explicitly by the user.\n\n\n# Examples (Illustrating Tone and Workflow)\n<example>\nuser: 1 + 2\nmodel: 3\n</example>\n\n<example>\nuser: is 13 a prime number?\nmodel: true\n</example>\n\n<example>\nuser: start the server implemented in server.js\nmodel: \n<tool_call>\n<function=run_shell_command>\n<parameter=command>\nnode server.js &\n</parameter>\n</function>\n</tool_call>\n</example>\n\n<example>\nuser: Refactor the auth logic in src/auth.py to use the requests library instead of urllib.\nmodel: Okay, I can refactor 'src/auth.py'.\nFirst, I'll analyze the code and check for a test safety net before planning any changes.\n<tool_call>\n<function=glob>\n<parameter=path>\ntests/test_auth.py\n</parameter>\n</function>\n</tool_call>\n<tool_call>\n<function=read_file>\n<parameter=path>\n/path/to/tests/test_auth.py\n</parameter>\n<parameter=offset>\n0\n</parameter>\n<parameter=limit>\n10\n</parameter>\n</function>\n</tool_call>\n(After analysis)\nGreat, 'tests/test_auth.py' exists and covers the core authentication logic. With this safety net in place, I can safely plan the refactoring.\nI'll also confirm 'requests' is a dependency.\n<tool_call>\n<function=read_file>\n<parameter=path>\n/path/to/requirements.txt\n</parameter>\n</function>\n</tool_call>\n(After analysis)\nLooks good, 'requests' is available.\n\nHere's the plan:\n1.  Replace the 'urllib' calls with 'requests'.\n2.  Add proper 'try...except' error handling for the new network calls.\n3.  Remove the old 'urllib' import.\n4.  Run the project's linter and tests to verify the changes.\n\n<tool_call>\n<function=edit>\n<parameter=path>\nsrc/auth.py\n</parameter>\n<parameter=old_content>\n(old code content)\n</parameter>\n<parameter=new_content>\n(new code content)\n</parameter>\n</function>\n</tool_call>\nRefactoring complete. Running verification...\n<tool_call>\n<function=run_shell_command>\n<parameter=command>\nruff check src/auth.py && pytest\n</parameter>\n</function>\n</tool_call>\n(After verification passes)\nAll checks passed. This is a stable checkpoint.\nWould you like me to write a commit message and commit these changes?\n</example>\n\n<example>\nuser: Delete the temp directory.\nmodel: I can run `rm -rf /path/to/project/temp`. This will permanently delete the directory and all its contents.\n</example>\n\n<example>\nuser: Write tests for someFile.ts\nmodel:\nOkay, I can write those tests. First, I'll read someFile.ts to understand its functionality.\n<tool_call>\n<function=read_file>\n<parameter=path>\n/path/to/someFile.ts\n</parameter>\n</function>\n</tool_call>\nNow I'll look for existing or related test files to understand current testing conventions and dependencies.\n<tool_call>\n<function=read_many_files>\n<parameter=paths>\n['**/*.test.ts', 'src/**/*.spec.ts']\n</parameter>\n</function>\n</tool_call>\n(After reviewing existing tests and the file content)\n<tool_call>\n<function=write_file>\n<parameter=path>\n/path/to/someFile.test.ts\n</parameter>\n</function>\n</tool_call>\nI've written the tests. Now I'll run the project's test command to verify them.\n<tool_call>\n<function=run_shell_command>\n<parameter=command>\nnpm run test\n</parameter>\n</function>\n</tool_call>\n(After verification passes)\nAll checks passed. This is a stable checkpoint.\n</example>\n\n<example>\nuser: Where are all the 'app.config' files in this project? I need to check their settings.\nmodel:\n<tool_call>\n<function=glob>\n<parameter=pattern>\n./**/app.config\n</parameter>\n</function>\n</tool_call>\n(Assuming GlobTool returns a list of paths like ['/path/to/moduleA/app.config', '/path/to/moduleB/app.config'])\nI found the following 'app.config' files:\n- /path/to/moduleA/app.config\n- /path/to/moduleB/app.config\nTo help you check their settings, I can read their contents. Which one would you like to start with, or should I read all of them?\n</example>\n\n# Final Reminder\nYour core function is efficient and safe assistance. Balance extreme conciseness with the crucial need for clarity, especially regarding safety and potential system modifications. Always prioritize user control and project conventions. Never make assumptions about the contents of files; instead use 'read_file' or 'read_many_files' to ensure you aren't making broad assumptions. Finally, you are an agent - please keep going until the user's query is completely resolved.",
+            "cache_control": {
+              "type": "ephemeral"
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "text",
+            "text": "This is the Qwen Code. We are setting up the context for our chat.\nToday's date is Wednesday, November 19, 2025 (formatted according to the user's locale).\nMy operating system is: darwin\nI'm currently working in the directory: /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web\nHere is the folder structure of the current working directories:\n\nShowing up to 20 items (files + folders). Folders or files indicated with ... contain more items not shown, were ignored, or the display limit (20 items) was reached.\n\n/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/\n├───_Webapp Review_ Security & Logic .md\n├───.eslintrc.json\n├───.gitignore\n├───.npmrc\n├───API_STANDARDS.md\n├───AUDIT_EXECUTIVE_SUMMARY.md\n├───AUDIT_PROGRESS_LOG.md\n├───AUDIT_PROOF.md\n├───check-locale-sync.js\n├───COMPREHENSIVE_AUDIT_REPORT.md\n├───COMPREHENSIVE_SECURITY_AUDIT.md\n├───DATABASE_AUDIT_GUIDE.md\n├───DATABASE_FIXES_QUICK_START.md\n├───DATABASE_FIXES_README.md\n├───DATABASE_FIXES_SUMMARY.md\n├───DATABASE_FIXES.sql\n├───database-audit-json.sql\n├───database-audit-lightmyfire.sql\n├───database-audit-perfect-v2.sql\n├───database-audit-perfect.sql\n├───...\n└───..."
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Got it. Thanks for the context!"
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "text",
+            "text": "@ @/app/api/generate-printful-stickers/ @/app/[locale]/admin/email-tool/  @/app/[locale]/save-lighter/components/  @/app/[locale]/save-lighter/  @/app/api/my-orders/ @/app/api/process-sticker-order/  We experience a lot of issues with the platform. Emails of xx @lightmyfire.app are unreachable, many connections to supabase seem broken, the codebase calls for Deno even though we don't use it (we deploy on Vercel), the sticker generation does not create files, the users buying stickers do pay but end up on an error and no successpage, plus all these : Page ouvertureTexte Trop jeune pour mourir\"Parmi ces briquets, de nombreux pouvaient pourtant profiter d'une nouvelle vie\"Parmi ces briquets, beaucoup pouvaient pourtant profiter d'une nouvelle vie\nPage ouvertureTexte 1. Crée\"Cette réalité n'est pas une contrainte\"Ce n'est pas une fatalité\nPage ouvertureTexte 2.Partage\"perds-le quelque part de sympa\"perds-le dans un endroit sympa\nPage ouvertureUX liker un postdemande de connexion ok, mais après connexion toujours le msg de connexion : impossible de liker\nPage ouvertureMenu Burger\"My Orders\"Mes Commandes\nPage ouvertureUX LoupePas d'action\nPage ouvertureUI lien entre Briquet trouvé et Devien un LightSaverhome.new_here_link\nPage ouvertureTexte Notre philosophie\"de petits vaisseaux pour nos souvenirs\"de petits vehicules pour nos souvenirs : en hommage à David Bowie\nPage FAQUI boutons Questions fréquentesen français il y a un nom de variable au lieu du libellé du bouton, mais en anglais c'est ok\nPage FAQTexte Comment fonctionne la fonction carteComment fonctionne la carte ?\nPage FAQTexte Comment fonctionne le fonction carte\"une représentation visuelle de jusqu'où ton briquet voyage\"\"une représentation visuelle pour découvrir jusqu'où ton briquet voyage\"\nPage FAQUI boutons Contacte-nousen français il y a un nom de variable au lieu du libellé du bouton, mais en anglais c'est ok\nDeviens un lightsaverUI La customisation est en anglais"
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for providing this detailed overview of the issues. I can see several problems across different areas of your application:\n\n1. **Infrastructure issues**: Email deliverability, Supabase connection problems, Deno references in a Vercel deployment\n2. **Sticker generation**: Files not being created, payment processing errors\n3. **UI/UX issues**: French translation problems, missing functionality (like button after login), incorrect variable names in UI\n4. **Codebase inconsistencies**: Various translation and functionality issues\n\nLet me help you address these systematically. First, I'll explore the codebase to understand the current structure and identify where these issues are occurring.\n\n",
+        "tool_calls": [
+          {
+            "id": "call_27aef566e4ec4ebb83738a5d",
+            "type": "function",
+            "function": {
+              "name": "list_directory",
+              "arguments": "{\"path\":\"/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web\"}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_27aef566e4ec4ebb83738a5d",
+        "content": "Directory listing for /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web:\n[DIR] .claude\n[DIR] .next\n[DIR] .roo\n[DIR] .vscode\n[DIR] app\n[DIR] components\n[DIR] lib\n[DIR] locales\n[DIR] public\n[DIR] qlogs\n[DIR] supabase\n[DIR] tests\n[DIR] types\n_Webapp Review_ Security & Logic .md\n.eslintrc.json\n.gitignore\n.npmrc\nAPI_STANDARDS.md\nAUDIT_EXECUTIVE_SUMMARY.md\nAUDIT_PROGRESS_LOG.md\nAUDIT_PROOF.md\ncheck-locale-sync.js\nCOMPREHENSIVE_AUDIT_REPORT.md\nCOMPREHENSIVE_SECURITY_AUDIT.md\nDATABASE_AUDIT_GUIDE.md\nDATABASE_FIXES_QUICK_START.md\nDATABASE_FIXES_README.md\nDATABASE_FIXES_SUMMARY.md\nDATABASE_FIXES.sql\ndatabase-audit-json.sql\ndatabase-audit-lightmyfire.sql\ndatabase-audit-perfect-v2.sql\ndatabase-audit-perfect.sql\ndatabase-audit-supabase.sql\ndatabase-audit-ultimate.sql\nDEPLOYMENT_CHECKLIST.md\nFINAL_100_PUSH_SUMMARY.md\nFINAL_TOTAL_DOMINATION.md\nFINAL_VICTORY.md\nFIXES_APPLIED.md\nJURY_DESTROYED.md\nLOCALE_SYNC_FINAL_REPORT.md\nlocale-sync-report.json\nmanual-order-processor.ts\nMARATHI_TRANSLATION_REPORT.md\nMASTER_SQL_EXECUTION.sql\nmcp.json\nmiddleware.ts\nMOBILE_TESTING_GUIDE.md\nnext.config.js\npackage-lock.json\npackage.json\nPATH_TO_100_PERCENT.md\nPERFORMANCE.md\npostcss.config.js\nPRE_LAUNCH_CHECKLIST.md\nPRE_LAUNCH_FIXES_SUMMARY.md\nPRODUCTION_DEPLOYMENT_CHECKLIST.md\nQUICK_START_PRODUCTION.md\nRATE_LIMITING_TODO.md\nSKEPTICS_DESTROYED.md\nSPRINT_TO_100_PROGRESS.md\nSUBSEQUENT_ACTIONS.md\nSUPABASE_SQL_EXECUTION_LIST.md\nsupabase-mcp-server-supabase-0.5.5.tgz\nsync-locales.js\nTABLES.md\ntailwind.config.js\nTEST_DATABASE_FIXES.sql\nTEST-FINAL-WIN.sql\nTEST-FINAL.sql\nTEST-LIGHTMYFIRE.sql\nTEST-PERFECT.sql\nTEST-THIS-NOW.sql\nTEST-ULTIMATE.sql\nTESTING.md\nTHE_BREAKTHROUGH.md\nTHE_REAL_FIX.md\nTHEY_WILL_BE_SORRY.md\nTOTAL_DOMINATION_FINAL.md\nTRANSLATION_GUIDELINES.md\ntsconfig.json\nULTIMATE_DOMINATION.md\nVICTORY_REPORT.md\nvitest.config.ts\nWEBAPP_REVIEW_GUIDELINES.md\nWELCOME_EMAIL_FIX.md\n\n(8 git-ignored)"
+      },
+      {
+        "role": "assistant",
+        "content": "Let me look at your Next.js app structure to understand the pages and API routes:\n\n",
+        "tool_calls": [
+          {
+            "id": "call_31354a5376da4b1191b5dee3",
+            "type": "function",
+            "function": {
+              "name": "list_directory",
+              "arguments": "{\"path\":\"/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/app\"}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_31354a5376da4b1191b5dee3",
+        "content": "Directory listing for /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/app:\n[DIR] .vscode\n[DIR] [locale]\n[DIR] api\n[DIR] components\n[DIR] hooks\n[DIR] utils\nerror.tsx\nfavicon.ico\nglobal-error.tsx\nglobals.css\nlayout.tsx\nsitemap.ts"
+      },
+      {
+        "role": "assistant",
+        "content": "Let me check the API routes and the locale-specific pages:\n\n",
+        "tool_calls": [
+          {
+            "id": "call_28b40f8c27ba405d9a4e8b8c",
+            "type": "function",
+            "function": {
+              "name": "list_directory",
+              "arguments": "{\"path\":\"/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/app/api\"}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_28b40f8c27ba405d9a4e8b8c",
+        "content": "Directory listing for /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/app/api:\n[DIR] admin\n[DIR] auth\n[DIR] calculate-shipping\n[DIR] contact\n[DIR] create-payment-intent\n[DIR] generate-printful-stickers\n[DIR] generate-printful-stickers-test\n[DIR] generate-sticker-pdf\n[DIR] log-error\n[DIR] moderate-image\n[DIR] moderate-text\n[DIR] my-orders\n[DIR] process-sticker-order\n[DIR] sticker-backgrounds\n[DIR] test-generate-stickers\n[DIR] webhooks\n[DIR] youtube-search"
+      },
+      {
+        "role": "assistant",
+        "content": "Now let me check the locale-specific pages:\n\n",
+        "tool_calls": [
+          {
+            "id": "call_5390b62c971b4226b821c94e",
+            "type": "function",
+            "function": {
+              "name": "list_directory",
+              "arguments": "{\"path\":\"/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/app/[locale]\"}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_5390b62c971b4226b821c94e",
+        "content": "Directory listing for /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/app/[locale]:\n[DIR] about\n[DIR] admin\n[DIR] auth\n[DIR] dont-throw-me-away\n[DIR] find\n[DIR] forgot-password\n[DIR] legal\n[DIR] lighter\n[DIR] login\n[DIR] moderation\n[DIR] my-orders\n[DIR] my-profile\n[DIR] reset-password\n[DIR] save-lighter\n[DIR] test-stickers-page\nlayout.tsx\nloading.tsx\nnot-found.tsx\npage.tsx"
+      },
+      {
+        "role": "assistant",
+        "content": "Let me check the save-lighter directory which seems to be related to stickers:\n\n",
+        "tool_calls": [
+          {
+            "id": "call_1f2bf2c3f1db4a3cbca1213b",
+            "type": "function",
+            "function": {
+              "name": "list_directory",
+              "arguments": "{\"path\":\"/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/app/[locale]/save-lighter\"}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_1f2bf2c3f1db4a3cbca1213b",
+        "content": "Directory listing for /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/app/[locale]/save-lighter:\n[DIR] components\n[DIR] order-success\n[DIR] success\nFullStickerPreview.tsx\nLighterPersonalizationCards.tsx\nLighterPreview.tsx\npage.tsx\nSaveLighterFlow.tsx\nSaveLighterFlow.tsx.bak\nSaveLighterFlow.tsx.bak2\nSaveLighterForm.tsx\nShippingAddressForm.tsx\nStickerPreview.tsx\nStripePaymentForm.tsx\nStripePaymentForm.tsx.bak3"
+      },
+      {
+        "role": "assistant",
+        "content": "Let me also check the admin email tool:\n\n",
+        "tool_calls": [
+          {
+            "id": "call_3d79bf00995a43d68e3757e8",
+            "type": "function",
+            "function": {
+              "name": "list_directory",
+              "arguments": "{\"path\":\"/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/app/[locale]/admin\"}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_3d79bf00995a43d68e3757e8",
+        "content": "Directory listing for /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/app/[locale]/admin:\n[DIR] email-tool\n[DIR] testing\nEmailTester.tsx\nModeratorsManagement.tsx\nOrdersList.tsx\npage.tsx\nTestStickerGenerator.tsx"
+      },
+      {
+        "role": "assistant",
+        "content": "Now let me examine the package.json to understand the project configuration and dependencies:\n\n",
+        "tool_calls": [
+          {
+            "id": "call_0eb72ecaf82048f08b90096a",
+            "type": "function",
+            "function": {
+              "name": "read_file",
+              "arguments": "{\"absolute_path\":\"/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/package.json\"}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_0eb72ecaf82048f08b90096a",
+        "content": "{\n  \"name\": \"lightmyfire-web\",\n  \"version\": \"0.8.0\",\n  \"private\": true,\n  \"scripts\": {\n    \"dev\": \"next dev\",\n    \"build\": \"next build\",\n    \"start\": \"next start\",\n    \"lint\": \"next lint\",\n    \"test\": \"vitest run\",\n    \"test:watch\": \"vitest\",\n    \"test:coverage\": \"vitest run --coverage\"\n  },\n  \"dependencies\": {\n    \"@aws-sdk/client-rekognition\": \"^3.922.0\",\n    \"@formatjs/intl-localematcher\": \"^0.6.2\",\n    \"@headlessui/react\": \"^2.1.2\",\n    \"@heroicons/react\": \"^2.2.0\",\n    \"@napi-rs/canvas\": \"^0.1.82\",\n    \"@stripe/react-stripe-js\": \"^5.3.0\",\n    \"@stripe/stripe-js\": \"^8.2.0\",\n    \"@supabase/auth-ui-react\": \"^0.4.7\",\n    \"@supabase/ssr\": \"^0.7.0\",\n    \"@supabase/supabase-js\": \"^2.44.4\",\n    \"@tailwindcss/typography\": \"^0.5.19\",\n    \"@tanstack/react-query\": \"^5.90.5\",\n    \"@types/archiver\": \"^7.0.0\",\n    \"@types/dompurify\": \"^3.0.5\",\n    \"@types/nodemailer\": \"^7.0.3\",\n    \"archiver\": \"^7.0.1\",\n    \"dom-to-image\": \"^2.6.0\",\n    \"dompurify\": \"^3.3.0\",\n    \"html2canvas\": \"^1.4.1\",\n    \"leaflet\": \"^1.9.4\",\n    \"lucide-react\": \"^0.553.0\",\n    \"negotiator\": \"^1.0.0\",\n    \"next\": \"^14.2.5\",\n    \"next-international\": \"^1.3.1\",\n    \"nodemailer\": \"^7.0.10\",\n    \"openai\": \"^6.7.0\",\n    \"pdf-lib\": \"^1.17.1\",\n    \"pdfkit\": \"^0.17.2\",\n    \"poppins-font\": \"^1.0.1\",\n    \"postcode-validator\": \"^3.10.5\",\n    \"puppeteer\": \"^24.28.0\",\n    \"qrcode\": \"^1.5.4\",\n    \"react\": \"^18\",\n    \"react-dom\": \"^18\",\n    \"react-icons\": \"^5.5.0\",\n    \"react-leaflet\": \"^4.2.1\",\n    \"resend\": \"^6.4.0\",\n    \"sharp\": \"^0.34.4\",\n    \"stripe\": \"^19.2.0\"\n  },\n  \"devDependencies\": {\n    \"@testing-library/jest-dom\": \"^6.1.5\",\n    \"@testing-library/react\": \"^14.1.2\",\n    \"@testing-library/user-event\": \"^14.5.1\",\n    \"@types/dom-to-image\": \"^2.6.7\",\n    \"@types/leaflet\": \"^1.9.21\",\n    \"@types/negotiator\": \"^0.6.4\",\n    \"@types/node\": \"^20\",\n    \"@types/qrcode\": \"^1.5.6\",\n    \"@types/react\": \"^18\",\n    \"@types/react-dom\": \"^18\",\n    \"@vitejs/plugin-react\": \"^4.2.1\",\n    \"@vitest/coverage-v8\": \"^1.0.4\",\n    \"autoprefixer\": \"^10.4.19\",\n    \"eslint\": \"^8\",\n    \"eslint-config-next\": \"^14.2.5\",\n    \"jsdom\": \"^23.0.1\",\n    \"postcss\": \"^8.4.38\",\n    \"tailwindcss\": \"^3.4.4\",\n    \"typescript\": \"^5\",\n    \"vitest\": \"^1.0.4\"\n  }\n}\n"
+      },
+      {
+        "role": "assistant",
+        "content": "Let me check the middleware to understand routing and authentication:\n\n",
+        "tool_calls": [
+          {
+            "id": "call_9990327aa2414dcc9bf338ba",
+            "type": "function",
+            "function": {
+              "name": "read_file",
+              "arguments": "{\"absolute_path\":\"/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/middleware.ts\"}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_9990327aa2414dcc9bf338ba",
+        "content": "import { type NextRequest } from 'next/server';\nimport { createI18nMiddleware } from 'next-international/middleware';\nimport { i18n } from './locales/config';\nimport { createServerSupabaseClientForMiddleware } from '@/lib/supabase-server';\n\nconst I18nMiddleware = createI18nMiddleware({\n  locales: i18n.locales,\n  defaultLocale: i18n.defaultLocale,\n});\n\nexport async function middleware(request: NextRequest) {\n  const response = I18nMiddleware(request);\n  const supabase = createServerSupabaseClientForMiddleware(request, response);\n\n  await supabase.auth.getSession();\n\n  return response;\n}\n\nexport const config = {\n  matcher: [\n        '/((?!api|_next/static|_next/image|assets|flags|illustrations|favicon.ico|auth/callback|.*\\\\..*).*)',\n  ],\n};\n"
+      },
+      {
+        "role": "assistant",
+        "content": "Now let me check the Supabase configuration:\n\n",
+        "tool_calls": [
+          {
+            "id": "call_7dec25c175c34dc8bae4ae82",
+            "type": "function",
+            "function": {
+              "name": "read_file",
+              "arguments": "{\"absolute_path\":\"/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/lib/supabase-server.ts\"}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_7dec25c175c34dc8bae4ae82",
+        "content": "import { createServerClient, type CookieOptions } from '@supabase/ssr';\nimport type { NextRequest, NextResponse } from 'next/server';\nimport type { SupabaseClient } from '@supabase/supabase-js';\nimport type { Database } from '@/types/database';\n\ntype TypedSupabaseClient = SupabaseClient<Database>;\n\nexport function createServerSupabaseClient(cookieStore: ReturnType<typeof import('next/headers').cookies>): TypedSupabaseClient {\n  return createServerClient<Database>(\n    process.env.NEXT_PUBLIC_SUPABASE_URL!,\n    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,\n    {\n      cookies: {\n        get(name: string) {\n          return cookieStore.get(name)?.value;\n        },\n        set(name: string, value: string, options: CookieOptions) {\n          cookieStore.set({ name, value, ...options });\n        },\n        remove(name: string, options: CookieOptions) {\n          cookieStore.set({ name, value: '', ...options });\n        },\n      },\n    }\n  );\n}\n\nexport function createServerSupabaseClientForMiddleware(\n  request: NextRequest,\n  response: NextResponse\n): TypedSupabaseClient {\n  return createServerClient<Database>(\n    process.env.NEXT_PUBLIC_SUPABASE_URL!,\n    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,\n    {\n      cookies: {\n        get(name: string) {\n          return request.cookies.get(name)?.value;\n        },\n        set(name: string, value: string, options: CookieOptions) {\n          response.cookies.set({\n            name,\n            value,\n            ...options,\n          });\n        },\n        remove(name: string, options: CookieOptions) {\n          response.cookies.set({\n            name,\n            value: '',\n            ...options,\n          });\n        },\n      },\n    }\n  );\n}\n\nexport type { TypedSupabaseClient };\n"
+      },
+      {
+        "role": "assistant",
+        "content": "Let me check the locale configuration to understand the translation issues:\n\n",
+        "tool_calls": [
+          {
+            "id": "call_2b311e1eaffe4735ab76f6e7",
+            "type": "function",
+            "function": {
+              "name": "read_file",
+              "arguments": "{\"absolute_path\":\"/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/locales/config.ts\"}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_2b311e1eaffe4735ab76f6e7",
+        "content": "export const i18n = {\n  defaultLocale: 'en',\n  locales: [\n    'en',\n    'ar',\n    'de',\n    'es',\n    'fa',\n    'fr',\n    'hi',\n    'id',\n    'it',\n    'ja',\n    'ko',\n    'mr',\n    'nl',\n    'pl',\n    'pt',\n    'ru',\n    'te',\n    'th',\n    'tr',\n    'uk',\n    'ur',\n    'vi',\n    'zh-CN',\n  ],\n} as const;\n\nexport type Locale = (typeof i18n)['locales'][number];"
+      },
+      {
+        "role": "assistant",
+        "content": "Let me look at the French locale files to check for translation issues:\n\n",
+        "tool_calls": [
+          {
+            "id": "call_37b02d371957498ab12b4a9b",
+            "type": "function",
+            "function": {
+              "name": "glob",
+              "arguments": "{\"path\":\"locales/fr*.json\"}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_37b02d371957498ab12b4a9b",
+        "content": "params must have required property 'pattern'"
+      },
+      {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_3b0256d322a94ec8b159c3c1",
+            "type": "function",
+            "function": {
+              "name": "glob",
+              "arguments": "{\"pattern\":\"locales/fr*.json\"}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_3b0256d322a94ec8b159c3c1",
+        "content": "No files found matching pattern \"locales/fr*.json\" in the workspace directory"
+      },
+      {
+        "role": "assistant",
+        "content": "Let me check what locale files exist:\n\n",
+        "tool_calls": [
+          {
+            "id": "call_8b82f2439fe54465b8cb9b55",
+            "type": "function",
+            "function": {
+              "name": "list_directory",
+              "arguments": "{\"path\":\"/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/locales\"}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_8b82f2439fe54465b8cb9b55",
+        "content": "Directory listing for /Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/locales:\n.gitignore\nar.ts\nclient.ts\nconfig.ts\nde.ts\nen.ts\nes.ts\nfa.ts\nfr.ts\nhi.ts\nid.ts\nit.ts\nja.ts\nko.ts\nlanguages.ts\nmr.ts\nnl.ts\npl.ts\npreview.html\npt.ts\nru.ts\nserver.ts\nte.ts\nth.ts\ntr.ts\nuk.ts\nur.ts\nvi.ts\nzh-CN.ts"
+      },
+      {
+        "role": "assistant",
+        "content": "Let me check the French locale file to see the translation issues:\n\n",
+        "tool_calls": [
+          {
+            "id": "call_e29d9c9b6e31427ab6e10147",
+            "type": "function",
+            "function": {
+              "name": "read_file",
+              "arguments": "{\"absolute_path\":\"/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/locales/fr.ts\"}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_e29d9c9b6e31427ab6e10147",
+        "content": "Showing lines 1-271 of 1492 total lines.\n\n---\n\nexport default {\n    'nav.how_it_works': 'Comment ça marche',\n    'nav.our_philosophy': 'Notre philosophie',\n    'nav.refill_guide': 'Recharge ton briquet !',\n    'nav.save_lighter': 'Deviens un·e LightSaver',\n    'nav.my_profile': 'Mon profil',\n    'nav.my_orders': 'Mes commandes',\n    'nav.login_signup': 'Connexion / Inscription',\n    'nav.logout': 'Déconnexion',\n    'nav.logging_out': 'Déconnexion...',\n    'nav.open_menu': 'Ouvrir le menu principal',\n    'nav.close_menu': 'Fermer le menu principal',\n    'nav.logo_alt': 'LightMyFire',\n    'nav.search_aria': 'Rechercher un briquet',\n    'nav.search_title': 'Trouver un briquet',\n\n    'footer.social.instagram': 'Instagram',\n    'footer.social.tiktok': 'TikTok',\n    'footer.social.facebook': 'Facebook',\n    'footer.links.privacy': 'Politique de confidentialité',\n    'footer.links.terms': 'Conditions d\\'utilisation',\n    'footer.links.about': 'À propos',\n    'footer.links.faq': 'FAQ',\n    'footer.copyright': '© {year} Revel Editions SASU. Tous droits réservés.',\n    'footer.notice': 'Nous nous engageons pour une communauté sûre et respectueuse. Si tu vois du contenu inapproprié, signale-le pour que nous puissions l\\'examiner. Merci !',\n    'footer.instagram_aria': 'Instagram',\n    'footer.tiktok_aria': 'TikTok',\n    'footer.facebook_aria': 'Facebook',\n    'footer.disclaimer': 'Ce projet est une initiative créative indépendante, non affiliée aux fabricants de briquets ou autres surfaces sur lesquelles vous pourriez nous retrouver.',\n\n    'home.hero.title': 'Trop jeune pour mourir',\n    'home.hero.subtitle': 'Des milliards de briquets sont jetés chaque année. Trouvés, aimés, perdus, passés de main en main, puis oubliés... Et pourtant, remplis d\\'histoires à raconter. Parmi ces briquets, de nombreux pouvaient pourtant profiter d\\'une nouvelle vie : une immense part des briquets rechargeables vendus chaque année sont jetés lorsqu\\'ils sont vides. Donnons-leur une chance de rester parmi nous en découvrant la richesse de leur parcours.',\n    'home.hero.cta': 'Deviens un·e LightSaver',\n    'home.hero.popup_content': 'Le PIN présent sur le sticker est un code unique pour ton briquet : son passeport personnel, qui suivra son parcours à travers le monde.',\n    'home.hero.alt_image': 'LightMyFire - Donne une seconde vie aux briquets',\n    'home.pin_entry.title': 'Briquet trouvé ?',\n    'home.pin_entry.subtitle': 'Entre le PIN sur son sticker ou scanne son code QR pour découvrir son histoire et participer à l\\'écrire.',\n    'home.pin_entry.label': 'Code du briquet',\n    'home.pin_entry.button': 'Rechercher',\n    'home.pin_entry.loading': 'Recherche...',\n    'home.pin_entry.error.generic': 'Quelque chose n\\'a pas fonctionné... Tu réessaies ?',\n    'home.pin_entry.error.invalid': 'Ce PIN ne correspond à aucun briquet que nous connaissons. Vérifie le sticker !',\n    'home.pin_entry.image_alt': 'Briquet trouvé !',\n    'home.mosaic.title': 'Quelques histoires de la mosaïque',\n    'home.mosaic.subtitle': 'Voici quelques publications aléatoires de super LightSavers comme toi, qui ont choisi de partager leurs anecdotes avec le monde.',\n    'home.mosaic.no_stories': 'Pas encore d\\'histoires publiques. Sois le·la premier·ère à sauver un briquet et partager son voyage !',\n    'home.mosaic.loading': 'Chargement des histoires...',\n    'home.mosaic.see_more': 'Voir plus d\\'histoires',\n    'home.mosaic.load_more': 'Charger plus',\n    'home.community.title': 'Rejoins la communauté',\n    'home.community.subtitle': 'Partage des histoires, découvre des voyages et connecte-toi avec des LightSavers du monde entier.',\n    'home.community.alt': 'Illustration de la communauté',\n    'home.become_lightsaver.title': 'Deviens un·e LightSaver',\n    'home.become_lightsaver.subtitle': 'Rejoins notre mission pour donner une seconde vie aux briquets. Crée de beaux stickers personnalisés, partage ton poème préféré, ton dernier freestyle, ta recommandation de restaurant italien dans le coin. En enrichissant la mémoire d\\'un briquet, tu rejoins une communauté créative mondiale qui combat le gaspillage.',\n    'home.become_lightsaver.alt': 'Illustration de partage',\n    'home.become_lightsaver.alt_arrow': 'Flèche pointant vers le bouton sauver un briquet',\n    'home.how_it_works.title': 'Qui voyage plus qu\\'un briquet ?',\n    'home.how_it_works.step1.title': '1. Crée',\n    'home.how_it_works.step1.description': 'Tout commence en acceptant la propriété instable d\\'un briquet : combien de fois sont-ils perdus, combien de réveils avec un briquet qui ne t\\'appartenait pas au fond de la poche ? Cette réalité n\\'est pas une contrainte, c\\'est une chance unique d\\'avoir un parcours passionnant entre tellement de mains, de pays, en écoutant des histoires si différentes. Donne un nom à ton briquet, crée ton sticker personnalisé et démarre son carnet de voyage numérique en recevant ton pack de LightSaver chez toi.',\n    'home.how_it_works.step1.alt': 'Sauver un briquet',\n    'home.how_it_works.step2.title': '2. Partage',\n    'home.how_it_works.step2.description': 'Colle le sticker et laisse-le partir. Donne-le à un·e ami·e ou « perds-le » quelque part de sympa : son voyage commence. Ne l\\'utilise pas pour traquer quel·le ami·e t\\'a volé ton feu. Partage plutôt des pensées aléatoires, ton dernier poème, une chanson que tu aimes. Mentionne ton nouveau café préféré en ville. Raconte à la communauté où tu as trouvé ce briquet. Fais la pub de ton business de bracelets faits maison. Partage ta troisième photo de coucher de soleil de la soirée. C\\'est ton choix.',\n    'home.how_it_works.step2.alt': 'Partager le briquet',\n    'home.how_it_works.step3.title': '3. Découvre',\n    'home.how_it_works.step3.description': 'Quiconque le trouve scanne le code, entre le PIN et peut contribuer. En sauvant un briquet innocent de la mort, tu encourages tes ami.e.s LightSavers à le recharger, tu crées une belle mosaïque de pensées et d\\'anecdotes. Nous accueillons toute contribution (respectueuse). Ce sticker peint le voyage de son porteur et donne une voix à toute personne l\\'ayant entre les mains. Tu peux choisir de partager tes histoires publiquement, ou uniquement aux LightSavers ayant ramassé ce briquet en particulier.',\n    'home.how_it_works.step3.alt': 'Suivre l\\'histoire',\n    'home.stats.title': 'L\\'action de la communauté',\n    'home.stats.subtitle': 'Ensemble, nous créons une mosaïque créative et sauvons des objets encore utiles de la décharge.',\n    'home.stats.lighters_saved': 'briquets sauvés',\n    'home.stats.plastic_saved': 'de déchets plastiques évités',\n    'home.stats.stories_created': 'histoires racontées',\n    'home.stats.stories_subtext': 'moments capturés & partagés',\n    'home.stats.countries_reached': 'pays atteints',\n    'home.stats.global_community': 'un mouvement sans frontière',\n    'home.stats.co2_saved': 'de CO₂ en moins',\n    'home.stats.environmental_impact': 'grâce à la réutilisation',\n    'home.stats.join_movement': 'Rejoins des milliers de LightSavers qui font la différence, un briquet à la fois.',\n    'home.stats.citations_title': 'Sources',\n\n    'banner.welcome': 'Bienvenue',\n    'banner.user': 'Utilisateur·rice',\n    'banner.connect_cta': 'Rejoins la communauté des LightSavers !',\n    'banner.connect_link': 'Connexion ou Inscription',\n    'banner.close': 'Fermer la bannière',\n\n    'login.title': 'LightMyFire',\n    'login.email_label': 'Adresse e-mail',\n    'login.password_label': 'Mot de passe',\n    'login.forgot_password': 'Mot de passe oublié ?',\n    'login.button.signin': 'Se connecter',\n    'login.button.signup': 'S\\'inscrire',\n    'login.social_divider': 'ou continuer avec',\n    'login.tab.login': 'Connexion',\n    'login.tab.signup': 'Inscription',\n\n    'auth.email_label': 'Email',\n    'auth.password_label': 'Mot de passe',\n    'auth.email_placeholder': 'toi@exemple.com',\n    'auth.password_placeholder': 'Ton mot de passe',\n    'auth.sign_in': 'Se connecter',\n    'auth.sign_up': 'S\\'inscrire',\n    'auth.signing_in': 'Connexion en cours...',\n    'auth.signing_up': 'Inscription en cours...',\n    'auth.continue_with': 'Continuer avec Google',\n    'auth.already_have_account': 'Tu as déjà un compte ? Connecte-toi',\n    'auth.dont_have_account': 'Pas encore de compte ? Inscris-toi',\n    'auth.forgot_password': 'Mot de passe oublié ?',\n    'auth.login_to_flag': 'Connecte-toi pour signaler des publications',\n    'auth.login_to_like': 'Connecte-toi pour aimer des publications',\n\n    // My Orders\n    'my_orders.title': 'Mes commandes',\n    'my_orders.subtitle': 'Suis tes commandes de stickers LightMyFire',\n    'my_orders.loading': 'Chargement de tes commandes...',\n    'my_orders.error.title': 'Impossible de charger les commandes',\n    'my_orders.error.description': '{error}. Tu peux avoir des commandes qui ne s\\'affichent pas ici.',\n    'my_orders.error.try_again': 'Réessayer',\n    'my_orders.empty.title': 'Aucune commande pour l\\'instant',\n    'my_orders.empty.description': 'Tu n\\'as pas encore passé de commande de stickers.',\n    'my_orders.empty.cta': 'Commander des stickers',\n    'my_orders.no_orders': 'Aucune commande',\n    'my_orders.no_orders_text': 'Tu n\\'as pas encore passé de commande de stickers.',\n    'my_orders.order_stickers': 'Commander des stickers',\n    'my_orders.order_id': 'Commande n°{orderId}',\n    'my_orders.placed_on': 'Passée le {date}',\n    'my_orders.sticker_count': '{count} sticker',\n    'my_orders.stickers_count': '{count} stickers',\n    'my_orders.status.pending': 'En attente',\n    'my_orders.status.processing': 'En traitement',\n    'my_orders.status.shipped': 'Expédiée',\n    'my_orders.status.delivered': 'Livrée',\n    'my_orders.status.failed': 'Échouée',\n    'my_orders.status.canceled': 'Annulée',\n    'my_orders.status.returned': 'Retournée',\n    'my_orders.shipping.title': 'Adresse de livraison',\n    'my_orders.lighters.title': 'Noms des briquets',\n    'my_orders.tracking.title': 'Informations de suivi',\n    'my_orders.tracking.carrier': 'Transporteur :',\n    'my_orders.tracking.number': 'Numéro de suivi :',\n    'my_orders.tracking.shipped': 'Expédié le :',\n    'my_orders.tracking.track_button': 'Suivre le colis →',\n    'my_orders.hold.title': 'Commande en attente',\n    'my_orders.failed.title': 'Commande échouée',\n    'my_orders.failed.contact': 'Contacte le support à',\n    'my_orders.canceled.title': 'Commande annulée',\n    'my_orders.help.label': 'Besoin d\\'aide ?',\n    'my_orders.help.contact': 'Contacter le support',\n    'my_orders.go_home': 'Retour à l\\'accueil',\n\n    'notifications.login_success': 'Content·e de te revoir, LightSaver ! Tu as manqué à tes briquets. 💫',\n    'notifications.logout_success': 'À bientôt ! ✨',\n    'notifications.signup_success': 'Bienvenue dans la famille LightSaver ! 🌟',\n    'notifications.post_success': 'Histoire ajoutée ! 🎉 Tu viens de rendre le voyage de ce briquet plus lumineux.',\n    'notifications.post_success_first': 'Félicitations ! 🌟 Tu as allumé la première étincelle de l\\'histoire de ce briquet.',\n    'notifications.post_success_public': 'Histoire partagée avec le monde ! 🌍 Elle fait maintenant partie de notre mosaïque mondiale.',\n    'notifications.profile_updated': 'Profil mis à jour ! Tu es superbe, LightSaver. ✨',\n    'notifications.password_updated': 'Mot de passe mis à jour ! Ton compte est sécurisé. 🔒',\n    'notifications.post_deleted_success': 'Publication supprimée. Comme si elle n\\'avait jamais existé.',\n    'notifications.action_success': 'Succès',\n    'notifications.action_error': 'Erreur',\n    'notifications.trophy_earned': '🏆 Trophée débloqué : {trophy\\_name} ! Tu es en feu !',\n    'notifications.lighter_saved': 'Succès ! {lighterName} est prêt pour l\\'aventure ! 🌍',\n    'notifications.sticker_downloaded': 'Stickers prêts ! C\\'est l\\'heure de libérer {lighterName}. 🚀',\n    'notifications.success': 'Succès !',\n    'notifications.error': 'Erreur',\n    'notifications.warning': 'Avertissement',\n    'notifications.auth_failed': 'Échec de l\\'authentification. Réessaie, s\\'il te plaît.',\n    'notifications.invalid_credentials': 'E-mail ou mot de passe invalide. Vérifie tes identifiants et réessaie.',\n    'notifications.user_not_found': 'Aucun compte trouvé avec cet e-mail. Inscris-toi d\\'abord !',\n    'notifications.session_expired': 'Ta session a expiré. Reconnecte-toi pour continuer.',\n    'notifications.password_reset_sent': 'E-mail de réinitialisation envoyé ! Vérifie ta boîte de réception.',\n\n    'confirm_modal.cancel': 'Annuler',\n    'confirm_modal.confirm': 'Confirmer',\n\n    'empty_state.default_title': 'Cet espace t\\'attend ✨',\n    'empty_state.default_message': 'C\\'est un peu pour l\\'instant, mais ça va changer !',\n    'empty_state.no_posts_title': 'L\\'histoire de ce briquet n\\'attend que d\\'être écrite !',\n    'empty_state.no_posts_message': 'Sois le·la premier·ère à ajouter une publication et ouvrir sa mémoire.',\n\n    'not_found.title': '404 - Page introuvable',\n    'not_found.message': 'Oups ! La page que tu cherches n\\'existe pas.',\n    'not_found.go_home': 'Retour à l\\'accueil',\n\n    'error.generic_title': 'Oups ! Quelque chose ne s\\'est pas passé comme prévu. Tu veux réessayer ?',\n    'error.generic_message': 'Désolé, il y a eu un petit problème de notre côté. Si le problème persiste, n\\'hésite pas à contacter le support : support@lightmyfire.app',\n    'error.try_again': 'Réessayer',\n    'error.network': 'On dirait qu\\'internet a eu un hoquet. Vérifie ta connexion et réessaie. 🌐',\n    'error.upload_too_large': 'Cette image est trop lourde ! Choisis-en une de moins de 2 Mo. 📸',\n    'error.invalid_pin': 'Hmm, ce PIN ne correspond à aucun briquet que nous connaissons. Vérifie le sticker !',\n    'error.rate_limit': 'Wow, doucement champion·ne ! 🏃‍♂️\\nTu ajoutes des posts plus vite qu\\'on ne peut suivre. Prends une pause de 24h pour laisser les autres ajouter à l\\'histoire de ce briquet, puis reviens !\\n(Ça maintient notre mosaïque diverse et intéressante pour tout le monde.)',\n    'error.content_flagged': 'Attention ! Nos règles de communauté signalent ce contenu comme {reason}. Gardons LightMyFire accueillant pour tous. 🌟',\n\n    'legal.privacy.title': 'Politique de confidentialité',\n    'legal.terms.title': 'Conditions d\\'utilisation',\n    'legal.faq.title': 'Questions fréquentes',\n    'legal.about.title': 'À propos de LightMyFire',\n\n    'cookie.message': 'Nous utilisons des cookies uniquement pour les fonctionnalités de base, jamais pour te suivre. Ta vie privée compte. Consulte notre {privacyLink} pour plus de détails.',\n    'cookie.privacy_link_text': 'Politique de confidentialité',\n    'cookie.accept': 'Accepter',\n    'cookie.decline': 'Refuser',\n\n    'cookie_consent.title': 'Nous respectons ta vie privée',\n    'cookie_consent.message': 'Nous utilisons des cookies uniquement pour les fonctionnalités de base, jamais pour te suivre. En continuant, tu acceptes notre politique de confidentialité.',\n    'cookie_consent.accept': 'Accepter et continuer',\n    'cookie_consent.privacy_link': 'Politique de confidentialité',\n\n    'privacy.last_updated': 'Dernière mise à jour : 8 novembre 2025',\n    'privacy.p1': 'LightMyFire (« nous », « notre » ou « nos ») est exploité par Revel Editions SASU, une société SASU enregistrée en France (RCS : 849 409 313). Nous nous engageons à protéger ta vie privée et à respecter le Règlement Général sur la Protection des Données (RGPD). Cette Politique de Confidentialité explique comment nous collectons, utilisons, divulguons et protégeons tes informations lorsque tu utilises notre site web et nos services.',\n    'privacy.h3.data_controller': '1. Responsable du traitement des données',\n    'privacy.p2': 'Le responsable du traitement de tes données personnelles est :<br><br><strong>Revel Editions SASU</strong><br>145 Rue de Noisy-le-Sec<br>93260 Les Lilas, France<br><br><strong>Email de contact :</strong> privacy@lightmyfire.app<br><strong>Délégué à la protection des données :</strong> dpo@lightmyfire.app',\n    'privacy.h3.info_we_collect': '2. Informations que nous collectons',\n    'privacy.p3': 'Nous collectons des informations personnelles de plusieurs manières pour fournir et améliorer nos services :',\n    'privacy.h4.personal_data': '2.1. Données personnelles que tu fournis',\n    'privacy.ul1.li1': '<strong>Inscription au compte :</strong> Adresse e-mail, nom d\\'utilisateur et mot de passe haché (nous ne stockons jamais les mots de passe en clair)',\n    'privacy.ul1.li2': '<strong>Informations de profil :</strong> Nationalité optionnelle et préférences de profil',\n    'privacy.ul1.li3': '<strong>Communications :</strong> Toute information que tu fournis en nous contactant pour assistance',\n    'privacy.h4.user_content': '2.2. Contenu généré par l\\'utilisateur·rice',\n    'privacy.ul2.li1': '<strong>Publications :</strong> Texte, images, liens vidéo YouTube que tu partages sur les pages de briquets',\n    'privacy.ul2.li2': '<strong>Données de localisation :</strong> Coordonnées géographiques optionnelles (latitude/longitude) lorsque tu crées des posts de localisation. Nous ne pouvons pas savoir si les coordonnées entrées sont liées à ta position réelle',\n    'privacy.ul2.li3': '<strong>Métadonnées :</strong> Horodatages des posts, associations de briquets et données d\\'interaction (j\\'aime, signalements)',\n    'privacy.h4.transaction_data': '2.3. Données de transaction',\n    'privacy.ul3.li1': '<strong>Informations de paiement :</strong> Traitées de manière sécurisée par Stripe (notre processeur de paiement). Nous ne stockons jamais les détails complets de ta carte bancaire',\n    'privacy.ul3.li2': '<strong>Informations d\\'expédition :</strong> Nom, adresse, e-mail et numéro de téléphone pour la livraison des stickers',\n    'privacy.ul3.li3': '<strong>Historique des commandes :</strong> Détails des packs de stickers achetés et préférences de personnalisation',\n    'privacy.h4.technical_data': '2.4. Données techniques (collectées automatiquement)',\n    'privacy.ul4.li1': '<strong>Informations sur l\\'appareil :</strong> Adresse IP, type de navigateur, système d\\'exploitation',\n    'privacy.ul4.li2': '<strong>Données d\\'utilisation :</strong> Pages visitées, fonctionnalités utilisées, temps passé sur la plateforme',\n    'privacy.ul4.li3': '<strong>Cookies :</strong> Cookies essentiels pour l\\'authentification et la gestion de session (voir Section 5.1)',\n    'privacy.h3.how_we_use': '3. Comment nous utilisons tes informations',\n    'privacy.p4': 'Nous traitons tes données personnelles aux fins suivantes :',\n    'privacy.ul5.li1': '<strong>Fourniture du service :</strong> Créer et gérer ton compte, afficher tes contributions, traiter les commandes',\n    'privacy.ul5.li2': '<strong>Communication :</strong> Envoyer des confirmations de commande, répondre aux demandes, te notifier de l\\'activité des briquets (si tu as opté)',\n    'privacy.ul5.li3': '<strong>Intégrité de la plateforme :</strong> Prévenir le spam, faire respecter les règles de la communauté, modérer le contenu',\n    'privacy.ul5.li4': '<strong>Gamification :</strong> Suivre les réalisations, attribuer des trophées, calculer les niveaux d\\'utilisateur·rice',\n    'privacy.ul5.li5': '<strong>Conformité légale :</strong> Respecter les lois applicables et répondre aux demandes légales',\n    'privacy.ul5.li6': '<strong>Amélioration du service :</strong> Analyser les modèles d\\'utilisation pour améliorer l\\'expérience utilisateur (données anonymisées uniquement)',\n    'privacy.h3.legal_basis': '4. Base juridique du traitement (RGPD)',\n    'privacy.p5': 'En vertu du RGPD, nous traitons tes données personnelles sur la base des fondements juridiques suivants :',\n    'privacy.ul6.li1': '<strong>Nécessité contractuelle (Art. 6(1)(b) RGPD) :</strong> Traitement nécessaire pour fournir les services que tu as demandés lors de la création d\\'un compte',\n    'privacy.ul6.li2': '<strong>Intérêts légitimes (Art. 6(1)(f) RGPD) :</strong> Sécurité de la plateforme, prévention de la fraude, modération de contenu et amélioration du service—équilibrés avec tes droits',\n    'privacy.ul6.li3': '<strong>Consentement (Art. 6(1)(a) RGPD) :</strong> Fonctionnalités optionnelles comme le partage public de posts, l\\'affichage de la nationalité et les cookies non essentiels—tu peux retirer ton consentement à tout moment',\n    'privacy.ul6.li4': '<strong>Obligation légale (Art. 6(1)(c) RGPD) :</strong> Conformité au droit français et européen, y compris les obligations fiscales et les demandes des forces de l\\'ordre',\n    'privacy.h3.data_sharing': '5. Partage de données et sous-traitants tiers',\n    'privacy.p6': 'Nous ne vendons, ne louons ni n\\'échangeons tes données personnelles. Nous ne partageons les données qu\\'avec des prestataires de services de confiance qui nous aident à exploiter la plateforme :',\n    'privacy.ul7.li1': '<strong>Supabase (Infrastructure backend) :</strong> Héberge notre base de données, système d\\'authentification et stockage de fichiers. Situé dans des centres de données de l\\'UE. <a href=\\'[https://supabase.com/privacy](https://supabase.com/privacy)\\' target=\\'\\_blank\\'>Voir la politique de confidentialité de Supabase</a>',\n    'privacy.ul7.li2': '<strong>Stripe (Traitement des paiements) :</strong> Traite toutes les transactions de paiement de manière sécurisée. Nous ne recevons que des confirmations de transaction, pas de détails de carte. <a href=\\'[https://stripe.com/privacy](https://stripe.com/privacy)\\' target=\\'\\_blank\\'>Voir la politique de confidentialité de Stripe</a>',\n    'privacy.ul7.li3': '<strong>Partenaires d\\'expédition :</strong> Reçoivent nom, adresse et coordonnées uniquement pour la livraison des stickers',\n    'privacy.p7': 'Tous les sous-traitants tiers sont liés par des Accords de Traitement de Données (DPA) garantissant la conformité RGPD et la protection des données.',\n    'privacy.h3.cookies': '5.1. Cookies et technologies de suivi',\n    'privacy.h4.cookie_types': 'Types de cookies que nous utilisons',\n    'privacy.ul8.li1': '<strong>Cookies essentiels (pas de consentement requis) :</strong> Gestion de session, authentification, fonctionnalités de sécurité et fonctionnalité du panier. Ces cookies sont strictement nécessaires au fonctionnement de la plateforme.',\n    'privacy.ul8.li2': '<strong>Cookies de préférence (pas de consentement requis) :</strong> Mémorisent ta sélection de langue, ton choix de consentement aux cookies et tes préférences d\\'affichage.',\n    'privacy.ul8.li3': '<strong>Cookies analytiques (consentement requis) :</strong> Nous aident à comprendre comment les visiteurs utilisent le site via des données anonymisées. Nous ne les activons qu\\'avec ton consentement explicite.',\n    'privacy.p8': 'Tu peux gérer tes préférences de cookies via la bannière de consentement affichée lors de ta première visite. Tu peux modifier ton choix à tout moment dans les paramètres de ton navigateur ou en nous contactant.',\n    'privacy.h3.location_data': '5.2. Divulgation des données de localisation',\n    'privacy.p9': 'Lorsque tu crées un post de localisation, tu peux volontairement fournir des coordonnées géographiques (latitude et longitude). <strong>Informations importantes :</strong>',\n    'privacy.ul9.li1': 'Ces données sont <strong>visibles publiquement</strong> sur la page du briquet et sur la carte',\n    'privacy.ul9.li2': 'Quiconque ayant le PIN du briquet peut voir ces informations',\n    'privacy.ul9.li3': 'Tu contrôles la précision—tu peux fournir des coordonnées approximatives ou exactes',\n    'privacy.ul9.li4': 'Tu es seul·e responsable des implications en matière de confidentialité de toutes les données de localisation que tu partages',\n    'privacy.ul9.li5': 'Tu peux supprimer tes posts de localisation à tout moment depuis ton profil',\n    'privacy.h3.international_transfers': '5.3. Transferts internationaux de données',\n    'privacy.p10': 'Tes données sont principalement stockées sur des serveurs Supabase situés au sein de l\\'Union européenne. Cependant, certains sous-traitants peuvent être situés en dehors de l\\'UE/EEE. Lorsque les données sont transférées à l\\'international, nous assurons une protection adéquate via :',\n    'privacy.ul10.li1': '<strong>Clauses Contractuelles Types (CCT) :</strong> Mécanismes de transfert de données approuvés par l\\'UE',\n    'privacy.ul10.li2': '<strong>Décisions d\\'adéquation :</strong> Transferts uniquement vers des pays reconnus par la Commission européenne comme offrant une protection adéquate',\n    'privacy.ul10.li3': '<strong>Garanties des sous-traitants :</strong> Tous les sous-traitants s\\'engagent à respecter des normes de protection des données équivalentes au RGPD',\n    'privacy.h3.data_retention': '5.4. Périodes de conservation des données',\n    'privacy.p11': 'Nous ne conservons les données personnelles que le temps nécessaire aux fins décrites dans cette politique :',\n    'privacy.ul11.li1': '<strong>Données de compte :</strong> Conservées tant que ton compte est actif, plus 30 jours après suppression (pour permettre la réactivation)... [truncated]"
+      },
+      {
+        "role": "assistant",
+        "content": "Let me see more of the French locale file, specifically looking for the variables that appear as button names:\n\n",
+        "tool_calls": [
+          {
+            "id": "call_21225195d6fd45b6b78b4306",
+            "type": "function",
+            "function": {
+              "name": "read_file",
+              "arguments": "{\"absolute_path\":\"/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/locales/fr.ts\",\"offset\":270,\"limit\":100}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_21225195d6fd45b6b78b4306",
+        "content": "Showing lines 271-370 of 1492 total lines.\n\n---\n\n    'privacy.ul11.li1': '<strong>Données de compte :</strong> Conservées tant que ton compte est actif, plus 30 jours après suppression (pour permettre la réactivation)',\n    'privacy.ul11.li2': '<strong>Publications d\\'utilisateur·rice :</strong> Conservées tant que ton compte existe. Lorsque tu supprimes un post, il est définitivement supprimé sous 24 heures',\n    'privacy.ul11.li3': '<strong>Données de commande :</strong> 7 ans à compter de la date d\\'achat (exigence de la loi fiscale française)',\n    'privacy.ul11.li4': '<strong>Journaux techniques :</strong> Adresses IP et journaux de sécurité conservés maximum 12 mois',\n    'privacy.ul11.li5': '<strong>Analyses anonymisées :</strong> Conservées indéfiniment pour l\\'amélioration du service (ne peuvent pas être liées à toi)',\n    'privacy.p12': 'Après expiration des périodes de conservation, les données sont supprimées de manière sécurisée de tous les systèmes, y compris les sauvegardes.',\n    'privacy.h3.data_security': '5.5. Mesures de sécurité',\n    'privacy.p13': 'Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger tes données :',\n    'privacy.ul12.li1': '<strong>Chiffrement :</strong> Toutes les données transmises utilisent le chiffrement TLS/SSL. Mots de passe stockés avec hachage standard de l\\'industrie',\n    'privacy.ul12.li2': '<strong>Contrôles d\\'accès :</strong> Accès basé sur les rôles, accès limité des employés, authentification multifacteur pour les comptes admin',\n    'privacy.ul12.li3': '<strong>Audits réguliers :</strong> Évaluations de sécurité, scan de vulnérabilités et revues de code',\n    'privacy.ul12.li4': '<strong>Réponse aux incidents :</strong> Procédures documentées de notification de violation (voir Section 5.6)',\n    'privacy.h3.data_breaches': '5.6. Notification de violation de données',\n    'privacy.p14': 'Dans le cas improbable d\\'une violation de données personnelles, nous allons :',\n    'privacy.ul13.li1': '<strong>Notifier l\\'autorité de contrôle :</strong> Dans les 72 heures suivant la prise de conscience de la violation (CNIL en France)',\n    'privacy.ul13.li2': '<strong>Notifier les utilisateur·rice·s concerné·e·s :</strong> Sans délai indu si la violation présente un risque élevé pour tes droits et libertés',\n    'privacy.ul13.li3': '<strong>Fournir des informations :</strong> Nature de la violation, conséquences probables, mesures prises et actions recommandées',\n    'privacy.h3.your_rights': '6. Tes droits en vertu du RGPD',\n    'privacy.p15': 'Tu disposes des droits suivants concernant tes données personnelles. Pour exercer l\\'un de ces droits, contacte-nous à <strong>privacy@lightmyfire.app</strong>.',\n    'privacy.h4.right_access': '6.1. Droit d\\'accès (Art. 15 RGPD)',\n    'privacy.p16': 'Tu peux demander une copie de toutes les données personnelles que nous détenons sur toi. Nous te la fournirons dans un format structuré, couramment utilisé dans les 30 jours.',\n    'privacy.h4.right_rectification': '6.2. Droit de rectification (Art. 16 RGPD)',\n    'privacy.p17': 'Tu peux corriger des données inexactes ou incomplètes. Mets à jour la plupart des informations directement dans les paramètres de ton profil, ou contacte-nous pour assistance.',\n    'privacy.h4.right_erasure': '6.3. Droit à l\\'effacement - « Droit à l\\'oubli » (Art. 17 RGPD)',\n    'privacy.p18': 'Tu peux demander la suppression de tes données personnelles. Tu peux supprimer des posts individuels à tout moment depuis « Mon Profil ». Pour supprimer l\\'intégralité de ton compte et toutes les données associées, contacte-nous à privacy@lightmyfire.app. Note : Nous pouvons conserver certaines données si cela est légalement requis (par ex., historique des commandes pour des raisons fiscales).',\n    'privacy.h4.right_restriction': '6.4. Droit à la limitation du traitement (Art. 18 RGPD)',\n    'privacy.p19': 'Tu peux demander que nous limitions la façon dont nous utilisons tes données pendant que tu contestes leur exactitude ou la licéité du traitement.',\n    'privacy.h4.right_portability': '6.5. Droit à la portabilité des données (Art. 20 RGPD)',\n    'privacy.p20': 'Tu peux recevoir tes données dans un format lisible par machine (JSON/CSV) pour les transférer vers un autre service.',\n    'privacy.h4.right_object': '6.6. Droit d\\'opposition (Art. 21 RGPD)',\n    'privacy.p21': 'Tu peux t\\'opposer au traitement basé sur des intérêts légitimes. Nous cesserons le traitement sauf si nous démontrons des motifs légitimes impérieux.',\n    'privacy.h4.right_withdraw': '6.7. Droit de retirer le consentement',\n    'privacy.p22': 'Pour le traitement basé sur le consentement, tu peux le retirer à tout moment. Cela n\\'affecte pas la licéité du traitement avant le retrait.',\n    'privacy.h4.right_complain': '6.8. Droit de déposer une plainte',\n    'privacy.p23': 'Si tu estimes que nous ne respectons pas le RGPD, tu as le droit de déposer une plainte auprès d\\'une autorité de contrôle :',\n    'privacy.p24': '<strong>France (notre juridiction principale) :</strong><br>Commission Nationale de l\\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, France<br>Site web : <a href=\\'[https://www.cnil.fr](https://www.cnil.fr)\\' target=\\'\\_blank\\'>www.cnil.fr</a>',\n    'privacy.p25': 'Tu peux également contacter l\\'autorité de protection des données de ton pays de résidence.',\n    'privacy.h3.automated_decisions': '7. Décisions automatisées',\n    'privacy.p26': 'Nous utilisons un traitement automatisé limité pour :',\n    'privacy.ul14.li1': '<strong>Modération de contenu :</strong> Présélection automatisée des posts pour détecter le contenu interdit (discours de haine, images explicites). Le contenu signalé est examiné par des modérateur·rice·s humain·e·s avant toute action',\n    'privacy.ul14.li2': '<strong>Prévention du spam :</strong> Détection automatisée de modèles d\\'activité suspects (par ex., soumissions rapides de posts)',\n    'privacy.ul14.li3': '<strong>Gamification :</strong> Calcul automatisé des niveaux d\\'utilisateur·rice et de l\\'éligibilité aux trophées basé sur des métriques de contribution',\n    'privacy.p27': 'Ces processus automatisés ne produisent pas d\\'effets juridiques ni ne t\\'affectent de manière significative. Tu peux toujours nous contacter pour contester une décision ou demander un examen humain.',\n    'privacy.h3.children': '8. Confidentialité des enfants',\n    'privacy.p28': 'Notre service ne s\\'adresse pas aux enfants de moins de 16 ans (ou l\\'âge minimum requis dans ta juridiction pour consentir au traitement de données). Nous ne collectons pas sciemment de données personnelles d\\'enfants. Si tu crois que nous avons par inadvertance collecté des données d\\'un enfant, contacte-nous immédiatement à privacy@lightmyfire.app et nous les supprimerons rapidement.',\n    'privacy.h3.changes': '9. Modifications de cette politique de confidentialité',\n    'privacy.p29': 'Nous pouvons mettre à jour cette politique de confidentialité pour refléter les changements dans nos pratiques ou les exigences légales. Nous allons :',\n    'privacy.ul15.li1': 'Te notifier par e-mail des changements importants (si tu as un compte)',\n    'privacy.ul15.li2': 'Afficher un avis bien visible sur le site web',\n    'privacy.ul15.li3': 'Mettre à jour la date « Dernière mise à jour » en haut de cette politique',\n    'privacy.p30': 'L\\'utilisation continue de nos services après les modifications constitue l\\'acceptation de la politique mise à jour.',\n    'privacy.h3.contact': '10. Nous contacter',\n    'privacy.p31': 'Pour toute question sur cette politique de confidentialité ou pour exercer tes droits, contacte-nous :',\n    'privacy.ul16.li1': '<strong>Email :</strong> privacy@lightmyfire.app',\n    'privacy.ul16.li2': '<strong>Délégué à la protection des données :</strong> dpo@lightmyfire.app',\n    'privacy.ul16.li3': '<strong>Adresse postale :</strong> Revel Editions SASU, 145 Rue de Noisy-le-Sec, 93260 Les Lilas, France',\n    'privacy.p32': 'Nous visons à répondre à toutes les demandes dans les 30 jours. Si ta demande est complexe, nous pouvons prolonger ce délai de 60 jours supplémentaires et t\\'en informerons.',\n\n    'terms.last_updated': 'Dernière mise à jour : 28 octobre 2025',\n    'terms.p1': 'Ces Conditions d\\'Utilisation (« Conditions ») régissent ton accès et ton utilisation de LightMyFire (le « Service »), exploité par Revel Editions SASU, une société enregistrée en France. En créant un compte ou en utilisant notre Service, tu conclus un accord juridiquement contraignant avec nous.',\n    'terms.h3.acceptance': '1. Acceptation des conditions',\n    'terms.p2': 'En accédant ou en utilisant LightMyFire, tu acceptes d\\'être lié par ces Conditions, notre Politique de Confidentialité et toutes les lois applicables. Si tu n\\'acceptes pas une partie de ces Conditions, tu ne dois pas utiliser le Service. Ton utilisation continue constitue l\\'acceptation de toute modification que nous apportons à ces Conditions.',\n    'terms.h3.eligibility': '2. Éligibilité et exigences de compte',\n    'terms.h4.age': '2.1. Condition d\\'âge',\n    'terms.p3': 'Tu dois avoir au moins 16 ans (ou l\\'âge minimum requis dans ton pays pour fournir un consentement au traitement de données en vertu des lois applicables sur la protection de la vie privée) pour créer un compte et utiliser ce Service. En créant un compte, tu déclares et garantis que tu réponds à cette exigence d\\'âge.',\n    'terms.h4.account_security': '2.2. Sécurité du compte',\n    'terms.p4': 'Tu es responsable de :',\n    'terms.ul1.li1': 'Maintenir la confidentialité de tes identifiants de compte',\n    'terms.ul1.li2': 'Toutes les activités qui se produisent sous ton compte',\n    'terms.ul1.li3': 'Nous notifier immédiatement de toute utilisation non autorisée à : support@lightmyfire.app',\n    'terms.p5': 'Tu ne peux pas partager ton compte avec d\\'autres ni utiliser le compte d\\'une autre personne sans autorisation.',\n    'terms.h4.account_accuracy': '2.3. Informations de compte',\n    'terms.p6': 'Tu acceptes de fournir des informations exactes, actuelles et complètes lors de l\\'inscription et de les mettre à jour si nécessaire pour maintenir leur exactitude.',\n    'terms.h3.license': '3. Licence et propriété intellectuelle',\n    'terms.h4.our_license': '3.1. Licence d\\'utilisation du Service',\n    'terms.p7': 'Sous réserve de ces Conditions, nous t\\'accordons une licence limitée, non exclusive, non transférable et révocable pour accéder et utiliser LightMyFire à des fins personnelles et non commerciales.',\n    'terms.h4.our_ip': '3.2. Propriété intellectuelle de LightMyFire',\n    'terms.p8': 'Tout le contenu, les fonctionnalités et la fonctionnalité du Service—y compris, mais sans s\\'y limiter, le texte, les graphiques, les logos, les icônes, les images, les clips audio, les compilations de données, les logiciels et l\\'« apparence » du site web—sont la propriété exclusive de Revel Editions SASU et sont protégés par les lois internationales sur le droit d\\'auteur, les marques et autres propriétés intellectuelles.',\n    'terms.p9': '« LightMyFire », « LightSaver » et les logos associés sont des marques de Revel Editions SASU. Tu ne peux pas utiliser ces marques sans notre autorisation écrite préalable.',\n    'terms.h4.user_license': '3.3. Licence pour ton contenu généré par l\\'utilisateur·rice',\n    'terms.p10': 'En publiant du Contenu Généré par l\\'Utilisateur·rice (« CGU ») sur le Service, tu accordes à Revel Editions SASU une licence mondiale, non exclusive, libre de redevances, perpétuelle, transférable pour :',\n    'terms.ul2.li1': 'Utiliser, reproduire, distribuer, modifier, adapter, exécuter publiquement et afficher publiquement ton CGU',\n    'terms.ul2.li2': 'Incorporer ton CGU dans d\\'autres œuvres dans n\\'importe quel format ou support',\n    'terms.ul2.li3': 'Sous-licencier ces droits à des tiers uniquement pour l\\'exploitation et la promotion de LightMyFire',\n    'terms.p11': '<strong>Important :</strong> Cette licence est limitée à l\\'exploitation et à la promotion du Service. Nous n\\'utiliserons pas ton contenu à des fins commerciales non liées. Tu conserves la propriété de ton CGU et peux révoquer cette licence pour des posts spécifiques en les supprimant de ton profil. Cependant, des copies peuvent persister dans les sauvegardes pendant jusqu\\'à 30 jours.',\n    'terms.h3.ugc': '4. Contenu généré par l\\'utilisateur·rice et conduite',\n    'terms.h4.ugc_responsibility': '4.1. Ta responsabilité',\n    'terms.p12': 'Tu es seul·e responsable de tout le contenu que tu publies sur LightMyFire, y compris le texte, les images, les liens vers des chansons (URL YouTube) et les données de localisation. Tu déclares et garantis que :',\n    'terms.ul3.li1': 'Tu possèdes ou as les droits nécessaires pour publier le contenu',\n    'terms.ul3.li2': 'Ton contenu ne viole aucun droit de propriété intellectuelle, de confidentialité ou autre droit d\\'un tiers',\n    'terms.ul3.li3': 'Ton contenu est conforme à ces Conditions et aux lois applicables',\n    'terms.h4.prohibited_content': '4.2. Contenu interdit',\n    'terms.p13': 'Tu ne dois pas publier de contenu qui :',\n    'terms.ul4.li1': '<strong>Illégal :</strong> Viole toute loi locale, nationale ou internationale',\n    'terms.ul4.li2': '<strong>Nuisible aux mineurs :</strong> Exploite, sexualise ou met en danger les enfants de quelque manière que ce soit',\n    'terms.ul4.li3': '<strong>Haineux :</strong> Promeut la haine, la discrimination ou la violence contre des individus ou des groupes sur la base de la race, de l\\'ethnicité, de la religion, du sexe, de l\\'orientation sexuelle, du handicap ou d\\'autres caractéristiques protégées',\n    'terms.ul4.li4': '<strong>Violent ou menaçant :</strong> Dépeint, encourage ou menace de violence, d\\'automutilation ou de préjudice à autrui',\n    'terms.ul4.li5': '<strong>Harcelant :</strong> Intimide, harcèle, traque ou intimide les autres',\n    'terms.ul4.li6': '<strong>Sexuellement explicite :</strong> Contient de la pornographie ou du matériel sexuellement explicite',\n    'terms.ul4.li7': '<strong>Trompeur :</strong> Contient des informations fausses, trompeuses ou frauduleuses',"
+      },
+      {
+        "role": "assistant",
+        "content": "Let me continue looking for translation issues in the FAQ section:\n\n",
+        "tool_calls": [
+          {
+            "id": "call_956fead0369540c1968289c8",
+            "type": "function",
+            "function": {
+              "name": "read_file",
+              "arguments": "{\"absolute_path\":\"/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/locales/fr.ts\",\"offset\":450,\"limit\":100}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_956fead0369540c1968289c8",
+        "content": "Showing lines 451-550 of 1492 total lines.\n\n---\n\n    'terms.ul13.li2': 'Tu perds l\\'accès à toutes les fonctionnalités du compte',\n    'terms.ul13.li3': 'Tes posts restent visibles sur les pages de briquets (ils font partie de l\\'histoire de ces briquets)',\n    'terms.ul13.li4': 'Pour supprimer tes posts avant la résiliation du compte, fais-le manuellement depuis ton profil',\n    'terms.h4.by_us': '10.2. Résiliation par nous',\n    'terms.p35': 'Nous pouvons suspendre ou résilier ton compte immédiatement, sans préavis, pour :',\n    'terms.ul14.li1': 'Violation de ces Conditions',\n    'terms.ul14.li2': 'Activité frauduleuse, abusive ou illégale',\n    'terms.ul14.li3': 'Inactivité prolongée (comptes inactifs depuis 3+ ans)',\n    'terms.ul14.li4': 'À notre seule discrétion si nécessaire pour protéger le Service ou d\\'autres utilisateurs',\n    'terms.h4.effect': '10.3. Effet de la résiliation',\n    'terms.p36': 'Lors de la résiliation pour quelque raison que ce soit :',\n    'terms.ul15.li1': 'Ton droit d\\'utiliser le Service cesse immédiatement',\n    'terms.ul15.li2': 'Les sections qui, par leur nature, devraient survivre à la résiliation restent en vigueur (y compris Propriété Intellectuelle, Exclusions de Responsabilité, Limitation de Responsabilité, Indemnisation, Résolution des Litiges)',\n    'terms.ul15.li3': 'Nous pouvons conserver certaines données comme requis par la loi ou pour des fins commerciales légitimes',\n    'terms.h3.general': '11. Dispositions générales',\n    'terms.h4.entire_agreement': '11.1. Accord complet',\n    'terms.p37': 'Ces Conditions, ainsi que notre Politique de Confidentialité, constituent l\\'accord complet entre toi et Revel Editions SASU concernant le Service et remplacent tous les accords antérieurs.',\n    'terms.h4.modifications': '11.2. Modifications des Conditions',\n    'terms.p38': 'Nous nous réservons le droit de modifier ces Conditions à tout moment. Lorsque nous apportons des modifications :',\n    'terms.ul16.li1': 'Nous mettrons à jour la date « Dernière mise à jour »',\n    'terms.ul16.li2': 'Pour les changements importants, nous te notifierons par e-mail ou par avis bien visible sur le Service',\n    'terms.ul16.li3': 'Ton utilisation continue après les modifications constitue l\\'acceptation',\n    'terms.p39': 'Si tu n\\'acceptes pas les Conditions modifiées, tu dois cesser d\\'utiliser le Service.',\n    'terms.h4.severability': '11.3. Divisibilité',\n    'terms.p40': 'Si une disposition de ces Conditions est jugée invalide ou inapplicable, cette disposition sera appliquée dans la mesure maximale possible, et les dispositions restantes resteront pleinement en vigueur.',\n    'terms.h4.waiver': '11.4. Pas de renonciation',\n    'terms.p41': 'Notre défaut d\\'exercer tout droit ou disposition de ces Conditions ne constitue pas une renonciation à ce droit ou à cette disposition.',\n    'terms.h4.assignment': '11.5. Cession',\n    'terms.p42': 'Tu ne peux pas céder ou transférer ces Conditions ou ton compte sans notre consentement écrit. Nous pouvons céder nos droits et obligations sans restriction.',\n    'terms.h4.third_party': '11.6. Pas de bénéficiaires tiers',\n    'terms.p43': 'Ces Conditions ne créent aucun droit pour des bénéficiaires tiers sauf indication expresse.',\n    'terms.h3.contact_terms': '12. Informations de contact',\n    'terms.p44': 'Pour des questions sur ces Conditions, contacte-nous :',\n    'terms.ul17.li1': '<strong>Email :</strong> legal@lightmyfire.app',\n    'terms.ul17.li2': '<strong>Support :</strong> support@lightmyfire.app',\n    'terms.ul17.li3': '<strong>Adresse :</strong> Revel Editions SASU, Cs 20008 145 Rue de Noisy-le-Sec 93260 Les Lilas, France',\n\n    'how_it_works_details.title': 'Comment ça marche : de l\\'étincelle à l\\'histoire mondiale',\n    'how_it_works_details.step1.title': '1. Sauve',\n    'how_it_works_details.step1.desc': 'Donne un nom à ton briquet, et ouvre son carnet de voyage numérique grâce à ton Kit de LightSaver.',\n    'how_it_works_details.step2.title': '2. Partage',\n    'how_it_works_details.step2.desc': 'Colle-le et laisse faire le destin.',\n    'how_it_works_details.step3.title': '3. Ajoute ta première histoire',\n    'how_it_works_details.step3.desc': 'Visite sa page web permanente. Ajoute le premier post—une photo, vidéo, chanson ou histoire. C\\'est l\\'acte de naissance de ton briquet.',\n    'how_it_works_details.step4.title': '4. Regarde l\\'histoire grandir',\n    'how_it_works_details.step4.desc': 'Chaque nouvelle personne qui le trouve peut scanner et ajouter son propre post. Tu ne partages pas qu\\'une flamme : tu co-écris une mémoire mondiale.',\n    'how_it_works_details.step5.title': '5. Sois un·e bon·ne membre de la communauté',\n    'how_it_works_details.step5.desc': 'Notre communauté prospère sur le respect et la créativité. Si tu vois un post qui viole nos <strong>règles</strong> (spam, contenu haineux, etc.), utilise le bouton Signaler. Notre équipe de modération garde la plateforme sûre.',\n    'how_it_works_details.step6.title': '6. Collectionne tes trophées',\n    'how_it_works_details.step6.desc': 'Débloque des réalisations en participant ! Ajoute ton premier post pour le trophée « Première étincelle ». Regarde ton briquet voyager vers un nouveau pays pour le trophée « Globe-trotter ». Consulte ton profil pour voir ta <strong>collection de trophées</strong> !',\n\n    'faq.q1.title': 'Qu\\'est-ce que LightMyFire ?',\n    'faq.q1.desc': 'Un projet pour réduire les déchets et créer une mosaïque humaine mondiale. Nous créons des stickers QR code pour briquets. Quiconque trouve ce briquet peut scanner le code, entrer son PIN et ajouter une histoire, photo ou chanson à son voyage numérique.',\n    'faq.q2.title': 'Comment ajouter une histoire ?',\n    'faq.q2.desc': 'Trouve un briquet avec un sticker LightMyFire. Scanne le QR code (ou visite notre site) et entre le PIN du sticker. Tu auras besoin d\\'un compte gratuit pour contribuer.',\n    'faq.q3.title': 'Pourquoi ne puis-je pas poster deux fois de suite ?',\n    'faq.q3.desc': 'Pour garder la mosaïque diverse, il y a un délai de 24 heures par briquet. Ça encourage à le passer pour que quelqu\\'un d\\'autre puisse ajouter son histoire.',\n    'faq.q4.title': 'Mon post est-il public ?',\n    'faq.q4.desc': 'Tu choisis ! Tous les posts apparaissent sur la page du briquet (nécessite le PIN pour y accéder). Lors de la publication, coche une case pour le rendre « public »—mis en avant sur la mosaïque de la page d\\'accueil.',\n    'faq.q5.title': 'Comment supprimer un post que j\\'ai fait ?',\n    'faq.q5.desc': 'Connecte-toi, va dans Mon Profil, et tu verras tous tes posts avec des boutons supprimer. Tu as le contrôle complet.',\n    'faq.q6.title': 'Que se passe-t-il si je perds le briquet que j\\'ai sauvé ?',\n    'faq.q6.desc': 'Ça fait partie de l\\'aventure ! En tant que LightSaver (personne qui a acheté le sticker), tu peux toujours voir la page de ton briquet depuis Mon Profil. Regarde son voyage longtemps après qu\\'il ait quitté tes mains.',\n    'faq.q7.title': 'Comment fonctionne la carte ?',\n    'faq.q7.desc': 'Chaque page de briquet a une carte montrant son voyage. Chaque post de localisation ajoute des coordonnées à la carte, traçant le chemin du briquet à travers le globe.',\n    'faq.subtitle': 'Trouve des réponses aux questions fréquentes sur LightMyFire',\n    'faq.what_is.question': 'Qu\\'est-ce que LightMyFire ?',\n    'faq.what_is.answer': 'Un projet pour réduire les déchets et créer une mosaïque humaine mondiale. Nous vendons des stickers QR code pour briquets. Quiconque trouve ce briquet peut scanner le code, entrer le PIN et ajouter une histoire, photo ou chanson à son voyage numérique—connectant les gens mondialement et donnant aux briquets une seconde vie.',\n    'faq.how_add_story.question': 'Comment ajouter une histoire à un briquet ?',\n    'faq.how_add_story.answer': 'Trouve un briquet avec un sticker LightMyFire. Scanne le QR code ou visite notre site et entre le PIN. Tu auras besoin d\\'un compte gratuit pour contribuer. Une fois connecté, ajoute du texte, télécharge des images, partage des chansons ou enregistre où tu l\\'as trouvé.',\n    'faq.save_lighter.question': 'Comment sauver et personnaliser mon propre briquet ?',\n    'faq.save_lighter.answer': 'Visite Sauver un Briquet. Donne-lui un nom et choisis un design de sticker (couleur, langue, etc.), puis commande tes stickers personnalisés. Cela crée une identité numérique unique que tu peux suivre et partager.',\n    'faq.post_twice.question': 'Pourquoi ne puis-je pas poster deux fois de suite ?',\n    'faq.post_twice.answer': 'Pour garder la mosaïque diverse et encourager à passer le briquet, il y a un délai de 24 heures par briquet. Cela garantit que plusieurs personnes contribuent plutôt qu\\'une personne ne domine. Il s\\'agit de créer une mosaïque diverse et mondiale.',\n    'faq.public_post.question': 'Mon post est-il public ?',\n    'faq.public_post.answer': 'Tu contrôles ça ! Tous les posts apparaissent sur la page privée du briquet (nécessite le PIN). Lors de la publication, coche une case pour le rendre « public »—mis en avant sur la mosaïque de la page d\\'accueil pour que tout le monde le voie.',\n    'faq.delete_post.question': 'Comment supprimer un post que j\\'ai fait ?',\n    'faq.delete_post.answer': 'Connecte-toi et va dans Mon Profil. Tu verras tous tes posts avec des boutons supprimer. Supprime n\\'importe quel post à tout moment—tu as le contrôle complet.',\n    'faq.lose_lighter.question': 'Que se passe-t-il si je perds le briquet que j\\'ai sauvé ?',\n    'faq.lose_lighter.answer': 'Ça fait partie de l\\'aventure ! En tant que LightSaver, tu peux toujours voir la page de ton briquet depuis Mon Profil. Regarde où il va, qui le trouve et quelles histoires il collecte longtemps après qu\\'il ait quitté tes mains.',\n    'faq.map_works.question': 'Comment fonctionne la fonction carte ?',\n    'faq.map_works.answer': 'Chaque page de briquet a une carte montrant son voyage. Chaque post de localisation ajoute des coordonnées, traçant le chemin à travers le globe—une représentation visuelle de jusqu\\'où ton briquet voyage !',\n    'faq.trophies.question': 'Que sont les trophées et comment les gagner ?',\n    'faq.trophies.answer': 'Les trophées sont des réalisations reconnaissant tes contributions. Gagne-les en sauvant des briquets, ajoutant des histoires, créant du contenu original, voyageant vers de nouveaux endroits, et plus encore. Consulte ton profil pour voir lesquels tu as débloqués et ce qu\\'il reste à accomplir !',\n    'faq.harmful_content.question': 'Que se passe-t-il si je poste du contenu nuisible ?',\n    'faq.harmful_content.answer': 'Nous avons une modération de contenu pour garder la communauté sûre et respectueuse. Les posts avec discours de haine, harcèlement, violence ou contenu nuisible sont examinés. Selon la gravité, le contenu peut être supprimé, tu peux recevoir un avertissement ou ton compte peut être suspendu.',\n    'faq.buy_stickers.question': 'Comment acheter des packs de stickers ?',\n    'faq.buy_stickers.answer': 'Après avoir conçu ton briquet et personnalisé ton sticker, achète des packs directement via notre plateforme. Nous proposons des packs de 10, 20 ou 50 stickers. Finalise ton achat via paiement Stripe sécurisé. Les stickers sont imprimés professionnellement et expédiés avec suivi.',\n    'faq.sticker_design.question': 'Puis-je personnaliser le design de mon sticker ?',\n    'faq.sticker_design.answer': 'Absolument ! Lors de la sauvegarde de ton briquet, personnalise entièrement tes stickers. Choisis la couleur de fond, sélectionne la langue pour le texte d\\'invitation, et personnalise le nom et le PIN de ton briquet. Vois un aperçu en direct avant de commander.',\n    'faq.environment.question': 'En quoi LightMyFire est-il écologique ?',\n    'faq.environment.answer': 'Notre mission est de réduire les déchets de briquets. Au lieu de jeter les vieux briquets (150+ ans pour se décomposer), nous leur donnons une seconde vie à travers la narration. Chaque briquet sauvé et transmis évite qu\\'un objet finisse aux décharges. De plus, nous encourageons le rechargement—consulte notre Guide de Recharge !',\n    'faq.languages.question': 'Quelles langues LightMyFire supporte-t-il ?',\n    'faq.languages.answer': 'LightMyFire supporte 27 langues dont l\\'anglais, le français, l\\'espagnol, l\\'allemand, l\\'italien, le portugais, le néerlandais, le russe, le polonais, le japonais, le coréen, le chinois, le thaï, le vietnamien, l\\'hindi, l\\'arabe, le farsi, l\\'ourdou, le marathi, le télougou, l\\'indonésien, l\\'ukrainien et le turc. Change de langue à tout moment en utilisant le sélecteur dans l\\'en-tête.',\n    'faq.levels.question': 'Qu\\'est-ce que le système de niveaux ?',\n    'faq.levels.answer': 'Le système de niveaux gamifie tes contributions. Gagne des points en sauvant des briquets, ajoutant des posts, gagnant des j\\'aime et créant du contenu original. À mesure que les points s\\'accumulent, le niveau de ton profil augmente de 1 à 100. Les niveaux plus élevés montrent ton dévouement !',\n    'faq.contact_footer': 'Tu ne trouves pas ta réponse ?',\n    'faq.contact_link': 'Contacte-nous',\n\n    'philosophy.title': 'Notre philosophie',"
+      },
+      {
+        "role": "assistant",
+        "content": "Let me look for more FAQ related entries and check for the button name issues:\n\n",
+        "tool_calls": [
+          {
+            "id": "call_ae7aad2bc7d54238925b2ae4",
+            "type": "function",
+            "function": {
+              "name": "read_file",
+              "arguments": "{\"absolute_path\":\"/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/locales/fr.ts\",\"offset\":550,\"limit\":100}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_ae7aad2bc7d54238925b2ae4",
+        "content": "Showing lines 551-650 of 1492 total lines.\n\n---\n\n    'philosophy.lead': 'Nous croyons que même le plus petit objet jetable peut porter une grande histoire.',\n    'philosophy.p1': '<strong>LightMyFire</strong> est né d\\'une idée simple : et si nous arrêtions de traiter les briquets comme des objets jetables ? <strong>Avec des milliards d\\'entre eux jetés chaque année,</strong> et si nous les voyions comme des compagnons—de petits vaisseaux pour nos souvenirs, idées et créativité ?',\n    'philosophy.p2': 'Le briquet quotidien est <strong>un puissant catalyseur social.</strong> Il n\\'appartient à personne en particulier ; il appartient à tout le monde. Passant de main en main, d\\'un ami à un étranger, lors de fêtes, concerts, rencontres tranquilles. Il entend nos secrets et éclaire notre chemin. <strong>C\\'est le témoin silencieux de grandes conversations, l\\'étincelle de nouvelles amitiés. Mais son histoire est éphémère, perdue dès qu\\'il est transmis.</strong>',\n    'philosophy.p3': 'En donnant à un briquet une histoire numérique permanente, nous lui donnons une valeur sentimentale. <strong>Ton briquet devient un artefact vivant, un message dans une bouteille.</strong> Et quand quelque chose a de la valeur, nous hésitons à le jeter.',\n    'philosophy.p4': 'Notre objectif est simple : créer une mosaïque mondiale de créativité humaine, un briquet à la fois, tout en réduisant les déchets. <strong>C\\'est notre position contre la culture du jetable. Une expérience d\\'art collaboratif. Une façon de prouver que si tu donnes une histoire à un objet, tu lui donnes une âme.</strong>',\n    'philosophy.image_alt': 'Mosaïque mondiale de créativité',\n    'philosophy.button.hide': 'Masquer',\n    'philosophy.button.learn_more': 'En savoir plus',\n    'philosophy.cta': 'Rejoins-nous pour donner une seconde vie aux briquets, une histoire à la fois.',\n\n    'refill_guide.title': 'Ne me jette pas',\n    'refill_guide.subtitle': 'Chaque briquet que tu sauves est une petite victoire contre le gaspillage et un pas vers un avenir durable.',\n    'refill_guide.hero_title': 'Ne me jette pas : Le guide LightMyFire pour une longue vie',\n    'refill_guide.hero_intro': 'Chaque année, <strong>des milliards</strong> de briquets jetables finissent dans les décharges ou dans la nature<sup class=\"citation\">[1]</sup>. Les principaux fabricants ont vendu plus de 2,5 milliards d\\'unités en 2023. Ces objets—faits de plastiques et métaux non recyclables—mettent des siècles à se décomposer et risquent de contaminer le sol et l\\'eau.',\n    'refill_guide.hero_social': 'Le briquet n\\'est pas qu\\'un outil ; c\\'est un objet social. En choisissant le rechargeable, tu ne réduis pas seulement les déchets—tu crées un compagnon durable pour tes histoires.',\n    'refill_guide.section1_title': 'Comment reconnaître un briquet rechargeable (en 5 secondes)',\n    'refill_guide.section1_intro': 'C\\'est simple ! Le secret est presque toujours en dessous.',\n    'refill_guide.section1_type1_title': 'Briquets à butane (les plus courants)',\n    'refill_guide.section1_type1.desc': 'Retourne-le. Tu vois une petite valve métallique ronde au centre, comme une valve de pneu ? <strong>C\\'est un port de recharge !</strong> Félicitations, ton briquet est rechargeable.',\n    'refill_guide.section1_type1_alt': 'Gros plan d\\'une valve de recharge de briquet à butane',\n    'refill_guide.section1_type2_title': 'Briquets à essence (style métal rechargeable)',\n    'refill_guide.section1_type2_desc': 'Généralement des briquets métalliques iconiques. Si tu peux retirer tout le bloc interne (cheminée) du boîtier, il est rechargeable. Tu trouveras du coton à l\\'intérieur pour absorber l\\'essence.',\n    'refill_guide.section1_type2_alt': 'Intérieur d\\'un briquet métal rechargeable montrant le coton',\n    'refill_guide.section1_type3_title': 'Briquets jetables',\n    'refill_guide.section1_type3_desc': 'Retourne-le. Le fond est-il juste du plastique plat et scellé ? C\\'est à usage unique.',\n    'refill_guide.section1_type3_alt': 'Fond d\\'un briquet jetable',\n    'refill_guide.section2_title': 'Comment recharger ton briquet',\n    'refill_guide.section2_type1_title': 'Type 1 : Briquets à butane (avec valve)',\n    'refill_guide.section2_type1_step1_title': 'Ce dont tu as besoin :',\n    'refill_guide.section2_type1_step1_desc': 'Une cartouche de gaz butane pour briquets',\n    'refill_guide.section2_type1_step2_title': 'Où le trouver (en Europe) :',\n    'refill_guide.section2_type1_step2_desc': 'Facile ! Presque tous les <strong>bureaux de tabac</strong> en vendent. Aussi disponible dans la plupart des supermarchés, épiceries ou quincailleries.',\n    'refill_guide.section2_type1_step3_title': 'La méthode :',\n    'refill_guide.section2_type1_step3_li1': 'Tiens le briquet <strong>à l\\'envers</strong> (valve vers le haut)',\n    'refill_guide.section2_type1_step3_li2': 'Appuie fermement l\\'embout de la cartouche de gaz sur la valve',\n    'refill_guide.section2_type1_step3_li3': 'Maintiens pendant 3-5 secondes—tu entendras un sifflement',\n    'refill_guide.section2_type1_step3_li4': 'Répète en 2-3 courtes pressions jusqu\\'à ce qu\\'il soit plein',\n    'refill_guide.section2_type1_step3_li5': 'Attends une minute ou deux avant d\\'allumer',\n    'refill_guide.section2_type1_alt': 'Une personne recharge un briquet à butane avec une cartouche de gaz',\n    'refill_guide.section2_type2_title': 'Type 2 : Briquets à essence (avec coton)',\n    'refill_guide.section2_type2_step1_title': 'Ce dont tu as besoin :',\n    'refill_guide.section2_type2_step1_desc': 'Une bouteille d\\'essence à briquet (essence à base de naphta pour briquets métal)',\n    'refill_guide.section2_type2_step2_title': 'Où le trouver :',\n    'refill_guide.section2_type2_step2_desc': 'Tous les <strong>bureaux de tabac</strong> et la plupart des supermarchés',\n    'refill_guide.section2_type2_step3_title': 'La méthode :',\n    'refill_guide.section2_type2_step3_li1': 'Retire l\\'insert métallique du boîtier',\n    'refill_guide.section2_type2_step3_li2': 'Soulève le petit coussinet de feutre au fond',\n    'refill_guide.section2_type2_step3_li3': 'Verse lentement l\\'essence sur le coton en dessous',\n    'refill_guide.section2_type2_step3_li4': 'Arrête quand le coton semble saturé (ne remplis pas trop)',\n    'refill_guide.section2_type2_step3_li5': 'Remets l\\'insert dans le boîtier et attends quelques secondes',\n    'refill_guide.section2_type2_alt': 'Une personne verse de l\\'essence à briquet sur le coton',\n    'refill_guide.pro_tip_butane': 'Porte toujours des lunettes de sécurité lors du rechargement. Si tu sens de la résistance, ne force pas—attends quelques secondes et réessaie.',\n    'refill_guide.important_gasoline': 'Ne remplis jamais trop les briquets à essence. Laisse le briquet sécher 24 heures après le rechargement avant utilisation.',\n    'refill_guide.stats.lighters_sold': 'Briquets jetables vendus par an',\n    'refill_guide.stats.lighters_sold_worldwide': 'Dans le monde',\n    'refill_guide.stats.years_decompose': 'Années pour se décomposer',\n    'refill_guide.stats.years_decompose_location': 'Dans les décharges',\n    'refill_guide.stats.waste_reduction': 'Réduction des déchets',\n    'refill_guide.stats.waste_reduction_method': 'Avec des briquets rechargeables',\n    'refill_guide.key_indicators': 'Indicateurs clés :',\n    'refill_guide.type1.indicator1': 'Petite valve métallique ronde sur le fond',\n    'refill_guide.type1.indicator2': 'Similaire à une valve de pneu',\n    'refill_guide.type1.indicator3': 'Type le plus courant',\n    'refill_guide.type2.indicator1': 'Briquet métal (souvent design iconique)',\n    'refill_guide.type2.indicator2': 'Le bloc interne se retire',\n    'refill_guide.type2.indicator3': 'Coton visible à l\\'intérieur',\n    'refill_guide.type3.indicator1': 'Fond en plastique plat et scellé',\n    'refill_guide.type3.indicator2': 'Pas de valve ou de pièces amovibles',\n    'refill_guide.type3.indicator3': 'Usage unique seulement',\n    'refill_guide.why_it_matters.title': 'Pourquoi c\\'est important',\n    'refill_guide.why_it_matters.environmental.title': 'Impact environnemental',\n    'refill_guide.why_it_matters.environmental.description': 'Un briquet rechargeable remplace 50+ jetables au cours de sa vie. C\\'est 50+ briquets en moins dans les décharges par personne.',\n    'refill_guide.why_it_matters.cost.title': 'Économies',\n    'refill_guide.why_it_matters.cost.description': 'Un briquet rechargeable de qualité coûte 5-20 € mais dure des années. Les jetables coûtent 1-2 € chacun. Les rechargeables se rentabilisent en quelques mois.',\n    'refill_guide.why_it_matters.reliability.title': 'Fiabilité',\n    'refill_guide.why_it_matters.reliability.description': 'Les briquets rechargeables durent des décennies. Ils sont plus fiables par temps froid et conditions difficiles que les jetables bon marché.',\n    'refill_guide.why_it_matters.mission.title': 'Notre mission',\n    'refill_guide.why_it_matters.mission.description': 'Chaque briquet que tu sauves avec LightMyFire obtient une histoire. Donne-lui un nom—il devient plus qu\\'un objet, il devient un compagnon.',\n    'refill_guide.cta.title': 'Prêt à sauver ton premier briquet ?',\n    'refill_guide.cta.description': 'Choisis un briquet rechargeable, donne-lui un nom et commence son voyage avec LightMyFire.',\n    'refill_guide.citations.title': 'Sources & Références',\n    'refill_guide.citations.1.text': 'Données sur la production mondiale de briquets et l\\'impact environnemental',\n    'refill_guide.citations.1.source': 'Forum Économique Mondial - Statistiques sur les déchets plastiques (2023)',\n    'refill_guide.citations.1.url': '[https://www.weforum.org/agenda/2023/plastic-waste/](https://www.weforum.org/agenda/2023/plastic-waste/)',\n\n    'save_lighter.title': 'Deviens un·e LightSaver',\n    'save_lighter.introduction': 'Achète des packs de stickers pour sauver des briquets et partager leurs histoires avec le monde. Chaque sticker a un PIN unique lié au voyage d\\'un briquet.',\n    'save_lighter.pack_5.title': '5 stickers',\n    'save_lighter.pack_5.price': '4,99 €',\n    'save_lighter.pack_5.description': 'Parfait pour commencer ton voyage de LightSaver',\n    'save_lighter.pack_10.title': '10 stickers',\n    'save_lighter.pack_10.price': '8,99 €',\n    'save_lighter.pack_10.description': 'Double ton impact et sauve plus de briquets',\n    'save_lighter.pack_50.title': '50 stickers',\n    'save_lighter.pack_50.price': '39,99 €',\n    'save_lighter.pack_50.description': 'Deviens un Super LightSaver ! Fais une énorme différence',\n    'save_lighter.buy_button': 'Acheter maintenant',\n    'save_lighter.payment_details_title': 'Détails de paiement',\n    'save_lighter.payment_details_placeholder': 'L\\'intégration Stripe ira ici.',\n    'save_lighter.form_title': 'Sauver un briquet',"
+      },
+      {
+        "role": "assistant",
+        "content": "Let me look for the specific issues mentioned like the FAQ button problem:\n\n",
+        "tool_calls": [
+          {
+            "id": "call_1a409c3181e24a13bde8b7d1",
+            "type": "function",
+            "function": {
+              "name": "grep_search",
+              "arguments": "{\"pattern\":\"Questions fréquentes\",\"path\":\"/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/locales\"}"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "call_1a409c3181e24a13bde8b7d1",
+        "content": [
+          {
+            "type": "text",
+            "text": "Found 2 matches for pattern \"Questions fréquentes\" in path \"/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/locales\":\n---\n/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/locales/fr.ts:196:    'legal.faq.title': 'Questions fréquentes',\n/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/locales/fr.ts:516:    'faq.subtitle': 'Trouve des réponses aux questions fréquentes sur LightMyFire',",
+            "cache_control": {
+              "type": "ephemeral"
+            }
+          }
+        ]
+      }
+    ],
+    "temperature": 0,
+    "top_p": 1,
+    "stream": true,
+    "stream_options": {
+      "include_usage": true
+    },
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "task",
+          "description": "Delegate tasks to specialized subagents. Loading available subagents...",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string",
+                "description": "A short (3-5 word) description of the task"
+              },
+              "prompt": {
+                "type": "string",
+                "description": "The task for the agent to perform"
+              },
+              "subagent_type": {
+                "type": "string",
+                "description": "The type of specialized agent to use for this task",
+                "enum": [
+                  "general-purpose"
+                ]
+              }
+            },
+            "required": [
+              "description",
+              "prompt",
+              "subagent_type"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "list_directory",
+          "description": "Lists the names of files and subdirectories directly within a specified directory path. Can optionally ignore entries matching provided glob patterns.",
+          "parameters": {
+            "properties": {
+              "path": {
+                "description": "The absolute path to the directory to list (must be absolute, not relative)",
+                "type": "string"
+              },
+              "ignore": {
+                "description": "List of glob patterns to ignore",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "file_filtering_options": {
+                "description": "Optional: Whether to respect ignore patterns from .gitignore or .qwenignore",
+                "type": "object",
+                "properties": {
+                  "respect_git_ignore": {
+                    "description": "Optional: Whether to respect .gitignore patterns when listing files. Only available in git repositories. Defaults to true.",
+                    "type": "boolean"
+                  },
+                  "respect_qwen_ignore": {
+                    "description": "Optional: Whether to respect .qwenignore patterns when listing files. Defaults to true.",
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "required": [
+              "path"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "read_file",
+          "description": "Reads and returns the content of a specified file. If the file is large, the content will be truncated. The tool's response will clearly indicate if truncation has occurred and will provide details on how to read more of the file using the 'offset' and 'limit' parameters. Handles text, images (PNG, JPG, GIF, WEBP, SVG, BMP), and PDF files. For text files, it can read specific line ranges.",
+          "parameters": {
+            "properties": {
+              "absolute_path": {
+                "description": "The absolute path to the file to read (e.g., '/home/user/project/file.txt'). Relative paths are not supported. You must provide an absolute path.",
+                "type": "string"
+              },
+              "offset": {
+                "description": "Optional: For text files, the 0-based line number to start reading from. Requires 'limit' to be set. Use for paginating through large files.",
+                "type": "number"
+              },
+              "limit": {
+                "description": "Optional: For text files, maximum number of lines to read. Use with 'offset' to paginate through large files. If omitted, reads the entire file (if feasible, up to a default limit).",
+                "type": "number"
+              }
+            },
+            "required": [
+              "absolute_path"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "grep_search",
+          "description": "A powerful search tool built on ripgrep\n\n  Usage:\n  - ALWAYS use Grep for search tasks. NEVER invoke `grep` or `rg` as a Bash command. The Grep tool has been optimized for correct permissions and access.\n  - Supports full regex syntax (e.g., \"log.*Error\", \"function\\s+\\w+\")\n  - Filter files with glob parameter (e.g., \"*.js\", \"**/*.tsx\")\n  - Use Task tool for open-ended searches requiring multiple rounds\n  - Pattern syntax: Uses ripgrep (not grep) - special regex characters need escaping (use `interface\\{\\}` to find `interface{}` in Go code)\n",
+          "parameters": {
+            "properties": {
+              "pattern": {
+                "type": "string",
+                "description": "The regular expression pattern to search for in file contents"
+              },
+              "glob": {
+                "type": "string",
+                "description": "Glob pattern to filter files (e.g. \"*.js\", \"*.{ts,tsx}\") - maps to rg --glob"
+              },
+              "path": {
+                "type": "string",
+                "description": "File or directory to search in (rg PATH). Defaults to current working directory."
+              },
+              "limit": {
+                "type": "number",
+                "description": "Limit output to first N lines/entries. Optional - shows all matches if not specified."
+              }
+            },
+            "required": [
+              "pattern"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "glob",
+          "description": "Fast file pattern matching tool that works with any codebase size\n- Supports glob patterns like \"**/*.js\" or \"src/**/*.ts\"\n- Returns matching file paths sorted by modification time\n- Use this tool when you need to find files by name patterns\n- When you are doing an open ended search that may require multiple rounds of globbing and grepping, use the Agent tool instead\n- You have the capability to call multiple tools in a single response. It is always better to speculatively perform multiple searches as a batch that are potentially useful.",
+          "parameters": {
+            "properties": {
+              "pattern": {
+                "description": "The glob pattern to match files against",
+                "type": "string"
+              },
+              "path": {
+                "description": "The directory to search in. If not specified, the current working directory will be used. IMPORTANT: Omit this field to use the default directory. DO NOT enter \"undefined\" or \"null\" - simply omit it for the default behavior. Must be a valid directory path if provided.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "pattern"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "edit",
+          "description": "Replaces text within a file. By default, replaces a single occurrence. Set `replace_all` to true when you intend to modify every instance of `old_string`. This tool requires providing significant context around the change to ensure precise targeting. Always use the read_file tool to examine the file's current content before attempting a text replacement.\n\n      The user has the ability to modify the `new_string` content. If modified, this will be stated in the response.\n\nExpectation for required parameters:\n1. `file_path` MUST be an absolute path; otherwise an error will be thrown.\n2. `old_string` MUST be the exact literal text to replace (including all whitespace, indentation, newlines, and surrounding code etc.).\n3. `new_string` MUST be the exact literal text to replace `old_string` with (also including all whitespace, indentation, newlines, and surrounding code etc.). Ensure the resulting code is correct and idiomatic.\n4. NEVER escape `old_string` or `new_string`, that would break the exact literal text requirement.\n**Important:** If ANY of the above are not satisfied, the tool will fail. CRITICAL for `old_string`: Must uniquely identify the single instance to change. Include at least 3 lines of context BEFORE and AFTER the target text, matching whitespace and indentation precisely. If this string matches multiple locations, or does not match exactly, the tool will fail.\n**Multiple replacements:** Set `replace_all` to true when you want to replace every occurrence that matches `old_string`.",
+          "parameters": {
+            "properties": {
+              "file_path": {
+                "description": "The absolute path to the file to modify. Must start with '/'.",
+                "type": "string"
+              },
+              "old_string": {
+                "description": "The exact literal text to replace, preferably unescaped. For single replacements (default), include at least 3 lines of context BEFORE and AFTER the target text, matching whitespace and indentation precisely. If this string is not the exact literal text (i.e. you escaped it) or does not match exactly, the tool will fail.",
+                "type": "string"
+              },
+              "new_string": {
+                "description": "The exact literal text to replace `old_string` with, preferably unescaped. Provide the EXACT text. Ensure the resulting code is correct and idiomatic.",
+                "type": "string"
+              },
+              "replace_all": {
+                "type": "boolean",
+                "description": "Replace all occurrences of old_string (default false)."
+              }
+            },
+            "required": [
+              "file_path",
+              "old_string",
+              "new_string"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "write_file",
+          "description": "Writes content to a specified file in the local filesystem.\n\n      The user has the ability to modify `content`. If modified, this will be stated in the response.",
+          "parameters": {
+            "properties": {
+              "file_path": {
+                "description": "The absolute path to the file to write to (e.g., '/home/user/project/file.txt'). Relative paths are not supported.",
+                "type": "string"
+              },
+              "content": {
+                "description": "The content to write to the file.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "file_path",
+              "content"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "read_many_files",
+          "description": "Reads content from multiple files specified by paths or glob patterns within a configured target directory. For text files, it concatenates their content into a single string. It is primarily designed for text-based files. However, it can also process image (e.g., .png, .jpg) and PDF (.pdf) files if their file names or extensions are explicitly included in the 'paths' argument. For these explicitly requested non-text files, their data is read and included in a format suitable for model consumption (e.g., base64 encoded).\n\nThis tool is useful when you need to understand or analyze a collection of files, such as:\n- Getting an overview of a codebase or parts of it (e.g., all TypeScript files in the 'src' directory).\n- Finding where specific functionality is implemented if the user asks broad questions about code.\n- Reviewing documentation files (e.g., all Markdown files in the 'docs' directory).\n- Gathering context from multiple configuration files.\n- When the user asks to \"read all files in X directory\" or \"show me the content of all Y files\".\n\nUse this tool when the user's query implies needing the content of several files simultaneously for context, analysis, or summarization. For text files, it uses default UTF-8 encoding and a '--- {filePath} ---' separator between file contents. The tool inserts a '--- End of content ---' after the last file. Ensure paths are relative to the target directory. Glob patterns like 'src/**/*.js' are supported. Avoid using for single files if a more specific single-file reading tool is available, unless the user specifically requests to process a list containing just one file via this tool. Other binary files (not explicitly requested as image/PDF) are generally skipped. Default excludes apply to common non-text files (except for explicitly requested images/PDFs) and large dependency directories unless 'useDefaultExcludes' is false.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1,
+                "description": "Required. An array of glob patterns or paths relative to the tool's target directory. Examples: ['src/**/*.ts'], ['README.md', 'docs/']"
+              },
+              "include": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "description": "Optional. Additional glob patterns to include. These are merged with `paths`. Example: \"*.test.ts\" to specifically add test files if they were broadly excluded.",
+                "default": []
+              },
+              "exclude": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "description": "Optional. Glob patterns for files/directories to exclude. Added to default excludes if useDefaultExcludes is true. Example: \"**/*.log\", \"temp/\"",
+                "default": []
+              },
+              "recursive": {
+                "type": "boolean",
+                "description": "Optional. Whether to search recursively (primarily controlled by `**` in glob patterns). Defaults to true.",
+                "default": true
+              },
+              "useDefaultExcludes": {
+                "type": "boolean",
+                "description": "Optional. Whether to apply a list of default exclusion patterns (e.g., node_modules, .git, binary files). Defaults to true.",
+                "default": true
+              },
+              "file_filtering_options": {
+                "description": "Whether to respect ignore patterns from .gitignore or .qwenignore",
+                "type": "object",
+                "properties": {
+                  "respect_git_ignore": {
+                    "description": "Optional: Whether to respect .gitignore patterns when listing files. Only available in git repositories. Defaults to true.",
+                    "type": "boolean"
+                  },
+                  "respect_qwen_ignore": {
+                    "description": "Optional: Whether to respect .qwenignore patterns when listing files. Defaults to true.",
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "required": [
+              "paths"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "run_shell_command",
+          "description": "This tool executes a given shell command as `bash -c <command>`. Command can start background processes using `&`. Command is executed as a subprocess that leads its own process group. Command process group can be terminated as `kill -- -PGID` or signaled as `kill -s SIGNAL -- -PGID`.\n\n      **Background vs Foreground Execution:**\n      You should decide whether commands should run in background or foreground based on their nature:\n      \n      **Use background execution (is_background: true) for:**\n      - Long-running development servers: `npm run start`, `npm run dev`, `yarn dev`, `bun run start`\n      - Build watchers: `npm run watch`, `webpack --watch`\n      - Database servers: `mongod`, `mysql`, `redis-server`\n      - Web servers: `python -m http.server`, `php -S localhost:8000`\n      - Any command expected to run indefinitely until manually stopped\n      \n      **Use foreground execution (is_background: false) for:**\n      - One-time commands: `ls`, `cat`, `grep`\n      - Build commands: `npm run build`, `make`\n      - Installation commands: `npm install`, `pip install`\n      - Git operations: `git commit`, `git push`\n      - Test runs: `npm test`, `pytest`\n      \n      The following information is returned:\n\n      Command: Executed command.\n      Directory: Directory where command was executed, or `(root)`.\n      Stdout: Output on stdout stream. Can be `(empty)` or partial on error and for any unwaited background processes.\n      Stderr: Output on stderr stream. Can be `(empty)` or partial on error and for any unwaited background processes.\n      Error: Error or `(none)` if no error was reported for the subprocess.\n      Exit Code: Exit code or `(none)` if terminated by signal.\n      Signal: Signal number or `(none)` if no signal was received.\n      Background PIDs: List of background processes started or `(none)`.\n      Process Group PGID: Process group started or `(none)`",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "command": {
+                "type": "string",
+                "description": "Exact bash command to execute as `bash -c <command>`\n*** WARNING: Command substitution using $(), `` ` ``, <(), or >() is not allowed for security reasons."
+              },
+              "is_background": {
+                "type": "boolean",
+                "description": "Whether to run the command in background. Default is false. Set to true for long-running processes like development servers, watchers, or daemons that should continue running without blocking further commands."
+              },
+              "description": {
+                "type": "string",
+                "description": "Brief description of the command for the user. Be specific and concise. Ideally a single sentence. Can be up to 3 sentences for clarity. No line breaks."
+              },
+              "directory": {
+                "type": "string",
+                "description": "(OPTIONAL) The absolute path of the directory to run the command in. If not provided, the project root directory is used. Must be a directory within the workspace and must already exist."
+              }
+            },
+            "required": [
+              "command",
+              "is_background"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "save_memory",
+          "description": "\nSaves a specific piece of information or fact to your long-term memory.\n\nUse this tool:\n\n- When the user explicitly asks you to remember something (e.g., \"Remember that I like pineapple on pizza\", \"Please save this: my cat's name is Whiskers\").\n- When the user states a clear, concise fact about themselves, their preferences, or their environment that seems important for you to retain for future interactions to provide a more personalized and effective assistance.\n\nDo NOT use this tool:\n\n- To remember conversational context that is only relevant for the current session.\n- To save long, complex, or rambling pieces of text. The fact should be relatively short and to the point.\n- If you are unsure whether the information is a fact worth remembering long-term. If in doubt, you can ask the user, \"Should I remember that for you?\"\n\n## Parameters\n\n- `fact` (string, required): The specific fact or piece of information to remember. This should be a clear, self-contained statement. For example, if the user says \"My favorite color is blue\", the fact would be \"My favorite color is blue\".\n- `scope` (string, optional): Where to save the memory:\n  - \"global\": Saves to user-level ~/.qwen/QWEN.md (shared across all projects)\n  - \"project\": Saves to current project's QWEN.md (project-specific)\n  - If not specified, the tool will ask the user where they want to save the memory.\n",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "fact": {
+                "type": "string",
+                "description": "The specific fact or piece of information to remember. Should be a clear, self-contained statement."
+              },
+              "scope": {
+                "type": "string",
+                "description": "Where to save the memory: \"global\" saves to user-level ~/.qwen/QWEN.md (shared across all projects), \"project\" saves to current project's QWEN.md (project-specific). If not specified, will prompt user to choose.",
+                "enum": [
+                  "global",
+                  "project"
+                ]
+              }
+            },
+            "required": [
+              "fact"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "todo_write",
+          "description": "\nUse this tool to create and manage a structured task list for your current coding session. This helps you track progress, organize complex tasks, and demonstrate thoroughness to the user.\nIt also helps the user understand the progress of the task and overall progress of their requests.\n\n## When to Use This Tool\nUse this tool proactively in these scenarios:\n\n1. Complex multi-step tasks - When a task requires 3 or more distinct steps or actions\n2. Non-trivial and complex tasks - Tasks that require careful planning or multiple operations\n3. User explicitly requests todo list - When the user directly asks you to use the todo list\n4. User provides multiple tasks - When users provide a list of things to be done (numbered or comma-separated)\n5. After receiving new instructions - Immediately capture user requirements as todos\n6. When you start working on a task - Mark it as in_progress BEFORE beginning work. Ideally you should only have one todo as in_progress at a time\n7. After completing a task - Mark it as completed and add any new follow-up tasks discovered during implementation\n\n## When NOT to Use This Tool\n\nSkip using this tool when:\n1. There is only a single, straightforward task\n2. The task is trivial and tracking it provides no organizational benefit\n3. The task can be completed in less than 3 trivial steps\n4. The task is purely conversational or informational\n\nNOTE that you should not use this tool if there is only one trivial task to do. In this case you are better off just doing the task directly.\n\n## Examples of When to Use the Todo List\n\n<example>\nUser: I want to add a dark mode toggle to the application settings. Make sure you run the tests and build when you're done!\nAssistant: I'll help add a dark mode toggle to your application settings. Let me create a todo list to track this implementation.\n*Creates todo list with the following items:*\n1. Create dark mode toggle component in Settings page\n2. Add dark mode state management (context/store)\n3. Implement CSS-in-JS styles for dark theme\n4. Update existing components to support theme switching\n5. Run tests and build process, addressing any failures or errors that occur\n*Begins working on the first task*\n\n<reasoning>\nThe assistant used the todo list because:\n1. Adding dark mode is a multi-step feature requiring UI, state management, and styling changes\n2. The user explicitly requested tests and build be run afterward\n3. The assistant inferred that tests and build need to pass by adding \"Ensure tests and build succeed\" as the final task\n</reasoning>\n</example>\n\n<example>\nUser: Help me rename the function getCwd to getCurrentWorkingDirectory across my project\nAssistant: Let me first search through your codebase to find all occurrences of 'getCwd'.\n*Uses grep or search tools to locate all instances of getCwd in the codebase*\nAssistant: I've found 15 instances of 'getCwd' across 8 different files. Let me create a todo list to track these changes.\n*Creates todo list with specific items for each file that needs updating*\n\n<reasoning>\nThe assistant used the todo list because:\n1. First, the assistant searched to understand the scope of the task\n2. Upon finding multiple occurrences across different files, it determined this was a complex task with multiple steps\n3. The todo list helps ensure every instance is tracked and updated systematically\n4. This approach prevents missing any occurrences and maintains code consistency\n</reasoning>\n</example>\n\n\n<example>\nUser: I need to implement these features for my e-commerce site: user registration, product catalog, shopping cart, and checkout flow.\nAssistant: I'll help implement these features. First, let's add all the features to the todo list.\n*Creates a todo list breaking down each feature into specific tasks based on the project architecture*\nAssistant: Let's start with user registration. This will involve creating database models, API endpoints, and frontend forms that integrate with your existing authentication system.\n\n<reasoning>\nThe assistant used the todo list because:\n1. The user provided multiple complex features to implement in a comma separated list\n2. The todo list helps organize these large features into manageable tasks\n3. This approach allows for tracking progress across the entire implementation\n</reasoning>\n</example>\n\n<example>\nUser: Can you help optimize my React application? It's rendering slowly and has performance issues.</user>\nAssistant: I'll help optimize your React application. First, let me examine your codebase to identify potential performance bottlenecks.\n*Reviews component structure, render patterns, state management, and data fetching*\nAssistant: After analyzing your codebase, I've identified several performance issues. Let me create a todo list to track our optimization efforts.\n*Creates todo list with items like: 1) Implement memoization for expensive calculations in ProductList, 2) Add virtualization for long lists in Dashboard, 3) Optimize image loading in Gallery component, 4) Fix state update loops in ShoppingCart, 5) Review bundle size and implement code splitting*\nLet's start by implementing memoization for the expensive calculations in your ProductList component.</assistant>\n\n<reasoning>\nThe assistant used the todo list because:\n1. First, the assistant examined the codebase to identify specific performance issues\n2. Based on this analysis, it identified multiple optimization opportunities\n3. Performance optimization is a non-trivial task requiring multiple steps\n4. The todo list helps methodically track improvements across different components\n5. This systematic approach ensures all performance bottlenecks are addressed\n</reasoning>\n</example>\n\n## Examples of When NOT to Use the Todo List\n\n<example>\nUser: How do I print 'Hello World' in Python?\nAssistant: In Python, you can print \"Hello World\" with this simple code:\n\npython\nprint(\"Hello World\")\n\nThis will output the text \"Hello World\" to the console when executed.</assistant>\n\n<reasoning>\nThe assistant did not use the todo list because this is a single, trivial task that can be completed in one step. There's no need to track multiple tasks or steps for such a straightforward request.\n</reasoning>\n</example>\n\n<example>\nUser: What does the git status command do?\nAssistant: The git status command shows the current state of your working directory and staging area. It displays which changes have been staged, which haven't, and which files aren't being tracked by Git. This is a fundamental command for understanding the current state of your repository before making commits.\n\n<reasoning>\nThe assistant did not use the todo list because this is an informational request with no actual coding task to complete. The user is simply asking for an explanation, not for the assistant to perform multiple steps or tasks.\n</reasoning>\n</example>\n\n<example>\nUser: Can you add a comment to the calculateTotal function to explain what it does?\nAssistant: Sure, let me add a comment to the calculateTotal function to explain what it does.\n* Uses the Edit tool to add a comment to the calculateTotal function *\n\n<reasoning>\nThe assistant did not use the todo list because this is a single, straightforward task confined to one location in the code. Adding a comment doesn't require tracking multiple steps or systematic organization.\n</reasoning>\n</example>\n\n<example>\nUser: Run npm install for me and tell me what happens.\nAssistant: I'll run the npm install command for you.\n\n*Executes: npm install*\n\nThe command completed successfully. Here's the output:\n[Output of npm install command]\n\nAll dependencies have been installed according to your package.json file.\n\n<reasoning>\nThe assistant did not use the todo list because this is a single command execution with immediate results. There are no multiple steps to track or organize, making the todo list unnecessary for this straightforward task.\n</reasoning>\n</example>\n\n## Task States and Management\n\n1. **Task States**: Use these states to track progress:\n   - pending: Task not yet started\n   - in_progress: Currently working on (limit to ONE task at a time)\n   - completed: Task finished successfully\n\n2. **Task Management**:\n   - Update task status in real-time as you work\n   - Mark tasks complete IMMEDIATELY after finishing (don't batch completions)\n   - Only have ONE task in_progress at any time\n   - Complete current tasks before starting new ones\n   - Remove tasks that are no longer relevant from the list entirely\n\n3. **Task Completion Requirements**:\n   - ONLY mark a task as completed when you have FULLY accomplished it\n   - If you encounter errors, blockers, or cannot finish, keep the task as in_progress\n   - When blocked, create a new task describing what needs to be resolved\n   - Never mark a task as completed if:\n     - Tests are failing\n     - Implementation is partial\n     - You encountered unresolved errors\n     - You couldn't find necessary files or dependencies\n\n4. **Task Breakdown**:\n   - Create specific, actionable items\n   - Break complex tasks into smaller, manageable steps\n   - Use clear, descriptive task names\n\nWhen in doubt, use this tool. Being proactive with task management demonstrates attentiveness and ensures you complete all requirements successfully.\n",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "todos": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "content": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "pending",
+                        "in_progress",
+                        "completed"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "content",
+                    "status",
+                    "id"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "The updated todo list"
+              }
+            },
+            "required": [
+              "todos"
+            ],
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "exit_plan_mode",
+          "description": "Use this tool when you are in plan mode and have finished presenting your plan and are ready to code. This will prompt the user to exit plan mode.\nIMPORTANT: Only use this tool when the task requires planning the implementation steps of a task that requires writing code. For research tasks where you're gathering information, searching files, reading files or in general trying to understand the codebase - do NOT use this tool.\n\nEg.\n1. Initial task: \"Search for and understand the implementation of vim mode in the codebase\" - Do not use the exit plan mode tool because you are not planning the implementation steps of a task.\n2. Initial task: \"Help me implement yank mode for vim\" - Use the exit plan mode tool after you have finished planning the implementation steps of the task.\n",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "plan": {
+                "type": "string",
+                "description": "The plan you came up with, that you want to run by the user for approval. Supports markdown. The plan should be pretty concise."
+              }
+            },
+            "required": [
+              "plan"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "web_fetch",
+          "description": "Fetches content from a specified URL and processes it using an AI model\n- Takes a URL and a prompt as input\n- Fetches the URL content, converts HTML to markdown\n- Processes the content with the prompt using a small, fast model\n- Returns the model's response about the content\n- Use this tool when you need to retrieve and analyze web content\n\nUsage notes:\n  - IMPORTANT: If an MCP-provided web fetch tool is available, prefer using that tool instead of this one, as it may have fewer restrictions. All MCP-provided tools start with \"mcp__\".\n  - The URL must be a fully-formed valid URL\n  - The prompt should describe what information you want to extract from the page\n  - This tool is read-only and does not modify any files\n  - Results may be summarized if the content is very large\n  - Supports both public and private/localhost URLs using direct fetch",
+          "parameters": {
+            "properties": {
+              "url": {
+                "description": "The URL to fetch content from",
+                "type": "string"
+              },
+              "prompt": {
+                "description": "The prompt to run on the fetched content",
+                "type": "string"
+              }
+            },
+            "required": [
+              "url",
+              "prompt"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "web_search",
+          "description": "Allows searching the web and using results to inform responses. Provides up-to-date information for current events and recent data beyond the training data cutoff. Returns search results formatted with concise answers and source links. Use this tool when accessing information that may be outdated or beyond the knowledge cutoff.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "The search query to find information on the web."
+              },
+              "provider": {
+                "type": "string",
+                "description": "Optional provider to use for the search (e.g., \"tavily\", \"google\", \"dashscope\"). IMPORTANT: Only specify this parameter if you explicitly know which provider to use. Otherwise, omit this parameter entirely and let the system automatically select the appropriate provider based on availability and configuration. The system will choose the best available provider automatically."
+              }
+            },
+            "required": [
+              "query"
+            ]
+          }
+        },
+        "cache_control": {
+          "type": "ephemeral"
+        }
+      }
+    ],
+    "metadata": {
+      "sessionId": "8e16e97c-cc4e-4fa2-a7de-fc6233c77adb",
+      "promptId": "8e16e97c-cc4e-4fa2-a7de-fc6233c77adb########0"
+    }
+  },
+  "response": {
+    "id": "chatcmpl-bab5e3d5-3d0d-431c-9776-220245a149d4",
+    "object": "chat.completion",
+    "created": 1763583625,
+    "model": "qwen3-coder-plus",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Let me search for the variable names that might be appearing instead of button labels:\n\n",
+          "refusal": null,
+          "tool_calls": [
+            {
+              "id": "call_da5734cb69584933841ae9b0",
+              "type": "function",
+              "function": {
+                "name": "grep_search",
+                "arguments": "{\"path\": \"/Users/utilisateur/Desktop/LMFNEW/lightmyfire-web/locales\", \"pattern\": \"contactez-nous\"}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls",
+        "logprobs": null
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 34529,
+      "completion_tokens": 62,
+      "total_tokens": 34591,
+      "prompt_tokens_details": {
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 182
+        },
+        "cache_creation_input_tokens": 182,
+        "cache_type": "ephemeral",
+        "cached_tokens": 34343
+      }
+    },
+    "system_fingerprint": null
+  },
+  "error": null,
+  "system": {
+    "hostname": "MacBook-Pro-de-Utilisateur.local",
+    "platform": "darwin",
+    "release": "25.0.0",
+    "nodeVersion": "v20.19.0"
+  }
+}

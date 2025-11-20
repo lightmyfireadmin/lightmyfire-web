@@ -124,7 +124,7 @@ export default function Header({ session, username }: { session: Session | null;
             <>
               <Link href={`/${lang}/my-orders`} className={classNames(pathname === `/${lang}/my-orders` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6 flex items-center')}>
                 <ShoppingBagIcon className="h-5 w-5 mr-1.5" aria-hidden="true" />
-                My Orders
+                {t('nav.my_orders')}
               </Link>
               <Link href={`/${lang}/my-profile`} className={classNames(pathname === `/${lang}/my-profile` ? 'text-primary font-semibold' : 'text-foreground hover:text-primary', 'text-sm leading-6 flex items-center')}>
                 <UserIcon className="h-5 w-5 mr-1.5" aria-hidden="true" />
@@ -206,7 +206,7 @@ export default function Header({ session, username }: { session: Session | null;
                     <>
                       <Link href={`/${lang}/my-orders`} onClick={() => setMobileMenuOpen(false)} className={classNames(pathname === `/${lang}/my-orders` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 flex items-center pl-4 gap-x-4')}>
                         <ShoppingBagIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
-                        My Orders
+                        {t('nav.my_orders')}
                       </Link>
                       <Link href={`/${lang}/my-profile`} onClick={() => setMobileMenuOpen(false)} className={classNames(pathname === `/${lang}/my-profile` ? 'bg-muted text-primary' : 'text-foreground hover:bg-muted', '-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 flex items-center pl-4 gap-x-4')}>
                         <UserIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />

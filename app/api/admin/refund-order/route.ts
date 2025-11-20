@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
+import { createClient } from '@supabase/supabase-js';
+import Stripe from 'stripe';
 
 export const dynamic = 'force-dynamic';
 
@@ -29,25 +31,52 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing orderId or paymentIntentId' }, { status: 400 });
     }
 
-        const { data: refundData, error: refundError } = await supabase.functions.invoke('refund-payment', {
-      body: {
-        paymentIntentId,
-        orderId,
-      },
+    if (!process.env.STRIPE_SECRET_KEY) {
+      throw new Error('STRIPE_SECRET_KEY is not defined');
+    }
+
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2025-10-29.clover',
     });
 
-    if (refundError) {
-      console.error('Refund Edge Function error:', refundError);
-      return NextResponse.json(
-        { error: refundError.message || 'Refund failed' },
-        { status: 500 }
-      );
+    // Process refund via Stripe
+    const refund = await stripe.refunds.create({
+      payment_intent: paymentIntentId,
+    });
+
+    // Update order status in database using admin client
+    const supabaseAdmin = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!,
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false
+        }
+      }
+    );
+
+    const { data: updatedOrder, error: dbError } = await supabaseAdmin
+      .from('sticker_orders')
+      .update({ status: 'refunded' })
+      .eq('id', orderId)
+      .select()
+      .single();
+
+    if (dbError) {
+      console.error('Failed to update order status to refunded:', dbError);
+      // We still return success for the refund itself, but warn about DB sync
+      return NextResponse.json({
+        success: true,
+        refund,
+        message: 'Refund processed but failed to update database status',
+      });
     }
 
     return NextResponse.json({
       success: true,
-      refund: refundData.refund,
-      order: refundData.order,
+      refund,
+      order: updatedOrder,
     });
   } catch (error) {
     console.error('Refund API error:', error);

@@ -323,8 +323,8 @@ enabled = true
 policy = "per_worker"
 # Port to attach the Chrome inspector for debugging edge functions.
 inspector_port = 8083
-# The Deno major version to use.
-deno_version = 2
+# The Edge Runtime version to use (Vercel compatible).
+js_runtime_version = 2
 
 # [edge_runtime.secrets]
 # secret_key = "env(SECRET_VALUE)"

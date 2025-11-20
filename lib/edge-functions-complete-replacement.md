@@ -6,22 +6,130 @@
 // process-email-queue function
 https://xdkugrvcehfedkcsylaw.supabase.co/functions/v1/process-email-queue
 
-import { createClient } from "npm:@supabase/supabase-js@2.36.0";
-const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
-console.info('process-email-queue function starting');
-Deno.serve(async (req)=>{
+# Documentation: Vercel Edge Functions Implementation (Not Deno)
+
+This file documents how to implement email processing using Next.js API routes
+instead of Deno-based Supabase Edge Functions for Vercel compatibility.
+
+## Key Changes for Vercel Compatibility:
+- Use Next.js API routes instead of Deno edge functions
+- Use `createServerSupabaseClient` for Supabase integration
+- Remove all Deno-specific imports and syntax
+- Ensure compatibility with Vercel's Node.js runtime
+
+## Implementation Examples:
+
+## Email Queue Processing Implementation
+
+This section shows how to properly implement email queue processing using Next.js API routes instead of Deno edge functions:
+
+```javascript
+// Example Next.js API route for processing email queue
+// pages/api/process-email-queue.ts or app/api/process-email-queue/route.ts
+
+import { NextRequest, NextResponse } from 'next/server';
+import { createServerSupabaseClient } from '@/lib/supabase-server';
+import { cookies } from 'next/headers';
+
+export async function GET(request: NextRequest) {
+  const cookieStore = cookies();
+  const supabase = createServerSupabaseClient(cookieStore);
+  
   try {
-    const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY, {
-      auth: {
-        persistSession: false
-      }
-    });
     // Fetch pending emails (max 10 per batch)
-    const { data: emails, error: fetchError } = await supabase.from('email_queue').select('*').eq('status', 'pending').lt('retry_count', 3).order('created_at', {
-      ascending: true
-    }).limit(10);
+    const { data: emails, error: fetchError } = await supabase
+      .from('email_queue')
+      .select('*')
+      .eq('status', 'pending')
+      .lt('retry_count', 3)
+      .order('created_at', { ascending: true })
+      .limit(10);
+
+    if (fetchError) throw fetchError;
+
+    if (!emails || Array.isArray(emails) && emails.length === 0) {
+      return NextResponse.json({ processed: 0 });
+    }
+
+    let successCount = 0;
+    let failCount = 0;
+
+    for (const email of emails) {
+      // Attempt to mark as processing only if still pending (avoid race condition)
+      const { count } = await supabase
+        .from('email_queue')
+        .update({ status: 'processing' })
+        .eq('id', email.id)
+        .eq('status', 'pending');
+
+      // If update didn't affect a row, skip (someone else processing)
+      const { data: refreshed } = await supabase
+        .from('email_queue')
+        .select('status, retry_count')
+        .eq('id', email.id)
+        .single();
+
+      if (!refreshed || refreshed.status !== 'processing') {
+        continue;
+      }
+
+      try {
+        // Process email sending logic here
+        const emailTemplate = getEmailTemplate(email.email_type, email.email_data);
+        
+        const response = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(emailTemplate)
+        });
+
+        if (response.ok) {
+          await supabase
+            .from('email_queue')
+            .update({
+              status: 'sent',
+              processed_at: new Date().toISOString()
+            })
+            .eq('id', email.id);
+          successCount++;
+        } else {
+          const text = await response.text();
+          throw new Error(`Resend API error: ${response.status} ${response.statusText} ${text}`);
+        }
+      } catch (error) {
+        console.error('Error sending email', {
+          id: email.id,
+          error
+        });
+        // Increment retry_count and set back to pending for retry
+        await supabase
+          .from('email_queue')
+          .update({
+            status: 'pending',
+            retry_count: email.retry_count + 1,
+            error_message: String(error)
+          })
+          .eq('id', email.id);
+        failCount++;
+      }
+    }
+
+    return NextResponse.json({
+      processed: successCount + failCount,
+      success: successCount,
+      failed: failCount
+    });
+  } catch (error) {
+    console.error('process-email-queue failure', error);
+    return NextResponse.json(
+      { error: String(error) },
+      { status: 500 }
+    );
+  }
+}
     if (fetchError) throw fetchError;
     if (!emails || Array.isArray(emails) && emails.length === 0) {
       return new Response(JSON.stringify({
@@ -102,7 +210,14 @@ Deno.serve(async (req)=>{
   }
 });
 
-// REPLACED getEmailTemplate FUNCTION WITH BEAUTIFUL BRANDED DESIGN
+## Beautiful Branded Email Templates
+
+This section shows how to implement beautiful branded email templates using Next.js compatible code instead of Deno-specific code:
+
+```javascript
+// Email template functions for Next.js API routes
+// These functions create HTML email templates compatible with Resend
+
 function getEmailTemplate(type, data) {
   const EMAIL_STYLES = `
     body {

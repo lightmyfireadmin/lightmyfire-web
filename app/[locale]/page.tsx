@@ -212,7 +212,7 @@ export default async function Home() {
       {}
       <OurPhilosophy />
 
-      <RandomPostFeed />
+      <RandomPostFeed isLoggedIn={isLoggedIn} />
     </div>
   );
 }

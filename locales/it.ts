@@ -2528,8 +2528,6 @@ export default {
 
   // TODO: Translate from English
   'validation.username_required': 'Username cannot be empty.',
-} as const;
-
   'home.hero.title': 'Too Young To Die',
   'home.hero.subtitle': 'Billions of lighters are thrown away every year. Found, loved, lost, passed from hand to hand, then forgotten... Yet filled with stories to tell. Among these lighters, many could still enjoy a new life: a huge portion of refillable lighters sold each year are discarded when empty. Let\'s give them a chance to stay with us by discovering the richness of their journey.',
   'home.hero.popup_content': 'The PIN is on the sticker. It\'s your lighter\'s unique code—its passport to a global journey of stories.',
@@ -2581,3 +2579,4 @@ export default {
   'add_post.helper.find_location': 'Helps trace the lighter\'s journey on the map!',
   'add_post.error.upload_failed': 'Failed to upload image. Try again.',
   'post.youtube_load_error': 'Could not load YouTube video (invalid URL?)',
+} as const;

@@ -7,7 +7,7 @@ import { PACK_PRICING, VALID_PACK_SIZES } from '@/lib/constants';
 import { rateLimit } from '@/lib/rateLimit';
 import { sendOrderConfirmationEmail, sendFulfillmentEmail } from '@/lib/email';
 import { SupportedEmailLanguage } from '@/lib/email-i18n';
-import { generateInternalAuthToken } from '@/lib/internal-auth';
+import { generateStickerSheets } from '@/lib/sticker-generator';
 
 export const dynamic = 'force-dynamic';
 
@@ -298,34 +298,19 @@ export async function POST(request: NextRequest) {
     }
 
     const stickerData = (createdLighters as CreatedLighter[]).map((lighter) => ({
-      id: lighter.lighter_id,
       name: lighter.lighter_name,
       pinCode: lighter.pin_code,
       backgroundColor: lighter.background_color,
       language: lighter.sticker_language || 'en',
     }));
 
-        const internalAuthToken = generateInternalAuthToken(session.user.id);
-
-    const generateResponse = await fetch(`${request.nextUrl.origin}/api/generate-printful-stickers`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-internal-auth': internalAuthToken,
-        'x-user-id': session.user.id,
-      },
-      body: JSON.stringify({
-        stickers: stickerData,
-        brandingText: 'LightMyFire',
-      }),
-    });
-
-    if (!generateResponse.ok) {
-      const errorText = await generateResponse.text();
+    let generatedSheets;
+    try {
+      generatedSheets = await generateStickerSheets(stickerData);
+    } catch (genError) {
+      const errorMessage = genError instanceof Error ? genError.message : 'Unknown error';
       console.error('Sticker generation failed:', {
-        status: generateResponse.status,
-        statusText: generateResponse.statusText,
-        error: errorText
+        error: errorMessage
       });
 
       // Update order status to failed
@@ -333,7 +318,7 @@ export async function POST(request: NextRequest) {
         .from('sticker_orders')
         .update({
           status: 'failed',
-          failure_reason: `Sticker generation failed: ${errorText}`,
+          failure_reason: `Sticker generation failed: ${errorMessage}`,
           lighter_ids: (createdLighters as CreatedLighter[]).map((l) => l.lighter_id),
           lighter_names: (createdLighters as CreatedLighter[]).map((l) => l.lighter_name),
         })
@@ -348,25 +333,17 @@ export async function POST(request: NextRequest) {
       }, { status: 200 });
     }
 
-        const generateResult = await generateResponse.json();
-
         await ensureStickerStorageBucketExists(supabaseAdmin);
 
         // Upload all sheets to storage and collect URLs
         const stickerFileUrls: string[] = [];
     const stickerFiles: { filename: string; buffer: Buffer }[] = [];
 
-    for (let i = 0; i < generateResult.sheets.length; i++) {
-      const sheet = generateResult.sheets[i];
-      const fileBuffer = Buffer.from(sheet.data, 'base64');
+    for (let i = 0; i < generatedSheets.length; i++) {
+      const sheet = generatedSheets[i];
+      // sheet.buffer is already a Buffer from the generator
+      const fileBuffer = sheet.buffer;
       const fileName = `${session.user.id}/${paymentIntentId}-sheet-${i + 1}.png`;
-
-      // Verify this is a valid PNG
-      const pngSignature = Buffer.from([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]);
-      if (!fileBuffer.subarray(0, 8).equals(pngSignature)) {
-        console.error(`❌ Invalid PNG signature for sheet ${i + 1}`);
-        throw new Error(`Sheet ${i + 1} is not a valid PNG file`);
-      }
 
       // Store buffer for email attachment
       stickerFiles.push({

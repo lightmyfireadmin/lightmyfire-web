@@ -5,7 +5,7 @@ const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 console.info('process-email-queue function starting');
-Deno.serve(async (req)=>{
+export async function GET(req: NextRequest) {
   try {
     const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY, {
       auth: {
@@ -231,7 +231,7 @@ const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 console.info('stripe-webhook-handler function starting');
-Deno.serve(async (req)=>{
+export async function POST(req: NextRequest) {
   try {
     const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY, {
       auth: {
@@ -401,7 +401,7 @@ const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 console.info('retroactive-fulfillment function starting');
-Deno.serve(async (req)=>{
+export async function POST(req: NextRequest) {
   try {
     const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY, {
       auth: {
@@ -550,7 +550,7 @@ const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 // ❌ DEPRECATED: This function is a temporary script - can be removed
-Deno.serve(async (req)=>{
+export async function POST(req: NextRequest) {
   try {
     const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY, {
       auth: {
@@ -688,7 +688,7 @@ const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 // ❌ DEPRECATED: This function is a temporary script - can be removed
 console.info('Direct email trigger starting');
-Deno.serve(async (req)=>{
+export async function POST(req: NextRequest) {
   try {
     const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY, {
       auth: {

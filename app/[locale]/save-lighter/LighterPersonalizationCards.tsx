@@ -119,7 +119,7 @@ export default function LighterPersonalizationCards({
       {}
       <div className="rounded-lg border border-border/50 bg-background/80 p-3 shadow-sm">
         <label className="block text-sm font-bold text-foreground mb-2">
-          Second Language on Sticker (+ English)
+          {t('order.customization.language_label')}
         </label>
         <select
           value={selectedLanguage}
@@ -133,17 +133,17 @@ export default function LighterPersonalizationCards({
           ))}
         </select>
         <p className="text-xs text-muted-foreground mt-1">
-          English will always be included on your stickers
+          {t('order.customization.language_helper')}
         </p>
       </div>
 
       <div className="flex items-center justify-between mb-2">
         <div>
           <h3 className="text-lg font-bold text-foreground">
-            Customize Your Stickers
+            {t('order.customization.title')}
           </h3>
           <p className="text-muted-foreground text-xs mt-1">
-            Personalize each lighter
+            {t('order.customization.subtitle')}
           </p>
         </div>
         {customizations.length > 1 && (
@@ -155,7 +155,7 @@ export default function LighterPersonalizationCards({
               className="h-4 w-4 rounded border-input text-primary focus:ring-primary"
             />
             <span className="text-xs font-medium text-primary">
-              Apply to All
+              {t('order.customization.apply_to_all')}
             </span>
           </label>
         )}
@@ -174,7 +174,7 @@ export default function LighterPersonalizationCards({
               className="rounded-lg border border-border/50 bg-background/80 p-3 shadow-sm hover:shadow-md transition-shadow"
             >
               <h4 className="text-sm font-semibold text-foreground mb-3">
-                Lighter #{useApplyAll ? '1' : actualIndex}
+                {t('order.customization.lighter_number').replace('{number}', (useApplyAll ? '1' : actualIndex).toString())}
               </h4>
 
               {}
@@ -192,7 +192,7 @@ export default function LighterPersonalizationCards({
                     ) : (
                       <div className="flex items-center justify-center h-24">
                         <p className="text-xs text-muted-foreground text-center">
-                          Enter a name (min 3 characters) to see preview
+                          {t('order.customization.preview_enter_name')}
                         </p>
                       </div>
                     )}
@@ -204,7 +204,7 @@ export default function LighterPersonalizationCards({
                   {}
                   <div>
                     <label className="block text-xs font-medium text-foreground mb-1">
-                      Name (3-16 characters)
+                      {t('order.customization.name_label')}
                     </label>
                     <input
                       type="text"
@@ -219,12 +219,12 @@ export default function LighterPersonalizationCards({
                           ? 'border-red-500 focus:ring-red-500'
                           : 'border-input focus:ring-primary'
                       } bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1`}
-                      placeholder="Lighter name..."
+                      placeholder={t('order.customization.name_placeholder')}
                     />
                     <p className={`mt-0.5 text-xs ${
                       nameLength > 0 && !isNameValid ? 'text-red-500' : 'text-muted-foreground'
                     }`}>
-                      {nameLength}/16 {nameLength > 0 && !isNameValid && '(min 3)'}
+                      {t('order.customization.name_length').replace('{current}', nameLength.toString())} {nameLength > 0 && !isNameValid && '(min 3)'}
                     </p>
                   </div>
 
@@ -248,16 +248,16 @@ export default function LighterPersonalizationCards({
         <ul className="space-y-1 text-xs">
           <li className="flex items-center gap-2 text-foreground">
             <span className="text-primary font-bold">✓</span>
-            <span><span className="font-semibold">{useApplyAll ? 1 : customizations.length}</span> design{useApplyAll ? '' : 's'}</span>
+            <span><span className="font-semibold">{useApplyAll ? 1 : customizations.length}</span> {useApplyAll ? t('order.customization.summary_design_singular').replace('{count}', '1') : t('order.customization.summary_design_plural').replace('{count}', customizations.length.toString())}</span>
           </li>
           <li className="flex items-center gap-2 text-foreground">
             <span className="text-primary font-bold">✓</span>
-            <span><span className="font-semibold">{languageNames[selectedLanguage as keyof typeof languageNames]?.nativeName}</span> + English</span>
+            <span><span className="font-semibold">{languageNames[selectedLanguage as keyof typeof languageNames]?.nativeName}</span> {t('order.customization.summary_language').replace('{language}', '')}</span>
           </li>
           {useApplyAll && (
             <li className="flex items-center gap-2 text-foreground">
               <span className="text-primary font-bold">✓</span>
-              <span>All <span className="font-semibold">{stickerCount}</span> identical</span>
+              <span>{t('order.customization.summary_identical').replace('{count}', stickerCount.toString())}</span>
             </li>
           )}
         </ul>
