@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useId, useState } from 'react';
 
 const SUPPORTED_LANGUAGES = [
   { code: 'en', name: 'English' },
@@ -30,6 +30,11 @@ export default function TestStickerGenerator() {
   const [sheetCount, setSheetCount] = useState<1 | 2 | 5>(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const lighterNameId = useId();
+  const backgroundColorId = useId();
+  const languageId = useId();
+  const sheetCountId = useId();
 
   const handleGenerate = async () => {
     setLoading(true);
@@ -87,12 +92,12 @@ export default function TestStickerGenerator() {
       <div className="space-y-4">
         {}
         <div>
-          <label htmlFor="lighterName" className="block text-sm font-medium text-foreground mb-2">
+          <label htmlFor={lighterNameId} className="block text-sm font-medium text-foreground mb-2">
             Lighter Name
           </label>
           <input
             type="text"
-            id="lighterName"
+            id={lighterNameId}
             value={lighterName}
             onChange={(e) => setLighterName(e.target.value)}
             className="w-full rounded-lg border border-input p-3 text-foreground bg-background focus:border-primary focus:ring-primary"
@@ -103,13 +108,13 @@ export default function TestStickerGenerator() {
 
         {}
         <div>
-          <label htmlFor="backgroundColor" className="block text-sm font-medium text-foreground mb-2">
+          <label htmlFor={backgroundColorId} className="block text-sm font-medium text-foreground mb-2">
             Background Color
           </label>
           <div className="flex gap-2 items-center">
             <input
               type="color"
-              id="backgroundColor"
+              id={backgroundColorId}
               value={backgroundColor}
               onChange={(e) => setBackgroundColor(e.target.value)}
               className="h-10 w-20 rounded border border-input cursor-pointer"
@@ -138,11 +143,11 @@ export default function TestStickerGenerator() {
 
         {}
         <div>
-          <label htmlFor="language" className="block text-sm font-medium text-foreground mb-2">
+          <label htmlFor={languageId} className="block text-sm font-medium text-foreground mb-2">
             Sticker Language
           </label>
           <select
-            id="language"
+            id={languageId}
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
             className="w-full rounded-lg border border-input p-3 text-foreground bg-background focus:border-primary focus:ring-primary"
@@ -156,10 +161,10 @@ export default function TestStickerGenerator() {
         </div>
 
         {}
-        <div>
-          <label className="block text-sm font-medium text-foreground mb-2">
+        <div id={sheetCountId} role="group" aria-labelledby={`${sheetCountId}-label`}>
+          <span id={`${sheetCountId}-label`} className="block text-sm font-medium text-foreground mb-2">
             Number of Sheets (10 stickers per sheet)
-          </label>
+          </span>
           <div className="flex gap-3">
             {([1, 2, 5] as const).map((count) => (
               <button
@@ -190,6 +195,7 @@ export default function TestStickerGenerator() {
 
         {}
         <button
+          type="button"
           onClick={handleGenerate}
           disabled={loading || !lighterName.trim()}
           className="w-full py-3 px-4 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
@@ -197,6 +203,7 @@ export default function TestStickerGenerator() {
           {loading ? (
             <span className="flex items-center justify-center gap-2">
               <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <title>Generating stickers</title>
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
               </svg>
