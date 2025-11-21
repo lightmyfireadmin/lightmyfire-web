@@ -40,7 +40,7 @@ export async function generateStickerPDF(name: string, pinCode: string) {
 
     if (contentDisposition) {
       const filenameMatch = contentDisposition.match(/filename="?([^"]+)"?/);
-      if (filenameMatch && filenameMatch[1]) {
+      if (filenameMatch?.[1]) {
         filename = filenameMatch[1];
       }
     }

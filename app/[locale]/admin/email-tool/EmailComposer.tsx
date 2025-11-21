@@ -206,7 +206,7 @@ export default function EmailComposer({ onPreviewChange }: EmailComposerProps) {
     }
   };
 
-  const isFormValid = recipientEmail && recipientEmail.trim() && subject.trim() && emailBody.trim();
+  const isFormValid = recipientEmail?.trim() && subject.trim() && emailBody.trim();
 
   return (
     <div className="h-full flex flex-col">

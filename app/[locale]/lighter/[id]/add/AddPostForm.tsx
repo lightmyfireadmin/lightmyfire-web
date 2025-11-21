@@ -160,7 +160,7 @@ export default function AddPostForm({
   }, []);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
+    if (e.target.files?.[0]) {
       const selectedFile = e.target.files[0];
       
       if (selectedFile.size > 2 * 1024 * 1024) {
@@ -405,7 +405,7 @@ export default function AddPostForm({
       setError(data.message);
       setLoading(false);
     }
-    else if (data && data.success) {
+    else if (data?.success) {
             router.push(`/lighter/${lighterId}`);
       router.refresh();
     }
@@ -445,7 +445,7 @@ export default function AddPostForm({
             {songInputMode === 'url' ? (
               <div className="space-y-2">
                 <input type="url" value={contentUrl} onChange={(e) => setContentUrl(e.target.value)} className={inputClass} placeholder={t('add_post.placeholder.youtube_url')} required />
-                {contentUrl && contentUrl.includes('youtube.com') && (
+                {contentUrl?.includes('youtube.com') && (
                   <div className="mt-3">
                     <p className="text-sm text-muted-foreground mb-2">{t('add_post.youtube_search.video_preview')}</p>
                     <div className="rounded-lg overflow-hidden border border-border">
