@@ -15,8 +15,8 @@ function extractKeysFromFile(filePath) {
   const content = fs.readFileSync(filePath, 'utf-8');
   const keys = [];
 
-  // Match all quoted keys in the format 'key': or "key":
-  const keyRegex = /['"]([^'"]+)['"]\s*:/g;
+  // Match keys at start of line:   'key':
+  const keyRegex = /^\s*['"]([^'"]+)['"]\s*:/gm;
   let match;
 
   while ((match = keyRegex.exec(content)) !== null) {
@@ -36,7 +36,14 @@ for (const file of localeFiles) {
   try {
     const keys = extractKeysFromFile(filePath);
     localeData[lang] = keys;
-    console.log(`${lang}: ${keys.length} keys`);
+
+    // Check for duplicates
+    const uniqueKeys = new Set(keys);
+    if (uniqueKeys.size !== keys.length) {
+        console.log(`${lang}: ${keys.length} keys (${keys.length - uniqueKeys.size} duplicates)`);
+    } else {
+        console.log(`${lang}: ${keys.length} keys`);
+    }
   } catch (error) {
     console.error(`Error processing ${file}:`, error.message);
   }
@@ -46,7 +53,9 @@ console.log();
 
 // Use English as the reference
 const referenceKeys = localeData['en'] || [];
-console.log(`Reference (English) has ${referenceKeys.length} keys\n`);
+// Use Set for faster lookup and uniqueness
+const referenceKeySet = new Set(referenceKeys);
+console.log(`Reference (English) has ${referenceKeySet.size} unique keys\n`);
 
 // Compare each locale with the reference
 const missingKeysReport = {};
@@ -55,8 +64,10 @@ let totalMissingKeys = 0;
 for (const [lang, keys] of Object.entries(localeData)) {
   if (lang === 'en') continue;
 
-  const missing = referenceKeys.filter(key => !keys.includes(key));
-  const extra = keys.filter(key => !referenceKeys.includes(key));
+  const uniqueKeys = [...new Set(keys)]; // Remove duplicates for comparison
+
+  const missing = referenceKeys.filter(key => !uniqueKeys.includes(key));
+  const extra = uniqueKeys.filter(key => !referenceKeySet.has(key));
 
   if (missing.length > 0 || extra.length > 0) {
     missingKeysReport[lang] = { missing, extra, total: keys.length };
