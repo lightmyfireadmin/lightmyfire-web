@@ -8,7 +8,7 @@ interface ModerationResult {
 
 interface UseModerationHook {
   moderateText: (text: string) => Promise<ModerationResult>;
-  moderateImage: (imageUrl: string | string) => Promise<ModerationResult>;
+  moderateImage: (imageUrl: string) => Promise<ModerationResult>;
   isLoading: boolean;
   error: string | null;
 }
