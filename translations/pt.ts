@@ -1813,8 +1813,6 @@ export default {
   'faq.nav.take_part': '🎨 I Want to Take Part',
   'faq.nav.type_code_aria': 'Go to homepage to enter a lighter PIN code',
   'faq.nav.take_part_aria': 'Go to save a lighter page to start your journey',
-  'save_lighter.pack_5.price': '$4.99',
-  'save_lighter.pack_5.description': 'Perfect for starting your LightSaver journey.',
   'add_post.context.text': '✨ **Just be authentic.** It doesn\'t have to be perfect, original, or poetic. A simple thought, a quote you love, or even a mundane observation—it all adds to the mosaic. The richness comes from diversity, not perfection.',
   'add_post.context.song': '🎵 **Share what moves you.** Whether it\'s a chart-topper or an obscure gem, your own creation or someone else\'s—all music tells a story. No need to overthink it, just share what resonates.',
   'add_post.context.image': '📸 **Any photo counts.** A blurry selfie, a sunset, street art, or your lunch. You don\'t need to be a photographer. Every image adds color to this lighter\'s journey.',

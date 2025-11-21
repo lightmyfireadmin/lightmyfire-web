@@ -22,11 +22,6 @@ function getTotalPointsForLevel(level: number): number {
   return total;
 }
 
-function getPointsForNextLevel(currentLevel: number): number {
-  if (currentLevel >= 100) return Infinity;
-  return Math.floor(Math.pow(currentLevel + 1, 1.3) * 50);
-}
-
 export default function ProfileHeader({
   username,
   level,

@@ -1417,11 +1417,8 @@ export default {
 
   'terms.last_updated': 'Son güncelleme: 28 Ekim 2025',
 
-  'home.hero.title': 'Too Young To Die',
-  'home.hero.subtitle': 'Billions of lighters are thrown away every year. Found, loved, lost, passed from hand to hand, then forgotten... Yet filled with stories to tell. Among these lighters, many could still enjoy a new life: a huge portion of refillable lighters sold each year are discarded when empty. Let\'s give them a chance to stay with us by discovering the richness of their journey.',
   'home.new_here_link': '🤔 New here? Where did I just land?',
   'home.new_here_aria': 'Learn more about LightMyFire in our FAQ',
-  'home.how_it_works.step1.description': 'It all starts with accepting the unstable ownership of a lighter: how many times have they been lost, how many mornings have you woken up with a lighter that wasn\'t yours in your pocket? This reality isn\'t a constraint—it\'s a unique opportunity to have an exciting journey through so many hands, countries, listening to such different stories. Give your lighter a name, customize your stickers to your taste, and start its digital travel diary by receiving your LightSaver pack at home.',
   'auth.why_account_needed': 'Why do I need an account?',
   'auth.account_reason_short': 'We require accounts for **safety and community trust**. Since we allow photos, text, music, and location sharing, having accounts helps keep the platform welcoming for everyone.',
   'auth.account_benefits': '✓ Takes less than 30 seconds to create\n✓ Your data is private and secure\n✓ Helps us maintain a safe community',
@@ -1443,11 +1440,9 @@ export default {
   'faq.nav.take_part': '🎨 I Want to Take Part',
   'faq.nav.type_code_aria': 'Go to homepage to enter a lighter PIN code',
   'faq.nav.take_part_aria': 'Go to save a lighter page to start your journey',
-  'save_success.next_steps.step3': 'Share: Let it travel! The next person who finds it can scan the code, enter the PIN, and add their story.',
   'add_post.context.text': '✨ **Just be authentic.** It doesn\'t have to be perfect, original, or poetic. A simple thought, a quote you love, or even a mundane observation—it all adds to the mosaic. The richness comes from diversity, not perfection.',
   'add_post.context.song': '🎵 **Share what moves you.** Whether it\'s a chart-topper or an obscure gem, your own creation or someone else\'s—all music tells a story. No need to overthink it, just share what resonates.',
   'add_post.context.image': '📸 **Any photo counts.** A blurry selfie, a sunset, street art, or your lunch. You don\'t need to be a photographer. Every image adds color to this lighter\'s journey.',
   'add_post.context.location': '📍 **Places make memories.** A random street corner, your favorite cafe, or somewhere you\'ve never been but dream of visiting. Every location adds a pin to this lighter\'s map.',
   'add_post.context.refuel': '🔥 **You\'re keeping the flame alive!** By refueling, you\'re giving this lighter a second chance. That alone is worth celebrating—no explanation needed.',
-  'add_post.helper.find_location': 'Helps trace the lighter\'s journey on the map!',
 } as const;

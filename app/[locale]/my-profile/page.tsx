@@ -12,7 +12,6 @@ import type { MyPostWithLighter, Trophy } from '@/lib/types';
 import Image from 'next/image';
 import { getI18n, getCurrentLocale } from '@/locales/server';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
-import type { Database } from '@/types/database';
 import { generatePageMetadata, localizedMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 
@@ -52,7 +51,6 @@ function calculateLevel(points: number): number {
 
   
   
-  let level = 1;
   let cumulativePoints = 0;
 
   for (let i = 2; i <= 100; i++) {
@@ -64,22 +62,6 @@ function calculateLevel(points: number): number {
   }
 
   return 100;
-}
-
-function getPointsForNextLevel(currentLevel: number): number {
-  if (currentLevel >= 100) return Infinity;
-  
-  return Math.floor(Math.pow(currentLevel + 1, 1.3) * 50);
-}
-
-function getTotalPointsForLevel(level: number): number {
-  if (level <= 1) return 0;
-
-  let total = 50; 
-  for (let i = 2; i <= level; i++) {
-    total += Math.floor(Math.pow(i, 1.3) * 50);
-  }
-  return total;
 }
 
 function calculatePoints(stats: {

@@ -31,5 +31,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts" // Include if using .mts files
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "deepsource_mcp_custom"]
 }
