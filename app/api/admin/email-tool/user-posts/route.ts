@@ -72,10 +72,10 @@ export async function GET(request: NextRequest) {
     }
 
     return NextResponse.json({ posts: posts || [] });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error in user-posts endpoint:', error);
     return NextResponse.json(
-      { error: error.message || 'Internal server error' },
+      { error: error instanceof Error ? error.message : 'Internal server error' },
       { status: 500 }
     );
   }

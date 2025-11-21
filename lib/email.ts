@@ -36,11 +36,11 @@ function sleep(ms: number): Promise<void> {
  * Retryable: network issues, rate limits, temporary server errors
  * Not retryable: invalid email, auth failures, validation errors
  */
-function isEmailErrorRetryable(error: any): boolean {
+function isEmailErrorRetryable(error: unknown): boolean {
   // Network/timeout errors are retryable
-  if (!error.message) return true;
+  if (!error || typeof error !== 'object' || !('message' in error)) return true;
 
-  const message = error.message.toLowerCase();
+  const message = (error as { message: string }).message.toLowerCase();
 
   // Permanent errors - don't retry
   if (
@@ -543,7 +543,7 @@ export async function sendLighterActivityEmail(data: LighterActivityData) {
     milestone: '🎯',
   };
 
-  const activityTitle = translate(`email.activity.type.${data.activityType}` as any);
+  const activityTitle = translate(`email.activity.type.${data.activityType}` as keyof typeof import('../locales/en').default);
 
   const content = `
     <p>${translate('email.activity.greeting', { name: data.userName || '' })}</p>

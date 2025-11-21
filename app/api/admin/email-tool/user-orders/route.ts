@@ -88,12 +88,13 @@ export async function GET(request: NextRequest) {
         hasPrevPage: page > 1
       })
     );
-  } catch (error: any) {
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     logger.error('Error in user-orders endpoint', {
-      error: error.message || 'Unknown error',
+      error: errorMessage,
     });
     return NextResponse.json(
-      createErrorResponse(ErrorCodes.INTERNAL_SERVER_ERROR, error.message || 'Internal server error'),
+      createErrorResponse(ErrorCodes.INTERNAL_SERVER_ERROR, errorMessage || 'Internal server error'),
       { status: 500 }
     );
   }

@@ -23,7 +23,8 @@ export default function MyPostsList({
   const [isDeleting, setIsDeleting] = useState(false);
   const router = useRouter();
   const locale = useCurrentLocale();
-  const t = useI18n() as any;
+  // Using unknown cast because useI18n type inference might be tricky here without deeper changes
+  const t = useI18n() as unknown as (key: string, params?: Record<string, string | number>) => string;
 
   const handleDeleteClick = (postId: number) => {
     setPostToDelete(postId);

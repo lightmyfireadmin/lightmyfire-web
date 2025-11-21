@@ -1,16 +1,16 @@
 type LogLevel = 'log' | 'error' | 'warn' | 'info' | 'debug' | 'event' | 'perf';
 
 interface LogContext {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface Logger {
   // Basic logging (development only)
-  log: (...args: any[]) => void;
-  debug: (...args: any[]) => void;
+  log: (...args: unknown[]) => void;
+  debug: (...args: unknown[]) => void;
 
   // Error and warning (always shown)
-  error: (...args: any[]) => void;
+  error: (...args: unknown[]) => void;
   warn: (message: string, context?: LogContext) => void;
 
   // Informational logs (always shown)
@@ -59,7 +59,7 @@ const createLogger = (): Logger => {
     debug: isDevelopment ? console.debug.bind(console) : noop,
 
     // Error logging - always enabled
-    error: (...args: any[]) => {
+    error: (...args: unknown[]) => {
       console.error(...args);
     },
 

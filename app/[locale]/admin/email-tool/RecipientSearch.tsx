@@ -60,11 +60,15 @@ export default function RecipientSearch({ onSelectUser, selectedUser, onManualEm
           setUsers(data.users || []);
           setShowDropdown(true);
         } else {
-          console.error('Error searching users:', data.error);
+          // Sanitize error message before logging to prevent log injection
+          const errorMessage = typeof data.error === 'string'
+            ? data.error.replace(/[\n\r]/g, '')
+            : 'Unknown error';
+          console.error('Error searching users:', errorMessage);
           setUsers([]);
         }
       } catch (error) {
-        console.error('Error searching users:', error);
+        console.error('Error searching users:', error instanceof Error ? error.message : 'Unknown error');
         setUsers([]);
       } finally {
         setIsSearching(false);

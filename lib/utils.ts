@@ -73,6 +73,8 @@ export function truncate(
   return text.substring(0, maxLength - suffix.length) + suffix;
 }
 
+// Using 'any' here is intentional as we're creating a generic wrapper for any function
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function debounce<T extends (...args: any[]) => any>(
   func: T,
   wait: number

@@ -14,7 +14,8 @@ interface Profile {
 }
 
 export default function EditProfileForm({ user, profile }: { user: User; profile: Profile }) {
-  const t = useI18n() as any;
+  // Using unknown cast because useI18n type inference might be tricky here without deeper changes
+  const t = useI18n() as unknown as (key: string) => string;
   const [username, setUsername] = useState(profile.username);
   const [nationality, setNationality] = useState(profile.nationality || '');
   const [showNationality, setShowNationality] = useState(profile.show_nationality);

@@ -196,10 +196,10 @@ export default function EmailComposer({ onPreviewChange }: EmailComposerProps) {
       });
 
       // Optional: Clear form or keep it for sending another email
-    } catch (error: any) {
+    } catch (error) {
       setSendResult({
         type: 'error',
-        message: `Error: ${error.message}`,
+        message: `Error: ${error instanceof Error ? error.message : 'Unknown error'}`,
       });
     } finally {
       setIsSending(false);

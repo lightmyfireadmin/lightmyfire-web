@@ -8,7 +8,8 @@ import type { User } from '@supabase/supabase-js';
 import { useI18n } from '@/locales/client';
 
 export default function UpdateAuthForm() {
-  const t = useI18n() as any;
+  // Using unknown cast because useI18n type inference might be tricky here without deeper changes
+  const t = useI18n() as unknown as (key: string, params?: Record<string, string | number | React.ReactNode>) => string;
   const [user, setUser] = useState<User | null>(null);
   const [newEmail, setNewEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');

@@ -552,10 +552,10 @@ export async function GET(request: NextRequest) {
       success: true,
       status,
     });
-  } catch (error: any) {
+  } catch (error) {
     return NextResponse.json({
       success: false,
-      error: error.message,
+      error: error instanceof Error ? error.message : 'Unknown error',
     }, { status: 500 });
   }
 }

@@ -408,7 +408,7 @@ export async function POST(request: NextRequest) {
         customerName: shippingAddress.name,
         customerEmail: shippingAddress.email,
         shippingAddress,
-        lighters: createdLighters,
+        lighters: createdLighters as CreatedLighter[],
         stickerFiles,
         downloadUrls: stickerFileUrls,
       });
@@ -443,7 +443,7 @@ export async function POST(request: NextRequest) {
         userName: shippingAddress.name,
         orderId: paymentIntentId,
         quantity: lighterData.length,
-        lighterNames: createdLighters.map((l: any) => l.lighter_name),
+        lighterNames: (createdLighters as CreatedLighter[]).map((l) => l.lighter_name),
         shippingAddress: {
           name: shippingAddress.name,
           address: shippingAddress.address,
@@ -490,7 +490,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      lighterIds: createdLighters.map((l: any) => l.lighter_id),
+      lighterIds: (createdLighters as CreatedLighter[]).map((l) => l.lighter_id),
       message: warnings.length > 0
         ? `Order processed successfully but some emails failed: ${warnings.join(', ')}`
         : 'Order processed successfully. Confirmation emails sent.',

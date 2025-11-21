@@ -22,7 +22,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function SaveLighterPage({ params }: { params: { locale: string } }) {
-  const t = await getI18n() as any;
+  // Using unknown cast because useI18n type inference might be tricky here without deeper changes
+  const t = await getI18n() as unknown as (key: string) => string;
   const cookieStore = cookies();
   const supabase = createServerSupabaseClient(cookieStore);
 

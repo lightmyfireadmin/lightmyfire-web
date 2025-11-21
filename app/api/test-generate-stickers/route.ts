@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function generateStickers(request: NextRequest, stickers: any[]) {
+async function generateStickers(request: NextRequest, stickers: unknown[]) {
   try {
         const generateResponse = await fetch(`${request.nextUrl.origin}/api/generate-printful-stickers`, {
       method: 'POST',

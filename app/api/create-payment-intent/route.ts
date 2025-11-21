@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
     }
 
         // Validate pack size
-    if (!VALID_PACK_SIZES.includes(packSize as any)) {
+    if (!VALID_PACK_SIZES.includes(packSize as 10 | 20 | 50)) {
       return NextResponse.json(
         { error: 'Invalid pack size. Must be 10, 20, or 50 stickers.' },
         { status: 400 }

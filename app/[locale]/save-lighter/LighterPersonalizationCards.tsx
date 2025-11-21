@@ -21,7 +21,8 @@ export default function LighterPersonalizationCards({
   stickerCount: number;
   onSave: (customizations: LighterCustomization[], language: string) => void;
 }) {
-  const t = useI18n() as any;
+  // Using unknown cast because useI18n type inference might be tricky here without deeper changes
+  const t = useI18n() as unknown as (key: string, params?: Record<string, string | number>) => string;
   const currentLocale = useCurrentLocale();
     const DEFAULT_COLORS = [
     '#FF6B6B', '#FF8B6B', '#FFA500', '#FFD700', '#90EE90',

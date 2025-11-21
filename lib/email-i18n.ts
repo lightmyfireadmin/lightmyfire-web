@@ -20,7 +20,8 @@ export function getEmailTranslation(
   replacements?: Record<string, string | number>
 ): string {
   const locale = locales[lang] || locales.en;
-  let text = ((locale as Record<string, any>)[key] as string) || (en[key] as string) || key;
+  // Using unknown first to safely cast to string if it exists, though types suggest it matches 'en' structure
+  let text = ((locale as unknown as Record<string, string>)[key]) || (en[key] as string) || key;
 
   if (replacements) {
     Object.entries(replacements).forEach(([placeholder, value]) => {
