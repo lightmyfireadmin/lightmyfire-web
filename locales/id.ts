@@ -1,510 +1,1205 @@
 export default {
-  'banner.welcome': 'Selamat datang',
-  'banner.user': 'Pengguna',
-  'banner.connect_cta': 'Bergabunglah dengan komunitas LightSaver!',
-  'banner.connect_link': 'Masuk atau Daftar',
-  'banner.close': 'Tutup spanduk',
-  'home.hero.title': 'Terlalu Muda untuk Mati',
-  'home.hero.subtitle': 'Miliaran korek api dibuang setiap tahun. Ditemukan, dicintai, hilang, dilupakan... Namun penuh dengan cerita! Beri kami kesempatan untuk menceritakannya.',
-  'home.hero.cta': 'Menjadi LightSaver',
-  'home.hero.popup_content': 'PIN terletak di stiker. Ini adalah kode unik korek api Anda—paspor menuju perjalanan cerita global.',
-  'home.pin_entry.title': 'Menemukan Korek Api?',
-  'home.pin_entry.subtitle': 'Masukkan PIN dari stikernya untuk belajar lebih banyak tentang teman baru Anda.',
-  'home.pin_entry.label': 'PIN Korek Api',
-  'home.pin_entry.button': 'Temukan Korek Api',
-  'home.pin_entry.loading': 'Mencari...',
-  'home.pin_entry.error.generic': 'Terjadi kesalahan. Silakan coba lagi?',
-  'home.pin_entry.error.invalid': 'PIN tersebut tidak cocok dengan korek api yang kami kenal. Periksa kembali stikernya!',
-  'home.mosaic.title': 'Cerita dari Mosaik',
-  'home.mosaic.subtitle': 'Postingan acak dari LightSavers hebat seperti Anda, yang memilih untuk berbagi perjalanan korek api mereka dengan dunia.',
-  'home.mosaic.no_stories': 'Belum ada cerita publik. Jadilah yang pertama menyimpan korek api dan berbagi perjalanannya!',
-  'home.mosaic.loading': 'Memuat Cerita...',
-  'home.mosaic.see_more': 'Lihat Lebih Banyak Cerita',
-  'home.mosaic.load_more': 'Muat Lebih Banyak',
-  'home.community.title': 'Bergabunglah dengan Komunitas!',
-  'home.community.subtitle': 'Bagikan cerita Anda, temukan perjalanan baru, dan terhubung dengan LightSavers di seluruh dunia.',
-  'home.become_lightsaver.title': 'Menjadi LightSaver',
-  'home.become_lightsaver.subtitle': 'Bergabunglah dengan misi kami untuk memberi korek api kehidupan kedua. Buat stiker indah, bagikan cerita, dan jadilah bagian dari komunitas global kreatif yang melawan limbah.',
-  'nav.how_it_works': 'Cara Kerja',
-  'nav.our_philosophy': 'Filosofi Kami',
-  'nav.refill_guide': 'Isi Ulang!',
-  'nav.save_lighter': 'Menjadi LightSaver',
-  'nav.my_profile': 'Profil Saya',
-  'nav.login_signup': 'Masuk / Daftar',
-  'nav.logout': 'Keluar',
-  'nav.open_menu': 'Buka menu utama',
-  'nav.close_menu': 'Tutup menu utama',
-  'auth.login_to_flag': 'Anda harus masuk untuk menandai postingan',
+    'nav.how_it_works': 'How It Works',
+  'nav.our_philosophy': 'Our Philosophy',
+  'nav.refill_guide': 'Refill it!',
+  'nav.save_lighter': 'Become a LightSaver',
+  'nav.my_profile': 'My Profile',
+  'nav.my_orders': 'My Orders',
+  'nav.login_signup': 'Log in / Sign Up',
+  'nav.logout': 'Logout',
+  'nav.logging_out': 'Logging out...',
+  'nav.open_menu': 'Open main menu',
+  'nav.close_menu': 'Close main menu',
+  'nav.logo_alt': 'LightMyFire',
+  'nav.search_aria': 'Search for lighter',
+  'nav.search_title': 'Find a lighter',
 
-  // My Orders
-  'my_orders.title': 'Pesanan Saya',
-  'my_orders.subtitle': 'Lacak pesanan stiker LightMyFire Anda',
-  'my_orders.no_orders': 'Belum Ada Pesanan',
-  'my_orders.no_orders_text': 'Anda belum melakukan pesanan stiker.',
-  'my_orders.order_stickers': 'Pesan Stiker',
+    'footer.social.instagram': 'Instagram',
+  'footer.social.tiktok': 'TikTok',
+  'footer.social.facebook': 'Facebook',
+  'footer.links.privacy': 'Privacy Policy',
+  'footer.links.terms': 'Terms of Use',
+  'footer.links.about': 'About',
+  'footer.links.faq': 'FAQ',
+  'footer.copyright': '© {year} Revel Editions SASU. All rights reserved.',
+  'footer.notice': 'We\'re committed to a safe, respectful community. If you see content that doesn\'t belong, please flag it so we can review. Thank you!',
+  'footer.instagram_aria': 'Instagram',
+  'footer.tiktok_aria': 'TikTok',
+  'footer.facebook_aria': 'Facebook',
+  'footer.disclaimer': 'This project is an independent creative initiative, not affiliated with lighter manufacturers or other surfaces on which you might find us.',
 
-  'flag.flagged': 'Ditandai',
-  'flag.flag': 'Tandai',
-  'flag.confirm_title': 'Tandai postingan ini?',
-  'flag.confirm_message': 'Anda yakin ingin menandai postingan ini untuk ditinjau? Tindakan ini tidak dapat dibatalkan.',
-  'flag.error_flagging': 'Tidak dapat menandai postingan. Silakan coba lagi.',
-  'confirm_modal.cancel': 'Batal',
-  'confirm_modal.confirm': 'Konfirmasi',
-  'my_posts.post_type_default': 'Postingan {type}',
-  'my_posts.on': 'pada',
-  'my_posts.a_lighter': 'korek api',
-  'my_posts.the': '',
-  'my_posts.delete_post_aria': 'Hapus postingan',
-  'my_posts.delete': 'Hapus',
-  'my_posts.confirm_delete_title': 'Hapus postingan ini?',
-  'my_posts.confirm_delete_message': 'Anda yakin ingin menghapus postingan ini? Tindakan ini bersifat permanen.',
-  'my_posts.error_deleting': 'Kesalahan menghapus postingan: {message}',
-  'my_posts.no_posts_title': 'Belum Ada Cerita',
-  'my_posts.no_posts_description': 'Mulai bagikan cerita Anda dengan komunitas. Kunjungi korek api untuk menambahkan postingan pertama Anda!',
-  'my_posts.no_posts_action': 'Temukan Korek Api',
-  'badge.moderator_tooltip': 'Pengguna ini adalah bagian dari moderasi',
-  'my_profile.no_lighters_saved': 'Anda belum menyimpan korek api apa pun. Menjadi LightSaver untuk memulai perjalanan baru!',
-  'add_post.checkbox.is_find_location': 'Di sinilah saya menemukan korek api ini',
-  'add_post.checkbox.is_creation': 'Ini adalah kreasi asli saya',
-  'add_post.checkbox.is_anonymous': 'Posting secara anonim',
-  'add_post.checkbox.is_public': 'Izinkan postingan ini muncul di feed publik (mis., beranda)',
-  'add_post.error.no_file_selected': 'Silakan pilih file untuk diunggah.',
-  'add_post.error.upload_failed': 'Gagal mengunggah gambar. Silakan coba lagi.',
-  'add_post.error.no_song_selected': 'Silakan pilih lagu dari hasil pencarian.',
-  'add_post.error.invalid_url': 'Silakan masukkan URL yang valid.',
-  'add_post.error.no_location_selected': 'Silakan masukkan lintang dan bujur yang valid.',
-  'add_post.error.rpc_error': 'Kesalahan: {message}',
-  'add_post.error.unexpected': 'Terjadi kesalahan yang tidak terduga. Silakan coba lagi.',
-  'add_post.error.youtube_search_failed': 'Gagal mencari YouTube. Silakan coba lagi.',
-  'add_post.placeholder.text': 'Puisi Anda, cerita Anda, pikiran Anda...',
-  'add_post.song_input_mode.url': 'URL',
-  'add_post.song_input_mode.search': 'Cari',
-  'add_post.placeholder.youtube_url': 'URL Lagu YouTube',
-  'add_post.placeholder.youtube_search': 'Cari lagu di YouTube...',
-  'add_post.youtube_search.searching': 'Mencari...',
-  'add_post.youtube_search.no_results': 'Tidak ada hasil ditemukan.',
-  'add_post.image_upload_mode.url': 'URL',
-  'add_post.image_upload_mode.upload': 'Unggah',
-  'add_post.placeholder.image_url': 'URL Gambar (mis., Imgur)',
-  'add_post.refuel_message': 'Anda pahlawan! Dengan mengklik "Posting", Anda akan menambahkan entri "Diisi Ulang" ke cerita korek api ini.',
-  'add_post.title': 'Tambahkan ke Cerita',
-  'add_post.subtitle': 'Anda menambahkan postingan ke {lighterName}',
-  'add_post.post_type.text': 'Teks',
-  'add_post.post_type.song': 'Lagu',
-  'add_post.post_type.image': 'Gambar',
-  'add_post.post_type.location': 'Lokasi',
-  'add_post.post_type.refuel': 'Isi Ulang',
-  'add_post.subtitle.text': 'Ceritakan tentang hari Anda',
-  'add_post.subtitle.song': 'Bagikan momen musikal',
-  'add_post.subtitle.image': 'Tunjukkan apa yang Anda lihat',
-  'add_post.subtitle.location': 'Tandai perjalanan',
-  'add_post.subtitle.refuel': 'Jaga agar tetap hidup',
-  'add_post.placeholder.title': 'Judul (Opsional)',
-  'add_post.button.uploading': 'Mengunggah...',
-  'add_post.button.posting': 'Memposting...',
-  'add_post.button.add_to_story': 'Tambahkan ke Cerita',
-  'save_lighter.title': 'Menjadi LightSaver',
-  'save_lighter.introduction': 'Beli paket stiker untuk menyelamatkan korek api dan berbagi cerita mereka dengan dunia. Setiap stiker memiliki PIN unik yang terhubung ke perjalanan korek api.',
-  'save_lighter.pack_5.title': '5 Stiker',
+    'home.hero.title': 'Too Young To Die',
+  'home.hero.subtitle': 'Billions of lighters are thrown away every year. Found, loved, lost, passed from hand to hand, then forgotten... Yet filled with stories to tell. Among these lighters, many could still enjoy a new life: a huge portion of refillable lighters sold each year are discarded when empty. Let\'s give them a chance to stay with us by discovering the richness of their journey.',
+  'home.hero.cta': 'Become a LightSaver',
+  'home.hero.popup_content': 'The PIN is on the sticker. It\'s your lighter\'s unique code—its passport to a global journey of stories.',
+  'home.new_here_link': '🤔 New here? Where did I just land?',
+  'home.new_here_aria': 'Learn more about LightMyFire in our FAQ',
+  'home.hero.alt_image': 'LightMyFire - Give lighters a second life',
+  'home.pin_entry.title': 'Found a Lighter?',
+  'home.pin_entry.subtitle': 'Enter the PIN from its sticker to learn more about your new friend.',
+  'home.pin_entry.label': 'Lighter PIN',
+  'home.pin_entry.button': 'Find Lighter',
+  'home.pin_entry.loading': 'Searching...',
+  'home.pin_entry.error.generic': 'Something went wrong. Give it another try?',
+  'home.pin_entry.error.invalid': 'That PIN doesn\'t match any lighter we know. Double-check the sticker!',
+  'home.pin_entry.image_alt': 'Found a lighter',
+  'home.mosaic.title': 'Stories from the Mosaic',
+  'home.mosaic.subtitle': 'Random posts from great LightSavers like you, who chose to share their lighter\'s journey with the world.',
+  'home.mosaic.no_stories': 'No public stories yet. Be the first to save a lighter and share its journey!',
+  'home.mosaic.loading': 'Loading Stories...',
+  'home.mosaic.see_more': 'See More Stories',
+  'home.mosaic.load_more': 'Load More',
+  'home.community.title': 'Join the Community',
+  'home.community.subtitle': 'Share stories, discover journeys, and connect with LightSavers around the world.',
+  'home.community.alt': 'Community illustration',
+  'home.become_lightsaver.title': 'Become a LightSaver',
+  'home.become_lightsaver.subtitle': 'Join our mission to give lighters a second life. Create beautiful custom stickers, share your favorite poem, your latest freestyle, your Italian restaurant recommendation nearby. By enriching a lighter\'s memory, you join a creative global community fighting waste.',
+  'home.become_lightsaver.alt': 'Illustration of sharing',
+  'home.become_lightsaver.alt_arrow': 'Arrow pointing to save lighter button',
+  'home.how_it_works.title': 'Who travels more than a Lighter?',
+  'home.how_it_works.step1.title': '1. Create',
+  'home.how_it_works.step1.description': 'It all starts with accepting the unstable ownership of a lighter: how many times have they been lost, how many mornings have you woken up with a lighter that wasn\'t yours in your pocket? This reality isn\'t a constraint—it\'s a unique opportunity to have an exciting journey through so many hands, countries, listening to such different stories. Give your lighter a name, customize your stickers to your taste, and start its digital travel diary by receiving your LightSaver pack at home.',
+  'home.how_it_works.step1.alt': 'Save a lighter',
+  'home.how_it_works.step2.title': '2. Share',
+  'home.how_it_works.step2.description': 'Stick it on and let it go. Pass it to a friend or "lose" it somewhere fun: its journey begins. Don\'t use it to track down which friend stole your fire. Share random thoughts, your latest poem, a song you liked. Mention your favourite new coffee in town. Tell the community where you found this lighter. Advertise your bracelet home side hustle. Share your third sunset picture of the evening. It\'s your choice.',
+  'home.how_it_works.step2.alt': 'Share the lighter',
+  'home.how_it_works.step3.title': '3. Follow',
+  'home.how_it_works.step3.description': 'Anyone who finds it scans the code, enters the PIN, and adds their story. While saving a lighter from being discarded by encouraging your fellow LightSaver to refill it, you create a beautiful mosaic of thoughts and anecdotes. We welcome any (non-harmful) contribution, this sticker paints its bearer\'s journey and gives a voice to all hands it landed in.',
+  'home.how_it_works.step3.alt': 'Follow the story',
+  'home.stats.title': 'Our Community Impact',
+  'home.stats.subtitle': 'Together, we\'re saving lighters from landfills and building a global movement of creative storytelling.',
+  'home.stats.lighters_saved': 'Lighters Saved',
+  'home.stats.plastic_saved': 'Plastic Waste Prevented',
+  'home.stats.stories_created': 'Stories Created',
+  'home.stats.stories_subtext': 'Moments captured & shared',
+  'home.stats.countries_reached': 'Countries Reached',
+  'home.stats.global_community': 'A truly global movement',
+  'home.stats.co2_saved': 'CO₂ Impact',
+  'home.stats.environmental_impact': 'Environmental contribution',
+  'home.stats.join_movement': 'Join thousands of LightSavers making a difference, one lighter at a time.',
+  'home.stats.citations_title': 'Sources',
+
+    'banner.welcome': 'Welcome',
+  'banner.user': 'User',
+  'banner.connect_cta': 'Join the LightSavers\' community!',
+  'banner.connect_link': 'Log in or Sign up',
+  'banner.close': 'Close banner',
+
+    'login.title': 'LightMyFire',
+  'login.email_label': 'Email Address',
+  'login.password_label': 'Password',
+  'login.forgot_password': 'Forgot your password?',
+  'login.button.signin': 'Sign In',
+  'login.button.signup': 'Sign Up',
+  'login.social_divider': 'or continue with',
+  'login.tab.login': 'Log in',
+  'login.tab.signup': 'Sign up',
+
+  'auth.email_label': 'Email',
+  'auth.password_label': 'Password',
+  'auth.email_placeholder': 'you@example.com',
+  'auth.password_placeholder': 'Your password',
+  'auth.sign_in': 'Sign in',
+  'auth.sign_up': 'Sign up',
+  'auth.signing_in': 'Signing in...',
+  'auth.signing_up': 'Signing up...',
+  'auth.continue_with': 'Continue with',
+  'auth.already_have_account': 'Already have an account? Sign in',
+  'auth.dont_have_account': 'Don\'t have an account? Sign up',
+  'auth.forgot_password': 'Forgot your password?',
+  'auth.login_to_flag': 'Log in to flag posts',
+  'auth.login_to_like': 'Log in to like posts',
+  'auth.why_account_needed': 'Why do I need an account?',
+  'auth.account_reason_short': 'We require accounts for **safety and community trust**. Since we allow photos, text, music, and location sharing, having accounts helps keep the platform welcoming for everyone.',
+  'auth.account_benefits': '✓ Takes less than 30 seconds to create\n✓ Your data is private and secure\n✓ Helps us maintain a safe community',
+  'auth.learn_more': 'Learn more in our FAQ',
+  'auth.create_account_prompt': 'New to LightMyFire?',
+
+  'notifications.login_success': 'Welcome back, LightSaver! Your lighters missed you. 💫',
+  'notifications.logout_success': 'See you next time! ✨',
+  'notifications.signup_success': 'Welcome to the LightSaver family! 🌟',
+  'notifications.post_success': 'Story added! 🎉 You just made this lighter\'s journey brighter.',
+  'notifications.post_success_first': 'Congratulations! 🌟 You lit the first spark in this lighter\'s story.',
+  'notifications.post_success_public': 'Story shared with the world! 🌍 It\'s now part of our global mosaic.',
+  'notifications.profile_updated': 'Profile updated! Looking good, LightSaver. ✨',
+  'notifications.password_updated': 'Password updated! Your account is secure. 🔒',
+  'notifications.post_deleted_success': 'Post deleted. Like it never happened.',
+  'notifications.action_success': 'Success',
+  'notifications.action_error': 'Error',
+  'notifications.trophy_earned': '🏆 Trophy Unlocked: {trophy_name}! You\'re on fire!',
+  'notifications.lighter_saved': 'Success! {lighterName} is ready for adventure! 🌍',
+  'notifications.sticker_downloaded': 'Stickers ready! Time to set {lighterName} free. 🚀',
+  'notifications.success': 'Success!',
+  'notifications.error': 'Error',
+  'notifications.warning': 'Warning',
+  'notifications.auth_failed': 'Authentication failed. Please try again.',
+  'notifications.invalid_credentials': 'Invalid email or password. Please check your credentials and try again.',
+  'notifications.user_not_found': 'No account found with this email. Please sign up first!',
+  'notifications.session_expired': 'Your session has expired. Please log in again to continue.',
+  'notifications.password_reset_sent': 'Password reset email sent! Check your inbox.',
+  'confirm_modal.cancel': 'Cancel',
+  'confirm_modal.confirm': 'Confirm',
+  'empty_state.default_title': 'This space is waiting for you ✨',
+  'empty_state.default_message': 'Nothing here yet, but that\'s about to change!',
+  'empty_state.no_posts_title': 'This lighter\'s story is waiting to be written!',
+  'empty_state.no_posts_message': 'Be the first to add a post and start its journey.',
+  'not_found.title': '404 - Page Not Found',
+  'not_found.message': 'Oops! The page you\'re looking for doesn\'t exist.',
+  'not_found.go_home': 'Go Home',
+  'error.generic_title': 'Oops! Something went wrong',
+  'error.generic_message': 'Sorry, there was a small issue on our end. If the problem persists, don\'t hesitate to contact support: support@lightmyfire.app',
+  'error.try_again': 'Try Again',
+  'error.network': 'Looks like the internet hiccupped. Check your connection and try again. 🌐',
+  'error.upload_too_large': 'That image is too big! Please choose one under 2MB. 📸',
+  'error.invalid_pin': 'Hmm, that PIN doesn\'t match any lighter we know. Double-check the sticker!',
+  'error.rate_limit': 'Whoa there, speedy! 🏃‍♂️\n\nYou\'re adding posts faster than we can keep up. Take a 24-hour break to let others add to this lighter\'s story, then come back!\n\n(This keeps our mosaic diverse and interesting for everyone.)',
+  'error.content_flagged': 'Heads up! Our community guidelines flag this content as {reason}. Let\'s keep LightMyFire welcoming for everyone. 🌟',
+
+    'legal.privacy.title': 'Privacy Policy',
+  'legal.terms.title': 'Terms of Service',
+  'legal.faq.title': 'Frequently Asked Questions',
+  'legal.about.title': 'About LightMyFire',
+
+    'cookie.message': 'We use cookies only for basic functionality—never for tracking. Your privacy matters. See our {privacyLink} for details.',
+  'cookie.privacy_link_text': 'Privacy Policy',
+  'cookie.accept': 'Accept',
+  'cookie.decline': 'Decline',
+    'cookie_consent.title': 'We value your privacy',
+  'cookie_consent.message': 'We use cookies to ensure you get the best experience on our website. By continuing, you agree to our privacy policy and cookie use.',
+  'cookie_consent.accept': 'Accept & Continue',
+  'cookie_consent.privacy_link': 'Privacy Policy',
+
+    'privacy.last_updated': 'Last updated: November 8, 2025',
+  'privacy.p1': 'LightMyFire ("we," "us," or "our") is operated by Revel Editions SASU, a SASU company registered in France (RCS: 849 409 313). We are committed to protecting your privacy and complying with the General Data Protection Regulation (GDPR). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and services.',
+  'privacy.h3.data_controller': '1. Data Controller',
+  'privacy.p2': 'The data controller for your personal information is:<br><br><strong>Revel Editions SASU</strong><br>145 Rue de Noisy-le-Sec<br>93260 Les Lilas, France<br><br><strong>Contact Email:</strong> support@lightmyfire.app<br><strong>Data Protection Officer:</strong> support@lightmyfire.app',
+  'privacy.h3.info_we_collect': '2. Information We Collect',
+  'privacy.p3': 'We collect personal information in several ways to provide and improve our services:',
+  'privacy.h4.personal_data': '2.1. Personal Data You Provide',
+  'privacy.ul1.li1': '<strong>Account Registration:</strong> Email address, username, and hashed password (we never store passwords in plain text)',
+  'privacy.ul1.li2': '<strong>Profile Information:</strong> Optional nationality information and profile preferences',
+  'privacy.ul1.li3': '<strong>Communications:</strong> Any information you provide when contacting us for support',
+  'privacy.h4.user_content': '2.2. User-Generated Content',
+  'privacy.ul2.li1': '<strong>Posts:</strong> Text content, images, YouTube video links you share on lighter pages',
+  'privacy.ul2.li2': '<strong>Location Data:</strong> Optional geographic coordinates (latitude/longitude) when you create location posts. We can\'t know if coordinates entered are linked to your actual location',
+  'privacy.ul2.li3': '<strong>Metadata:</strong> Post timestamps, lighter associations, and interaction data (likes, flags)',
+  'privacy.h4.transaction_data': '2.3. Transaction Data',
+  'privacy.ul3.li1': '<strong>Payment Information:</strong> Processed securely by Stripe (our payment processor). We never store your full credit card details',
+  'privacy.ul3.li2': '<strong>Shipping Information:</strong> Name, address, email, and phone number for sticker delivery',
+  'privacy.ul3.li3': '<strong>Order History:</strong> Details of sticker packs purchased and customization preferences',
+  'privacy.h4.technical_data': '2.4. Technical Data (Automatically Collected)',
+  'privacy.ul4.li1': '<strong>Device Information:</strong> IP address, browser type, operating system',
+  'privacy.ul4.li2': '<strong>Usage Data:</strong> Pages visited, features used, time spent on the platform',
+  'privacy.ul4.li3': '<strong>Cookies:</strong> Essential cookies for authentication and session management (see Section 5.1)',
+  'privacy.h3.how_we_use': '3. How We Use Your Information',
+  'privacy.p4': 'We use the information we collect to:',
+  'privacy.ul5.li1': '<strong>Service Provision:</strong> Create and manage your account, display your contributions, process orders',
+  'privacy.ul5.li2': '<strong>Communication:</strong> Send order confirmations, respond to inquiries, notify you of lighter activity (if opted-in)',
+  'privacy.ul5.li3': '<strong>Platform Integrity:</strong> Prevent spam, enforce community guidelines, moderate content',
+  'privacy.ul5.li4': '<strong>Gamification:</strong> Track achievements, award trophies, calculate user levels',
+  'privacy.ul5.li5': '<strong>Legal Compliance:</strong> Comply with applicable laws and respond to legal requests',
+  'privacy.ul5.li6': '<strong>Service Improvement:</strong> Analyze usage patterns to enhance user experience (anonymized data only)',
+  'privacy.h3.legal_basis': '4. Legal Basis for Processing (GDPR)',
+  'privacy.p5': 'Under GDPR, we process your personal data based on the following legal grounds:',
+  'privacy.ul6.li1': '<strong>Contractual Necessity (Art. 6(1)(b) GDPR):</strong> Processing necessary to provide the services you requested when creating an account',
+  'privacy.ul6.li2': '<strong>Legitimate Interests (Art. 6(1)(f) GDPR):</strong> Platform security, fraud prevention, content moderation, and service improvement—balanced against your rights',
+  'privacy.ul6.li3': '<strong>Consent (Art. 6(1)(a) GDPR):</strong> Optional features like public post sharing, nationality display, and non-essential cookies—you can withdraw consent anytime',
+  'privacy.ul6.li4': '<strong>Legal Obligation (Art. 6(1)(c) GDPR):</strong> Compliance with French and EU law, including tax obligations and law enforcement requests',
+  'privacy.h3.data_sharing': '5. Data Sharing and Processors',
+  'privacy.p6': 'We do not sell, rent, or trade your personal data. We share data only with trusted service providers who help us operate the platform:',
+  'privacy.ul7.li1': '<strong>Supabase (Backend Infrastructure):</strong> Hosts our database, authentication system, and file storage. Located in EU data centers. <a href=\'https://supabase.com/privacy\' target=\'_blank\'>View Supabase Privacy Policy</a>',
+  'privacy.ul7.li2': '<strong>Stripe (Payment Processing):</strong> Processes all payment transactions securely. We receive only transaction confirmations, not card details. <a href=\'https://stripe.com/privacy\' target=\'_blank\'>View Stripe Privacy Policy</a>',
+  'privacy.ul7.li3': '<strong>Shipping Partners:</strong> Receive name, address, and contact information solely for sticker delivery',
+  'privacy.p7': 'All third-party processors are bound by Data Processing Agreements (DPAs) ensuring GDPR compliance and data protection.',
+  'privacy.h3.cookies': '5.1. Cookies',
+  'privacy.h4.cookie_types': 'Types of Cookies We Use',
+  'privacy.ul8.li1': '<strong>Essential Cookies (No Consent Required):</strong> Session management, authentication, security features, and shopping cart functionality. These are strictly necessary for the platform to work.',
+  'privacy.ul8.li2': '<strong>Preference Cookies (No Consent Required):</strong> Remember your language selection, cookie consent choice, and display preferences.',
+  'privacy.ul8.li3': '<strong>Analytics Cookies (Consent Required):</strong> Help us understand how visitors use the site through anonymized data. We only activate these with your explicit consent.',
+  'privacy.p8': 'You can manage cookie preferences through the consent banner displayed on your first visit. You can change your choice anytime in your browser settings or by contacting us.',
+  'privacy.h3.location_data': '5.2. Location Data',
+  'privacy.p9': 'When you create a location post, you may voluntarily provide geographic coordinates (latitude and longitude). <strong>Important disclosures:</strong>',
+  'privacy.ul9.li1': 'This data is <strong>publicly visible</strong> on the lighter\'s page and map',
+  'privacy.ul9.li2': 'Anyone with the lighter\'s PIN can see this information',
+  'privacy.ul9.li3': 'You control the accuracy—you can provide approximate or exact coordinates',
+  'privacy.ul9.li4': 'You are solely responsible for privacy implications of any location data you share',
+  'privacy.ul9.li5': 'You can delete your location posts anytime from your profile',
+  'privacy.h3.international_transfers': '5.3. International Data Transfers',
+  'privacy.p10': 'Your data is primarily stored on Supabase servers located within the European Union. However, some sub-processors may be located outside the EU/EEA. When data is transferred internationally, we ensure adequate protection through:',
+  'privacy.ul10.li1': '<strong>Standard Contractual Clauses (SCCs):</strong> EU-approved data transfer mechanisms',
+  'privacy.ul10.li2': '<strong>Adequacy Decisions:</strong> Transfers only to countries recognized by the EU Commission as providing adequate protection',
+  'privacy.ul10.li3': '<strong>Processor Guarantees:</strong> All processors commit to GDPR-equivalent data protection standards',
+  'privacy.h3.data_retention': '5.4. Data Retention Periods',
+  'privacy.p11': 'We retain personal data only as long as necessary for the purposes outlined in this policy:',
+  'privacy.ul11.li1': '<strong>Account Data:</strong> Retained while your account is active, plus 30 days after deletion (to allow reactivation)',
+  'privacy.ul11.li2': '<strong>User Posts:</strong> Retained while your account exists. When you delete a post, it\'s permanently removed within 24 hours',
+  'privacy.ul11.li3': '<strong>Order Data:</strong> 7 years from date of purchase (French tax law requirement)',
+  'privacy.ul11.li4': '<strong>Technical Logs:</strong> IP addresses and security logs retained for 12 months maximum',
+  'privacy.ul11.li5': '<strong>Anonymized Analytics:</strong> Retained indefinitely for service improvement (cannot be linked back to you)',
+  'privacy.p12': 'After retention periods expire, data is securely deleted from all systems, including backups.',
+  'privacy.h3.data_security': '5.5. Security Measures',
+  'privacy.p13': 'We implement appropriate technical and organizational measures to protect your data:',
+  'privacy.ul12.li1': '<strong>Encryption:</strong> All data transmitted using TLS/SSL encryption. Passwords stored using industry-standard hashing',
+  'privacy.ul12.li2': '<strong>Access Controls:</strong> Role-based access, limited employee access, multi-factor authentication for admin accounts',
+  'privacy.ul12.li3': '<strong>Regular Audits:</strong> Security assessments, vulnerability scanning, and code reviews',
+  'privacy.ul12.li4': '<strong>Incident Response:</strong> Documented breach notification procedures (see Section 5.6)',
+  'privacy.h3.data_breaches': '5.6. Data Breach Notification',
+  'privacy.p14': 'In the unlikely event of a personal data breach, we will:',
+  'privacy.ul13.li1': '<strong>Notify Supervisory Authority:</strong> Within 72 hours of becoming aware of the breach (CNIL in France)',
+  'privacy.ul13.li2': '<strong>Notify Affected Users:</strong> Without undue delay if the breach poses high risk to your rights and freedoms',
+  'privacy.ul13.li3': '<strong>Provide Information:</strong> Nature of the breach, likely consequences, measures taken, and recommended actions',
+  'privacy.h3.your_rights': '6. Your Rights Under GDPR',
+  'privacy.p15': 'You have the following rights regarding your personal data. To exercise any of these rights, contact us at <strong>support@lightmyfire.app</strong>.',
+  'privacy.h4.right_access': '6.1. Right of Access (Art. 15 GDPR)',
+  'privacy.p16': 'You can request a copy of all personal data we hold about you. We\'ll provide this in a structured, commonly used format within 30 days.',
+  'privacy.h4.right_rectification': '6.2. Right to Rectification (Art. 16 GDPR)',
+  'privacy.p17': 'You can correct inaccurate or incomplete data. Update most information directly in your profile settings, or contact us for assistance.',
+  'privacy.h4.right_erasure': '6.3. Right to Erasure - "Right to be Forgotten" (Art. 17 GDPR)',
+  'privacy.p18': 'You can request deletion of your personal data. You can delete individual posts anytime from "My Profile." To delete your entire account and all associated data, contact us at support@lightmyfire.app. Note: We may retain certain data if legally required (e.g., order history for tax purposes).',
+  'privacy.h4.right_restriction': '6.4. Right to Restriction of Processing (Art. 18 GDPR)',
+  'privacy.p19': 'You can request we limit how we use your data while you contest its accuracy or lawfulness of processing.',
+  'privacy.h4.right_portability': '6.5. Right to Data Portability (Art. 20 GDPR)',
+  'privacy.p20': 'You can receive your data in a machine-readable format (JSON/CSV) to transfer to another service.',
+  'privacy.h4.right_object': '6.6. Right to Object (Art. 21 GDPR)',
+  'privacy.p21': 'You can object to processing based on legitimate interests. We\'ll stop processing unless we demonstrate compelling legitimate grounds.',
+  'privacy.h4.right_withdraw': '6.7. Right to Withdraw Consent',
+  'privacy.p22': 'For processing based on consent, you can withdraw it anytime. This doesn\'t affect the lawfulness of processing before withdrawal.',
+  'privacy.h4.right_complain': '6.8. Right to Lodge a Complaint',
+  'privacy.p23': 'If you believe we\'re not complying with GDPR, you have the right to lodge a complaint with a supervisory authority:',
+  'privacy.p24': '<strong>France (Our Primary Jurisdiction):</strong><br>Commission Nationale de l\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, France<br>Website: <a href=\'https://www.cnil.fr\' target=\'_blank\'>www.cnil.fr</a>',
+  'privacy.p25': 'You can also contact the data protection authority in your country of residence.',
+  'privacy.h3.automated_decisions': '7. Automated Decision-Making',
+  'privacy.p26': 'We use limited automated processing for:',
+  'privacy.ul14.li1': '<strong>Content Moderation:</strong> Automated pre-screening of posts for prohibited content (hate speech, explicit imagery). Flagged content is reviewed by human moderators before any action',
+  'privacy.ul14.li2': '<strong>Spam Prevention:</strong> Automated detection of suspicious activity patterns (e.g., rapid post submissions)',
+  'privacy.ul14.li3': '<strong>Gamification:</strong> Automated calculation of user levels and trophy eligibility based on contribution metrics',
+  'privacy.p27': 'These automated processes do not produce legal effects or significantly affect you. You can always contact us to contest a decision or request human review.',
+  'privacy.h3.children': '8. Children\'s Privacy',
+  'privacy.p28': 'Our service is not directed to children under 16 years of age (or the minimum age required in your jurisdiction to consent to data processing). We do not knowingly collect personal data from children. If you believe we\'ve inadvertently collected data from a child, contact us immediately at support@lightmyfire.app and we\'ll delete it promptly.',
+  'privacy.h3.changes': '9. Changes to This Privacy Policy',
+  'privacy.p29': 'We may update this Privacy Policy to reflect changes in our practices or legal requirements. We will:',
+  'privacy.ul15.li1': 'Notify you by email of significant changes (if you have an account)',
+  'privacy.ul15.li2': 'Display a prominent notice on the website',
+  'privacy.ul15.li3': 'Update the "Last updated" date at the top of this policy',
+  'privacy.p30': 'Continued use of our services after changes constitutes acceptance of the updated policy.',
+  'privacy.h3.contact': '10. Contact Us',
+  'privacy.p31': 'For any questions about this Privacy Policy or to exercise your rights, contact us:',
+  'privacy.ul16.li1': '<strong>Email:</strong> support@lightmyfire.app',
+  'privacy.ul16.li2': '<strong>Data Protection Officer:</strong> support@lightmyfire.app',
+  'privacy.ul16.li3': '<strong>Postal Address:</strong> Revel Editions SASU, [Complete Address], France',
+  'privacy.p32': 'We aim to respond to all requests within 30 days. If your request is complex, we may extend this by an additional 60 days and will inform you.',
+
+    'terms.last_updated': 'Last updated: October 28, 2025',
+  'terms.p1': 'These Terms of Service ("Terms") govern your access to and use of LightMyFire (the "Service"), operated by Revel Editions SASU, a company registered in France. By creating an account or using our Service, you enter into a legally binding agreement with us.',
+  'terms.h3.acceptance': '1. Acceptance of Terms',
+  'terms.p2': 'By accessing or using LightMyFire, you agree to be bound by these Terms, our Privacy Policy, and all applicable laws. If you do not agree with any part of these Terms, you must not use the Service. Your continued use constitutes acceptance of any modifications we make to these Terms.',
+  'terms.h3.eligibility': '2. Eligibility and Account Requirements',
+  'terms.h4.age': '2.1. Age Requirement',
+  'terms.p3': 'You must be at least 16 years old (or the minimum age required in your country to provide consent for data processing under applicable privacy laws) to create an account and use this Service. By creating an account, you represent and warrant that you meet this age requirement.',
+  'terms.h4.account_security': '2.2. Account Security',
+  'terms.p4': 'You are responsible for:',
+  'terms.ul1.li1': 'Maintaining the confidentiality of your account credentials',
+  'terms.ul1.li2': 'All activities that occur under your account',
+  'terms.ul1.li3': 'Notifying us immediately of any unauthorized use at: support@lightmyfire.app',
+  'terms.p5': 'You may not share your account with others or use another person\'s account without permission.',
+  'terms.h4.account_accuracy': '2.3. Account Information',
+  'terms.p6': 'You agree to provide accurate, current, and complete information during registration and to update it as necessary to maintain its accuracy.',
+  'terms.h3.license': '3. License and Intellectual Property',
+  'terms.h4.our_license': '3.1. License to Use the Service',
+  'terms.p7': 'Subject to these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to access and use LightMyFire for personal, non-commercial purposes.',
+  'terms.h4.our_ip': '3.2. LightMyFire Intellectual Property',
+  'terms.p8': 'All content, features, and functionality of the Service—including but not limited to text, graphics, logos, icons, images, audio clips, data compilations, software, and the "look and feel" of the website—are the exclusive property of Revel Editions SASU and are protected by international copyright, trademark, and other intellectual property laws.',
+  'terms.p9': '"LightMyFire," "LightSaver," and associated logos are trademarks of Revel Editions SASU. You may not use these trademarks without our prior written permission.',
+  'terms.h4.user_license': '3.3. License to Your User-Generated Content',
+  'terms.p10': 'By posting User-Generated Content ("UGC") on the Service, you grant Revel Editions SASU a worldwide, non-exclusive, royalty-free, perpetual, transferable license to:',
+  'terms.ul2.li1': 'Use, reproduce, distribute, modify, adapt, publicly perform, and publicly display your UGC',
+  'terms.ul2.li2': 'Incorporate your UGC into other works in any format or medium',
+  'terms.ul2.li3': 'Sublicense these rights to third parties solely for the operation and promotion of LightMyFire',
+  'terms.p11': '<strong>Important:</strong> This license is limited to operating and promoting the Service. We will not use your content for unrelated commercial purposes. You retain ownership of your UGC and can revoke this license for specific posts by deleting them from your profile. However, copies may persist in backups for up to 30 days.',
+  'terms.h3.ugc': '4. User-Generated Content and Conduct',
+  'terms.h4.ugc_responsibility': '4.1. Your Responsibility',
+  'terms.p12': 'You are solely responsible for all content you post on LightMyFire, including text, images, links to songs (YouTube URLs), and location data. You represent and warrant that:',
+  'terms.ul3.li1': 'You own or have the necessary rights to post the content',
+  'terms.ul3.li2': 'Your content does not violate any third party\'s intellectual property, privacy, or other rights',
+  'terms.ul3.li3': 'Your content complies with these Terms and applicable laws',
+  'terms.h4.prohibited_content': '4.2. Prohibited Content',
+  'terms.p13': 'You must not post content that:',
+  'terms.ul4.li1': '<strong>Illegal:</strong> Violates any local, national, or international law',
+  'terms.ul4.li2': '<strong>Harmful to Minors:</strong> Exploits, sexualizes, or endangers children in any way',
+  'terms.ul4.li3': '<strong>Hateful:</strong> Promotes hatred, discrimination, or violence against individuals or groups based on race, ethnicity, religion, gender, sexual orientation, disability, or other protected characteristics',
+  'terms.ul4.li4': '<strong>Violent or Threatening:</strong> Depicts, encourages, or threatens violence, self-harm, or harm to others',
+  'terms.ul4.li5': '<strong>Harassing:</strong> Bullies, harasses, stalks, or intimidates others',
+  'terms.ul4.li6': '<strong>Sexually Explicit:</strong> Contains pornography or sexually explicit material',
+  'terms.ul4.li7': '<strong>Misleading:</strong> Contains false, misleading, or fraudulent information',
+  'terms.ul4.li8': '<strong>Spam:</strong> Consists of unsolicited advertising, promotional material, or repetitive content',
+  'terms.ul4.li9': '<strong>Infringing:</strong> Violates copyrights, trademarks, patents, or other intellectual property rights',
+  'terms.ul4.li10': '<strong>Malicious:</strong> Contains viruses, malware, or other harmful code',
+  'terms.ul4.li11': '<strong>Private Information:</strong> Shares others\' personal information without consent (doxxing)',
+  'terms.h4.prohibited_conduct': '4.3. Prohibited Conduct',
+  'terms.p14': 'You must not:',
+  'terms.ul5.li1': 'Impersonate any person or entity',
+  'terms.ul5.li2': 'Manipulate the Service to artificially inflate metrics (likes, views, etc.)',
+  'terms.ul5.li3': 'Interfere with or disrupt the Service or servers',
+  'terms.ul5.li4': 'Attempt to gain unauthorized access to any part of the Service',
+  'terms.ul5.li5': 'Use automated tools (bots, scrapers) without written permission',
+  'terms.ul5.li6': 'Circumvent any content filtering or security measures',
+  'terms.ul5.li7': 'Use the Service for any commercial purpose without our consent',
+  'terms.h3.moderation': '5. Content Moderation and Enforcement',
+  'terms.h4.mod_rights': '5.1. Our Rights',
+  'terms.p15': 'We reserve the right (but have no obligation) to:',
+  'terms.ul6.li1': 'Review, screen, edit, or remove any UGC at any time for any reason',
+  'terms.ul6.li2': 'Monitor user activity for violations of these Terms',
+  'terms.ul6.li3': 'Investigate complaints and reported content',
+  'terms.p16': 'However, we are not responsible for monitoring all content and make no guarantee that prohibited content will not appear on the Service.',
+  'terms.h4.community_flagging': '5.2. Community Flagging',
+  'terms.p17': 'We use a community-driven flagging system. Users can flag content they believe violates these Terms. Flagged content is reviewed by our moderation team, which may include automated pre-screening followed by human review.',
+  'terms.h4.enforcement': '5.3. Enforcement Actions',
+  'terms.p18': 'Violations of these Terms may result in:',
+  'terms.ul7.li1': '<strong>Content Removal:</strong> Removal of violating posts without notice',
+  'terms.ul7.li2': '<strong>Warning:</strong> A formal warning for first-time or minor violations',
+  'terms.ul7.li3': '<strong>Temporary Suspension:</strong> Temporary account suspension (duration determined by severity)',
+  'terms.ul7.li4': '<strong>Permanent Termination:</strong> Permanent account termination for serious or repeated violations',
+  'terms.ul7.li5': '<strong>Legal Action:</strong> Reporting to law enforcement for illegal activity',
+  'terms.p19': 'We may terminate accounts without prior notice if we determine there\'s a serious violation that threatens user safety or platform integrity.',
+  'terms.h4.appeals': '5.4. Appeals Process',
+  'terms.p20': 'If you believe content was removed or your account was suspended in error, you may appeal by contacting support@lightmyfire.app within 30 days of the action. Include:',
+  'terms.ul8.li1': 'Your username and account email',
+  'terms.ul8.li2': 'Description of the content or action in question',
+  'terms.ul8.li3': 'Explanation of why you believe the decision was incorrect',
+  'terms.p21': 'We will review appeals and respond within 14 business days. Our decision on appeals is final.',
+  'terms.h3.stickers': '6. Sticker Sales and Orders',
+  'terms.h4.sales_final': '6.1. Sales Policy',
+  'terms.p22': 'All sticker sales are final. We do not offer refunds except in cases of:',
+  'terms.ul9.li1': 'Manufacturing defects in the stickers',
+  'terms.ul9.li2': 'Incorrect items shipped',
+  'terms.ul9.li3': 'Non-delivery due to our error',
+  'terms.p23': 'To request a refund for these reasons, contact support@lightmyfire.app within 30 days of delivery with photo evidence.',
+  'terms.h4.shipping': '6.2. Shipping and Delivery',
+  'terms.p24': 'Shipping times and costs are specified at checkout. We are not responsible for delays caused by shipping carriers, customs, or events beyond our control (force majeure). Risk of loss passes to you upon delivery to the carrier.',
+  'terms.h4.custom': '6.3. Customization',
+  'terms.p25': 'Custom sticker orders cannot be canceled once processing begins (typically within 24 hours of order placement). Please review your customizations carefully before completing your order.',
+  'terms.h3.liability': '7. Disclaimers and Limitation of Liability',
+  'terms.h4.as_is': '7.1. "As Is" Service',
+  'terms.p26': 'THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, OR UNINTERRUPTED OR ERROR-FREE SERVICE. WE DO NOT WARRANT THAT:',
+  'terms.ul10.li1': 'The Service will meet your requirements',
+  'terms.ul10.li2': 'The Service will be uninterrupted, timely, secure, or error-free',
+  'terms.ul10.li3': 'Results obtained from use of the Service will be accurate or reliable',
+  'terms.ul10.li4': 'Any errors in the Service will be corrected',
+  'terms.h4.limitation': '7.2. Limitation of Liability',
+  'terms.p27': 'TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, REVEL EDITIONS SASU AND ITS DIRECTORS, EMPLOYEES, AGENTS, AND AFFILIATES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO:',
+  'terms.ul11.li1': 'Loss of profits, data, use, goodwill, or other intangible losses',
+  'terms.ul11.li2': 'Unauthorized access to or alteration of your content',
+  'terms.ul11.li3': 'Third-party conduct or content on the Service',
+  'terms.ul11.li4': 'Any matter beyond our reasonable control',
+  'terms.p28': 'OUR TOTAL LIABILITY TO YOU FOR ALL CLAIMS ARISING FROM OR RELATED TO THE SERVICE SHALL NOT EXCEED THE GREATER OF (A) €100 OR (B) THE AMOUNT YOU PAID US IN THE 12 MONTHS PRECEDING THE CLAIM.',
+  'terms.h4.jurisdiction_limits': '7.3. Jurisdictional Limitations',
+  'terms.p29': 'Some jurisdictions do not allow the exclusion of certain warranties or limitation of liability for consequential damages. In such jurisdictions, our liability is limited to the maximum extent permitted by law.',
+  'terms.h3.indemnification': '8. Indemnification',
+  'terms.p30': 'You agree to defend, indemnify, and hold harmless Revel Editions SASU, its directors, officers, employees, and agents from any claims, damages, losses, liabilities, and expenses (including reasonable attorneys\' fees) arising from:',
+  'terms.ul12.li1': 'Your use or misuse of the Service',
+  'terms.ul12.li2': 'Your violation of these Terms',
+  'terms.ul12.li3': 'Your violation of any rights of another party',
+  'terms.ul12.li4': 'Your User-Generated Content',
+  'terms.h3.dispute_resolution': '9. Dispute Resolution and Governing Law',
+  'terms.h4.governing_law': '9.1. Governing Law',
+  'terms.p31': 'These Terms are governed by and construed in accordance with the laws of France, without regard to its conflict of law principles. The United Nations Convention on Contracts for the International Sale of Goods does not apply.',
+  'terms.h4.jurisdiction': '9.2. Jurisdiction',
+  'terms.p32': 'Any disputes arising from these Terms or your use of the Service shall be subject to the exclusive jurisdiction of the courts of Paris, France. However, we may seek injunctive relief in any court of competent jurisdiction.',
+  'terms.h4.informal_resolution': '9.3. Informal Dispute Resolution',
+  'terms.p33': 'Before filing any formal claim, you agree to contact us at support@lightmyfire.app to attempt to resolve the dispute informally. We commit to working with you in good faith to reach a resolution within 60 days.',
+  'terms.h3.termination': '10. Termination',
+  'terms.h4.by_you': '10.1. Termination by You',
+  'terms.p34': 'You may terminate your account at any time by contacting support@lightmyfire.app. Upon termination:',
+  'terms.ul13.li1': 'Your account will be deactivated',
+  'terms.ul13.li2': 'You lose access to all account features',
+  'terms.ul13.li3': 'Your posts remain visible on lighter pages (they\'re part of those lighters\' stories)',
+  'terms.ul13.li4': 'To delete your posts before account termination, do so manually from your profile',
+  'terms.h4.by_us': '10.2. Termination by Us',
+  'terms.p35': 'We may suspend or terminate your account immediately, without prior notice, for:',
+  'terms.ul14.li1': 'Violation of these Terms',
+  'terms.ul14.li2': 'Fraudulent, abusive, or illegal activity',
+  'terms.ul14.li3': 'Prolonged inactivity (accounts inactive for 3+ years)',
+  'terms.ul14.li4': 'At our sole discretion if necessary to protect the Service or other users',
+  'terms.h4.effect': '10.3. Effect of Termination',
+  'terms.p36': 'Upon termination for any reason:',
+  'terms.ul15.li1': 'Your right to use the Service ceases immediately',
+  'terms.ul15.li2': 'Sections that by their nature should survive termination remain in effect (including Intellectual Property, Disclaimers, Limitation of Liability, Indemnification, Dispute Resolution)',
+  'terms.ul15.li3': 'We may retain certain data as required by law or legitimate business purposes',
+  'terms.h3.general': '11. General Provisions',
+  'terms.h4.entire_agreement': '11.1. Entire Agreement',
+  'terms.p37': 'These Terms, together with our Privacy Policy, constitute the entire agreement between you and Revel Editions SASU regarding the Service and supersede all prior agreements.',
+  'terms.h4.modifications': '11.2. Modifications to Terms',
+  'terms.p38': 'We reserve the right to modify these Terms at any time. When we make changes:',
+  'terms.ul16.li1': 'We\'ll update the "Last updated" date',
+  'terms.ul16.li2': 'For material changes, we\'ll notify you by email or prominent notice on the Service',
+  'terms.ul16.li3': 'Your continued use after changes constitutes acceptance',
+  'terms.p39': 'If you don\'t agree to modified Terms, you must stop using the Service.',
+  'terms.h4.severability': '11.3. Severability',
+  'terms.p40': 'If any provision of these Terms is found invalid or unenforceable, that provision shall be enforced to the maximum extent possible, and the remaining provisions shall remain in full effect.',
+  'terms.h4.waiver': '11.4. No Waiver',
+  'terms.p41': 'Our failure to enforce any right or provision of these Terms does not constitute a waiver of that right or provision.',
+  'terms.h4.assignment': '11.5. Assignment',
+  'terms.p42': 'You may not assign or transfer these Terms or your account without our written consent. We may assign our rights and obligations without restriction.',
+  'terms.h4.third_party': '11.6. No Third-Party Beneficiaries',
+  'terms.p43': 'These Terms do not create any third-party beneficiary rights except as expressly stated.',
+  'terms.h3.contact_terms': '12. Contact Information',
+  'terms.p44': 'For questions about these Terms, contact us:',
+  'terms.ul17.li1': '<strong>Email:</strong> support@lightmyfire.app',
+  'terms.ul17.li2': '<strong>Support:</strong> support@lightmyfire.app',
+  'terms.ul17.li3': '<strong>Address:</strong> Revel Editions SASU, Cs 20008 145 Rue de Noisy-le-Sec 93260 Les Lilas, France',
+
+    'how_it_works_details.title': 'How It Works: From Spark to Global Story',
+  'how_it_works_details.step1.title': '1. Save',
+  'how_it_works_details.step1.desc': 'Give a lighter a name to create its digital logbook and download your unique PIN/QR sticker.',
+  'how_it_works_details.step2.title': '2. Share',
+  'how_it_works_details.step2.desc': 'Stick it on your lighter and give it away or "lose" it. Its journey begins.',
+  'how_it_works_details.step3.title': '3. Add Your First Story',
+  'how_it_works_details.step3.desc': 'Once saved, you are directed to its permanent web page. Add the first post: a photo, a video, a song link, or just a story from where you are. This is your lighter\'s \'birth.\'',
+  'how_it_works_details.step4.title': '4. Watch the Story Grow',
+  'how_it_works_details.step4.desc': 'By passing the lighter, each new person who finds it can scan it and add their own post to its timeline. You are no longer just sharing a flame; you are co-writing a global chronicle.',
+  'how_it_works_details.step5.title': '5. Be a Good Community Member',
+  'how_it_works_details.step5.desc': 'Our community is built on respect and creativity. If you see a post that violates our <strong>guidelines</strong> (spam, hateful content, etc.), use the "Flag" button. Our pre-moderation system and human moderators will review it to keep the platform safe.',
+  'how_it_works_details.step6.title': '6. Collect Your Trophies!',
+  'how_it_works_details.step6.desc': 'By participating, you and your lighters will unlock achievements. Add your first post to get the "First Spark" trophy. Watch your lighter travel to a new country to earn the "Globetrotter" trophy. Check your profile to see all the <strong>trophies</strong> you\'ve collected!',
+  'faq.q1.title': 'What is LightMyFire?',
+  'faq.q1.desc': 'It\'s a project to reduce waste and create a "human mosaic." We sell stickers with QR codes that you put on a lighter. Anyone who finds that lighter can scan the code, enter its PIN, and add a story, picture, or song to its digital logbook.',
+  'faq.q2.title': 'How do I add a story?',
+  'faq.q2.desc': 'You must find a lighter with a LightMyFire sticker. Scan the QR code (or go to our site) and enter the unique PIN from the sticker. You\'ll need to create a free account to contribute.',
+  'faq.q3.title': 'Why can\'t I post twice in a row?',
+  'faq.q3.desc': 'To keep the mosaic diverse, we have a 24-hour cooldown period *per lighter*. This encourages you to pass the lighter on so someone else can add their story.',
+  'faq.q4.title': 'Is my post public?',
+  'faq.q4.desc': 'You have two choices. All posts are visible on the lighter\'s page (which requires the PIN to access). When you post, you can also check a box to make it "public," which allows it to be featured on our homepage mosaic.',
+  'faq.q5.title': 'How do I delete a post I made?',
+  'faq.q5.desc': 'Log in and go to your "My Profile" page. You\'ll see a list of all your contributions with a delete button next to each one.',
+  'faq.q6.title': 'What happens if I lose the lighter I saved?',
+  'faq.q6.desc': 'That\'s part of the fun! As the "LightSaver" (the person who bought the sticker), you can always see your lighter\'s page from your "My Profile" dashboard. You can watch its journey and see where it goes and what stories it collects long after it leaves your hands.',
+  'faq.q7.title': 'How does the map work?',
+  'faq.q7.desc': 'On each lighter\'s page, you\'ll find a map that shows the journey of that specific lighter. Every time someone makes a "location" post, the coordinates are recorded and added to the map, tracing the lighter\'s path across the globe.',
+
+    'faq.subtitle': 'Find answers to common questions about LightMyFire',
+  'faq.what_is.question': 'What is LightMyFire?',
+  'faq.what_is.answer': 'It\'s a project to reduce waste and create a "human mosaic." We sell stickers with QR codes that you put on a lighter. Anyone who finds that lighter can scan the code, enter its PIN, and add a story, picture, or song to its digital logbook. It\'s a unique way to connect people globally and give lighters a second life.',
+  'faq.how_add_story.question': 'How do I add a story to a lighter?',
+  'faq.how_add_story.answer': 'You must find a lighter with a LightMyFire sticker. Scan the QR code (or go to our site) and enter the unique PIN from the sticker. You\'ll need to create a free account to contribute. Once logged in, you can add text, upload images, share songs, or record locations where you found the lighter.',
+  'faq.save_lighter.question': 'How do I save and personalize my own lighter?',
+  'faq.save_lighter.answer': 'Visit the "Save a Lighter" section on our site. You\'ll give your lighter a name, choose a sticker design (pick your favorite color, language, etc.), and then order stickers with your custom design. This creates a unique digital identity for your lighter that you can track and share.',
+  'faq.post_twice.question': 'Why can\'t I post twice in a row?',
+  'faq.post_twice.answer': 'To keep the mosaic diverse and encourage passing the lighter on, we have a 24-hour cooldown period per lighter. This ensures that multiple people contribute stories to the same lighter rather than one person dominating it. It\'s all about creating a diverse, global human mosaic.',
+  'faq.public_post.question': 'Is my post public?',
+  'faq.public_post.answer': 'You have full control! All posts are visible on the lighter\'s private page (which requires the PIN to access). When you post, you can also check a box to make it "public," which allows it to be featured on our homepage mosaic and seen by everyone visiting the site.',
+  'faq.delete_post.question': 'How do I delete a post I made?',
+  'faq.delete_post.answer': 'Log in and go to your "My Profile" page. You\'ll see a list of all your contributions with a delete button next to each one. You can remove any post at any time. This gives you complete control over your contributions.',
+  'faq.lose_lighter.question': 'What happens if I lose the lighter I saved?',
+  'faq.lose_lighter.answer': 'That\'s part of the adventure! As the "LightSaver" (the person who bought the sticker), you can always see your lighter\'s page from your "My Profile" dashboard. You can watch its journey and see where it goes, who finds it, and what stories it collects long after it leaves your hands.',
+  'faq.map_works.question': 'How does the map feature work?',
+  'faq.map_works.answer': 'On each lighter\'s page, you\'ll find a map that shows the lighter\'s journey. Every time someone makes a "location" post, the coordinates are recorded and added to the map, tracing the lighter\'s path across the globe. It\'s a visual representation of how far your lighter travels!',
+  'faq.trophies.question': 'What are trophies and how do I earn them?',
+  'faq.trophies.answer': 'Trophies are achievements that recognize your contributions to the LightMyFire community. You can earn trophies by saving lighters, adding stories and posts, creating original content, traveling to new locations, helping refuel the community spirit, and more. Check your profile to see which trophies you\'ve unlocked and what you still need to achieve!',
+  'faq.harmful_content.question': 'What happens if I post harmful or offensive content?',
+  'faq.harmful_content.answer': 'We have a content moderation system to keep the community safe and respectful. Posts that contain hate speech, harassment, violence, or other harmful content are reviewed by our moderation team. Depending on the severity, content may be removed, you may receive a warning, or your account may be suspended. We believe in protecting all community members.',
+  'faq.buy_stickers.question': 'How do I buy sticker packs?',
+  'faq.buy_stickers.answer': 'Once you\'ve designed your lighter and customized your sticker, you can purchase sticker packs directly through our platform. We offer packs of 10, 20, or 50 stickers. Use our secure Stripe payment system to complete your purchase. Your stickers will be professionally printed and shipped to you with tracking information.',
+  'faq.sticker_design.question': 'Can I customize the design of my stickers?',
+  'faq.sticker_design.answer': 'Absolutely! When saving your lighter, you can fully personalize your stickers. Choose your background color, select the language for the invitation text, and customize your lighter\'s name and PIN. See a live preview of your design before ordering.',
+  'faq.environment.question': 'How is LightMyFire environmentally friendly?',
+  'faq.environment.answer': 'We\'re dedicated to reducing lighter waste. Instead of throwing away old lighters (which takes 150+ years to decompose), our project gives them a second life by creating stories around them. Each lighter saved and passed on prevents one item from ending up in landfills. Plus, we encourage refilling lighters rather than buying new ones—check our Refill Guide for tips!',
+  'faq.languages.question': 'What languages does LightMyFire support?',
+  'faq.languages.answer': 'LightMyFire is available in 27 languages including English, French, Spanish, German, Italian, Portuguese, Dutch, Russian, Polish, Japanese, Korean, Chinese, Thai, Vietnamese, Hindi, Arabic, Farsi, Urdu, Marathi, Telugu, Indonesian, Ukrainian, and Turkish. You can switch languages anytime using the language selector in the header.',
+  'faq.levels.question': 'What is the level system?',
+  'faq.levels.answer': 'The level system gamifies your contributions to the community. You earn points by saving lighters, adding posts and stories, earning likes from other users, and creating original content. As you accumulate points, your profile level increases from 1 to 100. Higher levels showcase your dedication to the LightMyFire mission!',
+  'faq.found_lighter.question': 'I found a lighter with a LightMyFire sticker—what are the next steps?',
+  'faq.found_lighter.answer': 'Welcome to the adventure! First, scan the QR code on the sticker or visit our website. You\'ll be prompted to enter the unique PIN code (printed on the sticker). This unlocks the lighter\'s digital page where you can see its full story. To add your own contribution, you\'ll need to create a free account (takes less than 30 seconds!). Then you can add whatever you want: a photo of where you found it, a song that reminds you of the moment, a thought, a poem, the address of your favorite restaurant, or just a simple "hello." The choice is yours!',
+  'faq.why_account.question': 'Why do I have to create an account to contribute?',
+  'faq.why_account.answer': 'Great question! We hesitated about this for a while, but ultimately decided to require accounts for one main reason: **safety**. Since we allow photos, text, music links, and location data, we need a way to ensure the platform remains welcoming and safe for everyone. If someone posts harmful content—hate speech, non-consensual images, or anything that violates community standards—we need to be able to prevent them from continuing to harm others. Creating an account takes **less than 30 seconds**, we never share or exploit your data in any way, and it gives you access to cool features like tracking your contributions, earning trophies, and watching your lighters travel the world. We respect your privacy completely.',
+  'faq.what_can_contribute.question': 'What kind of content can I add to a lighter page?',
+  'faq.what_can_contribute.answer': 'This is the heart of LightMyFire: **you can add almost anything you want!** The whole philosophy is about creating a diverse human mosaic. Your contribution doesn\'t have to be "good" or "original" or "perfect"—it just has to be *yours* (or properly attributed if it\'s someone else\'s work). You can share how you found the lighter, a random thought from your morning shower, your favorite poem, a song you\'ve been obsessed with lately, an article you read, a photo of your cat, the GPS coordinates of a place you want to visit someday, your business card if you\'re a florist, a link to your book... The beauty of the mosaic comes from its *diversity*, not from individual perfection. The only rule? No harmful content: no hate speech, harassment, LGBTQIA+ phobia, slurs, non-consensual images, or pornography. Beyond that, share whatever feels right!',
+  'faq.post_perfection.question': 'Do my posts have to be perfect or super creative?',
+  'faq.post_perfection.answer': 'Absolutely not! **You don\'t need to be a poet, artist, or photographer.** LightMyFire is one of the few platforms where there\'s *no direction to follow*. Want to post a simple "hello from Paris"? Perfect. Want to share a random Wikipedia article you enjoyed? Great. Want to recommend your uncle\'s bakery? Go ahead—that\'s part of your story too! The richness of each lighter\'s journey comes from the *variety* of what people contribute, not from how polished each contribution is. There\'s no pressure, no judgment, no "likes" competition. Just add what feels authentic to you in that moment. That\'s all we ask.',
+  'faq.contribute_guidelines.question': 'How do I contribute to LightMyFire?',
+  'faq.contribute_guidelines.answer': 'There are two main ways to contribute: (1) **Find a lighter** with a LightMyFire sticker, scan the QR code, and add your story, photo, song, or location. (2) **Save your own lighter** by ordering custom stickers from our site, putting one on your lighter, and then passing it on to friends, strangers, or leaving it somewhere for others to find. Every time someone scans it and contributes, you\'ll be able to see the journey from your profile dashboard. It\'s a beautiful way to connect with people you\'ll never meet!',
+  'faq.mosaic_philosophy.question': 'What is the "human mosaic" philosophy?',
+  'faq.mosaic_philosophy.answer': 'The core idea behind LightMyFire is that **every person has a unique perspective worth sharing**, and together, our contributions create something beautiful—a mosaic of human experience. Just like a mosaic is made of thousands of different tiles, each with its own color and shape, our platform thrives on *diversity*. We don\'t want everyone posting the same type of content. We want the random thoughts, the silly jokes, the profound insights, the business promotions, the travel photos, the heartbreak poems, the dinner recommendations—all of it. That\'s what makes each lighter\'s journey unique and fascinating. The goal isn\'t individual perfection; it\'s collective authenticity.',
+  'faq.contact_footer': 'Can\'t find your answer?',
+  'faq.contact_link': 'Contact us',
+  'faq.nav.type_code': '🔢 Type a Lighter Code',
+  'faq.nav.take_part': '🎨 I Want to Take Part',
+  'faq.nav.type_code_aria': 'Go to homepage to enter a lighter PIN code',
+  'faq.nav.take_part_aria': 'Go to save a lighter page to start your journey',
+
+    'philosophy.title': 'Our Philosophy',
+  'philosophy.lead': 'We believe that even the smallest, most disposable object can carry a great story.',
+  'philosophy.p1': '<strong>LightMyFire</strong> was born from a simple idea: what if we stopped treating lighters as throwaway items? <strong>In a world of mass consumption where billions of these items are discarded every year,</strong> what if we saw them as companions, as tiny vessels for our memories, ideas, and creativity?',
+  'philosophy.p2': 'The everyday lighter is <strong>a powerful social catalyst.</strong> It\'s no personal possession; it belongs to everyone. It passes from hand to hand, from friend to stranger, at parties, concerts, and quiet meetups. It hears our secrets and lights our way. <strong>It\'s the silent witness to a great conversation, the spark for a new friendship. But its story is ephemeral, lost as soon as it\'s passed on.</strong>',
+  'philosophy.p3': 'By giving a lighter a permanent, digital story, we give it sentimental value. <strong>Your lighter becomes a living artifact, a message in a bottle.</strong> And when something has value, we\'re less likely to throw it away.',
+  'philosophy.p4': 'Our goal is simple: to create a global, human creativity mosaic, one lighter at a time, and reduce waste in the process. <strong>This is our stand against a throwaway culture. It\'s an experiment in collaborative art. It\'s a way to prove that if you give an object a story, you give it a soul.</strong>',
+  'philosophy.image_alt': 'Global Creativity Mosaic',
+  'philosophy.button.hide': 'Hide',
+  'philosophy.button.learn_more': 'Learn More',
+  'philosophy.cta': 'Join us in giving lighters a second life, one story at a time.',
+
+    'refill_guide.title': 'Don\'t Throw Me Away',
+  'refill_guide.subtitle': 'Every lighter you save is a small victory against waste and a step toward a sustainable future.',
+  'refill_guide.hero_title': 'Don\'t Throw Me Away: The LightMyFire Guide to a Long Life',
+  'refill_guide.hero_intro': 'Each year, <strong>billions</strong> of disposable lighters are manufactured and end up in landfills or in nature<sup class="citation">[1]</sup>. Major lighter manufacturers reported selling over 2.5 billion units in 2023. These objects, made of non-recyclable plastics and metal, can take centuries to decompose and risk contaminating soil and water.',
+  'refill_guide.hero_social': 'The lighter isn\'t just a tool; it\'s a social object. By choosing a refillable lighter, you don\'t just reduce waste; you create a durable companion for your stories.',
+  'refill_guide.section1_title': 'How to Recognize a Refillable Lighter (in 5 seconds)',
+  'refill_guide.section1_intro': 'It\'s very simple! The secret is almost always found under the lighter.',
+  'refill_guide.section1_type1_title': 'Butane Lighters (the most common)',
+  'refill_guide.section1_type1.desc': 'Flip it over. Do you see a small, round metal valve in the center, similar to a tire valve? <strong>That\'s a refill port!</strong> Congratulations, your lighter is refillable.',
+  'refill_guide.section1_type1_alt': 'Close-up of a butane lighter refill valve',
+  'refill_guide.section1_type2_title': 'Fluid Lighters (refillable metal style)',
+  'refill_guide.section1_type2_desc': 'These are usually iconic metal lighters. If you can pull the entire inner block (the "chimney") out of the metal case, it is refillable. You will find cotton inside to soak with fluid.',
+  'refill_guide.section1_type2_alt': 'Inside of a refillable metal lighter showing the cotton',
+  'refill_guide.section1_type3_title': 'Disposable Lighters',
+  'refill_guide.section1_type3_desc': 'Flip it over. Is the bottom just a flat, sealed piece of plastic? This is a single-use lighter.',
+  'refill_guide.section1_type3_alt': 'Bottom of a disposable lighter',
+  'refill_guide.section2_title': 'How to Refill Your Lighter',
+  'refill_guide.section2_type1_title': 'Type 1: Butane Lighters (with valve)',
+  'refill_guide.section2_type1_step1_title': 'What you need:',
+  'refill_guide.section2_type1_step1_desc': 'A can of butane gas for lighters.',
+  'refill_guide.section2_type1_step2_title': 'Where to find it (in Europe):',
+  'refill_guide.section2_type1_step2_desc': 'Very easy to find. Almost all <strong>tobacconists</strong> sell it. You can also find it in most supermarkets, convenience stores, or hardware stores.',
+  'refill_guide.section2_type1_step3_title': 'The method:',
+  'refill_guide.section2_type1_step3_li1': 'Hold the lighter <strong>upside down</strong> (valve facing up).',
+  'refill_guide.section2_type1_step3_li2': 'Firmly press the nozzle of the gas can onto the valve.',
+  'refill_guide.section2_type1_step3_li3': 'Hold for 3-5 seconds. You will hear a hissing sound as it fills.',
+  'refill_guide.section2_type1_step3_li4': 'Repeat in 2 or 3 short bursts until the lighter is full.',
+  'refill_guide.section2_type1_step3_li5': 'Wait a minute or two before lighting.',
+  'refill_guide.section2_type1_alt': 'A person refilling a butane lighter with a gas can',
+  'refill_guide.section2_type2_title': 'Type 2: Fluid Lighters (with cotton)',
+  'refill_guide.section2_type2_step1_title': 'What you need:',
+  'refill_guide.section2_type2_step1_desc': 'A can of lighter fluid (naphtha-based refill fluid for metal lighters).',
+  'refill_guide.section2_type2_step2_title': 'Where to find it:',
+  'refill_guide.section2_type2_step2_desc': 'Also in all <strong>tobacconists</strong> and supermarkets.',
+  'refill_guide.section2_type2_step3_title': 'The method:',
+  'refill_guide.section2_type2_step3_li1': 'Pull the metal insert out of the case.',
+  'refill_guide.section2_type2_step3_li2': 'Lift the small felt pad at the bottom of the insert.',
+  'refill_guide.section2_type2_step3_li3': 'Slowly pour the fluid onto the cotton underneath.',
+  'refill_guide.section2_type2_step3_li4': 'Stop as soon as the cotton appears saturated (do not overfill).',
+  'refill_guide.section2_type2_step3_li5': 'Put the insert back in its case and wait a few seconds.',
+  'refill_guide.section2_type2_alt': 'A person pouring lighter fluid onto the cotton of an insert',
+  'refill_guide.pro_tip_butane': 'Always wear safety glasses when refilling. If you feel resistance, do not force it—wait a few seconds and try again.',
+  'refill_guide.important_gasoline': 'Never overfill fluid lighters. Let the lighter dry for 24 hours after refilling before use.',
+
+    'refill_guide.stats.lighters_sold': 'Disposable lighters sold yearly',
+  'refill_guide.stats.lighters_sold_worldwide': 'Worldwide',
+  'refill_guide.stats.years_decompose': 'Years to decompose',
+  'refill_guide.stats.years_decompose_location': 'In landfills',
+  'refill_guide.stats.waste_reduction': 'Waste reduction',
+  'refill_guide.stats.waste_reduction_method': 'With refillable lighters',
+
+    'refill_guide.key_indicators': 'Key indicators:',
+  'refill_guide.type1.indicator1': 'Small round metal valve on the bottom',
+  'refill_guide.type1.indicator2': 'Similar to a tire valve',
+  'refill_guide.type1.indicator3': 'Most common type',
+  'refill_guide.type2.indicator1': 'Metal lighter (often iconic design)',
+  'refill_guide.type2.indicator2': 'Inner block can be pulled out',
+  'refill_guide.type2.indicator3': 'Cotton visible inside',
+  'refill_guide.type3.indicator1': 'Flat, sealed plastic bottom',
+  'refill_guide.type3.indicator2': 'No valve or removable parts',
+  'refill_guide.type3.indicator3': 'Single-use only',
+
+  'refill_guide.why_it_matters.title': 'Why It Matters',
+  'refill_guide.why_it_matters.environmental.title': 'Environmental Impact',
+  'refill_guide.why_it_matters.environmental.description': 'One refillable lighter can replace 50+ disposable lighters in its lifetime. That\'s 50+ lighters kept out of landfills for one person.',
+  'refill_guide.why_it_matters.cost.title': 'Cost Savings',
+  'refill_guide.why_it_matters.cost.description': 'A quality refillable lighter costs €5-20 but lasts years. Disposables cost €1-2 each. Refillables pay for themselves within months.',
+  'refill_guide.why_it_matters.reliability.title': 'Reliability',
+  'refill_guide.why_it_matters.reliability.description': 'Refillable lighters are built to last decades. They\'re more reliable in cold weather and harsh conditions than cheap disposables.',
+  'refill_guide.why_it_matters.mission.title': 'Our Mission',
+  'refill_guide.why_it_matters.mission.description': 'Every lighter you save with LightMyFire gets a story. Give your lighter a name, and it becomes more than an object—it becomes a companion.',
+  'refill_guide.cta.title': 'Ready to Save Your First Lighter?',
+  'refill_guide.cta.description': 'Choose a refillable lighter, give it a name, and start its journey with LightMyFire.',
+
+    'refill_guide.citations.title': 'Sources & References',
+  'refill_guide.citations.1.text': 'Global lighter production and environmental impact data',
+  'refill_guide.citations.1.source': 'World Economic Forum - Plastic Waste Statistics (2023)',
+  'refill_guide.citations.1.url': 'https://www.weforum.org/agenda/2023/plastic-waste/',
+
+    'save_lighter.title': 'Become a LightSaver',
+  'save_lighter.introduction': 'Purchase sticker packs to save lighters and share their stories with the world. Each sticker has a unique PIN that links to a lighter\'s journey.',
+  'save_lighter.pack_5.title': '5 Stickers',
   'save_lighter.pack_5.price': '$4.99',
-  'save_lighter.pack_5.description': 'Sempurna untuk memulai perjalanan LightSaver Anda.',
-  'save_lighter.pack_10.title': '10 Stiker',
+  'save_lighter.pack_5.description': 'Perfect for starting your LightSaver journey.',
+  'save_lighter.pack_10.title': '10 Stickers',
   'save_lighter.pack_10.price': '$8.99',
-  'save_lighter.pack_10.description': 'Gandakan dampak Anda dan selamatkan lebih banyak korek api.',
-  'save_lighter.pack_50.title': '50 Stiker',
+  'save_lighter.pack_10.description': 'Double your impact and save more lighters.',
+  'save_lighter.pack_50.title': '50 Stickers',
   'save_lighter.pack_50.price': '$39.99',
-  'save_lighter.pack_50.description': 'Menjadi Super LightSaver dan buat perbedaan besar!',
-  'save_lighter.buy_button': 'Beli Sekarang',
-  'save_lighter.payment_details_title': 'Detail Pembayaran',
-  'save_lighter.payment_details_placeholder': 'Integrasi Stripe akan ada di sini.',
+  'save_lighter.pack_50.description': 'Become a Super LightSaver and make a huge difference!',
+  'save_lighter.buy_button': 'Buy Now',
+  'save_lighter.payment_details_title': 'Payment Details',
+  'save_lighter.payment_details_placeholder': 'Stripe integration will go here.',
+  'save_lighter.form_title': 'Save a Lighter',
+  'save_lighter.form_subtitle': 'You are a LightSaver! Give your lighter a name to begin its journey.',
+  'save_lighter.lighter_name_label': 'Lighter Name (Required)',
+  'save_lighter.lighter_name_placeholder': 'e.g., The Wanderer',
+  'save_lighter.background_url_label': 'Custom Background URL (Optional)',
+  'save_lighter.background_url_placeholder': 'https://.../my-image.png',
+  'save_lighter.helper.background_url': 'Optional. This image URL will be the background for your lighter\'s page. Try an Imgur or Unsplash link.',
+  'save_lighter.show_username_label': 'Show my username as the "LightSaver"',
+  'save_lighter.error.rpc_error': 'Error: {message}',
+  'save_lighter.error.failed_to_create': 'Failed to create lighter. Please try again.',
+  'save_lighter.error.failed_to_save': 'Failed to save lighter: {message}',
+  'save_lighter.button.saving': 'Saving...',
+  'save_lighter.button.save_lighter': 'Save Lighter',
+  'save_lighter.pack_count': 'Pack of {count} stickers',
+  'save_lighter.pack_total': 'Total: {price}',
+  'save_lighter.payment_mock': 'Simulate Payment',
 
-  'home.how_it_works.title': 'Cara Kerja',
-  'home.how_it_works.step1.title': '1. Simpan',
-  'home.how_it_works.step1.description': 'Beri nama korek api untuk membuat buku catatan digitalnya dan unduh stiker PIN/QR unik Anda.',
-  'home.how_it_works.step2.title': '2. Bagikan',
-  'home.how_it_works.step2.description': 'Tempel di korek api Anda dan berikan atau "hilangkan" itu. Perjalanannya dimulai.',
-  'home.how_it_works.step3.title': '3. Ikuti',
-  'home.how_it_works.step3.description': 'Siapa pun yang menemukannya dapat memindai kode, memasukkan PIN, dan menambahkan cerita, gambar, atau lagu mereka sendiri ke perjalanannya.',
-  'home.stats.title': 'Dampak Komunitas Kami',
-  'home.stats.subtitle': 'Bersama-sama, kami menyelamatkan korek api dari tempat pembuangan sampah dan menciptakan gerakan penceritaan kreatif global.',
-  'home.stats.lighters_saved': 'Korek Api Terselamatkan',
-  'home.stats.plastic_saved': 'sampah plastik yang dicegah',
-  'home.stats.stories_created': 'Cerita Dibuat',
-  'home.stats.stories_subtext': 'Momen yang ditangkap & dibagikan',
-  'home.stats.countries_reached': 'Negara yang Dijangkau',
-  'home.stats.global_community': 'Gerakan yang benar-benar global',
-  'home.stats.co2_saved': 'Dampak CO₂',
-  'home.stats.environmental_impact': 'Kontribusi lingkungan',
-  'home.stats.join_movement': 'Bergabunglah dengan ribuan LightSavers yang membuat perbedaan, satu korek api pada satu waktu.',
+    'stripe.card_info': 'Card Information',
+  'stripe.pay_button': 'Pay {amount}',
+  'stripe.error.generic': 'Payment failed. Please check your details or try again.',
 
-  'save_success.next_steps.title': 'Langkah Selanjutnya:',
-  'save_success.next_steps.step1': 'Cetak: Unduh PDF dan cetak, idealnya di kertas stiker.',
-  'save_success.next_steps.step2': 'Tempel: Potong stiker dan tempelkan di korek api Anda.',
-  'save_success.next_steps.step3': 'Bagikan: Biarkan berjalan! Orang berikutnya yang menemukannya dapat memindai kode, memasukkan PIN, dan menambahkan cerita mereka.',
+    'lighter_personalization.title': 'Customize Your Stickers',
+  'lighter_personalization.subtitle': 'Personalize each lighter',
+  'lighter_personalization.apply_all': 'Apply to All',
+  'lighter_personalization.lighter_count': 'Lighter #{index}',
+  'lighter_personalization.preview': 'Preview',
+  'lighter_personalization.name_label': 'Name (3-16 characters)',
+  'lighter_personalization.name_placeholder': 'Lighter name...',
+  'lighter_personalization.min_3_chars': '(min 3)',
+  'lighter_personalization.color_label': 'Pick Background Color',
+  'lighter_personalization.language_label': 'Second Language on Sticker (+ English)',
+  'lighter_personalization.summary.design': '{count} design',
+  'lighter_personalization.summary.designs': '{count} designs',
+  'lighter_personalization.summary.plus_english': ' + English',
+  'lighter_personalization.summary.identical': 'All {count} identical',
+  'lighter_personalization.button.save_continue': 'Save and Continue',
+  'lighter_personalization.helper.background_picker': 'Choose an image or color for the background of the sticker.',
+  'lighter_personalization.color.white': 'White',
+  'lighter_personalization.color.black': 'Black',
+  'lighter_personalization.color.red': 'Red',
+  'lighter_personalization.color.blue': 'Blue',
+  'lighter_personalization.language.select_placeholder': 'Select a language...',
+  'lighter_personalization.english_included': 'English will always be included on your stickers',
+  'lighter_personalization.enter_name_preview': 'Enter a name (min 3 characters) to see preview',
+  'lighter_personalization.warning_fill_names': 'Please fill in all lighter names (3-16 characters each) before continuing.',
+  'lighter_personalization.warning_fill_name': 'Please fill in the lighter name (3-16 characters) before continuing.',
+  'lighter_personalization.button_save_customizations': 'Save Sticker Customizations',
 
-  'add_post.helper.find_location': 'Membantu melacak perjalanan korek api di peta!',
-  'add_post.helper.is_public': 'Jika tidak dicentang, postingan Anda hanya akan terlihat di halaman korek api ini.',
+    'save_success.loading': 'Loading your lighter\'s details...',
+  'save_success.lighter_not_found': 'Could not find lighter.',
+  'save_success.title': 'Success!',
+  'save_success.message': 'You\'ve saved {lighterName}!',
+  'save_success.pin_intro': 'Your lighter\'s unique PIN is:',
+  'save_success.next_steps.title': 'Next Steps:',
+  'save_success.next_steps.download_label': 'Download',
+  'save_success.next_steps.stick_label': 'Stick',
+  'save_success.next_steps.share_label': 'Share',
+  'save_success.next_steps.step1': 'Print: Download the PDF and print it, ideally on sticker paper.',
+  'save_success.next_steps.step2': 'Stick: Cut out the sticker and apply it to your lighter.',
+  'save_success.next_steps.step3': 'Share: Let it travel! The next person who finds it can scan the code, enter the PIN, and add their story.',
+  'save_success.button.generating': 'Generating...',
+  'save_success.button.download_pdf': 'Download Sticker PDF',
+  'save_success.button.go_to_lighter': 'Go to Your Lighter\'s Page',
+  'save_success.generating_sticker': 'Generating Sticker...',
+  'save_success.error_fetching': 'An error occurred while fetching lighter details.',
 
-  'notifications.login_success': 'Berhasil masuk. Selamat datang kembali!',
-  'notifications.logout_success': 'Sampai jumpa lagi!',
-  'notifications.signup_success': 'Akun berhasil dibuat!',
-  'notifications.post_success': 'Cerita Anda berhasil ditambahkan!',
-  'save_lighter.form_title': 'Simpan Korek Api',
-  'save_lighter.form_subtitle': 'Anda adalah LightSaver! Beri nama korek api Anda untuk memulai perjalanannya.',
-  'save_lighter.lighter_name_label': 'Nama Korek Api (Wajib)',
-  'save_lighter.lighter_name_placeholder': 'mis., Si Pengembara',
-  'save_lighter.background_url_label': 'URL Latar Belakang Kustom (Opsional)',
-  'save_lighter.background_url_placeholder': 'https://.../gambar-saya.png',
-  'save_lighter.show_username_label': 'Tampilkan nama pengguna saya sebagai "LightSaver"',
-  'save_lighter.error.rpc_error': 'Kesalahan: {message}',
-  'save_lighter.error.failed_to_create': 'Gagal membuat korek api. Silakan coba lagi.',
-  'save_lighter.button.saving': 'Menyimpan...',
-  'save_lighter.button.save_lighter': 'Simpan Korek Api',
-  'save_success.loading': 'Memuat detail korek api Anda...',
-  'save_success.lighter_not_found': 'Tidak dapat menemukan korek api.',
-  'save_success.title': 'Berhasil!',
-  'save_success.message': 'Anda telah menyimpan {lighterName}!',
-  'save_success.pin_intro': 'PIN unik korek api Anda adalah:',
-  'save_success.next_steps.stick_label': 'Tempel',
-  'save_success.next_steps.share_label': 'Bagikan',
-  'save_success.button.generating': 'Menghasilkan...',
-  'save_success.button.download_pdf': 'Unduh PDF Stiker',
-  'save_success.button.go_to_lighter': 'Buka Halaman Korek Api Anda',
+    'lighter.saved_by': 'Saved by',
+  'lighter.saved_by_label': 'Lighter Saved By',
+  'lighter.level': 'Level',
+  'lighter.on': 'on',
+  'lighter.add_to_story': 'Add to Story',
+  'lighter.no_posts': 'This lighter has no stories yet. Be the first to add one!',
+  'lighter.map.title': 'The Journey So Far',
+  'lighter.map.no_locations': 'No locations posted yet. Add one to start the map!',
+  'lighter.post_single': 'Post',
+  'lighter.post_plural': 'Posts',
+  'lighter.map.markers': '{count} locations',
+  'lighter.map.center_coords': 'Center: Lat {lat}, Lng {lng}',
+  'lighter.load_more': 'Load More Posts',
+  'lighter.loading': 'Loading...',
+  'lighter.all_loaded': 'All posts loaded',
 
-  'signup_welcome.title': 'Selamat Datang di LightMyFire!',
-  'signup_welcome.subtitle': 'Terima kasih telah bergabung dengan komunitas kami! Berikut beberapa hal yang dapat Anda lakukan:',
-  'signup_welcome.quick_actions': 'Mulai Cepat:',
-  'signup_welcome.action_lighter': 'Simpan korek api dan mulai mengumpulkan cerita',
-  'signup_welcome.action_find': 'Temukan korek api dan tambahkan ke perjalanannya',
-  'signup_welcome.action_community': 'Terhubung dengan LightSavers lain di seluruh dunia',
-  'signup_welcome.cta_lighter': 'Simpan Korek Api Pertama Anda',
-  'signup_welcome.cta_explore': 'Jelajahi Komunitas',
-  'signup_welcome.close': 'Tutup',
+    'empty_lighter.title': 'The Story Begins...',
+  'empty_lighter.description': 'This lighter\'s journey has just started. Be the first to add a chapter to its story and inspire others!',
+  'empty_lighter.action': 'Add the First Post',
+  'post.user_upload_alt': 'User upload',
+  'post.youtube_player_title': 'YouTube video player',
 
-  'post.refuel_message': 'Diisi ulang! Perjalanan korek api ini berlanjut.',
-  'post.youtube_load_error': 'Tidak dapat memuat video YouTube (URL tidak valid?).',
-  'legal.privacy.title': 'Kebijakan Privasi',
-  'legal.terms.title': 'Syarat Layanan',
-  'legal.faq.title': 'Pertanyaan yang Sering Diajukan',
-  'legal.about.title': 'Tentang LightMyFire',
+    'add_post.title': 'Add to the Story',
+  'add_post.subtitle': 'You are adding a post to {lighterName}',
+  'add_post.select_post_type': 'Select Post Type',
+  'add_post.options': 'Options',
+  'add_post.post_type.text': 'Text',
+  'add_post.post_type.song': 'Song',
+  'add_post.post_type.image': 'Photo',
+  'add_post.post_type.location': 'Place',
+  'add_post.post_type.refuel': 'Refuel',
+  'add_post.subtitle.text': 'Story, thought, poem... don\'t forget to add credits if not yours',
+  'add_post.subtitle.song': 'A song you enjoy lately, or even better, your last rapping verse',
+  'add_post.subtitle.image': 'Your favourite painting or a shameless pic of the night you found me',
+  'add_post.subtitle.location': 'The new restaurant in town, the place where we met, your dream holiday',
+  'add_post.subtitle.refuel': 'Let us know my story carries on - you just refilled my belly!',
+  'add_post.context.text': '✨ **Just be authentic.** It doesn\'t have to be perfect, original, or poetic. A simple thought, a quote you love, or even a mundane observation—it all adds to the mosaic. The richness comes from diversity, not perfection.',
+  'add_post.context.song': '🎵 **Share what moves you.** Whether it\'s a chart-topper or an obscure gem, your own creation or someone else\'s—all music tells a story. No need to overthink it, just share what resonates.',
+  'add_post.context.image': '📸 **Any photo counts.** A blurry selfie, a sunset, street art, or your lunch. You don\'t need to be a photographer. Every image adds color to this lighter\'s journey.',
+  'add_post.context.location': '📍 **Places make memories.** A random street corner, your favorite cafe, or somewhere you\'ve never been but dream of visiting. Every location adds a pin to this lighter\'s map.',
+  'add_post.context.refuel': '🔥 **You\'re keeping the flame alive!** By refueling, you\'re giving this lighter a second chance. That alone is worth celebrating—no explanation needed.',
+  'add_post.placeholder.title': 'Title (Optional)',
+  'add_post.placeholder.text': 'Share your thoughts...',
+  'add_post.prompt_v1': 'What memory does this lighter hold? Tell its story...',
+  'add_post.prompt_v2': 'Where did you find it? What happened next?',
+  'add_post.prompt_v3': 'A thought, a poem, a moment—share what\'s on your mind...',
+  'add_post.prompt_v4': 'What song is playing? Describe the vibe...',
+  'add_post.prompt_v5': 'If this lighter could talk, what would it say?',
+  'add_post.song_input_mode.url': 'URL',
+  'add_post.song_input_mode.search': 'Search',
+  'add_post.placeholder.youtube_url': 'YouTube Song URL',
+  'add_post.placeholder.youtube_search': 'Search YouTube for a song...',
+  'add_post.youtube_search.searching': 'Searching...',
+  'add_post.youtube_search.no_results': 'No results found.',
+  'add_post.youtube_search.video_preview': 'Video preview:',
+  'add_post.youtube_search.selected_video': 'Selected video:',
+  'add_post.image_upload_mode.url': 'URL',
+  'add_post.image_upload_mode.upload': 'Upload',
+  'add_post.placeholder.image_url': 'Image URL (e.g., Imgur)',
+  'add_post.placeholder.location_name': 'Name of a place (e.g., \'Cafe Central\')',
+  'add_post.placeholder.location_lat': 'Latitude (e.g., 48.8566)',
+  'add_post.placeholder.location_lng': 'Longitude (e.g., 2.3522)',
+  'add_post.refuel_message': 'You\'re a hero! Clicking "Post" adds a "Refueled" entry to this lighter\'s story.',
+  'add_post.checkbox.is_find_location': 'This is where I found this lighter',
+  'add_post.checkbox.is_creation': 'This is something I\'ve made',
+  'add_post.checkbox.is_anonymous': 'Post anonymously',
+  'add_post.checkbox.is_public': 'Allow this post in public feeds (e.g., homepage)',
+  'add_post.helper.find_location': 'Helps trace the lighter\'s journey on the map!',
+  'add_post.helper.is_public': 'If unchecked, your post only appears on this lighter page.',
+  'add_post.button.uploading': 'Uploading...',
+  'add_post.button.posting': 'Posting...',
+  'add_post.button.checking_content': 'Checking content...',
+  'add_post.button.add_to_story': 'Add to Story',
+  'add_post.button.loading_alt': 'Loading...',
+  'add_post.button.checking_alt': 'Checking...',
+  'add_post.button.search': 'Search',
+  'add_post.button.select': 'Select',
+  'add_post.moderation.content_review': '⚠️ Content Review',
+  'add_post.moderation.tip': '💡 Tip: Consider revising to be more community-friendly.',
 
-    'order.pack_selection.title': 'Pilih Paket Anda',
-  'order.pack_selection.subtitle': 'Pilih jumlah stiker khusus yang ingin Anda pesan',
-  'order.pack.starting_lightsaver': 'Mulai LightSaver',
-  'order.pack.committed_lightsaver': 'Komit LightSaver',
-  'order.pack.community_lightsaver': 'Komunitas LightSaver',
-  'order.pack.starting_description': 'Stiker yang cukup untuk semua korek api yang akan Anda hilangkan tahun ini, dan korek api teman-teman Anda',
-  'order.pack.committed_description': 'Stiker yang cukup agar jejak Anda terlihat di seluruh dunia',
-  'order.pack.community_description': 'Untuk acara atau orang-orang yang benar-benar terganggu',
-  'order.pack.stickers_count': '{count} Stiker',
-  'order.pack.sticker_singular': '{count} Stiker',
-  'order.pack.sheets_count': '({count} lembar)',
-  'order.pack.sheet_singular': '({count} lembar)',
-  'order.pack.price_calculated': 'Harga dihitung saat checkout',
-  'order.pack.select_button': 'Pilih',
+    'loading.posting_v1': 'Adding your story to the timeline...',
+  'loading.posting_v2': 'Weaving your moment into the mosaic...',
+  'loading.posting_v3': 'Lighting up this lighter\'s journey...',
+  'loading.posting_v4': 'Making this Lightee\'s story brighter...',
+  'loading.searching': 'Following the trail... 🔍',
+  'loading.generating_stickers': 'Crafting your lighter\'s passport... ✨',
+  'add_post.error.file_too_large': 'File too large. Select one smaller than 2MB.',
+  'add_post.error.youtube_api_error': 'YouTube API Error: {message}',
+  'add_post.error.no_file_selected': 'Please select a file to upload.',
+  'add_post.error.upload_failed': 'Failed to upload image. Try again.',
+  'add_post.error.no_song_selected': 'Please select a song from search results.',
+  'add_post.error.invalid_url': 'Please enter a valid URL.',
+  'add_post.error.no_location_selected': 'Please enter valid latitude and longitude.',
+  'add_post.error.invalid_latitude': 'Latitude must be between -90 and 90.',
+  'add_post.error.invalid_longitude': 'Longitude must be between -180 and 180.',
+  'add_post.error.text_too_long': 'Text is too long. Maximum {max} characters allowed.',
+  'add_post.char_counter': '{remaining} characters remaining',
+  'add_post.error.rpc_error': 'Error: {message}',
+  'add_post.error.unexpected': 'An unexpected error occurred. Please try again.',
+  'add_post.error.youtube_search_failed': 'Failed to search YouTube. Try again.',
+  'add_post.error.cooldown_check_failed': 'Unable to verify posting eligibility. Please try again.',
+  'add_post.error.cooldown_active': 'You can post to this lighter again in {hours} hours. Please wait before posting again.',
 
-    'order.custom_branding.title': 'Branding Khusus untuk Acara & Merek',
-  'order.custom_branding.description': 'Merencanakan acara atau ingin branding khusus di lembar stiker Anda? Kami dapat mempersonalisasi area branding untuk organisasi, merek, atau acara khusus Anda!',
-  'order.custom_branding.button': 'Hubungi Kami untuk Branding Khusus',
+    'location.search_placeholder': 'Search for a location (city, address, landmark)...',
+  'location.selected_location': 'Selected Location',
+  'location.no_location_selected': 'No location selected',
+  'location.map_title': 'Location map',
+  'location.view_larger_map': 'View larger map',
+  'location.map_preview_title': 'Map Preview Available',
+  'location.map_consent_description': 'This map uses OpenStreetMap with no tracking cookies. We only store your preference locally.',
+  'location.show_map_button': 'Show Map',
+  'location.no_results': 'No locations found. Try a different search.',
+  'location.edit_coordinates': 'Edit coordinates manually',
+  'location.latitude_placeholder': 'Latitude',
+  'location.longitude_placeholder': 'Longitude',
+  'post.post_type.text': 'wrote a story',
+  'post.post_type.image': 'shared an image',
+  'post.post_type.song': 'shared a song',
+  'post.post_type.location': 'checked in',
+  'post.post_type.refuel': 'refueled this lighter',
+  'post.refuel_message': 'Refueled! This lighter\'s journey continues.',
+  'post.youtube_load_error': 'Could not load YouTube video (invalid URL?)',
+  'post.location_at': 'at',
+  'post.like_button': 'Like',
+  'post.anonymous': 'Anonymous',
+  'post.deleted_user': 'Deleted User',
+  'post.default_location': 'Unknown Location',
+  'flag.flagged': 'Flagged',
+  'flag.flag': 'Flag',
+  'flag.confirm_title': 'Flag this post?',
+  'flag.confirm_message': 'Are you sure you want to flag this post for review? This cannot be undone.',
+  'flag.error_flagging': 'Could not flag post. Try again.',
+
+    'my_profile.title': 'My Profile',
+  'my_profile.tabs.my_lighters': 'My Lighters',
+  'my_profile.tabs.my_posts': 'My Posts',
+  'my_profile.tabs.my_trophies': 'My Trophies',
+  'my_profile.tabs.settings': 'Settings',
+  'my_profile.stats.contributions': 'Contributions',
+  'my_profile.stats.lighters_saved': 'Lighters Saved',
+  'my_profile.stats.stories_joined': 'Stories Joined',
+  'my_profile.stats.likes_received': 'Likes Received',
+  'my_profile.saved_lighters': 'Saved Lighters',
+  'my_profile.edit_profile': 'Edit Profile',
+  'my_profile.security': 'Security',
+  'my_profile.no_lighters_saved': 'Ready to give a lighter a second life? 🔥\nSave your first lighter and start collecting stories from around the world!',
+  'my_profile.save_first_lighter': 'Save Your First Lighter',
+  'my_profile.no_posts': 'Your story collection is waiting to begin! 📖\nFind a lighter and add your first post.',
+  'my_profile.find_lighter_to_post': 'Find a Lighter',
+  'my_profile.trophies.coming_soon': 'Trophy case coming soon!',
+  'my_profile.trophies.subtitle': 'Collect achievements by saving and sharing stories.',
+  'my_profile.trophies.unlocked': 'Unlocked!',
+  'my_profile.settings.account_title': 'Account',
+  'my_profile.settings.username_label': 'Username',
+  'my_profile.settings.email_label': 'Email',
+  'my_profile.settings.update_profile_button': 'Update Profile',
+  'my_profile.settings.password_title': 'Change Password',
+  'my_profile.settings.new_password_label': 'New Password',
+  'my_profile.settings.confirm_password_label': 'Confirm New Password',
+  'my_profile.settings.updating': 'Updating...',
+  'my_profile.settings.password_mismatch': 'Passwords don\'t match.',
+  'my_profile.settings.error.generic': 'An error occurred. Try again.',
+  'my_profile.settings.error.rpc_error': 'Error: {message}',
+  'my_profile.settings.error.username_exists': 'Username already taken.',
+  'my_profile.settings.error.email_exists': 'Email already in use.',
+  'my_profile.settings.placeholder.username': 'Enter new username',
+  'my_profile.settings.placeholder.email': 'Enter new email',
+  'my_profile.settings.placeholder.password': '••••••••',
+  'my_profile.settings.placeholder.password_confirm': 'Re-enter new password',
+
+    'settings.auth.error.passwords_no_match': 'Passwords don\'t match.',
+  'settings.auth.success_message': 'Update successful! Check your email to confirm changes if you updated your email address.',
+  'settings.auth.title': 'Account Settings',
+  'settings.auth.oauth_notice': '✓ You\'re logged in via {provider}. Your authentication is managed securely by your provider.',
+  'settings.auth.current_email': 'Current Email',
+  'settings.auth.email_managed_by': 'Your email is managed by your {provider} account.',
+  'settings.auth.change_via_provider': 'To change email or authentication, visit your {providerLink} settings.',
+  'settings.auth.provider_link_google': 'Google Account',
+  'settings.auth.provider_link_generic': 'provider account',
+  'settings.auth.update_title': 'Update Email / Password',
+  'settings.auth.new_email_label': 'New Email',
+  'settings.auth.new_email_placeholder': 'Enter new email',
+  'settings.auth.new_password_label': 'New Password',
+  'settings.auth.new_password_placeholder': 'Leave blank to keep current password',
+  'settings.auth.confirm_password_label': 'Confirm New Password',
+  'settings.auth.confirm_password_placeholder': 'Confirm new password',
+  'settings.auth.update_button': 'Update Auth Details',
+  'settings.auth.saving': 'Saving...',
+  'settings.profile.nationality_label': 'Nationality',
+  'settings.profile.nationality_optional': '(optional)',
+  'settings.profile.nationality_placeholder': 'Select a country',
+  'settings.profile.show_nationality_label': 'Show my nationality on my posts',
+  'settings.profile.save_button': 'Save Profile',
+  'settings.profile.saving': 'Saving...',
+  'settings.profile.username_label': 'Username',
+
+    'my_posts.post_type_default': 'A {type} post',
+  'my_posts.on': 'on',
+  'my_posts.a_lighter': 'a lighter',
+  'my_posts.the': 'the',
+  'my_posts.delete_post_aria': 'Delete post',
+  'my_posts.delete': 'Delete',
+  'my_posts.deleting': 'Deleting...',
+  'my_posts.confirm_delete_title': 'Delete this post?',
+  'my_posts.confirm_delete_message': 'Are you sure? This action is permanent.',
+  'my_posts.error_deleting': 'Error deleting post: {message}',
+  'my_posts.no_posts_title': 'No Stories Yet',
+  'my_posts.no_posts_description': 'Start sharing your stories with the community. Visit a lighter to add your first post!',
+  'my_posts.no_posts_action': 'Find a Lighter',
+
+    'moderation.title': 'Moderation Queue',
+  'moderation.no_posts': 'No posts currently flagged for moderation.',
+  'moderation.approve': 'Approve',
+  'moderation.delete': 'Delete',
+  'moderation.approve_confirm_title': 'Approve Post?',
+  'moderation.approve_confirm_message': 'Are you sure you want to approve this post? It will become public.',
+  'moderation.delete_confirm_title': 'Delete Post?',
+  'moderation.delete_confirm_message': 'Are you sure you want to permanently delete this post?',
+  'moderation.approve_success': 'Post approved and released.',
+  'moderation.delete_success': 'Post deleted successfully.',
+  'moderation.no_posts_in_queue': 'The moderation queue is empty. All is peaceful.',
+  'moderation.error': 'An error occurred: {message}',
+  'moderation.error.rpc_error': 'Error: {message}',
+  'moderation.post_on': 'Post on',
+  'moderation.flagged_by': 'Flagged by {count} users',
+  'moderation.table.post_id': 'Post ID',
+  'moderation.table.lighter': 'Lighter',
+  'moderation.table.flag_count': 'Flags',
+  'moderation.view_full': 'View Full',
+  'moderation.show_less': 'Show Less',
+  'moderation.button.delete_user': 'Delete User',
+  'moderation.button.delete_post': 'Delete Post',
+  'moderation.delete_user_confirm': 'Are you sure you want to delete this user and all their content?',
+  'moderation.action_confirm': 'Confirm Action',
+  'moderation.post_by': 'Post by',
+  'moderation.lighter_name': 'Lighter',
+  'moderation.content_type': 'Type',
+  'moderation.view_post': 'View Post',
+
+    'badge.moderator_tooltip': 'This user is part of moderation',
+  'empty_posts.title': 'This lighter\'s story is waiting to be written! ✨',
+  'empty_posts.message': 'Be the first to add a story, picture, or song to this lighter\'s journey!',
+  'empty_posts.action': 'Add the First Post',
+  'signup_welcome.title': 'Welcome to LightMyFire!',
+  'signup_welcome.subtitle': 'Thank you for joining our community! Here are a few things you can do:',
+  'signup_welcome.quick_actions': 'Quick Start:',
+  'signup_welcome.action_lighter': 'Save a lighter and start collecting stories',
+  'signup_welcome.action_find': 'Find a lighter and add to its journey',
+  'signup_welcome.action_community': 'Connect with other LightSavers worldwide',
+  'signup_welcome.cta_lighter': 'Save Your First Lighter',
+  'signup_welcome.cta_explore': 'Explore the Community',
+  'signup_welcome.close': 'Close',
+
+      'order.pack_selection.title': 'Choose Your Pack',
+  'order.pack_selection.subtitle': 'Select how many custom stickers you want to order',
+  'order.pack.starting_lightsaver': 'Starting LightSaver',
+  'order.pack.committed_lightsaver': 'Committed LightSaver',
+  'order.pack.community_lightsaver': 'Community LightSaver',
+  'order.pack.starting_description': 'Enough stickers for all the lighters you will lose this year, and the ones of your friends',
+  'order.pack.committed_description': 'Enough stickers to leave traces of yourself around the world',
+  'order.pack.community_description': 'For events or really distracted individuals',
+  'order.pack.stickers_count': '{count} Stickers',
+  'order.pack.sticker_singular': '{count} Sticker',
+  'order.pack.sheets_count': '({count} sheets)',
+  'order.pack.sheet_singular': '({count} sheet)',
+  'order.pack.price_calculated': 'Price calculated at checkout',
+  'order.pack.select_button': 'Select',
+
+    'order.custom_branding.title': 'Custom Branding for Events & Brands',
+  'order.custom_branding.description': 'Planning an event or want custom branding on your sticker sheets? We can personalize the branding area for your organization, brand, or special event!',
+  'order.custom_branding.button': 'Contact Us for Custom Branding',
   'order.custom_branding.email': 'orders@lightmyfire.app',
 
-    'order.customization.title': 'Kustomisasi Stiker Anda',
-  'order.customization.subtitle': 'Personalisasi setiap korek api',
-  'order.customization.apply_to_all': 'Terapkan ke Semua',
-  'order.customization.lighter_number': 'Korek Api #{number}',
-  'order.customization.language_label': 'Bahasa Kedua di Stiker (+ Inggris)',
-  'order.customization.language_helper': 'Bahasa Inggris selalu disertakan di stiker Anda',
-  'order.customization.name_label': 'Nama (3-16 karakter)',
-  'order.customization.name_placeholder': 'Nama korek api...',
+    'order.choose_pack_title': 'Choose Your Pack',
+  'order.choose_pack_subtitle': 'Select how many custom stickers you want to order',
+  'order.pack_sheets_single': 'sheet',
+  'order.pack_sheets_plural': 'sheets',
+  'order.price_at_checkout': 'Price calculated at checkout',
+  'order.pack_select_button': 'Select',
+
+    'order.customization.title': 'Customize Your Stickers',
+  'order.customization.subtitle': 'Personalize each lighter',
+  'order.customization.apply_to_all': 'Apply to All',
+  'order.customization.lighter_number': 'Lighter #{number}',
+  'order.customization.language_label': 'Second Language on Sticker (+ English)',
+  'order.customization.language_helper': 'English will always be included on your stickers',
+  'order.customization.name_label': 'Name (3-16 characters)',
+  'order.customization.name_placeholder': 'Lighter name...',
   'order.customization.name_length': '{current}/16',
-  'order.customization.name_min_required': '{current}/16 (minimum 3)',
-  'order.customization.color_label': 'Pilih Warna Latar Belakang',
-  'order.customization.preview_enter_name': 'Masukkan nama (minimal 3 karakter) untuk melihat pratinjau',
-  'order.customization.summary_design_singular': '{count} desain',
-  'order.customization.summary_design_plural': '{count} desain',
-  'order.customization.summary_language': '{language} + Inggris',
-  'order.customization.summary_identical': 'Semua {count} identik',
-  'order.customization.validation_warning_single': 'Harap isi nama korek api (3-16 karakter) sebelum melanjutkan.',
-  'order.customization.validation_warning_multiple': 'Harap isi semua nama korek api (masing-masing 3-16 karakter) sebelum melanjutkan.',
-  'order.customization.save_button': 'Simpan Kustomisasi Stiker',
+  'order.customization.name_min_required': '{current}/16 (min 3)',
+  'order.customization.color_label': 'Pick Background Color',
+  'order.customization.preview_enter_name': 'Enter a name (min 3 characters) to see preview',
+  'order.customization.summary_design_singular': '{count} design',
+  'order.customization.summary_design_plural': '{count} designs',
+  'order.customization.summary_language': '{language} + English',
+  'order.customization.summary_identical': 'All {count} identical',
+  'order.customization.validation_warning_single': 'Please fill in the lighter name (3-16 characters) before continuing.',
+  'order.customization.validation_warning_multiple': 'Please fill in all lighter names (3-16 characters each) before continuing.',
+  'order.customization.save_button': 'Save Sticker Customizations',
 
-    'order.summary.title': 'Ringkasan Pesanan',
-  'order.summary.pack': 'Paket:',
-  'order.summary.language': 'Bahasa:',
-  'order.summary.stickers': 'Stiker:',
-  'order.summary.customized': '✓ Dikustomisasi',
+    'order.quality.title': 'Premium Quality Stickers',
+  'order.quality.glossy_finish': 'Glossy finish',
+  'order.quality.fast_application': 'Fast and easy application',
+  'order.quality.durability': '2–3 year durability',
+
+    'order.guidelines.title': 'Application Guidelines',
+  'order.guidelines.step1': 'Apply the sticker to a clean, dust-free, oil-free, and moisture-free surface.',
+  'order.guidelines.step2': 'After application, press the sticker down with a clean cloth to maximize adhesion and avoid air bubbles.',
+  'order.guidelines.step3': 'Make sure the sticker is applied correctly the first time. With every reapplication, the sticker\'s ability to stick will decrease.',
+
+    'order.summary.title': 'Order Summary',
+  'order.summary.pack': 'Pack:',
+  'order.summary.language': 'Language:',
+  'order.summary.stickers': 'Stickers:',
+  'order.summary.customized': '✓ Customized',
+  'order.summary.shipping_method': 'Shipping Method:',
+  'order.summary.shipping_standard': 'Standard Shipping',
+  'order.summary.shipping_standard_time': '7-14 business days',
+  'order.summary.shipping_express': 'Express Shipping',
+  'order.summary.shipping_express_time': '3-5 business days',
+  'order.summary.subtotal': 'Subtotal:',
+  'order.summary.shipping': 'Shipping:',
   'order.summary.total': 'Total:',
+  'order.summary.shipping_calculated': '+ shipping',
 
-    'order.preview.title': 'Desain Stiker Anda',
-  'order.preview.description': 'Pratinjau stiker khusus. File stiker akan dibuat setelah pembayaran.',
-  'order.preview.more_stickers': '+{count} lagi',
+    'order.preview.title': 'Your Sticker Design',
+  'order.preview.description': 'Preview of your custom stickers. Sticker files will be generated after payment.',
+  'order.preview.more_stickers': '+{count} more',
 
-    'order.shipping.title': 'Informasi Pengiriman',
-  'order.shipping.description': 'Silakan berikan alamat pengiriman Anda untuk pengiriman stiker',
-  'order.shipping.name_label': 'Nama Lengkap *',
+    'order.shipping.title': 'Shipping Information',
+  'order.shipping.description': 'Please provide your shipping address for sticker delivery',
+  'order.shipping.name_label': 'Full Name *',
   'order.shipping.name_placeholder': 'John Doe',
-  'order.shipping.email_label': 'Alamat Email *',
+  'order.shipping.email_label': 'Email Address *',
   'order.shipping.email_placeholder': 'john@example.com',
-  'order.shipping.address_label': 'Alamat Jalan *',
+  'order.shipping.address_label': 'Street Address *',
   'order.shipping.address_placeholder': '123 Main Street, Apt 4B',
-  'order.shipping.city_label': 'Kota *',
+  'order.shipping.city_label': 'City *',
   'order.shipping.city_placeholder': 'Paris',
-  'order.shipping.postal_code_label': 'Kode Pos *',
+  'order.shipping.postal_code_label': 'Postal Code *',
   'order.shipping.postal_code_placeholder': '75001',
-  'order.shipping.country_label': 'Negara *',
-  'order.shipping.error_name': 'Nama lengkap diperlukan',
-  'order.shipping.error_email_required': 'Email diperlukan',
-  'order.shipping.error_email_invalid': 'Alamat email tidak valid',
-  'order.shipping.error_address': 'Alamat jalan diperlukan',
-  'order.shipping.error_city': 'Kota diperlukan',
-  'order.shipping.error_postal': 'Kode pos diperlukan',
-  'order.shipping.error_country': 'Negara diperlukan',
-  'order.shipping.continue_button': 'Lanjutkan ke Pembayaran',
-
-    'order.payment.title': 'Detail Pembayaran',
-  'order.payment.order_id': 'ID Pesanan:',
-  'order.payment.sticker_pack': 'Paket Stiker:',
-  'order.payment.stickers_count': '{count} stiker',
-  'order.payment.total_amount': 'Jumlah Total:',
-  'order.payment.cardholder_info': 'Informasi Pemegang Kartu',
-  'order.payment.full_name': 'Nama lengkap di kartu *',
-  'order.payment.full_name_placeholder': 'John Doe',
-  'order.payment.email': 'Alamat Email *',
-  'order.payment.email_placeholder': 'john@example.com',
-  'order.payment.email_confirmation_notice': 'Konfirmasi pesanan dan detail akan dikirim ke alamat email ini.',
-  'order.payment.card_info': 'Informasi Kartu',
-  'order.payment.security_message': 'Pembayaran Anda dienkripsi dan diamankan oleh Stripe.',
-  'order.payment.pay_button': 'Bayar €{amount}',
-  'order.payment.processing': 'Memproses...',
-  'order.payment.terms_agreement': 'Dengan menyelesaikan pembelian ini, Anda menyetujui {terms} dan {privacy} kami.',
-  'order.payment.terms_link': 'Syarat Layanan',
-  'order.payment.privacy_link': 'Kebijakan Privasi',
-  'order.payment.error_stripe_not_loaded': 'Stripe belum dimuat. Silakan segarkan dan coba lagi.',
-  'order.payment.error_name_required': 'Silakan masukkan nama lengkap Anda',
-  'order.payment.error_create_intent': 'Gagal membuat niat pembayaran',
-  'order.payment.error_payment_failed': 'Pembayaran gagal',
-  'order.payment.error_requires_action': 'Kartu Anda memerlukan verifikasi tambahan.',
-  'order.payment.error_unexpected_status': 'Status pembayaran yang tidak terduga: {status}',
-  'order.payment.error_process_order': 'Gagal memproses pesanan',
-  'order.payment.stripe_not_configured': 'Stripe tidak dikonfigurasi. Tambahkan NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ke .env.local',
-  'order.payment.loading': 'Memuat formulir pembayaran...',
-
-    'order.success.title': 'Pesanan Berhasil!',
-  'order.success.subtitle': 'Terima kasih atas pesanan Anda',
-  'order.success.confirmation_sent': 'Email Konfirmasi Terkirim',
-  'order.success.confirmation_description': 'Email konfirmasi telah dikirim ke:',
-  'order.success.check_spam': 'Silakan periksa kotak masuk Anda (dan folder spam) untuk detail pesanan dan informasi pelacakan.',
-  'order.success.your_lighters': 'Korek Api Anda',
-  'order.success.lighters_created': 'Korek Api Dibuat:',
-  'order.success.status': 'Status:',
-  'order.success.status_processing': '✓ Memproses',
-  'order.success.what_happens_next': 'Apa yang terjadi selanjutnya?',
-  'order.success.step1': 'Stiker khusus Anda sedang disiapkan dengan kode PIN unik Anda',
-  'order.success.step2': 'Tim kami akan memproses pesanan Anda dan menyiapkannya untuk pengiriman',
-  'order.success.step3': 'Stiker dikemas dengan hati-hati dan dikirim dalam 5-7 hari kerja',
-  'order.success.step4': 'Anda akan menerima nomor pelacakan melalui email setelah dikirim',
-  'order.success.lighters_ready': 'Korek Api Anda Siap!',
-  'order.success.lighters_ready_description': '{count} korek api Anda telah dibuat di akun Anda dengan kode PIN unik. Anda dapat segera mulai menambahkan posting!',
-  'order.success.view_lighters': 'Lihat Korek Api Saya',
-  'order.success.back_home': 'Kembali ke Beranda',
-  'order.success.view_profile': 'Lihat Profil Saya',
-  'order.success.questions': 'Pertanyaan tentang pesanan Anda?',
-  'order.success.contact_us': 'Hubungi Kami',
-
-    'order.change_pack': '← Ubah Paket',
-
-    'cookie.message': 'Kami hanya menggunakan cookie untuk fungsi dasar—tidak pernah untuk pelacakan. Privasi Anda terlindungi. Lihat {privacyLink} kami untuk detail.',
-  'cookie.privacy_link_text': 'Kebijakan Privasi',
-  'cookie.accept': 'Terima',
-  'cookie.decline': 'Tolak',
-  'cookie_consent.title': 'Kami menghargai privasi Anda',
-  'cookie_consent.message': 'Kami menggunakan cookie untuk memastikan Anda mendapatkan pengalaman terbaik di situs web kami. Dengan melanjutkan menggunakan situs ini, Anda menyetujui kebijakan privasi kami dan penggunaan cookie.',
-  'cookie_consent.accept': 'Terima & Lanjutkan',
-  'cookie_consent.privacy_link': 'Kebijakan Privasi',
-
-    'faq.subtitle': 'Temukan jawaban untuk pertanyaan umum tentang LightMyFire',
-  'faq.what_is.question': 'Apa itu LightMyFire?',
-  'faq.what_is.answer': 'Ini adalah proyek untuk mengurangi limbah dan menciptakan "mosaik manusia". Kami menjual stiker dengan kode QR yang Anda tempel di korek api. Siapa pun yang menemukan korek api itu dapat memindai kode, memasukkan PIN, dan menambahkan cerita, gambar, atau lagu ke buku catatan digitalnya. Ini adalah cara unik untuk menghubungkan orang-orang secara global dan memberi korek api kehidupan kedua.',
-  'faq.how_add_story.question': 'Bagaimana cara menambahkan cerita ke korek api?',
-  'faq.how_add_story.answer': 'Anda harus menemukan korek api dengan stiker LightMyFire. Pindai kode QR (atau kunjungi situs kami) dan masukkan PIN unik dari stiker. Anda perlu membuat akun gratis untuk berkontribusi. Setelah masuk, Anda dapat menambahkan teks, mengunggah gambar, berbagi lagu, atau mencatat lokasi di mana Anda menemukan korek api.',
-  'faq.save_lighter.question': 'Bagaimana cara menyimpan dan mempersonalisasi korek api saya sendiri?',
-  'faq.save_lighter.answer': 'Kunjungi bagian "Simpan Korek Api" di situs kami. Anda akan memberi nama korek api Anda, memilih desain stiker (pilih warna favorit, bahasa, dll.), dan memesan stiker dengan desain kustom Anda. Ini menciptakan identitas digital unik untuk korek api Anda yang dapat Anda lacak dan bagikan.',
-  'faq.post_twice.question': 'Mengapa saya tidak bisa memposting dua kali berturut-turut?',
-  'faq.post_twice.answer': 'Untuk menjaga mosaik tetap beragam dan mendorong penyerahan korek api, kami memiliki periode cooldown 24 jam per korek api. Ini memastikan bahwa banyak orang berkontribusi cerita ke korek api yang sama daripada satu orang mendominasi. Semua tentang menciptakan mosaik manusia yang beragam dan global.',
-  'faq.public_post.question': 'Apakah postingan saya publik?',
-  'faq.public_post.answer': 'Anda memiliki kontrol penuh! Semua postingan terlihat di halaman pribadi korek api (yang memerlukan PIN untuk mengakses). Saat memposting, Anda juga dapat mencentang untuk menjadikannya "publik", yang memungkinkannya ditampilkan di beranda kami dan dilihat oleh semua orang yang mengunjungi situs.',
-  'faq.delete_post.question': 'Bagaimana cara menghapus postingan yang saya buat?',
-  'faq.delete_post.answer': 'Masuk dan buka halaman "Profil Saya". Anda akan melihat daftar semua kontribusi Anda dengan tombol hapus di samping setiap item. Anda dapat menghapus postingan apa pun kapan saja. Ini memberi Anda kontrol penuh atas kontribusi Anda.',
-  'faq.lose_lighter.question': 'Apa yang terjadi jika saya kehilangan korek api yang telah saya simpan?',
-  'faq.lose_lighter.answer': 'Itu bagian dari petualangan! Sebagai "LightSaver" (orang yang membeli stiker), Anda selalu dapat melihat halaman korek api Anda dari dashboard "Profil Saya". Anda dapat mengawasi perjalanannya dan melihat ke mana ia pergi, siapa yang menemukannya, dan cerita apa yang ia kumpulkan lama setelah meninggalkan tangan Anda.',
-  'faq.map_works.question': 'Bagaimana cara kerja fitur peta?',
-  'faq.map_works.answer': 'Di halaman setiap korek api, Anda akan menemukan peta yang menunjukkan perjalanan korek api. Setiap kali seseorang membuat postingan "lokasi", koordinat dicatat dan ditambahkan ke peta, melacak jalur korek api di seluruh dunia. Ini adalah representasi visual seberapa jauh korek api Anda telah bepergian!',
-  'faq.trophies.question': 'Apa itu trofi dan bagaimana cara mendapatkannya?',
-  'faq.trophies.answer': 'Trofi adalah pencapaian yang mengakui kontribusi Anda ke komunitas LightMyFire. Anda dapat memperoleh trofi dengan menyimpan korek api, menambahkan cerita dan postingan, membuat konten asli, bepergian ke lokasi baru, membantu mengisi bahan bakar semangat komunitas, dan banyak lagi. Periksa profil Anda untuk melihat trofi mana yang telah Anda buka dan apa yang masih perlu Anda capai!',
-  'faq.harmful_content.question': 'Apa yang terjadi jika saya memposting konten berbahaya atau ofensif?',
-  'faq.harmful_content.answer': 'Kami memiliki sistem moderasi konten untuk menjaga keamanan dan rasa hormat komunitas. Postingan yang berisi ujaran kebencian, pelecehan, kekerasan, atau konten berbahaya lainnya ditinjau oleh tim moderasi kami. Tergantung pada tingkat keparahan, konten dapat dihapus, Anda mungkin menerima peringatan, atau akun Anda mungkin ditangguhkan. Kami percaya dalam melindungi semua anggota komunitas.',
-  'faq.buy_stickers.question': 'Bagaimana cara membeli paket stiker?',
-  'faq.buy_stickers.answer': 'Setelah Anda mendesain korek api dan menyesuaikan stiker Anda, Anda dapat membeli paket stiker langsung melalui platform kami. Kami menawarkan paket 10, 20, atau 50 stiker. Gunakan sistem pembayaran Stripe kami yang aman untuk menyelesaikan pembelian Anda. Stiker Anda akan dicetak secara profesional dan dikirimkan kepada Anda dengan informasi pelacakan.',
-  'faq.sticker_design.question': 'Bisakah saya menyesuaikan desain stiker saya?',
-  'faq.sticker_design.answer': 'Tentu saja! Saat menyimpan korek api Anda, Anda dapat sepenuhnya mempersonalisasi stiker Anda. Pilih warna latar belakang Anda, pilih bahasa untuk teks undangan, dan sesuaikan nama dan PIN korek api Anda. Lihat pratinjau langsung desain Anda sebelum memesan.',
-  'faq.environment.question': 'Bagaimana LightMyFire ramah lingkungan?',
-  'faq.environment.answer': 'Kami berdedikasi untuk mengurangi limbah korek api. Alih-alih membuang korek api lama (yang membutuhkan 150+ tahun untuk terurai), proyek kami memberi mereka kehidupan kedua dengan menciptakan cerita di sekitarnya. Setiap korek api yang disimpan dan diteruskan mencegah satu item berakhir di tempat pembuangan sampah. Selain itu, kami mendorong pengisian ulang korek api daripada membeli yang baru—periksa Panduan Isi Ulang kami untuk tips!',
-  'faq.languages.question': 'Bahasa apa yang didukung LightMyFire?',
-  'faq.languages.answer': 'LightMyFire tersedia dalam 27 bahasa termasuk Inggris, Prancis, Spanyol, Jerman, Italia, Portugis, Belanda, Rusia, Polandia, Jepang, Korea, Cina, Thailand, Vietnam, Hindi, Arab, Persia, Urdu, Marathi, Telugu, Indonesia, Ukraina, dan Turki. Anda dapat beralih bahasa kapan saja menggunakan pemilih bahasa di header.',
-  'faq.levels.question': 'Apa itu sistem level?',
-  'faq.levels.answer': 'Sistem level mengubah kontribusi Anda ke komunitas menjadi permainan. Anda mendapatkan poin dengan menyimpan korek api, menambahkan postingan dan cerita, mendapatkan suka dari pengguna lain, dan membuat konten asli. Saat Anda mengumpulkan poin, level profil Anda meningkat dari 1 hingga 100. Level yang lebih tinggi menunjukkan dedikasi Anda terhadap misi LightMyFire!',
-  'faq.contact_footer': 'Tidak menemukan jawaban Anda?',
-  'faq.contact_link': 'Hubungi kami',
-  'faq.q1.title': 'Apa itu LightMyFire?',
-  'faq.q1.desc': 'Ini adalah proyek untuk mengurangi limbah dan menciptakan "mosaik manusia". Kami menjual stiker dengan kode QR yang Anda tempel di korek api. Siapa pun yang menemukan korek api itu dapat memindai kode, memasukkan PIN, dan menambahkan cerita, gambar, atau lagu ke buku catatan digitalnya.',
-  'faq.q2.title': 'Bagaimana cara menambahkan cerita?',
-  'faq.q2.desc': 'Anda harus menemukan korek api dengan stiker LightMyFire. Pindai kode QR (atau kunjungi situs kami) dan masukkan PIN unik dari stiker. Anda perlu membuat akun gratis untuk berkontribusi.',
-  'faq.q3.title': 'Mengapa saya tidak bisa memposting dua kali berturut-turut?',
-  'faq.q3.desc': 'Untuk menjaga mosaik tetap beragam, kami memiliki periode cooldown 24 jam *per korek api*. Ini mendorong Anda untuk meneruskan korek api sehingga orang lain dapat menambahkan cerita mereka.',
-  'faq.q4.title': 'Apakah postingan saya publik?',
-  'faq.q4.desc': 'Anda memiliki dua pilihan. Semua postingan terlihat di halaman korek api (yang memerlukan PIN untuk mengakses). Saat memposting, Anda juga dapat mencentang untuk menjadikannya "publik", yang memungkinkannya ditampilkan di beranda kami.',
-  'faq.q5.title': 'Bagaimana cara menghapus postingan yang saya buat?',
-  'faq.q5.desc': 'Masuk dan buka halaman "Profil Saya". Anda akan melihat daftar semua kontribusi Anda dengan tombol hapus di samping setiap item.',
-  'faq.q6.title': 'Apa yang terjadi jika saya kehilangan korek api yang telah saya simpan?',
-  'faq.q6.desc': 'Itu bagian dari kesenangan! Sebagai "LightSaver" (orang yang membeli stiker), Anda selalu dapat melihat halaman korek api Anda dari dashboard "Profil Saya". Anda dapat mengawasi perjalanannya dan melihat ke mana ia pergi dan cerita apa yang ia kumpulkan setelah meninggalkan tangan Anda.',
-  'faq.q7.title': 'Bagaimana cara kerja peta?',
-  'faq.q7.desc': 'Di halaman setiap korek api, Anda akan menemukan peta yang menunjukkan perjalanan korek api spesifik itu. Setiap kali seseorang membuat postingan "lokasi", koordinat dicatat dan ditambahkan ke peta, melacak jalur korek api di seluruh dunia.',
-
-    'my_profile.tabs.settings': 'Pengaturan',
-  'my_profile.stats.contributions': 'Kontribusi',
-  'my_profile.stats.lighters_saved': 'Korek Api Terselamatkan',
-  'my_profile.stats.stories_joined': 'Cerita yang Diikuti',
-  'my_profile.stats.likes_received': 'Suka Diterima',
-  'my_profile.saved_lighters': 'Korek Api Tersimpan',
-  'my_profile.edit_profile': 'Edit Profil',
-  'my_profile.security': 'Keamanan',
-  'my_profile.settings.account_title': 'Akun',
-  'my_profile.settings.username_label': 'Nama Pengguna',
-  'my_profile.settings.email_label': 'Email',
-  'my_profile.settings.update_profile_button': 'Perbarui Profil',
-  'my_profile.settings.password_title': 'Ubah Kata Sandi',
-  'my_profile.settings.new_password_label': 'Kata Sandi Baru',
-  'my_profile.settings.confirm_password_label': 'Konfirmasi Kata Sandi Baru',
-  'my_profile.settings.updating': 'Memperbarui...',
-  'my_profile.settings.password_mismatch': 'Kata sandi tidak cocok.',
-  'my_profile.settings.error.generic': 'Terjadi kesalahan. Silakan coba lagi.',
-  'my_profile.settings.error.rpc_error': 'Kesalahan: {message}',
-  'my_profile.settings.error.username_exists': 'Nama pengguna sudah digunakan.',
-  'my_profile.settings.error.email_exists': 'Email sudah digunakan.',
-  'my_profile.settings.placeholder.username': 'Masukkan nama pengguna baru',
-  'my_profile.settings.placeholder.email': 'Masukkan email baru',
-  'my_profile.settings.placeholder.password': '••••••••',
-  'my_profile.settings.placeholder.password_confirm': 'Masukkan kembali kata sandi baru',
+  'order.shipping.country_label': 'Country *',
+  'order.shipping.error_name': 'Full name is required',
+  'order.shipping.error_email_required': 'Email is required',
+  'order.shipping.error_email_invalid': 'Invalid email address',
+  'order.shipping.error_address': 'Street address is required',
+  'order.shipping.error_city': 'City is required',
+  'order.shipping.error_postal': 'Postal code is required',
+  'order.shipping.error_postal_invalid': 'Invalid postal code for selected country',
+  'order.shipping.error_country': 'Country is required',
+  'order.shipping.continue_button': 'Continue to Payment',
 
     'country.AT': 'Austria',
-  'country.BE': 'Belgia',
-  'country.CA': 'Kanada',
-  'country.CH': 'Swiss',
-  'country.CZ': 'Republik Ceko',
-  'country.DE': 'Jerman',
+  'country.BE': 'Belgium',
+  'country.CA': 'Canada',
+  'country.CH': 'Switzerland',
+  'country.CZ': 'Czech Republic',
+  'country.DE': 'Germany',
   'country.DK': 'Denmark',
-  'country.ES': 'Spanyol',
-  'country.FI': 'Finlandia',
-  'country.FR': 'Prancis',
-  'country.GB': 'Inggris Raya',
-  'country.IE': 'Irlandia',
-  'country.IT': 'Italia',
-  'country.LU': 'Luksemburg',
-  'country.NL': 'Belanda',
-  'country.NO': 'Norwegia',
-  'country.PL': 'Polandia',
+  'country.ES': 'Spain',
+  'country.FI': 'Finland',
+  'country.FR': 'France',
+  'country.GB': 'United Kingdom',
+  'country.IE': 'Ireland',
+  'country.IT': 'Italy',
+  'country.LU': 'Luxembourg',
+  'country.NL': 'Netherlands',
+  'country.NO': 'Norway',
+  'country.PL': 'Poland',
   'country.PT': 'Portugal',
-  'country.SE': 'Swedia',
-  'country.US': 'Amerika Serikat',
+  'country.SE': 'Sweden',
+  'country.US': 'United States',
 
-    'refill_guide.title': 'Jangan Buang Aku',
-  'refill_guide.subtitle': 'Setiap korek api yang Anda selamatkan adalah kemenangan kecil melawan limbah dan langkah menuju masa depan berkelanjutan.',
-  'refill_guide.hero_title': 'Jangan Buang Aku: Panduan LightMyFire untuk Kehidupan Panjang',
-  'refill_guide.hero_intro': 'Setiap tahun, <strong>miliaran</strong> korek api sekali pakai diproduksi dan berakhir di tempat pembuangan sampah atau di alam. Satu perusahaan seperti BIC menjual lebih dari 2,5 miliar pada tahun 2023. Benda-benda ini, terbuat dari plastik dan logam yang tidak dapat didaur ulang, dapat membutuhkan berabad-abad untuk terurai dan berisiko mencemari tanah dan air.',
-  'refill_guide.hero_social': 'Korek api bukan hanya alat; itu adalah objek sosial. Dengan memilih korek api yang dapat diisi ulang, Anda tidak hanya mengurangi limbah; Anda menciptakan teman yang tahan lama untuk cerita Anda.',
-  'refill_guide.section1_title': 'Cara Mengenali Korek Api yang Dapat Diisi Ulang (dalam 5 detik)',
-  'refill_guide.section1_intro': 'Sangat sederhana! Rahasianya hampir selalu ditemukan di bawah korek api.',
-  'refill_guide.section1_type1_title': 'Korek Api Butana (yang paling umum)',
-  'refill_guide.section1_type1.desc': 'Balikkan. Apakah Anda melihat katup logam bulat kecil di tengah, mirip dengan katup ban? <strong>Itu adalah port pengisian ulang!</strong> Selamat, korek api Anda dapat diisi ulang.',
-  'refill_guide.section1_type1_alt': 'Tampilan dekat katup pengisian ulang korek api butana',
-  'refill_guide.section1_type2_title': 'Korek Api Cairan (gaya Zippo)',
-  'refill_guide.section1_type2_desc': 'Ini biasanya korek api logam ikonik. Jika Anda dapat menarik seluruh blok dalam ("cerobong") keluar dari casing logam, itu dapat diisi ulang. Anda akan menemukan kapas di dalamnya untuk direndam dengan cairan.',
-  'refill_guide.section1_type2_alt': 'Bagian dalam korek api gaya Zippo yang menunjukkan kapas',
-  'refill_guide.section1_type3_title': 'Korek Api Sekali Pakai',
-  'refill_guide.section1_type3_desc': 'Balikkan. Apakah bagian bawahnya hanya potongan plastik datar yang tersegel? Ini adalah korek api sekali pakai.',
-  'refill_guide.section1_type3_alt': 'Bagian bawah korek api sekali pakai',
-  'refill_guide.section2_title': 'Cara Mengisi Ulang Korek Api Anda',
-  'refill_guide.section2_type1_title': 'Tipe 1: Korek Api Butana (dengan katup)',
-  'refill_guide.section2_type1_step1_title': 'Yang Anda butuhkan:',
-  'refill_guide.section2_type1_step1_desc': 'Kaleng gas butana untuk korek api.',
-  'refill_guide.section2_type1_step2_title': 'Di mana menemukannya (di Eropa):',
-  'refill_guide.section2_type1_step2_desc': 'Sangat mudah ditemukan. Hampir semua <strong>toko tembakau</strong> menjualnya. Anda juga dapat menemukannya di sebagian besar supermarket, toko serba ada, atau toko perangkat keras.',
-  'refill_guide.section2_type1_step3_title': 'Metode:',
-  'refill_guide.section2_type1_step3_li1': 'Pegang korek api <strong>terbalik</strong> (katup menghadap ke atas).',
-  'refill_guide.section2_type1_step3_li2': 'Tekan dengan kuat nozzle kaleng gas ke katup.',
-  'refill_guide.section2_type1_step3_li3': 'Tahan selama 3-5 detik. Anda akan mendengar suara mendesis saat terisi.',
-  'refill_guide.section2_type1_step3_li4': 'Ulangi dalam 2 atau 3 semburan pendek sampai korek api penuh.',
-  'refill_guide.section2_type1_step3_li5': 'Tunggu satu atau dua menit sebelum menyalakan.',
-  'refill_guide.section2_type1_alt': 'Seseorang mengisi ulang korek api butana dengan kaleng gas',
-  'refill_guide.section2_type2_title': 'Tipe 2: Korek Api Cairan (dengan kapas)',
-  'refill_guide.section2_type2_step1_title': 'Yang Anda butuhkan:',
-  'refill_guide.section2_type2_step1_desc': 'Kaleng cairan korek api ("cairan Zippo" atau naphtha).',
-  'refill_guide.section2_type2_step2_title': 'Di mana menemukannya:',
-  'refill_guide.section2_type2_step2_desc': 'Juga di semua <strong>toko tembakau</strong> dan supermarket.',
-  'refill_guide.section2_type2_step3_title': 'Metode:',
-  'refill_guide.section2_type2_step3_li1': 'Tarik sisipan logam keluar dari casing.',
-  'refill_guide.section2_type2_step3_li2': 'Angkat bantalan kecil di bagian bawah sisipan.',
-  'refill_guide.section2_type2_step3_li3': 'Tuangkan cairan perlahan ke kapas di bawahnya.',
-  'refill_guide.section2_type2_step3_li4': 'Berhenti segera setelah kapas terlihat jenuh (jangan terlalu penuh).',
-  'refill_guide.section2_type2_step3_li5': 'Masukkan kembali sisipan ke casing dan tunggu beberapa detik.',
-  'refill_guide.section2_type2_alt': 'Seseorang menuangkan cairan korek api ke kapas sisipan',
-  'refill_guide.pro_tip_butane': 'Selalu kenakan kacamata keselamatan saat mengisi ulang. Jika Anda merasa ada hambatan, jangan memaksa—tunggu beberapa detik dan coba lagi.',
-  'refill_guide.important_gasoline': 'Jangan pernah terlalu mengisi korek api cairan. Biarkan korek api kering selama 24 jam setelah pengisian ulang sebelum digunakan.',
-  'refill_guide.why_it_matters.title': 'Mengapa Ini Penting',
-  'refill_guide.why_it_matters.environmental.title': 'Dampak Lingkungan',
-  'refill_guide.why_it_matters.environmental.description': 'Satu korek api yang dapat diisi ulang dapat menggantikan 50+ korek api sekali pakai dalam masa pakainya. Itu 50+ korek api yang tidak masuk tempat pembuangan sampah untuk satu orang.',
-  'refill_guide.why_it_matters.cost.title': 'Penghematan Biaya',
-  'refill_guide.why_it_matters.cost.description': 'Korek api yang dapat diisi ulang berkualitas harganya €5-20 tetapi bertahan bertahun-tahun. Korek api sekali pakai harganya €1-2 per buah. Korek api yang dapat diisi ulang terbayar sendiri dalam beberapa bulan.',
-  'refill_guide.why_it_matters.reliability.title': 'Keandalan',
-  'refill_guide.why_it_matters.reliability.description': 'Korek api yang dapat diisi ulang dibuat untuk bertahan puluhan tahun. Mereka lebih dapat diandalkan dalam cuaca dingin dan kondisi keras daripada korek api sekali pakai yang murah.',
-  'refill_guide.why_it_matters.mission.title': 'Misi Kami',
-  'refill_guide.why_it_matters.mission.description': 'Setiap korek api yang Anda selamatkan dengan LightMyFire mendapat cerita. Beri nama korek api Anda, dan itu menjadi lebih dari sekadar benda—itu menjadi teman.',
-  'refill_guide.cta.title': 'Siap Menyelamatkan Korek Api Pertama Anda?',
-  'refill_guide.cta.description': 'Pilih korek api yang dapat diisi ulang, beri nama, dan mulai perjalanannya dengan LightMyFire.',
+    'order.payment.title': 'Payment Details',
+  'order.payment.order_id': 'Order ID:',
+  'order.payment.sticker_pack': 'Sticker Pack:',
+  'order.payment.stickers_count': '{count} stickers',
+  'order.payment.total_amount': 'Total Amount:',
+  'order.payment.cardholder_info': 'Cardholder Information',
+  'order.payment.full_name': 'Full name on card *',
+  'order.payment.full_name_placeholder': 'John Doe',
+  'order.payment.email': 'Email Address *',
+  'order.payment.email_placeholder': 'john@example.com',
+  'order.payment.email_confirmation_notice': 'Order confirmation and details will be sent to this email address.',
+  'order.payment.card_info': 'Card Information',
+  'order.payment.security_message': 'Your payment is encrypted and secured by Stripe.',
+  'order.payment.pay_button': 'Pay €{amount}',
+  'order.payment.processing': 'Processing...',
+  'order.payment.terms_agreement': 'By completing this purchase, you agree to our {terms} and {privacy}.',
+  'order.payment.terms_link': 'Terms of Service',
+  'order.payment.privacy_link': 'Privacy Policy',
+  'order.payment.error_stripe_not_loaded': 'Stripe has not loaded. Please refresh and try again.',
+  'order.payment.error_name_required': 'Please enter your full name',
+  'order.payment.error_email_invalid': 'Please enter a valid email address',
+  'order.payment.error_create_intent': 'Failed to create payment intent',
+  'order.payment.error_payment_failed': 'Payment failed',
+  'order.payment.error_requires_action': 'Your card requires additional verification.',
+  'order.payment.error_unexpected_status': 'Unexpected payment status: {status}',
+  'order.payment.error_process_order': 'Failed to process order',
+  'order.payment.stripe_not_configured': 'Stripe not configured. Add NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY to .env.local',
+  'order.payment.loading': 'Loading payment form...',
 
-  'settings.profile.nationality_label': 'Kewarganegaraan',
-  'settings.profile.nationality_optional': '(opsional)',
-  'settings.profile.nationality_placeholder': 'Pilih negara',
-  'settings.profile.show_nationality_label': 'Tampilkan kewarganegaraan saya di postingan saya',
+    'save_lighter.why_it_matters': 'Why It Matters',
+  'save_lighter.creative_journey': 'Creative Journey',
+  'save_lighter.creative_journey_desc': 'Be part of a fun, global movement. Give lighters a second life with beautiful, hand-crafted stickers.',
+  'save_lighter.human_mosaic': 'Human Mosaic',
+  'save_lighter.human_mosaic_desc': 'Join thousands of LightSavers creating a human mosaic of stories and creativity while fighting waste.',
+  'save_lighter.sustainable_impact': 'Sustainable Impact',
+  'save_lighter.sustainable_impact_desc': 'Our stickers are hand-made and sustainably manufactured. Help maintain this project alive.',
+  'save_lighter.your_design': 'Your Sticker Design',
+  'save_lighter.design_preview': 'Preview of your custom stickers. Sticker files will be generated after payment.',
+  'save_lighter.more_stickers': '+{count} more',
+  'save_lighter.sticker_singular': 'Sticker',
+  'save_lighter.sticker_plural': 'Stickers',
+  'save_lighter.change_pack': '← Change Pack',
 
-  'contact.modal_title': 'Hubungi Kami',
-  'contact.name_label': 'Nama',
-  'contact.name_placeholder': 'Nama Anda',
+    'order.success.title': 'Order Successful!',
+  'order.success.subtitle': 'Thank you for your order',
+  'order.success.confirmation_sent': 'Confirmation Email Sent',
+  'order.success.confirmation_description': 'A confirmation email has been sent to:',
+  'order.success.check_spam': 'Please check your inbox (and spam folder) for order details and tracking information.',
+  'order.success.your_lighters': 'Your Lighters',
+  'order.success.lighters_created': 'Lighters Created:',
+  'order.success.status': 'Status:',
+  'order.success.status_processing': '✓ Processing',
+  'order.success.what_happens_next': 'What happens next?',
+  'order.success.step1': 'Your custom stickers are being prepared with your unique PIN codes',
+  'order.success.step2': 'Our team will process your order and prepare it for shipping',
+  'order.success.step3': 'Stickers are carefully packaged and shipped within 5-7 business days',
+  'order.success.step4': 'You will receive a tracking number via email once shipped',
+  'order.success.lighters_ready': 'Your lighters are ready!',
+  'order.success.lighters_ready_description': 'Your {count} lighters have been created in your account with unique PIN codes. You can start adding posts to them right away!',
+  'order.success.view_lighters': 'View My Lighters',
+  'order.success.back_home': 'Back to Home',
+  'order.success.view_profile': 'View My Profile',
+  'order.success.questions': 'Questions about your order?',
+  'order.success.contact_us': 'Contact us',
+
+    'my_orders.title': 'My Orders',
+  'my_orders.subtitle': 'Track your LightMyFire sticker orders',
+  'my_orders.loading': 'Loading your orders...',
+  'my_orders.error.title': 'Could not load orders',
+  'my_orders.error.description': '{error}. You may still have orders that aren\'t showing here.',
+  'my_orders.error.try_again': 'Try again',
+  'my_orders.empty.title': 'No Orders Yet',
+  'my_orders.empty.description': 'You haven\'t placed any sticker orders yet.',
+  'my_orders.empty.cta': 'Order Stickers',
+  'my_orders.order_id': 'Order #{orderId}',
+  'my_orders.placed_on': 'Placed on {date}',
+  'my_orders.sticker_count': '{count} sticker',
+  'my_orders.stickers_count': '{count} stickers',
+  'my_orders.status.pending': 'Pending',
+  'my_orders.status.processing': 'Processing',
+  'my_orders.status.shipped': 'Shipped',
+  'my_orders.status.delivered': 'Delivered',
+  'my_orders.status.failed': 'Failed',
+  'my_orders.status.canceled': 'Canceled',
+  'my_orders.status.returned': 'Returned',
+  'my_orders.shipping.title': 'Shipping Address',
+  'my_orders.lighters.title': 'Lighter Names',
+  'my_orders.tracking.title': 'Tracking Information',
+  'my_orders.tracking.carrier': 'Carrier:',
+  'my_orders.tracking.number': 'Tracking Number:',
+  'my_orders.tracking.shipped': 'Shipped:',
+  'my_orders.tracking.track_button': 'Track Package →',
+  'my_orders.hold.title': 'Order On Hold',
+  'my_orders.failed.title': 'Order Failed',
+  'my_orders.failed.contact': 'Please contact support at',
+  'my_orders.canceled.title': 'Order Canceled',
+  'my_orders.help.label': 'Need help?',
+  'my_orders.help.contact': 'Contact Support',
+  'my_orders.go_home': 'Go Home',
+
+    'order.change_pack': '← Change Pack',
+
+    'contact.modal_title': 'Contact Us',
+  'contact.name_label': 'Name',
+  'contact.name_placeholder': 'Your name',
   'contact.email_label': 'Email',
-  'contact.email_placeholder': 'email.anda@example.com',
-  'contact.phone_label': 'Telepon',
-  'contact.phone_placeholder': '+62 812 3456 7890',
-  'contact.optional': 'Opsional',
-  'contact.message_label': 'Pesan',
-  'contact.message_placeholder': 'Bagaimana kami dapat membantu Anda?',
-  'contact.cancel': 'Batal',
-  'contact.send': 'Kirim Pesan',
-  'contact.sending': 'Mengirim...',
-  'contact.success_message': 'Pesan berhasil dikirim!',
-  'contact.success_subtitle': 'Kami akan segera menghubungi Anda kembali.',
-  'contact.button': 'Hubungi Kami',
+  'contact.email_placeholder': 'your.email@example.com',
+  'contact.phone_label': 'Phone',
+  'contact.phone_placeholder': '+33 6 12 34 56 78',
+  'contact.optional': 'Optional',
+  'contact.message_label': 'Message',
+  'contact.message_placeholder': 'How can we help you?',
+  'contact.cancel': 'Cancel',
+  'contact.send': 'Send Message',
+  'contact.sending': 'Sending...',
+  'contact.success_message': 'Message sent successfully!',
+  'contact.success_subtitle': 'We\'ll get back to you soon.',
+  'contact.button': 'Contact Us',
 
-  'how_it_works.title': 'Cara Kerja',
-  'how_it_works.subtitle': 'Simpan korek api, bagikan cerita, sebarkan api',
-  'how_it_works.step1.title': 'Temukan Korek Api Anda',
-  'how_it_works.step1.desc': 'Temukan korek api dengan ID unik atau simpan milik Anda sendiri',
-  'how_it_works.step2.title': 'Tambahkan ke Cerita',
-  'how_it_works.step2.desc': 'Bagikan kenangan, foto, video, atau puisi',
-  'how_it_works.step3.title': 'Teruskan',
-  'how_it_works.step3.desc': 'Biarkan korek api melanjutkan perjalanannya dengan orang lain',
-  'how_it_works.contact_us': 'Hubungi kami',
+    'how_it_works.title': 'How It Works',
+  'how_it_works.subtitle': 'Save lighters, share stories, spread the flame',
+  'how_it_works.step1.title': 'Find Your Lighter',
+  'how_it_works.step1.desc': 'Discover a lighter with a unique ID or save your own',
+  'how_it_works.step2.title': 'Add to the Story',
+  'how_it_works.step2.desc': 'Share memories, photos, videos, or poems',
+  'how_it_works.step3.title': 'Pass It On',
+  'how_it_works.step3.desc': 'Let the lighter continue its journey with others',
+  'how_it_works.cant_find_answer': "Can't find your answer?",
+  'how_it_works.contact_us': 'Contact us',
 
-  'language.en': 'English',
+    'language.en': 'English',
   'language.fr': 'Français',
   'language.es': 'Español',
   'language.de': 'Deutsch',
@@ -528,1764 +1223,274 @@ export default {
   'language.uk': 'Українська',
   'language.tr': 'Türkçe',
 
-  
-  'add_post.button.checking_alt': 'Memeriksa...',
-
-  'add_post.button.checking_content': 'Memeriksa konten...',
-
-  'add_post.button.loading_alt': 'Memuat...',
-
-  'add_post.button.search': 'Cari',
-
-  'add_post.button.select': 'Pilih',
-
-  'add_post.char_counter': '{remaining} karakter tersisa',
-
-  'add_post.error.cooldown_active': 'Anda dapat memposting ke korek api ini lagi dalam {hours} jam. Silakan tunggu sebelum memposting lagi.',
-
-  'add_post.error.cooldown_check_failed': 'Tidak dapat memverifikasi kelayakan posting. Silakan coba lagi.',
-
-  'add_post.error.file_too_large': 'File terlalu besar. Pilih yang lebih kecil dari 2MB.',
-
-  'add_post.error.invalid_latitude': 'Lintang harus antara -90 dan 90.',
-
-  'add_post.error.invalid_longitude': 'Bujur harus antara -180 dan 180.',
-
-  'add_post.error.text_too_long': 'Teks terlalu panjang. Maksimal {max} karakter diizinkan.',
-
-  'add_post.error.youtube_api_error': 'YouTube API Error: {message}',
-
-  'add_post.moderation.content_review': '⚠️ Content Review',
-
-  'add_post.moderation.tip': '💡 Tip: Consider revising menjadi more community-friendly.',
-
-  'add_post.options': 'Opsi',
-
-  'add_post.placeholder.location_lat': 'Latitude (e.g., 48.8566)',
-
-  'add_post.placeholder.location_lng': 'Longitude (e.g., 2.3522)',
-
-  'add_post.placeholder.location_name': 'Name of a place (e.g., \'Cafe Central\')',
-
-  'add_post.prompt_v1': 'Kenangan apa yang tersimpan dalam korek api ini? Ceritakan kisahnya...',
-
-  'add_post.prompt_v2': 'Di mana Anda menemukannya? Apa yang terjadi selanjutnya?',
-
-  'add_post.prompt_v3': 'Sebuah pemikiran, puisi, atau momen—bagikan apa yang ada di pikiran Anda...',
-
-  'add_post.prompt_v4': 'Lagu apa yang sedang diputar? Deskripsikan suasananya...',
-
-  'add_post.prompt_v5': 'Jika korek api ini bisa bicara, apa yang akan dikatakannya?',
-
-  'add_post.select_post_type': 'Select Posting Type',
-
-  'add_post.youtube_search.selected_video': 'Selected video:',
-
-  'add_post.youtube_search.video_preview': 'Video preview:',
-
-  'admin.orders.action.refund': 'Pengembalian Dana',
-
-  'admin.orders.action.refunded': 'Dikembalikan',
-
-  'admin.orders.action.refunding': 'Mengembalikan...',
-
-  'admin.orders.action.send_fulfillment': '📧 Send to Fulfillment',
-
-  'admin.orders.action.sending': 'Mengirim...',
-
-  'admin.orders.confirm_resend': 'Kirim ulang email pemenuhan dengan stiker untuk pesanan {orderId}...?',
-
-  'admin.orders.details.full_order_id': 'Full Order ID',
-
-  'admin.orders.details.na': 'N/A',
-
-  'admin.orders.details.payment_intent_id': 'Payment Intent ID',
-
-  'admin.orders.details.refund_info': 'Refund Information',
-
-  'admin.orders.details.shipping_address': 'Shipping Address',
-
-  'admin.orders.details.title': 'Order Details',
-
-  'admin.orders.details.user_email': 'User Email',
-
-  'admin.orders.no_orders': 'Tidak ada orders ditemukan.',
-
-  'admin.orders.pack_size_count': '{count} stiker',
-
-  'admin.orders.pending_refunds': 'Pending Refunds',
-
-  'admin.orders.refund_confirm': 'Apakah Anda yakin ingin mengembalikan dana €{amount} ke {email}?',
-
-  'admin.orders.refund_error': 'Refund failed: {error}',
-
-  'admin.orders.refund_failed': 'Refund failed',
-
-  'admin.orders.refund_success': 'Refund successful! Amount: €{amount}',
-
-  'admin.orders.refunded': 'Dikembalikan',
-
-  'admin.orders.resend_error': '❌ Failed to resend: {error}',
-
-  'admin.orders.resend_failed': 'Gagal untuk resend fulfillment email',
-
-  'admin.orders.resend_success': '✅ Fulfillment email resent successfully!\n\n{count} stiker(s) sent to fulfillment team.',
-
-  'admin.orders.table.actions': 'Tindakan',
-
-  'admin.orders.table.amount': 'Jumlah',
-
-  'admin.orders.table.customer': 'Pelanggan',
-
-  'admin.orders.table.date': 'Tanggal',
-
-  'admin.orders.table.order_id': 'ID Pesanan',
-
-  'admin.orders.table.pack_size': 'Pack Size',
-
-  'admin.orders.table.status': 'Status',
-
-  'admin.orders.total_orders': 'Total Orders',
-
-  'admin.orders.total_revenue': 'Total Revenue',
-
-  'alt.arrow_save_lighter': 'Arrow pointing to save korek api button',
-
-  'alt.butane_lighter': 'Butane Refillable Korek Api',
-
-  'alt.butane_refill_process': 'Butane Korek Api Isi Ulang Process',
-
-  'alt.community': 'Komunitas',
-
-  'alt.creative': 'Kreatif',
-
-  'alt.gasoline_lighter': 'Gasoline Refillable Korek Api',
-
-  'alt.gasoline_refill_process': 'Gasoline Korek Api Isi Ulang Process',
-
-  'alt.lighter_illustration': 'Korek Api illustration',
-
-  'alt.lightmyfire_logo': 'LightMyFire',
-
-  'alt.lightmyfire_tagline': 'LightMyFire - Give lighters a second life',
-
-  'alt.non_refillable_lighter': 'Non-Refillable Korek Api',
-
-  'alt.personalise': 'Personalise',
-
-  'alt.qr_code': 'QR Code',
-
-  'alt.sustainable': 'Berkelanjutan',
-
-  'aria.close': 'Tutup',
-
-  'aria.close_notification': 'Close notification',
-
-  'aria.global': 'Global',
-
-  'aria.hex_color': 'HEX color code',
-
-  'aria.learn_levels': 'Pelajari cara mendapatkan level',
-
-  'aria.popular_colors': 'Popular color palette',
-
-  'aria.search_location': 'Cari lokasi',
-
-  'auth.already_have_account': 'Sudah punya akun? Masuk',
-
-  'auth.continue_with': 'Lanjutkan dengan',
-
-  'auth.dont_have_account': 'Belum punya akun? Daftar',
-
-  'auth.email_label': 'Email',
-
-  'auth.email_placeholder': 'Anda@example.com',
-
-  'auth.forgot_password': 'Forgot Anda password?',
-
-  'auth.login_required': 'Anda harus masuk untuk menyimpan korek api',
-
-  'auth.login_to_like': 'Log in to like posts',
-
-  'auth.password_label': 'Kata Sandi',
-
-  'auth.password_placeholder': 'Anda password',
-
-  'auth.sign_in': 'Masuk',
-
-  'auth.sign_up': 'Daftar',
-
-  'auth.signing_in': 'Sedang masuk...',
-
-  'auth.signing_up': 'Sedang mendaftar...',
-
-  'color.blue_violet': 'Blue Violet',
-
-  'color.bright_yellow': 'Bright Yellow',
-
-  'color.coral_red': 'Coral Red',
-
-  'color.deep_pink': 'Deep Pink',
-
-  'color.forest_green': 'Forest Green',
-
-  'color.golden_yellow': 'Golden Yellow',
-
-  'color.gray': 'Gray',
-
-  'color.light_gray': 'Light Gray',
-
-  'color.light_green': 'Light Green',
-
-  'color.light_pink': 'Light Pink',
-
-  'color.royal_blue': 'Royal Blue',
-
-  'color.sky_blue': 'Sky Blue',
-
-  'color.sunset_orange': 'Sunset Orange',
-
-  'color.turquoise': 'Turquoise',
-
-  'color.warm_orange': 'Warm Orange',
-
-  'common.loading': 'Memuat...',
-
-  'common.loading_alt': 'Memuat...',
-
-  'contact.subject.custom_branding': 'Custom Branding Inquiry',
-
-  'contact.subject.general': 'General Inquiry',
-
-  'contact.subject.question': 'Question about LightMyFire',
-
-  'email.activity.by': 'By:',
-
-  'email.activity.greeting': 'Hi {name},',
-
-  'email.activity.intro': 'There\'s new activity on Anda korek api "{korek api}"!',
-
-  'email.activity.lighter': 'Korek Api:',
-
-  'email.activity.outro': 'Perjalanan korek api Anda berlanjut! Lihat ke mana ia pergi dan siapa yang menemukannya.',
-
-  'email.activity.pin': 'PIN:',
-
-  'email.activity.type.milestone': 'Milestone Reached',
-
-  'email.activity.type.new_like': 'Someone Liked Anda Posting',
-
-  'email.activity.type.new_post': 'New Story Added',
-
-  'email.activity.type.refuel': 'Korek Api Refueled',
-
+    'email.order_shipped_subject': 'Your lighter-saving kit is on the way! 🚀✨',
+  'email.first_post_subject': 'You lit the first spark! 🔥 Welcome to the LightSaver family',
+  'email.trophy_earned_subject': '🏆 Achievement unlocked: {trophy_name}!',
+  'email.lighter_activity_subject': 'Your lighter is making new friends! 🌍',
+  'email.moderation_approved_subject': 'Good news! Your story is now live. 🎉',
+  'email.moderation_rejected_subject': 'About your recent post... let\'s chat',
+  'email.welcome_subject': 'Welcome to LightMyFire! 🔥',
+  'email.order_confirmation_subject': 'Order Confirmed! Your LightMyFire stickers are on the way 📦',
+  'email.moderator_invite_subject': 'You\'ve Been Invited to Join the Moderation Team',
+
+  'email.common.footer_tagline': 'LightMyFire – Give Your Lighter a Second Life',
+  'email.common.footer_questions': 'Questions? Email us at',
+  'email.common.footer_copyright': '© {year} LightMyFire. All rights reserved.',
+  'email.common.button.view_lighter': 'View Your Lighter',
+  'email.common.button.view_profile': 'View My Profile',
+  'email.common.button.view_trophies': 'View My Trophies',
+  'email.common.button.track_package': 'Track Your Package',
+  'email.common.button.view_order': 'View Order Details',
+  'email.common.button.save_lighter': 'Save Your First Lighter',
   'email.common.button.accept_invite': 'Accept Invitation',
 
-  'email.common.button.save_lighter': 'Save Anda First Korek Api',
-
-  'email.common.button.track_package': 'Track Anda Package',
-
-  'email.common.button.view_lighter': 'Lihat Anda Korek Api',
-
-  'email.common.button.view_order': 'Lihat Order Details',
-
-  'email.common.button.view_profile': 'Lihat My Profile',
-
-  'email.common.button.view_trophies': 'Lihat My Trophies',
-
-  'email.common.footer_copyright': '© {year} LightMyFire. All rights reserved.',
-
-  'email.common.footer_questions': 'Questions? Email us at',
-
-  'email.common.footer_tagline': 'LightMyFire – Give Anda Korek Api a Second Life',
-
-  'email.first_post.achievement': '🏆 Achievement Unlocked: First Spark',
-
-  'email.first_post.achievement_content': 'Anda\'ve lit Anda first flame in the LightMyFire community!',
-
-  'email.first_post.greeting': 'Congratulations, {name}! 🎉',
-
-  'email.first_post.intro': 'Anda just added Anda very first post to Anda LightMyFire korek api "{korek api}"!',
-
-  'email.first_post.lighter': 'Korek Api:',
-
-  'email.first_post.next_step1': 'Bagikan: Berikan korek api Anda kepada teman atau tinggalkan di tempat yang menarik',
-
-  'email.first_post.next_step2': 'Dapatkan stiker: Pesan stiker khusus untuk membantu orang lain menemukan cerita korek api Anda',
-
-  'email.first_post.next_step3': 'Pantau perkembangannya: Periksa kembali untuk melihat postingan baru saat korek api Anda bepergian',
-
-  'email.first_post.next_steps_title': '💡 Next Steps',
-
-  'email.first_post.pin': 'PIN:',
-
-  'email.first_post.type': 'First Posting Type:',
-
-  'email.first_post.welcome_title': 'Selamat Datang di Gerakan Ini!',
-
-  'email.first_post.what_started_content': 'Korek api Anda sekarang menjadi bagian dari sesuatu yang istimewa. Setiap kali seseorang menemukannya dan menambahkan cerita mereka, Anda akan dapat melihat ke mana ia pergi dan koneksi yang tercipta.',
-
-  'email.first_post.what_started_title': '🎯 Apa yang Telah Anda Mulai',
-
-  'email.first_post_subject': 'Anda lit the first spark! 🔥 Welcome to the LightSaver family',
-
-  'email.lighter_activity_subject': 'Korek api Anda mendapatkan teman baru! 🌍',
-
-  'email.moderation_approved_subject': 'Kabar baik! Cerita Anda sekarang tayang. 🎉',
-
-  'email.moderation_rejected_subject': 'About Anda recent post... let\'s chat',
-
-  'email.moderator.benefit1': 'Early access to new features',
-
-  'email.moderator.benefit2': 'Special moderator badge on Anda profile',
-
-  'email.moderator.benefit3': 'Direct communication with the LightMyFire team',
-
-  'email.moderator.benefit4': 'Bantu membentuk masa depan komunitas',
-
-  'email.moderator.benefits_title': '🎁 Moderator Benefits',
-
-  'email.moderator.greeting': 'Hi {name},',
-
-  'email.moderator.intro': '{inviter} has invited Anda to join the LightMyFire moderation team!',
-
-  'email.moderator.not_interested': 'Tidak tertarik? Anda dapat mengabaikan email ini.',
-
-  'email.moderator.responsibilities_title': '📋 Anda Responsibilities',
-
-  'email.moderator.what_is_content': 'Moderators help keep the LightMyFire community safe, positive, dan welcoming by reviewing flagged content dan ensuring our community guidelines are upheld.',
-
-  'email.moderator.what_is_title': '👮 Apa itu Moderator?',
-
-  'email.moderator_invite_subject': 'Anda Telah Diundang untuk Bergabung dengan Tim Moderasi',
-
-  'email.order_confirmation.estimated_delivery': 'Estimated delivery: 5-10 business days',
+  'email.welcome.greeting': 'Hi {name}! 👋',
+  'email.welcome.intro': 'Welcome to the LightSavers\' community! We\'re thrilled to have you here.',
+  'email.welcome.what_is_title': '🔥 What is LightMyFire?',
+  'email.welcome.what_is_content': 'LightMyFire is a global movement giving lighters a second life through storytelling. Every lighter gets a digital identity, a unique sticker, and travels the world collecting stories from everyone who finds it.',
+  'email.welcome.get_started_title': '🚀 Get Started',
+  'email.welcome.get_started_intro': 'Here\'s what you can do now:',
+  'email.welcome.step1': 'Save your first lighter - Give it a name and get custom stickers delivered to your home',
+  'email.welcome.step2': 'Find a lighter - Enter a PIN from a sticker you found to see its journey',
+  'email.welcome.step3': 'Join the mosaic - Share posts, thoughts, songs, and locations',
+  'email.welcome.questions': 'Questions? Just reply to this email—we\'re here to help!',
 
   'email.order_confirmation.greeting': 'Hi {name},',
-
-  'email.order_confirmation.intro': 'Thank Anda untuk Anda order! Anda payment telah been processed successfully. 🎉',
-
-  'email.order_confirmation.lighters_ready': 'Each korek api now telah a unique PIN dan adalah ready ke start its perjalanan!',
-
-  'email.order_confirmation.lighters_title': '🔥 Anda Lighters',
-
-  'email.order_confirmation.order_id': 'Order ID:',
-
-  'email.order_confirmation.questions': 'Ada pertanyaan tentang pesanan Anda? Balas email ini kapan saja.',
-
-  'email.order_confirmation.shipping_title': '📮 Shipping To',
-
-  'email.order_confirmation.stickers': 'Stiker:',
-
-  'email.order_confirmation.stickers_packs': '{quantity} pack{plural}',
-
+  'email.order_confirmation.intro': 'Thank you for your order! Your payment has been processed successfully. 🎉',
   'email.order_confirmation.summary_title': '📦 Order Summary',
-
+  'email.order_confirmation.order_id': 'Order ID:',
+  'email.order_confirmation.stickers': 'Stickers:',
+  'email.order_confirmation.stickers_packs': '{quantity} pack{plural}',
   'email.order_confirmation.total_paid': 'Total Paid:',
-
-  'email.order_confirmation.whats_next_content': 'Anda stiker adalah being prepared untuk shipment. Anda\'ll receive another email dengan tracking information once they\'re on their way!',
-
-  'email.order_confirmation.whats_next_title': '⏰ Apa Selanjutnya?',
-
-  'email.order_confirmation_subject': 'Order Confirmed! Anda LightMyFire stiker are on the way 📦',
-
-  'email.order_shipped.carrier': 'Carrier:',
-
-  'email.order_shipped.details_title': '📋 Shipping Details',
-
-  'email.order_shipped.estimated_delivery': 'Estimated Delivery:',
+  'email.order_confirmation.lighters_title': '🔥 Your Lighters',
+  'email.order_confirmation.lighters_ready': 'Each lighter now has a unique PIN and is ready to start its journey!',
+  'email.order_confirmation.shipping_title': '📮 Shipping To',
+  'email.order_confirmation.whats_next_title': '⏰ What\'s Next?',
+  'email.order_confirmation.whats_next_content': 'Your stickers are being prepared for shipment. You\'ll receive another email with tracking information once they\'re on their way!',
+  'email.order_confirmation.estimated_delivery': 'Estimated delivery: 5-10 business days',
+  'email.order_confirmation.questions': 'Questions about your order? Reply to this email anytime.',
 
   'email.order_shipped.greeting': 'Great news, {name}! 📦',
-
-  'email.order_shipped.intro': 'Anda custom LightMyFire stiker have been shipped dan are on their way to Anda.',
-
-  'email.order_shipped.lighters_intro': 'Anda ordered {quantity} custom stiker untuk:',
-
-  'email.order_shipped.lighters_title': '🔥 Anda Lighters',
-
+  'email.order_shipped.intro': 'Your custom LightMyFire stickers have been shipped and are on their way to you.',
+  'email.order_shipped.details_title': '📋 Shipping Details',
   'email.order_shipped.order_id': 'Order ID:',
-
-  'email.order_shipped.pro_tip': '💡 Pro Tip:',
-
-  'email.order_shipped.pro_tip_content': 'Korek api Anda adalah already active! Start adding posts now while Anda wait untuk Anda stiker ke arrive.',
-
-  'email.order_shipped.pro_tip_link': 'Lihat My Lighters →',
-
+  'email.order_shipped.carrier': 'Carrier:',
   'email.order_shipped.tracking': 'Tracking Number:',
+  'email.order_shipped.estimated_delivery': 'Estimated Delivery:',
+  'email.order_shipped.lighters_title': '🔥 Your Lighters',
+  'email.order_shipped.lighters_intro': 'You ordered {quantity} custom stickers for:',
+  'email.order_shipped.pro_tip': '💡 Pro Tip:',
+  'email.order_shipped.pro_tip_content': 'Your lighters are already active! Start adding posts now while you wait for your stickers to arrive.',
+  'email.order_shipped.pro_tip_link': 'View My Lighters →',
 
-  'email.order_shipped_subject': 'Anda korek api-saving kit adalah on way! 🚀✨',
+  'email.first_post.greeting': 'Congratulations, {name}! 🎉',
+  'email.first_post.intro': 'You just added your very first post to your LightMyFire lighter "{lighter}"!',
+  'email.first_post.welcome_title': 'Welcome to the Movement!',
+  'email.first_post.what_started_title': '🎯 What You\'ve Started',
+  'email.first_post.what_started_content': 'Your lighter is now part of something special. Every time someone finds it and adds their story, you\'ll be able to see where it\'s been and the connections it\'s made.',
+  'email.first_post.lighter': 'Lighter:',
+  'email.first_post.pin': 'PIN:',
+  'email.first_post.type': 'First Post Type:',
+  'email.first_post.next_steps_title': '💡 Next Steps',
+  'email.first_post.next_step1': 'Share it: Pass your lighter to a friend or leave it somewhere interesting',
+  'email.first_post.next_step2': 'Get stickers: Order custom stickers to help others find your lighter\'s story',
+  'email.first_post.next_step3': 'Watch it grow: Check back to see new posts as your lighter travels',
+  'email.first_post.achievement': '🏆 Achievement Unlocked: First Spark',
+  'email.first_post.achievement_content': 'You\'ve lit your first flame in the LightMyFire community!',
 
   'email.trophy.greeting': 'Awesome work, {name}! 🏆',
-
-  'email.trophy.intro': 'Anda\'ve earned a new trophy on LightMyFire!',
-
+  'email.trophy.intro': 'You\'ve earned a new trophy on LightMyFire!',
+  'email.trophy.what_you_did': '🎯 What You Did',
   'email.trophy.keep_going': '💡 Keep Going!',
+  'email.trophy.keep_going_content': 'There are more trophies waiting to be unlocked. Can you collect them all?',
 
-  'email.trophy.keep_going_content': 'There adalah more trophies waiting ke be unlocked. dapat Anda collect them all?',
+  'email.activity.greeting': 'Hi {name},',
+  'email.activity.intro': 'There\'s new activity on your lighter "{lighter}"!',
+  'email.activity.by': 'By:',
+  'email.activity.lighter': 'Lighter:',
+  'email.activity.pin': 'PIN:',
+  'email.activity.outro': 'Your lighter\'s journey continues! See where it\'s been and who\'s found it.',
+  'email.activity.type.new_post': 'New Story Added',
+  'email.activity.type.new_like': 'Someone Liked Your Post',
+  'email.activity.type.refuel': 'Lighter Refueled',
+  'email.activity.type.milestone': 'Milestone Reached',
 
-  'email.trophy.what_you_did': '🎯 Apa yang Anda Lakukan',
+  'email.moderator.greeting': 'Hi {name},',
+  'email.moderator.intro': '{inviter} has invited you to join the LightMyFire moderation team!',
+  'email.moderator.what_is_title': '👮 What is a Moderator?',
+  'email.moderator.what_is_content': 'Moderators help keep the LightMyFire community safe, positive, and welcoming by reviewing flagged content and ensuring our community guidelines are upheld.',
+  'email.moderator.responsibilities_title': '📋 Your Responsibilities',
+  'email.moderator.benefits_title': '🎁 Moderator Benefits',
+  'email.moderator.benefit1': 'Early access to new features',
+  'email.moderator.benefit2': 'Special moderator badge on your profile',
+  'email.moderator.benefit3': 'Direct communication with the LightMyFire team',
+  'email.moderator.benefit4': 'Help shape the future of the community',
+  'email.moderator.not_interested': 'Not interested? You can ignore this email.',
 
-  'email.trophy_earned_subject': '🏆 Achievement unlocked: {trophy_name}!',
-
-  'email.welcome.get_started_intro': 'Inilah yang dapat Anda lakukan sekarang:',
-
-  'email.welcome.get_started_title': '🚀 Get Started',
-
-  'email.welcome.greeting': 'Hi {name}! 👋',
-
-  'email.welcome.intro': 'Welcome to the LightSavers\' community! We\'re thrilled memiliki Anda here.',
-
-  'email.welcome.questions': 'Ada pertanyaan? Cukup balas email ini—kami siap membantu!',
-
-  'email.welcome.step1': 'Save Anda first korek api - Give it a name dan get custom stiker delivered to Anda home',
-
-  'email.welcome.step2': 'Find a korek api - Enter a PIN dari a stiker Anda found ke see its perjalanan',
-
-  'email.welcome.step3': 'Join mosaic - Share posts, thoughts, songs, dan locations',
-
-  'email.welcome.what_is_content': 'LightMyFire adalah gerakan global yang memberi korek api kehidupan kedua melalui penceritaan. Setiap korek api mendapat identitas digital, stiker unik, dan berkeliling dunia mengumpulkan cerita dari semua orang yang menemukannya.',
-
-  'email.welcome.what_is_title': '🔥 Apa itu LightMyFire?',
-
-  'email.welcome_subject': 'Welcome to LightMyFire! 🔥',
-
-  'empty_lighter.action': 'Add First postingan',
-
-  'empty_lighter.description': 'Perjalanan korek api ini baru saja dimulai. Jadilah yang pertama menambahkan bab ke ceritanya dan menginspirasi orang lain!',
-
-  'empty_lighter.title': 'cerita Begins...',
-
-  'empty_posts.action': 'Add First postingan',
-
-  'empty_posts.message': 'Jadilah yang pertama menambahkan cerita, gambar, atau lagu ke perjalanan korek api ini!',
-
-  'empty_posts.title': 'Cerita korek api ini menunggu untuk ditulis! ✨',
-
-  'empty_state.default_message': 'Belum ada apa-apa di sini, tapi itu akan segera berubah!',
-
-  'empty_state.default_title': 'Ruang ini menunggu Anda ✨',
-
-  'empty_state.no_posts_message': 'Jadilah yang pertama menambahkan postingan dan memulai perjalanannya.',
-
-  'empty_state.no_posts_title': 'Cerita korek api ini menunggu untuk ditulis!',
-
-  'error.content_flagged': 'Perhatian! Pedoman komunitas kami menandai konten ini sebagai {reason}. Mari jaga LightMyFire tetap ramah untuk semua orang. 🌟',
-
-  'error.critical.description': 'A critical error occurred. Please try refreshing page.',
-
-  'error.critical.title': 'Application Error',
-
-  'error.generic.description': 'An unexpected error occurred. Our team telah been notified.',
-
-  'error.generic.details_title': 'Error Details (Development Only)',
-
-  'error.generic.error_id': 'Error ID:',
-
-  'error.generic.go_home': 'Ke Beranda',
-
+  // Error Pages
+  'error.not_found.title': 'It\'s all burnt up',
+  'error.not_found.description': 'Sorry, we couldn\'t find the page you\'re looking for.',
+  'error.not_found.go_home': 'Go back home',
   'error.generic.title': 'Oops! Something went wrong',
-
-  'error.generic.try_again': 'Coba Lagi',
-
-  'error.generic_message': 'Maaf, ada masalah kecil di sisi kami. Jika masalah berlanjut, jangan ragu untuk menghubungi dukungan: support@lightmyfire.app',
-
-  'error.generic_title': 'Ups! Ada yang salah',
-
-  'error.invalid_pin': 'Hmm, PIN itu tidak cocok dengan korek api yang kami kenal. Periksa kembali stikernya!',
-
-  'error.network': 'Sepertinya internet mengalami masalah. Periksa koneksi Anda dan coba lagi. 🌐',
-
-  'error.not_found.description': 'Maaf, kami tidak dapat menemukan halaman yang Anda cari.',
-
-  'error.not_found.go_home': 'Kembali ke beranda',
-
-  'error.not_found.title': 'Semuanya terbakar habis',
-
-  'error.rate_limit': 'Wah, cepat sekali! 🏃‍♂️\\n\\nAnda menambahkan postingan lebih cepat dari yang bisa kami tangani. Istirahat 24 jam untuk membiarkan orang lain menambahkan cerita ke korek api ini, lalu kembali lagi!\\n\\n(Ini menjaga mosaik kami beragam dan menarik untuk semua orang.)',
-
-  'error.try_again': 'Coba Lagi',
-
-  'error.upload_too_large': 'Gambar itu terlalu besar! Pilih yang lebih kecil dari 2MB. 📸',
-
-  'footer.copyright': '© {year} Revel Editions SASU. All rights reserved.',
-
-  'footer.disclaimer': 'This project adalah an independent creative initiative, not affiliated dengan korek api manufacturers atau other surfaces on which Anda might find us.',
-
-  'footer.facebook_aria': 'Facebook',
-
-  'footer.instagram_aria': 'Instagram',
-
-  'footer.links.about': 'About',
-
-  'footer.links.faq': 'FAQ',
-
-  'footer.links.privacy': 'Privacy Policy',
-
-  'footer.links.terms': 'Terms of Use',
-
-  'footer.notice': 'Kami berkomitmen pada komunitas yang aman dan penuh hormat. Jika Anda melihat konten yang tidak sesuai, silakan tandai agar kami dapat meninjau. Terima kasih!',
-
-  'footer.social.facebook': 'Facebook',
-
-  'footer.social.instagram': 'Instagram',
-
-  'footer.social.tiktok': 'TikTok',
-
-  'footer.tiktok_aria': 'TikTok',
-
-  'home.become_lightsaver.alt': 'Illustration of sharing',
-
-  'home.become_lightsaver.alt_arrow': 'Arrow pointing to save korek api button',
-
-  'home.community.alt': 'Community illustration',
-
-  'home.hero.alt_image': 'LightMyFire - Beri korek api kehidupan kedua',
-
-  'home.how_it_works.step1.alt': 'Save a korek api',
-
-  'home.how_it_works.step2.alt': 'Share korek api',
-
-  'home.how_it_works.step3.alt': 'Follow cerita',
-
-  'home.pin_entry.image_alt': 'Found a korek api',
-
-  'home.stats.citations_title': 'Sources',
-
-  'how_it_works_details.step1.desc': 'Give a korek api a name membuat its digital logbook dan download Anda unique PIN/QR stiker.',
-
-  'how_it_works_details.step1.title': '1. Save',
-
-  'how_it_works_details.step2.desc': 'Tempelkan di korek api Anda dan berikan atau "hilangkan" itu. Perjalanannya dimulai.',
-
-  'how_it_works_details.step2.title': '2. Bagikan',
-
-  'how_it_works_details.step3.desc': 'Setelah disimpan, Anda diarahkan ke halaman web permanennya. Tambahkan postingan pertama: foto, video, tautan lagu, atau sekadar cerita dari mana Anda berada. Ini adalah "kelahiran" korek api Anda.',
-
-  'how_it_works_details.step3.title': '3. Tambah Anda First Story',
-
-  'how_it_works_details.step4.desc': 'Dengan memberikan korek api, setiap orang baru yang menemukannya dapat memindainya dan menambahkan postingan mereka sendiri ke linimasa. Anda tidak hanya membagikan api; Anda bersama-sama menulis kronik global.',
-
-  'how_it_works_details.step4.title': '4. Watch cerita Grow',
-
-  'how_it_works_details.step5.desc': 'Komunitas kami dibangun atas rasa hormat dan kreativitas. Jika Anda melihat postingan yang melanggar <strong>pedoman</strong> kami (spam, konten kebencian, dll.), gunakan tombol bendera untuk melaporkannya.',
-
-  'how_it_works_details.step5.title': '5. Be a Good Community Member',
-
-  'how_it_works_details.step6.desc': 'Dengan berpartisipasi, Anda dan korek api Anda akan membuka pencapaian. Tambahkan postingan pertama Anda untuk mendapatkan trofi "Percikan Pertama"!',
-
-  'how_it_works_details.step6.title': '6. Collect Anda Trophies!',
-
-  'how_it_works_details.title': 'How It Works: dari Spark ke Global cerita',
-
-  'lighter.add_to_story': 'Tambah to Story',
-
-  'lighter.all_loaded': 'All posts loaded',
-
-  'lighter.level': 'Tingkat',
-
-  'lighter.load_more': 'Muat Lebih Banyak Postingan',
-
-  'lighter.loading': 'Memuat...',
-
-  'lighter.map.center_coords': 'Center: Lat {lat}, Lng {lng}',
-
-  'lighter.map.markers': '{count} locations',
-
-  'lighter.map.no_locations': 'No locations posted yet. Add one ke start map!',
-
-  'lighter.map.title': 'perjalanan So Far',
-
-  'lighter.meta.description': 'Lihat cerita korek api bernama ',
-
-  'lighter.meta.og_description': 'Lihat ceritanya di LightMyFire',
-
-  'lighter.meta.twitter_description': 'Lihat ceritanya di LightMyFire',
-
-  'lighter.no_posts': 'Korek api ini belum memiliki cerita. Jadilah yang pertama menambahkannya!',
-
-  'lighter.not_found.description': 'Mosaik kreativitas manusia.',
-
-  'lighter.not_found.title': 'Korek Api Not Found | LightMyFire',
-
-  'lighter.on': 'on',
-
-  'lighter.post_plural': 'Posts',
-
-  'lighter.post_single': 'Posting',
-
-  'lighter.saved_by': 'Diselamatkan oleh',
-
-  'lighter.saved_by_label': 'Korek Api Saved By',
-
-  'lighter_personalization.apply_all': 'Terapkan ke Semua',
-
-  'lighter_personalization.button.save_continue': 'Save dan Continue',
-
-  'lighter_personalization.button_save_customizations': 'Save Stiker Customizations',
-
-  'lighter_personalization.color.black': 'Black',
-
-  'lighter_personalization.color.blue': 'Blue',
-
-  'lighter_personalization.color.red': 'Red',
-
-  'lighter_personalization.color.white': 'White',
-
-  'lighter_personalization.color_label': 'Pick Background Color',
-
-  'lighter_personalization.english_included': 'English akan always be included on Anda stiker',
-
-  'lighter_personalization.enter_name_preview': 'Enter a name (min 3 characters) melihat preview',
-
-  'lighter_personalization.helper.background_picker': 'Choose an image atau color untuk background of stiker.',
-
-  'lighter_personalization.language.select_placeholder': 'Select a language...',
-
-  'lighter_personalization.language_label': 'Second Language on Stiker (+ English)',
-
-  'lighter_personalization.lighter_count': 'Korek Api #{index}',
-
-  'lighter_personalization.min_3_chars': '(min 3)',
-
-  'lighter_personalization.name_label': 'Name (3-16 characters)',
-
-  'lighter_personalization.name_placeholder': 'Korek Api name...',
-
-  'lighter_personalization.preview': 'Pratinjau',
-
-  'lighter_personalization.subtitle': 'Personalize each korek api',
-
-  'lighter_personalization.summary.design': '{count} design',
-
-  'lighter_personalization.summary.designs': '{count} designs',
-
-  'lighter_personalization.summary.identical': 'All {count} identical',
-
-  'lighter_personalization.summary.plus_english': ' + English',
-
-  'lighter_personalization.title': 'Customize Anda Stiker',
-
-  'lighter_personalization.warning_fill_name': 'Please fill in korek api name (3-16 characters) before continuing.',
-
-  'lighter_personalization.warning_fill_names': 'Silakan fill in all korek api names (3-16 characters each) before continuing.',
-
-  'loading.generating_stickers': 'Membuat paspor korek api Anda... ✨',
-
-  'loading.posting_v1': 'Menambahkan cerita Anda ke linimasa...',
-
-  'loading.posting_v2': 'Merajut momen Anda ke dalam mosaik...',
-
-  'loading.posting_v3': 'Menerangi perjalanan korek api ini...',
-
-  'loading.posting_v4': 'Membuat cerita korek api ini lebih cerah...',
-
-  'loading.searching': 'Mengikuti jejak... 🔍',
-
-  'location.edit_coordinates': 'Edit coordinates manually',
-
-  'location.latitude_placeholder': 'Latitude',
-
-  'location.longitude_placeholder': 'Longitude',
-
-  'location.map_consent_description': 'This map uses OpenStreetMap dengan no tracking cookies. We only store Anda preference locally.',
-
-  'location.map_preview_title': 'Map Preview Available',
-
-  'location.map_title': 'Location map',
-
-  'location.no_location_selected': 'No location selected',
-
-  'location.no_results': 'Tidak ada locations ditemukan. Try a different search.',
-
-  'location.search_placeholder': 'Search untuk a location (city, address, landmark)...',
-
-  'location.selected_location': 'Selected Location',
-
-  'location.show_map_button': 'Tampilkan Map',
-
-  'location.view_larger_map': 'Lihat larger map',
-
-  'login.button.signin': 'Sign In',
-
-  'login.button.signup': 'Sign Up',
-
-  'login.email_label': 'Email Address',
-
-  'login.forgot_password': 'Forgot Anda password?',
-
-  'login.password_label': 'Kata Sandi',
-
-  'login.social_divider': 'atau continue dengan',
-
-  'login.tab.login': 'Masuk',
-
-  'login.tab.signup': 'Daftar',
-
-  'login.title': 'LightMyFire',
-
-  'moderation.action_confirm': 'Confirm Action',
-
-  'moderation.approve': 'Setujui',
-
-  'moderation.approve_confirm_message': 'Apakah Anda yakin Anda want ke approve this postingan? It akan become public.',
-
-  'moderation.approve_confirm_title': 'Approve Posting?',
-
-  'moderation.approve_success': 'Posting approved dan released.',
-
-  'moderation.button.delete_post': 'Delete Posting',
-
-  'moderation.button.delete_user': 'Delete User',
-
-  'moderation.content_type': 'Jenis',
-
-  'moderation.delete': 'Hapus',
-
-  'moderation.delete_confirm_message': 'Apakah Anda yakin Anda want ke permanently delete this postingan?',
-
-  'moderation.delete_confirm_title': 'Delete Posting?',
-
-  'moderation.delete_success': 'Posting deleted successfully.',
-
-  'moderation.delete_user_confirm': 'Apakah Anda yakin Anda want ke delete this user dan all their content?',
-
-  'moderation.error': 'An error occurred: {message}',
-
-  'moderation.error.rpc_error': 'Error: {message}',
-
-  'moderation.flagged_by': 'Flagged by {count} users',
-
-  'moderation.lighter_name': 'Korek Api',
-
-  'moderation.no_posts': 'No posts currently flagged untuk moderation.',
-
-  'moderation.no_posts_in_queue': 'moderation queue adalah empty. All adalah peaceful.',
-
-  'moderation.post_by': 'Posting by',
-
-  'moderation.post_on': 'Posting on',
-
-  'moderation.queue.count': '{count} post awaiting moderation',
-
-  'moderation.queue.count_plural': '{count} posts awaiting moderation',
-
-  'moderation.queue.empty.back_home': 'Back to Home',
-
-  'moderation.queue.empty.description': 'All flagged posts memiliki been reviewed dan handled. Great moderation work!',
-
-  'moderation.queue.empty.title': 'Queue adalah Empty',
-
-  'moderation.show_less': 'Tampilkan Lebih Sedikit',
-
-  'moderation.table.flag_count': 'Flags',
-
-  'moderation.table.lighter': 'Korek Api',
-
-  'moderation.table.post_id': 'Posting ID',
-
-  'moderation.title': 'Moderation Queue',
-
-  'moderation.view_full': 'Lihat Lengkap',
-
-  'moderation.view_post': 'Lihat Postingan',
-
-  'my_orders.canceled.title': 'Order Canceled',
-
-  'my_orders.empty.cta': 'Order Stiker',
-
-  'my_orders.empty.description': 'Anda haven\'t placed any stiker orders yet.',
-
-  'my_orders.empty.title': 'No Orders Yet',
-
-  'my_orders.error.description': '{error}. Anda may still memiliki orders that aren\'t showing here.',
-
-  'my_orders.error.title': 'Could not load orders',
-
-  'my_orders.error.try_again': 'Coba lagi',
-
-  'my_orders.failed.contact': 'Silakan contact support at',
-
-  'my_orders.failed.title': 'Order Failed',
-
-  'my_orders.go_home': 'Ke Beranda',
-
-  'my_orders.help.contact': 'Contact Support',
-
-  'my_orders.help.label': 'Need help?',
-
-  'my_orders.hold.title': 'Order On Hold',
-
-  'my_orders.lighters.title': 'Korek Api Names',
-
-  'my_orders.loading': 'Loading Anda orders...',
-
-  'my_orders.order_id': 'Order #{orderId}',
-
-  'my_orders.placed_on': 'Placed on {date}',
-
-  'my_orders.shipping.title': 'Shipping Address',
-
-  'my_orders.status.canceled': 'Dibatalkan',
-
-  'my_orders.status.delivered': 'Terkirim',
-
-  'my_orders.status.failed': 'Gagal',
-
-  'my_orders.status.pending': 'Tertunda',
-
-  'my_orders.status.processing': 'Diproses',
-
-  'my_orders.status.returned': 'Dikembalikan',
-
-  'my_orders.status.shipped': 'Dikirim',
-
-  'my_orders.sticker_count': '{count} stiker',
-
-  'my_orders.stickers_count': '{count} stiker',
-
-  'my_orders.tracking.carrier': 'Carrier:',
-
-  'my_orders.tracking.number': 'Tracking Number:',
-
-  'my_orders.tracking.shipped': 'Shipped:',
-
-  'my_orders.tracking.title': 'Tracking Information',
-
-  'my_orders.tracking.track_button': 'Track Package →',
-
-  'my_posts.deleting': 'Menghapus...',
-
-  'my_profile.find_lighter_to_post': 'Temukan a Korek Api',
-
-  'my_profile.no_posts': 'Anda cerita collection adalah waiting ke begin! 📖\nFind a korek api dan add Anda first postingan.',
-
-  'my_profile.save_first_lighter': 'Save Anda First Korek Api',
-
-  'my_profile.tabs.my_lighters': 'My Lighters',
-
-  'my_profile.tabs.my_posts': 'My Posts',
-
-  'my_profile.tabs.my_trophies': 'My Trophies',
-
-  'my_profile.title': 'My Profile',
-
-  'my_profile.trophies.coming_soon': 'Trophy case coming soon!',
-
-  'my_profile.trophies.subtitle': 'Collect achievements by saving dan sharing stories.',
-
-  'my_profile.trophies.unlocked': 'Unlocked!',
-
-  'nav.logging_out': 'Sedang keluar...',
-
-  'nav.logo_alt': 'LightMyFire',
-
-  'nav.my_orders': 'My Orders',
-
-  'nav.search_aria': 'Search untuk korek api',
-
-  'nav.search_title': 'Temukan a korek api',
-
-  'not_found.go_home': 'Ke Beranda',
-
-  'not_found.message': 'Ups! Halaman yang Anda cari tidak ada.',
-
-  'not_found.title': '404 - Page Not Found',
-
-  'notifications.action_error': 'Kesalahan',
-
-  'notifications.action_success': 'Success',
-
-  'notifications.auth_failed': 'Authentication failed. Silakan coba lagi.',
-
-  'notifications.error': 'Kesalahan',
-
-  'notifications.invalid_credentials': 'Invalid email atau password. Silakan check Anda credentials dan coba lagi.',
-
-  'notifications.lighter_saved': 'Success! {lighterName} adalah ready untuk adventure! 🌍',
-
-  'notifications.password_reset_sent': 'Password reset email sent! Check Anda inbox.',
-
-  'notifications.password_updated': 'Password updated! Anda account adalah secure. 🔒',
-
-  'notifications.post_deleted_success': 'Posting deleted. Like it never happened.',
-
-  'notifications.post_success_first': 'Selamat! 🌟 Anda menyalakan percikan pertama dalam cerita korek api ini.',
-
-  'notifications.post_success_public': 'Cerita dibagikan dengan dunia! 🌍 Sekarang menjadi bagian dari mosaik global kami.',
-
-  'notifications.profile_updated': 'Profile updated! Looking good, LightSaver. ✨',
-
-  'notifications.session_expired': 'Anda session has expired. Silakan log in again melanjutkan.',
-
-  'notifications.sticker_downloaded': 'Stiker ready! Time mengatur {lighterName} free. 🚀',
-
-  'notifications.success': 'Berhasil!',
-
-  'notifications.trophy_earned': '🏆 Trophy Unlocked: {trophy_name}! Anda\'re on fire!',
-
-  'notifications.user_not_found': 'No account found dengan this email. Please sign up first!',
-
-  'notifications.warning': 'Peringatan',
-
-  'order.choose_pack_subtitle': 'Select how many custom stiker Anda want to order',
-
-  'order.choose_pack_title': 'Choose Anda Pack',
-
-  'order.guidelines.step1': 'Apply stiker ke a clean, dust-free, oil-free, dan moisture-free surface.',
-
-  'order.guidelines.step2': 'After application, press stiker down dengan a clean cloth ke maximize adhesion dan avoid air bubbles.',
-
-  'order.guidelines.step3': 'Make sure stiker adalah applied correctly first time. dengan every reapplication, stiker\'s ability ke stick akan decrease.',
-
-  'order.guidelines.title': 'Application Guidelines',
-
-  'order.pack_select_button': 'Pilih',
-
-  'order.pack_sheets_plural': 'sheets',
-
-  'order.pack_sheets_single': 'sheet',
-
-  'order.payment.error_email_invalid': 'Silakan enter a valid email address',
-
-  'order.price_at_checkout': 'Price calculated at checkout',
-
-  'order.quality.durability': '2–3 year durability',
-
-  'order.quality.fast_application': 'Fast dan easy application',
-
-  'order.quality.glossy_finish': 'Glossy finish',
-
-  'order.quality.title': 'Premium Quality Stiker',
-
-  'order.shipping.error_postal_invalid': 'Invalid postal code untuk selected country',
-
-  'order.summary.shipping': 'Shipping:',
-
-  'order.summary.shipping_calculated': '+ shipping',
-
-  'order.summary.shipping_express': 'Express Shipping',
-
-  'order.summary.shipping_express_time': '3-5 business days',
-
-  'order.summary.shipping_method': 'Shipping Method:',
-
-  'order.summary.shipping_standard': 'Standard Shipping',
-
-  'order.summary.shipping_standard_time': '7-14 business days',
-
-  'order.summary.subtotal': 'Subtotal:',
-
-  'order_success.email_subject': 'Question about my stiker order',
-
-  'payment.card_not_found': 'Card element not found',
-
-  'payment.stripe_load_failed': 'Gagal untuk load Stripe. Silakan check Anda configuration.',
-
-  'personalization.customize_stickers': 'Customize Anda Stiker',
-
-  'personalization.english_included': 'English akan always be included on Anda stiker',
-
-  'personalization.personalize_each': 'Personalize each korek api',
-
-  'personalization.second_language': 'Second Language on Stiker (+ English)',
-
-  'philosophy.button.hide': 'Sembunyikan',
-
-  'philosophy.button.learn_more': 'Learn More',
-
-  'philosophy.cta': 'Join us in giving lighters a second life, one story at a time.',
-
-  'philosophy.image_alt': 'Global Creativity Mosaic',
-
-  'philosophy.lead': 'We believe that even smallest, most disposable object dapat carry a great cerita.',
-
-  'philosophy.p1': '<strong>LightMyFire</strong> was born from a simple idea: what if we stopped treating lighters as throwaway items? <strong>In a world of mass consumption where billions of these items are discarded every year,</strong> what if we saw them as companions, as tiny vessels for our memories, ideas, dan creativity?',
-
-  'philosophy.p2': 'everyday korek api adalah <strong>a powerful social catalyst.</strong> It\'s no personal possession; it belongs ke everyone. It passes dari hand ke hand, dari teman ke stranger, at parties, concerts, dan quiet meetups. It hears our secrets dan lights our way. <strong>It\'s silent witness ke a great conversation, spark untuk a new friendship. But its cerita adalah ephemeral, lost as soon as it\'s passed on.</strong>',
-
-  'philosophy.p3': 'By giving a korek api a permanent, digital cerita, we give it sentimental value. <strong>Anda korek api becomes a living artifact, a message in a bottle.</strong> dan when something telah value, we\'re less likely ke throw it away.',
-
-  'philosophy.p4': 'Our goal adalah simple: ke create a global, human creativity mosaic, one korek api at a time, dan reduce waste in process. <strong>This adalah our stand against a throwaway culture. It\'s an experiment in collaborative art. It\'s a way ke prove that if Anda give an object a cerita, Anda give it a soul.</strong>',
-
-  'philosophy.title': 'Our Philosophy',
-
-  'placeholder.hex_color': '#FF6B6B',
-
-  'placeholder.lighter_name': 'Korek Api name...',
-
-  'placeholder.location_search': 'Search untuk a location...',
-
-  'placeholder.pin_entry': 'ABC-123',
-
-  'post.anonymous': 'Anonim',
-
-  'post.default_location': 'Unknown Location',
-
-  'post.deleted_user': 'Deleted User',
-
-  'post.like_button': 'Like',
-
-  'post.location_at': 'at',
-
-  'post.post_type.image': 'shared an image',
-
-  'post.post_type.location': 'checked in',
-
-  'post.post_type.refuel': 'refueled this korek api',
-
-  'post.post_type.song': 'shared a song',
-
-  'post.post_type.text': 'wrote a story',
-
-  'post.user_upload_alt': 'User upload',
-
-  'post.youtube_player_title': 'YouTube video player',
-
-  'privacy.h3.automated_decisions': '7. Automated Decision-Making',
-
-  'privacy.h3.changes': '9. Changes ke This Privacy Policy',
-
-  'privacy.h3.children': '8. Children\'s Privacy',
-
-  'privacy.h3.contact': '10. Contact Us',
-
-  'privacy.h3.cookies': '5.1. Cookies',
-
-  'privacy.h3.data_breaches': '5.6. Data Breach Notification',
-
-  'privacy.h3.data_controller': '1. Data Controller',
-
-  'privacy.h3.data_retention': '5.4. Data Retention Periods',
-
-  'privacy.h3.data_security': '5.5. Security Measures',
-
-  'privacy.h3.data_sharing': '5. Data Sharing dan Processors',
-
-  'privacy.h3.how_we_use': '3. How We Use Anda Information',
-
-  'privacy.h3.info_we_collect': '2. Information We Collect',
-
-  'privacy.h3.international_transfers': '5.3. International Data Transfers',
-
-  'privacy.h3.legal_basis': '4. Legal Basis untuk Processing (GDPR)',
-
-  'privacy.h3.location_data': '5.2. Location Data',
-
-  'privacy.h3.your_rights': '6. Anda Rights Under GDPR',
-
-  'privacy.h4.cookie_types': 'Types of Cookies We Use',
-
-  'privacy.h4.personal_data': '2.1. Personal Data Anda Provide',
-
-  'privacy.h4.right_access': '6.1. Right of Access (Art. 15 GDPR)',
-
-  'privacy.h4.right_complain': '6.8. Right to Lodge a Complaint',
-
-  'privacy.h4.right_erasure': '6.3. Right to Erasure - "Right menjadi Forgotten" (Art. 17 GDPR)',
-
-  'privacy.h4.right_object': '6.6. Right to Object (Art. 21 GDPR)',
-
-  'privacy.h4.right_portability': '6.5. Right to Data Portability (Art. 20 GDPR)',
-
-  'privacy.h4.right_rectification': '6.2. Right to Rectification (Art. 16 GDPR)',
-
-  'privacy.h4.right_restriction': '6.4. Right to Restriction of Processing (Art. 18 GDPR)',
-
-  'privacy.h4.right_withdraw': '6.7. Right to Withdraw Consent',
-
-  'privacy.h4.technical_data': '2.4. Technical Data (Automatically Collected)',
-
-  'privacy.h4.transaction_data': '2.3. Transaction Data',
-
-  'privacy.h4.user_content': '2.2. User-Generated Content',
-
-  'privacy.last_updated': 'Last updated: November 8, 2025',
-
-  'privacy.p1': 'LightMyFire ("we," "us," atau "our") is operated by Revel Editions SASU, a SASU company registered in France (RCS: 849 409 313). We are committed to protecting Anda privacy dan complying with the General Data Protection Regulation (GDPR). This Privacy Policy explains how we collect, use, disclose, dan safeguard Anda information when Anda use our website dan services.',
-
-  'privacy.p10': 'Anda data adalah primarily stored on Supabase servers located within European Union. However, some sub-processors may be located outside EU/EEA. When data adalah transferred internationally, we ensure adequate protection through:',
-
-  'privacy.p11': 'We retain personal data only as long as necessary untuk purposes outlined in this policy:',
-
-  'privacy.p12': 'After retention periods expire, data adalah securely deleted dari all systems, including backups.',
-
-  'privacy.p13': 'We implement appropriate technical dan organizational measures to protect Anda data:',
-
-  'privacy.p14': 'In unlikely event of a personal data breach, we akan:',
-
-  'privacy.p15': 'Anda memiliki following rights regarding Anda personal data. ke exercise any of these rights, contact us at <strong>support@lightmyfire.app</strong>.',
-
-  'privacy.p16': 'Anda dapat request a copy of all personal data we hold about Anda. We\'ll provide this in a structured, commonly used format within 30 days.',
-
-  'privacy.p17': 'Anda dapat correct inaccurate atau incomplete data. Update most information directly in Anda profile settings, atau contact us untuk assistance.',
-
-  'privacy.p18': 'Anda dapat request deletion of Anda personal data. Anda dapat delete individual posts anytime dari "My Profile." ke delete Anda entire account dan all associated data, contact us at support@lightmyfire.app. Note: We may retain certain data if legally required (e.g., order history untuk tax purposes).',
-
-  'privacy.p19': 'Anda can request we limit how we use Anda data while Anda contest its accuracy atau lawfulness of processing.',
-
-  'privacy.p2': 'data controller untuk Anda personal information adalah:<br><br><strong>Revel Editions SASU</strong><br>145 Rue de Noisy-le-Sec<br>93260 Les Lilas, France<br><br><strong>Contact email:</strong> support@lightmyfire.app<br><strong>Data Protection Officer:</strong> support@lightmyfire.app',
-
-  'privacy.p20': 'Anda can receive Anda data in a machine-readable format (JSON/CSV) to transfer to another service.',
-
-  'privacy.p21': 'Anda can object to processing based on legitimate interests. We\'ll stop processing unless we demonstrate compelling legitimate grounds.',
-
-  'privacy.p22': 'untuk processing based on consent, Anda dapat withdraw it anytime. This doesn\'t affect lawfulness of processing before withdrawal.',
-
-  'privacy.p23': 'If Anda believe we\'re not complying dengan GDPR, Anda memiliki right ke lodge a complaint dengan a supervisory authority:',
-
-  'privacy.p24': '<strong>France (Our Primary Jurisdiction):</strong><br>Commission Nationale de l\'Informatique et des Libertés (CNIL)<br>3 Place de Fontenoy, TSA 80715<br>75334 Paris Cedex 07, France<br>Website: <a href=\'https://www.cnil.fr\' target=\'_blank\'>www.cnil.fr</a>',
-
-  'privacy.p25': 'Anda dapat also contact data protection authority in Anda country of residence.',
-
-  'privacy.p26': 'We use limited automated processing untuk:',
-
-  'privacy.p27': 'These automated processes do not produce legal effects atau significantly affect Anda. Anda can always contact us to contest a decision atau request human review.',
-
-  'privacy.p28': 'Our service adalah not directed ke children under 16 years of age (atau minimum age required in Anda jurisdiction ke consent ke data processing). We do not knowingly collect personal data dari children. If Anda believe we\'ve inadvertently collected data dari a child, contact us immediately at support@lightmyfire.app dan we\'ll delete it promptly.',
-
-  'privacy.p29': 'We may update this Privacy Policy ke reflect changes in our practices atau legal requirements. We akan:',
-
-  'privacy.p3': 'We collect personal information in several ways menyediakan dan improve our services:',
-
-  'privacy.p30': 'Continued use of our services after changes constitutes acceptance of updated policy.',
-
-  'privacy.p31': 'untuk any questions about this Privacy Policy atau ke exercise Anda rights, contact us:',
-
-  'privacy.p32': 'We aim ke respond ke all requests within 30 days. If Anda request adalah complex, we may extend this by an additional 60 days dan akan inform Anda.',
-
-  'privacy.p4': 'We use information we collect ke:',
-
-  'privacy.p5': 'Under GDPR, we process Anda personal data based on following legal grounds:',
-
-  'privacy.p6': 'We do not sell, rent, atau trade Anda personal data. We share data only dengan trusted service providers who help us operate platform:',
-
-  'privacy.p7': 'All third-party processors adalah bound by Data Processing Agreements (DPAs) ensuring GDPR compliance dan data protection.',
-
-  'privacy.p8': 'Anda dapat manage cookie preferences through consent banner displayed on Anda first visit. Anda dapat change Anda choice anytime in Anda browser settings atau by contacting us.',
-
-  'privacy.p9': 'When Anda create a location postingan, Anda may voluntarily provide geographic coordinates (latitude dan longitude). <strong>Important disclosures:</strong>',
-
-  'privacy.ul1.li1': '<strong>Account Registration:</strong> Email address, username, dan hashed password (we never store passwords in plain text)',
-
-  'privacy.ul1.li2': '<strong>Profile Information:</strong> Optional nationality information dan profile preferences',
-
-  'privacy.ul1.li3': '<strong>Communications:</strong> Any information Anda provide when contacting us untuk support',
-
-  'privacy.ul10.li1': '<strong>Standard Contractual Clauses (SCCs):</strong> EU-approved data transfer mechanisms',
-
-  'privacy.ul10.li2': '<strong>Adequacy Decisions:</strong> Transfers only ke countries recognized by EU Commission as providing adequate protection',
-
-  'privacy.ul10.li3': '<strong>Processor Guarantees:</strong> All processors commit to GDPR-equivalent data protection standards',
-
-  'privacy.ul11.li1': '<strong>Account Data:</strong> Retained while Anda account adalah active, plus 30 days after deletion (ke allow reactivation)',
-
-  'privacy.ul11.li2': '<strong>User Posts:</strong> Retained while Anda account exists. When Anda delete a postingan, it\'s permanently removed within 24 hours',
-
-  'privacy.ul11.li3': '<strong>Order Data:</strong> 7 years dari date of purchase (French tax law requirement)',
-
-  'privacy.ul11.li4': '<strong>Technical Logs:</strong> IP addresses dan security logs retained untuk 12 months maximum',
-
-  'privacy.ul11.li5': '<strong>Anonymized Analytics:</strong> Retained indefinitely untuk service improvement (cannot be linked back ke Anda)',
-
-  'privacy.ul12.li1': '<strong>Encryption:</strong> All data transmitted using TLS/SSL encryption. Passwords stored using industry-standard hashing',
-
-  'privacy.ul12.li2': '<strong>Access Controls:</strong> Role-based access, limited employee access, multi-factor authentication untuk admin accounts',
-
-  'privacy.ul12.li3': '<strong>Regular Audits:</strong> Security assessments, vulnerability scanning, dan code reviews',
-
-  'privacy.ul12.li4': '<strong>Incident Response:</strong> Documented breach notification procedures (see Section 5.6)',
-
-  'privacy.ul13.li1': '<strong>Notify Supervisory Authority:</strong> Within 72 hours of becoming aware of breach (CNIL in France)',
-
-  'privacy.ul13.li2': '<strong>Notify Affected Users:</strong> Without undue delay if breach poses high risk ke Anda rights dan freedoms',
-
-  'privacy.ul13.li3': '<strong>Provide Information:</strong> Nature of breach, likely consequences, measures taken, dan recommended actions',
-
-  'privacy.ul14.li1': '<strong>Content Moderation:</strong> Automated pre-screening of posts untuk prohibited content (hate speech, explicit imagery). Flagged content adalah reviewed by human moderators before any action',
-
-  'privacy.ul14.li2': '<strong>Spam Prevention:</strong> Automated detection of suspicious activity patterns (e.g., rapid post submissions)',
-
-  'privacy.ul14.li3': '<strong>Gamification:</strong> Automated calculation of user levels dan trophy eligibility based on contribution metrics',
-
-  'privacy.ul15.li1': 'Notify Anda by email of significant changes (if Anda memiliki an account)',
-
-  'privacy.ul15.li2': 'Display a prominent notice on website',
-
-  'privacy.ul15.li3': 'Update "Last updated" date at top of this policy',
-
-  'privacy.ul16.li1': '<strong>Email:</strong> support@lightmyfire.app',
-
-  'privacy.ul16.li2': '<strong>Data Protection Officer:</strong> support@lightmyfire.app',
-
-  'privacy.ul16.li3': '<strong>Postal Address:</strong> Revel Editions SASU, [Complete Address], France',
-
-  'privacy.ul2.li1': '<strong>Posts:</strong> Text content, images, YouTube video links Anda share on korek api pages',
-
-  'privacy.ul2.li2': '<strong>Location Data:</strong> Optional geographic coordinates (latitude/longitude) when Anda create location posts. We dapat\'t know if coordinates entered adalah linked ke Anda actual location',
-
-  'privacy.ul2.li3': '<strong>Metadata:</strong> Posting timestamps, korek api associations, dan interaction data (likes, flags)',
-
-  'privacy.ul3.li1': '<strong>Payment Information:</strong> Processed securely by Stripe (our payment processor). We never store Anda full credit card details',
-
-  'privacy.ul3.li2': '<strong>Shipping Information:</strong> Name, address, email, dan phone number untuk stiker delivery',
-
-  'privacy.ul3.li3': '<strong>Order History:</strong> Details of stiker packs purchased dan customization preferences',
-
-  'privacy.ul4.li1': '<strong>Device Information:</strong> IP address, browser type, operating system',
-
-  'privacy.ul4.li2': '<strong>Usage Data:</strong> Pages visited, features used, time spent on platform',
-
-  'privacy.ul4.li3': '<strong>Cookies:</strong> Essential cookies untuk authentication dan session management (see Section 5.1)',
-
-  'privacy.ul5.li1': '<strong>Service Provision:</strong> Buat dan manage Anda account, display Anda contributions, process orders',
-
-  'privacy.ul5.li2': '<strong>Communication:</strong> Send order confirmations, respond to inquiries, notify Anda of korek api activity (if opted-in)',
-
-  'privacy.ul5.li3': '<strong>Platform Integrity:</strong> Prevent spam, enforce community guidelines, moderate content',
-
-  'privacy.ul5.li4': '<strong>Gamification:</strong> Track achievements, award trophies, calculate user levels',
-
-  'privacy.ul5.li5': '<strong>Legal Compliance:</strong> Comply dengan applicable laws dan respond ke legal requests',
-
-  'privacy.ul5.li6': '<strong>Service Improvement:</strong> Analyze usage patterns to enhance user experience (anonymized data only)',
-
-  'privacy.ul6.li1': '<strong>Contractual Necessity (Art. 6(1)(b) GDPR):</strong> Processing necessary ke provide services Anda requested when creating an account',
-
-  'privacy.ul6.li2': '<strong>Legitimate Interests (Art. 6(1)(f) GDPR):</strong> Platform security, fraud prevention, content moderation, dan service improvement—balanced against Anda rights',
-
-  'privacy.ul6.li3': '<strong>Consent (Art. 6(1)(a) GDPR):</strong> Optional features like public post sharing, nationality display, dan non-essential cookies—Anda can withdraw consent anytime',
-
-  'privacy.ul6.li4': '<strong>Legal Obligation (Art. 6(1)(c) GDPR):</strong> Compliance dengan French dan EU law, including tax obligations dan law enforcement requests',
-
-  'privacy.ul7.li1': '<strong>Supabase (Backend Infrastructure):</strong> Hosts our database, authentication system, dan file storage. Located in EU data centers. <a href=\'https://supabase.com/privacy\' target=\'_blank\'>Lihat Supabase Privacy Policy</a>',
-
-  'privacy.ul7.li2': '<strong>Stripe (Payment Processing):</strong> Processes all payment transactions securely. We receive only transaction confirmations, not card details. <a href=\'https://stripe.com/privacy\' target=\'_blank\'>Lihat Stripe Privacy Policy</a>',
-
-  'privacy.ul7.li3': '<strong>Shipping Partners:</strong> Receive name, address, dan contact information solely untuk stiker delivery',
-
-  'privacy.ul8.li1': '<strong>Essential Cookies (No Consent Required):</strong> Session management, authentication, security features, dan shopping cart functionality. These adalah strictly necessary untuk platform ke work.',
-
-  'privacy.ul8.li2': '<strong>Preference Cookies (No Consent Required):</strong> Remember Anda language selection, cookie consent choice, dan display preferences.',
-
-  'privacy.ul8.li3': '<strong>Analytics Cookies (Consent Required):</strong> Help us understand how visitors use site through anonymized data. We only activate these dengan Anda explicit consent.',
-
-  'privacy.ul9.li1': 'This data adalah <strong>publicly visible</strong> on korek api\'s page dan map',
-
-  'privacy.ul9.li2': 'Anyone dengan korek api\'s PIN dapat see this information',
-
-  'privacy.ul9.li3': 'Anda control accuracy—Anda dapat provide approximate atau exact coordinates',
-
-  'privacy.ul9.li4': 'Anda adalah solely responsible untuk privacy implications of any location data Anda share',
-
-  'privacy.ul9.li5': 'Anda dapat delete Anda location posts anytime dari Anda profile',
-
+  'error.generic.description': 'An unexpected error occurred. Our team has been notified.',
+  'error.generic.error_id': 'Error ID:',
+  'error.generic.try_again': 'Try Again',
+  'error.generic.go_home': 'Go Home',
+  'error.generic.details_title': 'Error Details (Development Only)',
+  'error.critical.title': 'Application Error',
+  'error.critical.description': 'A critical error occurred. Please try refreshing the page.',
+
+  // Loading States
+  'common.loading': 'Loading...',
+  'common.loading_alt': 'Loading...',
+
+  // Form Validation
+  'validation.username_required': 'Username cannot be empty.',
+  'validation.username_length': 'Username must be between {min} and {max} characters.',
+  'validation.password_too_short': 'Password must be at least {min} characters.',
+  'validation.password_requirements': 'Password must contain at least one uppercase letter, one lowercase letter, and one number',
+  'validation.password_requirement.min_length': 'At least {count} characters',
+  'validation.password_requirement.uppercase': 'At least one uppercase letter',
+  'validation.password_requirement.lowercase': 'At least one lowercase letter',
+  'validation.password_requirement.number': 'At least one number',
+  'validation.email_required': 'Email is required.',
+  'validation.email_invalid': 'Please enter a valid email address.',
+  'validation.field_required': 'This field is required.',
+
+  // Profile Messages
+  'profile.update_success': 'Profile updated successfully!',
   'profile.update_error': 'Error: {error}',
 
-  'profile.update_success': 'Profile updated successfully!',
+  // Moderation Queue
+  'moderation.queue.empty.title': 'Queue is Empty',
+  'moderation.queue.empty.description': 'All flagged posts have been reviewed and handled. Great moderation work!',
+  'moderation.queue.empty.back_home': 'Back to Home',
+  'moderation.queue.count': '{count} post awaiting moderation',
+  'moderation.queue.count_plural': '{count} posts awaiting moderation',
+
+  // Admin - Orders
+  'admin.orders.no_orders': 'No orders found.',
+  'admin.orders.total_orders': 'Total Orders',
+  'admin.orders.total_revenue': 'Total Revenue',
+  'admin.orders.refunded': 'Refunded',
+  'admin.orders.pending_refunds': 'Pending Refunds',
+  'admin.orders.table.order_id': 'Order ID',
+  'admin.orders.table.customer': 'Customer',
+  'admin.orders.table.pack_size': 'Pack Size',
+  'admin.orders.table.amount': 'Amount',
+  'admin.orders.table.status': 'Status',
+  'admin.orders.table.date': 'Date',
+  'admin.orders.table.actions': 'Actions',
+  'admin.orders.action.send_fulfillment': '📧 Send to Fulfillment',
+  'admin.orders.action.sending': 'Sending...',
+  'admin.orders.action.refund': 'Refund',
+  'admin.orders.action.refunding': 'Refunding...',
+  'admin.orders.action.refunded': 'Refunded',
+  'admin.orders.details.title': 'Order Details',
+  'admin.orders.details.full_order_id': 'Full Order ID',
+  'admin.orders.details.payment_intent_id': 'Payment Intent ID',
+  'admin.orders.details.user_email': 'User Email',
+  'admin.orders.details.shipping_address': 'Shipping Address',
+  'admin.orders.details.refund_info': 'Refund Information',
+  'admin.orders.details.na': 'N/A',
+  'admin.orders.confirm_resend': 'Resend fulfillment email with stickers for order {orderId}...?',
+  'admin.orders.resend_failed': 'Failed to resend fulfillment email',
+  'admin.orders.resend_success': '✅ Fulfillment email resent successfully!\n\n{count} sticker(s) sent to fulfillment team.',
+  'admin.orders.resend_error': '❌ Failed to resend: {error}',
+  'admin.orders.refund_confirm': 'Are you sure you want to refund €{amount} to {email}?',
+  'admin.orders.refund_failed': 'Refund failed',
+  'admin.orders.refund_success': 'Refund successful! Amount: €{amount}',
+  'admin.orders.refund_error': 'Refund failed: {error}',
+  'admin.orders.pack_size_count': '{count} stickers',
+
+  // Shipping & Order Forms
+  'shipping.address_suggestions': '(Start typing for suggestions)',
+
+  // Payment
+  'payment.card_not_found': 'Card element not found',
+  'payment.stripe_load_failed': 'Failed to load Stripe. Please check your configuration.',
+
+  // Personalization
+  'personalization.second_language': 'Second Language on Sticker (+ English)',
+  'personalization.english_included': 'English will always be included on your stickers',
+  'personalization.customize_stickers': 'Customize Your Stickers',
+  'personalization.personalize_each': 'Personalize each lighter',
+
+  // Order Success
+  'order_success.email_subject': 'Question about my sticker order',
+
+  // Lighter Metadata
+  'lighter.not_found.title': 'Lighter Not Found | LightMyFire',
+  'lighter.not_found.description': 'A human creativity mosaic.',
+  'lighter.meta.description': 'See the story of a lighter named "{name}". Add your own chapter to its journey!',
+  'lighter.meta.og_description': 'See its story on LightMyFire',
+  'lighter.meta.twitter_description': 'See its story on LightMyFire',
+
+  // My Orders empty state (if not already present)
+  'my_orders.no_orders': 'No Orders Yet',
+  'my_orders.no_orders_text': 'You haven\'t placed any sticker orders yet.',
+  'my_orders.order_stickers': 'Order Stickers',
+
+  // Authentication redirects
+  'auth.login_required': 'You must be logged in to save a lighter',
+
+  // Additional Image Alt Text
+  'alt.lightmyfire_logo': 'LightMyFire',
+  'alt.lightmyfire_tagline': 'LightMyFire - Give lighters a second life',
+  'alt.arrow_save_lighter': 'Arrow pointing to save lighter button',
+  'alt.lighter_illustration': 'Lighter illustration',
+  'alt.creative': 'Creative',
+  'alt.community': 'Community',
+  'alt.sustainable': 'Sustainable',
+  'alt.personalise': 'Personalise',
+  'alt.qr_code': 'QR Code',
+  'alt.butane_lighter': 'Butane Refillable Lighter',
+  'alt.gasoline_lighter': 'Gasoline Refillable Lighter',
+  'alt.non_refillable_lighter': 'Non-Refillable Lighter',
+  'alt.butane_refill_process': 'Butane Lighter Refill Process',
+  'alt.gasoline_refill_process': 'Gasoline Lighter Refill Process',
+
+  // Form Placeholders
+  'placeholder.pin_entry': 'ABC-123',
+  'placeholder.location_search': 'Search for a location...',
+  'placeholder.lighter_name': 'Lighter name...',
+  'placeholder.hex_color': '#FF6B6B',
+
+  // Aria Labels (Accessibility)
+  'aria.global': 'Global',
+  'aria.search_location': 'Search for a location',
+  'aria.close': 'Close',
+  'aria.popular_colors': 'Popular color palette',
+  'aria.hex_color': 'HEX color code',
+  'aria.learn_levels': 'Learn how to earn levels',
+  'aria.close_notification': 'Close notification',
+
+  // Contact Form Subjects
+  'contact.subject.custom_branding': 'Custom Branding Inquiry',
+  'contact.subject.question': 'Question about LightMyFire',
+  'contact.subject.general': 'General Inquiry',
+
+  // Redirect Messages
+  'redirect.login_profile': 'You must be logged in to view your profile.',
+  'redirect.login_save_lighter': 'You must be logged in to save a lighter',
+  'redirect.login_add_story': 'You must be logged in to add a story.',
+  'redirect.login_like': 'You must be logged in to like a post',
+
+  // Color Names
+  'color.coral_red': 'Coral Red',
+  'color.sunset_orange': 'Sunset Orange',
+  'color.warm_orange': 'Warm Orange',
+  'color.golden_yellow': 'Golden Yellow',
+  'color.bright_yellow': 'Bright Yellow',
+  'color.light_green': 'Light Green',
+  'color.forest_green': 'Forest Green',
+  'color.turquoise': 'Turquoise',
+  'color.sky_blue': 'Sky Blue',
+  'color.royal_blue': 'Royal Blue',
+  'color.blue_violet': 'Blue Violet',
+  'color.deep_pink': 'Deep Pink',
+  'color.light_pink': 'Light Pink',
+  'color.light_gray': 'Light Gray',
+  'color.gray': 'Gray',
 
-  'redirect.login_add_story': 'Anda must be logged in menambahkan a story.',
-
-  'redirect.login_like': 'Anda must be logged in to like a post',
-
-  'redirect.login_profile': 'Anda must be logged in to view Anda profile.',
-
-  'redirect.login_save_lighter': 'Anda must be logged in to save a korek api',
-
-  'refill_guide.citations.1.source': 'World Economic Forum - Plastic Waste Statistics (2023)',
-
-  'refill_guide.citations.1.text': 'Global korek api production dan environmental impact data',
-
-  'refill_guide.citations.1.url': 'https://www.weforum.org/agenda/2023/plastic-waste/',
-
-  'refill_guide.citations.title': 'Sources & References',
-
-  'refill_guide.key_indicators': 'Key indicators:',
-
-  'refill_guide.stats.lighters_sold': 'Disposable lighters sold yearly',
-
-  'refill_guide.stats.lighters_sold_worldwide': 'Worldwide',
-
-  'refill_guide.stats.waste_reduction': 'Waste reduction',
-
-  'refill_guide.stats.waste_reduction_method': 'dengan refillable lighters',
-
-  'refill_guide.stats.years_decompose': 'Years to decompose',
-
-  'refill_guide.stats.years_decompose_location': 'In landfills',
-
-  'refill_guide.type1.indicator1': 'Small round metal valve on bottom',
-
-  'refill_guide.type1.indicator2': 'Similar to a tire valve',
-
-  'refill_guide.type1.indicator3': 'Most common type',
-
-  'refill_guide.type2.indicator1': 'Metal korek api (often iconic design)',
-
-  'refill_guide.type2.indicator2': 'Inner block can be pulled out',
-
-  'refill_guide.type2.indicator3': 'Cotton visible inside',
-
-  'refill_guide.type3.indicator1': 'Flat, sealed plastic bottom',
-
-  'refill_guide.type3.indicator2': 'No valve atau removable parts',
-
-  'refill_guide.type3.indicator3': 'Single-use only',
-
-  'save_lighter.change_pack': '← Change Pack',
-
-  'save_lighter.creative_journey': 'Creative Journey',
-
-  'save_lighter.creative_journey_desc': 'Be part of a fun, global gerakan. Give lighters a second life dengan beautiful, hand-crafted stiker.',
-
-  'save_lighter.design_preview': 'Preview of Anda custom stiker. stiker files akan be generated after payment.',
-
-  'save_lighter.error.failed_to_save': 'Gagal untuk save korek api: {message}',
-
-  'save_lighter.helper.background_url': 'Optional. This image URL akan be background untuk Anda korek api\'s page. Try an Imgur atau Unsplash link.',
-
-  'save_lighter.human_mosaic': 'Human Mosaic',
-
-  'save_lighter.human_mosaic_desc': 'Join thousands of LightSavers creating a human mosaic of stories dan creativity while fighting waste.',
-
-  'save_lighter.more_stickers': '+{count} more',
-
-  'save_lighter.pack_count': 'Pack of {count} stiker',
-
-  'save_lighter.pack_total': 'Total: {price}',
-
-  'save_lighter.payment_mock': 'Simulate Payment',
-
-  'save_lighter.sticker_plural': 'Stiker',
-
-  'save_lighter.sticker_singular': 'Stiker',
-
-  'save_lighter.sustainable_impact': 'Sustainable Impact',
-
-  'save_lighter.sustainable_impact_desc': 'Our stiker adalah hand-made dan sustainably manufactured. Help maintain this project alive.',
-
-  'save_lighter.why_it_matters': 'Why It Matters',
-
-  'save_lighter.your_design': 'Anda Stiker Design',
-
-  'save_success.error_fetching': 'An error occurred while fetching korek api details.',
-
-  'save_success.generating_sticker': 'Generating Stiker...',
-
-  'save_success.next_steps.download_label': 'Unduh',
-
-  'settings.auth.change_via_provider': 'mengubah email atau authentication, visit Anda {providerLink} settings.',
-
-  'settings.auth.confirm_password_label': 'Confirm New Password',
-
-  'settings.auth.confirm_password_placeholder': 'Confirm new password',
-
-  'settings.auth.current_email': 'Current Email',
-
-  'settings.auth.email_managed_by': 'Anda email adalah managed by Anda {provider} account.',
-
-  'settings.auth.error.passwords_no_match': 'Passwords don\'t match.',
-
-  'settings.auth.new_email_label': 'New Email',
-
-  'settings.auth.new_email_placeholder': 'Enter new email',
-
-  'settings.auth.new_password_label': 'New Password',
-
-  'settings.auth.new_password_placeholder': 'Leave blank menjaga current password',
-
-  'settings.auth.oauth_notice': '✓ Anda\'re logged in via {provider}. Anda authentication adalah managed securely by Anda provider.',
-
-  'settings.auth.provider_link_generic': 'provider account',
-
-  'settings.auth.provider_link_google': 'Google Account',
-
-  'settings.auth.saving': 'Menyimpan...',
-
-  'settings.auth.success_message': 'Perbarui successful! Check Anda email to confirm changes if Anda updated Anda email address.',
-
-  'settings.auth.title': 'Account Settings',
-
-  'settings.auth.update_button': 'Perbarui Auth Details',
-
-  'settings.auth.update_title': 'Perbarui Email / Password',
-
-  'settings.profile.save_button': 'Save Profile',
-
-  'settings.profile.saving': 'Menyimpan...',
-
-  'settings.profile.username_label': 'Nama Pengguna',
-
-  'shipping.address_suggestions': '(Start typing untuk suggestions)',
-
-  'stripe.card_info': 'Card Information',
-
-  'stripe.error.generic': 'Payment failed. Silakan check Anda details atau coba lagi.',
-
-  'stripe.pay_button': 'Pay {amount}',
-
-  'terms.h3.acceptance': '1. Acceptance of Terms',
-
-  'terms.h3.contact_terms': '12. Contact Information',
-
-  'terms.h3.dispute_resolution': '9. Dispute Resolution dan Governing Law',
-
-  'terms.h3.eligibility': '2. Eligibility dan Account Requirements',
-
-  'terms.h3.general': '11. General Provisions',
-
-  'terms.h3.indemnification': '8. Indemnification',
-
-  'terms.h3.liability': '7. Disclaimers dan Limitation of Liability',
-
-  'terms.h3.license': '3. License dan Intellectual Property',
-
-  'terms.h3.moderation': '5. Content Moderation dan Enforcement',
-
-  'terms.h3.stickers': '6. Stiker Sales dan Orders',
-
-  'terms.h3.termination': '10. Termination',
-
-  'terms.h3.ugc': '4. User-Generated Content dan Conduct',
-
-  'terms.h4.account_accuracy': '2.3. Account Information',
-
-  'terms.h4.account_security': '2.2. Account Security',
-
-  'terms.h4.age': '2.1. Age Requirement',
-
-  'terms.h4.appeals': '5.4. Appeals Process',
-
-  'terms.h4.as_is': '7.1. "As adalah" Service',
-
-  'terms.h4.assignment': '11.5. Assignment',
-
-  'terms.h4.by_us': '10.2. Termination by Us',
-
-  'terms.h4.by_you': '10.1. Termination by Anda',
-
-  'terms.h4.community_flagging': '5.2. Community Flagging',
-
-  'terms.h4.custom': '6.3. Customization',
-
-  'terms.h4.effect': '10.3. Effect of Termination',
-
-  'terms.h4.enforcement': '5.3. Enforcement Actions',
-
-  'terms.h4.entire_agreement': '11.1. Entire Agreement',
-
-  'terms.h4.governing_law': '9.1. Governing Law',
-
-  'terms.h4.informal_resolution': '9.3. Informal Dispute Resolution',
-
-  'terms.h4.jurisdiction': '9.2. Jurisdiction',
-
-  'terms.h4.jurisdiction_limits': '7.3. Jurisdictional Limitations',
-
-  'terms.h4.limitation': '7.2. Limitation of Liability',
-
-  'terms.h4.mod_rights': '5.1. Our Rights',
-
-  'terms.h4.modifications': '11.2. Modifications to Terms',
-
-  'terms.h4.our_ip': '3.2. LightMyFire Intellectual Property',
-
-  'terms.h4.our_license': '3.1. License ke Use Service',
-
-  'terms.h4.prohibited_conduct': '4.3. Prohibited Conduct',
-
-  'terms.h4.prohibited_content': '4.2. Prohibited Content',
-
-  'terms.h4.sales_final': '6.1. Sales Policy',
-
-  'terms.h4.severability': '11.3. Severability',
-
-  'terms.h4.shipping': '6.2. Shipping dan Delivery',
-
-  'terms.h4.third_party': '11.6. No Third-Party Beneficiaries',
-
-  'terms.h4.ugc_responsibility': '4.1. Anda Responsibility',
-
-  'terms.h4.user_license': '3.3. License to Anda User-Generated Content',
-
-  'terms.h4.waiver': '11.4. No Waiver',
-
-  'terms.last_updated': 'Last updated: October 28, 2025',
-
-  'terms.p1': 'These Terms of Service ("Terms") govern Anda access to dan use of LightMyFire (the "Service"), operated by Revel Editions SASU, a company registered in France. By creating an account atau using our Service, Anda enter into a legally binding agreement with us.',
-
-  'terms.p10': 'By posting User-Generated Content ("UGC") on Service, Anda grant Revel Editions SASU a worldwide, non-exclusive, royalty-free, perpetual, transferable license ke:',
-
-  'terms.p11': '<strong>Important:</strong> This license adalah limited ke operating dan promoting Service. We akan not use Anda content untuk unrelated commercial purposes. Anda retain ownership of Anda UGC dan dapat revoke this license untuk specific posts by deleting them dari Anda profile. However, copies may persist in backups untuk up ke 30 days.',
-
-  'terms.p12': 'Anda are solely responsible for all content Anda post on LightMyFire, including text, images, links to songs (YouTube URLs), dan location data. Anda represent dan warrant that:',
-
-  'terms.p13': 'Anda must not postingan content that:',
-
-  'terms.p14': 'Anda must not:',
-
-  'terms.p15': 'We reserve right (but memiliki no obligation) ke:',
-
-  'terms.p16': 'However, we adalah not responsible untuk monitoring all content dan make no guarantee that prohibited content akan not appear on Service.',
-
-  'terms.p17': 'We use a komunitas-driven flagging system. Users dapat flag content they believe violates these Terms. Flagged content adalah reviewed by our moderation team, which may include automated pre-screening followed by human review.',
-
-  'terms.p18': 'Violations of these Terms may result in:',
-
-  'terms.p19': 'We may terminate accounts without prior notice if we determine there\'s a serious violation that threatens user safety atau platform integrity.',
-
-  'terms.p2': 'By accessing atau using LightMyFire, Anda agree menjadi bound by these Terms, our Privacy Policy, dan all applicable laws. If Anda do not agree with any part of these Terms, Anda must not use the Service. Anda continued use constitutes acceptance of any modifications we make to these Terms.',
-
-  'terms.p20': 'If Anda believe content adalah removed atau Anda account adalah suspended in error, Anda may appeal by contacting support@lightmyfire.app within 30 days of action. Include:',
-
-  'terms.p21': 'We akan review appeals dan respond within 14 business days. Our decision on appeals adalah final.',
-
-  'terms.p22': 'All stiker sales adalah final. We do not offer refunds except in cases of:',
-
-  'terms.p23': 'ke request a refund untuk these reasons, contact support@lightmyfire.app within 30 days of delivery dengan photo evidence.',
-
-  'terms.p24': 'Shipping times dan costs adalah specified at checkout. We adalah not responsible untuk delays caused by shipping carriers, customs, atau events beyond our control (force majeure). Risk of loss passes ke Anda upon delivery ke carrier.',
-
-  'terms.p25': 'Custom stiker orders cannot be canceled once processing begins (typically within 24 hours of order placement). Silakan review Anda customizations carefully before completing Anda order.',
-
-  'terms.p26': 'SERVICE adalah PROVIDED "AS adalah" dan "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS atau IMPLIED, INCLUDING BUT NOT LIMITED ke WARRANTIES OF MERCHANTABILITY, FITNESS untuk A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, atau UNINTERRUPTED atau ERROR-FREE SERVICE. WE DO NOT WARRANT THAT:',
-
-  'terms.p27': 'ke MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, REVEL EDITIONS SASU dan ITS DIRECTORS, EMPLOYEES, AGENTS, dan AFFILIATES SHALL NOT BE LIABLE untuk ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, atau PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED ke:',
-
-  'terms.p28': 'OUR TOTAL LIABILITY ke Anda untuk ALL CLAIMS ARISING dari atau RELATED ke SERVICE SHALL NOT EXCEED GREATER OF (A) €100 atau (B) AMOUNT Anda PAID US IN 12 MONTHS PRECEDING CLAIM.',
-
-  'terms.p29': 'Some jurisdictions do not allow exclusion of certain warranties atau limitation of liability untuk consequential damages. In such jurisdictions, our liability adalah limited ke maximum extent permitted by law.',
-
-  'terms.p3': 'Anda must be at least 16 years old (atau minimum age required in Anda country ke provide consent untuk data processing under applicable privacy laws) ke create an account dan use this Service. By creating an account, Anda represent dan warrant that Anda meet this age requirement.',
-
-  'terms.p30': 'Anda agree ke defend, indemnify, dan hold harmless Revel Editions SASU, its directors, officers, employees, dan agents dari any claims, damages, losses, liabilities, dan expenses (including reasonable attorneys\' fees) arising dari:',
-
-  'terms.p31': 'These Terms adalah governed by dan construed in accordance dengan laws of France, without regard ke its conflict of law principles. United Nations Convention on Contracts untuk International Sale of Goods does not apply.',
-
-  'terms.p32': 'Any disputes arising dari these Terms atau Anda use of Service shall be subject ke exclusive jurisdiction of courts of Paris, France. However, we may seek injunctive relief in any court of competent jurisdiction.',
-
-  'terms.p33': 'Before filing any formal claim, Anda agree ke contact us at support@lightmyfire.app ke attempt ke resolve dispute informally. We commit ke working dengan Anda in good faith ke reach a resolution within 60 days.',
-
-  'terms.p34': 'Anda may terminate Anda account at any time by contacting support@lightmyfire.app. Upon termination:',
-
-  'terms.p35': 'We may suspend atau terminate Anda account immediately, without prior notice, untuk:',
-
-  'terms.p36': 'Upon termination untuk any reason:',
-
-  'terms.p37': 'These Terms, together dengan our Privacy Policy, constitute entire agreement between Anda dan Revel Editions SASU regarding Service dan supersede all prior agreements.',
-
-  'terms.p38': 'We reserve right ke modify these Terms at any time. When we make changes:',
-
-  'terms.p39': 'If Anda don\'t agree ke modified Terms, Anda must stop using Service.',
-
-  'terms.p4': 'Anda adalah responsible untuk:',
-
-  'terms.p40': 'If any provision of these Terms adalah found invalid atau unenforceable, that provision shall be enforced ke maximum extent possible, dan remaining provisions shall remain in full effect.',
-
-  'terms.p41': 'Our failure ke enforce any right atau provision of these Terms does not constitute a waiver of that right atau provision.',
-
-  'terms.p42': 'Anda may not assign atau transfer these Terms atau Anda account without our written consent. We may assign our rights dan obligations without restriction.',
-
-  'terms.p43': 'These Terms do not create any third-party beneficiary rights except as expressly stated.',
-
-  'terms.p44': 'untuk questions about these Terms, contact us:',
-
-  'terms.p5': 'Anda may not share Anda account dengan others atau use another person\'s account without permission.',
-
-  'terms.p6': 'Anda agree menyediakan accurate, current, dan complete information during registration dan to update it as necessary to maintain its accuracy.',
-
-  'terms.p7': 'Subject to these Terms, we grant Anda a limited, non-exclusive, non-transferable, revocable license to access dan use LightMyFire for personal, non-commercial purposes.',
-
-  'terms.p8': 'All content, features, dan functionality of Service—including but not limited ke text, graphics, logos, icons, images, audio clips, data compilations, software, dan "look dan feel" of website—adalah exclusive property of Revel Editions SASU dan adalah protected by international copyright, trademark, dan other intellectual property laws.',
-
-  'terms.p9': '"LightMyFire," "LightSaver," dan associated logos are trademarks of Revel Editions SASU. Anda may not use these trademarks without our prior written permission.',
-
-  'terms.ul1.li1': 'Maintaining confidentiality of Anda account credentials',
-
-  'terms.ul1.li2': 'All activities that occur under Anda account',
-
-  'terms.ul1.li3': 'Notifying us immediately of any unauthorized use at: support@lightmyfire.app',
-
-  'terms.ul10.li1': 'Service akan meet Anda requirements',
-
-  'terms.ul10.li2': 'Service akan be uninterrupted, timely, secure, atau error-free',
-
-  'terms.ul10.li3': 'Results obtained dari use of Service akan be accurate atau reliable',
-
-  'terms.ul10.li4': 'Any errors in Service akan be corrected',
-
-  'terms.ul11.li1': 'Loss of profits, data, use, goodwill, atau other intangible losses',
-
-  'terms.ul11.li2': 'Unauthorized access to atau alteration of Anda content',
-
-  'terms.ul11.li3': 'Third-party conduct atau content on Service',
-
-  'terms.ul11.li4': 'Any matter beyond our reasonable control',
-
-  'terms.ul12.li1': 'Anda use atau misuse of Service',
-
-  'terms.ul12.li2': 'Anda violation of these Terms',
-
-  'terms.ul12.li3': 'Anda violation of any rights of another party',
-
-  'terms.ul12.li4': 'Anda User-Generated Content',
-
-  'terms.ul13.li1': 'Anda account akan be deactivated',
-
-  'terms.ul13.li2': 'Anda lose access to all account features',
-
-  'terms.ul13.li3': 'Anda posts remain visible on korek api pages (they\'re part of those lighters\' stories)',
-
-  'terms.ul13.li4': 'ke delete Anda posts before account termination, do so manually dari Anda profile',
-
-  'terms.ul14.li1': 'Violation of these Terms',
-
-  'terms.ul14.li2': 'Fraudulent, abusive, atau illegal activity',
-
-  'terms.ul14.li3': 'Prolonged inactivity (accounts inactive untuk 3+ years)',
-
-  'terms.ul14.li4': 'At our sole discretion if necessary ke protect Service atau other users',
-
-  'terms.ul15.li1': 'Anda right ke use Service ceases immediately',
-
-  'terms.ul15.li2': 'Sections that by their nature should survive termination remain in effect (including Intellectual Property, Disclaimers, Limitation of Liability, Indemnification, Dispute Resolution)',
-
-  'terms.ul15.li3': 'We may retain certain data as required by law atau legitimate business purposes',
-
-  'terms.ul16.li1': 'We\'ll update "Last updated" date',
-
-  'terms.ul16.li2': 'untuk material changes, we\'ll notify Anda by email atau prominent notice on Service',
-
-  'terms.ul16.li3': 'Anda continued use after changes constitutes acceptance',
-
-  'terms.ul17.li1': '<strong>Email:</strong> support@lightmyfire.app',
-
-  'terms.ul17.li2': '<strong>Support:</strong> support@lightmyfire.app',
-
-  'terms.ul17.li3': '<strong>Address:</strong> Revel Editions SASU, Cs 20008 145 Rue de Noisy-le-Sec 93260 Les Lilas, France',
-
-  'terms.ul2.li1': 'Use, reproduce, distribute, modify, adapt, publicly perform, dan publicly display Anda UGC',
-
-  'terms.ul2.li2': 'Incorporate Anda UGC into other works in any format atau medium',
-
-  'terms.ul2.li3': 'Sublicense these rights to third parties solely for the operation dan promotion of LightMyFire',
-
-  'terms.ul3.li1': 'Anda own atau memiliki necessary rights ke postingan content',
-
-  'terms.ul3.li2': 'Anda content does not violate any third party\'s intellectual property, privacy, atau other rights',
-
-  'terms.ul3.li3': 'Anda content complies dengan these Terms dan applicable laws',
-
-  'terms.ul4.li1': '<strong>Illegal:</strong> Violates any local, national, atau international law',
-
-  'terms.ul4.li10': '<strong>Malicious:</strong> Contains viruses, malware, atau other harmful code',
-
-  'terms.ul4.li11': '<strong>Private Information:</strong> Shares others\' personal information without consent (doxxing)',
-
-  'terms.ul4.li2': '<strong>Harmful to Minors:</strong> Exploits, sexualizes, atau endangers children in any way',
-
-  'terms.ul4.li3': '<strong>Hateful:</strong> Promotes hatred, discrimination, atau violence against individuals atau groups based on race, ethnicity, religion, gender, sexual orientation, disability, atau other protected characteristics',
-
-  'terms.ul4.li4': '<strong>Violent atau Threatening:</strong> Depicts, encourages, atau threatens violence, self-harm, atau harm to others',
-
-  'terms.ul4.li5': '<strong>Harassing:</strong> Bullies, harasses, stalks, atau intimidates others',
-
-  'terms.ul4.li6': '<strong>Sexually Explicit:</strong> Contains pornography atau sexually explicit material',
-
-  'terms.ul4.li7': '<strong>Misleading:</strong> Contains false, misleading, atau fraudulent information',
-
-  'terms.ul4.li8': '<strong>Spam:</strong> Consists of unsolicited advertising, promotional material, atau repetitive content',
-
-  'terms.ul4.li9': '<strong>Infringing:</strong> Violates copyrights, trademarks, patents, atau other intellectual property rights',
-
-  'terms.ul5.li1': 'Impersonate any person atau entity',
-
-  'terms.ul5.li2': 'Manipulate Service ke artificially inflate metrics (likes, views, etc.)',
-
-  'terms.ul5.li3': 'Interfere dengan atau disrupt Service atau servers',
-
-  'terms.ul5.li4': 'Attempt ke gain unauthorized access ke any part of Service',
-
-  'terms.ul5.li5': 'Use automated tools (bots, scrapers) without written permission',
-
-  'terms.ul5.li6': 'Circumvent any content filtering atau security measures',
-
-  'terms.ul5.li7': 'Use Service untuk any commercial purpose without our consent',
-
-  'terms.ul6.li1': 'Review, screen, edit, atau remove any UGC at any time untuk any reason',
-
-  'terms.ul6.li2': 'Monitor user activity untuk violations of these Terms',
-
-  'terms.ul6.li3': 'Investigate complaints dan reported content',
-
-  'terms.ul7.li1': '<strong>Content Removal:</strong> Removal of violating posts without notice',
-
-  'terms.ul7.li2': '<strong>Warning:</strong> A formal warning untuk first-time atau minor violations',
-
-  'terms.ul7.li3': '<strong>Temporary Suspension:</strong> Temporary account suspension (duration determined by severity)',
-
-  'terms.ul7.li4': '<strong>Permanent Termination:</strong> Permanent account termination untuk serious atau repeated violations',
-
-  'terms.ul7.li5': '<strong>Legal Action:</strong> Reporting ke law enforcement untuk illegal activity',
-
-  'terms.ul8.li1': 'Anda username dan account email',
-
-  'terms.ul8.li2': 'Description of content atau action in question',
-
-  'terms.ul8.li3': 'Explanation of why Anda believe decision adalah incorrect',
-
-  'terms.ul9.li1': 'Manufacturing defects in stiker',
-
-  'terms.ul9.li2': 'Incorrect items shipped',
-
-  'terms.ul9.li3': 'Non-delivery due to our error',
-
-  'validation.email_invalid': 'Silakan enter a valid email address.',
-
-  'validation.email_required': 'email adalah required.',
-
-  'validation.field_required': 'This field adalah required.',
-
-  'validation.password_requirement.lowercase': 'At least one lowercase letter',
-
-  'validation.password_requirement.min_length': 'At least {count} characters',
-
-  'validation.password_requirement.number': 'At least one number',
-
-  'validation.password_requirement.uppercase': 'At least one uppercase letter',
-
-  'validation.password_requirements': 'Password must contain at least one uppercase letter, one lowercase letter, dan one number',
-
-  'validation.password_too_short': 'Password must be at least {min} characters.',
-
-  'validation.username_length': 'Username harus antara {min} dan {max} characters.',
-
-  'validation.username_required': 'Username cannot be empty.',
-  'home.new_here_link': '🤔 New here? Where did I just land?',
-  'home.new_here_aria': 'Learn more about LightMyFire in our FAQ',
-  'auth.why_account_needed': 'Why do I need an account?',
-  'auth.account_reason_short': 'We require accounts for **safety and community trust**. Since we allow photos, text, music, and location sharing, having accounts helps keep the platform welcoming for everyone.',
-  'auth.account_benefits': '✓ Takes less than 30 seconds to create\n✓ Your data is private and secure\n✓ Helps us maintain a safe community',
-  'auth.learn_more': 'Learn more in our FAQ',
-  'auth.create_account_prompt': 'New to LightMyFire?',
-  'faq.found_lighter.question': 'I found a lighter with a LightMyFire sticker—what are the next steps?',
-  'faq.found_lighter.answer': 'Welcome to the adventure! First, scan the QR code on the sticker or visit our website. You\'ll be prompted to enter the unique PIN code (printed on the sticker). This unlocks the lighter\'s digital page where you can see its full story. To add your own contribution, you\'ll need to create a free account (takes less than 30 seconds!). Then you can add whatever you want: a photo of where you found it, a song that reminds you of the moment, a thought, a poem, the address of your favorite restaurant, or just a simple "hello." The choice is yours!',
-  'faq.why_account.question': 'Why do I have to create an account to contribute?',
-  'faq.why_account.answer': 'Great question! We hesitated about this for a while, but ultimately decided to require accounts for one main reason: **safety**. Since we allow photos, text, music links, and location data, we need a way to ensure the platform remains welcoming and safe for everyone. If someone posts harmful content—hate speech, non-consensual images, or anything that violates community standards—we need to be able to prevent them from continuing to harm others. Creating an account takes **less than 30 seconds**, we never share or exploit your data in any way, and it gives you access to cool features like tracking your contributions, earning trophies, and watching your lighters travel the world. We respect your privacy completely.',
-  'faq.what_can_contribute.question': 'What kind of content can I add to a lighter page?',
-  'faq.what_can_contribute.answer': 'This is the heart of LightMyFire: **you can add almost anything you want!** The whole philosophy is about creating a diverse human mosaic. Your contribution doesn\'t have to be "good" or "original" or "perfect"—it just has to be *yours* (or properly attributed if it\'s someone else\'s work). You can share how you found the lighter, a random thought from your morning shower, your favorite poem, a song you\'ve been obsessed with lately, an article you read, a photo of your cat, the GPS coordinates of a place you want to visit someday, your business card if you\'re a florist, a link to your book... The beauty of the mosaic comes from its *diversity*, not from individual perfection. The only rule? No harmful content: no hate speech, harassment, LGBTQIA+ phobia, slurs, non-consensual images, or pornography. Beyond that, share whatever feels right!',
-  'faq.post_perfection.question': 'Do my posts have to be perfect or super creative?',
-  'faq.post_perfection.answer': 'Absolutely not! **You don\'t need to be a poet, artist, or photographer.** LightMyFire is one of the few platforms where there\'s *no direction to follow*. Want to post a simple "hello from Paris"? Perfect. Want to share a random Wikipedia article you enjoyed? Great. Want to recommend your uncle\'s bakery? Go ahead—that\'s part of your story too! The richness of each lighter\'s journey comes from the *variety* of what people contribute, not from how polished each contribution is. There\'s no pressure, no judgment, no "likes" competition. Just add what feels authentic to you in that moment. That\'s all we ask.',
-  'faq.contribute_guidelines.question': 'How do I contribute to LightMyFire?',
-  'faq.contribute_guidelines.answer': 'There are two main ways to contribute: (1) **Find a lighter** with a LightMyFire sticker, scan the QR code, and add your story, photo, song, or location. (2) **Save your own lighter** by ordering custom stickers from our site, putting one on your lighter, and then passing it on to friends, strangers, or leaving it somewhere for others to find. Every time someone scans it and contributes, you\'ll be able to see the journey from your profile dashboard. It\'s a beautiful way to connect with people you\'ll never meet!',
-  'faq.mosaic_philosophy.question': 'What is the "human mosaic" philosophy?',
-  'faq.mosaic_philosophy.answer': 'The core idea behind LightMyFire is that **every person has a unique perspective worth sharing**, and together, our contributions create something beautiful—a mosaic of human experience. Just like a mosaic is made of thousands of different tiles, each with its own color and shape, our platform thrives on *diversity*. We don\'t want everyone posting the same type of content. We want the random thoughts, the silly jokes, the profound insights, the business promotions, the travel photos, the heartbreak poems, the dinner recommendations—all of it. That\'s what makes each lighter\'s journey unique and fascinating. The goal isn\'t individual perfection; it\'s collective authenticity.',
-  'faq.nav.type_code': '🔢 Type a Lighter Code',
-  'faq.nav.take_part': '🎨 I Want to Take Part',
-  'faq.nav.type_code_aria': 'Go to homepage to enter a lighter PIN code',
-  'faq.nav.take_part_aria': 'Go to save a lighter page to start your journey',
-  'add_post.context.text': '✨ **Just be authentic.** It doesn\'t have to be perfect, original, or poetic. A simple thought, a quote you love, or even a mundane observation—it all adds to the mosaic. The richness comes from diversity, not perfection.',
-  'add_post.context.song': '🎵 **Share what moves you.** Whether it\'s a chart-topper or an obscure gem, your own creation or someone else\'s—all music tells a story. No need to overthink it, just share what resonates.',
-  'add_post.context.image': '📸 **Any photo counts.** A blurry selfie, a sunset, street art, or your lunch. You don\'t need to be a photographer. Every image adds color to this lighter\'s journey.',
-  'add_post.context.location': '📍 **Places make memories.** A random street corner, your favorite cafe, or somewhere you\'ve never been but dream of visiting. Every location adds a pin to this lighter\'s map.',
-  'add_post.context.refuel': '🔥 **You\'re keeping the flame alive!** By refueling, you\'re giving this lighter a second chance. That alone is worth celebrating—no explanation needed.',
 } as const;

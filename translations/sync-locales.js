@@ -16,23 +16,27 @@ function extractKeysAndValues(filePath) {
   const keysAndValues = {};
 
   // Match all quoted keys and their values
-  // Pattern: 'key': 'value' or "key": "value"
-  const keyValueRegex = /['"]([^'"]+)['"]\s*:\s*['"]([^'"\\]*(\\.[^'"\\]*)*)['"],?/g;
+  // Uses backreferences to ensure quotes match and handle escaped characters correctly
+  // Group 1: Key quote (' or ")
+  // Group 2: Key
+  // Group 3: Value quote (' or ")
+  // Group 4: Value content
+  const keyValueRegex = /(['"])([^'"]+)\1\s*:\s*(['"])([^\\\3]*(\\.[^\\\3]*)*)\3,?/g;
   let match;
 
   while ((match = keyValueRegex.exec(content)) !== null) {
-    keysAndValues[match[1]] = match[2];
+    keysAndValues[match[2]] = match[4];
   }
 
   return keysAndValues;
 }
 
-// Function to extract just keys from a locale file
+// Function to extract just keys from a locale file (anchored to start of line)
 function extractKeys(filePath) {
   const content = fs.readFileSync(filePath, 'utf-8');
   const keys = [];
 
-  const keyRegex = /['"]([^'"]+)['"]\s*:/g;
+  const keyRegex = /^\s*['"]([^'"]+)['"]\s*:/gm;
   let match;
 
   while ((match = keyRegex.exec(content)) !== null) {
@@ -101,9 +105,22 @@ for (const file of localeFiles) {
 
   // Add missing keys
   for (const key of missingKeys) {
-    const englishValue = referenceValues[key] || `[TODO: Translate ${key}]`;
+    let englishValue = referenceValues[key] || `[TODO: Translate ${key}]`;
 
-    // Escape single quotes in the value
+    // Unescape quotes in the value if it was captured with escape sequences
+    // Note: extractKeysAndValues keeps escapes in Group 4 (e.g. "Can\\'t").
+    // But actually regex group 4 includes the backslash if it was there.
+    // Wait, if source is `Can\'t`, group 4 has `Can\'t`.
+    // When we write it out, we need to ensure it's valid JS string.
+    // If we wrap in single quotes, we need to escape single quotes.
+    // If the original value had escaped single quotes `\'`, we keep them.
+    // If it had unescaped double quotes `"`, we don't need to escape them for single-quoted string.
+
+    // However, `referenceValues` comes from `en.ts`.
+    // If `en.ts` used double quotes `"Can't"`, the value captured is `Can't` (no backslash).
+    // If we write it as `'Can't'`, it breaks.
+    // So we MUST escape single quotes.
+
     const escapedValue = englishValue.replace(/'/g, "\\'");
 
     // Add a comment indicating this needs translation
