@@ -147,7 +147,7 @@ export async function POST(request: NextRequest) {
         const paymentIntent = event.data.object as Stripe.PaymentIntent;
         const lastError = paymentIntent.last_payment_error;
 
-        console.error(`Payment failed:`, {
+        console.error("Payment failed:", {
           paymentIntentId: paymentIntent.id,
           orderId: paymentIntent.metadata.orderId,
           errorCode: lastError?.code,

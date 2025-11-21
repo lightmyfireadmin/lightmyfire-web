@@ -107,7 +107,7 @@ for (const file of localeFiles) {
     const escapedValue = englishValue.replace(/'/g, "\\'");
 
     // Add a comment indicating this needs translation
-    newContent += `\n  // TODO: Translate from English\n`;
+    newContent += "\n  // TODO: Translate from English\n";
     newContent += `  '${key}': '${escapedValue}',\n`;
   }
 

@@ -104,7 +104,7 @@ export async function POST(request: NextRequest) {
       status: 200,
       headers: {
         'Content-Type': 'application/zip',
-        'Content-Disposition': `attachment; filename="lightmyfire-stickers.zip"`,
+        'Content-Disposition': 'attachment; filename="lightmyfire-stickers.zip"',
         'Content-Length': zipBuffer.length.toString(),
       },
     });
