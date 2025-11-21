@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
     const { data: { session } } = await supabase.auth.getSession();
 
     diagnostics.checks.authentication = {
-      passed: !!session,
+      passed: Boolean(session),
       userId: session?.user?.id || null,
       userEmail: session?.user?.email || null,
     };
@@ -43,15 +43,15 @@ export async function GET(request: NextRequest) {
     );
 
     diagnostics.checks.supabaseConfig = {
-      passed: !!process.env.NEXT_PUBLIC_SUPABASE_URL && !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+      passed: Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) && Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY),
       url: process.env.NEXT_PUBLIC_SUPABASE_URL?.substring(0, 30) + '...',
-      serviceKeyConfigured: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+      serviceKeyConfigured: Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY),
     };
 
     // 3. Check Stripe configuration
     diagnostics.checks.stripe = {
-      secretKeyConfigured: !!process.env.STRIPE_SECRET_KEY,
-      webhookSecretConfigured: !!process.env.STRIPE_WEBHOOK_SECRET,
+      secretKeyConfigured: Boolean(process.env.STRIPE_SECRET_KEY),
+      webhookSecretConfigured: Boolean(process.env.STRIPE_WEBHOOK_SECRET),
     };
 
     if (!process.env.STRIPE_SECRET_KEY) {
@@ -60,7 +60,7 @@ export async function GET(request: NextRequest) {
 
     // 4. Check email configuration
     diagnostics.checks.email = {
-      resendApiKeyConfigured: !!process.env.RESEND_API_KEY,
+      resendApiKeyConfigured: Boolean(process.env.RESEND_API_KEY),
       fulfillmentEmail: process.env.FULFILLMENT_EMAIL || 'mitch@lightmyfire.app (default)',
     };
 
@@ -96,8 +96,8 @@ export async function GET(request: NextRequest) {
       const stickerOrdersBucket = buckets?.find(b => b.name === 'sticker-orders');
 
       diagnostics.checks.storageBucket = {
-        passed: !!stickerOrdersBucket,
-        exists: !!stickerOrdersBucket,
+        passed: Boolean(stickerOrdersBucket),
+        exists: Boolean(stickerOrdersBucket),
         isPublic: stickerOrdersBucket?.public || false,
         error: bucketsError?.message || null,
       };

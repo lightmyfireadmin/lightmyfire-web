@@ -427,7 +427,7 @@ export async function POST(request: NextRequest) {
       console.error('Failed to send fulfillment email:', {
         error: emailError,
         message: emailError instanceof Error ? emailError.message : 'Unknown error',
-        apiKeyConfigured: !!process.env.RESEND_API_KEY
+        apiKeyConfigured: Boolean(process.env.RESEND_API_KEY)
       });
           }
 
@@ -468,7 +468,7 @@ export async function POST(request: NextRequest) {
         console.error('Failed to send customer email:', {
           error: result.error,
           recipient: shippingAddress.email,
-          apiKeyConfigured: !!process.env.RESEND_API_KEY
+          apiKeyConfigured: Boolean(process.env.RESEND_API_KEY)
         });
       }
     } catch (emailError) {
@@ -476,7 +476,7 @@ export async function POST(request: NextRequest) {
         error: emailError,
         message: emailError instanceof Error ? emailError.message : 'Unknown error',
         recipient: shippingAddress.email,
-        apiKeyConfigured: !!process.env.RESEND_API_KEY
+        apiKeyConfigured: Boolean(process.env.RESEND_API_KEY)
       });
     }
 

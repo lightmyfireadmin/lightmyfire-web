@@ -404,7 +404,7 @@ function calculateStickerLayout(
     
     const SHEET_WIDTH = Math.round(7.5 * DPI);
     const SHEET_HEIGHT = Math.round(5 * DPI);
-    const GAP = Math.round(1 * CM_TO_INCHES * DPI);
+    const GAP = Math.round(Number(CM_TO_INCHES) * DPI);
 
     const stickersPerRow = Math.floor((SHEET_WIDTH - GAP * 2 + GAP) / (stickerWidth + GAP));
     const stickersPerColumn = Math.floor((SHEET_HEIGHT - GAP * 2 + GAP) / (stickerHeight + GAP));

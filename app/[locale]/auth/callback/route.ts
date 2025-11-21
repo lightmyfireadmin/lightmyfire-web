@@ -114,7 +114,7 @@ export async function GET(request: NextRequest, { params }: { params: { locale: 
             userId: session.user.id,
             email: session.user.email,
             isNewUser,
-            profileFound: !!profile,
+            profileFound: Boolean(profile),
             welcomeEmailSent: profile?.welcome_email_sent,
             provider: session.user.app_metadata?.provider,
           });

@@ -5,11 +5,11 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   const config = {
     resendApiKey: {
-      configured: !!process.env.RESEND_API_KEY,
+      configured: Boolean(process.env.RESEND_API_KEY),
       value: process.env.RESEND_API_KEY ? `${process.env.RESEND_API_KEY.substring(0, 10)}...` : 'NOT SET',
     },
     fulfillmentEmail: {
-      configured: !!process.env.FULFILLMENT_EMAIL,
+      configured: Boolean(process.env.FULFILLMENT_EMAIL),
       value: process.env.FULFILLMENT_EMAIL || 'mitch@lightmyfire.app (default)',
     },
     nodeEnv: process.env.NODE_ENV,
