@@ -125,7 +125,7 @@ export async function POST(request: NextRequest) {
         logger.error('Failed to fetch Printful shipping rates', {
           error: error instanceof Error ? error.message : error,
           stack: error instanceof Error ? error.stack : undefined,
-          apiKeyPresent: !!process.env.PRINTFUL_API_KEY,
+          apiKeyPresent: Boolean(process.env.PRINTFUL_API_KEY),
           variantId: LIGHTMYFIRE_PRINTFUL_CONFIG.STICKER_SHEET_VARIANT_ID,
         });
         usedFallback = true;

@@ -74,7 +74,7 @@ export async function GET(request: NextRequest) {
         lighter_names: order.lighter_names,
       },
       storage: {
-        bucketExists: !!stickerOrdersBucket,
+        bucketExists: Boolean(stickerOrdersBucket),
         bucketInfo: stickerOrdersBucket ? {
           id: stickerOrdersBucket.id,
           name: stickerOrdersBucket.name,
@@ -85,8 +85,8 @@ export async function GET(request: NextRequest) {
         storageError: storageError,
       },
       diagnostics: {
-        hasPaymentIntentId: !!order.payment_intent_id,
-        hasStickerFileUrl: !!order.sticker_file_url,
+        hasPaymentIntentId: Boolean(order.payment_intent_id),
+        hasStickerFileUrl: Boolean(order.sticker_file_url),
         hasLighterIds: Array.isArray(order.lighter_ids) && order.lighter_ids.length > 0,
         emailsSent: {
           fulfillment: order.fulfillment_email_sent,
