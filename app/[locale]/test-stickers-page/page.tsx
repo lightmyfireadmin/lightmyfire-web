@@ -19,7 +19,7 @@ export default function TestStickersPage() {
     );
   }
 
-  const handleGenerate = async (useDefault: boolean = true) => {
+  const handleGenerate = async (useDefault = true) => {
     setIsGenerating(true);
     setError(null);
 

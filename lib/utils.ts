@@ -2,8 +2,8 @@
 
 export function formatCurrency(
   amountInCents: number,
-  currency: string = 'EUR',
-  locale: string = 'en-US'
+  currency = 'EUR',
+  locale = 'en-US'
 ): string {
   try {
     return new Intl.NumberFormat(locale, {
@@ -18,14 +18,14 @@ export function formatCurrency(
 
 export function formatCurrencyAmount(
   amountInCents: number,
-  decimals: number = 2
+  decimals = 2
 ): string {
   return (amountInCents / 100).toFixed(decimals);
 }
 
 export function getCurrencySymbol(
-  currency: string = 'EUR',
-  locale: string = 'en-US'
+  currency = 'EUR',
+  locale = 'en-US'
 ): string {
   try {
     const formatted = new Intl.NumberFormat(locale, {
@@ -67,7 +67,7 @@ export function isRTL(locale: string): boolean {
 export function truncate(
   text: string,
   maxLength: number,
-  suffix: string = '...'
+  suffix = '...'
 ): string {
   if (text.length <= maxLength) return text;
   return text.substring(0, maxLength - suffix.length) + suffix;
@@ -92,7 +92,7 @@ export function debounce<T extends (...args: any[]) => any>(
 
 export function formatRelativeTime(
   date: Date | string,
-  locale: string = 'en-US'
+  locale = 'en-US'
 ): string {
   const dateObj = typeof date === 'string' ? new Date(date) : date;
   const now = new Date();

@@ -75,10 +75,10 @@ export function validateFileSize(file: File): string | null {
  */
 export async function validateImageDimensions(
   file: File,
-  maxWidth: number = 4096,
-  maxHeight: number = 4096,
-  minWidth: number = 100,
-  minHeight: number = 100
+  maxWidth = 4096,
+  maxHeight = 4096,
+  minWidth = 100,
+  minHeight = 100
 ): Promise<FileValidationResult> {
   return new Promise((resolve) => {
     try {
@@ -129,7 +129,7 @@ export async function validateImageDimensions(
 
 export async function validateFile(
   file: File,
-  validateDimensions: boolean = true
+  validateDimensions = true
 ): Promise<FileValidationResult> {
   // Validate file size
   const sizeError = validateFileSize(file);

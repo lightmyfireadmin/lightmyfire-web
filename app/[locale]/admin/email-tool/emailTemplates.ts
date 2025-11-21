@@ -92,7 +92,7 @@ const EMAIL_STYLES = `
   }
 `;
 
-export function wrapEmailTemplate(content: string, title: string, lang: string = 'en'): string {
+export function wrapEmailTemplate(content: string, title: string, lang = 'en'): string {
   const supportEmail = 'support@lightmyfire.app';
   const year = new Date().getFullYear();
 
@@ -127,7 +127,7 @@ export function wrapEmailTemplate(content: string, title: string, lang: string =
   `;
 }
 
-export function getTemplateContent(templateType: string, lang: string = 'en'): string {
+export function getTemplateContent(templateType: string, lang = 'en'): string {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://lightmyfire.app';
 
   switch (templateType) {
