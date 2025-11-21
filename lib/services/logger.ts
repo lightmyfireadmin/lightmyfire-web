@@ -11,7 +11,7 @@ export interface LogEntry {
   level: LogLevel;
   message: string;
   timestamp: string;
-  context?: Record<string, any>;
+  context?: Record<string, unknown>;
   error?: Error;
 }
 
@@ -19,7 +19,7 @@ interface LoggerConfig {
   enableConsole?: boolean;
   enableExternalService?: boolean;
   minLevel?: LogLevel;
-  contextData?: Record<string, any>;
+  contextData?: Record<string, unknown>;
 }
 
 class Logger {
@@ -96,7 +96,7 @@ class Logger {
     return styles[level];
   }
 
-  debug(message: string, context?: Record<string, any>): void {
+  debug(message: string, context?: Record<string, unknown>): void {
     this.logEntry({
       level: LogLevel.DEBUG,
       message,
@@ -105,7 +105,7 @@ class Logger {
     });
   }
 
-  info(message: string, context?: Record<string, any>): void {
+  info(message: string, context?: Record<string, unknown>): void {
     this.logEntry({
       level: LogLevel.INFO,
       message,
@@ -114,7 +114,7 @@ class Logger {
     });
   }
 
-  warn(message: string, context?: Record<string, any>): void {
+  warn(message: string, context?: Record<string, unknown>): void {
     this.logEntry({
       level: LogLevel.WARN,
       message,
@@ -123,7 +123,7 @@ class Logger {
     });
   }
 
-  error(message: string, error?: Error | null, context?: Record<string, any>): void {
+  error(message: string, error?: Error | null, context?: Record<string, unknown>): void {
     this.logEntry({
       level: LogLevel.ERROR,
       message,
@@ -137,7 +137,7 @@ class Logger {
     });
   }
 
-  setContext(contextData: Record<string, any>): void {
+  setContext(contextData: Record<string, unknown>): void {
     this.config.contextData = { ...this.config.contextData, ...contextData };
   }
 

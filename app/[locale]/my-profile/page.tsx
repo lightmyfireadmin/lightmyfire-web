@@ -102,7 +102,8 @@ function calculatePoints(stats: {
 }
 
 export default async function MyProfilePage() {
-  const t = await getI18n() as any;
+  // Using unknown cast because useI18n type inference might be tricky here without deeper changes
+  const t = await getI18n() as unknown as (key: string) => string;
   const locale = await getCurrentLocale();
 
   const cookieStore = cookies();
@@ -164,7 +165,7 @@ export default async function MyProfilePage() {
     }
   }
 
-  const statsData = statsRes.data as any;
+  const statsData = statsRes.data as unknown as Record<string, number> | null;
   const stats = {
       total_contributions: statsData?.total_contributions ?? 0,
       lighters_saved: statsData?.lighters_saved ?? 0,

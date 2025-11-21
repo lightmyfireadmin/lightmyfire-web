@@ -204,7 +204,7 @@ export class PrintfulError extends Error {
   constructor(
     message: string,
     public statusCode: number,
-    public details?: any
+    public details?: unknown
   ) {
     super(message);
     this.name = 'PrintfulError';

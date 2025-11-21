@@ -51,7 +51,8 @@ function PaymentFormContent({
   onSuccess,
   onError,
 }: StripePaymentFormProps) {
-  const t = useI18n() as any;
+  // Using unknown cast because useI18n type inference might be tricky here without deeper changes
+  const t = useI18n() as unknown as (key: string, params?: Record<string, string | number | React.ReactNode>) => string;
   const locale = useCurrentLocale();
   const stripe = useStripe();
   const elements = useElements();
@@ -295,7 +296,8 @@ function PaymentFormContent({
 }
 
 export default function StripePaymentForm(props: StripePaymentFormProps) {
-  const t = useI18n() as any;
+  // Using unknown cast because useI18n type inference might be tricky here without deeper changes
+  const t = useI18n() as unknown as (key: string) => string;
   const [isStripeLoaded, setIsStripeLoaded] = useState(false);
   const [stripeError, setStripeError] = useState<string | null>(null);
 

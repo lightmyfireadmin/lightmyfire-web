@@ -8,7 +8,8 @@ import { CheckCircleIcon, EnvelopeIcon, FireIcon } from '@heroicons/react/24/out
 import ContactFormModal from '@/app/components/ContactFormModal';
 
 export default function OrderSuccessContent() {
-  const t = useI18n() as any;
+  // Using unknown cast because useI18n type inference might be tricky here without deeper changes
+  const t = useI18n() as unknown as (key: string, params?: Record<string, string | number>) => string;
   const locale = useCurrentLocale();
   const router = useRouter();
   const searchParams = useSearchParams();

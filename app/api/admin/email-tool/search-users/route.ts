@@ -82,10 +82,10 @@ export async function GET(request: NextRequest) {
     const users = Array.from(emailMap.values()).slice(0, 20);
 
     return NextResponse.json({ users });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error in search-users endpoint:', error);
     return NextResponse.json(
-      { error: error.message || 'Internal server error' },
+      { error: error instanceof Error ? error.message : 'Internal server error' },
       { status: 500 }
     );
   }

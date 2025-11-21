@@ -1,11 +1,12 @@
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
+import { Session, SupabaseClient } from '@supabase/supabase-js';
 
 export interface AdminAuthResult {
   authorized: boolean;
-  session?: any;
-  supabase?: any;
+  session?: Session;
+  supabase?: SupabaseClient;
   errorResponse?: NextResponse;
 }
 

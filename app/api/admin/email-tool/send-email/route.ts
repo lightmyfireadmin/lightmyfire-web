@@ -103,10 +103,12 @@ export async function POST(request: NextRequest) {
       message: `Email sent successfully to ${to}`,
       emailId: result.id,
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error sending custom email:', error);
 
-    if (error.message?.includes('RESEND_API_KEY')) {
+    const errorMessage = error instanceof Error ? error.message : 'Failed to send email';
+
+    if (errorMessage.includes('RESEND_API_KEY')) {
       return NextResponse.json(
         { error: 'Email service not configured. Please set RESEND_API_KEY environment variable.' },
         { status: 500 }
@@ -114,7 +116,7 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json(
-      { error: error.message || 'Failed to send email' },
+      { error: errorMessage },
       { status: 500 }
     );
   }

@@ -21,14 +21,15 @@ interface TestScenario {
   action?: {
     label: string;
     url: string;
-    testData?: any;
+    testData?: unknown;
   };
 }
 
 export default function AdminTestingPage() {
   const router = useRouter();
   const locale = useCurrentLocale();
-  const t = useI18n() as any;
+  // Using unknown cast because useI18n type inference might be tricky here without deeper changes
+  const t = useI18n() as unknown as (key: string) => string;
   const [loading, setLoading] = useState(true);
   const [authenticated, setAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
@@ -259,7 +260,7 @@ export default function AdminTestingPage() {
     }));
   }
 
-  function handleQuickAction(url: string, testData?: any) {
+  function handleQuickAction(url: string, _testData?: unknown) {
     if (url.startsWith('#')) {
             const element = document.querySelector(url);
       element?.scrollIntoView({ behavior: 'smooth' });

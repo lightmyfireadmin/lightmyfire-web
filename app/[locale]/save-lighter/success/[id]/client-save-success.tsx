@@ -12,7 +12,8 @@ type LighterInfo = {
 };
 
 export default function ClientSaveSuccess({ id, locale }: { id: string; locale: string }) {
-  const t = useI18n() as any;
+  // Using unknown cast because useI18n type inference might be tricky here without deeper changes
+  const t = useI18n() as unknown as (key: string) => string;
   const lighterId = id;
   const [lighter, setLighter] = useState<LighterInfo | null>(null);
   const [loading, setLoading] = useState(true);

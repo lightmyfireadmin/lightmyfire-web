@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
     // The client might not send all fields required by StickerData, so we map and default them if necessary
     // But looking at lib/generateSticker.ts we created, we are sending correct fields.
     // Let's ensure compatibility.
-    const mappedStickers: StickerData[] = stickers.map((s: any) => ({
+    const mappedStickers: StickerData[] = stickers.map((s: Partial<StickerData> & { name: string; pinCode: string }) => ({
       name: s.name,
       pinCode: s.pinCode,
       backgroundColor: s.backgroundColor || '#FFFFFF',

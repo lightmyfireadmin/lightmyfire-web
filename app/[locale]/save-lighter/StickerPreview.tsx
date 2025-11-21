@@ -26,7 +26,8 @@ export default function StickerPreview({
   onDownloadStart,
   onDownloadComplete,
 }: StickerPreviewProps) {
-  const t = useI18n() as any;
+  // Using unknown cast because useI18n type inference might be tricky here without deeper changes
+  const t = useI18n() as unknown as (key: string) => string;
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedFormat, setSelectedFormat] = useState<'stickiply' | 'printful'>('printful');

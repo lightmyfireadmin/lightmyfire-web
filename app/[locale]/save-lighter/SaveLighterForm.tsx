@@ -12,7 +12,8 @@ interface SaveLighterFormProps {
 
 export default function SaveLighterForm({ user, onSuccess }: SaveLighterFormProps) {
   const router = useRouter();
-  const t = useI18n() as any;
+  // Using unknown cast because useI18n type inference might be tricky here without deeper changes
+  const t = useI18n() as unknown as (key: string) => string;
   const [lighterName, setLighterName] = useState('');
   const [backgroundUrl, setBackgroundUrl] = useState('');
   const [showUsername, setShowUsername] = useState(false);
