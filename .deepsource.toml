@@ -1,0 +1,26 @@
+version = 1
+
+[[analyzers]]
+name = "sql"
+
+[[analyzers]]
+name = "kotlin"
+
+  [analyzers.meta]
+  runtime_version = "1.8"
+  language_version = "1.7"
+
+[[analyzers]]
+name = "javascript"
+
+  [analyzers.meta]
+  plugins = [
+    "angular",
+    "react",
+    "vue",
+    "angularjs"
+  ]
+  environment = ["nodejs"]
+
+[[analyzers]]
+name = "test-coverage"
