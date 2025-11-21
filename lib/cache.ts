@@ -42,7 +42,7 @@ class SimpleCache {
   /**
    * Set a value in cache with TTL (Time To Live) in seconds
    */
-  set<T>(key: string, data: T, ttlSeconds: number = 300): void {
+  set<T>(key: string, data: T, ttlSeconds = 300): void {
     const expiry = Date.now() + (ttlSeconds * 1000);
     this.cache.set(key, { data, expiry });
   }
@@ -107,7 +107,7 @@ export const cache = new SimpleCache();
 export async function withCache<T>(
   key: string,
   fetchFn: () => Promise<T>,
-  ttlSeconds: number = 300
+  ttlSeconds = 300
 ): Promise<T> {
   // Try to get from cache
   const cached = cache.get<T>(key);

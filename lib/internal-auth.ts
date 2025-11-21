@@ -37,7 +37,7 @@ export function generateInternalAuthToken(userId: string): string {
 export function verifyInternalAuthToken(
   token: string,
   expectedUserId: string,
-  maxAgeMs: number = 60000
+  maxAgeMs = 60000
 ): boolean {
   try {
     const secret = process.env.INTERNAL_AUTH_SECRET;

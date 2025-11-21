@@ -80,7 +80,7 @@ export const COST_STRUCTURE = {
 
 export function calculatePackCosts(
   packSize: PackSize,
-  monthlyVolume: number = 500
+  monthlyVolume = 500
 ) {
     const manufacturing = COST_STRUCTURE.MANUFACTURING_PER_STICKER * packSize;
 
@@ -124,7 +124,7 @@ export function calculatePackCosts(
 
 export function formatPrice(
   amountInCents: number,
-  currency: string = 'eur'
+  currency = 'eur'
 ): string {
   const amount = amountInCents / 100;
 
@@ -254,7 +254,7 @@ export function getRegionalPrice(
 
 export function getPricingAnalytics(
   packsSold: { size: PackSize; quantity: number }[],
-  monthlyVolume: number = 500
+  monthlyVolume = 500
 ) {
   let totalRevenue = 0;
   let totalCosts = 0;
