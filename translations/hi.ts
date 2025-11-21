@@ -1394,8 +1394,6 @@ export default {
   'validation.username_required': 'उपयोगकर्ता नाम खाली नहीं हो सकता।',
 
 
-  'home.hero.title': 'Too Young To Die',
-  'home.hero.subtitle': 'Billions of lighters are thrown away every year. Found, loved, lost, passed from hand to hand, then forgotten... Yet filled with stories to tell. Among these lighters, many could still enjoy a new life: a huge portion of refillable lighters sold each year are discarded when empty. Let\'s give them a chance to stay with us by discovering the richness of their journey.',
   'home.new_here_link': '🤔 New here? Where did I just land?',
   'home.new_here_aria': 'Learn more about LightMyFire in our FAQ',
   'auth.why_account_needed': 'Why do I need an account?',
@@ -1419,8 +1417,6 @@ export default {
   'faq.nav.take_part': '🎨 I Want to Take Part',
   'faq.nav.type_code_aria': 'Go to homepage to enter a lighter PIN code',
   'faq.nav.take_part_aria': 'Go to save a lighter page to start your journey',
-  'save_lighter.pack_5.price': '$4.99',
-  'save_lighter.pack_5.description': 'Perfect for starting your LightSaver journey.',
   'add_post.context.text': '✨ **Just be authentic.** It doesn\'t have to be perfect, original, or poetic. A simple thought, a quote you love, or even a mundane observation—it all adds to the mosaic. The richness comes from diversity, not perfection.',
   'add_post.context.song': '🎵 **Share what moves you.** Whether it\'s a chart-topper or an obscure gem, your own creation or someone else\'s—all music tells a story. No need to overthink it, just share what resonates.',
   'add_post.context.image': '📸 **Any photo counts.** A blurry selfie, a sunset, street art, or your lunch. You don\'t need to be a photographer. Every image adds color to this lighter\'s journey.',

@@ -13,6 +13,13 @@ export async function GET(request: NextRequest) {
 
     const { supabase } = auth;
 
+    if (!supabase) {
+      return NextResponse.json(
+        { error: 'Internal server error: Database client not initialized' },
+        { status: 500 }
+      );
+    }
+
     // Get search query from URL params
     const searchParams = request.nextUrl.searchParams;
     const query = searchParams.get('q');
