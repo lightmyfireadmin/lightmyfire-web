@@ -47,7 +47,15 @@ export async function POST(request: NextRequest) {
     const supportedLanguages = ['en', 'es', 'fr', 'de'];
     const emailLanguage = supportedLanguages.includes(language) ? language : 'en';
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Validate email length
+    if (recipientEmail.length > 255) {
+      return NextResponse.json(
+        { error: 'Email address too long' },
+        { status: 400 }
+      );
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(recipientEmail)) {
       return NextResponse.json(
         { error: 'Invalid email format' },

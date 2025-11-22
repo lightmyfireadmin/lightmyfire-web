@@ -63,7 +63,8 @@ async function retryWithBackoff<T>(
 
       // If not retryable or last attempt, throw immediately
       if (!isRetryable || attempt === maxRetries) {
-        console.error(`${context} failed after ${attempt + 1} attempts (not retryable or max retries reached)`, {
+        console.error('Operation failed after retries:', {
+          context,
           error: error instanceof Error ? error.message : 'Unknown error',
           statusCode,
           attempt: attempt + 1,
@@ -78,7 +79,10 @@ async function retryWithBackoff<T>(
         RETRY_CONFIG.maxDelay
       );
 
-      console.warn(`${context} attempt ${attempt + 1} failed, retrying in ${delay}ms...`, {
+      console.warn('Operation attempt failed, retrying:', {
+        context,
+        attempt: attempt + 1,
+        delayMs: delay,
         error: error instanceof Error ? error.message : 'Unknown error',
         statusCode,
         attemptsRemaining: maxRetries - attempt,

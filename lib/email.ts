@@ -93,7 +93,8 @@ async function retryEmailSend<T>(
 
       // If not retryable or last attempt, throw immediately
       if (!isRetryable || attempt === maxRetries) {
-        console.error(`${context} failed after ${attempt + 1} attempts (not retryable or max retries reached)`, {
+        console.error('Email operation failed after retries:', {
+          context,
           error: error instanceof Error ? error.message : 'Unknown error',
           attempt: attempt + 1,
           maxRetries: maxRetries + 1,
@@ -108,7 +109,10 @@ async function retryEmailSend<T>(
         EMAIL_RETRY_CONFIG.maxDelay
       );
 
-      console.warn(`${context} attempt ${attempt + 1} failed, retrying in ${delay}ms...`, {
+      console.warn('Email operation attempt failed, retrying:', {
+        context,
+        attempt: attempt + 1,
+        delayMs: delay,
         error: error instanceof Error ? error.message : 'Unknown error',
         attemptsRemaining: maxRetries - attempt,
       });

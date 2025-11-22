@@ -121,11 +121,10 @@ for (const file of localeFiles) {
     // If we write it as `'Can't'`, it breaks.
     // So we MUST escape single quotes.
 
-    const escapedValue = englishValue.replace(/'/g, "\\'");
-
     // Add a comment indicating this needs translation
     newContent += `\n  // TODO: Translate from English\n`;
-    newContent += `  '${key}': '${escapedValue}',\n`;
+    // Use JSON.stringify to safely encode the value (handles quotes, backslashes, newlines, etc.)
+    newContent += `  '${key}': ${JSON.stringify(englishValue)},\n`;
   }
 
   // Add closing brace

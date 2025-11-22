@@ -34,6 +34,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate email length
+    if (email.length > 255) {
+      return NextResponse.json(
+        { error: 'Email address too long' },
+        { status: 400 }
+      );
+    }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
@@ -44,14 +52,6 @@ export async function POST(request: NextRequest) {
 
     // Normalize email (trim, lowercase)
     const normalizedEmail = email.trim().toLowerCase();
-
-    // Validate email length
-    if (normalizedEmail.length > 255) {
-      return NextResponse.json(
-        { error: 'Email address too long' },
-        { status: 400 }
-      );
-    }
 
     // Validate redirect URL
     if (!redirectTo || typeof redirectTo !== 'string') {

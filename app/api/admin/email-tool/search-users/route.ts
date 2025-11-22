@@ -39,8 +39,8 @@ export async function GET(request: NextRequest) {
     }
 
     // Also search in sticker_orders for additional context (shipping names)
-    // Escape LIKE wildcards to prevent SQL injection
-    const escapedQuery = query.replace(/[%_]/g, '\\$&');
+    // Escape LIKE wildcards (%, _) and the escape character itself (\) to prevent SQL injection
+    const escapedQuery = query.replace(/[%_\\]/g, '\\$&');
     const { data: orders } = await supabase
       .from('sticker_orders')
       .select('user_id, user_email, shipping_name')

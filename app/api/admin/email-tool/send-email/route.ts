@@ -49,6 +49,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate email length
+    if (to.length > 255) {
+      return NextResponse.json(
+        { error: 'Recipient email address too long' },
+        { status: 400 }
+      );
+    }
+
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(to)) {
@@ -65,7 +73,7 @@ export async function POST(request: NextRequest) {
       'mitch@lightmyfire.app',
     ];
 
-    const fromEmail = from.includes('<') ? from.match(/<(.+)>/)?.[1] : from;
+    const fromEmail = from.includes('<') ? from.match(/<([^>]+)>/)?.[1] : from;
     if (!fromEmail || !allowedFromAddresses.includes(fromEmail)) {
       return NextResponse.json(
         { error: 'Invalid from address. Must be one of: ' + allowedFromAddresses.join(', ') },

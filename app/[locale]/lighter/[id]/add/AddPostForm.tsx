@@ -14,6 +14,23 @@ type PostType = 'text' | 'song' | 'image' | 'location' | 'refuel';
 
 const MAX_TEXT_LENGTH = 500;
 
+// Helper to safely extract YouTube ID
+const extractYoutubeId = (url: string) => {
+  try {
+    const urlObj = new URL(url);
+    const v = urlObj.searchParams.get('v');
+    if (v && /^[a-zA-Z0-9_-]{11}$/.test(v)) {
+      return v;
+    }
+  } catch (e) {
+    // Fallback for simple strings or if URL parsing fails but regex might match
+  }
+
+  // Fallback regex for various youtube formats
+  const match = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+  return match ? match[1] : '';
+};
+
 interface YouTubeVideo {
   id: { videoId: string };
   snippet: { title: string; thumbnails: { default: { url: string } } };
@@ -452,7 +469,7 @@ export default function AddPostForm({
                       <iframe
                         width="100%"
                         height="200"
-                        src={`https://www.youtube.com/embed/${contentUrl.split('v=')[1]?.split('&')[0]}`}
+                        src={`https://www.youtube.com/embed/${extractYoutubeId(contentUrl)}`}
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
@@ -481,7 +498,7 @@ export default function AddPostForm({
                       <iframe
                         width="100%"
                         height="200"
-                        src={`https://www.youtube.com/embed/${contentUrl.split('v=')[1]?.split('&')[0]}`}
+                        src={`https://www.youtube.com/embed/${extractYoutubeId(contentUrl)}`}
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
