@@ -3,8 +3,26 @@ import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 import { logger } from '@/lib/logger';
 
+/**
+ * Ensures this route is dynamically rendered to handle incoming webhooks.
+ */
 export const dynamic = 'force-dynamic';
 
+/**
+ * Handles incoming Stripe webhook events.
+ *
+ * This function performs the following steps:
+ * 1.  **Configuration Check**: Verifies that necessary Stripe and Supabase environment variables are set.
+ * 2.  **Signature Verification**: Authenticates the webhook request using Stripe's `constructEvent` method, which prevents replay attacks and ensures data integrity.
+ * 3.  **Idempotency**: Checks if the event has already been processed using a database table to avoid duplicate actions.
+ * 4.  **Event Processing**: Handles specific Stripe event types:
+ *     - `payment_intent.succeeded`: Updates the order status to paid via a database RPC call.
+ *     - `payment_intent.payment_failed`: Records payment failure details in the database.
+ *     - `charge.refunded`: Updates the order status to 'refunded'.
+ *
+ * @param {NextRequest} request - The incoming HTTP request containing the webhook payload.
+ * @returns {Promise<NextResponse>} A JSON response indicating success or failure.
+ */
 export async function POST(request: NextRequest) {
   try {
     if (!process.env.STRIPE_SECRET_KEY) {
@@ -83,7 +101,8 @@ export async function POST(request: NextRequest) {
       }
     );
 
-        const { data: existingEvent } = await supabase
+    // Idempotency check: Check if event already processed
+    const { data: existingEvent } = await supabase
       .from('webhook_events')
       .select('id')
       .eq('id', event.id)
@@ -94,7 +113,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ received: true, status: 'already_processed' }, { status: 200 });
     }
 
-        const { error: insertError } = await supabase
+    // Record new event
+    const { error: insertError } = await supabase
       .from('webhook_events')
       .insert({
         id: event.id,
@@ -103,7 +123,8 @@ export async function POST(request: NextRequest) {
       });
 
     if (insertError) {
-            if (insertError.code === '23505') {
+      // Handle race condition if two requests come in simultaneously
+      if (insertError.code === '23505') {
         logger.info('Webhook event processed by another instance', { eventId: event.id });
         return NextResponse.json({ received: true, status: 'already_processed' }, { status: 200 });
       }

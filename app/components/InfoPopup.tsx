@@ -4,7 +4,23 @@ import { Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { QuestionMarkCircleIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
-const InfoPopup = ({ content }: { content: string }) => {
+/**
+ * Props for the InfoPopup component.
+ */
+interface InfoPopupProps {
+  /** The text content to display inside the popup. */
+  content: string;
+}
+
+/**
+ * A small popup component triggered by a question mark icon.
+ * Used for displaying tooltip-like information or help text.
+ * Built using Headless UI's Popover component.
+ *
+ * @param {InfoPopupProps} props - The component props.
+ * @returns {JSX.Element} The rendered InfoPopup component.
+ */
+const InfoPopup = ({ content }: InfoPopupProps) => {
   return (
     <Popover className="relative inline-block">
       {({ close }) => (

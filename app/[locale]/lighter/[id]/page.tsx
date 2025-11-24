@@ -4,7 +4,6 @@ import Link from 'next/link';
 
 import EmptyLighterPosts from '@/app/components/EmptyLighterPosts';
 import PaginatedPosts from './PaginatedPosts';
-import { DetailedPost } from '@/lib/types';
 import type { Metadata } from 'next';
 import MapComponent from './MapComponent';
 import { Suspense } from 'react';
@@ -14,8 +13,14 @@ import { PlusIcon } from '@heroicons/react/24/outline';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { getI18n } from '@/locales/server';
 
+/**
+ * Type alias for the i18n translation function.
+ */
 type I18nTranslateFunction = (key: string, ...args: unknown[]) => string;
 
+/**
+ * Extended Lighter interface to include profile information.
+ */
 interface LighterWithProfiles {
   id: string;
   name: string;
@@ -28,6 +33,16 @@ interface LighterWithProfiles {
   } | null;
 }
 
+/**
+ * Generates dynamic metadata for the lighter details page.
+ * Uses the lighter's name and background image for OpenGraph tags.
+ *
+ * @param {object} context - Context containing route params.
+ * @param {object} context.params - Route parameters.
+ * @param {string} context.params.id - The unique ID of the lighter.
+ * @param {string} context.params.locale - The current locale.
+ * @returns {Promise<Metadata>} The metadata object.
+ */
 export async function generateMetadata({
   params,
 }: {
@@ -55,7 +70,7 @@ export async function generateMetadata({
       description: 'See its story on LightMyFire',
       images: [
         {
-          url: lighter.custom_background_url || '/default-og-image.png', 
+          url: lighter.custom_background_url || '/default-og-image.png',
           width: 1200,
           height: 630,
         },
@@ -71,6 +86,21 @@ export async function generateMetadata({
   };
 }
 
+/**
+ * The Lighter Details page.
+ *
+ * Displays:
+ * - Lighter basic info (Name, PIN, Saver).
+ * - A map showing locations visited by this lighter.
+ * - A feed of posts (stories) associated with this lighter.
+ * - Controls to add a new post/story.
+ *
+ * @param {object} context - Context containing route params.
+ * @param {object} context.params - Route parameters.
+ * @param {string} context.params.id - The unique ID of the lighter.
+ * @param {string} context.params.locale - The current locale.
+ * @returns {Promise<JSX.Element>} The rendered page.
+ */
 export default async function LighterPage({
   params,
 }: {
@@ -85,6 +115,7 @@ export default async function LighterPage({
   } = await supabase.auth.getSession();
   const isLoggedIn = session !== null;
 
+  // Fetch lighter details including the saver's profile
   const { data: lighter } = await supabase
     .from('lighters')
     .select('id, name, pin_code, custom_background_url, saver_id, profiles:saver_id(username, level)')
@@ -99,14 +130,14 @@ export default async function LighterPage({
   const saverUsername = typedLighter.profiles?.username || 'Anonymous';
   const saverLevel = typedLighter.profiles?.level || 1;
 
-
+  // Try fetching from the view first
   let postsResponse = await supabase
     .from('detailed_posts')
     .select('*')
     .eq('lighter_id', params.id)
     .order('created_at', { ascending: false });
 
-
+  // Fallback to raw query if view fails (e.g., in dev if view is missing)
   if (postsResponse.error || !postsResponse.data) {
     postsResponse = (await supabase
       .from('posts')
@@ -138,7 +169,7 @@ export default async function LighterPage({
 
   const { data: posts } = postsResponse;
 
-  
+  // Extract location data for the map
   const locationData = posts
     ?.filter(
       (post) =>
@@ -157,12 +188,12 @@ export default async function LighterPage({
       <Suspense fallback={null}>
         <SuccessNotification />
       </Suspense>
-      {}
+
       <div className="mx-auto max-w-2xl bg-background/95 p-4 pt-8 md:p-6 md:pt-10 shadow-lg backdrop-blur-sm min-h-screen">
-        {}
+        {/* Header Section */}
         <div className="mb-8 border-b border-border pb-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            {}
+            {/* Illustration */}
             <div className="flex md:flex items-center justify-center md:justify-start">
               <Image
                 src="/illustrations/telling_stories.png"
@@ -175,7 +206,7 @@ export default async function LighterPage({
               />
             </div>
 
-            {}
+            {/* Info */}
             <div className="flex-1 text-center md:text-left">
               <h1 className="text-3xl md:text-4xl font-bold text-foreground">
                 {lighter.name}
@@ -185,7 +216,7 @@ export default async function LighterPage({
               </p>
             </div>
 
-            {}
+            {/* Post Count */}
             <div className="flex flex-col items-center justify-center md:items-end">
               <p className="text-5xl md:text-6xl font-bold text-primary">
                 {posts?.length || 0}
@@ -197,16 +228,16 @@ export default async function LighterPage({
           </div>
         </div>
 
-        {}
+        {/* Content Section: Map & Saver Info */}
         <div className="mb-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {}
+          {/* Map */}
           {locationData && locationData.length > 0 && (
             <div className="md:col-span-2 rounded-lg overflow-hidden shadow-md">
               <MapComponent locations={locationData} height="300px" />
             </div>
           )}
 
-          {}
+          {/* Saver Card */}
           <div className="flex flex-col justify-start">
             <div className="rounded-lg border border-border bg-background p-6 shadow-md h-fit">
               <p className="text-sm text-muted-foreground uppercase tracking-wider font-semibold mb-3">
@@ -234,8 +265,9 @@ export default async function LighterPage({
           </div>
         </div>
 
-        {}
+        {/* Posts Feed */}
         {posts && posts.length > 0 ? (
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           <PaginatedPosts posts={posts as any} isLoggedIn={isLoggedIn} />
         ) : (
           <EmptyLighterPosts lighterId={lighter.id} />

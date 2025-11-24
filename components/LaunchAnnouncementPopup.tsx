@@ -17,7 +17,7 @@ const ANNOUNCEMENT_CONTENT = {
   },
   de: {
     title: "Wir fangen gerade erst an",
-    content: `Hallo! Ich freue mich, dich willkommen zu heißen. Diese Plattform befindet sich noch im Pre-Launch und strebt danach, noch **besser** zu werden. Zögere nicht, mich unter **mitch@lightmyfire.app** zu kontaktieren, um dein **Feedback & deine Meinung** zu teilen. Das hilft enorm! In den kommenden Wochen können einige Unannehmlichkeiten durch die Startphase auftreten - du könntest auf ein paar Bugs, Übersetzungsfehler oder super generische Beiträge stoßen, die zum Testen der Funktionen erstellt wurden. Bestellungen können **ein paar Tage länger dauern** als langfristig. Vielen Dank für dein **Verständnis** und viel Spaß beim Durchstöbern von **lightmyfire.app**!`,
+    content: `Hallo! Ich freue mich, dich willkommen zu heißen. Diese Plattform befindet sich noch im Pre-Launch und strebt danach, noch **besser**. Zögere nicht, mich unter **mitch@lightmyfire.app** zu kontaktieren, um dein **Feedback & deine Meinung** zu teilen. Das hilft enorm! In den kommenden Wochen können einige Unannehmlichkeiten durch die Startphase auftreten - du könntest auf ein paar Bugs, Übersetzungsfehler oder super generische Beiträge stoßen, die zum Testen der Funktionen erstellt wurden. Bestellungen können **ein paar Tage länger dauern** als langfristig. Vielen Dank für dein **Verständnis** und viel Spaß beim Durchstöbern von **lightmyfire.app**!`,
   },
   es: {
     title: "Apenas estamos comenzando",

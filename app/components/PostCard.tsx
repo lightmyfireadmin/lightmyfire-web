@@ -1,13 +1,7 @@
 'use client';
 
-import { DetailedPost } from '@/lib/types'; 
-
-import LikeButton from './LikeButton';
-import FlagButton from './FlagButton';
-import ModeratorBadge from './ModeratorBadge';
-import { useI18n } from '@/locales/client';
+import React from 'react';
 import Image from 'next/image';
-import { countryCodeToFlag, getCountryName } from '@/lib/countryToFlag';
 import {
   ChatBubbleBottomCenterTextIcon,
   MusicalNoteIcon,
@@ -15,8 +9,21 @@ import {
   MapPinIcon,
   FireIcon
 } from '@heroicons/react/24/outline';
-import React from 'react'; 
 
+import { DetailedPost } from '@/lib/types';
+import LikeButton from './LikeButton';
+import FlagButton from './FlagButton';
+import ModeratorBadge from './ModeratorBadge';
+import { useI18n } from '@/locales/client';
+import { countryCodeToFlag, getCountryName } from '@/lib/countryToFlag';
+
+/**
+ * Extracts the YouTube video ID from a URL.
+ * Supports both standard 'youtube.com' and shortened 'youtu.be' URLs.
+ *
+ * @param {string | null} url - The YouTube URL.
+ * @returns {string | null} The video ID if found, otherwise null.
+ */
 function getYouTubeEmbedId(url: string | null): string | null {
     if (!url) return null;
     let videoId = '';
@@ -33,6 +40,9 @@ function getYouTubeEmbedId(url: string | null): string | null {
     }
 }
 
+/**
+ * Maps post types to their corresponding HeroIcon components.
+ */
 const iconMap: { [key in DetailedPost['post_type']]: React.ElementType } = {
     text: ChatBubbleBottomCenterTextIcon,
     image: PhotoIcon,
@@ -41,15 +51,32 @@ const iconMap: { [key in DetailedPost['post_type']]: React.ElementType } = {
     refuel: FireIcon,
 };
 
+/**
+ * Props for the PostCard component.
+ */
+interface PostCardProps {
+  /** The full data object for the post to display. */
+  post: DetailedPost;
+  /** Indicates if the current user is logged in (enables interactions like liking). */
+  isLoggedIn: boolean;
+  /** If true, renders a compact version of the card suitable for smaller containers. */
+  isMini?: boolean;
+}
+
+/**
+ * A card component used to display a single post.
+ * Supports various post types: Text, Image, Song (YouTube), Location, and Refuel.
+ * Handles styling based on post type and displays user info, content, and interaction buttons.
+ *
+ * @param {PostCardProps} props - The component props.
+ * @returns {JSX.Element} The rendered post card.
+ */
 function PostCard({
   post,
   isLoggedIn,
   isMini = false,
-}: {
-  post: DetailedPost;
-  isLoggedIn: boolean;
-  isMini?: boolean;
-}) {
+}: PostCardProps) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const t = useI18n() as any;
 
   // Determine display name based on user status
@@ -79,7 +106,7 @@ function PostCard({
   const isRefuelPost = post.post_type === 'refuel';
 
   return (
-    
+
     <div className={`
       relative rounded-lg border border-border bg-background shadow-sm overflow-hidden border-l-4
       ${post.post_type === 'text' ? 'border-blue-500' : ''}
@@ -92,10 +119,10 @@ function PostCard({
       ${isRefuelPost ? 'py-3 pl-4 pr-5' : 'py-5 pl-5 pr-5'}
     `}>
 
-      {}
+      {/* Header: Icon, User Info, Date */}
       <div className={`mb-3 flex items-center justify-between ${isRefuelPost ? 'mb-2' : 'mb-4'}`}>
         <div className="flex items-center gap-2 flex-wrap">
-           {}
+           {/* Post Type Icon */}
            <IconComponent
              className={`
                ${isMini ? 'h-4 w-4' : 'h-5 w-5'}
@@ -136,7 +163,7 @@ function PostCard({
         </span>
       </div>
 
-      {}
+      {/* Content Body */}
       <div className={`space-y-4 ${isRefuelPost ? '' : 'pl-1'}`}>
         {!isRefuelPost && post.title && (
             <h3 className={`${isMini ? 'text-base' : 'text-xl'} font-bold text-foreground`}>{post.title}</h3>
@@ -195,7 +222,7 @@ function PostCard({
         )}
       </div>
 
-      {}
+      {/* Footer: Interactions */}
       {!isRefuelPost && (
         <div className={`mt-4 pt-3 border-t border-border ${isMini ? 'flex justify-between scale-100' : 'flex justify-between'}`}>
           <LikeButton post={post} isLoggedIn={isLoggedIn} />

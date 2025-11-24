@@ -4,7 +4,7 @@ import React, { useState, Fragment, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Dialog, Transition } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon, QuestionMarkCircleIcon, HeartIcon, PlusIcon, GlobeAltIcon, UserIcon, MagnifyingGlassIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, XMarkIcon, QuestionMarkCircleIcon, HeartIcon, PlusIcon, UserIcon, MagnifyingGlassIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
 import LogoutButton from './LogoutButton';
 import { useCurrentLocale, useI18n } from '@/locales/client';
 import Image from 'next/image';
@@ -13,6 +13,13 @@ import type { Session } from '@supabase/supabase-js';
 
 import LanguageSwitcher from './LanguageSwitcher';
 
+/**
+ * A specialized link component for the logo that adds a "halo" effect on click.
+ *
+ * @param {object} props - Component props.
+ * @param {string} props.href - The URL to navigate to.
+ * @param {string} props.lang - The current language code.
+ */
 function LogoLink({ href, lang }: { href: string; lang: string }) {
   const [showHalo, setShowHalo] = useState(false);
 
@@ -42,25 +49,55 @@ function LogoLink({ href, lang }: { href: string; lang: string }) {
   );
 }
 
+/**
+ * Navigation items configuration.
+ */
 const navigation = [
   { key: 'nav.how_it_works', href: '/legal/faq', icon: QuestionMarkCircleIcon },
   { key: 'nav.save_lighter', href: '/save-lighter', icon: HeartIcon },
   { key: 'nav.refill_guide', href: '/dont-throw-me-away', icon: PlusIcon },
 ] as const;
 
+/**
+ * Utility to combine CSS class names.
+ */
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Header({ session, username }: { session: Session | null; username: string | null }) {
+/**
+ * Props for the Header component.
+ */
+interface HeaderProps {
+  /** The current Supabase session, or null if not logged in. */
+  session: Session | null;
+  /** The current user's display name, or null. */
+  username: string | null;
+}
+
+/**
+ * The main application header component.
+ *
+ * Features:
+ * - Responsive navigation bar.
+ * - Mobile menu with slide-over transition.
+ * - Dynamic language switching.
+ * - User authentication state display (Login/Logout/Profile).
+ * - Localization support.
+ *
+ * @param {HeaderProps} props - The component props.
+ * @returns {JSX.Element} The rendered header.
+ */
+export default function Header({ session, username }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const isLoggedIn = session !== null;
   const lang = useCurrentLocale();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const t = useI18n() as any;
   const focusTrapRef = useFocusTrap(mobileMenuOpen);
 
-  
+  // Close mobile menu when route changes
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
@@ -148,7 +185,7 @@ export default function Header({ session, username }: { session: Session | null;
         </div>
       </nav>
 
-      {}
+      {/* Mobile menu */}
       <Transition show={mobileMenuOpen} as={Fragment}>
         <Dialog as="div" className="lg:hidden z-50" onClose={() => setMobileMenuOpen(false)}>
           <Transition.Child

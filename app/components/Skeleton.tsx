@@ -1,11 +1,23 @@
 
-
+/**
+ * Props for the Skeleton component.
+ */
 interface SkeletonProps {
+  /** Additional CSS classes to apply to the skeleton element. */
   className?: string;
+  /** The shape of the skeleton. Defaults to 'rectangular'. */
   variant?: 'text' | 'circular' | 'rectangular';
+  /** The animation type. Defaults to 'pulse'. 'wave' adds a shimmering effect. */
   animation?: 'pulse' | 'wave' | 'none';
 }
 
+/**
+ * A primitive Skeleton component for loading states.
+ * Renders a placeholder shape with optional animation.
+ *
+ * @param {SkeletonProps} props - The component props.
+ * @returns {JSX.Element} The rendered skeleton.
+ */
 export function Skeleton({
   className = '',
   variant = 'rectangular',
@@ -38,6 +50,10 @@ export function Skeleton({
   );
 }
 
+/**
+ * A pre-configured skeleton representing a generic card.
+ * Useful for feeds or grid layouts.
+ */
 export function CardSkeleton() {
   return (
     <div className="rounded-lg border border-border bg-background p-4 space-y-3">
@@ -57,6 +73,9 @@ export function CardSkeleton() {
   );
 }
 
+/**
+ * A specialized skeleton for lighter item cards.
+ */
 export function LighterCardSkeleton() {
   return (
     <div className="rounded-lg border border-border bg-background p-6 space-y-4">
@@ -77,6 +96,12 @@ export function LighterCardSkeleton() {
   );
 }
 
+/**
+ * A skeleton representing a list of items.
+ *
+ * @param {object} props - Component props.
+ * @param {number} [props.count=5] - Number of list items to render.
+ */
 export function ListSkeleton({ count = 5 }: { count?: number }) {
   return (
     <div className="space-y-3">
@@ -93,16 +118,23 @@ export function ListSkeleton({ count = 5 }: { count?: number }) {
   );
 }
 
+/**
+ * A skeleton representing a table structure.
+ *
+ * @param {object} props - Component props.
+ * @param {number} [props.rows=5] - Number of table rows.
+ * @param {number} [props.cols=4] - Number of table columns.
+ */
 export function TableSkeleton({ rows = 5, cols = 4 }: { rows?: number; cols?: number }) {
   return (
     <div className="space-y-3">
-      {}
+      {/* Header */}
       <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
         {Array.from({ length: cols }).map((_, i) => (
           <Skeleton key={i} className="h-8" />
         ))}
       </div>
-      {}
+      {/* Body */}
       {Array.from({ length: rows }).map((_, rowIndex) => (
         <div key={rowIndex} className="grid gap-4" style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}>
           {Array.from({ length: cols }).map((_, colIndex) => (
@@ -114,6 +146,12 @@ export function TableSkeleton({ rows = 5, cols = 4 }: { rows?: number; cols?: nu
   );
 }
 
+/**
+ * A skeleton representing a grid of cards (mosaic).
+ *
+ * @param {object} props - Component props.
+ * @param {number} [props.count=12] - Number of cards to render.
+ */
 export function MosaicSkeleton({ count = 12 }: { count?: number }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -124,10 +162,14 @@ export function MosaicSkeleton({ count = 12 }: { count?: number }) {
   );
 }
 
+/**
+ * A comprehensive skeleton for a user profile page.
+ * Includes header, stats, and recent activity sections.
+ */
 export function ProfileSkeleton() {
   return (
     <div className="space-y-6">
-      {}
+      {/* Header */}
       <div className="flex items-center gap-4">
         <Skeleton variant="circular" className="h-24 w-24" />
         <div className="flex-1 space-y-2">
@@ -137,7 +179,7 @@ export function ProfileSkeleton() {
         </div>
       </div>
 
-      {}
+      {/* Stats */}
       <div className="grid grid-cols-3 gap-4">
         {Array.from({ length: 3 }).map((_, i) => (
           <div key={i} className="space-y-2">
@@ -147,7 +189,7 @@ export function ProfileSkeleton() {
         ))}
       </div>
 
-      {}
+      {/* Recent Activity */}
       <div className="space-y-4">
         <Skeleton className="h-6 w-32" />
         <ListSkeleton count={3} />
