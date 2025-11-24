@@ -185,9 +185,7 @@ describe('/api/webhooks/printful POST', () => {
       mockSupabaseClient.from.mockReturnValue({
         select: vi.fn().mockReturnValue({
           eq: vi.fn().mockReturnValue({
-            eq: vi.fn().mockReturnValue({
-              single: vi.fn().mockResolvedValue({ data: null, error: null }),
-            }),
+            single: vi.fn().mockResolvedValue({ data: null, error: null }),
           }),
         }),
         insert: vi.fn().mockResolvedValue({ data: {}, error: null }),
@@ -230,11 +228,9 @@ describe('/api/webhooks/printful POST', () => {
       mockSupabaseClient.from.mockReturnValue({
         select: vi.fn().mockReturnValue({
           eq: vi.fn().mockReturnValue({
-            eq: vi.fn().mockReturnValue({
-              single: vi.fn().mockResolvedValue({
-                data: { id: 'webhook-123', webhook_id: 'printful_package_shipped_12345' },
-                error: null,
-              }),
+            single: vi.fn().mockResolvedValue({
+              data: { id: 'webhook-123', webhook_id: 'printful_package_shipped_12345' },
+              error: null,
             }),
           }),
         }),
@@ -301,9 +297,7 @@ describe('/api/webhooks/printful POST', () => {
           return {
             select: vi.fn().mockReturnValue({
               eq: vi.fn().mockReturnValue({
-                eq: vi.fn().mockReturnValue({
-                  single: vi.fn().mockResolvedValue({ data: null, error: null }),
-                }),
+                single: vi.fn().mockResolvedValue({ data: null, error: null }),
               }),
             }),
             insert: vi.fn().mockResolvedValue({ data: {}, error: null }),
@@ -357,9 +351,7 @@ describe('/api/webhooks/printful POST', () => {
       mockSupabaseClient.from.mockReturnValue({
         select: vi.fn().mockReturnValue({
           eq: vi.fn().mockReturnValue({
-            eq: vi.fn().mockReturnValue({
-              single: vi.fn().mockResolvedValue({ data: null, error: null }),
-            }),
+            single: vi.fn().mockResolvedValue({ data: null, error: null }),
           }),
         }),
         insert: vi.fn().mockResolvedValue({ data: {}, error: null }),
@@ -405,9 +397,7 @@ describe('/api/webhooks/printful POST', () => {
           return {
             select: vi.fn().mockReturnValue({
               eq: vi.fn().mockReturnValue({
-                eq: vi.fn().mockReturnValue({
-                  single: vi.fn().mockResolvedValue({ data: null, error: null }),
-                }),
+                single: vi.fn().mockResolvedValue({ data: null, error: null }),
               }),
             }),
             insert: vi.fn().mockResolvedValue({ data: {}, error: null }),
@@ -467,9 +457,7 @@ describe('/api/webhooks/printful POST', () => {
           return {
             select: vi.fn().mockReturnValue({
               eq: vi.fn().mockReturnValue({
-                eq: vi.fn().mockReturnValue({
-                  single: vi.fn().mockResolvedValue({ data: null, error: null }),
-                }),
+                single: vi.fn().mockResolvedValue({ data: null, error: null }),
               }),
             }),
             insert: vi.fn().mockResolvedValue({ data: {}, error: null }),
@@ -534,9 +522,7 @@ describe('/api/webhooks/printful POST', () => {
           return {
             select: vi.fn().mockReturnValue({
               eq: vi.fn().mockReturnValue({
-                eq: vi.fn().mockReturnValue({
-                  single: vi.fn().mockResolvedValue({ data: null, error: null }),
-                }),
+                single: vi.fn().mockResolvedValue({ data: null, error: null }),
               }),
             }),
             insert: vi.fn().mockResolvedValue({ data: {}, error: null }),
@@ -601,9 +587,7 @@ describe('/api/webhooks/printful POST', () => {
           return {
             select: vi.fn().mockReturnValue({
               eq: vi.fn().mockReturnValue({
-                eq: vi.fn().mockReturnValue({
-                  single: vi.fn().mockResolvedValue({ data: null, error: null }),
-                }),
+                single: vi.fn().mockResolvedValue({ data: null, error: null }),
               }),
             }),
             insert: vi.fn().mockResolvedValue({ data: {}, error: null }),
@@ -665,9 +649,7 @@ describe('/api/webhooks/printful POST', () => {
           return {
             select: vi.fn().mockReturnValue({
               eq: vi.fn().mockReturnValue({
-                eq: vi.fn().mockReturnValue({
-                  single: vi.fn().mockResolvedValue({ data: null, error: null }),
-                }),
+                single: vi.fn().mockResolvedValue({ data: null, error: null }),
               }),
             }),
             insert: vi.fn().mockResolvedValue({ data: {}, error: null }),
@@ -723,9 +705,7 @@ describe('/api/webhooks/printful POST', () => {
           return {
             select: vi.fn().mockReturnValue({
               eq: vi.fn().mockReturnValue({
-                eq: vi.fn().mockReturnValue({
-                  single: vi.fn().mockResolvedValue({ data: null, error: null }),
-                }),
+                single: vi.fn().mockResolvedValue({ data: null, error: null }),
               }),
             }),
             insert: vi.fn().mockResolvedValue({ data: {}, error: null }),
@@ -768,9 +748,7 @@ describe('/api/webhooks/printful POST', () => {
       mockSupabaseClient.from.mockReturnValue({
         select: vi.fn().mockReturnValue({
           eq: vi.fn().mockReturnValue({
-            eq: vi.fn().mockReturnValue({
-              single: vi.fn().mockResolvedValue({ data: null, error: null }),
-            }),
+            single: vi.fn().mockResolvedValue({ data: null, error: null }),
           }),
         }),
         insert: vi.fn().mockResolvedValue({ data: {}, error: null }),
