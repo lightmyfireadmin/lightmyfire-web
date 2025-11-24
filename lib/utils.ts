@@ -70,6 +70,7 @@ export function truncate(
   suffix = '...'
 ): string {
   if (text.length <= maxLength) return text;
+  if (maxLength < suffix.length) return text.substring(0, maxLength);
   return text.substring(0, maxLength - suffix.length) + suffix;
 }
 
