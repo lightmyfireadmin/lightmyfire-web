@@ -868,6 +868,18 @@ export type Database = {
           username: string
         }[]
       }
+      admin_get_stats: {
+        Args: Record<string, never>
+        Returns: {
+          total_users: number
+          total_lighters: number
+          active_lighters: number
+          total_orders: number
+          total_revenue_cents: number
+          pending_orders: number
+          total_stickers_generated: number
+        }[]
+      }
       admin_grant_moderator: { Args: { p_user_email: string }; Returns: Json }
       admin_revoke_moderator: { Args: { p_user_id: string }; Returns: Json }
       admin_search_users_by_email: {
