@@ -1,13 +1,27 @@
-
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { cookies } from 'next/headers';
 
+/**
+ * Forces the route to be dynamic to ensure authentication checks run on every request.
+ */
 export const dynamic = 'force-dynamic';
 
+/**
+ * Handles GET requests to test Printful integration.
+ *
+ * This endpoint serves a simple HTML dashboard to verify:
+ * 1. User authentication (requires admin role).
+ * 2. Printful API configuration and connectivity.
+ * 3. Environment variable setup.
+ *
+ * @param {NextRequest} request - The incoming request.
+ * @returns {Promise<NextResponse>} HTML response with test results or error messages.
+ */
 export async function GET(request: NextRequest) {
   try {
-        const cookieStore = cookies();
+    // Authenticate the user
+    const cookieStore = cookies();
     const supabase = createServerSupabaseClient(cookieStore);
     const { data: { session } } = await supabase.auth.getSession();
 
@@ -51,7 +65,8 @@ export async function GET(request: NextRequest) {
       );
     }
 
-        const { data: profile } = await supabase
+    // Verify admin role
+    const { data: profile } = await supabase
       .from('profiles')
       .select('role')
       .eq('id', session.user.id)
@@ -97,7 +112,8 @@ export async function GET(request: NextRequest) {
       );
     }
 
-        const PRINTFUL_API_KEY = process.env.PRINTFUL_API_KEY;
+    // Check configuration
+    const PRINTFUL_API_KEY = process.env.PRINTFUL_API_KEY;
 
     if (!PRINTFUL_API_KEY) {
       return new NextResponse(
@@ -139,7 +155,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-        const testStickers = [
+    const testStickers = [
       {
         name: 'Test Lighter 1',
         pinCode: 'TEST-001',
@@ -160,9 +176,8 @@ export async function GET(request: NextRequest) {
       },
     ];
 
-                const stickerPng = null;
-
-        const printfulResponse = await fetch('https://api.printful.com/store/products', {
+    // Make a real API call to Printful to verify connectivity
+    const printfulResponse = await fetch('https://api.printful.com/store/products', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${PRINTFUL_API_KEY}`,
@@ -172,7 +187,7 @@ export async function GET(request: NextRequest) {
 
     const printfulData = await printfulResponse.json();
 
-        return new NextResponse(
+    return new NextResponse(
       `
       <!DOCTYPE html>
       <html>

@@ -1,20 +1,39 @@
 'use client';
 
+/**
+ * Available sizes for the spinner.
+ */
 type SpinnerSize = 'sm' | 'md' | 'lg';
+
+/**
+ * Available colors for the spinner.
+ */
 type SpinnerColor = 'primary' | 'foreground' | 'muted' | 'white';
 
+/**
+ * Props for the LoadingSpinner component.
+ */
 interface LoadingSpinnerProps {
+  /** The size of the spinner. Defaults to 'md'. */
   size?: SpinnerSize;
+  /** The color theme of the spinner. Defaults to 'primary'. */
   color?: SpinnerColor;
+  /** Optional text label to display next to the spinner. Defaults to 'Loading'. */
   label?: string;
 }
 
+/**
+ * Maps size props to Tailwind CSS classes.
+ */
 const sizeClasses: Record<SpinnerSize, string> = {
   sm: 'w-4 h-4',
   md: 'w-6 h-6',
   lg: 'w-8 h-8',
 };
 
+/**
+ * Maps color props to Tailwind CSS classes.
+ */
 const colorClasses: Record<SpinnerColor, string> = {
   primary: 'text-primary',
   foreground: 'text-foreground',
@@ -22,6 +41,14 @@ const colorClasses: Record<SpinnerColor, string> = {
   white: 'text-white',
 };
 
+/**
+ * A versatile loading spinner component.
+ *
+ * Displays a spinning circle with an optional label.
+ *
+ * @param {LoadingSpinnerProps} props - The component props.
+ * @returns {JSX.Element} The rendered loading spinner.
+ */
 export default function LoadingSpinner({
   size = 'md',
   color = 'primary',

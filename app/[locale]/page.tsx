@@ -1,25 +1,30 @@
 import { cookies } from 'next/headers';
 import PinEntryForm from '@/app/components/PinEntryForm';
-import PostCard from '@/app/components/PostCard';
-import { DetailedPost } from '@/lib/types';
+import { createServerSupabaseClient } from '@/lib/supabase-server';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getI18n, getCurrentLocale } from '@/locales/server';
 import RandomPostFeed from '@/app/components/RandomPostFeed';
-import InfoPopup from '@/app/components/InfoPopup';
 import { Suspense } from 'react';
 import AuthNotification from '@/app/components/AuthNotification';
 import SignupWelcomeModal from '@/app/components/SignupWelcomeModal';
 import { HeartIcon } from '@heroicons/react/24/outline';
-import { createServerSupabaseClient } from '@/lib/supabase-server';
 import CommunityStats from '@/app/components/CommunityStats';
 import OurPhilosophy from '@/app/components/OurPhilosophy';
 import LaunchAnnouncementPopup from '@/components/LaunchAnnouncementPopup';
 import { generatePageMetadata, localizedMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 
+/**
+ * Ensures this page is dynamically rendered to handle authentication and real-time data properly.
+ */
 export const dynamic = 'force-dynamic';
 
+/**
+ * Generates metadata for the home page, optimized for SEO and social sharing.
+ *
+ * @returns {Promise<Metadata>} The configured metadata object.
+ */
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getCurrentLocale();
   const content = localizedMetadata.home[locale as keyof typeof localizedMetadata.home] || localizedMetadata.home.en;
@@ -32,7 +37,21 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
+/**
+ * The Home page component.
+ *
+ * This is the landing page of the application, featuring:
+ * - A hero section with a call to action.
+ * - A PIN entry form for tracking lighters.
+ * - "How it works" steps.
+ * - Community statistics.
+ * - A "Mosaic" feed of random posts.
+ * - Modals for launch announcements and signup welcome messages.
+ *
+ * @returns {Promise<JSX.Element>} The rendered home page.
+ */
 export default async function Home() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const t = await getI18n() as any;
   const cookieStore = cookies();
   const locale = await getCurrentLocale();
@@ -53,11 +72,11 @@ export default async function Home() {
       </Suspense>
       {!isLoggedIn && <LaunchAnnouncementPopup />}
 
-      {}
+      {/* Hero Section */}
       <div className="flex flex-col lg:flex-row items-center justify-center gap-1.5 lg:gap-2 py-4 lg:py-6 px-4 sm:px-6">
-        {}
+        {/* Hero Text & Image */}
         <div className="w-full lg:w-auto text-center lg:text-left max-w-md">
-          {}
+          {/* Main Title Block */}
           <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-6">
             <div className="h-[160px] lg:h-[220px] mx-auto lg:mx-0 flex-shrink-0">
               <Image
@@ -74,7 +93,7 @@ export default async function Home() {
             </h1>
           </div>
 
-          {}
+          {/* Subtitle Box */}
           <div className="rounded-lg bg-primary/5 p-4 mb-6">
             <div className="flex flex-col lg:flex-row lg:items-center gap-2 justify-center lg:justify-start">
               <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
@@ -84,7 +103,7 @@ export default async function Home() {
           </div>
         </div>
 
-        {}
+        {/* PIN Entry & Links */}
         <div className="w-full max-w-sm lg:w-auto lg:flex-shrink-0">
           <Suspense fallback={<div className="h-64 flex items-center justify-center"><div className="text-muted-foreground">Loading...</div></div>}>
             <PinEntryForm />
@@ -103,7 +122,7 @@ export default async function Home() {
         </div>
       </div>
 
-      {}
+      {/* CTA Section - Become a LightSaver */}
       <div className="mx-auto w-full max-w-4xl px-4 py-4 lg:py-6 mb-3 lg:mb-1">
         <div className="rounded-lg border border-border bg-background/90 p-8 sm:p-10 shadow-md">
           <h2 className="mb-4 text-center text-2xl sm:text-3xl font-bold text-foreground">
@@ -135,13 +154,13 @@ export default async function Home() {
         </div>
       </div>
 
-      {}
+      {/* How it Works Section */}
       <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
         <h2 className="mb-4 text-center text-2xl sm:text-3xl font-bold text-foreground">
           {t('home.how_it_works.title')}
         </h2>
         <div className="grid grid-cols-1 gap-1.5 md:gap-2 md:grid-cols-3">
-          {}
+          {/* Step 1 */}
           <div className="rounded-lg border border-border bg-background/90 p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
             <div className="h-40 sm:h-44 flex items-center justify-center overflow-hidden mb-4">
               <Image
@@ -162,7 +181,7 @@ export default async function Home() {
             </p>
           </div>
 
-          {}
+          {/* Step 2 */}
           <div className="rounded-lg border border-border bg-background/90 p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
             <div className="h-40 sm:h-44 flex items-center justify-center overflow-hidden mb-4">
               <Image
@@ -183,7 +202,7 @@ export default async function Home() {
             </p>
           </div>
 
-          {}
+          {/* Step 3 */}
           <div className="rounded-lg border border-border bg-background/90 p-5 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
             <div className="h-40 sm:h-44 flex items-center justify-center overflow-hidden mb-4">
               <Image
@@ -206,12 +225,13 @@ export default async function Home() {
         </div>
       </div>
 
-      {}
+      {/* Stats Section */}
       <CommunityStats />
 
-      {}
+      {/* Philosophy Section */}
       <OurPhilosophy />
 
+      {/* Mosaic Feed */}
       <RandomPostFeed isLoggedIn={isLoggedIn} />
     </div>
   );

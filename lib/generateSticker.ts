@@ -1,13 +1,17 @@
-
 /**
- * Requests the server to generate a sticker sheet PDF (or image) for the given lighter.
- * Note: The server actually returns a PNG or ZIP, but the function is named generateStickerPDF
- * in the client code, so we keep the name for compatibility or rename it if possible.
+ * Requests the server to generate a sticker sheet (PNG) for the given lighter and initiates a download.
  *
- * @param name The name of the lighter.
- * @param pinCode The unique PIN code of the lighter.
+ * This function sends a POST request to the `/api/generate-sticker-pdf` endpoint with the lighter details.
+ * It uses default values for background color ('#FFFFFF') and language ('en') as these are not currently
+ * provided by the caller. Upon a successful response, it creates a Blob from the response body and
+ * triggers a browser download of the generated image file.
+ *
+ * @param {string} name - The name of the lighter to appear on the sticker.
+ * @param {string} pinCode - The unique PIN code of the lighter.
+ * @returns {Promise<void>} A promise that resolves when the download has been initiated.
+ * @throws {Error} If the network request fails or the server returns an error response.
  */
-export async function generateStickerPDF(name: string, pinCode: string) {
+export async function generateStickerPDF(name: string, pinCode: string): Promise<void> {
   try {
     // Default values since the client doesn't provide them
     // In a real scenario, we might want to ask the user for these or fetch them from the lighter details

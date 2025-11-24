@@ -15,12 +15,19 @@ if (!DEEPSOURCE_API_KEY) {
   process.exit(1);
 }
 
-// Define schemas for DeepSource API responses
+/**
+ * Interface representing a standard GraphQL response wrapper.
+ * @template T - The type of the data object.
+ */
 interface GraphQLResponse<T> {
   data: T;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   errors?: any[];
 }
 
+/**
+ * Interface representing the specific structure of the DeepSource Viewer query response.
+ */
 interface ViewerResponse {
   viewer: {
     accounts: {
@@ -55,6 +62,10 @@ interface ViewerResponse {
   };
 }
 
+/**
+ * The Model Context Protocol (MCP) server instance for DeepSource integration.
+ * This server exposes tools to interact with DeepSource API.
+ */
 const server = new Server(
   {
     name: "deepsource-mcp-server",
@@ -67,6 +78,10 @@ const server = new Server(
   }
 );
 
+/**
+ * Handler for listing available tools.
+ * Exposes the 'list_issues' tool.
+ */
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
@@ -83,6 +98,15 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
   };
 });
 
+/**
+ * Handler for executing tools.
+ *
+ * Supported tools:
+ * - `list_issues`: Fetches issues from DeepSource GraphQL API for all accessible repositories.
+ *
+ * @param {object} request - The tool execution request.
+ * @returns {Promise<object>} The tool execution result containing text content or an error.
+ */
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   if (request.params.name === "list_issues") {
     try {
@@ -147,6 +171,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         };
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const issuesList: any[] = [];
 
       const accounts = response.data.data.viewer.accounts.edges;
@@ -180,6 +205,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           },
         ],
       };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       return {
         content: [
@@ -198,6 +224,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   throw new Error("Tool not found");
 });
 
+/**
+ * Starts the MCP server on stdio.
+ */
 async function runServer() {
   const transport = new StdioServerTransport();
   await server.connect(transport);

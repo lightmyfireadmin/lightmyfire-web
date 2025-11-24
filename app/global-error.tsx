@@ -3,9 +3,15 @@
 import { useEffect } from 'react';
 
 /**
- * Global error boundary that catches errors in the root layout
- * This is a fallback for errors that escape the regular error.tsx boundary
- * Must be a client component and include <html> and <body> tags
+ * Global error boundary component that catches unhandled errors in the root layout.
+ *
+ * This component serves as a final fallback when errors bubble up beyond standard page-level
+ * error boundaries. Because it replaces the root layout, it must include its own `<html>` and `<body>` tags.
+ *
+ * @param {object} props - The component props.
+ * @param {Error & { digest?: string }} props.error - The error object caught by Next.js.
+ * @param {() => void} props.reset - A function to attempt to recover by re-rendering the segment.
+ * @returns {JSX.Element} The rendered global error UI.
  */
 export default function GlobalError({
   error,
@@ -15,11 +21,11 @@ export default function GlobalError({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log error to console
+    // Log error to console for immediate visibility
     console.error('Global error boundary caught:', error);
     console.error('Error stack:', error.stack);
 
-    // In production, send to error tracking service
+    // In production, send the error details to a logging endpoint for monitoring
     if (process.env.NODE_ENV === 'production') {
       fetch('/api/log-error', {
         method: 'POST',
@@ -32,6 +38,7 @@ export default function GlobalError({
           source: 'global-error-boundary',
         }),
       }).catch((err) => {
+        // Prevent infinite loops if logging itself fails
         console.error('Failed to log global error:', err);
       });
     }

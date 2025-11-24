@@ -1,5 +1,8 @@
 
-
+/**
+ * Configuration for sticker background themes.
+ * Contains color palettes, illustration keys, and descriptive text for each theme.
+ */
 export const BACKGROUND_THEMES = {
   FIRE: {
     name: 'Fire & Flame',
@@ -69,8 +72,13 @@ export const BACKGROUND_THEMES = {
   },
 } as const;
 
+/** Type alias for valid theme keys. */
 export type ThemeName = keyof typeof BACKGROUND_THEMES;
 
+/**
+ * Sticker sheet dimensions configuration.
+ * Defines physical sizes and pixel resolutions for printing at 600 DPI.
+ */
 export const SHEET_DIMENSIONS = {
   SMALL: {
     width: 4,
@@ -95,6 +103,10 @@ export const SHEET_DIMENSIONS = {
   },
 } as const;
 
+/**
+ * SVG illustration fragments for corners, keyed by theme illustration type.
+ * Each entry contains SVG strings for different corner positions.
+ */
 export const CORNER_ILLUSTRATIONS = {
   flames: {
     topLeft: `
@@ -286,6 +298,20 @@ export const CORNER_ILLUSTRATIONS = {
   },
 };
 
+/**
+ * Generates an SVG string for a custom sticker background.
+ *
+ * The SVG includes:
+ * - A solid background color.
+ * - A subtle radial gradient overlay.
+ * - Decorative corner illustrations based on the selected theme.
+ * - A subtle center pattern.
+ * - A faint brand watermark at the bottom.
+ *
+ * @param {ThemeName} [theme='FIRE'] - The theme to use for colors and illustrations.
+ * @param {keyof typeof SHEET_DIMENSIONS} [size='MEDIUM'] - The target physical dimensions of the sheet.
+ * @returns {string} The complete SVG string.
+ */
 export function generateStickerBackground(
   theme: ThemeName = 'FIRE',
   size: keyof typeof SHEET_DIMENSIONS = 'MEDIUM'
@@ -358,17 +384,32 @@ export function generateStickerBackground(
   return svg;
 }
 
+/**
+ * Generates a Base64-encoded Data URL representing the sticker background.
+ *
+ * This is useful for embedding the background image directly into HTML or other contexts
+ * where a URL is required but the file is generated on the fly.
+ *
+ * @param {ThemeName} [theme='FIRE'] - The theme to use.
+ * @param {keyof typeof SHEET_DIMENSIONS} [size='MEDIUM'] - The sheet size.
+ * @returns {Promise<string>} A promise resolving to the Data URL string.
+ */
 export async function generatePrintableBackground(
   theme: ThemeName = 'FIRE',
   size: keyof typeof SHEET_DIMENSIONS = 'MEDIUM'
 ): Promise<string> {
   const svg = generateStickerBackground(theme, size);
 
-      
+  // Convert to Base64 (this handles unicode correctly in node environment)
   const base64 = Buffer.from(svg).toString('base64');
   return `data:image/svg+xml;base64,${base64}`;
 }
 
+/**
+ * Retrieves a list of all available background themes.
+ *
+ * @returns {Array} An array of theme objects, each including its ID and properties.
+ */
 export function getAllThemes() {
   return Object.entries(BACKGROUND_THEMES).map(([key, theme]) => ({
     id: key as ThemeName,
@@ -376,6 +417,16 @@ export function getAllThemes() {
   }));
 }
 
+/**
+ * Generates a configuration object for creating a Printful product using a specific theme.
+ *
+ * This helper function constructs the necessary JSON structure required by Printful's API
+ * to create a product variant with the generated background image.
+ *
+ * @param {ThemeName} [theme='FIRE'] - The theme to apply.
+ * @param {keyof typeof SHEET_DIMENSIONS} [size='MEDIUM'] - The size of the sticker sheet.
+ * @returns {object} The configuration object compatible with Printful's API.
+ */
 export function getPrintfulTemplateConfig(
   theme: ThemeName = 'FIRE',
   size: keyof typeof SHEET_DIMENSIONS = 'MEDIUM'
@@ -383,15 +434,18 @@ export function getPrintfulTemplateConfig(
   const dimensions = SHEET_DIMENSIONS[size];
 
   return {
-    variant_id: 9413,     files: [
+    variant_id: 9413, // Example variant ID for standard sticker sheet
+    files: [
       {
-        type: 'back',         url: `${process.env.NEXT_PUBLIC_SITE_URL}/api/sticker-backgrounds/${theme}/${size}`,
+        type: 'back', // Usually applied to back or default area
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/api/sticker-backgrounds/${theme}/${size}`,
       },
     ],
     options: [
       {
         id: 'stitch_color',
-        value: '#FFFFFF',       },
+        value: '#FFFFFF', // White background
+      },
     ],
     dimensions: {
       width: dimensions.width,

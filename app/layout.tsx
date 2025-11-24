@@ -3,6 +3,10 @@ import './globals.css';
 import SetHtmlLang from '@/app/components/SetHtmlLang';
 import StructuredData from '@/app/components/StructuredData';
 
+/**
+ * Global metadata configuration for the application.
+ * Defines default SEO tags, OpenGraph, Twitter cards, and robot directives.
+ */
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://lightmyfire.app'),
   title: {
@@ -67,6 +71,9 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Viewport configuration for responsive design and mobile behavior.
+ */
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -76,6 +83,15 @@ export const viewport: Viewport = {
   themeColor: '#B400A3', // Matches primary color
 };
 
+/**
+ * The root layout component that wraps all pages in the application.
+ * It sets up the basic HTML structure, applies global styles, and includes
+ * essential components like language handling and structured data.
+ *
+ * @param {object} props - The component props.
+ * @param {React.ReactNode} props.children - The content to render inside the layout.
+ * @returns {JSX.Element} The rendered root HTML structure.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

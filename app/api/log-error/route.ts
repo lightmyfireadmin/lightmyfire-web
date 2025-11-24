@@ -2,11 +2,20 @@ import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 
+/**
+ * Forces the route to be dynamic to ensure it can access cookies and not be cached.
+ */
 export const dynamic = 'force-dynamic';
 
 /**
- * API endpoint for logging client-side errors
- * Called by error boundaries to track production errors
+ * API endpoint for logging client-side errors.
+ *
+ * This endpoint is typically called by React Error Boundaries (like `app/error.tsx` or `app/global-error.tsx`)
+ * to capture and report errors that occur in the client's browser. It logs the error details
+ * to the server console (which integrates with Vercel logs) and optionally persists them to a database.
+ *
+ * @param {NextRequest} request - The incoming request containing error details in the body.
+ * @returns {Promise<NextResponse>} A JSON response indicating whether logging was successful.
  */
 export async function POST(request: NextRequest) {
   try {

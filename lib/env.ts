@@ -1,5 +1,7 @@
 
-
+/**
+ * Configuration for critical environment variables required for the app to run.
+ */
 const REQUIRED_ENV_VARS = {
   NEXT_PUBLIC_SUPABASE_URL: {
     name: 'NEXT_PUBLIC_SUPABASE_URL',
@@ -16,6 +18,9 @@ const REQUIRED_ENV_VARS = {
   },
 } as const;
 
+/**
+ * Configuration for environment variables required for payment and related services.
+ */
 const PAYMENT_ENV_VARS = {
   STRIPE_SECRET_KEY: {
     name: 'STRIPE_SECRET_KEY',
@@ -48,6 +53,14 @@ const PAYMENT_ENV_VARS = {
   },
 } as const;
 
+/**
+ * Validates that all strictly required environment variables are present.
+ *
+ * This checks against the `REQUIRED_ENV_VARS` list. If any are missing,
+ * it throws an error to prevent the application from running in an invalid state.
+ *
+ * @throws {Error} If any required environment variable is missing or empty.
+ */
 export function validateEnvironmentVariables() {
   const missingVars: string[] = [];
   const errors: string[] = [];
@@ -69,7 +82,7 @@ export function validateEnvironmentVariables() {
       '\n'
     )}\n\nPlease check your .env.local file.`;
 
-        if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV === 'development') {
       console.error(errorMessage);
     }
 
@@ -79,6 +92,14 @@ export function validateEnvironmentVariables() {
   }
 }
 
+/**
+ * Retrieves an environment variable by its key, optionally enforcing its presence.
+ *
+ * @param {string} key - The name of the environment variable to retrieve.
+ * @param {boolean} [required=false] - If true, throws an error if the variable is missing or empty.
+ * @returns {string | null} The value of the environment variable, or null if not set and not required.
+ * @throws {Error} If `required` is true and the variable is not set or is empty.
+ */
 export function getEnvVar(key: string, required = false): string | null {
   const value = process.env[key];
 
@@ -89,6 +110,16 @@ export function getEnvVar(key: string, required = false): string | null {
   return value || null;
 }
 
+/**
+ * Validates the environment variables specifically required for payment and email functionality.
+ *
+ * This checks against the `PAYMENT_ENV_VARS` list. It is useful for verifying that
+ * e-commerce features can operate correctly.
+ *
+ * @returns {{ valid: boolean; errors: string[] }} An object containing:
+ *   - `valid`: `true` if all payment variables are present, `false` otherwise.
+ *   - `errors`: An array of strings describing the missing variables.
+ */
 export function validatePaymentEnvironment(): { valid: boolean; errors: string[] } {
   const errors: string[] = [];
 
@@ -107,11 +138,12 @@ export function validatePaymentEnvironment(): { valid: boolean; errors: string[]
   };
 }
 
+// Auto-run validation in development environment on server-side
 if (typeof window === 'undefined' && process.env.NODE_ENV === 'development') {
-      try {
+  try {
     validateEnvironmentVariables();
   } catch (error) {
-        if (error instanceof Error) {
+    if (error instanceof Error) {
       console.warn(`Environment validation warning: ${error.message}`);
     }
   }

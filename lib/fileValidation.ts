@@ -1,7 +1,8 @@
-
-
 import { FILE_UPLOAD } from './constants';
 
+/**
+ * Magic numbers (file signatures) for verifying file types.
+ */
 const FILE_SIGNATURES = {
   PNG: {
     signature: [0x89, 0x50, 0x4e, 0x47],
@@ -20,20 +21,34 @@ const FILE_SIGNATURES = {
   },
 } as const;
 
+/**
+ * Result structure for file validation operations.
+ */
 interface FileValidationResult {
+  /** True if the file passed validation, false otherwise. */
   valid: boolean;
+  /** Error message if validation failed. */
   error?: string;
+  /** The detected MIME type of the file (if signature validation passed). */
   detectedMimeType?: string;
 }
 
+/**
+ * Validates a file's signature (magic numbers) to verify its true type.
+ * This prevents users from bypassing type checks by simply renaming extensions.
+ * Supports PNG, JPEG, and GIF.
+ *
+ * @param {File} file - The file object to validate.
+ * @returns {Promise<FileValidationResult>} A promise resolving to the validation result.
+ */
 export async function validateFileSignature(
   file: File
 ): Promise<FileValidationResult> {
   try {
-        const buffer = await file.slice(0, 4).arrayBuffer();
+    const buffer = await file.slice(0, 4).arrayBuffer();
     const view = new Uint8Array(buffer);
 
-        for (const [key, sig] of Object.entries(FILE_SIGNATURES)) {
+    for (const [key, sig] of Object.entries(FILE_SIGNATURES)) {
       const isMatch = sig.signature.every(
         (byte, index) => view[index] === byte
       );
@@ -57,6 +72,12 @@ export async function validateFileSignature(
   }
 }
 
+/**
+ * Validates that a file's size is within the allowed limits defined in constants.
+ *
+ * @param {File} file - The file object to validate.
+ * @returns {string | null} An error message if the file is too large, or null if it's valid.
+ */
 export function validateFileSize(file: File): string | null {
   if (file.size > FILE_UPLOAD.MAX_SIZE_BYTES) {
     return `File is too large. Maximum size is ${FILE_UPLOAD.MAX_SIZE_MB}MB.`;
@@ -65,13 +86,15 @@ export function validateFileSize(file: File): string | null {
 }
 
 /**
- * Validates image dimensions
- * @param file - Image file to validate
- * @param maxWidth - Maximum width in pixels (default: 4096)
- * @param maxHeight - Maximum height in pixels (default: 4096)
- * @param minWidth - Minimum width in pixels (default: 100)
- * @param minHeight - Minimum height in pixels (default: 100)
- * @returns Promise with validation result
+ * Validates image dimensions (width and height) to ensure they are within acceptable bounds.
+ * This requires loading the image into an HTML Image element.
+ *
+ * @param {File} file - The image file to validate.
+ * @param {number} [maxWidth=4096] - Maximum allowed width in pixels (default: 4096).
+ * @param {number} [maxHeight=4096] - Maximum allowed height in pixels (default: 4096).
+ * @param {number} [minWidth=100] - Minimum allowed width in pixels (default: 100).
+ * @param {number} [minHeight=100] - Minimum allowed height in pixels (default: 100).
+ * @returns {Promise<FileValidationResult>} A promise resolving to the validation result.
  */
 export async function validateImageDimensions(
   file: File,
@@ -127,6 +150,14 @@ export async function validateImageDimensions(
   });
 }
 
+/**
+ * Performs comprehensive file validation including size check, MIME type check,
+ * signature verification, and optional dimension validation.
+ *
+ * @param {File} file - The file to validate.
+ * @param {boolean} [validateDimensions=true] - Whether to perform image dimension validation (default: true).
+ * @returns {Promise<FileValidationResult>} A promise resolving to the combined validation result.
+ */
 export async function validateFile(
   file: File,
   validateDimensions = true
@@ -168,11 +199,26 @@ export async function validateFile(
   };
 }
 
+/**
+ * Sanitizes a filename by removing path components and replacing potentially unsafe characters.
+ *
+ * @param {string} filename - The original filename.
+ * @returns {string} The sanitized filename containing only alphanumeric characters, underscores, dots, and hyphens.
+ */
 export function sanitizeFilename(filename: string): string {
-    return filename
-    .replace(/^.*[\\/]/, '')     .replace(/[^a-z0-9._-]/gi, '_')     .toLowerCase();
+  return filename
+    .replace(/^.*[\\/]/, '') // Remove directory paths
+    .replace(/[^a-z0-9._-]/gi, '_') // Replace non-alphanumeric chars with underscore
+    .toLowerCase();
 }
 
+/**
+ * Generates a safe, unique filename by combining the user ID, timestamp, and sanitized original filename.
+ *
+ * @param {string} userId - The ID of the user uploading the file.
+ * @param {string} originalFilename - The original name of the file.
+ * @returns {string} A unique and safe filename (e.g., "user123-1678901234567-image.png").
+ */
 export function generateSafeFilename(
   userId: string,
   originalFilename: string

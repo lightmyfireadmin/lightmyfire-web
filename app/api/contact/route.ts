@@ -2,6 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { rateLimit } from '@/lib/rateLimit';
 
+/**
+ * Handles POST requests for the contact form.
+ *
+ * This route sends an email to the support team using the Resend API.
+ * It includes rate limiting to prevent abuse and basic input validation.
+ *
+ * @param {NextRequest} request - The incoming request object containing the form data.
+ * @returns {Promise<NextResponse>} A JSON response indicating success or failure.
+ */
 export async function POST(request: NextRequest) {
     const apiKey = process.env.RESEND_API_KEY;
 

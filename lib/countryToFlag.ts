@@ -1,3 +1,12 @@
+/**
+ * Converts a 2-letter ISO country code to a flag emoji.
+ *
+ * This function calculates the Unicode code points for the regional indicator symbols
+ * corresponding to the country code letters to generate the flag emoji.
+ *
+ * @param {string | null} code - The 2-letter ISO 3166-1 alpha-2 country code (e.g., 'US', 'FR').
+ * @returns {string} The corresponding flag emoji if the code is valid (2 characters); otherwise, an empty string.
+ */
 export function countryCodeToFlag(code: string | null): string {
   if (!code || code.length !== 2) return '';
 
@@ -9,6 +18,15 @@ export function countryCodeToFlag(code: string | null): string {
   return String.fromCodePoint(...codePoints);
 }
 
+/**
+ * Gets the full English name of a country from its ISO code.
+ *
+ * This function uses an internal map to lookup the common English name for a given
+ * 2-letter ISO country code.
+ *
+ * @param {string | null} code - The 2-letter ISO 3166-1 alpha-2 country code.
+ * @returns {string} The full country name if found; otherwise, returns the input code or an empty string if the code is null.
+ */
 export function getCountryName(code: string | null): string {
   if (!code) return '';
 

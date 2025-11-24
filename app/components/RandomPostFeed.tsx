@@ -8,7 +8,29 @@ import PostCard from './PostCard';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { MosaicSkeleton } from './Skeleton';
 
-const RandomPostFeed = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+/**
+ * Props for the RandomPostFeed component.
+ */
+interface RandomPostFeedProps {
+  /** Indicates whether the current user is authenticated. Used for passing to PostCard. */
+  isLoggedIn: boolean;
+}
+
+/**
+ * A component that displays a grid of random posts (a "Mosaic").
+ *
+ * Features:
+ * - Fetches random public posts from Supabase via `get_random_public_posts` RPC.
+ * - Displays posts in a responsive grid.
+ * - Supports refreshing the feed with animation.
+ * - Handles loading states with skeletons.
+ * - Uses client-side internationalization for text.
+ *
+ * @param {RandomPostFeedProps} props - The component props.
+ * @returns {JSX.Element} The rendered feed component.
+ */
+const RandomPostFeed = ({ isLoggedIn }: RandomPostFeedProps) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const t = useI18n() as any;
   const [posts, setPosts] = useState<DetailedPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +42,12 @@ const RandomPostFeed = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const POSTS_TO_SHOW = 4;
   const POSTS_PER_LOAD = 4;
 
-    const fetchPosts = useCallback(async (showRefreshing = false) => {
+  /**
+   * Fetches a fresh set of random posts.
+   *
+   * @param {boolean} [showRefreshing=false] - If true, triggers refresh animations.
+   */
+  const fetchPosts = useCallback(async (showRefreshing = false) => {
     if (showRefreshing) {
       setIsRefreshing(true);
       setIsTransitioning(true);
@@ -33,9 +60,12 @@ const RandomPostFeed = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 
       if (data) {
         if (showRefreshing) {
-                    setTimeout(() => {
+          // Delay updates to allow fade-out animation
+          setTimeout(() => {
             setPosts(data);
-            setHasMore(true);                         setTimeout(() => {
+            setHasMore(true);
+            // Wait for render before fading in
+            setTimeout(() => {
               setIsTransitioning(false);
               setTimeout(() => setIsRefreshing(false), 100);
             }, 50);
@@ -56,7 +86,11 @@ const RandomPostFeed = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     }
   }, [POSTS_TO_SHOW]);
 
-    const loadMorePosts = useCallback(async () => {
+  /**
+   * Loads additional posts to append to the current list.
+   * (Note: Currently not fully utilized in UI, as the main action is 'refresh/shuffle')
+   */
+  const loadMorePosts = useCallback(async () => {
     if (isLoadingMore || !hasMore) return;
 
     setIsLoadingMore(true);
@@ -78,7 +112,7 @@ const RandomPostFeed = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     }
   }, [isLoadingMore, hasMore, POSTS_PER_LOAD]);
 
-    useEffect(() => {
+  useEffect(() => {
     fetchPosts(false);
   }, [fetchPosts]);
 
@@ -109,10 +143,10 @@ const RandomPostFeed = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
         {t('home.mosaic.subtitle')}
       </p>
 
-      {}
+      {/* Grid */}
       {posts.length > 0 ? (
         <div className="space-y-6">
-          {}
+          {/* Posts Grid */}
           <div
             className={`grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 transition-all duration-500 ease-in-out ${
               isTransitioning
@@ -140,9 +174,9 @@ const RandomPostFeed = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
             ))}
           </div>
 
-          {}
+          {/* Controls */}
           <div className="flex justify-center pt-4">
-            {}
+            {/* Refresh/Shuffle Button */}
             <button
               onClick={handleRefresh}
               disabled={isRefreshing}
@@ -159,7 +193,7 @@ const RandomPostFeed = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
             </button>
           </div>
 
-          {}
+          {/* Load More Skeleton (Hidden by default unless loadMore is triggered) */}
           {isLoadingMore && (
             <div className="mt-6">
               <MosaicSkeleton count={POSTS_PER_LOAD} />
