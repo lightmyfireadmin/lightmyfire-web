@@ -1,5 +1,8 @@
 import { NextRequest } from 'next/server';
 
+/**
+ * Interface for the in-memory rate limit store.
+ */
 interface RateLimitStore {
   [key: string]: {
     count: number;
@@ -7,8 +10,16 @@ interface RateLimitStore {
   };
 }
 
+/**
+ * In-memory store for rate limiting.
+ * Note: In a serverless environment like Vercel, this store is local to the lambda instance.
+ * For strictly consistent rate limiting across distributed instances, use Redis or Vercel KV.
+ */
 const store: RateLimitStore = {};
 
+/**
+ * Rate limit configurations for different types of actions.
+ */
 const RATE_LIMITS = {
   payment: { requests: 5, windowMs: 60 * 1000 }, // 5 per minute
   moderation: { requests: 10, windowMs: 60 * 1000 }, // 10 per minute
@@ -19,15 +30,21 @@ const RATE_LIMITS = {
   default: { requests: 30, windowMs: 60 * 1000 }, // 30 per minute
 } as const;
 
+/**
+ * Type definition for valid rate limit categories.
+ */
 export type RateLimitType = keyof typeof RATE_LIMITS;
 
 /**
- * Rate limits requests based on IP address or identifier.
+ * Checks if a request exceeds the defined rate limits based on IP address or a custom identifier.
  *
- * @param {NextRequest} request - The incoming request.
- * @param {RateLimitType} [type='default'] - The rate limit type.
- * @param {string} [identifier] - Optional custom identifier (e.g., user ID).
- * @returns {{ success: boolean; remaining: number; resetTime: number }} Rate limit result.
+ * @param {NextRequest} request - The incoming Next.js request object.
+ * @param {RateLimitType} [type='default'] - The category of the rate limit (e.g., 'payment', 'api').
+ * @param {string} [identifier] - An optional custom identifier (e.g., user ID) to use instead of IP.
+ * @returns {{ success: boolean; remaining: number; resetTime: number }} An object containing:
+ *   - `success`: `true` if the request is within limits, `false` otherwise.
+ *   - `remaining`: The number of requests remaining in the current window.
+ *   - `resetTime`: The timestamp (ms) when the current window resets.
  */
 export function rateLimit(
   request: NextRequest,
@@ -74,7 +91,10 @@ export function rateLimit(
   };
 }
 
-// Cleanup interval (every minute)
+/**
+ * Periodic cleanup of expired rate limit records.
+ * Runs every minute to prevent memory leaks in long-running processes.
+ */
 setInterval(() => {
   const now = Date.now();
   Object.keys(store).forEach((key) => {

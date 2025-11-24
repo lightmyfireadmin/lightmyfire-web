@@ -4,6 +4,13 @@ import { i18n } from '@/locales/config';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://lightmyfire.app';
 
+/**
+ * Generates a dynamic sitemap for the Next.js application.
+ * This sitemap includes all localized static pages and dynamic lighter pages.
+ * It adheres to the Sitemaps XML protocol.
+ *
+ * @returns {Promise<MetadataRoute.Sitemap>} A promise that resolves to an array of sitemap URL entries.
+ */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const urls: MetadataRoute.Sitemap = [];
 
@@ -35,6 +42,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch all lighters from database
   try {
     // Create admin client to fetch all lighters (bypasses RLS)
+    // The service role key is required to bypass Row Level Security (RLS)
+    // and ensure we get all public lighters regardless of ownership.
     const supabaseAdmin = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.SUPABASE_SERVICE_ROLE_KEY!,

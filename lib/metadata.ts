@@ -1,27 +1,39 @@
 /**
  * SEO Metadata Utilities
- * Generates locale-aware metadata for pages
+ * Generates locale-aware metadata for pages to enhance Search Engine Optimization (SEO)
+ * and social media sharing previews.
  */
 
 import { Metadata } from 'next';
 
+/** Base URL of the site, defaults to 'https://lightmyfire.app' if not set in environment. */
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://lightmyfire.app';
 
+/**
+ * Interface representing the basic metadata requirements for a page.
+ */
 interface PageMetadata {
+  /** The title of the page. */
   title: string;
+  /** A short description of the page content. */
   description: string;
+  /** Optional array of keywords relevant to the page. */
   keywords?: string[];
+  /** Optional URL to an image to be used for social media previews. */
   image?: string;
+  /** Optional relative URL path for the page (e.g., '/about'). */
   url?: string;
+  /** The OpenGraph type of the content (default: 'website'). */
   type?: 'website' | 'article' | 'profile';
 }
 
 /**
- * Generate metadata for a page with locale support.
+ * Generates a comprehensive Next.js Metadata object with locale support.
+ * This function constructs OpenGraph and Twitter card metadata based on the provided page data.
  *
- * @param {string} locale - The locale code (e.g., 'en', 'fr').
- * @param {PageMetadata} pageData - Metadata specific to the page.
- * @returns {Metadata} Next.js Metadata object.
+ * @param {string} locale - The current locale code (e.g., 'en', 'fr').
+ * @param {PageMetadata} pageData - The specific metadata for the page.
+ * @returns {Metadata} A populated Next.js Metadata object ready for export.
  */
 export function generatePageMetadata(
   locale: string,
@@ -74,17 +86,18 @@ export function generatePageMetadata(
 }
 
 /**
- * Generate metadata for lighter detail pages.
+ * specialized metadata generator for lighter detail pages.
+ * Formats the title and description based on the lighter's specific attributes.
  *
- * @param {string} locale - The locale code.
- * @param {object} lighterData - Data about the lighter.
- * @param {string} lighterData.pin - The lighter's PIN.
- * @param {string} [lighterData.name] - The lighter's name.
- * @param {string} [lighterData.owner_name] - The owner's name.
- * @param {string} [lighterData.story] - The lighter's story.
- * @param {string} [lighterData.image_url] - The lighter's image URL.
- * @param {number} [lighterData.post_count] - The number of posts.
- * @returns {Metadata} Next.js Metadata object.
+ * @param {string} locale - The current locale code.
+ * @param {object} lighterData - The data object containing lighter details.
+ * @param {string} lighterData.pin - The unique PIN of the lighter.
+ * @param {string} [lighterData.name] - The display name of the lighter.
+ * @param {string} [lighterData.owner_name] - The name of the user who owns the lighter.
+ * @param {string} [lighterData.story] - The backstory or description of the lighter.
+ * @param {string} [lighterData.image_url] - URL to the lighter's image.
+ * @param {number} [lighterData.post_count] - Total number of posts associated with the lighter.
+ * @returns {Metadata} A populated Next.js Metadata object for the lighter page.
  */
 export function generateLighterMetadata(
   locale: string,
@@ -116,10 +129,10 @@ export function generateLighterMetadata(
 }
 
 /**
- * Map locale codes to OpenGraph locale format.
+ * Maps a simple locale code (e.g., 'en') to a full OpenGraph locale string (e.g., 'en_US').
  *
- * @param {string} locale - The locale code.
- * @returns {string} The OpenGraph locale string (e.g., 'en_US').
+ * @param {string} locale - The 2-letter or 5-letter locale code used in the app.
+ * @returns {string} The corresponding OpenGraph locale format, defaulting to 'en_US' if unknown.
  */
 function getOpenGraphLocale(locale: string): string {
   const localeMap: Record<string, string> = {
@@ -152,8 +165,8 @@ function getOpenGraphLocale(locale: string): string {
 }
 
 /**
- * Locale-specific metadata content.
- * Can be expanded with translations.
+ * Predefined localized metadata for static pages.
+ * Use this object to retrieve titles and descriptions for common pages based on locale.
  */
 export const localizedMetadata = {
   home: {

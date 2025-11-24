@@ -1,11 +1,11 @@
 
 /**
- * Formats an amount in cents to a localized currency string.
+ * Formats a monetary amount in cents into a localized currency string.
  *
- * @param {number} amountInCents - The amount in cents.
- * @param {string} [currency='EUR'] - The currency code (ISO 4217).
- * @param {string} [locale='en-US'] - The locale string.
- * @returns {string} The formatted currency string.
+ * @param {number} amountInCents - The amount in cents (e.g., 1000 for $10.00).
+ * @param {string} [currency='EUR'] - The ISO 4217 currency code.
+ * @param {string} [locale='en-US'] - The IETF language tag for formatting.
+ * @returns {string} The formatted currency string (e.g., "€10.00").
  */
 export function formatCurrency(
   amountInCents: number,
@@ -18,18 +18,19 @@ export function formatCurrency(
       currency: currency,
     }).format(amountInCents / 100);
   } catch (error) {
-    // Fallback if Intl fails
+    // Fallback if Intl fails or currency code is invalid
     console.error('Currency formatting error:', error);
     return `${currency} ${(amountInCents / 100).toFixed(2)}`;
   }
 }
 
 /**
- * Formats an amount in cents to a string with fixed decimals (no currency symbol).
+ * Formats a monetary amount in cents to a string with a fixed number of decimals.
+ * Does not include the currency symbol.
  *
  * @param {number} amountInCents - The amount in cents.
- * @param {number} [decimals=2] - Number of decimal places.
- * @returns {string} The formatted number string.
+ * @param {number} [decimals=2] - The number of decimal places to include.
+ * @returns {string} The formatted number string (e.g., "10.00").
  */
 export function formatCurrencyAmount(
   amountInCents: number,
@@ -39,11 +40,11 @@ export function formatCurrencyAmount(
 }
 
 /**
- * Gets the symbol for a given currency code.
+ * Retrieves the currency symbol for a given currency code.
  *
- * @param {string} [currency='EUR'] - The currency code.
- * @param {string} [locale='en-US'] - The locale string.
- * @returns {string} The currency symbol (e.g., '€', '$').
+ * @param {string} [currency='EUR'] - The ISO 4217 currency code.
+ * @param {string} [locale='en-US'] - The IETF language tag used for formatting determination.
+ * @returns {string} The currency symbol (e.g., '€', '$') or the code itself if a symbol cannot be determined.
  */
 export function getCurrencySymbol(
   currency = 'EUR',
@@ -60,7 +61,7 @@ export function getCurrencySymbol(
     // Extract symbol by removing digits and separators
     return formatted.replace(/[\d\s,.-]/g, '').trim();
   } catch (error) {
-    // Fallback symbols
+    // Fallback symbols map for common currencies
     const symbols: Record<string, string> = {
       EUR: '€',
       USD: '$',
@@ -84,10 +85,10 @@ export function getCurrencySymbol(
 }
 
 /**
- * Checks if a locale is Right-To-Left (RTL).
+ * Checks if the text direction for a given locale is Right-To-Left (RTL).
  *
- * @param {string} locale - The locale code.
- * @returns {boolean} True if RTL, false otherwise.
+ * @param {string} locale - The IETF language tag (e.g., 'ar', 'en').
+ * @returns {boolean} `true` if the locale is typically RTL, `false` otherwise.
  */
 export function isRTL(locale: string): boolean {
   const rtlLocales = ['ar', 'fa', 'ur', 'he', 'yi'];
@@ -95,11 +96,11 @@ export function isRTL(locale: string): boolean {
 }
 
 /**
- * Truncates a string to a maximum length, adding a suffix if truncated.
+ * Truncates a string to a specified maximum length and appends a suffix if truncated.
  *
- * @param {string} text - The text to truncate.
- * @param {number} maxLength - The maximum length.
- * @param {string} [suffix='...'] - The suffix to add.
+ * @param {string} text - The input text string.
+ * @param {number} maxLength - The maximum allowed length of the string.
+ * @param {string} [suffix='...'] - The string to append if truncation occurs.
  * @returns {string} The truncated string.
  */
 export function truncate(
@@ -112,14 +113,15 @@ export function truncate(
 }
 
 /**
- * Debounces a function execution.
+ * Creates a debounced version of a function that delays its execution until after
+ * a specified wait time has elapsed since the last time it was invoked.
  *
  * @template T
  * @param {T} func - The function to debounce.
- * @param {number} wait - The wait time in milliseconds.
- * @returns {Function} The debounced function.
+ * @param {number} wait - The delay in milliseconds.
+ * @returns {Function} A new function that wraps the original function with debouncing logic.
  */
-// Using 'any' here is intentional as we're creating a generic wrapper for any function
+// Using 'any' here is intentional as we're creating a generic wrapper for any function type
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function debounce<T extends (...args: any[]) => any>(
   func: T,
@@ -139,11 +141,11 @@ export function debounce<T extends (...args: any[]) => any>(
 }
 
 /**
- * Formats a date relative to now (e.g., "2 hours ago").
+ * Formats a date relative to the current time (e.g., "2 hours ago").
  *
- * @param {Date | string} date - The date to format.
- * @param {string} [locale='en-US'] - The locale string.
- * @returns {string} The relative time string.
+ * @param {Date | string} date - The date object or ISO string to format.
+ * @param {string} [locale='en-US'] - The IETF language tag.
+ * @returns {string} The localized relative time string.
  */
 export function formatRelativeTime(
   date: Date | string,
@@ -164,7 +166,7 @@ export function formatRelativeTime(
     if (diffInSeconds < 31536000) return rtf.format(-Math.floor(diffInSeconds / 2592000), 'month');
     return rtf.format(-Math.floor(diffInSeconds / 31536000), 'year');
   } catch (error) {
-    // Fallback for environments without Intl.RelativeTimeFormat
+    // Fallback for environments where Intl.RelativeTimeFormat is not fully supported or fails
     if (diffInSeconds < 60) return `${diffInSeconds}s ago`;
     if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)}m ago`;
     if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)}h ago`;
@@ -174,10 +176,12 @@ export function formatRelativeTime(
 }
 
 /**
- * Utility for merging Tailwind CSS classes.
+ * Utility for conditionally merging class names.
+ * Filters out falsy values and joins valid classes with a space.
+ * Useful for combining Tailwind CSS classes dynamically.
  *
- * @param {...(string | boolean | undefined | null)[]} classes - Class names to merge.
- * @returns {string} The merged class string.
+ * @param {...(string | boolean | undefined | null)[]} classes - A list of class names or conditional expressions.
+ * @returns {string} A single string of space-separated class names.
  */
 export function cn(...classes: (string | boolean | undefined | null)[]): string {
   return classes.filter(Boolean).join(' ');

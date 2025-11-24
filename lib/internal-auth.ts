@@ -1,11 +1,15 @@
 import crypto from 'crypto';
 
 /**
- * Generates a secure internal authentication token using HMAC-SHA256
+ * Generates a secure internal authentication token using HMAC-SHA256.
  *
- * @param {string} userId - The user ID to authenticate
- * @returns {string} Base64-encoded token with payload and signature
- * @throws {Error} If INTERNAL_AUTH_SECRET environment variable is not configured.
+ * This function creates a signed token containing a user ID and a timestamp.
+ * It is used for securing internal communication or operations that require temporary authorization.
+ * The token is constructed by concatenating the JSON payload and its HMAC signature, then Base64 encoding the result.
+ *
+ * @param {string} userId - The unique identifier of the user to authenticate.
+ * @returns {string} A Base64-encoded string containing the payload and its signature.
+ * @throws {Error} If the `INTERNAL_AUTH_SECRET` environment variable is not set.
  */
 export function generateInternalAuthToken(userId: string): string {
   const secret = process.env.INTERNAL_AUTH_SECRET;
@@ -30,12 +34,16 @@ export function generateInternalAuthToken(userId: string): string {
 }
 
 /**
- * Verifies an internal authentication token
+ * Verifies the validity of an internal authentication token.
  *
- * @param {string} token - Base64-encoded token to verify
- * @param {string} expectedUserId - Expected user ID
- * @param {number} [maxAgeMs=60000] - Maximum age of token in milliseconds (default: 60000ms = 1 minute)
- * @returns {boolean} true if token is valid, false otherwise
+ * This function decodes the token, checks the signature integrity using HMAC-SHA256,
+ * verifies that the user ID matches the expected value, and ensures the token has not expired.
+ * It uses constant-time comparison for the signature to prevent timing attacks.
+ *
+ * @param {string} token - The Base64-encoded token to verify.
+ * @param {string} expectedUserId - The user ID that is expected to be in the token.
+ * @param {number} [maxAgeMs=60000] - The maximum allowed age of the token in milliseconds (default: 60 seconds).
+ * @returns {boolean} `true` if the token is valid, matches the user ID, and is not expired; `false` otherwise.
  */
 export function verifyInternalAuthToken(
   token: string,

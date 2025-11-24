@@ -3,6 +3,9 @@
 import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 
+/**
+ * Content configuration for the announcement popup, keyed by language code.
+ */
 const ANNOUNCEMENT_CONTENT = {
   en: {
     title: "We are just beginning",
@@ -22,13 +25,21 @@ const ANNOUNCEMENT_CONTENT = {
   },
 };
 
+/**
+ * Supported languages for the announcement popup.
+ */
 type Language = 'en' | 'fr' | 'de' | 'es';
 
 /**
  * A popup component that displays a launch announcement message.
- * It appears once per user session (controlled by localStorage) and supports multiple languages.
  *
- * @returns {JSX.Element | null} The popup component or null if dismissed.
+ * Features:
+ * - Appears once per user session (persisted via localStorage).
+ * - Supports dynamic language switching within the modal.
+ * - Renders markdown-style bold text.
+ * - Includes a backdrop blur and animations.
+ *
+ * @returns {JSX.Element | null} The rendered popup component or null if not visible.
  */
 export default function LaunchAnnouncementPopup() {
   const [isVisible, setIsVisible] = useState(false);
@@ -40,7 +51,7 @@ export default function LaunchAnnouncementPopup() {
     const dismissed = localStorage.getItem('launch-announcement-dismissed');
 
     if (!dismissed) {
-      // Delay showing the popup slightly for better UX
+      // Delay showing the popup slightly for better UX (avoids immediate pop-in on load)
       const timer = setTimeout(() => {
         setIsVisible(true);
         setIsAnimating(true);
@@ -50,6 +61,10 @@ export default function LaunchAnnouncementPopup() {
     }
   }, []);
 
+  /**
+   * Closes the popup and marks it as dismissed in localStorage.
+   * Triggers a closing animation before removing the component from the DOM.
+   */
   const handleClose = () => {
     setIsAnimating(false);
     setTimeout(() => {
@@ -62,7 +77,13 @@ export default function LaunchAnnouncementPopup() {
 
   const content = ANNOUNCEMENT_CONTENT[selectedLang];
 
-  // Helper to render bold text
+  /**
+   * Helper function to render text with bold formatting.
+   * Parses strings containing `**text**` markers.
+   *
+   * @param {string} text - The text content to render.
+   * @returns {Array<JSX.Element | string>} An array of text nodes and bold elements.
+   */
   const renderContent = (text: string) => {
     const parts = text.split(/(\*\*.*?\*\*)/g);
     return parts.map((part, index) => {

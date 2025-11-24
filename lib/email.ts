@@ -7,7 +7,7 @@ let resendClient: Resend | null = null;
  * Gets the Resend client instance, creating it if it doesn't exist.
  *
  * @returns {Resend} The Resend client instance.
- * @throws {Error} If RESEND_API_KEY is not configured.
+ * @throws {Error} If RESEND_API_KEY is not configured in environment variables.
  */
 function getResendClient(): Resend {
   if (!resendClient) {
@@ -21,32 +21,37 @@ function getResendClient(): Resend {
 }
 
 /**
- * Retry configuration for email sending
+ * Retry configuration for email sending operations.
  */
 const EMAIL_RETRY_CONFIG = {
+  /** Maximum number of retry attempts. */
   maxRetries: 3,
-  initialDelay: 1000, // 1 second
-  maxDelay: 10000, // 10 seconds
+  /** Initial delay before first retry in milliseconds (1 second). */
+  initialDelay: 1000,
+  /** Maximum delay between retries in milliseconds (10 seconds). */
+  maxDelay: 10000,
+  /** Multiplier for exponential backoff. */
   backoffMultiplier: 2,
 };
 
 /**
- * Sleep for specified milliseconds
+ * Sleep for a specified number of milliseconds.
  *
- * @param {number} ms - Milliseconds to sleep.
- * @returns {Promise<void>}
+ * @param {number} ms - The number of milliseconds to sleep.
+ * @returns {Promise<void>} A promise that resolves after the specified time.
  */
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 /**
- * Determines if an email error is retryable
- * Retryable: network issues, rate limits, temporary server errors
- * Not retryable: invalid email, auth failures, validation errors
+ * Determines if an email error is retryable.
  *
- * @param {unknown} error - The error object.
- * @returns {boolean} True if the error is retryable, false otherwise.
+ * Retryable errors include network issues, rate limits, and temporary server errors.
+ * Non-retryable errors include invalid credentials, bad requests, and validation failures.
+ *
+ * @param {unknown} error - The error object caught during email sending.
+ * @returns {boolean} True if the error indicates a temporary issue; false otherwise.
  */
 function isEmailErrorRetryable(error: unknown): boolean {
   // Network/timeout errors are retryable
@@ -85,12 +90,15 @@ function isEmailErrorRetryable(error: unknown): boolean {
 }
 
 /**
- * Retry email sending with exponential backoff
+ * Executes an async function with exponential backoff retry logic.
+ * Specifically designed for email sending operations.
  *
- * @param {() => Promise<T>} fn - The async function to retry.
- * @param {string} context - Context description for logging.
- * @param {number} [maxRetries=EMAIL_RETRY_CONFIG.maxRetries] - Maximum number of retries.
- * @returns {Promise<T>} The result of the function.
+ * @template T
+ * @param {() => Promise<T>} fn - The async function to execute and retry.
+ * @param {string} context - A description of the operation for logging purposes.
+ * @param {number} [maxRetries=EMAIL_RETRY_CONFIG.maxRetries] - The maximum number of retries allowed.
+ * @returns {Promise<T>} The result of the function execution.
+ * @throws {Error} The last error encountered if all retries fail.
  */
 async function retryEmailSend<T>(
   fn: () => Promise<T>,
@@ -138,6 +146,9 @@ async function retryEmailSend<T>(
   throw lastError || new Error(`${context} failed after retries`);
 }
 
+/**
+ * Configuration for email settings, including sender addresses and brand colors.
+ */
 const EMAIL_CONFIG = {
   from: {
     default: 'LightMyFire <support@lightmyfire.app>',
@@ -158,6 +169,9 @@ const EMAIL_CONFIG = {
   },
 };
 
+/**
+ * CSS styles for email templates.
+ */
 const EMAIL_STYLES = `
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -262,23 +276,34 @@ const EMAIL_STYLES = `
   }
 `;
 
+/**
+ * Interface defining the options for sending an email.
+ */
 interface SendEmailOptions {
+  /** The recipient's email address or an array of addresses. */
   to: string | string[];
+  /** The subject line of the email. */
   subject: string;
+  /** The HTML body of the email. */
   html: string;
+  /** The sender's email address (optional). */
   from?: string;
+  /** The reply-to email address (optional). */
   replyTo?: string;
+  /** An optional array of attachments to include with the email. */
   attachments?: Array<{
+    /** The filename for the attachment. */
     filename: string;
+    /** The content of the attachment as a Buffer. */
     content: Buffer;
   }>;
 }
 
 /**
- * Sends an email using the Resend API with retry logic.
+ * Sends an email using the Resend API with built-in retry logic.
  *
- * @param {SendEmailOptions} options - The email options (to, subject, html, etc.).
- * @returns {Promise<{ success: boolean; error?: string; id?: string }>} The result of the send operation.
+ * @param {SendEmailOptions} options - The email configuration options.
+ * @returns {Promise<{ success: boolean; error?: string; id?: string }>} An object indicating success or failure, including the email ID on success or an error message on failure.
  */
 async function sendEmail(options: SendEmailOptions): Promise<{ success: boolean; error?: string; id?: string }> {
   const emailContext = `Email to ${Array.isArray(options.to) ? options.to.join(', ') : options.to}`;
@@ -348,13 +373,13 @@ async function sendEmail(options: SendEmailOptions): Promise<{ success: boolean;
 }
 
 /**
- * Wraps email content in a standard HTML template.
+ * Wraps raw email content in a standard HTML template structure.
  *
- * @param {string} content - The HTML content to wrap.
- * @param {string} title - The email title.
- * @param {string | undefined} subtitle - The email subtitle.
- * @param {SupportedEmailLanguage} [lang='en'] - The language for the template.
- * @returns {string} The complete HTML email string.
+ * @param {string} content - The core HTML content to be wrapped.
+ * @param {string} title - The main title displayed in the email header.
+ * @param {string | undefined} subtitle - An optional subtitle displayed in the header.
+ * @param {SupportedEmailLanguage} [lang='en'] - The language code for localization (default: 'en').
+ * @returns {string} The complete HTML string for the email.
  */
 function wrapEmailTemplate(content: string, title: string, subtitle: string | undefined, lang: SupportedEmailLanguage = 'en'): string {
   const translate = t(lang);
@@ -392,6 +417,9 @@ function wrapEmailTemplate(content: string, title: string, subtitle: string | un
   `;
 }
 
+/**
+ * Data structure for order shipment notifications.
+ */
 interface OrderShippedData {
   orderId: string;
   customerName: string;
@@ -408,7 +436,7 @@ interface OrderShippedData {
 /**
  * Sends an email notification when an order is shipped.
  *
- * @param {OrderShippedData} data - The order shipment data.
+ * @param {OrderShippedData} data - The order shipment details.
  * @returns {Promise<any>} The result of the email send operation.
  */
 export async function sendOrderShippedEmail(data: OrderShippedData) {
@@ -453,6 +481,9 @@ export async function sendOrderShippedEmail(data: OrderShippedData) {
   });
 }
 
+/**
+ * Data structure for first post celebration emails.
+ */
 interface FirstPostData {
   userEmail: string;
   userName?: string;
@@ -466,7 +497,7 @@ interface FirstPostData {
 /**
  * Sends a celebration email for the user's first post.
  *
- * @param {FirstPostData} data - The data for the first post email.
+ * @param {FirstPostData} data - The first post details.
  * @returns {Promise<any>} The result of the email send operation.
  */
 export async function sendFirstPostCelebrationEmail(data: FirstPostData) {
@@ -517,6 +548,9 @@ export async function sendFirstPostCelebrationEmail(data: FirstPostData) {
   });
 }
 
+/**
+ * Data structure for trophy earned notifications.
+ */
 interface TrophyEarnedData {
   userEmail: string;
   userName?: string;
@@ -531,7 +565,7 @@ interface TrophyEarnedData {
 /**
  * Sends an email notification when a trophy is earned.
  *
- * @param {TrophyEarnedData} data - The trophy data.
+ * @param {TrophyEarnedData} data - The trophy details.
  * @returns {Promise<any>} The result of the email send operation.
  */
 export async function sendTrophyEarnedEmail(data: TrophyEarnedData) {
@@ -570,6 +604,9 @@ export async function sendTrophyEarnedEmail(data: TrophyEarnedData) {
   });
 }
 
+/**
+ * Data structure for lighter activity notifications.
+ */
 interface LighterActivityData {
   userEmail: string;
   userName?: string;
@@ -585,7 +622,7 @@ interface LighterActivityData {
 /**
  * Sends an email notification about activity on a lighter.
  *
- * @param {LighterActivityData} data - The activity data.
+ * @param {LighterActivityData} data - The activity details.
  * @returns {Promise<any>} The result of the email send operation.
  */
 export async function sendLighterActivityEmail(data: LighterActivityData) {
@@ -630,6 +667,9 @@ export async function sendLighterActivityEmail(data: LighterActivityData) {
   });
 }
 
+/**
+ * Data structure for welcome emails.
+ */
 interface WelcomeEmailData {
   userEmail: string;
   userName: string;
@@ -641,7 +681,7 @@ interface WelcomeEmailData {
 /**
  * Sends a welcome email to a new user.
  *
- * @param {WelcomeEmailData} data - The welcome email data.
+ * @param {WelcomeEmailData} data - The welcome email details.
  * @returns {Promise<any>} The result of the email send operation.
  */
 export async function sendWelcomeEmail(data: WelcomeEmailData) {
@@ -684,6 +724,9 @@ export async function sendWelcomeEmail(data: WelcomeEmailData) {
   });
 }
 
+/**
+ * Data structure for order confirmation emails.
+ */
 interface OrderConfirmationEmailData {
   userEmail: string;
   userName: string;
@@ -706,7 +749,7 @@ interface OrderConfirmationEmailData {
 /**
  * Sends an order confirmation email.
  *
- * @param {OrderConfirmationEmailData} data - The order confirmation data.
+ * @param {OrderConfirmationEmailData} data - The order confirmation details.
  * @returns {Promise<any>} The result of the email send operation.
  */
 export async function sendOrderConfirmationEmail(data: OrderConfirmationEmailData) {
@@ -765,6 +808,9 @@ export async function sendOrderConfirmationEmail(data: OrderConfirmationEmailDat
   });
 }
 
+/**
+ * Data structure for moderator invites.
+ */
 interface ModeratorInviteData {
   userEmail: string;
   userName: string;
@@ -777,7 +823,7 @@ interface ModeratorInviteData {
 /**
  * Sends an email inviting a user to become a moderator.
  *
- * @param {ModeratorInviteData} data - The moderator invite data.
+ * @param {ModeratorInviteData} data - The moderator invite details.
  * @returns {Promise<any>} The result of the email send operation.
  */
 export async function sendModeratorInviteEmail(data: ModeratorInviteData) {
@@ -831,7 +877,7 @@ export async function sendModeratorInviteEmail(data: ModeratorInviteData) {
 export { sendEmail as sendCustomEmail };
 
 /**
- * Send fulfillment email to admin with order details and sticker files
+ * Data structure for fulfillment emails to admin.
  */
 interface FulfillmentEmailData {
   orderId: string;
@@ -863,7 +909,7 @@ interface FulfillmentEmailData {
 /**
  * Sends a fulfillment email to the admin with order details and generated sticker files.
  *
- * @param {FulfillmentEmailData} data - The fulfillment data.
+ * @param {FulfillmentEmailData} data - The fulfillment details including attachments.
  * @returns {Promise<any>} The result of the email send operation.
  */
 export async function sendFulfillmentEmail(data: FulfillmentEmailData) {
@@ -960,6 +1006,9 @@ export async function sendFulfillmentEmail(data: FulfillmentEmailData) {
   });
 }
 
+/**
+ * Exported email service object containing all email sending functions.
+ */
 export const emailService = {
   sendWelcomeEmail,
   sendOrderConfirmationEmail,

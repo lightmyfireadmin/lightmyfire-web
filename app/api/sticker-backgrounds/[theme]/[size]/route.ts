@@ -1,4 +1,3 @@
-
 import { NextRequest, NextResponse } from 'next/server';
 import {
   generateStickerBackground,
@@ -7,8 +6,24 @@ import {
   type ThemeName,
 } from '@/lib/sticker-backgrounds';
 
+/**
+ * Forces the route to be dynamic to handle route parameters correctly in Next.js App Router.
+ */
 export const dynamic = 'force-dynamic';
 
+/**
+ * Handles GET requests to retrieve a generated SVG background for stickers.
+ *
+ * This endpoint is used by Printful to fetch the custom background design for printing.
+ * It generates an SVG on the fly based on the requested theme and size parameters.
+ *
+ * @param {NextRequest} request - The incoming request object.
+ * @param {object} context - The route parameters.
+ * @param {object} context.params - The URL parameters.
+ * @param {string} context.params.theme - The name of the background theme (e.g., 'fire', 'ocean').
+ * @param {string} context.params.size - The size of the sticker sheet (e.g., 'small', 'medium').
+ * @returns {Promise<NextResponse>} An SVG response or a JSON error.
+ */
 export async function GET(
   request: NextRequest,
   { params }: { params: { theme: string; size: string } }
@@ -47,6 +62,15 @@ export async function GET(
   }
 }
 
+/**
+ * Handles OPTIONS requests for CORS preflight checks.
+ *
+ * Allows cross-origin requests, which is necessary for Printful to fetch the image
+ * if the domains differ.
+ *
+ * @param {NextRequest} request - The incoming request object.
+ * @returns {Promise<NextResponse>} A 200 OK response with CORS headers.
+ */
 export async function OPTIONS(request: NextRequest) {
   return new NextResponse(null, {
     status: 200,

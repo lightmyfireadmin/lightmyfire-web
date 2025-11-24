@@ -1,7 +1,7 @@
-
 /**
  * Sticker pack configurations.
- * Prices are in cents (EUR).
+ * Defines the pricing, quantity, and features for each available sticker pack.
+ * Prices are stored in cents (EUR) to avoid floating-point precision issues.
  */
 export const STICKER_PACKS = {
   PACK_10: {
@@ -53,13 +53,16 @@ export const STICKER_PACKS = {
   },
 } as const;
 
+/**
+ * Type representing valid sticker pack sizes.
+ */
 export type PackSize = 10 | 20 | 50;
 
 /**
- * Retrieves configuration for a specific pack size.
+ * Retrieves the configuration object for a specific sticker pack size.
  *
- * @param {PackSize} size - The size of the sticker pack.
- * @returns {object} The pack configuration object.
+ * @param {PackSize} size - The number of stickers in the pack (10, 20, or 50).
+ * @returns {PackConfig} The configuration object for the requested pack size.
  */
 export function getPackConfig(size: PackSize) {
   const configs = {
@@ -71,14 +74,16 @@ export function getPackConfig(size: PackSize) {
   return configs[size];
 }
 
-export const STRIPE_FEE_PERCENTAGE = 0.022; // 2.2%
-export const STRIPE_FEE_FIXED = 25; // 25 cents
+/** Percentage fee charged by Stripe (2.2%). */
+export const STRIPE_FEE_PERCENTAGE = 0.022;
+/** Fixed fee charged by Stripe per transaction (25 cents). */
+export const STRIPE_FEE_FIXED = 25;
 
 /**
- * Calculates Stripe processing fees.
+ * Calculates the processing fees charged by Stripe for a given transaction amount.
  *
- * @param {number} amountInCents - Transaction amount in cents.
- * @returns {number} The calculated fee in cents.
+ * @param {number} amountInCents - The total transaction amount in cents.
+ * @returns {number} The calculated Stripe fee in cents (rounded up).
  */
 export function calculateStripeFee(amountInCents: number): number {
   const percentageFee = amountInCents * STRIPE_FEE_PERCENTAGE;
@@ -87,10 +92,10 @@ export function calculateStripeFee(amountInCents: number): number {
 }
 
 /**
- * Calculates net revenue after Stripe fees.
+ * Calculates the net revenue from a sticker pack sale after deducting Stripe fees.
  *
- * @param {PackSize} packSize - The size of the sticker pack.
- * @returns {number} Net revenue in cents.
+ * @param {PackSize} packSize - The size of the sticker pack sold.
+ * @returns {number} The net revenue in cents.
  */
 export function calculateNetRevenue(packSize: PackSize): number {
   const config = getPackConfig(packSize);
@@ -99,16 +104,20 @@ export function calculateNetRevenue(packSize: PackSize): number {
 }
 
 /**
- * Cost structure estimates (in cents unless specified).
+ * Estimated cost structure for business operations (in cents unless otherwise noted).
+ * Used for margin analysis and financial projections.
  */
 export const COST_STRUCTURE = {
   // Direct Costs
-  MANUFACTURING_PER_STICKER: 60, // €0.60 per sticker (high quality vinyl)
+  /** Cost to manufacture a single high-quality vinyl sticker. */
+  MANUFACTURING_PER_STICKER: 60, // €0.60
 
   // Shipping (Average)
   SHIPPING: {
-    SMALL_PACKET: 350, // €3.50 (10-20 stickers)
-    STANDARD: 550, // €5.50 (50 stickers)
+    /** Average shipping cost for small packets (10-20 stickers). */
+    SMALL_PACKET: 350, // €3.50
+    /** Average shipping cost for standard packets (50 stickers). */
+    STANDARD: 550, // €5.50
   },
 
   // Fixed Monthly Costs (Estimated)
@@ -125,11 +134,14 @@ export const COST_STRUCTURE = {
 };
 
 /**
- * Calculates detailed costs and margins for a sticker pack.
+ * Calculates detailed costs and profit margins for a specific sticker pack.
+ *
+ * This function takes into account direct manufacturing costs, shipping, transaction fees,
+ * and allocates a portion of fixed monthly infrastructure and marketing costs based on volume.
  *
  * @param {PackSize} packSize - The size of the sticker pack.
- * @param {number} [monthlyVolume=500] - Estimated monthly volume of stickers sold.
- * @returns {object} Detailed cost and margin breakdown.
+ * @param {number} [monthlyVolume=500] - Estimated total monthly volume of stickers sold (used for cost allocation).
+ * @returns {object} An object containing breakdown of costs, total cost, revenue, margin, and margin percentage.
  */
 export function calculatePackCosts(
   packSize: PackSize,
@@ -183,11 +195,11 @@ export function calculatePackCosts(
 }
 
 /**
- * Formats a price in cents to a localized currency string.
+ * Formats a monetary amount in cents into a localized currency string.
  *
- * @param {number} amountInCents - Amount in cents.
- * @param {string} [currency='eur'] - Currency code.
- * @returns {string} Formatted price string.
+ * @param {number} amountInCents - The amount to format, in cents.
+ * @param {string} [currency='eur'] - The ISO currency code (default: 'eur').
+ * @returns {string} The formatted price string (e.g., "€19.90").
  */
 export function formatPrice(
   amountInCents: number,
@@ -206,9 +218,10 @@ export function formatPrice(
 }
 
 /**
- * Returns all sticker pack configurations sorted by value.
+ * Retrieves all available sticker pack configurations, sorted by perceived value.
+ * The order is: Best Value (50), Popular (20), Starter (10).
  *
- * @returns {Array} Array of sticker pack configurations.
+ * @returns {Array<PackConfig>} An array of pack configuration objects.
  */
 export function getAllPackConfigs() {
   return [
@@ -219,9 +232,13 @@ export function getAllPackConfigs() {
 }
 
 /**
- * Calculates the break-even volume needed to cover fixed costs.
+ * Calculates the break-even sales volume required to cover fixed monthly costs.
  *
- * @returns {object} Break-even analysis results.
+ * This analysis considers the contribution margin of each pack size to determine
+ * how many units need to be sold to offset the fixed infrastructure costs.
+ *
+ * @returns {object} An object containing the number of packs needed for each size to break even individually,
+ *                   as well as an average scenario.
  */
 export function calculateBreakEvenVolume() {
   const fixedCostsMonthly = COST_STRUCTURE.INFRASTRUCTURE_MONTHLY.TOTAL;
@@ -278,7 +295,8 @@ export function calculateBreakEvenVolume() {
 }
 
 /**
- * Experimental: Premium pricing strategy.
+ * Experimental pricing configuration for premium positioning.
+ * Contains adjusted prices for testing market elasticity.
  */
 export const PREMIUM_PRICING = {
   PACK_10: {
@@ -299,7 +317,7 @@ export const PREMIUM_PRICING = {
 };
 
 /**
- * Discount codes configuration.
+ * Configuration for active discount codes.
  */
 export const DISCOUNT_CODES = {
   EARLY_ADOPTER: {
@@ -323,11 +341,11 @@ export const DISCOUNT_CODES = {
 };
 
 /**
- * Applies a discount code to a price.
+ * Applies a discount code to a base price if valid.
  *
- * @param {number} price - The original price.
- * @param {DiscountCode} discountCode - The discount code key.
- * @returns {object} The discounted price, savings, and validity.
+ * @param {number} price - The original price in cents.
+ * @param {DiscountCode} discountCode - The identifier key for the discount code.
+ * @returns {{ discountedPrice: number; savings: number; valid: boolean }} An object containing the new price, amount saved, and validity status.
  */
 export function applyDiscount(
   price: number,
@@ -351,7 +369,7 @@ export function applyDiscount(
 }
 
 /**
- * Regional pricing multipliers (Purchase Power Parity adjustments).
+ * Regional pricing multipliers used to adjust prices based on Purchasing Power Parity (PPP).
  */
 export const REGIONAL_PRICING = {
   EU_WEST: 1.0, // Base
@@ -363,11 +381,11 @@ export const REGIONAL_PRICING = {
 };
 
 /**
- * Calculates regional price based on multipliers.
+ * Calculates the adjusted price for a specific region.
  *
- * @param {number} basePrice - The base price.
- * @param {Region} region - The region key.
- * @returns {number} The regional price.
+ * @param {number} basePrice - The base price in cents.
+ * @param {Region} region - The target region key.
+ * @returns {number} The adjusted regional price in cents.
  */
 export function getRegionalPrice(
   basePrice: number,
@@ -378,11 +396,12 @@ export function getRegionalPrice(
 }
 
 /**
- * Generates pricing analytics based on sales volume.
+ * Generates consolidated pricing analytics for a batch of sales.
+ * useful for reporting and monitoring business performance.
  *
- * @param {Array} packsSold - Array of objects with size and quantity.
- * @param {number} [monthlyVolume=500] - Estimated monthly volume.
- * @returns {object} Analytics data including revenue, costs, and margins.
+ * @param {Array<{ size: PackSize; quantity: number }>} packsSold - List of packs sold with their quantities.
+ * @param {number} [monthlyVolume=500] - Estimated monthly volume context for cost calculations.
+ * @returns {object} An object containing aggregated revenue, costs, margins, and formatted strings.
  */
 export function getPricingAnalytics(
   packsSold: { size: PackSize; quantity: number }[],
@@ -418,6 +437,9 @@ export function getPricingAnalytics(
   };
 }
 
+/** Type definition for a sticker pack configuration object. */
 export type PackConfig = typeof STICKER_PACKS.PACK_10;
+/** Type alias for valid discount code keys. */
 export type DiscountCode = keyof typeof DISCOUNT_CODES;
+/** Type alias for supported pricing regions. */
 export type Region = keyof typeof REGIONAL_PRICING;

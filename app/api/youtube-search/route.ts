@@ -4,6 +4,9 @@ import { createSuccessResponse, createErrorResponse, ErrorCodes } from '@/lib/ap
 import { withCache, generateCacheKey, CacheTTL } from '@/lib/cache';
 import { logger } from '@/lib/logger';
 
+/**
+ * Structure of a YouTube video object returned by the Google API.
+ */
 interface YouTubeVideo {
   id: {
     videoId: string;
@@ -18,12 +21,25 @@ interface YouTubeVideo {
   };
 }
 
+/**
+ * Handles POST requests to search for YouTube videos.
+ *
+ * This route acts as a proxy to the YouTube Data API v3. It handles:
+ * - Rate limiting based on IP address.
+ * - Caching of search results to reduce API quota usage and improve performance.
+ * - Input validation and error handling.
+ *
+ * @param {NextRequest} request - The incoming request containing the search query.
+ * @returns {Promise<NextResponse>} A JSON response with the list of video results.
+ */
 export async function POST(request: NextRequest) {
   try {
-            const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ||
+    // Get IP for rate limiting
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ||
                request.headers.get('x-real-ip') ||
                'unknown';
 
+    // Apply rate limit
     const rateLimitResult = rateLimit(request, 'youtube', ip);
     if (!rateLimitResult.success) {
       return NextResponse.json(
@@ -38,7 +54,8 @@ export async function POST(request: NextRequest) {
 
     const { query } = await request.json();
 
-        if (!query || typeof query !== 'string') {
+    // Input validation
+    if (!query || typeof query !== 'string') {
       return NextResponse.json(
         createErrorResponse(ErrorCodes.INVALID_INPUT, 'Invalid query parameter'),
         { status: 400 }
@@ -52,7 +69,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-        const apiKey = process.env.YOUTUBE_API_KEY;
+    // API Key validation
+    const apiKey = process.env.YOUTUBE_API_KEY;
 
     if (!apiKey) {
       logger.error('YOUTUBE_API_KEY is not set');

@@ -1,12 +1,16 @@
 /**
- * Centralized URL construction helpers to ensure consistency across auth flows
+ * Centralized URL construction helpers to ensure consistency across auth flows,
+ * emails, and redirects.
  */
 
 /**
- * Gets the base URL of the application.
- * Falls back to localhost in development if env vars are missing.
+ * Retrieves the canonical base URL of the application.
  *
- * @returns {string} The base URL (e.g., https://lightmyfire.app).
+ * It prioritizes `NEXT_PUBLIC_SITE_URL`, then `NEXT_PUBLIC_VERCEL_URL`,
+ * and falls back to `http://localhost:3000` for development.
+ * It ensures the protocol (https) is present and trailing slashes are removed.
+ *
+ * @returns {string} The normalized base URL (e.g., "https://lightmyfire.app").
  */
 export function getBaseUrl(): string {
   const url =
@@ -20,10 +24,11 @@ export function getBaseUrl(): string {
 }
 
 /**
- * Gets the authentication callback URL.
+ * Constructs the URL for the authentication callback endpoint.
+ * This is used during OAuth flows or email verification.
  *
- * @param {string} locale - The current locale.
- * @returns {string} The auth callback URL.
+ * @param {string} locale - The current locale code (e.g., 'en').
+ * @returns {string} The complete auth callback URL.
  */
 export function getAuthCallbackUrl(locale: string): string {
   const baseUrl = getBaseUrl();
@@ -31,10 +36,10 @@ export function getAuthCallbackUrl(locale: string): string {
 }
 
 /**
- * Gets the password reset URL.
+ * Constructs the URL for the password reset page.
  *
- * @param {string} locale - The current locale.
- * @returns {string} The password reset URL.
+ * @param {string} locale - The current locale code.
+ * @returns {string} The complete password reset URL.
  */
 export function getPasswordResetUrl(locale: string): string {
   const baseUrl = getBaseUrl();
@@ -42,10 +47,10 @@ export function getPasswordResetUrl(locale: string): string {
 }
 
 /**
- * Gets the home URL, optionally with query parameters.
+ * Constructs the URL for the home page, optionally appending query parameters.
  *
- * @param {string} locale - The current locale.
- * @param {Record<string, string>} [queryParams] - Optional query parameters.
+ * @param {string} locale - The current locale code.
+ * @param {Record<string, string>} [queryParams] - Key-value pairs of query parameters to append.
  * @returns {string} The constructed home URL.
  */
 export function getHomeUrl(locale: string, queryParams?: Record<string, string>): string {

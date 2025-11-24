@@ -7,8 +7,27 @@ import { validatePaymentEnvironment } from '@/lib/env';
 import { PACK_PRICING, VALID_PACK_SIZES } from '@/lib/constants';
 import { logger } from '@/lib/logger';
 
+/**
+ * Forces dynamic rendering to prevent caching of payment creation logic.
+ */
 export const dynamic = 'force-dynamic';
 
+/**
+ * Handles POST requests to create a Stripe PaymentIntent.
+ *
+ * This endpoint is responsible for initializing a transaction with Stripe.
+ * It performs several critical steps:
+ * 1. Validates the server environment (Stripe keys, etc.).
+ * 2. Authenticates the user session.
+ * 3. Enforces rate limiting to prevent abuse.
+ * 4. Validates input data (order ID, email, pack size, shipping).
+ * 5. Calculates the total amount server-side to ensure integrity.
+ * 6. Checks for duplicate pending intents (idempotency) to avoid double charges.
+ * 7. Creates or retrieves a PaymentIntent from Stripe.
+ *
+ * @param {NextRequest} request - The incoming request object.
+ * @returns {Promise<NextResponse>} A JSON response containing the client secret and payment details.
+ */
 export async function POST(request: NextRequest) {
   const envValidation = validatePaymentEnvironment();
   if (!envValidation.valid) {

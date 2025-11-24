@@ -1,6 +1,7 @@
 
 /**
  * Configuration for sticker background themes.
+ * Contains color palettes, illustration keys, and descriptive text for each theme.
  */
 export const BACKGROUND_THEMES = {
   FIRE: {
@@ -71,10 +72,12 @@ export const BACKGROUND_THEMES = {
   },
 } as const;
 
+/** Type alias for valid theme keys. */
 export type ThemeName = keyof typeof BACKGROUND_THEMES;
 
 /**
  * Sticker sheet dimensions configuration.
+ * Defines physical sizes and pixel resolutions for printing at 600 DPI.
  */
 export const SHEET_DIMENSIONS = {
   SMALL: {
@@ -101,7 +104,8 @@ export const SHEET_DIMENSIONS = {
 } as const;
 
 /**
- * SVG illustration fragments for corners.
+ * SVG illustration fragments for corners, keyed by theme illustration type.
+ * Each entry contains SVG strings for different corner positions.
  */
 export const CORNER_ILLUSTRATIONS = {
   flames: {
@@ -295,11 +299,18 @@ export const CORNER_ILLUSTRATIONS = {
 };
 
 /**
- * Generates an SVG string for the sticker background.
+ * Generates an SVG string for a custom sticker background.
  *
- * @param {ThemeName} [theme='FIRE'] - The theme to use.
- * @param {keyof typeof SHEET_DIMENSIONS} [size='MEDIUM'] - The size of the sheet.
- * @returns {string} The SVG string.
+ * The SVG includes:
+ * - A solid background color.
+ * - A subtle radial gradient overlay.
+ * - Decorative corner illustrations based on the selected theme.
+ * - A subtle center pattern.
+ * - A faint brand watermark at the bottom.
+ *
+ * @param {ThemeName} [theme='FIRE'] - The theme to use for colors and illustrations.
+ * @param {keyof typeof SHEET_DIMENSIONS} [size='MEDIUM'] - The target physical dimensions of the sheet.
+ * @returns {string} The complete SVG string.
  */
 export function generateStickerBackground(
   theme: ThemeName = 'FIRE',
@@ -374,11 +385,14 @@ export function generateStickerBackground(
 }
 
 /**
- * Generates a Data URL for the sticker background (base64 encoded SVG).
+ * Generates a Base64-encoded Data URL representing the sticker background.
+ *
+ * This is useful for embedding the background image directly into HTML or other contexts
+ * where a URL is required but the file is generated on the fly.
  *
  * @param {ThemeName} [theme='FIRE'] - The theme to use.
- * @param {keyof typeof SHEET_DIMENSIONS} [size='MEDIUM'] - The size of the sheet.
- * @returns {Promise<string>} The Data URL.
+ * @param {keyof typeof SHEET_DIMENSIONS} [size='MEDIUM'] - The sheet size.
+ * @returns {Promise<string>} A promise resolving to the Data URL string.
  */
 export async function generatePrintableBackground(
   theme: ThemeName = 'FIRE',
@@ -392,9 +406,9 @@ export async function generatePrintableBackground(
 }
 
 /**
- * Returns a list of all available themes.
+ * Retrieves a list of all available background themes.
  *
- * @returns {Array} List of themes.
+ * @returns {Array} An array of theme objects, each including its ID and properties.
  */
 export function getAllThemes() {
   return Object.entries(BACKGROUND_THEMES).map(([key, theme]) => ({
@@ -404,11 +418,14 @@ export function getAllThemes() {
 }
 
 /**
- * Generates configuration for Printful templates.
+ * Generates a configuration object for creating a Printful product using a specific theme.
  *
- * @param {ThemeName} [theme='FIRE'] - The theme to use.
- * @param {keyof typeof SHEET_DIMENSIONS} [size='MEDIUM'] - The size of the sheet.
- * @returns {object} Printful template configuration.
+ * This helper function constructs the necessary JSON structure required by Printful's API
+ * to create a product variant with the generated background image.
+ *
+ * @param {ThemeName} [theme='FIRE'] - The theme to apply.
+ * @param {keyof typeof SHEET_DIMENSIONS} [size='MEDIUM'] - The size of the sticker sheet.
+ * @returns {object} The configuration object compatible with Printful's API.
  */
 export function getPrintfulTemplateConfig(
   theme: ThemeName = 'FIRE',

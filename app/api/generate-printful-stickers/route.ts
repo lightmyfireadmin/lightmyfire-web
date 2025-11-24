@@ -4,8 +4,21 @@ import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { verifyInternalAuthToken } from '@/lib/internal-auth';
 import { generateStickerSheets, StickerData } from '@/lib/sticker-generator';
 
+/**
+ * Forces the route to be dynamic to prevent caching of authenticated requests.
+ */
 export const dynamic = 'force-dynamic';
 
+/**
+ * Handles POST requests to generate sticker sheets specifically for Printful fulfillment.
+ *
+ * This endpoint is similar to `generate-sticker-pdf`, but it returns a JSON response
+ * containing Base64-encoded image data instead of a file download. This is used by
+ * the order processing system to attach files to emails or upload to Printful.
+ *
+ * @param {NextRequest} request - The incoming request object containing sticker data.
+ * @returns {Promise<NextResponse>} A JSON response with generated sheet data or an error.
+ */
 export async function POST(request: NextRequest) {
   try {
     const internalAuth = request.headers.get('x-internal-auth');

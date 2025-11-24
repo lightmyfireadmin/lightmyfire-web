@@ -1,6 +1,12 @@
 /**
  * List of countries with their names and ISO 2-letter codes.
- * Used for country selection dropdowns and validation.
+ *
+ * This constant is used for populating country selection dropdowns,
+ * validating country codes, and mapping codes to display names.
+ *
+ * Structure:
+ * - name: Full English name of the country.
+ * - code: ISO 3166-1 alpha-2 country code (uppercase).
  */
 export const countries = [
   { name: 'Afghanistan', code: 'AF' },

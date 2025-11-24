@@ -4,8 +4,21 @@ import { cookies } from 'next/headers';
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { generateStickerSheets, StickerData } from '@/lib/sticker-generator';
 
+/**
+ * Forces the route to be dynamic to prevent caching of authenticated requests.
+ */
 export const dynamic = 'force-dynamic';
 
+/**
+ * Handles POST requests to generate sticker sheets (PDFs/PNGs).
+ *
+ * Validates authentication (either user session or internal API key) and
+ * generates sticker images based on the provided data.
+ * Returns a single PNG file if one sheet is generated, or a ZIP archive if multiple sheets are needed.
+ *
+ * @param {NextRequest} request - The incoming request object containing sticker data.
+ * @returns {Promise<NextResponse>} A response containing the generated file or an error message.
+ */
 export async function POST(request: NextRequest) {
   try {
     const internalAuth = request.headers.get('x-internal-auth');
@@ -51,8 +64,6 @@ export async function POST(request: NextRequest) {
     }
 
     // The client might not send all fields required by StickerData, so we map and default them if necessary
-    // But looking at lib/generateSticker.ts we created, we are sending correct fields.
-    // Let's ensure compatibility.
     const mappedStickers: StickerData[] = stickers.map((s: Partial<StickerData> & { name: string; pinCode: string }) => ({
       name: s.name,
       pinCode: s.pinCode,

@@ -14,7 +14,7 @@ const DPI = 600;
 const SHEET_WIDTH_PX = Math.round(SHEET_WIDTH_INCHES * DPI);
 const SHEET_HEIGHT_PX = Math.round(SHEET_HEIGHT_INCHES * DPI);
 const CARD_BG_COLOR = '#FFFFFF';
-const LOGO_BG_COLOR = '#FFF4D6';
+const LOGO_BG_COLOR = '#FFF4D6'; // eslint-disable-line @typescript-eslint/no-unused-vars
 
 // Sticker Constants
 const STICKER_WIDTH_CM = 2;
@@ -30,7 +30,7 @@ const GAP_INCHES = GAP_CM * CM_TO_INCHES;
 const GAP_PX = Math.round(GAP_INCHES * DPI);
 
 const RESERVED_INCHES = 3;
-const RESERVED_CM = RESERVED_INCHES / CM_TO_INCHES;
+const RESERVED_CM = RESERVED_INCHES / CM_TO_INCHES; // eslint-disable-line @typescript-eslint/no-unused-vars
 const RESERVED_PX = Math.round(RESERVED_INCHES * DPI);
 
 const STICKER_WITH_GAP_PX = STICKER_WIDTH_PX + GAP_PX;
@@ -127,7 +127,7 @@ const STICKER_TEXTS: Record<string, {
     tellThemHowWeMet: "Opowiedz jak się poznaliśmy",
     orGoTo: "lub wejdź na",
     website: "LIGHTMYFIRE.APP",
-    andTypeMyCode: "i wpisz mój kod"
+    andTypeMyCode: "i wpisz mój код"
   },
   'ja': {
     youFoundMe: "私の名前は",
@@ -383,7 +383,7 @@ async function generateSingleSheet(stickers: StickerData[]): Promise<Buffer> {
     for (let col = 0; col < STICKERS_PER_ROW && stickerIndex < stickers.length; col++) {
       const x = topOffsetX + col * (STICKER_WIDTH_PX + GAP_PX);
       const y = topOffsetY + row * (STICKER_HEIGHT_PX + GAP_PX);
-      const stickerBuffer = await generateStickerImage(stickers[stickerIndex], x, y);
+      const stickerBuffer = await generateStickerImage(stickers[stickerIndex]); // Removed unused arguments x and y
       composite.push({
         input: stickerBuffer,
         top: y,
@@ -401,7 +401,7 @@ async function generateSingleSheet(stickers: StickerData[]): Promise<Buffer> {
     for (let col = 0; col < STICKERS_PER_ROW_BOTTOM && stickerIndex < stickers.length; col++) {
       const x = bottomOffsetX + col * (STICKER_WIDTH_PX + GAP_PX);
       const y = bottomOffsetY + row * (STICKER_HEIGHT_PX + GAP_PX);
-      const stickerBuffer = await generateStickerImage(stickers[stickerIndex], x, y);
+      const stickerBuffer = await generateStickerImage(stickers[stickerIndex]); // Removed unused arguments x and y
       composite.push({
         input: stickerBuffer,
         top: y,
@@ -419,11 +419,9 @@ async function generateSingleSheet(stickers: StickerData[]): Promise<Buffer> {
  * Generates an individual sticker image.
  *
  * @param {StickerData} sticker - The data for the sticker.
- * @param {number} x - The x position on the sheet (for reference/logging).
- * @param {number} y - The y position on the sheet (for reference/logging).
  * @returns {Promise<Buffer>} The generated sticker as a PNG buffer.
  */
-async function generateStickerImage(sticker: StickerData, x: number, y: number): Promise<Buffer> {
+async function generateStickerImage(sticker: StickerData): Promise<Buffer> {
   const canvas = await sharp({
     create: {
       width: STICKER_WIDTH_PX,
@@ -511,7 +509,7 @@ async function generateStickerImage(sticker: StickerData, x: number, y: number):
   const qrCardSize = Math.round(contentWidth * 0.7);
   const qrSize = Math.round(qrCardSize * 0.89);
   const qrCardX = padding + (contentWidth - qrCardSize) / 2;
-  
+
   const qrCardSvg = `
     <svg width="${qrCardSize}" height="${qrCardSize}" xmlns="http://www.w3.org/2000/svg">
       <rect width="${qrCardSize}" height="${qrCardSize}" rx="${cardRadius}" fill="${CARD_BG_COLOR}"/>
@@ -537,7 +535,7 @@ async function generateStickerImage(sticker: StickerData, x: number, y: number):
     const qrBuffer = Buffer.from(qrDataUrl.split(',')[1], 'base64');
     const qrX = Math.round(STICKER_WIDTH_PX / 2 - qrSize / 2);
     const qrY = currentY + (qrCardSize - qrSize) / 2;
-    
+
     composite.push({
       input: qrBuffer,
       top: qrY,
@@ -626,11 +624,11 @@ async function generateStickerImage(sticker: StickerData, x: number, y: number):
       const logoBuffer = await sharp(logoPath).toBuffer();
       const logo = await sharp(logoBuffer);
       const metadata = await logo.metadata();
-      
+
       const logoPadding = 40;
       const logoBaseWidth = STICKER_WIDTH_PX - (logoPadding * 2);
       const logoTargetWidth = Math.round(logoBaseWidth * 0.6);
-      const logoAspectRatio = metadata.height / metadata.width;
+      const logoAspectRatio = (metadata.height || 0) / (metadata.width || 1);
       const logoTargetHeight = Math.round(logoTargetWidth * logoAspectRatio);
 
       const logoX = (STICKER_WIDTH_PX - logoTargetWidth) / 2;
@@ -640,7 +638,7 @@ async function generateStickerImage(sticker: StickerData, x: number, y: number):
       const resizedLogo = await sharp(logoBuffer)
         .resize(logoTargetWidth, logoTargetHeight)
         .toBuffer();
-      
+
       composite.push({
         input: resizedLogo,
         top: Math.round(logoY),
