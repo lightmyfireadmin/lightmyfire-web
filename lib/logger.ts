@@ -5,25 +5,28 @@ interface LogContext {
 }
 
 interface Logger {
-  // Basic logging (development only)
+  /** Basic logging (development only) */
   log: (...args: unknown[]) => void;
+  /** Debug logging (development only) */
   debug: (...args: unknown[]) => void;
 
-  // Error and warning (always shown)
+  /** Error logging (always shown) */
   error: (...args: unknown[]) => void;
+  /** Warning logging (always shown, structured) */
   warn: (message: string, context?: LogContext) => void;
 
-  // Informational logs (always shown)
+  /** Informational logs (always shown) */
   info: (message: string, context?: LogContext) => void;
 
-  // Business event logs (always shown) - for tracking user actions, orders, etc.
+  /** Business event logs (always shown) - for tracking user actions, orders, etc. */
   event: (eventName: string, data?: LogContext) => void;
 
-  // Performance logs (shown in dev or if slow)
+  /** Performance logs (shown in dev or if slow) */
   perf: (operation: string, duration: number, context?: LogContext) => void;
 
-  // Utility for timing operations
+  /** Start a timer for performance tracking */
   time: (label: string) => void;
+  /** End a timer and log the duration */
   timeEnd: (label: string) => void;
 }
 
@@ -32,6 +35,11 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 /**
  * Format log message with timestamp and context
+ *
+ * @param {string} level - The log level.
+ * @param {string} message - The log message.
+ * @param {LogContext} [context] - Optional context data.
+ * @returns {string} Formatted log string.
  */
 const formatLog = (level: string, message: string, context?: LogContext): string => {
   const timestamp = new Date().toISOString();
@@ -49,6 +57,8 @@ const formatLog = (level: string, message: string, context?: LogContext): string
  * - logger.event(): Always shown - for business events
  * - logger.perf(): Smart - shown in dev or if operation is slow
  * - logger.log/debug(): Development only - for debugging
+ *
+ * @returns {Logger} The configured logger instance.
  */
 const createLogger = (): Logger => {
   const noop = () => {};

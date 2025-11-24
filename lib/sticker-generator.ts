@@ -7,6 +7,7 @@ import { logger } from '@/lib/logger';
 // Font handling configuration
 logger.log('Font handling configured for SVG text elements');
 
+// Sticker Sheet Constants
 const SHEET_WIDTH_INCHES = 5.83;
 const SHEET_HEIGHT_INCHES = 8.27;
 const DPI = 600;
@@ -14,6 +15,8 @@ const SHEET_WIDTH_PX = Math.round(SHEET_WIDTH_INCHES * DPI);
 const SHEET_HEIGHT_PX = Math.round(SHEET_HEIGHT_INCHES * DPI);
 const CARD_BG_COLOR = '#FFFFFF';
 const LOGO_BG_COLOR = '#FFF4D6';
+
+// Sticker Constants
 const STICKER_WIDTH_CM = 2;
 const STICKER_HEIGHT_CM = 5;
 const CM_TO_INCHES = 1 / 2.54;
@@ -43,6 +46,9 @@ const ROWS_BOTTOM = Math.floor(RESERVED_PX / STICKER_WITH_GAP_HEIGHT_PX);
 
 const TOTAL_STICKERS = (STICKERS_PER_ROW * ROWS_TOP) + (STICKERS_PER_ROW_BOTTOM * ROWS_BOTTOM);
 
+/**
+ * Data required to generate a single sticker.
+ */
 export interface StickerData {
   name: string;
   pinCode: string;
@@ -50,6 +56,9 @@ export interface StickerData {
   language: string;
 }
 
+/**
+ * Localized texts for stickers.
+ */
 const STICKER_TEXTS: Record<string, {
   youFoundMe: string;
   tellThemHowWeMet: string;
@@ -220,10 +229,22 @@ const STICKER_TEXTS: Record<string, {
   }
 };
 
+/**
+ * Gets localized text for the sticker.
+ *
+ * @param {string} language - The language code (e.g., 'en', 'fr').
+ * @returns {object} The localized text strings.
+ */
 function getStickerTexts(language: string) {
   return STICKER_TEXTS[language] || STICKER_TEXTS['en'];
 }
 
+/**
+ * Calculates the luminance of a hex color.
+ *
+ * @param {string} hex - The hex color code.
+ * @returns {number} The relative luminance.
+ */
 function getLuminance(hex: string): number {
   let r = 0, g = 0, b = 0;
 
@@ -252,11 +273,23 @@ function getLuminance(hex: string): number {
   return 0.2126 * linR + 0.7152 * linG + 0.0722 * linB;
 }
 
+/**
+ * Determines a contrasting text color (black or white) for a given background color.
+ *
+ * @param {string} backgroundColorHex - The background color in hex.
+ * @returns {string} The contrasting text color ('#000000' or '#ffffff').
+ */
 function getContrastingTextColor(backgroundColorHex: string): string {
   const luminance = getLuminance(backgroundColorHex);
   return luminance < 0.65 ? '#ffffff' : '#000000';
 }
 
+/**
+ * Escapes unsafe characters for use in XML/SVG.
+ *
+ * @param {string} unsafe - The string to escape.
+ * @returns {string} The escaped string.
+ */
 function escapeXml(unsafe: string): string {
   return unsafe.replace(/[<>&'\\"]/g, (c) => {
     switch (c) {
@@ -270,6 +303,9 @@ function escapeXml(unsafe: string): string {
   });
 }
 
+/**
+ * Represents a generated sticker sheet.
+ */
 export interface GeneratedSheet {
   filename: string;
   buffer: Buffer;
@@ -277,6 +313,13 @@ export interface GeneratedSheet {
   size: number;
 }
 
+/**
+ * Generates multiple sticker sheets from a list of sticker data.
+ *
+ * @param {StickerData[]} stickers - The list of stickers to generate.
+ * @returns {Promise<GeneratedSheet[]>} An array of generated sheets.
+ * @throws {Error} If the input is invalid or generation fails.
+ */
 export async function generateStickerSheets(stickers: StickerData[]): Promise<GeneratedSheet[]> {
   if (!Array.isArray(stickers) || stickers.length === 0) {
     throw new Error('Please provide an array of stickers');
@@ -312,6 +355,12 @@ export async function generateStickerSheets(stickers: StickerData[]): Promise<Ge
   return sheets;
 }
 
+/**
+ * Generates a single sticker sheet.
+ *
+ * @param {StickerData[]} stickers - The stickers to include on the sheet.
+ * @returns {Promise<Buffer>} The generated sheet as a PNG buffer.
+ */
 async function generateSingleSheet(stickers: StickerData[]): Promise<Buffer> {
   // Create a white background canvas with transparency support
   const canvas = await sharp({
@@ -366,6 +415,14 @@ async function generateSingleSheet(stickers: StickerData[]): Promise<Buffer> {
   return finalCanvas;
 }
 
+/**
+ * Generates an individual sticker image.
+ *
+ * @param {StickerData} sticker - The data for the sticker.
+ * @param {number} x - The x position on the sheet (for reference/logging).
+ * @param {number} y - The y position on the sheet (for reference/logging).
+ * @returns {Promise<Buffer>} The generated sticker as a PNG buffer.
+ */
 async function generateStickerImage(sticker: StickerData, x: number, y: number): Promise<Buffer> {
   const canvas = await sharp({
     create: {

@@ -24,16 +24,24 @@ const ANNOUNCEMENT_CONTENT = {
 
 type Language = 'en' | 'fr' | 'de' | 'es';
 
+/**
+ * A popup component that displays a launch announcement message.
+ * It appears once per user session (controlled by localStorage) and supports multiple languages.
+ *
+ * @returns {JSX.Element | null} The popup component or null if dismissed.
+ */
 export default function LaunchAnnouncementPopup() {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedLang, setSelectedLang] = useState<Language>('en');
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-        const dismissed = localStorage.getItem('launch-announcement-dismissed');
+    // Check if the user has already dismissed the announcement
+    const dismissed = localStorage.getItem('launch-announcement-dismissed');
 
     if (!dismissed) {
-            const timer = setTimeout(() => {
+      // Delay showing the popup slightly for better UX
+      const timer = setTimeout(() => {
         setIsVisible(true);
         setIsAnimating(true);
       }, 1000);
@@ -47,13 +55,15 @@ export default function LaunchAnnouncementPopup() {
     setTimeout(() => {
       setIsVisible(false);
       localStorage.setItem('launch-announcement-dismissed', 'true');
-    }, 300);   };
+    }, 300); // Wait for animation to finish
+  };
 
   if (!isVisible) return null;
 
   const content = ANNOUNCEMENT_CONTENT[selectedLang];
 
-    const renderContent = (text: string) => {
+  // Helper to render bold text
+  const renderContent = (text: string) => {
     const parts = text.split(/(\*\*.*?\*\*)/g);
     return parts.map((part, index) => {
       if (part.startsWith('**') && part.endsWith('**')) {
@@ -69,7 +79,7 @@ export default function LaunchAnnouncementPopup() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
-      {}
+      {/* Backdrop */}
       <div
         className={`absolute inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-300 pointer-events-auto ${
           isAnimating ? 'opacity-100' : 'opacity-0'
@@ -77,16 +87,16 @@ export default function LaunchAnnouncementPopup() {
         onClick={handleClose}
       />
 
-      {}
+      {/* Modal */}
       <div
         className={`relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden pointer-events-auto transform transition-all duration-300 ${
           isAnimating ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
         }`}
         style={{ opacity: 1, colorScheme: 'light', backgroundColor: '#ffffff' }}
       >
-        {}
+        {/* Header with gradient */}
         <div className="relative bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 p-6 pb-8" style={{ background: 'linear-gradient(to right, #f97316, #ec4899, #a855f7)' }}>
-          {}
+          {/* Close button */}
           <button
             onClick={handleClose}
             className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors duration-200"
@@ -96,7 +106,7 @@ export default function LaunchAnnouncementPopup() {
             <X className="w-5 h-5" />
           </button>
 
-          {}
+          {/* Language selector */}
           <div className="absolute top-4 left-4">
             <select
               value={selectedLang}
@@ -111,13 +121,13 @@ export default function LaunchAnnouncementPopup() {
             </select>
           </div>
 
-          {}
+          {/* Title */}
           <h2 className="text-3xl font-bold text-center mt-8" style={{ color: '#ffffff !important', textShadow: '0 2px 4px rgba(0,0,0,0.2)' }}>
             {content.title}
           </h2>
         </div>
 
-        {}
+        {/* Content */}
         <div className="p-8" style={{ backgroundColor: '#ffffff' }}>
           <div className="prose prose-lg max-w-none">
             <p className="leading-relaxed text-base" style={{ color: '#1f2937' }}>
@@ -125,7 +135,7 @@ export default function LaunchAnnouncementPopup() {
             </p>
           </div>
 
-          {}
+          {/* Action button */}
           <div className="mt-8 flex justify-center">
             <button
               onClick={handleClose}
@@ -142,7 +152,7 @@ export default function LaunchAnnouncementPopup() {
           </div>
         </div>
 
-        {}
+        {/* Bottom decorative bar */}
         <div className="h-2 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500" />
       </div>
     </div>

@@ -1,5 +1,7 @@
 
-
+/**
+ * Configuration for sticker background themes.
+ */
 export const BACKGROUND_THEMES = {
   FIRE: {
     name: 'Fire & Flame',
@@ -71,6 +73,9 @@ export const BACKGROUND_THEMES = {
 
 export type ThemeName = keyof typeof BACKGROUND_THEMES;
 
+/**
+ * Sticker sheet dimensions configuration.
+ */
 export const SHEET_DIMENSIONS = {
   SMALL: {
     width: 4,
@@ -95,6 +100,9 @@ export const SHEET_DIMENSIONS = {
   },
 } as const;
 
+/**
+ * SVG illustration fragments for corners.
+ */
 export const CORNER_ILLUSTRATIONS = {
   flames: {
     topLeft: `
@@ -286,6 +294,13 @@ export const CORNER_ILLUSTRATIONS = {
   },
 };
 
+/**
+ * Generates an SVG string for the sticker background.
+ *
+ * @param {ThemeName} [theme='FIRE'] - The theme to use.
+ * @param {keyof typeof SHEET_DIMENSIONS} [size='MEDIUM'] - The size of the sheet.
+ * @returns {string} The SVG string.
+ */
 export function generateStickerBackground(
   theme: ThemeName = 'FIRE',
   size: keyof typeof SHEET_DIMENSIONS = 'MEDIUM'
@@ -358,17 +373,29 @@ export function generateStickerBackground(
   return svg;
 }
 
+/**
+ * Generates a Data URL for the sticker background (base64 encoded SVG).
+ *
+ * @param {ThemeName} [theme='FIRE'] - The theme to use.
+ * @param {keyof typeof SHEET_DIMENSIONS} [size='MEDIUM'] - The size of the sheet.
+ * @returns {Promise<string>} The Data URL.
+ */
 export async function generatePrintableBackground(
   theme: ThemeName = 'FIRE',
   size: keyof typeof SHEET_DIMENSIONS = 'MEDIUM'
 ): Promise<string> {
   const svg = generateStickerBackground(theme, size);
 
-      
+  // Convert to Base64 (this handles unicode correctly in node environment)
   const base64 = Buffer.from(svg).toString('base64');
   return `data:image/svg+xml;base64,${base64}`;
 }
 
+/**
+ * Returns a list of all available themes.
+ *
+ * @returns {Array} List of themes.
+ */
 export function getAllThemes() {
   return Object.entries(BACKGROUND_THEMES).map(([key, theme]) => ({
     id: key as ThemeName,
@@ -376,6 +403,13 @@ export function getAllThemes() {
   }));
 }
 
+/**
+ * Generates configuration for Printful templates.
+ *
+ * @param {ThemeName} [theme='FIRE'] - The theme to use.
+ * @param {keyof typeof SHEET_DIMENSIONS} [size='MEDIUM'] - The size of the sheet.
+ * @returns {object} Printful template configuration.
+ */
 export function getPrintfulTemplateConfig(
   theme: ThemeName = 'FIRE',
   size: keyof typeof SHEET_DIMENSIONS = 'MEDIUM'
@@ -383,15 +417,18 @@ export function getPrintfulTemplateConfig(
   const dimensions = SHEET_DIMENSIONS[size];
 
   return {
-    variant_id: 9413,     files: [
+    variant_id: 9413, // Example variant ID for standard sticker sheet
+    files: [
       {
-        type: 'back',         url: `${process.env.NEXT_PUBLIC_SITE_URL}/api/sticker-backgrounds/${theme}/${size}`,
+        type: 'back', // Usually applied to back or default area
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/api/sticker-backgrounds/${theme}/${size}`,
       },
     ],
     options: [
       {
         id: 'stitch_color',
-        value: '#FFFFFF',       },
+        value: '#FFFFFF', // White background
+      },
     ],
     dimensions: {
       width: dimensions.width,

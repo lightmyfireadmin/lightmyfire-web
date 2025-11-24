@@ -1,4 +1,7 @@
-
+/**
+ * List of countries with their names and ISO 2-letter codes.
+ * Used for country selection dropdowns and validation.
+ */
 export const countries = [
   { name: 'Afghanistan', code: 'AF' },
   { name: 'Åland Islands', code: 'AX' },

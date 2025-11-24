@@ -13,6 +13,8 @@ export interface AdminAuthResult {
 /**
  * Verify admin authentication and authorization
  * Returns an object with authorization status and error response if unauthorized
+ *
+ * @returns {Promise<AdminAuthResult>} The authentication result object
  */
 export async function verifyAdminAuth(): Promise<AdminAuthResult> {
   const cookieStore = cookies();
@@ -60,6 +62,8 @@ export async function verifyAdminAuth(): Promise<AdminAuthResult> {
 /**
  * Verify moderator or admin authentication and authorization
  * Returns an object with authorization status and error response if unauthorized
+ *
+ * @returns {Promise<AdminAuthResult>} The authentication result object
  */
 export async function verifyModeratorAuth(): Promise<AdminAuthResult> {
   const cookieStore = cookies();

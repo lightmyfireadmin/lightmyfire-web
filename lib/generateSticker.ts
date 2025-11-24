@@ -4,8 +4,10 @@
  * Note: The server actually returns a PNG or ZIP, but the function is named generateStickerPDF
  * in the client code, so we keep the name for compatibility or rename it if possible.
  *
- * @param name The name of the lighter.
- * @param pinCode The unique PIN code of the lighter.
+ * @param {string} name - The name of the lighter.
+ * @param {string} pinCode - The unique PIN code of the lighter.
+ * @returns {Promise<void>} Resolves when the download starts or throws an error.
+ * @throws {Error} If the sticker generation request fails.
  */
 export async function generateStickerPDF(name: string, pinCode: string) {
   try {

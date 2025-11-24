@@ -1,5 +1,4 @@
 
-
 const REQUIRED_ENV_VARS = {
   NEXT_PUBLIC_SUPABASE_URL: {
     name: 'NEXT_PUBLIC_SUPABASE_URL',
@@ -48,6 +47,12 @@ const PAYMENT_ENV_VARS = {
   },
 } as const;
 
+/**
+ * Validates that all required environment variables are present.
+ * Throws an error if any are missing.
+ *
+ * @throws {Error} If any required environment variable is missing.
+ */
 export function validateEnvironmentVariables() {
   const missingVars: string[] = [];
   const errors: string[] = [];
@@ -69,7 +74,7 @@ export function validateEnvironmentVariables() {
       '\n'
     )}\n\nPlease check your .env.local file.`;
 
-        if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV === 'development') {
       console.error(errorMessage);
     }
 
@@ -79,6 +84,14 @@ export function validateEnvironmentVariables() {
   }
 }
 
+/**
+ * Retrieves an environment variable, optionally enforcing its presence.
+ *
+ * @param {string} key - The environment variable key.
+ * @param {boolean} [required=false] - Whether the variable is required.
+ * @returns {string | null} The value of the environment variable, or null if not set (and not required).
+ * @throws {Error} If required is true and the variable is not set.
+ */
 export function getEnvVar(key: string, required = false): string | null {
   const value = process.env[key];
 
@@ -89,6 +102,11 @@ export function getEnvVar(key: string, required = false): string | null {
   return value || null;
 }
 
+/**
+ * Validates the environment variables required for payment processing.
+ *
+ * @returns {{ valid: boolean; errors: string[] }} Object containing validity status and any error messages.
+ */
 export function validatePaymentEnvironment(): { valid: boolean; errors: string[] } {
   const errors: string[] = [];
 
@@ -108,10 +126,10 @@ export function validatePaymentEnvironment(): { valid: boolean; errors: string[]
 }
 
 if (typeof window === 'undefined' && process.env.NODE_ENV === 'development') {
-      try {
+  try {
     validateEnvironmentVariables();
   } catch (error) {
-        if (error instanceof Error) {
+    if (error instanceof Error) {
       console.warn(`Environment validation warning: ${error.message}`);
     }
   }

@@ -17,7 +17,11 @@ interface PageMetadata {
 }
 
 /**
- * Generate metadata for a page with locale support
+ * Generate metadata for a page with locale support.
+ *
+ * @param {string} locale - The locale code (e.g., 'en', 'fr').
+ * @param {PageMetadata} pageData - Metadata specific to the page.
+ * @returns {Metadata} Next.js Metadata object.
  */
 export function generatePageMetadata(
   locale: string,
@@ -70,7 +74,17 @@ export function generatePageMetadata(
 }
 
 /**
- * Generate metadata for lighter detail pages
+ * Generate metadata for lighter detail pages.
+ *
+ * @param {string} locale - The locale code.
+ * @param {object} lighterData - Data about the lighter.
+ * @param {string} lighterData.pin - The lighter's PIN.
+ * @param {string} [lighterData.name] - The lighter's name.
+ * @param {string} [lighterData.owner_name] - The owner's name.
+ * @param {string} [lighterData.story] - The lighter's story.
+ * @param {string} [lighterData.image_url] - The lighter's image URL.
+ * @param {number} [lighterData.post_count] - The number of posts.
+ * @returns {Metadata} Next.js Metadata object.
  */
 export function generateLighterMetadata(
   locale: string,
@@ -102,7 +116,10 @@ export function generateLighterMetadata(
 }
 
 /**
- * Map locale codes to OpenGraph locale format
+ * Map locale codes to OpenGraph locale format.
+ *
+ * @param {string} locale - The locale code.
+ * @returns {string} The OpenGraph locale string (e.g., 'en_US').
  */
 function getOpenGraphLocale(locale: string): string {
   const localeMap: Record<string, string> = {
@@ -135,8 +152,8 @@ function getOpenGraphLocale(locale: string): string {
 }
 
 /**
- * Locale-specific metadata content
- * Can be expanded with translations
+ * Locale-specific metadata content.
+ * Can be expanded with translations.
  */
 export const localizedMetadata = {
   home: {

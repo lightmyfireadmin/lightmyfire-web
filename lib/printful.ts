@@ -24,6 +24,9 @@ const RETRY_CONFIG = {
 
 /**
  * Determines if an error is retryable (transient/network issues vs permanent errors)
+ *
+ * @param {number} [statusCode] - The HTTP status code of the error.
+ * @returns {boolean} True if retryable, false otherwise.
  */
 function isRetryableError(statusCode?: number): boolean {
   if (!statusCode) return true; // Network errors are retryable
@@ -36,6 +39,9 @@ function isRetryableError(statusCode?: number): boolean {
 
 /**
  * Sleep for specified milliseconds
+ *
+ * @param {number} ms - Milliseconds to sleep.
+ * @returns {Promise<void>}
  */
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -43,6 +49,11 @@ function sleep(ms: number): Promise<void> {
 
 /**
  * Retry a function with exponential backoff
+ *
+ * @param {() => Promise<T>} fn - The async function to retry.
+ * @param {string} context - Context description for logging.
+ * @param {number} [maxRetries=RETRY_CONFIG.maxRetries] - Maximum number of retries.
+ * @returns {Promise<T>} The result of the function.
  */
 async function retryWithBackoff<T>(
   fn: () => Promise<T>,
@@ -101,7 +112,13 @@ class PrintfulClient {
     this.baseUrl = PRINTFUL_API_BASE;
   }
 
-  
+  /**
+   * Generic request handler for Printful API.
+   *
+   * @param {string} endpoint - The API endpoint.
+   * @param {RequestInit} [options={}] - Fetch options.
+   * @returns {Promise<T>} The response data.
+   */
   private async request<T>(
     endpoint: string,
     options: RequestInit = {}
@@ -130,19 +147,34 @@ class PrintfulClient {
     return data.result as T;
   }
 
-  
+  /**
+   * Get product details.
+   *
+   * @param {number} productId - The product ID.
+   * @returns {Promise<PrintfulProduct>} Product details.
+   */
   async getProduct(productId: number) {
     return this.request<PrintfulProduct>(`/products/${productId}`);
   }
 
-  
+  /**
+   * Get variant details.
+   *
+   * @param {number} variantId - The variant ID.
+   * @returns {Promise<PrintfulVariant>} Variant details.
+   */
   async getVariant(variantId: number) {
     return this.request<PrintfulVariant>(`/products/variant/${variantId}`);
   }
 
-  
+  /**
+   * Calculate shipping rates.
+   *
+   * @param {PrintfulShippingRequest} order - Shipping request details.
+   * @returns {Promise<PrintfulShippingRates>} Shipping rates.
+   */
   async calculateShipping(order: PrintfulShippingRequest) {
-        const requestBody = PRINTFUL_STORE_ID
+    const requestBody = PRINTFUL_STORE_ID
       ? { ...order, store_id: parseInt(PRINTFUL_STORE_ID, 10) }
       : order;
 
@@ -152,7 +184,12 @@ class PrintfulClient {
     });
   }
 
-  
+  /**
+   * Create a new order.
+   *
+   * @param {PrintfulOrderRequest} order - Order request details.
+   * @returns {Promise<PrintfulOrder>} Created order details.
+   */
   async createOrder(order: PrintfulOrderRequest) {
     return this.request<PrintfulOrder>('/orders', {
       method: 'POST',
@@ -160,26 +197,49 @@ class PrintfulClient {
     });
   }
 
-  
+  /**
+   * Confirm a draft order.
+   *
+   * @param {string | number} orderId - The order ID to confirm.
+   * @returns {Promise<PrintfulOrder>} Confirmed order details.
+   */
   async confirmOrder(orderId: string | number) {
     return this.request<PrintfulOrder>(`/orders/${orderId}/confirm`, {
       method: 'POST',
     });
   }
 
-  
+  /**
+   * Get order details.
+   *
+   * @param {string | number} orderId - The order ID.
+   * @returns {Promise<PrintfulOrder>} Order details.
+   */
   async getOrder(orderId: string | number) {
     return this.request<PrintfulOrder>(`/orders/${orderId}`);
   }
 
-  
+  /**
+   * Cancel an order.
+   *
+   * @param {string | number} orderId - The order ID to cancel.
+   * @returns {Promise<PrintfulOrder>} Cancelled order details.
+   */
   async cancelOrder(orderId: string | number) {
     return this.request<PrintfulOrder>(`/orders/${orderId}`, {
       method: 'DELETE',
     });
   }
 
-  
+  /**
+   * List orders with optional filtering.
+   *
+   * @param {object} [params] - Filter parameters.
+   * @param {string} [params.status] - Filter by order status.
+   * @param {number} [params.offset] - Pagination offset.
+   * @param {number} [params.limit] - Pagination limit.
+   * @returns {Promise<PrintfulOrder[]>} List of orders.
+   */
   async getOrders(params?: {
     status?: 'draft' | 'pending' | 'fulfilled' | 'canceled';
     offset?: number;
@@ -194,7 +254,11 @@ class PrintfulClient {
     return this.request<PrintfulOrder[]>(`/orders${query ? `?${query}` : ''}`);
   }
 
-  
+  /**
+   * Get store information.
+   *
+   * @returns {Promise<PrintfulStore>} Store information.
+   */
   async getStoreInfo() {
     return this.request<PrintfulStore>('/store');
   }
@@ -437,11 +501,12 @@ export interface PrintfulStore {
 }
 
 export const LIGHTMYFIRE_PRINTFUL_CONFIG = {
-    STICKER_SHEET_VARIANT_ID: 9413,
+  // Use a standard sticker sheet or custom product ID from your Printful store
+  STICKER_SHEET_VARIANT_ID: 9413, // Example ID, needs to be replaced with actual product ID
 
-    DEFAULT_SHIPPING: 'STANDARD',
+  DEFAULT_SHIPPING: 'STANDARD',
 
-    PACKING_SLIP: {
+  PACKING_SLIP: {
     logo_url: `${process.env.NEXT_PUBLIC_SITE_URL}/logo-printful.png`,
     message: `Thank you for being a LightSaver!
 
@@ -457,15 +522,31 @@ Keep the flame alive! 🔥
 The LightMyFire Team`,
   },
 
-    FILE_SETTINGS: {
-    type: 'back' as const,     required_dpi: 600,
+  // File requirements for print quality
+  FILE_SETTINGS: {
+    type: 'back' as const, // Printful usually uses 'front', 'back', etc.
+    required_dpi: 600,
     max_file_size_mb: 50,
   },
 };
 
+/**
+ * Creates a sticker order in Printful.
+ *
+ * @param {object} params - The order parameters.
+ * @param {string} params.orderId - The application's order ID.
+ * @param {10 | 20 | 50} params.packSize - The size of the sticker pack.
+ * @param {string} params.stickerPdfUrl - The URL of the sticker PDF file.
+ * @param {object} params.customer - Customer details.
+ * @param {object} params.retailCosts - Cost details.
+ * @param {string} [params.backgroundTheme] - Optional background theme.
+ * @returns {Promise<object>} The result of the order creation.
+ */
 export async function createStickerOrder(params: {
-  orderId: string;   packSize: 10 | 20 | 50;
-  stickerPdfUrl: string;   customer: {
+  orderId: string; // Our internal order ID
+  packSize: 10 | 20 | 50;
+  stickerPdfUrl: string; // URL to the generated PDF
+  customer: {
     name: string;
     email: string;
     address1: string;
@@ -477,12 +558,16 @@ export async function createStickerOrder(params: {
     phone?: string;
   };
   retailCosts: {
-    subtotal: number;     shipping: number;     tax?: number;   };
+    subtotal: number; // in cents
+    shipping: number; // in cents
+    tax?: number; // in cents
+  };
   backgroundTheme?: string;
 }) {
   const client = new PrintfulClient();
 
-    const orderRequest: PrintfulOrderRequest = {
+  // Map our internal data to Printful order format
+  const orderRequest: PrintfulOrderRequest = {
     recipient: {
       name: params.customer.name,
       email: params.customer.email,
@@ -497,7 +582,8 @@ export async function createStickerOrder(params: {
     items: [
       {
         variant_id: LIGHTMYFIRE_PRINTFUL_CONFIG.STICKER_SHEET_VARIANT_ID,
-        quantity: Math.ceil(params.packSize / 10),         files: [
+        quantity: Math.ceil(params.packSize / 10), // Assuming 1 sheet = 10 stickers
+        files: [
           {
             url: params.stickerPdfUrl,
             type: 'back',
@@ -506,7 +592,8 @@ export async function createStickerOrder(params: {
         options: [
           {
             id: 'stitch_color',
-            value: '#FFFFFF',           },
+            value: '#FFFFFF', // Default option example
+          },
         ],
       },
     ],
@@ -631,6 +718,12 @@ export async function createStickerOrder(params: {
   }
 }
 
+/**
+ * Retrieves the status of a Printful order.
+ *
+ * @param {number} printfulOrderId - The Printful order ID.
+ * @returns {Promise<object | null>} The order status and shipping details, or null on failure.
+ */
 export async function getPrintfulOrderStatus(printfulOrderId: number) {
   const client = new PrintfulClient();
 
@@ -678,6 +771,12 @@ export async function getPrintfulOrderStatus(printfulOrderId: number) {
   }
 }
 
+/**
+ * Cancels a Printful order.
+ *
+ * @param {number} printfulOrderId - The Printful order ID.
+ * @returns {Promise<object>} The result of the cancellation.
+ */
 export async function cancelPrintfulOrder(printfulOrderId: number) {
   const client = new PrintfulClient();
 
@@ -729,6 +828,13 @@ export async function cancelPrintfulOrder(printfulOrderId: number) {
   }
 }
 
+/**
+ * Verifies the Printful webhook signature.
+ *
+ * @param {string} payload - The raw request body.
+ * @param {string} signature - The X-Printful-Signature header value.
+ * @returns {boolean} True if the signature is valid, false otherwise.
+ */
 export function verifyPrintfulWebhook(
   payload: string,
   signature: string

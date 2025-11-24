@@ -10,15 +10,25 @@ interface RateLimitStore {
 const store: RateLimitStore = {};
 
 const RATE_LIMITS = {
-  payment: { requests: 5, windowMs: 60 * 1000 },
-  moderation: { requests: 10, windowMs: 60 * 1000 },
-  youtube: { requests: 20, windowMs: 60 * 1000 },
-  admin: { requests: 50, windowMs: 60 * 1000 },
-  contact: { requests: 3, windowMs: 60 * 60 * 1000 },   shipping: { requests: 30, windowMs: 60 * 1000 },   default: { requests: 30, windowMs: 60 * 1000 },
+  payment: { requests: 5, windowMs: 60 * 1000 }, // 5 per minute
+  moderation: { requests: 10, windowMs: 60 * 1000 }, // 10 per minute
+  youtube: { requests: 20, windowMs: 60 * 1000 }, // 20 per minute
+  admin: { requests: 50, windowMs: 60 * 1000 }, // 50 per minute
+  contact: { requests: 3, windowMs: 60 * 60 * 1000 }, // 3 per hour
+  shipping: { requests: 30, windowMs: 60 * 1000 }, // 30 per minute
+  default: { requests: 30, windowMs: 60 * 1000 }, // 30 per minute
 } as const;
 
 export type RateLimitType = keyof typeof RATE_LIMITS;
 
+/**
+ * Rate limits requests based on IP address or identifier.
+ *
+ * @param {NextRequest} request - The incoming request.
+ * @param {RateLimitType} [type='default'] - The rate limit type.
+ * @param {string} [identifier] - Optional custom identifier (e.g., user ID).
+ * @returns {{ success: boolean; remaining: number; resetTime: number }} Rate limit result.
+ */
 export function rateLimit(
   request: NextRequest,
   type: RateLimitType = 'default',
@@ -64,6 +74,7 @@ export function rateLimit(
   };
 }
 
+// Cleanup interval (every minute)
 setInterval(() => {
   const now = Date.now();
   Object.keys(store).forEach((key) => {

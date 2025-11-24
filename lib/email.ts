@@ -3,6 +3,12 @@ import { t, SupportedEmailLanguage } from './email-i18n';
 
 let resendClient: Resend | null = null;
 
+/**
+ * Gets the Resend client instance, creating it if it doesn't exist.
+ *
+ * @returns {Resend} The Resend client instance.
+ * @throws {Error} If RESEND_API_KEY is not configured.
+ */
 function getResendClient(): Resend {
   if (!resendClient) {
     const apiKey = process.env.RESEND_API_KEY;
@@ -26,6 +32,9 @@ const EMAIL_RETRY_CONFIG = {
 
 /**
  * Sleep for specified milliseconds
+ *
+ * @param {number} ms - Milliseconds to sleep.
+ * @returns {Promise<void>}
  */
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -35,6 +44,9 @@ function sleep(ms: number): Promise<void> {
  * Determines if an email error is retryable
  * Retryable: network issues, rate limits, temporary server errors
  * Not retryable: invalid email, auth failures, validation errors
+ *
+ * @param {unknown} error - The error object.
+ * @returns {boolean} True if the error is retryable, false otherwise.
  */
 function isEmailErrorRetryable(error: unknown): boolean {
   // Network/timeout errors are retryable
@@ -74,6 +86,11 @@ function isEmailErrorRetryable(error: unknown): boolean {
 
 /**
  * Retry email sending with exponential backoff
+ *
+ * @param {() => Promise<T>} fn - The async function to retry.
+ * @param {string} context - Context description for logging.
+ * @param {number} [maxRetries=EMAIL_RETRY_CONFIG.maxRetries] - Maximum number of retries.
+ * @returns {Promise<T>} The result of the function.
  */
 async function retryEmailSend<T>(
   fn: () => Promise<T>,
@@ -257,6 +274,12 @@ interface SendEmailOptions {
   }>;
 }
 
+/**
+ * Sends an email using the Resend API with retry logic.
+ *
+ * @param {SendEmailOptions} options - The email options (to, subject, html, etc.).
+ * @returns {Promise<{ success: boolean; error?: string; id?: string }>} The result of the send operation.
+ */
 async function sendEmail(options: SendEmailOptions): Promise<{ success: boolean; error?: string; id?: string }> {
   const emailContext = `Email to ${Array.isArray(options.to) ? options.to.join(', ') : options.to}`;
 
@@ -324,6 +347,15 @@ async function sendEmail(options: SendEmailOptions): Promise<{ success: boolean;
   }
 }
 
+/**
+ * Wraps email content in a standard HTML template.
+ *
+ * @param {string} content - The HTML content to wrap.
+ * @param {string} title - The email title.
+ * @param {string | undefined} subtitle - The email subtitle.
+ * @param {SupportedEmailLanguage} [lang='en'] - The language for the template.
+ * @returns {string} The complete HTML email string.
+ */
 function wrapEmailTemplate(content: string, title: string, subtitle: string | undefined, lang: SupportedEmailLanguage = 'en'): string {
   const translate = t(lang);
   const supportEmail = 'support@lightmyfire.app';
@@ -373,6 +405,12 @@ interface OrderShippedData {
   language?: SupportedEmailLanguage;
 }
 
+/**
+ * Sends an email notification when an order is shipped.
+ *
+ * @param {OrderShippedData} data - The order shipment data.
+ * @returns {Promise<any>} The result of the email send operation.
+ */
 export async function sendOrderShippedEmail(data: OrderShippedData) {
   const lang = data.language || 'en';
   const translate = t(lang);
@@ -425,6 +463,12 @@ interface FirstPostData {
   language?: SupportedEmailLanguage;
 }
 
+/**
+ * Sends a celebration email for the user's first post.
+ *
+ * @param {FirstPostData} data - The data for the first post email.
+ * @returns {Promise<any>} The result of the email send operation.
+ */
 export async function sendFirstPostCelebrationEmail(data: FirstPostData) {
   const lang = data.language || 'en';
   const translate = t(lang);
@@ -484,6 +528,12 @@ interface TrophyEarnedData {
   language?: SupportedEmailLanguage;
 }
 
+/**
+ * Sends an email notification when a trophy is earned.
+ *
+ * @param {TrophyEarnedData} data - The trophy data.
+ * @returns {Promise<any>} The result of the email send operation.
+ */
 export async function sendTrophyEarnedEmail(data: TrophyEarnedData) {
   const lang = data.language || 'en';
   const translate = t(lang);
@@ -532,6 +582,12 @@ interface LighterActivityData {
   language?: SupportedEmailLanguage;
 }
 
+/**
+ * Sends an email notification about activity on a lighter.
+ *
+ * @param {LighterActivityData} data - The activity data.
+ * @returns {Promise<any>} The result of the email send operation.
+ */
 export async function sendLighterActivityEmail(data: LighterActivityData) {
   const lang = data.language || 'en';
   const translate = t(lang);
@@ -582,6 +638,12 @@ interface WelcomeEmailData {
   language?: SupportedEmailLanguage;
 }
 
+/**
+ * Sends a welcome email to a new user.
+ *
+ * @param {WelcomeEmailData} data - The welcome email data.
+ * @returns {Promise<any>} The result of the email send operation.
+ */
 export async function sendWelcomeEmail(data: WelcomeEmailData) {
   const lang = data.language || 'en';
   const translate = t(lang);
@@ -641,6 +703,12 @@ interface OrderConfirmationEmailData {
   language?: SupportedEmailLanguage;
 }
 
+/**
+ * Sends an order confirmation email.
+ *
+ * @param {OrderConfirmationEmailData} data - The order confirmation data.
+ * @returns {Promise<any>} The result of the email send operation.
+ */
 export async function sendOrderConfirmationEmail(data: OrderConfirmationEmailData) {
   const lang = data.language || 'en';
   const translate = t(lang);
@@ -706,6 +774,12 @@ interface ModeratorInviteData {
   language?: SupportedEmailLanguage;
 }
 
+/**
+ * Sends an email inviting a user to become a moderator.
+ *
+ * @param {ModeratorInviteData} data - The moderator invite data.
+ * @returns {Promise<any>} The result of the email send operation.
+ */
 export async function sendModeratorInviteEmail(data: ModeratorInviteData) {
   const lang = data.language || 'en';
   const translate = t(lang);
@@ -786,6 +860,12 @@ interface FulfillmentEmailData {
   downloadUrls?: string[];
 }
 
+/**
+ * Sends a fulfillment email to the admin with order details and generated sticker files.
+ *
+ * @param {FulfillmentEmailData} data - The fulfillment data.
+ * @returns {Promise<any>} The result of the email send operation.
+ */
 export async function sendFulfillmentEmail(data: FulfillmentEmailData) {
   const fulfillmentEmail = process.env.FULFILLMENT_EMAIL || 'mitch@lightmyfire.app';
 

@@ -1,4 +1,7 @@
 
+/**
+ * Represents a detailed post object with joined information.
+ */
 export type DetailedPost = {
   id: number;
   lighter_id: string;
@@ -21,11 +24,15 @@ export type DetailedPost = {
   nationality: string | null;
   show_nationality: boolean;
   role?: 'user' | 'moderator' | 'admin' | null;
-    is_public: boolean;
+  // Flagged/moderation fields
+  is_public: boolean;
   is_flagged: boolean;
   flagged_count: number;
 };
 
+/**
+ * Represents a user's post with associated lighter details.
+ */
 export type MyPostWithLighter = {
   id: number;
   title: string | null;
@@ -37,9 +44,12 @@ export type MyPostWithLighter = {
   } | null;
 };
 
+/**
+ * Represents a trophy/achievement.
+ */
 export type Trophy = {
   id: number;
   name: string;
   description: string;
-  icon_name: string | null; };
-
+  icon_name: string | null; // e.g., "trophy-gold.png"
+};

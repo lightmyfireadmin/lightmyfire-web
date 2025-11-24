@@ -14,6 +14,14 @@ const locales = {
 
 export type SupportedEmailLanguage = keyof typeof locales;
 
+/**
+ * Retrieves a translated string for emails, replacing placeholders.
+ *
+ * @param {SupportedEmailLanguage} lang - The language code (e.g., 'en', 'es').
+ * @param {LocaleKey} key - The translation key.
+ * @param {Record<string, string | number>} [replacements] - Key-value pairs for placeholder replacement.
+ * @returns {string} The translated string with replacements applied.
+ */
 export function getEmailTranslation(
   lang: SupportedEmailLanguage,
   key: LocaleKey,
@@ -32,6 +40,12 @@ export function getEmailTranslation(
   return text;
 }
 
+/**
+ * Creates a translation function for a specific language.
+ *
+ * @param {SupportedEmailLanguage} lang - The language code.
+ * @returns {Function} A function that accepts a key and replacements to return a translated string.
+ */
 export function t(lang: SupportedEmailLanguage) {
   return (key: LocaleKey, replacements?: Record<string, string | number>) =>
     getEmailTranslation(lang, key, replacements);

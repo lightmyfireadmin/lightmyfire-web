@@ -43,6 +43,11 @@ export type ApiResponse<T = unknown> = ApiSuccessResponse<T> | ApiErrorResponse;
 
 /**
  * Helper to create a success response
+ *
+ * @param {T} data - The data payload to return
+ * @param {string} [message] - Optional success message
+ * @param {Record<string, unknown>} [meta] - Optional metadata
+ * @returns {ApiSuccessResponse<T>} formatted success response object
  */
 export function createSuccessResponse<T>(
   data: T,
@@ -64,6 +69,12 @@ export function createSuccessResponse<T>(
 
 /**
  * Helper to create an error response
+ *
+ * @param {string} code - The error code
+ * @param {string} message - A human-readable error message
+ * @param {unknown} [details] - Optional error details
+ * @param {Record<string, unknown>} [meta] - Optional metadata
+ * @returns {ApiErrorResponse} Formatted error response object
  */
 export function createErrorResponse(
   code: string,
@@ -143,6 +154,11 @@ export interface ApiPaginatedResponse<T> extends ApiSuccessResponse<T[]> {
 
 /**
  * Helper to create a paginated response
+ *
+ * @param {T[]} data - Array of data items
+ * @param {PaginationMeta} pagination - Pagination metadata
+ * @param {string} [message] - Optional message
+ * @returns {ApiPaginatedResponse<T>} Formatted paginated response object
  */
 export function createPaginatedResponse<T>(
   data: T[],

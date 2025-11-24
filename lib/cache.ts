@@ -22,6 +22,9 @@ class SimpleCache {
 
   /**
    * Get a value from cache
+   *
+   * @param {string} key - The cache key
+   * @returns {T | null} The cached value or null if not found or expired
    */
   get<T>(key: string): T | null {
     const entry = this.cache.get(key) as CacheEntry<T> | undefined;
@@ -41,6 +44,10 @@ class SimpleCache {
 
   /**
    * Set a value in cache with TTL (Time To Live) in seconds
+   *
+   * @param {string} key - The cache key
+   * @param {T} data - The data to store
+   * @param {number} [ttlSeconds=300] - Time to live in seconds (default: 300)
    */
   set<T>(key: string, data: T, ttlSeconds = 300): void {
     const expiry = Date.now() + (ttlSeconds * 1000);
@@ -49,6 +56,9 @@ class SimpleCache {
 
   /**
    * Delete a specific key
+   *
+   * @param {string} key - The cache key to delete
+   * @returns {boolean} True if an element in the Map object existed and has been removed, or false if the element does not exist.
    */
   delete(key: string): boolean {
     return this.cache.delete(key);
@@ -63,6 +73,8 @@ class SimpleCache {
 
   /**
    * Get cache stats
+   *
+   * @returns {{ size: number; keys: string[] }} Object containing size and list of keys
    */
   stats(): { size: number; keys: string[] } {
     return {
@@ -101,6 +113,11 @@ export const cache = new SimpleCache();
 /**
  * Cache decorator for async functions
  *
+ * @param {string} key - The cache key
+ * @param {() => Promise<T>} fetchFn - The async function to fetch data if cache miss
+ * @param {number} [ttlSeconds=300] - Time to live in seconds
+ * @returns {Promise<T>} The cached or fetched data
+ *
  * @example
  * const getCachedData = withCache('user:123', () => fetchUserData(123), 300);
  */
@@ -126,6 +143,10 @@ export async function withCache<T>(
 
 /**
  * Generate cache key from parameters
+ *
+ * @param {string} prefix - The key prefix
+ * @param {...(string | number | boolean)[]} params - Additional parameters to append to the key
+ * @returns {string} The generated cache key
  */
 export function generateCacheKey(prefix: string, ...params: (string | number | boolean)[]): string {
   return `${prefix}:${params.join(':')}`;

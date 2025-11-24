@@ -2,8 +2,10 @@ import crypto from 'crypto';
 
 /**
  * Generates a secure internal authentication token using HMAC-SHA256
- * @param userId - The user ID to authenticate
- * @returns Base64-encoded token with payload and signature
+ *
+ * @param {string} userId - The user ID to authenticate
+ * @returns {string} Base64-encoded token with payload and signature
+ * @throws {Error} If INTERNAL_AUTH_SECRET environment variable is not configured.
  */
 export function generateInternalAuthToken(userId: string): string {
   const secret = process.env.INTERNAL_AUTH_SECRET;
@@ -29,10 +31,11 @@ export function generateInternalAuthToken(userId: string): string {
 
 /**
  * Verifies an internal authentication token
- * @param token - Base64-encoded token to verify
- * @param expectedUserId - Expected user ID
- * @param maxAgeMs - Maximum age of token in milliseconds (default: 60000ms = 1 minute)
- * @returns true if token is valid, false otherwise
+ *
+ * @param {string} token - Base64-encoded token to verify
+ * @param {string} expectedUserId - Expected user ID
+ * @param {number} [maxAgeMs=60000] - Maximum age of token in milliseconds (default: 60000ms = 1 minute)
+ * @returns {boolean} true if token is valid, false otherwise
  */
 export function verifyInternalAuthToken(
   token: string,

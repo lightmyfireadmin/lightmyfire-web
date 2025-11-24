@@ -1,5 +1,4 @@
 
-
 import { FILE_UPLOAD } from './constants';
 
 const FILE_SIGNATURES = {
@@ -26,14 +25,21 @@ interface FileValidationResult {
   detectedMimeType?: string;
 }
 
+/**
+ * Validates a file's signature (magic numbers) to verify its true type.
+ * Supports PNG, JPEG, and GIF.
+ *
+ * @param {File} file - The file to validate.
+ * @returns {Promise<FileValidationResult>} The validation result.
+ */
 export async function validateFileSignature(
   file: File
 ): Promise<FileValidationResult> {
   try {
-        const buffer = await file.slice(0, 4).arrayBuffer();
+    const buffer = await file.slice(0, 4).arrayBuffer();
     const view = new Uint8Array(buffer);
 
-        for (const [key, sig] of Object.entries(FILE_SIGNATURES)) {
+    for (const [key, sig] of Object.entries(FILE_SIGNATURES)) {
       const isMatch = sig.signature.every(
         (byte, index) => view[index] === byte
       );
@@ -57,6 +63,12 @@ export async function validateFileSignature(
   }
 }
 
+/**
+ * Validates that a file's size is within allowed limits.
+ *
+ * @param {File} file - The file to validate.
+ * @returns {string | null} Error message if invalid, null if valid.
+ */
 export function validateFileSize(file: File): string | null {
   if (file.size > FILE_UPLOAD.MAX_SIZE_BYTES) {
     return `File is too large. Maximum size is ${FILE_UPLOAD.MAX_SIZE_MB}MB.`;
@@ -65,13 +77,14 @@ export function validateFileSize(file: File): string | null {
 }
 
 /**
- * Validates image dimensions
- * @param file - Image file to validate
- * @param maxWidth - Maximum width in pixels (default: 4096)
- * @param maxHeight - Maximum height in pixels (default: 4096)
- * @param minWidth - Minimum width in pixels (default: 100)
- * @param minHeight - Minimum height in pixels (default: 100)
- * @returns Promise with validation result
+ * Validates image dimensions (width and height).
+ *
+ * @param {File} file - Image file to validate.
+ * @param {number} [maxWidth=4096] - Maximum width in pixels (default: 4096).
+ * @param {number} [maxHeight=4096] - Maximum height in pixels (default: 4096).
+ * @param {number} [minWidth=100] - Minimum width in pixels (default: 100).
+ * @param {number} [minHeight=100] - Minimum height in pixels (default: 100).
+ * @returns {Promise<FileValidationResult>} Promise with validation result.
  */
 export async function validateImageDimensions(
   file: File,
@@ -127,6 +140,13 @@ export async function validateImageDimensions(
   });
 }
 
+/**
+ * Comprehensive file validation including size, type, signature, and dimensions.
+ *
+ * @param {File} file - The file to validate.
+ * @param {boolean} [validateDimensions=true] - Whether to validate image dimensions.
+ * @returns {Promise<FileValidationResult>} The combined validation result.
+ */
 export async function validateFile(
   file: File,
   validateDimensions = true
@@ -168,11 +188,26 @@ export async function validateFile(
   };
 }
 
+/**
+ * Sanitizes a filename by removing path components and replacing special characters.
+ *
+ * @param {string} filename - The filename to sanitize.
+ * @returns {string} The sanitized filename.
+ */
 export function sanitizeFilename(filename: string): string {
-    return filename
-    .replace(/^.*[\\/]/, '')     .replace(/[^a-z0-9._-]/gi, '_')     .toLowerCase();
+  return filename
+    .replace(/^.*[\\/]/, '') // Remove directory paths
+    .replace(/[^a-z0-9._-]/gi, '_') // Replace non-alphanumeric chars with underscore
+    .toLowerCase();
 }
 
+/**
+ * Generates a safe, unique filename including a timestamp and user ID.
+ *
+ * @param {string} userId - The ID of the user uploading the file.
+ * @param {string} originalFilename - The original filename.
+ * @returns {string} The generated safe filename.
+ */
 export function generateSafeFilename(
   userId: string,
   originalFilename: string
