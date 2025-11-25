@@ -304,13 +304,13 @@ export default function StripePaymentForm(props: StripePaymentFormProps) {
   useEffect(() => {
     logger.log('StripePaymentForm mounted');
     logger.log('Stripe configuration', {
-      keyAvailable: !!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+      keyAvailable: Boolean(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY),
       keyPrefix: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY?.substring(0, 10)
     });
 
     stripePromise
       .then((stripe) => {
-        logger.log('Stripe loaded successfully', { loaded: !!stripe });
+        logger.log('Stripe loaded successfully', { loaded: Boolean(stripe) });
         setIsStripeLoaded(true);
       })
       .catch((error) => {
